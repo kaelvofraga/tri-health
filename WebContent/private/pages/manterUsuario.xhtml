@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata"></ui:define>
+
+	<ui:define name="content">
+		
+		<p:panel id="panelBusca" header="Manter  Usuário">
+			<h:panelGrid columns="3" rendered="#{!manterUsuarioMB.emEdicao}"
+				style="margin-bottom:20px; width: 30%; margin: 0 auto; ">
+
+				<p:outputLabel for="usuario"
+					value="#{msg['manterUsuario.label.usuario']}" />
+				<p:inputText id="usuario" value="#{manterUsuarioMB.criterio}" />
+				<p:commandButton value="Busca" action="#{manterUsuarioMB.busca}"
+					ajax="false" />
+			</h:panelGrid>
+		</p:panel>
+
+
+		<p:dataTable var="usr" value="#{manterUsuarioMB.usuarios}">
+			<p:column headerText="Nome">
+				<h:outputText value="#{usr.nome}" />
+			</p:column>
+			<p:column headerText="Sobrenome">
+				<h:outputText value="#{usr.sobrenome}" />
+			</p:column>
+			<p:column headerText="Email">
+				<h:outputText value="#{usr.email}" />
+			</p:column>
+
+			<p:column headerText="Ações">
+				<h:commandLink value="Editar">
+					<f:setPropertyActionListener value="#{usr}"
+						target="#{manterUsuarioMB.usuario}" />
+				</h:commandLink>
+				 | 
+				 <h:commandLink value="Excluir" action="#{manterUsuarioMB.exclui}">
+					<f:setPropertyActionListener value="#{usr}"
+						target="#{manterUsuarioMB.usuario}" />
+				</h:commandLink>
+			</p:column>
+		</p:dataTable>
+
+	</ui:define>
+</ui:composition>
+

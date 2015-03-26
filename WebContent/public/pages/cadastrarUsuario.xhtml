@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata"></ui:define>
+
+	<ui:define name="content">
+		<p:panel id="principal" header="Cadastrar Novo Usuário">
+
+			<h:panelGrid columns="2"
+				style="margin-bottom:20px; width: 30%; margin: 0 auto; ">
+
+				<p:outputLabel for="nome"
+					value="#{msg['cadastrarUsuario.label.nome']}" />
+				<p:inputText id="nome" value="#{cadastrarUsuarioMB.usuario.nome}"
+					required="true" />
+
+
+				<p:outputLabel for="sobrenome"
+					value="#{msg['cadastrarUsuario.label.sobrenome']}" />
+				<p:password id="sobrenome" value="#{cadastrarUsuarioMB.usuario.sobrenome}"
+					 required="true">
+				</p:password>
+
+				<p:outputLabel for="email"
+					value="#{msg['cadastrarUsuario.label.email']}" />
+				<p:inputText id="email" value="#{cadastrarUsuarioMB.usuario.email}"
+					required="true" />
+
+
+				<p:outputLabel for="senha"
+					value="#{msg['cadastrarUsuario.label.senha']}" />
+				<p:password id="senha" value="#{cadastrarUsuarioMB.usuario.senha}"
+					 required="true">
+				</p:password>
+
+
+				<p:commandButton value="#{msg['cadastrarUsuario.button.salvar']}"
+					update="panel" action="#{cadastrarUsuarioMB.salva}" ajax="false"
+					style="border: none;" />
+
+				<p:commandButton value="#{msg['button.back']}" action="login"
+					ajax="false" style="border: none;" immediate="true" />
+			</h:panelGrid>
+		</p:panel>
+
+	</ui:define>
+</ui:composition>
+	
+	
