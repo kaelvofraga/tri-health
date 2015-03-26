@@ -15,6 +15,9 @@ hs_err_pid*
 test*
 target/**/*
 target/*
+build
+build*
+build/*
 target
 test-output
 *~
