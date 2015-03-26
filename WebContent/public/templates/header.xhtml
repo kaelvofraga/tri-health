@@ -7,7 +7,12 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 	<ui:composition>
-		<h:graphicImage url="/public/resources/images/logo_ifrs.png" />
+
+		<a
+			href="${facesContext.externalContext.requestContextPath}/private/pages/index.jsf">
+			<h:graphicImage value="/public/resources/images/logo_ifrs.png" />
+		</a>
+
 	</ui:composition>
 
 </ui:composition>
