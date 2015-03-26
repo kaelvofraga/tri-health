@@ -26,3 +26,6 @@ viva ao terminal.
 
 >>>>>>> branch 'master' of https://github.com/rodrigonoll/saude
 >>>>>>> branch 'master' of https://github.com/rodrigonoll/saude.git
+
+
+teste 2
