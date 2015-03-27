@@ -18,6 +18,9 @@ target/*
 build
 build*
 build/*
+build/**
+build/**/*
+build/**/**
 target
 test-output
 *~
