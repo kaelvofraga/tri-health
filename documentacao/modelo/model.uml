@@ -81,4 +81,61 @@
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3fPUEddPEeSXovNDjEoHdw" value="*"/>
     </ownedEnd>
   </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_rPaHINkxEeS9V78FSqsmvg" name="Usuario">
+    <ownedAttribute xmi:id="_rPaHIdkxEeS9V78FSqsmvg" name="id"/>
+    <ownedAttribute xmi:id="_rPaHItkxEeS9V78FSqsmvg" name="nome"/>
+    <ownedAttribute xmi:id="_rPaHI9kxEeS9V78FSqsmvg" name="email"/>
+    <ownedAttribute xmi:id="_rPaHJNkxEeS9V78FSqsmvg" name="senha"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_rP52YNkxEeS9V78FSqsmvg" name="Procedimento">
+    <ownedAttribute xmi:id="_rP52YdkxEeS9V78FSqsmvg" name="id">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rP52YtkxEeS9V78FSqsmvg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_rP52Y9kxEeS9V78FSqsmvg" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_rP52ZNkxEeS9V78FSqsmvg" name="medico_soliciante"/>
+    <ownedAttribute xmi:id="_rP52ZdkxEeS9V78FSqsmvg" name="medico_responsavel"/>
+    <ownedAttribute xmi:id="_rP52ZtkxEeS9V78FSqsmvg" name="laudo"/>
+    <ownedAttribute xmi:id="_rP52Z9kxEeS9V78FSqsmvg" name="data_internacao"/>
+    <ownedAttribute xmi:id="_rP52aNkxEeS9V78FSqsmvg" name="data_alta"/>
+    <ownedAttribute xmi:id="_rP52adkxEeS9V78FSqsmvg" name="observacoes"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_rP8SoNkxEeS9V78FSqsmvg" name="Medicos">
+    <ownedAttribute xmi:id="_rP8SodkxEeS9V78FSqsmvg" name="id"/>
+    <ownedAttribute xmi:id="_rP8SotkxEeS9V78FSqsmvg" name="registro"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_rP-u4NkxEeS9V78FSqsmvg" name="usuariosToProcedimentos" memberEnd="_rP-u4dkxEeS9V78FSqsmvg _rP-u5NkxEeS9V78FSqsmvg" navigableOwnedEnd="_rP-u5NkxEeS9V78FSqsmvg">
+    <ownedEnd xmi:id="_rP-u4dkxEeS9V78FSqsmvg" name="usuarios" type="_rPaHINkxEeS9V78FSqsmvg" aggregation="shared" association="_rP-u4NkxEeS9V78FSqsmvg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rP-u4tkxEeS9V78FSqsmvg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_rP-u49kxEeS9V78FSqsmvg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_rP-u5NkxEeS9V78FSqsmvg" name="procedimentos" type="_rP52YNkxEeS9V78FSqsmvg" association="_rP-u4NkxEeS9V78FSqsmvg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rP-u5dkxEeS9V78FSqsmvg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_rP-u5tkxEeS9V78FSqsmvg" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_rP_V8NkxEeS9V78FSqsmvg" name="Especialidades_Medicas">
+    <ownedAttribute xmi:id="_rP_V8dkxEeS9V78FSqsmvg" name="id"/>
+    <ownedAttribute xmi:id="_rP_V8tkxEeS9V78FSqsmvg" name="id_medico"/>
+    <ownedAttribute xmi:id="_rP_V89kxEeS9V78FSqsmvg" name="descricao"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_rQByMNkxEeS9V78FSqsmvg" name="procedimentosToMedicoss" memberEnd="_rQByMdkxEeS9V78FSqsmvg _rQByNNkxEeS9V78FSqsmvg" navigableOwnedEnd="_rQByNNkxEeS9V78FSqsmvg">
+    <ownedEnd xmi:id="_rQByMdkxEeS9V78FSqsmvg" name="procedimentos" type="_rP52YNkxEeS9V78FSqsmvg" aggregation="shared" association="_rQByMNkxEeS9V78FSqsmvg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rQByMtkxEeS9V78FSqsmvg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_rQByM9kxEeS9V78FSqsmvg" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_rQByNNkxEeS9V78FSqsmvg" name="medicoss" type="_rP8SoNkxEeS9V78FSqsmvg" association="_rQByMNkxEeS9V78FSqsmvg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rQByNdkxEeS9V78FSqsmvg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_rQByNtkxEeS9V78FSqsmvg" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_rQCZQNkxEeS9V78FSqsmvg" name="especialidades_MedicassToMedicoss" memberEnd="_rQCZQdkxEeS9V78FSqsmvg _rQCZRNkxEeS9V78FSqsmvg" navigableOwnedEnd="_rQCZRNkxEeS9V78FSqsmvg">
+    <ownedEnd xmi:id="_rQCZQdkxEeS9V78FSqsmvg" name="especialidades_Medicass" type="_rP_V8NkxEeS9V78FSqsmvg" aggregation="shared" association="_rQCZQNkxEeS9V78FSqsmvg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rQCZQtkxEeS9V78FSqsmvg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_rQCZQ9kxEeS9V78FSqsmvg" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_rQCZRNkxEeS9V78FSqsmvg" name="medicoss" type="_rP8SoNkxEeS9V78FSqsmvg" association="_rQCZQNkxEeS9V78FSqsmvg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rQCZRdkxEeS9V78FSqsmvg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_rQCZRtkxEeS9V78FSqsmvg" value="*"/>
+    </ownedEnd>
+  </packagedElement>
 </uml:Model>
