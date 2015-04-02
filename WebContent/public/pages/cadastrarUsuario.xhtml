@@ -25,10 +25,9 @@
 
 					<p:outputLabel for="sobrenome"
 						value="#{msg['cadastrarUsuario.label.sobrenome']}" />
-					<p:password id="sobrenome"
+					<p:inputText id="sobrenome"
 						value="#{cadastrarUsuarioMB.usuario.sobrenome}"
-						styleClass="form-control" required="true">
-					</p:password>
+						styleClass="form-control" required="true"/>
 
 					<p:outputLabel for="email"
 						value="#{msg['cadastrarUsuario.label.email']}" />
