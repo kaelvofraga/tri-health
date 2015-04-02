@@ -1,13 +1,15 @@
-<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core">
-	<center>
-		<h:outputText value="#{msg['footer.title.head']}" />
-		<br />
-		<h:outputText value="#{msg['footer.title.detail']}" />
-	</center>
-</ui:composition>
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<h:form>
+		<h:panelGrid columns="2" width="100%">
+			<h:outputText value="&copy; Copyright 2015 IFRS &minus; Campus Canoas" style="float:left" />
+			<h:commandLink action="#" value="Desenvolvedores" style="float:right" /> 
+		</h:panelGrid>
+	</h:form>
+
+
+
+</html>

@@ -1,18 +1,26 @@
-<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-	<ui:composition>
+	<h:form>
+		<h:panelGrid columns="2" width="100%">
+			<p class="top"><em>"Aqui devemos achar alguma frase motivacional sobre saúde"</em>. E Seu Autor </p>
+			<p:commandButton value="Sair" styleClass="btn-barra-sup" rendered="#{gerenciarLoginMB.logado}"
+							action="#{gerenciarLoginMB.logout}" ajax="false" immediate="true"/> 
+			<p:commandButton value="#{msg['login.label.cadastre']}" styleClass="btn-barra-sup"
+							action="cadastrarUsuario" ajax="false" immediate="true"
+							rendered="#{!gerenciarLoginMB.logado}" />
+		</h:panelGrid>
+	</h:form>
 
-		<a
-			href="${facesContext.externalContext.requestContextPath}/private/pages/index.jsf">
-			<h:graphicImage value="/public/resources/images/logo_ifrs.png" />
-		</a>
+	<h:panelGroup layout="block"  id="logo">
+		<h1><a href="index.xhtml" class="header-title">tri health</a></h1>
+	</h:panelGroup>
 
-	</ui:composition>
-
-</ui:composition>
+	<div class="break-line"/>
+	
+</html> 

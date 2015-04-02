@@ -7,13 +7,13 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="/public/templates/template.xhtml">
 
-	<ui:define name="metadata"></ui:define>
+	<ui:define name="metadata"/>
 
 	<ui:define name="content">
 		
 		<p:panel id="panelBusca" header="Manter  Usuário">
-			<h:panelGrid columns="3" rendered="#{!manterUsuarioMB.emEdicao}"
-				style="margin-bottom:20px; width: 30%; margin: 0 auto; ">
+		
+			<h:panelGrid columns="3" rendered="#{!manterUsuarioMB.emEdicao}"  styleClass="table">
 
 				<p:outputLabel for="usuario"
 					value="#{msg['manterUsuario.label.usuario']}" />

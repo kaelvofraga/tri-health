@@ -1,0 +1,33 @@
+{margin:0;padding:0}:focus,:active {outline:0}img{border: 0}
+
+#content { width: 75%; margin: 0 auto; !important; }
+#content-style { margin-left: auto !important; margin-right: auto !important; width: 70% !important;  } 
+#header {font: 1.0em Arial, Tahoma, Verdana; background: #fff url(../resources/images/bg.gif) repeat-x; color: #777; !important;}
+#footer {clear: both !important; font-size: 1.3em !important; border-top: 1px solid #ddd !important;  }
+.top { color: #ccc; padding: 2px 20px 0;  text-align: right; float:right}
+#logo { float: left; background: url(../resources/images/redbg.gif) repeat-x; padding: 90px 20px 10px; margin: -56px 0 0px; }
+#logo h1 { font-size: 3.5em; text-shadow: 1px 1px 1px #7E0E0E; }
+
+html, body {height: 100%; min-width: 800px; margin: 0; font: 0.9em Arial, Tahoma, Verdana; background: #fff url(../resources/images/bg.gif) repeat-x; color: #777 !important; }
+a { text-decoration: none !important; font-size: 1.0em !important; } 
+/*
+h2 { font-size: 1.4em; }
+h3 { font-size: 1.4em; background: #B00A0A url(../resources/images/redbg.gif) repeat-x left bottom; padding: 6px 7px; color: #fff; font-weight: normal; margin: 0 0 15px; float: left; }
+h4 { margin: 0 0 15px; color: #555; font-weight: normal; font-size: 2.0em; font-weight: normal; }
+p { clear: both; line-height: 1.64em; margin: 0 0 15px; }
+ */
+
+.break-line { clear: both; border-bottom: 1px solid #ddd; margin: 0 0 10px; }
+.clear { clear: both; }
+.left { float: left; width: 250px; }	
+.right { float: right; width: 630px; margin: 0 0 20px; }
+.right h3 { background: #808080; font-size: .84em; }
+.third { float: left; width: 296px; margin: 0 40px 20px 0; }
+.last { margin-right: 0; }
+#menu { float: right; margin: 20px 0 0; }		
+.header-title {font-weight: normal; color: #fff !important; font-size: 0.8em !important; } 		
+.btn-barra-sup {float:right !important;  font: 0.9em Arial, Tahoma, Verdana !important; margin: -8px 0 0px;}	
+
+.ui-widget-content{background: none !important;border: none !important;}   
+.ui-layout-north .ui-layout-unit-content {overflow:visible !important; }
+.ui-widget-header {overflow:visible !important; }

@@ -7,24 +7,31 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 
-	<h:form>
+	<h:form styleClass="menu">
+		<p:menu> 
+			<p:submenu label="Usuário">
+				<p:menuitem value="Perfil" url="/private/pages/manterUsuario.jsf" />
+			</p:submenu>
 
-		<p:outputPanel id="menuPanel" layout="block">
+			<p:submenu label="Medidas">
+				<p:menuitem value="Pressão Sanguínea" url="#" />
+				<p:menuitem value="Alimentação" url="#" />
+				<p:menuitem value="Peso" url="#" />
+				<p:menuitem value="Dimensões Corporais" url="#" />
+			</p:submenu>
 
-			<p:panelMenu style="width:300px" >
-				<p:submenu label="Usuários">
-					<p:menuitem value="Cadastrar" url="/public/pages/cadastrarUsuario.xhtml"
-						icon="ui-icon-disk" />
-					<p:menuitem value="Manter" url="/private/pages/manterUsuario.xhtml"
-						icon="ui-icon-arrowrefresh-1-w" />
-				</p:submenu>
-			</p:panelMenu>
-			
-			<p:panel style="width:300px">
-				<p:commandButton action="#{gerenciarLoginMB.logout}" value="#{msg['button.logout']}" />
-			</p:panel>
-		</p:outputPanel>
+			<p:submenu label="Histórico de Saúde">
+				<p:menuitem value="Uso de Medicamentos" url="#" />
+				<p:menuitem value="Procedimentos Médicos" url="#" />
+				<p:menuitem value="Consultas Médicas" url="#" />
+			</p:submenu>
 
+			<p:submenu label="Exames">
+				<p:menuitem value="Exames de Sangue" url="#" />
+				<p:menuitem value="Exames de Urina" url="#" />
+			</p:submenu>
+
+		</p:menu>
 	</h:form>
 </ui:composition>
 

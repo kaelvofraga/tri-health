@@ -11,33 +11,32 @@
 	</ui:define>
 
 	<ui:define name="content">
+		
 			<p:panel id="principal" header="#{msg['login.label.title']}"
-				rendered="#{!gerenciarLoginMB.logado}"
-				style="margin-bottom:20px; width: 30%; margin: 0 auto; ">
+				rendered="#{!gerenciarLoginMB.logado}">
 
-				<h:panelGrid columns="2" rendered="#{!gerenciarLoginMB.logado}"
-					cellpadding="10"
-					style="border:0 !important;border-style: none !important;border-color: white;">
+				<h:panelGrid columns="2" rendered="#{!gerenciarLoginMB.logado}" class="table" > 
 
 					<f:validateBean>
+					
 						<p:outputLabel for="email">
-							<h:outputText value="#{msg['login.label.email']}" />
+							<h:outputText value="#{msg['login.label.email']}"  />
 						</p:outputLabel>
-						<p:inputText id="email" value="#{gerenciarLoginMB.usuario.email}" />
+						<p:inputText id="email" value="#{gerenciarLoginMB.usuario.email}" type="email" styleClass="form-control" placeholder="Informe o e-mail"/>
+						
 						<p:outputLabel for="senha">
-							<h:outputText value="#{msg['login.label.senha']}" />
+							<h:outputText value="#{msg['login.label.senha']}"  />
 						</p:outputLabel>
-						<p:password id="senha" value="#{gerenciarLoginMB.usuario.senha}" />
+						<p:password id="senha" value="#{gerenciarLoginMB.usuario.senha}" type="password" styleClass="form-control"  placeholder="Informe a senha"/>
+					
 					</f:validateBean>
-					<p:commandButton value="#{msg['login.label.login']}"
-						action="#{gerenciarLoginMB.login}" ajax="false"
-						rendered="#{!gerenciarLoginMB.logado}" />
-					<p:commandButton value="#{msg['login.label.cadastre']}"
-						action="cadastrarUsuario" ajax="false" immediate="true"
-						rendered="#{!gerenciarLoginMB.logado}" />
 				</h:panelGrid>
 			</p:panel>
-
+						
+			<p:commandButton value="#{msg['login.label.login']}" 
+			action="#{gerenciarLoginMB.login}" ajax="false"
+			rendered="#{!gerenciarLoginMB.logado}" style="float:right !important; "/>
+		
 	</ui:define>
 
 </ui:composition>

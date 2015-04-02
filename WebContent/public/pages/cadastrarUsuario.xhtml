@@ -10,46 +10,51 @@
 	<ui:define name="metadata"></ui:define>
 
 	<ui:define name="content">
+
 		<p:panel id="principal" header="Cadastrar Novo Usuário">
 
-			<h:panelGrid columns="2"
-				style="margin-bottom:20px; width: 30%; margin: 0 auto; ">
+			<h:panelGrid columns="2" class="table">
 
-				<p:outputLabel for="nome"
-					value="#{msg['cadastrarUsuario.label.nome']}" />
-				<p:inputText id="nome" value="#{cadastrarUsuarioMB.usuario.nome}"
-					required="true" />
+				<f:validateBean>
 
-
-				<p:outputLabel for="sobrenome"
-					value="#{msg['cadastrarUsuario.label.sobrenome']}" />
-				<p:password id="sobrenome" value="#{cadastrarUsuarioMB.usuario.sobrenome}"
-					 required="true">
-				</p:password>
-
-				<p:outputLabel for="email"
-					value="#{msg['cadastrarUsuario.label.email']}" />
-				<p:inputText id="email" value="#{cadastrarUsuarioMB.usuario.email}"
-					required="true" />
+					<p:outputLabel for="nome"
+						value="#{msg['cadastrarUsuario.label.nome']}" />
+					<p:inputText id="nome" value="#{cadastrarUsuarioMB.usuario.nome}"
+						styleClass="form-control" required="true" />
 
 
-				<p:outputLabel for="senha"
-					value="#{msg['cadastrarUsuario.label.senha']}" />
-				<p:password id="senha" value="#{cadastrarUsuarioMB.usuario.senha}"
-					 required="true">
-				</p:password>
+					<p:outputLabel for="sobrenome"
+						value="#{msg['cadastrarUsuario.label.sobrenome']}" />
+					<p:password id="sobrenome"
+						value="#{cadastrarUsuarioMB.usuario.sobrenome}"
+						styleClass="form-control" required="true">
+					</p:password>
+
+					<p:outputLabel for="email"
+						value="#{msg['cadastrarUsuario.label.email']}" />
+					<p:inputText id="email" value="#{cadastrarUsuarioMB.usuario.email}"
+						styleClass="form-control" required="true" />
 
 
-				<p:commandButton value="#{msg['cadastrarUsuario.button.salvar']}"
-					update="panel" action="#{cadastrarUsuarioMB.salva}" ajax="false"
-					style="border: none;" />
+					<p:outputLabel for="senha"
+						value="#{msg['cadastrarUsuario.label.senha']}" />
+					<p:password id="senha" value="#{cadastrarUsuarioMB.usuario.senha}"
+						styleClass="form-control" required="true">
+					</p:password>
 
-				<p:commandButton value="#{msg['button.back']}" action="login"
-					ajax="false" style="border: none;" immediate="true" />
+				</f:validateBean>
+				
+					<p:commandButton value="#{msg['button.back']}" action="login"
+						ajax="false" immediate="true" style="float:right !important; "/>
+					<p:commandButton value="#{msg['cadastrarUsuario.button.salvar']}"
+						style="float:right !important; " update="panel"
+						action="#{cadastrarUsuarioMB.salva}" ajax="false"/>
+				
 			</h:panelGrid>
+
 		</p:panel>
+
 
 	</ui:define>
 </ui:composition>
-	
-	
+

@@ -9,54 +9,133 @@
 <f:view contentType="text/html" id="fview">
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Template</title>
+
+	<title>Tri Health!</title>
 	<ui:debug />
+
 	<f:metadata>
 		<ui:insert name="metadata" />
 	</f:metadata>
 
-	<h:head>
-		<p:ajaxStatus onstart="statusDialog.show();"
-			onsuccess="statusDialog.hide();" />
+	<h:outputScript library="js" name="jquery-2.1.3.min.js" />
+	<h:outputStylesheet library="bootstrap/css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="bootstrap/css"
+		name="bootstrap-theme.min.css" />
+	<h:outputScript library="bootstrap/js" name="bootstrap.min.js" />
 
-		<p:layout fullPage="true" resizeTitle="resize"
-			style="background-color:#FFFFFF;">
-			<p:layoutUnit position="north" size="55px" id="north">
-				<ui:include src="header.xhtml" />
-			</p:layoutUnit>
+	<h:outputStylesheet library="css" name="estilo.css" />
 
-			<p:layoutUnit position="west" id="west" resizable="false" rendered="#{gerenciarLoginMB.logado}"
-				header="#{msg['menu.title']}" style="height:580px;overflow:hidden;"
-				size="225">
-				<ui:include src="menu.xhtml" />
-			</p:layoutUnit>
+	<script>
+        $a = jQuery.noConflict();
+        $a(document).ready(function() {
+            var heightWindow = $a(window).height();
+            var heightBody   = document.body.clientHeight;
+            if(heightWindow > heightBody){
+                $a("#footer").css('position', 'fixed');
+                $a("#footer").css('bottom', '0');
+            }                
+        });
 
-			<p:layoutUnit styleClass="layoutUnitCenter" position="center">
-				<h:form id="mainForm">
-					<!-- <p:messages autoUpdate="true" id="msgs"/> -->
-					<p:growl autoUpdate="true" id="msgs" />
-					<ui:insert name="content" />
-				</h:form>
-			</p:layoutUnit>
+       
+    </script>
 
-			<p:layoutUnit position="east" size="0"
-				style="width:0px; display:none;" id="east">
-			</p:layoutUnit>
+	<h:head/> 
 
-			<p:layoutUnit position="south" resizable="true" id="south">
-				<ui:include src="footer.xhtml" />
-			</p:layoutUnit>
-		</p:layout>
+	<h:body>
+		<h:panelGroup layout="block" style="height:100%" id="content">
+		
+			<p:layout widgetVar="pageLayoutWV" fullPage="false" style="height:100%">
+			
+				<p:layoutUnit position="north" id="header">
+					<ui:include src="header.xhtml" />
+				</p:layoutUnit>
 
-		<p:dialog modal="true" widgetVar="statusDialog" showHeader="false"
-			draggable="false" closable="false" resizable="false" visible="false"
-			position="center" maximizable="false" minimizable="false">
-			<p:graphicImage value="/public/resources/images/ajax-loader.gif" />
-		</p:dialog>
-	</h:head>
+				<p:layoutUnit position="west" id="menu" rendered="#{gerenciarLoginMB.logado}">
+					<ui:include src="menu.xhtml" />
+				</p:layoutUnit>
 
-	<h:body onload="statusDialog.hide();">
+
+				<p:layoutUnit position="center" id="content-style">
+					<h:form id="mainForm" class="form-horizontal">
+						<p:growl autoUpdate="true" id="msgs" />
+						<ui:insert name="content" />
+					</h:form>
+				</p:layoutUnit>
+
+
+				<p:layoutUnit position="south" resizable="true" id="footer">
+					<ui:include src="footer.xhtml" />
+				</p:layoutUnit>
+
+			</p:layout>
+		</h:panelGroup>
 	</h:body>
+
 
 </f:view>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title><ui:insert name="title">
+            Tri Health
+        </ui:insert></title>
+	<h:outputScript library="js" name="jquery-2.1.3.min.js" />
+	<h:outputStylesheet library="bootstrap/css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="bootstrap/css"
+		name="bootstrap-theme.min.css" />
+	<h:outputScript library="bootstrap/js" name="bootstrap.min.js" />
+
+
+
+	<h:outputStylesheet library="css" name="estilo.css" />
+
+	<script>
+        $a = jQuery.noConflict();
+        $a(document).ready(function() {
+            var heightWindow = $a(window).height();
+            var heightBody   = document.body.clientHeight;
+            if(heightWindow > heightBody){
+                $a("#footer").css('position', 'fixed');
+                $a("#footer").css('bottom', '0');
+            }                
+        });
+    </script>
+
+	</h:head>
+	<h:body>
+		<div id="content">
+			<ui:insert name="header"/>
+	
+			<div class="container">
+				<ui:insert name="container"/>
+			</div>
+	
+			<div id="footer">
+					<p>&copy; Copyright 2015 IFRS &minus; Campus Canoas [<a href="#">Desenvolvedores</a>] [<a href="#">Termos de Uso</a>]</p>
+			</div>
+		</div>
+	</h:body>
+</html> -->
