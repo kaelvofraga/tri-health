@@ -52,7 +52,7 @@
               <styles xmi:type="notation:FilteringStyle" xmi:id="_eQnP1tdMEeSXovNDjEoHdw"/>
             </children>
             <styles xmi:type="notation:ShapeStyle" xmi:id="_eQnP0ddMEeSXovNDjEoHdw" fontName="Segoe UI" bold="true"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_eQnP0tdMEeSXovNDjEoHdw" x="135" y="36" width="178" height="78"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_eQnP0tdMEeSXovNDjEoHdw" x="117" y="72" width="178" height="78"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_9rrvkNdMEeSXovNDjEoHdw" type="2003" element="_9rY0oddMEeSXovNDjEoHdw">
             <children xmi:type="notation:Node" xmi:id="_9rrvk9dMEeSXovNDjEoHdw" type="5007"/>
