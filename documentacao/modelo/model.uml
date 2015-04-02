@@ -57,8 +57,8 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_S5axQddQEeSXovNDjEoHdw" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_S5axQtdQEeSXovNDjEoHdw" value="1"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="_e_RIwNdQEeSXovNDjEoHdw" name="duracao" visibility="private">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+    <ownedAttribute xmi:id="_e_RIwNdQEeSXovNDjEoHdw" name="data_fim" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDate"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_e_RIwddQEeSXovNDjEoHdw" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_e_RIwtdQEeSXovNDjEoHdw" value="1"/>
     </ownedAttribute>

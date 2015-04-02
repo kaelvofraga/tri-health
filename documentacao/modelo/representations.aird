@@ -52,7 +52,7 @@
               <styles xmi:type="notation:FilteringStyle" xmi:id="_eQnP1tdMEeSXovNDjEoHdw"/>
             </children>
             <styles xmi:type="notation:ShapeStyle" xmi:id="_eQnP0ddMEeSXovNDjEoHdw" fontName="Segoe UI" bold="true"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_eQnP0tdMEeSXovNDjEoHdw" x="117" y="72" width="178" height="78"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_eQnP0tdMEeSXovNDjEoHdw" x="108" y="63" width="178" height="78"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_9rrvkNdMEeSXovNDjEoHdw" type="2003" element="_9rY0oddMEeSXovNDjEoHdw">
             <children xmi:type="notation:Node" xmi:id="_9rrvk9dMEeSXovNDjEoHdw" type="5007"/>
@@ -358,7 +358,7 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@containerMappings[name='CD_ReusedMappingForFeatures']/@subNodeMappings[name='CD_Property']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_e_kDsNdQEeSXovNDjEoHdw" name="duracao : Real [1]">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_e_kDsNdQEeSXovNDjEoHdw" name="data_fim : EDate [1]">
           <target xmi:type="uml:Property" href="model.uml#_e_RIwNdQEeSXovNDjEoHdw"/>
           <semanticElements xmi:type="uml:Property" href="model.uml#_e_RIwNdQEeSXovNDjEoHdw"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_e_kDsddQEeSXovNDjEoHdw" labelAlignment="LEFT">
