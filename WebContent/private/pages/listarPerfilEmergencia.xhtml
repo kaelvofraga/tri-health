@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata"/>
+
+	<ui:define name="content">
+		
+		<h1 class="lead">Perfil de Emergência</h1>
+		
+	    <p:accordionPanel multiple="true">
+	        <p:tab title="Alergias" >
+	        	
+	            <h:panelGroup layout="block" styleClass="form-group">
+	            	<p:outputLabel for="criterio_alergia" value="Pesquisa" />
+	            	<p:inputText id="criterio_alergia" styleClass="form-control" 
+	            		value="#{cadastrarUsuarioMBmanterUsuarioMB.criterio}" 
+	            		placeholder="Entre o critério de pesquisa aqui"/>
+	            </h:panelGroup>
+	            
+	            <h:panelGroup layout="block" styleClass="form-group">
+		            <p:commandButton value="Busca" action="#{manterUsuarioMB.busca}" ajax="false" styleClass="btn btn-default" />
+	            </h:panelGroup>
+	            
+	            <br/><br/>
+	            <p:dataTable var="usr" value="#{manterUsuarioMB.usuarios}">
+				<p:column headerText="Nome">
+					<h:outputText value="#{usr.nome}" />
+				</p:column>
+				<p:column headerText="Sobrenome">
+					<h:outputText value="#{usr.sobrenome}" />
+				</p:column>
+				<p:column headerText="Email">
+					<h:outputText value="#{usr.email}" />
+				</p:column>
+	
+				<p:column headerText="Ações">
+					<h:commandLink value="Editar">
+						<f:setPropertyActionListener value="#{usr}"
+							target="#{manterUsuarioMB.usuario}" />
+					</h:commandLink>
+					 | 
+					 <h:commandLink value="Excluir" action="#{manterUsuarioMB.exclui}">
+						<f:setPropertyActionListener value="#{usr}"
+							target="#{manterUsuarioMB.usuario}" />
+					</h:commandLink>
+				</p:column>
+			</p:dataTable>
+	            <br/><br/>
+	        </p:tab>
+	        
+	        <p:tab title="Situações Médicas">
+	            <h:panelGrid columns="2"  cellpadding="10">
+	                
+	                <p:outputLabel for="criterio_situacoes_medicas" value="Mensagem" />
+					<p:inputText id="criterio_situacoes_medicas" value="#{manterUsuarioMB.criterio}" />
+	                <p:commandButton value="Busca" action="#{manterUsuarioMB.busca}"
+					ajax="false" />
+	            </h:panelGrid>
+	            
+	            <p:dataTable var="usr" value="#{manterUsuarioMB.usuarios}">
+					<p:column headerText="Nome">
+						<h:outputText value="#{usr.nome}" />
+					</p:column>
+					<p:column headerText="Sobrenome">
+						<h:outputText value="#{usr.sobrenome}" />
+					</p:column>
+					<p:column headerText="Email">
+						<h:outputText value="#{usr.email}" />
+					</p:column>
+		
+					<p:column headerText="Ações">
+						<h:commandLink value="Editar">
+							<f:setPropertyActionListener value="#{usr}"
+								target="#{manterUsuarioMB.usuario}" />
+						</h:commandLink>
+						 | 
+						 <h:commandLink value="Excluir" action="#{manterUsuarioMB.exclui}">
+							<f:setPropertyActionListener value="#{usr}"
+								target="#{manterUsuarioMB.usuario}" />
+						</h:commandLink>
+					</p:column>
+				</p:dataTable>
+	        </p:tab>
+	        <p:tab title="Medicamentos em Uso">
+	            <h:panelGrid columns="2"  cellpadding="10">
+	                
+	                <p:outputLabel for="criterio_medicamentos_uso" value="Mensagem" />
+					<p:inputText id="criterio_medicamentos_uso" value="#{manterUsuarioMB.criterio}" />
+	                <p:commandButton value="Busca" action="#{manterUsuarioMB.busca}"
+					ajax="false" />
+	            </h:panelGrid>
+	            
+	            <p:dataTable var="usr" value="#{manterUsuarioMB.usuarios}">
+					<p:column headerText="Nome">
+						<h:outputText value="#{usr.nome}" />
+					</p:column>
+					<p:column headerText="Sobrenome">
+						<h:outputText value="#{usr.sobrenome}" />
+					</p:column>
+					<p:column headerText="Email">
+						<h:outputText value="#{usr.email}" />
+					</p:column>
+		
+					<p:column headerText="Ações">
+						<h:commandLink value="Editar">
+							<f:setPropertyActionListener value="#{usr}"
+								target="#{manterUsuarioMB.usuario}" />
+						</h:commandLink>
+						 | 
+						 <h:commandLink value="Excluir" action="#{manterUsuarioMB.exclui}">
+							<f:setPropertyActionListener value="#{usr}"
+								target="#{manterUsuarioMB.usuario}" />
+						</h:commandLink>
+					</p:column>
+				</p:dataTable>
+	        </p:tab>
+	    </p:accordionPanel>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+	</ui:define>
+</ui:composition>
+

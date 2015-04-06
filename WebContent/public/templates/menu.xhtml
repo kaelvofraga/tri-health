@@ -7,32 +7,38 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 
-	<h:form styleClass="menu">
-		<p:menu> 
+	<h:form >
+		<p:panelMenu style="width:200px"> 
 			<p:submenu label="Usuário">
 				<p:menuitem value="Perfil" url="/private/pages/manterUsuario.jsf" />
-				<p:menuitem value="Dados de Emergência" url="/private/pages/manterDadosEmergencia.jsf" />
+				<p:submenu label="Perfil de Emergência">
+					<p:menuitem value="Listar" url="/private/pages/listarPerfilEmergencia.jsf" />
+					<p:menuitem value="Manter" url="/private/pages/manterPerfilEmergencia.jsf" />
+				</p:submenu>
 			</p:submenu>
-
+			
+			<p:separator />
 			<p:submenu label="Medidas">
 				<p:menuitem value="Pressão Sanguínea" url="#" />
 				<p:menuitem value="Alimentação" url="#" />
 				<p:menuitem value="Peso" url="#" />
 				<p:menuitem value="Dimensões Corporais" url="#" />
 			</p:submenu>
-
+			
+			<p:separator />
 			<p:submenu label="Histórico de Saúde">
 				<p:menuitem value="Uso de Medicamentos" url="#" />
 				<p:menuitem value="Procedimentos Médicos" url="#" />
 				<p:menuitem value="Consultas Médicas" url="#" />
 			</p:submenu>
-
+			
+			<p:separator />
 			<p:submenu label="Exames">
 				<p:menuitem value="Exames de Sangue" url="#" />
 				<p:menuitem value="Exames de Urina" url="#" />
 			</p:submenu>
 
-		</p:menu>
+		</p:panelMenu>
 	</h:form>
 </ui:composition>
 

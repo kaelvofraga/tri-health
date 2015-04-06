@@ -65,5 +65,4 @@ public class Usuario extends BaseEntity<Long> implements Serializable {
 		this.sobrenome = sobrenome;
 	}
 	
-	
 }

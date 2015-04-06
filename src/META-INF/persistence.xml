@@ -7,9 +7,7 @@
 
 	<persistence-unit name="projetoBasePU" >
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-
-		<class>br.edu.ifrs.canoas.tads.lds.bean.Usuario</class>
-
+		
 		<properties>
 			
 			<property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>
@@ -26,7 +24,7 @@
 			<property name="hibernate.jdbc.wrap_result_sets" value="false" />
 			<property name="hibernate.hibernate.cache.use_query_cache"
 				value="true" />
-			 <property name="hibernate.hbm2ddl.auto" value="update" /> 
+			 <property name="hibernate.hbm2ddl.auto" value="create-drop" /> 
 		</properties>
 	</persistence-unit>
        

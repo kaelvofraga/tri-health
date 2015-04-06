@@ -285,13 +285,13 @@
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_eEV3YNlaEeSiR7vy0HzFtw" name="Medicamentos" memberEnd="_eEXFgNlaEeSiR7vy0HzFtw _eFBz4dlaEeSiR7vy0HzFtw" navigableOwnedEnd="_eFBz4dlaEeSiR7vy0HzFtw">
-    <ownedEnd xmi:id="_eEXFgNlaEeSiR7vy0HzFtw" name="medicamentos" type="_HLT_QNlcEeSiR7vy0HzFtw" association="_eEV3YNlaEeSiR7vy0HzFtw">
+    <ownedEnd xmi:id="_eEXFgNlaEeSiR7vy0HzFtw" name="medicamentos" type="_HLT_QNlcEeSiR7vy0HzFtw" aggregation="shared" association="_eEV3YNlaEeSiR7vy0HzFtw">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eFBM0NlaEeSiR7vy0HzFtw"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eFBz4NlaEeSiR7vy0HzFtw" value="*"/>
     </ownedEnd>
     <ownedEnd xmi:id="_eFBz4dlaEeSiR7vy0HzFtw" name="usuarios" type="_89r2kNdLEeSXovNDjEoHdw" association="_eEV3YNlaEeSiR7vy0HzFtw">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eFef0NlaEeSiR7vy0HzFtw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eFef0dlaEeSiR7vy0HzFtw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eFef0NlaEeSiR7vy0HzFtw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eFef0dlaEeSiR7vy0HzFtw" value="1"/>
     </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_mNiMENlaEeSiR7vy0HzFtw" name="AlergiaUsuario">
@@ -302,7 +302,7 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kcaFUNldEeSiR7vy0HzFtw" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kcasYNldEeSiR7vy0HzFtw" value="1"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="_KXcZgNlbEeSiR7vy0HzFtw" name="medicamento" type="_YLCXINlZEeSiR7vy0HzFtw">
+    <ownedAttribute xmi:id="_KXcZgNlbEeSiR7vy0HzFtw" name="medicamentoUsuaro" type="_HLT_QNlcEeSiR7vy0HzFtw">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KXdAkNlbEeSiR7vy0HzFtw"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_KXdAkdlbEeSiR7vy0HzFtw" value="1"/>
     </ownedAttribute>
@@ -409,8 +409,8 @@
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_c4jHwNlcEeSiR7vy0HzFtw" value="*"/>
     </ownedEnd>
     <ownedEnd xmi:id="_c4jHwdlcEeSiR7vy0HzFtw" name="medicamentos" type="_YLCXINlZEeSiR7vy0HzFtw" association="_c4h5oNlcEeSiR7vy0HzFtw">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_c4jHwtlcEeSiR7vy0HzFtw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_c4ju0NlcEeSiR7vy0HzFtw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_c4jHwtlcEeSiR7vy0HzFtw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_c4ju0NlcEeSiR7vy0HzFtw" value="1"/>
     </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_pgPyoNldEeSiR7vy0HzFtw" name="AlergiaUsuarios" memberEnd="_pgRAwNldEeSiR7vy0HzFtw _pgRn0tldEeSiR7vy0HzFtw" navigableOwnedEnd="_pgRn0tldEeSiR7vy0HzFtw">
