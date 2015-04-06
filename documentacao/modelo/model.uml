@@ -7,9 +7,6 @@
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#_0"/>
   </packageImport>
   <packagedElement xmi:type="uml:Class" xmi:id="_89r2kNdLEeSXovNDjEoHdw" name="Usuario">
-    <ownedAttribute xmi:id="_biCIINlZEeSiR7vy0HzFtw" name="id">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#ELong"/>
-    </ownedAttribute>
     <ownedAttribute xmi:id="_EOVZsNdMEeSXovNDjEoHdw" name="nome" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_EOVZsddMEeSXovNDjEoHdw" value="1"/>
@@ -29,6 +26,9 @@
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zn6mYddMEeSXovNDjEoHdw" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Zn6mYtdMEeSXovNDjEoHdw" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_mXr9cNxWEeSfxd79HFZG3g" name="IdUsuario" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_eQKj4NdMEeSXovNDjEoHdw" name="Atividade">
@@ -421,6 +421,68 @@
     <ownedEnd xmi:id="_pgRn0tldEeSiR7vy0HzFtw" name="medicamentoUsuarios" type="_HLT_QNlcEeSiR7vy0HzFtw" association="_pgPyoNldEeSiR7vy0HzFtw">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pgRn09ldEeSiR7vy0HzFtw"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pgSO4NldEeSiR7vy0HzFtw" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_KOkTcNxSEeSfxd79HFZG3g" name="Tipo_Medida">
+    <ownedAttribute xmi:id="_Q-ZBcNxSEeSfxd79HFZG3g" name="id_tipoMedida" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_X1mJ0NxSEeSfxd79HFZG3g" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_Z289kNxSEeSfxd79HFZG3g" name="tipo_medida" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dC0coNxSEeSfxd79HFZG3g" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_rQp0UNxSEeSfxd79HFZG3g" name="Udm">
+    <ownedAttribute xmi:id="_vYQi4NxSEeSfxd79HFZG3g" name="id_udm" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_0KpT0NxSEeSfxd79HFZG3g" name="tipo_udm" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_E8zXgNxVEeSfxd79HFZG3g" name="Valor_Medida">
+    <ownedAttribute xmi:id="_H3GlcNxVEeSfxd79HFZG3g" name="idValorMedida" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_N97ZwNxVEeSfxd79HFZG3g" name="valorMedida" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EFloat"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_UB0O0NxVEeSfxd79HFZG3g" name="observacao" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_W-D9gNxVEeSfxd79HFZG3g" name="dataMedida" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDate"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_jYF1QNxVEeSfxd79HFZG3g" name="usuariosToValor_Medidas" memberEnd="_jYF1QdxVEeSfxd79HFZG3g _jZY1wtxVEeSfxd79HFZG3g" navigableOwnedEnd="_jZY1wtxVEeSfxd79HFZG3g">
+    <ownedEnd xmi:id="_jYF1QdxVEeSfxd79HFZG3g" name="usuarios" type="_89r2kNdLEeSXovNDjEoHdw" aggregation="shared" association="_jYF1QNxVEeSfxd79HFZG3g">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jZY1wNxVEeSfxd79HFZG3g" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_jZY1wdxVEeSfxd79HFZG3g" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_jZY1wtxVEeSfxd79HFZG3g" name="valor_Medidas" type="_E8zXgNxVEeSfxd79HFZG3g" association="_jYF1QNxVEeSfxd79HFZG3g">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jaiFQNxVEeSfxd79HFZG3g"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_jaiFQdxVEeSfxd79HFZG3g" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_qRvNoNxVEeSfxd79HFZG3g" name="tipo_MedidasToValor_Medidas" memberEnd="_qRvNodxVEeSfxd79HFZG3g _qRxp4txVEeSfxd79HFZG3g" navigableOwnedEnd="_qRxp4txVEeSfxd79HFZG3g">
+    <ownedEnd xmi:id="_qRvNodxVEeSfxd79HFZG3g" name="tipo_Medidas" type="_KOkTcNxSEeSfxd79HFZG3g" aggregation="shared" association="_qRvNoNxVEeSfxd79HFZG3g">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qRxp4NxVEeSfxd79HFZG3g" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qRxp4dxVEeSfxd79HFZG3g" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_qRxp4txVEeSfxd79HFZG3g" name="valor_Medidas" type="_E8zXgNxVEeSfxd79HFZG3g" association="_qRvNoNxVEeSfxd79HFZG3g">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qR0GINxVEeSfxd79HFZG3g"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qR0GIdxVEeSfxd79HFZG3g" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_tqocENxVEeSfxd79HFZG3g" name="udmsToValor_Medidas" memberEnd="_tqocEdxVEeSfxd79HFZG3g _tqocFNxVEeSfxd79HFZG3g" navigableOwnedEnd="_tqocFNxVEeSfxd79HFZG3g">
+    <ownedEnd xmi:id="_tqocEdxVEeSfxd79HFZG3g" name="udms" type="_rQp0UNxSEeSfxd79HFZG3g" aggregation="shared" association="_tqocENxVEeSfxd79HFZG3g">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tqocEtxVEeSfxd79HFZG3g" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tqocE9xVEeSfxd79HFZG3g" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_tqocFNxVEeSfxd79HFZG3g" name="valor_Medidas" type="_E8zXgNxVEeSfxd79HFZG3g" association="_tqocENxVEeSfxd79HFZG3g">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tqq4UNxVEeSfxd79HFZG3g"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tqq4UdxVEeSfxd79HFZG3g" value="*"/>
     </ownedEnd>
   </packagedElement>
 </uml:Model>
