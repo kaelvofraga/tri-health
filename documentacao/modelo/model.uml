@@ -278,6 +278,11 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tmE1ANlcEeSiR7vy0HzFtw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tmFcENlcEeSiR7vy0HzFtw" value="1"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="_vyZv8N69EeSCAc_QcdCyyw" name="dataConsulta">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#Date"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vyZv8d69EeSCAc_QcdCyyw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vyZv8t69EeSCAc_QcdCyyw" value="1"/>
+        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_KOkTcNxSEeSfxd79HFZG3g" name="Tipo_Medida">
         <ownedAttribute xmi:id="_Q-ZBcNxSEeSfxd79HFZG3g" name="id_tipoMedida" visibility="private">
