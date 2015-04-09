@@ -23,7 +23,85 @@
         </ownedUseCase>
       </packagedElement>
       <packagedElement xmi:type="uml:Component" xmi:id="_Ogj1gN3xEeSMD7bGtIkj9g" name="Medidas" useCase="_r_EM0N3vEeSMD7bGtIkj9g _eE5_EN3vEeSMD7bGtIkj9g _cKfg0N3vEeSMD7bGtIkj9g _lodQEN3vEeSMD7bGtIkj9g _po_GQN3vEeSMD7bGtIkj9g">
-        <ownedUseCase xmi:id="_r_EM0N3vEeSMD7bGtIkj9g" name="Manter Medidas de Pressão Sanguínea" subject="_Ogj1gN3xEeSMD7bGtIkj9g"/>
+        <ownedUseCase xmi:id="_r_EM0N3vEeSMD7bGtIkj9g" name="Manter Medidas de Pressão Sanguínea" subject="_Ogj1gN3xEeSMD7bGtIkj9g">
+          <ownedBehavior xmi:type="uml:Activity" xmi:id="_wGmsEN7CEeSGFaOav9xx-w" name="NewModel activity" node="_wGmsQ97CEeSGFaOav9xx-w _wGmsRN7CEeSGFaOav9xx-w _wGmsRd7CEeSGFaOav9xx-w _wGmsRt7CEeSGFaOav9xx-w _wGmsR97CEeSGFaOav9xx-w _wGmsSN7CEeSGFaOav9xx-w _wGmsSd7CEeSGFaOav9xx-w _wGmsSt7CEeSGFaOav9xx-w _wGmsS97CEeSGFaOav9xx-w" group="_wGmsEd7CEeSGFaOav9xx-w _wGmsEt7CEeSGFaOav9xx-w" partition="_wGmsEd7CEeSGFaOav9xx-w _wGmsEt7CEeSGFaOav9xx-w">
+            <edge xmi:type="uml:ControlFlow" xmi:id="_wGmsE97CEeSGFaOav9xx-w" name="InitialNode1_To_UsuarioLogaNoSistema&#xD;&#xA;" source="_wGmsQ97CEeSGFaOav9xx-w">
+              <guard xmi:type="uml:LiteralBoolean" xmi:id="_wGmsFN7CEeSGFaOav9xx-w" name="InitialNode1_To_UsuarioLogaNoSistema&#xD;&#xA;_guard" value="true"/>
+              <weight xmi:type="uml:LiteralInteger" xmi:id="_wGmsFd7CEeSGFaOav9xx-w" name="InitialNode1_To_UsuarioLogaNoSistema&#xD;&#xA;_weight"/>
+            </edge>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_wGmsFt7CEeSGFaOav9xx-w" name="UsuarioLogaNoSistema&#xD;&#xA;_To_SistemaVerificaDadosDoUsuario">
+              <guard xmi:type="uml:LiteralBoolean" xmi:id="_wGmsF97CEeSGFaOav9xx-w" name="UsuarioLogaNoSistema&#xD;&#xA;_To_SistemaVerificaDadosDoUsuario_guard" value="true"/>
+              <weight xmi:type="uml:LiteralInteger" xmi:id="_wGmsGN7CEeSGFaOav9xx-w" name="UsuarioLogaNoSistema&#xD;&#xA;_To_SistemaVerificaDadosDoUsuario_weight"/>
+            </edge>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_wGmsGd7CEeSGFaOav9xx-w" name="SistemaVerificaDadosDoUsuario_To_UsuarioAcessaPaginaDeCadastroDeExamesDePressaoSanguine" target="_wGmsRN7CEeSGFaOav9xx-w">
+              <guard xmi:type="uml:LiteralBoolean" xmi:id="_wGmsGt7CEeSGFaOav9xx-w" name="SistemaVerificaDadosDoUsuario_To_UsuarioAcessaPaginaDeCadastroDeExamesDePressaoSanguine_guard" value="true"/>
+              <weight xmi:type="uml:LiteralInteger" xmi:id="_wGmsG97CEeSGFaOav9xx-w" name="SistemaVerificaDadosDoUsuario_To_UsuarioAcessaPaginaDeCadastroDeExamesDePressaoSanguine_weight"/>
+            </edge>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_wGmsHN7CEeSGFaOav9xx-w" name="SistemaSalvaDadosInformadosEmSuaBase_To_SistemaInformaAoUsuarioQueAsAlteraçõesForamConcluidas" target="_wGmsSN7CEeSGFaOav9xx-w" source="_wGmsR97CEeSGFaOav9xx-w">
+              <guard xmi:type="uml:LiteralBoolean" xmi:id="_wGmsHd7CEeSGFaOav9xx-w" name="SistemaSalvaDadosInformadosEmSuaBase_To_SistemaInformaAoUsuarioQueAsAlteraçõesForamConcluidas_guard" value="true"/>
+              <weight xmi:type="uml:LiteralInteger" xmi:id="_wGmsHt7CEeSGFaOav9xx-w" name="SistemaSalvaDadosInformadosEmSuaBase_To_SistemaInformaAoUsuarioQueAsAlteraçõesForamConcluidas_weight"/>
+            </edge>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_wGmsH97CEeSGFaOav9xx-w" name="SistemaInformaAoUsuarioQueAsAlteraçõesForamConcluidas_To_ActivityFinal1" target="_wGmsSd7CEeSGFaOav9xx-w" source="_wGmsSN7CEeSGFaOav9xx-w">
+              <guard xmi:type="uml:LiteralBoolean" xmi:id="_wGmsIN7CEeSGFaOav9xx-w" name="SistemaInformaAoUsuarioQueAsAlteraçõesForamConcluidas_To_ActivityFinal1_guard" value="true"/>
+              <weight xmi:type="uml:LiteralInteger" xmi:id="_wGmsId7CEeSGFaOav9xx-w" name="SistemaInformaAoUsuarioQueAsAlteraçõesForamConcluidas_To_ActivityFinal1_weight"/>
+            </edge>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_wGmsIt7CEeSGFaOav9xx-w" name="InitialNode1_To_UsuarioAcessaPaginaDeCadastroDeExamesDePressaoSanguine" target="_wGmsRN7CEeSGFaOav9xx-w" source="_wGmsQ97CEeSGFaOav9xx-w">
+              <guard xmi:type="uml:LiteralBoolean" xmi:id="_wGmsI97CEeSGFaOav9xx-w" name="InitialNode1_To_UsuarioAcessaPaginaDeCadastroDeExamesDePressaoSanguine_guard" value="true"/>
+              <weight xmi:type="uml:LiteralInteger" xmi:id="_wGmsJN7CEeSGFaOav9xx-w" name="InitialNode1_To_UsuarioAcessaPaginaDeCadastroDeExamesDePressaoSanguine_weight"/>
+            </edge>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_wGmsJd7CEeSGFaOav9xx-w" name="UsuarioAcessaPaginaDeExamesDePressaoSanguinea_To_DecisionNode1" source="_wGmsRN7CEeSGFaOav9xx-w">
+              <guard xmi:type="uml:LiteralBoolean" xmi:id="_wGmsJt7CEeSGFaOav9xx-w" name="UsuarioAcessaPaginaDeExamesDePressaoSanguinea_To_DecisionNode1_guard" value="true"/>
+              <weight xmi:type="uml:LiteralInteger" xmi:id="_wGmsJ97CEeSGFaOav9xx-w" name="UsuarioAcessaPaginaDeExamesDePressaoSanguinea_To_DecisionNode1_weight"/>
+            </edge>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_wGmsKN7CEeSGFaOav9xx-w" name="DecisionNode1_To_OpaqueAction7" target="_wGmsSt7CEeSGFaOav9xx-w">
+              <guard xmi:type="uml:LiteralBoolean" xmi:id="_wGmsKd7CEeSGFaOav9xx-w" name="DecisionNode1_To_OpaqueAction7_guard" value="true"/>
+              <weight xmi:type="uml:LiteralInteger" xmi:id="_wGmsKt7CEeSGFaOav9xx-w" name="DecisionNode1_To_OpaqueAction7_weight"/>
+            </edge>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_wGmsK97CEeSGFaOav9xx-w" name="Merge1_To_ExibeFormularioDeCadastro" target="_wGmsRd7CEeSGFaOav9xx-w">
+              <guard xmi:type="uml:LiteralBoolean" xmi:id="_wGmsLN7CEeSGFaOav9xx-w" name="Merge1_To_ExibeFormularioDeCadastro_guard" value="true"/>
+              <weight xmi:type="uml:LiteralInteger" xmi:id="_wGmsLd7CEeSGFaOav9xx-w" name="Merge1_To_ExibeFormularioDeCadastro_weight"/>
+            </edge>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_wGmsLt7CEeSGFaOav9xx-w" name="UsuarioAcessaPaginaDeExamesDePressaoSanguinea_To_DecisionNode1" source="_wGmsRN7CEeSGFaOav9xx-w">
+              <guard xmi:type="uml:LiteralBoolean" xmi:id="_wGmsL97CEeSGFaOav9xx-w" name="UsuarioAcessaPaginaDeExamesDePressaoSanguinea_To_DecisionNode1_guard" value="true"/>
+              <weight xmi:type="uml:LiteralInteger" xmi:id="_wGmsMN7CEeSGFaOav9xx-w" name="UsuarioAcessaPaginaDeExamesDePressaoSanguinea_To_DecisionNode1_weight"/>
+            </edge>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_wGmsMd7CEeSGFaOav9xx-w" name="ExibeHistoricosDeExames_To_ActivityFinal1" target="_wGmsSd7CEeSGFaOav9xx-w" source="_wGmsSt7CEeSGFaOav9xx-w">
+              <guard xmi:type="uml:LiteralBoolean" xmi:id="_wGmsMt7CEeSGFaOav9xx-w" name="ExibeHistoricosDeExames_To_ActivityFinal1_guard" value="true"/>
+              <weight xmi:type="uml:LiteralInteger" xmi:id="_wGmsM97CEeSGFaOav9xx-w" name="ExibeHistoricosDeExames_To_ActivityFinal1_weight"/>
+            </edge>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_wGmsNN7CEeSGFaOav9xx-w" name="ExibeFormularioDeCadastro_To_UsuarioPreencheFormularioEEnviaParaOSistema" target="_wGmsRt7CEeSGFaOav9xx-w" source="_wGmsRd7CEeSGFaOav9xx-w">
+              <guard xmi:type="uml:LiteralBoolean" xmi:id="_wGmsNd7CEeSGFaOav9xx-w" name="ExibeFormularioDeCadastro_To_UsuarioPreencheFormularioEEnviaParaOSistema_guard" value="true"/>
+              <weight xmi:type="uml:LiteralInteger" xmi:id="_wGmsNt7CEeSGFaOav9xx-w" name="ExibeFormularioDeCadastro_To_UsuarioPreencheFormularioEEnviaParaOSistema_weight"/>
+            </edge>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_wGmsN97CEeSGFaOav9xx-w" name="UsuarioPreencheFormularioEEnviaParaOSistema_To_SistemaSalvaDadosInformadosEmSuaBase" target="_wGmsR97CEeSGFaOav9xx-w" source="_wGmsRt7CEeSGFaOav9xx-w">
+              <guard xmi:type="uml:LiteralBoolean" xmi:id="_wGmsON7CEeSGFaOav9xx-w" name="UsuarioPreencheFormularioEEnviaParaOSistema_To_SistemaSalvaDadosInformadosEmSuaBase_guard" value="true"/>
+              <weight xmi:type="uml:LiteralInteger" xmi:id="_wGmsOd7CEeSGFaOav9xx-w" name="UsuarioPreencheFormularioEEnviaParaOSistema_To_SistemaSalvaDadosInformadosEmSuaBase_weight"/>
+            </edge>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_wGmsOt7CEeSGFaOav9xx-w" name="DecisionNode1_To_ExibeFormularioDeCadastro" target="_wGmsRd7CEeSGFaOav9xx-w" source="_wGmsS97CEeSGFaOav9xx-w">
+              <guard xmi:type="uml:LiteralBoolean" xmi:id="_wGmsO97CEeSGFaOav9xx-w" name="DecisionNode1_To_ExibeFormularioDeCadastro_guard" value="true"/>
+              <weight xmi:type="uml:LiteralInteger" xmi:id="_wGmsPN7CEeSGFaOav9xx-w" name="DecisionNode1_To_ExibeFormularioDeCadastro_weight"/>
+            </edge>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_wGmsPd7CEeSGFaOav9xx-w" name="DecisionNode1_To_ExibeHistoricosDeExames" target="_wGmsSt7CEeSGFaOav9xx-w" source="_wGmsS97CEeSGFaOav9xx-w">
+              <guard xmi:type="uml:LiteralBoolean" xmi:id="_wGmsPt7CEeSGFaOav9xx-w" name="DecisionNode1_To_ExibeHistoricosDeExames_guard" value="true"/>
+              <weight xmi:type="uml:LiteralInteger" xmi:id="_wGmsP97CEeSGFaOav9xx-w" name="DecisionNode1_To_ExibeHistoricosDeExames_weight"/>
+            </edge>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_wGmsQN7CEeSGFaOav9xx-w" name="UsuarioAcessaPaginaDeExamesDePressaoSanguinea_To_DecisionNode1" target="_wGmsS97CEeSGFaOav9xx-w" source="_wGmsRN7CEeSGFaOav9xx-w">
+              <guard xmi:type="uml:LiteralBoolean" xmi:id="_wGmsQd7CEeSGFaOav9xx-w" name="UsuarioAcessaPaginaDeExamesDePressaoSanguinea_To_DecisionNode1_guard" value="true"/>
+              <weight xmi:type="uml:LiteralInteger" xmi:id="_wGmsQt7CEeSGFaOav9xx-w" name="UsuarioAcessaPaginaDeExamesDePressaoSanguinea_To_DecisionNode1_weight"/>
+            </edge>
+            <group xmi:type="uml:ActivityPartition" xmi:id="_wGmsEd7CEeSGFaOav9xx-w" name="Usuario" node="_wGmsQ97CEeSGFaOav9xx-w _wGmsRN7CEeSGFaOav9xx-w _wGmsRt7CEeSGFaOav9xx-w"/>
+            <group xmi:type="uml:ActivityPartition" xmi:id="_wGmsEt7CEeSGFaOav9xx-w" name="Sistema" node="_wGmsRd7CEeSGFaOav9xx-w _wGmsR97CEeSGFaOav9xx-w _wGmsSN7CEeSGFaOav9xx-w _wGmsSd7CEeSGFaOav9xx-w _wGmsSt7CEeSGFaOav9xx-w _wGmsS97CEeSGFaOav9xx-w"/>
+            <node xmi:type="uml:InitialNode" xmi:id="_wGmsQ97CEeSGFaOav9xx-w" name="InitialNode1" outgoing="_wGmsE97CEeSGFaOav9xx-w _wGmsIt7CEeSGFaOav9xx-w" inPartition="_wGmsEd7CEeSGFaOav9xx-w"/>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_wGmsRN7CEeSGFaOav9xx-w" name="UsuarioAcessaPaginaDeExamesDePressaoSanguinea" incoming="_wGmsGd7CEeSGFaOav9xx-w _wGmsIt7CEeSGFaOav9xx-w" outgoing="_wGmsJd7CEeSGFaOav9xx-w _wGmsLt7CEeSGFaOav9xx-w _wGmsQN7CEeSGFaOav9xx-w" inPartition="_wGmsEd7CEeSGFaOav9xx-w"/>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_wGmsRd7CEeSGFaOav9xx-w" name="ExibeFormularioDeCadastro" incoming="_wGmsK97CEeSGFaOav9xx-w _wGmsOt7CEeSGFaOav9xx-w" outgoing="_wGmsNN7CEeSGFaOav9xx-w" inPartition="_wGmsEt7CEeSGFaOav9xx-w"/>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_wGmsRt7CEeSGFaOav9xx-w" name="UsuarioPreencheFormularioEEnviaParaOSistema" incoming="_wGmsNN7CEeSGFaOav9xx-w" outgoing="_wGmsN97CEeSGFaOav9xx-w" inPartition="_wGmsEd7CEeSGFaOav9xx-w"/>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_wGmsR97CEeSGFaOav9xx-w" name="SistemaSalvaDadosInformadosEmSuaBase" incoming="_wGmsN97CEeSGFaOav9xx-w" outgoing="_wGmsHN7CEeSGFaOav9xx-w" inPartition="_wGmsEt7CEeSGFaOav9xx-w"/>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_wGmsSN7CEeSGFaOav9xx-w" name="SistemaInformaAoUsuarioQueAsAlteraçõesForamConcluidas" incoming="_wGmsHN7CEeSGFaOav9xx-w" outgoing="_wGmsH97CEeSGFaOav9xx-w" inPartition="_wGmsEt7CEeSGFaOav9xx-w"/>
+            <node xmi:type="uml:ActivityFinalNode" xmi:id="_wGmsSd7CEeSGFaOav9xx-w" name="ActivityFinal1" incoming="_wGmsH97CEeSGFaOav9xx-w _wGmsMd7CEeSGFaOav9xx-w" inPartition="_wGmsEt7CEeSGFaOav9xx-w"/>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_wGmsSt7CEeSGFaOav9xx-w" name="ExibeHistoricosDeExames" incoming="_wGmsKN7CEeSGFaOav9xx-w _wGmsPd7CEeSGFaOav9xx-w" outgoing="_wGmsMd7CEeSGFaOav9xx-w" inPartition="_wGmsEt7CEeSGFaOav9xx-w"/>
+            <node xmi:type="uml:DecisionNode" xmi:id="_wGmsS97CEeSGFaOav9xx-w" name="DecisionNode1" incoming="_wGmsQN7CEeSGFaOav9xx-w" outgoing="_wGmsOt7CEeSGFaOav9xx-w _wGmsPd7CEeSGFaOav9xx-w" inPartition="_wGmsEt7CEeSGFaOav9xx-w"/>
+          </ownedBehavior>
+        </ownedUseCase>
         <ownedUseCase xmi:id="_eE5_EN3vEeSMD7bGtIkj9g" name="Manter Dados de Alimentação" subject="_Ogj1gN3xEeSMD7bGtIkj9g"/>
         <ownedUseCase xmi:id="_cKfg0N3vEeSMD7bGtIkj9g" name="Manter Histórico de Peso" subject="_Ogj1gN3xEeSMD7bGtIkj9g"/>
         <ownedUseCase xmi:id="_lodQEN3vEeSMD7bGtIkj9g" name="Manter Dimensões Corporais" subject="_Ogj1gN3xEeSMD7bGtIkj9g"/>
@@ -345,6 +423,80 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3fPUENdPEeSXovNDjEoHdw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3fPUEddPEeSXovNDjEoHdw" value="*"/>
         </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_Cl2ggN7BEeSGFaOav9xx-w" name="usuariosToUsuarios" memberEnd="_Cl2ggd7BEeSGFaOav9xx-w _CmKCgt7BEeSGFaOav9xx-w" navigableOwnedEnd="_Cl2ggd7BEeSGFaOav9xx-w _CmKCgt7BEeSGFaOav9xx-w">
+        <ownedEnd xmi:id="_Cl2ggd7BEeSGFaOav9xx-w" name="usuarios" type="_89r2kNdLEeSXovNDjEoHdw" association="_Cl2ggN7BEeSGFaOav9xx-w">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_CmKCgN7BEeSGFaOav9xx-w"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_CmKCgd7BEeSGFaOav9xx-w" value="*"/>
+        </ownedEnd>
+        <ownedEnd xmi:id="_CmKCgt7BEeSGFaOav9xx-w" name="usuarios" type="_89r2kNdLEeSXovNDjEoHdw" association="_Cl2ggN7BEeSGFaOav9xx-w">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Cmh18N7BEeSGFaOav9xx-w"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Cmh18d7BEeSGFaOav9xx-w" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:AssociationClass" xmi:id="_PmQbwN7BEeSGFaOav9xx-w" name="PressaoUsuario" memberEnd="_PmRC0N7BEeSGFaOav9xx-w _PmlL4d7BEeSGFaOav9xx-w" navigableOwnedEnd="_PmRC0N7BEeSGFaOav9xx-w _PmlL4d7BEeSGFaOav9xx-w">
+        <ownedAttribute xmi:id="_eqq2IN7BEeSGFaOav9xx-w" name="data">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EDate"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eqrdMN7BEeSGFaOav9xx-w" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eqrdMd7BEeSGFaOav9xx-w" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_jQxekN7BEeSGFaOav9xx-w" name="notas">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jQxekd7BEeSGFaOav9xx-w" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_jQyFoN7BEeSGFaOav9xx-w" value="1"/>
+        </ownedAttribute>
+        <ownedEnd xmi:id="_PmRC0N7BEeSGFaOav9xx-w" name="usuarios" type="_89r2kNdLEeSXovNDjEoHdw" association="_PmQbwN7BEeSGFaOav9xx-w">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Pmkk0N7BEeSGFaOav9xx-w"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PmlL4N7BEeSGFaOav9xx-w" value="*"/>
+        </ownedEnd>
+        <ownedEnd xmi:id="_PmlL4d7BEeSGFaOav9xx-w" name="pressaoArterials" type="_8kI1sN7AEeSGFaOav9xx-w" association="_PmQbwN7BEeSGFaOav9xx-w">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Pm24sN7BEeSGFaOav9xx-w"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Pm24sd7BEeSGFaOav9xx-w" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_8kI1sN7AEeSGFaOav9xx-w" name="PressaoArterial">
+        <ownedAttribute xmi:id="_8kI1sd7AEeSGFaOav9xx-w" name="pressaoArterialSistolica" visibility="private">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8kI1st7AEeSGFaOav9xx-w" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8kI1s97AEeSGFaOav9xx-w" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_8kI1tN7AEeSGFaOav9xx-w" name="pressaoArterialDiastolica" visibility="private">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8kI1td7AEeSGFaOav9xx-w" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8kI1tt7AEeSGFaOav9xx-w" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_8kI1t97AEeSGFaOav9xx-w" name="pulso" visibility="private">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8kI1uN7AEeSGFaOav9xx-w" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8kI1ud7AEeSGFaOav9xx-w" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_8kJcwN7AEeSGFaOav9xx-w" name="batimentoIrregular" visibility="private">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8kJcwd7AEeSGFaOav9xx-w" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8kJcwt7AEeSGFaOav9xx-w" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_8kJcw97AEeSGFaOav9xx-w" name="id" visibility="private">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8kJcxN7AEeSGFaOav9xx-w" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8kJcxd7AEeSGFaOav9xx-w" value="1"/>
+        </ownedAttribute>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_wTE3QN7BEeSGFaOav9xx-w" name="PressaoArterial">
+          <ownedAttribute xmi:id="_wTE3Qd7BEeSGFaOav9xx-w" name="pressaoArterialSistolica" visibility="private">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wTE3Qt7BEeSGFaOav9xx-w" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wTE3Q97BEeSGFaOav9xx-w" value="1"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_wTE3RN7BEeSGFaOav9xx-w" name="pressaoArterialDiastolica" visibility="private">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wTE3Rd7BEeSGFaOav9xx-w" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wTE3Rt7BEeSGFaOav9xx-w" value="1"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_wTE3R97BEeSGFaOav9xx-w" name="pulso" visibility="private">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wTE3SN7BEeSGFaOav9xx-w" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wTE3Sd7BEeSGFaOav9xx-w" value="1"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_wTE3St7BEeSGFaOav9xx-w" name="batimentoIrregular" visibility="private">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wTE3S97BEeSGFaOav9xx-w" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wTE3TN7BEeSGFaOav9xx-w" value="1"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_wTE3Td7BEeSGFaOav9xx-w" name="id" visibility="private">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wTE3Tt7BEeSGFaOav9xx-w" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wTE3T97BEeSGFaOav9xx-w" value="1"/>
+          </ownedAttribute>
+        </nestedClassifier>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_M4H_cN3uEeSMD7bGtIkj9g" name="br.edu.ifrs.canoas.tads.lds.control.mb">
