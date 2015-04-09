@@ -5,7 +5,7 @@
 #header {font: 1.0em Arial, Tahoma, Verdana; background: #fff url(../resources/images/bg.gif) repeat-x; color: #777; !important;}
 #footer {clear: both !important; font-size: 1.3em !important; border-top: 1px solid #ddd !important;  }
 .top { color: #ccc; padding: 2px 20px 0;  text-align: right; float:right}
-#logo { float: left; background: url(../resources/images/redbg.gif) repeat-x; padding: 90px 20px 10px; margin: -56px 0 0px; }
+#logo { float: left; background: url(../resources/images/redbg.gif) repeat-x; padding: 90px 30px 10px; margin: -56px 0 0px; }
 #logo h1 { font-size: 3.5em; text-shadow: 1px 1px 1px #7E0E0E; }
 
 html, body {height: 100%; min-width: 800px; margin: 0; font: 0.9em Arial, Tahoma, Verdana; background: #fff url(../resources/images/bg.gif) repeat-x; color: #777 !important; }
@@ -33,3 +33,8 @@ p { clear: both; line-height: 1.64em; margin: 0 0 15px; }
 .ui-layout-north .ui-layout-unit-content {overflow:visible !important; }
 .ui-widget-header {overflow:visible !important; }
 .form-group{vertical-align: bottom;border-spacing: 50px}
+.mtable{width: 100%}
+
+.ui-autocomplete-items {background: #fff !important;border: 1px !important;}
+.ui-datepicker {background: #fff !important; border: 1px !important;}
+.ui-slider {background: #ccc !important; border: 1px !important;}

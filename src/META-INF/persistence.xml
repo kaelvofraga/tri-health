@@ -7,7 +7,6 @@
 
 	<persistence-unit name="projetoBasePU" >
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		
 		<properties>
 			
 			<property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>

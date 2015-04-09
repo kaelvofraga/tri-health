@@ -7,7 +7,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -21,9 +21,9 @@ public class AlergiaUsuario extends BaseEntity<Long> implements Serializable {
 
 	private static final long serialVersionUID = -6449844417929624834L;
 
-	@NotNull @OneToMany 
-	@JoinColumn(name="ID")
-	private  Collection<MedicamentoUsuario> medicamentoUsuarios;
+	@NotNull @OneToOne 
+	@JoinColumn(name="MEDICAMENTOUSUARIO_ID")
+	private  MedicamentoUsuario medicamentoUsuario;
 	
 	@NotNull @ManyToOne
 	@JoinColumn(name="USUARIO_ID")
@@ -42,17 +42,13 @@ public class AlergiaUsuario extends BaseEntity<Long> implements Serializable {
 		super();
 	}
 
-	
-	public Collection<MedicamentoUsuario> getMedicamentoUsuarios() {
-		return medicamentoUsuarios;
+	public MedicamentoUsuario getMedicamentoUsuario() {
+		return medicamentoUsuario;
 	}
 
-
-	public void setMedicamentoUsuarios(
-			Collection<MedicamentoUsuario> medicamentoUsuarios) {
-		this.medicamentoUsuarios = medicamentoUsuarios;
+	public void setMedicamentoUsuario(MedicamentoUsuario medicamentoUsuario) {
+		this.medicamentoUsuario = medicamentoUsuario;
 	}
-
 
 	public Usuario getUsuario() {
 		return usuario;

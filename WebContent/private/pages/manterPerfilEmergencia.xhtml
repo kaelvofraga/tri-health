@@ -11,42 +11,51 @@
 
 	<ui:define name="content">
 		
-		<p:panel id="panelBusca" header="Perfil de Emergência">
+		<h1 class="lead">Perfil de Emergência</h1>
 		
-			<h:panelGrid columns="3" rendered="#{!manterUsuarioMB.emEdicao}"  styleClass="table">
+	       <h:panelGrid columns="2" styleClass="mtable" id="manter-alergia">
+	        	
+           <h:panelGroup layout="block" styleClass="form-group">
+           	<p:outputLabel for="nome_medicamento" value="Medicamento" /><br/>
+           	<p:autoComplete id="nome_medicamento" value="#{manterPerfilEmergenciaMB.medicamento.nome}" size="40"
+           		completeMethod="#{manterPerfilEmergenciaMB.completeMedicamentoAlergia}" 
+                var="medicamento" itemLabel="#{medicamento}" itemValue="#{medicamento.nome}" 
+                placeholder="Informe ao medicamento"/>
+           </h:panelGroup>
+           
+           <h:panelGroup layout="block" styleClass="form-group">
+           	<p:outputLabel for="reacao" value="Reação" />
+           	<p:inputText id="reacao" styleClass="form-control" size="40" 
+           		value="#{manterPerfilEmergenciaMB.alergiaUsuario.reacao}" 
+           		placeholder="Informe a reação alérgica"/>
+           </h:panelGroup>
+           
+           
+            <h:panelGroup layout="block" styleClass="form-group">
+           	<p:outputLabel for="tipo_alergia" value="Tipo" /><br/>
+           	<p:autoComplete id="tipo_alergia" dropdown="true" value="#{manterPerfilEmergenciaMB.tipoAlergia.descricao}" size="40"
+           		completeMethod="#{manterPerfilEmergenciaMB.completeTipoAlergia}"  forceSelection="true" 
+                placeholder="Informe o tipo da alergia"/>
+           </h:panelGroup>
+           
+           <h:panelGroup layout="block" styleClass="form-group">
+           	<p:outputLabel for="primeira-vez-observado" value="Primeira Vez Observado" /><br/>
+           	<p:calendar id="primeira-vez-observado" value="#{manterPerfilEmergenciaMB.alergiaUsuario.dataPrimeiraOcorrencia}" pattern="dd/MM/yyyy HH:mm:ss"
+           		placeholder="Informe quando observou a alergia pela primeira vez" size="40"  effect="fold" icon="glyphicon-calendar"/>
+           </h:panelGroup>
+           
+           </h:panelGrid>
+           
+           
+           
+           <h:panelGroup layout="block" styleClass="form-group">
+            <p:commandButton value="Salva" action="#{manterPerfilEmergenciaMB.salvaAlergia}" ajax="false" styleClass="btn btn-default" />
+           </h:panelGroup>
+           
+           <br/><br/>
 
-				<p:outputLabel for="usuario"
-					value="#{msg['manterUsuario.label.usuario']}" />
-				<p:inputText id="usuario" value="#{manterUsuarioMB.criterio}" />
-				<p:commandButton value="Busca" action="#{manterUsuarioMB.busca}"
-					ajax="false" />
-			</h:panelGrid>
-		</p:panel>
-
-
-		<p:dataTable var="usr" value="#{manterUsuarioMB.usuarios}">
-			<p:column headerText="Nome">
-				<h:outputText value="#{usr.nome}" />
-			</p:column>
-			<p:column headerText="Sobrenome">
-				<h:outputText value="#{usr.sobrenome}" />
-			</p:column>
-			<p:column headerText="Email">
-				<h:outputText value="#{usr.email}" />
-			</p:column>
-
-			<p:column headerText="Ações">
-				<h:commandLink value="Editar">
-					<f:setPropertyActionListener value="#{usr}"
-						target="#{manterUsuarioMB.usuario}" />
-				</h:commandLink>
-				 | 
-				 <h:commandLink value="Excluir" action="#{manterUsuarioMB.exclui}">
-					<f:setPropertyActionListener value="#{usr}"
-						target="#{manterUsuarioMB.usuario}" />
-				</h:commandLink>
-			</p:column>
-		</p:dataTable>
+	        
+		
 
 	</ui:define>
 </ui:composition>
