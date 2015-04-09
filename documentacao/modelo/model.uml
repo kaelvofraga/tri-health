@@ -4,7 +4,40 @@
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#_0"/>
   </packageImport>
   <packagedElement xmi:type="uml:Package" xmi:id="_hLkVYN3sEeSMD7bGtIkj9g" name="Comportamental">
-    <packagedElement xmi:type="uml:Package" xmi:id="_pGFU4N3sEeSMD7bGtIkj9g" name="CasosDeUso"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_pGFU4N3sEeSMD7bGtIkj9g" name="CasosDeUso">
+      <packagedElement xmi:type="uml:Component" xmi:id="_8ZIWEN3wEeSMD7bGtIkj9g" name="Usuário" useCase="_vKzwEN3vEeSMD7bGtIkj9g _XSf3IN3vEeSMD7bGtIkj9g">
+        <ownedUseCase xmi:id="_vKzwEN3vEeSMD7bGtIkj9g" name="Manter Informações do Usuário" subject="_8ZIWEN3wEeSMD7bGtIkj9g"/>
+        <ownedUseCase xmi:id="_XSf3IN3vEeSMD7bGtIkj9g" name="Manter Informações de Emergência" subject="_8ZIWEN3wEeSMD7bGtIkj9g">
+          <ownedBehavior xmi:type="uml:Activity" xmi:id="_4ENvwN6qEeS5nMglzC7TaQ" name="Listar Informações de Emergência" node="_F4ZRUN6rEeS5nMglzC7TaQ _GYcDUN6rEeS5nMglzC7TaQ" group="__C6AMN6qEeS5nMglzC7TaQ __dAiQN6qEeS5nMglzC7TaQ" partition="__C6AMN6qEeS5nMglzC7TaQ __dAiQN6qEeS5nMglzC7TaQ">
+            <edge xmi:type="uml:ControlFlow" xmi:id="_Hj7mEN6rEeS5nMglzC7TaQ" name="InitialNode1_To_OpaqueAction1" target="_GYcDUN6rEeS5nMglzC7TaQ" source="_F4ZRUN6rEeS5nMglzC7TaQ">
+              <guard xmi:type="uml:LiteralBoolean" xmi:id="_HkPvIN6rEeS5nMglzC7TaQ" name="InitialNode1_To_OpaqueAction1_guard" value="true"/>
+              <weight xmi:type="uml:LiteralInteger" xmi:id="_HkiqEN6rEeS5nMglzC7TaQ" name="InitialNode1_To_OpaqueAction1_weight"/>
+            </edge>
+            <group xmi:type="uml:ActivityPartition" xmi:id="__C6AMN6qEeS5nMglzC7TaQ" name="Usuário" node="_F4ZRUN6rEeS5nMglzC7TaQ _GYcDUN6rEeS5nMglzC7TaQ"/>
+            <group xmi:type="uml:ActivityPartition" xmi:id="__dAiQN6qEeS5nMglzC7TaQ" name="Tri-Health"/>
+            <node xmi:type="uml:InitialNode" xmi:id="_F4ZRUN6rEeS5nMglzC7TaQ" name="InitialNode1" outgoing="_Hj7mEN6rEeS5nMglzC7TaQ" inPartition="__C6AMN6qEeS5nMglzC7TaQ"/>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_GYcDUN6rEeS5nMglzC7TaQ" name="OpaqueAction1" incoming="_Hj7mEN6rEeS5nMglzC7TaQ" inPartition="__C6AMN6qEeS5nMglzC7TaQ">
+              <body>// TODO body of OpaqueAction1</body>
+            </node>
+          </ownedBehavior>
+        </ownedUseCase>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="_Ogj1gN3xEeSMD7bGtIkj9g" name="Medidas" useCase="_r_EM0N3vEeSMD7bGtIkj9g _eE5_EN3vEeSMD7bGtIkj9g _cKfg0N3vEeSMD7bGtIkj9g _lodQEN3vEeSMD7bGtIkj9g _po_GQN3vEeSMD7bGtIkj9g">
+        <ownedUseCase xmi:id="_r_EM0N3vEeSMD7bGtIkj9g" name="Manter Medidas de Pressão Sanguínea" subject="_Ogj1gN3xEeSMD7bGtIkj9g"/>
+        <ownedUseCase xmi:id="_eE5_EN3vEeSMD7bGtIkj9g" name="Manter Dados de Alimentação" subject="_Ogj1gN3xEeSMD7bGtIkj9g"/>
+        <ownedUseCase xmi:id="_cKfg0N3vEeSMD7bGtIkj9g" name="Manter Histórico de Peso" subject="_Ogj1gN3xEeSMD7bGtIkj9g"/>
+        <ownedUseCase xmi:id="_lodQEN3vEeSMD7bGtIkj9g" name="Manter Dimensões Corporais" subject="_Ogj1gN3xEeSMD7bGtIkj9g"/>
+        <ownedUseCase xmi:id="_po_GQN3vEeSMD7bGtIkj9g" name="Manter Registro de Atividades Físicas" subject="_Ogj1gN3xEeSMD7bGtIkj9g"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="_lp36cN3xEeSMD7bGtIkj9g" name="Exames" useCase="_SxoUAN3vEeSMD7bGtIkj9g _nrjwQN3vEeSMD7bGtIkj9g">
+        <ownedUseCase xmi:id="_SxoUAN3vEeSMD7bGtIkj9g" name="Manter Exames de Cateterismo" subject="_lp36cN3xEeSMD7bGtIkj9g"/>
+        <ownedUseCase xmi:id="_nrjwQN3vEeSMD7bGtIkj9g" name="Manter Exame de Urina" subject="_lp36cN3xEeSMD7bGtIkj9g"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="_cQo6MN3xEeSMD7bGtIkj9g" name="Histórico de Saúde" useCase="_atL1UN3vEeSMD7bGtIkj9g _iff7EN3vEeSMD7bGtIkj9g">
+        <ownedUseCase xmi:id="_atL1UN3vEeSMD7bGtIkj9g" name="Manter Histórico de Medicamentos" subject="_cQo6MN3xEeSMD7bGtIkj9g"/>
+        <ownedUseCase xmi:id="_iff7EN3vEeSMD7bGtIkj9g" name="Manter Ocorrência de Consultas Médicas" subject="_cQo6MN3xEeSMD7bGtIkj9g"/>
+      </packagedElement>
+    </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_sz1ZAN3sEeSMD7bGtIkj9g" name="Atores">
       <packagedElement xmi:type="uml:Actor" xmi:id="_Ok7DAN3vEeSMD7bGtIkj9g" name="Usuario"/>
       <packagedElement xmi:type="uml:Association" xmi:id="_nLN78N3yEeSMD7bGtIkj9g" memberEnd="_nLN78d3yEeSMD7bGtIkj9g _nLOjAN3yEeSMD7bGtIkj9g">
@@ -63,28 +96,9 @@
         <ownedEnd xmi:id="_vxCiQN3yEeSMD7bGtIkj9g" type="_nrjwQN3vEeSMD7bGtIkj9g" association="_vxBUIN3yEeSMD7bGtIkj9g"/>
       </packagedElement>
     </packagedElement>
+    <packagedElement xmi:type="uml:StateMachine" xmi:id="_PMItkN6rEeS5nMglzC7TaQ" name="Máquina_De_Estados_Para_Algum_Objeto_Relevante"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_UczuUN3tEeSMD7bGtIkj9g" name="Componentes">
-    <packagedElement xmi:type="uml:Component" xmi:id="_8ZIWEN3wEeSMD7bGtIkj9g" name="Usuário" useCase="_vKzwEN3vEeSMD7bGtIkj9g _XSf3IN3vEeSMD7bGtIkj9g">
-      <ownedUseCase xmi:id="_vKzwEN3vEeSMD7bGtIkj9g" name="Manter Informações do Usuário" subject="_8ZIWEN3wEeSMD7bGtIkj9g"/>
-      <ownedUseCase xmi:id="_XSf3IN3vEeSMD7bGtIkj9g" name="Manter Informações de Emergência" subject="_8ZIWEN3wEeSMD7bGtIkj9g"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Component" xmi:id="_Ogj1gN3xEeSMD7bGtIkj9g" name="Medidas" useCase="_r_EM0N3vEeSMD7bGtIkj9g _eE5_EN3vEeSMD7bGtIkj9g _cKfg0N3vEeSMD7bGtIkj9g _lodQEN3vEeSMD7bGtIkj9g _po_GQN3vEeSMD7bGtIkj9g">
-      <ownedUseCase xmi:id="_r_EM0N3vEeSMD7bGtIkj9g" name="Manter Medidas de Pressão Sanguínea" subject="_Ogj1gN3xEeSMD7bGtIkj9g"/>
-      <ownedUseCase xmi:id="_eE5_EN3vEeSMD7bGtIkj9g" name="Manter Dados de Alimentação" subject="_Ogj1gN3xEeSMD7bGtIkj9g"/>
-      <ownedUseCase xmi:id="_cKfg0N3vEeSMD7bGtIkj9g" name="Manter Histórico de Peso" subject="_Ogj1gN3xEeSMD7bGtIkj9g"/>
-      <ownedUseCase xmi:id="_lodQEN3vEeSMD7bGtIkj9g" name="Manter Dimensões Corporais" subject="_Ogj1gN3xEeSMD7bGtIkj9g"/>
-      <ownedUseCase xmi:id="_po_GQN3vEeSMD7bGtIkj9g" name="Manter Registro de Atividades Físicas" subject="_Ogj1gN3xEeSMD7bGtIkj9g"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Component" xmi:id="_lp36cN3xEeSMD7bGtIkj9g" name="Exames" useCase="_SxoUAN3vEeSMD7bGtIkj9g _nrjwQN3vEeSMD7bGtIkj9g">
-      <ownedUseCase xmi:id="_SxoUAN3vEeSMD7bGtIkj9g" name="Manter Exames de Cateterismo" subject="_lp36cN3xEeSMD7bGtIkj9g"/>
-      <ownedUseCase xmi:id="_nrjwQN3vEeSMD7bGtIkj9g" name="Manter Exame de Urina" subject="_lp36cN3xEeSMD7bGtIkj9g"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Component" xmi:id="_cQo6MN3xEeSMD7bGtIkj9g" name="Histórico de Saúde" useCase="_atL1UN3vEeSMD7bGtIkj9g _iff7EN3vEeSMD7bGtIkj9g">
-      <ownedUseCase xmi:id="_atL1UN3vEeSMD7bGtIkj9g" name="Manter Histórico de Medicamentos" subject="_cQo6MN3xEeSMD7bGtIkj9g"/>
-      <ownedUseCase xmi:id="_iff7EN3vEeSMD7bGtIkj9g" name="Manter Ocorrência de Consultas Médicas" subject="_cQo6MN3xEeSMD7bGtIkj9g"/>
-    </packagedElement>
-  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_UczuUN3tEeSMD7bGtIkj9g" name="Componentes"/>
   <packagedElement xmi:type="uml:Package" xmi:id="_CX9MUN3uEeSMD7bGtIkj9g" name="Pacotes">
     <packagedElement xmi:type="uml:Package" xmi:id="_7ybp0N3tEeSMD7bGtIkj9g" name="WebContent">
       <packagedElement xmi:type="uml:Dependency" xmi:id="_4hm80N3uEeSMD7bGtIkj9g" client="_7ybp0N3tEeSMD7bGtIkj9g" supplier="_M4H_cN3uEeSMD7bGtIkj9g"/>
