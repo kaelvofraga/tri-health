@@ -19,28 +19,35 @@ import br.edu.ifrs.canoas.tads.lds.control.service.ManterAlergiaService;
 public class ManterPerfilEmergenciaMB implements Serializable {
 
 	private static final long serialVersionUID = -6762932920422815855L;
-
-	@Inject
-	private AlergiaUsuario alergiaUsuario;
-		
+	
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
 
 	@EJB
 	private ManterAlergiaService alergiaService;
 	
+	private AlergiaUsuario alergiaUsuario;
 	
+
 	//Lista Alergia
 	private List<AlergiaUsuario> alergias;
 	private String criterioAlergia;
 	
 	//Form Alergia
-	@Inject private Medicamento medicamento;
-	@Inject private TipoAlergia tipoAlergia;
+	private Medicamento medicamento;
+	private TipoAlergia tipoAlergia;
 	private List<Medicamento> medicamentos;
-	private List<String> tipoAlergias;
+	private List<TipoAlergia> tipoAlergias;
 
 	public ManterPerfilEmergenciaMB() {
+		this.reset();
+	}
+	
+	private void reset(){
+		alergiaUsuario = new AlergiaUsuario();
+		medicamento = new Medicamento();
+		tipoAlergia = new TipoAlergia();
+		criterioAlergia = "";
 	}
 	
 	
@@ -63,7 +70,7 @@ public class ManterPerfilEmergenciaMB implements Serializable {
         return medicamentosFiltrados;
 	}
 	
-	public List<String> completeTipoAlergia(String query){
+	public List<TipoAlergia> completeTipoAlergia(String query){
 		if (tipoAlergias == null)
 			tipoAlergias = alergiaService.buscaDescricoesTipoAlergias();	
 		
@@ -73,8 +80,13 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 	public void salvaAlergia(){
 		alergiaUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		alergiaService.salvaUsario(alergiaUsuario, medicamento, tipoAlergia);
+		this.reset();
 	}
-
+	
+	public String editarAlergiaUsuario(AlergiaUsuario alergia){
+		this.alergiaUsuario = alergia;
+		return "/private/pages/manterPerfilEmergencia";
+	}
 
 	
 	/*
@@ -137,12 +149,14 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 	}
 
 
-	public List<String> getTipoAlergias() {
+	public List<TipoAlergia> getTipoAlergias() {
 		return tipoAlergias;
 	}
 
 
-	public void setTipoAlergias(List<String> tipoAlergias) {
+	public void setTipoAlergias(List<TipoAlergia> tipoAlergias) {
 		this.tipoAlergias = tipoAlergias;
 	}
+	
+
 }

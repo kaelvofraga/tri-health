@@ -11,9 +11,9 @@
 		<p:panelMenu style="width:200px"> 
 			<p:submenu label="Usuário">
 				<p:menuitem value="Perfil" url="/private/pages/manterUsuario.jsf" />
-				<p:submenu label="Perfil de Emergência">
-					<p:menuitem value="Listar" url="/private/pages/listarPerfilEmergencia.jsf" />
-					<p:menuitem value="Manter" url="/private/pages/manterPerfilEmergencia.jsf" />
+				<p:submenu label="Perfil de Emergêncial">
+					<p:menuitem value="Listar" url="/private/pages/listarPerfilEmergencia.jsf" ajax="true" update="content"/>
+					<p:menuitem value="Cadastrar" url="/private/pages/manterPerfilEmergencia.jsf" ajax="true" update="content" />
 				</p:submenu>
 			</p:submenu>
 			

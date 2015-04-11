@@ -36,7 +36,7 @@ public class UsuarioDAO extends BaseDAO<Usuario, Long>{
 		if (usuario == null)
 			return new ArrayList<Usuario>();
 		
-		 Criteria criteria = super.getSection().createCriteria(Usuario.class);
+		 Criteria criteria = super.createCriteria();
 
 		 
 		 if (StrUtil.isNotBlank(usuario.getNome()))

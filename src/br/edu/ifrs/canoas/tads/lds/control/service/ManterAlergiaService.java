@@ -43,7 +43,7 @@ public class ManterAlergiaService {
 		medicamentoUsuarioDAO.insere(medUsuario);
 		
 		alergiaUsuario.setMedicamentoUsuario(medUsuario);
-		alergiaUsuario.setTipoAlergia(tipoAlergiaDAO.buscaPorDescricao(tipoAlergia).get(0));
+		alergiaUsuario.setTipoAlergia(tipoAlergiaDAO.busca(tipoAlergia.getId()));
 		
 		alergiaUsuarioDAO.insere(alergiaUsuario);
 		Mensagens.define(FacesMessage.SEVERITY_INFO, "Usuario.cadastro.sucesso",alergiaUsuario.getTipoAlergia().getDescricao());
@@ -69,7 +69,7 @@ public class ManterAlergiaService {
 
 	@SuppressWarnings("unchecked")
 	public List<AlergiaUsuario> busca(String criterioAlergia) {
-		if (StrUtil.isNotBlank(criterioAlergia)) 
+		if (StrUtil.isNotBlank(criterioAlergia))
 			return alergiaUsuarioDAO.buscaPorCriterio(criterioAlergia);
 		else
 			return alergiaUsuarioDAO.buscaTodos();
@@ -85,13 +85,8 @@ public class ManterAlergiaService {
 
 
 
-	public List<String> buscaDescricoesTipoAlergias() {
-		List<TipoAlergia> tipoAlergia = tipoAlergiaDAO.buscaTodos();
-		List<String> descricoes = new ArrayList<>();
-		for (TipoAlergia tipo : tipoAlergia) {
-			descricoes.add(tipo.getDescricao());
-		}
-		return descricoes;
+	public List<TipoAlergia> buscaDescricoesTipoAlergias() {
+		return  tipoAlergiaDAO.buscaTodos();
 	}
 
 }

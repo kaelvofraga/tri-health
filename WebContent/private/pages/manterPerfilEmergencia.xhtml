@@ -7,55 +7,85 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="/public/templates/template.xhtml">
 
-	<ui:define name="metadata"/>
+	<ui:define name="metadata" />
 
 	<ui:define name="content">
-		
-		<h1 class="lead">Perfil de Emergência</h1>
-		
-	       <h:panelGrid columns="2" styleClass="mtable" id="manter-alergia">
-	        	
-           <h:panelGroup layout="block" styleClass="form-group">
-           	<p:outputLabel for="nome_medicamento" value="Medicamento" /><br/>
-           	<p:autoComplete id="nome_medicamento" value="#{manterPerfilEmergenciaMB.medicamento.nome}" size="40"
-           		completeMethod="#{manterPerfilEmergenciaMB.completeMedicamentoAlergia}" 
-                var="medicamento" itemLabel="#{medicamento.nome}" itemValue="#{medicamento.nome}" 
-                placeholder="Informe ao medicamento"/>
-           </h:panelGroup>
-           
-           <h:panelGroup layout="block" styleClass="form-group">
-           	<p:outputLabel for="reacao" value="Reação" />
-           	<p:inputText id="reacao" styleClass="form-control" size="40" 
-           		value="#{manterPerfilEmergenciaMB.alergiaUsuario.reacao}" 
-           		placeholder="Informe a reação alérgica"/>
-           </h:panelGroup>
-           
-           
-            <h:panelGroup layout="block" styleClass="form-group">
-           	<p:outputLabel for="tipo_alergia" value="Tipo" /><br/>
-           	<p:autoComplete id="tipo_alergia" dropdown="true" value="#{manterPerfilEmergenciaMB.tipoAlergia.descricao}" size="40"
-           		completeMethod="#{manterPerfilEmergenciaMB.completeTipoAlergia}"  forceSelection="true" 
-                placeholder="Informe o tipo da alergia"/>
-           </h:panelGroup>
-           
-           <h:panelGroup layout="block" styleClass="form-group">
-           	<p:outputLabel for="primeira-vez-observado" value="Primeira Vez Observado" /><br/>
-           	<p:calendar id="primeira-vez-observado" value="#{manterPerfilEmergenciaMB.alergiaUsuario.dataPrimeiraOcorrencia}" pattern="dd/MM/yyyy HH:mm:ss"
-           		placeholder="Informe quando observou a alergia pela primeira vez" size="40"  effect="fold" icon="glyphicon-calendar"/>
-           </h:panelGroup>
-           
-           </h:panelGrid>
-           
-           
-           
-           <h:panelGroup layout="block" styleClass="form-group">
-            <p:commandButton value="Salva" action="#{manterPerfilEmergenciaMB.salvaAlergia}" ajax="false" styleClass="btn btn-default" />
-           </h:panelGroup>
-           
-           <br/><br/>
 
-	        
-		
+		<h1 class="lead">Perfil de Emergência</h1>
+
+		<p:accordionPanel multiple="true">
+			<p:tab title="Alergias">
+
+				<h:panelGroup layout="block" id="alergias">
+
+					<h:panelGrid columns="2" styleClass="mtable">
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="nome_medicamento" value="Medicamento" />
+							<br />
+							<p:autoComplete id="nome_medicamento"
+								value="#{manterPerfilEmergenciaMB.medicamento.nome}" size="40"
+								style="width:300px"
+								completeMethod="#{manterPerfilEmergenciaMB.completeMedicamentoAlergia}"
+								var="medicamento" itemLabel="#{medicamento}"
+								itemValue="#{medicamento.nome}"
+								placeholder="Informe ao medicamento" />
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="reacao" value="Reação" />
+							<p:inputText id="reacao" styleClass="form-control" size="40"
+								style="width:300px"
+								value="#{manterPerfilEmergenciaMB.alergiaUsuario.reacao}"
+								placeholder="Informe a reação alérgica" />
+						</h:panelGroup>
+
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="tipo_alergia" value="Tipo" />
+							<br />
+							<p:autoComplete id="tipo_alergia" dropdown="true"
+								style="width:300px"
+								value="#{manterPerfilEmergenciaMB.tipoAlergia.id}" size="40"
+								completeMethod="#{manterPerfilEmergenciaMB.completeTipoAlergia}"
+								forceSelection="true" var="tpAlergia" itemLabel="#{tpAlergia}"
+								itemValue="#{tpAlergia.id}"
+								placeholder="Informe o tipo da alergia" />
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="primeira-vez-observado"
+								value="Primeira Vez Observado" />
+							<br />
+							<p:calendar id="primeira-vez-observado" style="width:300px"
+								value="#{manterPerfilEmergenciaMB.alergiaUsuario.dataPrimeiraOcorrencia}"
+								pattern="dd/MM/yyyy HH:mm:ss"
+								placeholder="Informe quando observou a alergia pela primeira vez"
+								size="40" effect="fold" icon="glyphicon-calendar" />
+						</h:panelGroup>
+
+					</h:panelGrid>
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:commandButton value="Salvar"
+							action="#{manterPerfilEmergenciaMB.salvaAlergia}" ajax="true" />
+					</h:panelGroup>
+
+				</h:panelGroup>
+			</p:tab>
+
+			<p:tab title="Situações Médicas">
+				<br />
+				<br />
+			</p:tab>
+
+
+			<p:tab title="Medicamentos em Uso">
+				<br />
+				<br />
+			</p:tab>
+		</p:accordionPanel>
+
 
 	</ui:define>
 </ui:composition>
