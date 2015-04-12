@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -15,9 +16,11 @@ import br.edu.ifrs.canoas.tads.lds.bean.TipoAlergia;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterAlergiaService;
 
 @Named
-@RequestScoped
+@SessionScoped
 public class ManterPerfilEmergenciaMB implements Serializable {
 
+	private static final String URL_LISTAR_PERFIL_EMERGENCIA = "/private/pages/listarPerfilEmergencia.jsf";
+	private static final String URL_MANTER_PERFIL_EMERGENCIA = "/private/pages/manterPerfilEmergencia.jsf";
 	private static final long serialVersionUID = -6762932920422815855L;
 	
 	@Inject
@@ -28,29 +31,27 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 	
 	private AlergiaUsuario alergiaUsuario;
 	
+	private boolean emListagemAlergia;
 
 	//Lista Alergia
 	private List<AlergiaUsuario> alergias;
 	private String criterioAlergia;
 	
 	//Form Alergia
-	private Medicamento medicamento;
-	private TipoAlergia tipoAlergia;
 	private List<Medicamento> medicamentos;
 	private List<TipoAlergia> tipoAlergias;
 
 	public ManterPerfilEmergenciaMB() {
-		this.reset();
 	}
 	
-	private void reset(){
+	@PostConstruct
+	public void init(){
 		alergiaUsuario = new AlergiaUsuario();
-		medicamento = new Medicamento();
-		tipoAlergia = new TipoAlergia();
 		criterioAlergia = "";
+		alergias = new ArrayList<>();
 	}
-	
-	
+
+
 	public void busca(){
 		alergias = alergiaService.busca(criterioAlergia);
 	}
@@ -79,13 +80,29 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 	
 	public void salvaAlergia(){
 		alergiaUsuario.setUsuario(gerenciarLoginMB.getUsuario());
-		alergiaService.salvaUsario(alergiaUsuario, medicamento, tipoAlergia);
-		this.reset();
+		alergiaService.salvaUsario(alergiaUsuario);
+		this.init();
+	}
+	
+	public String alteraAlergia(){
+		alergiaService.alteraAlergiaUsario(alergiaUsuario);
+		return "listarPerfilEmergencia";
+	}
+	
+	public String excluiAlergia(){
+		alergiaService.excluiAlergia(alergiaUsuario);
+		this.busca();
+		return "listarPerfilEmergencia";
 	}
 	
 	public String editarAlergiaUsuario(AlergiaUsuario alergia){
 		this.alergiaUsuario = alergia;
-		return "/private/pages/manterPerfilEmergencia";
+		this.emListagemAlergia = false;
+		return URL_MANTER_PERFIL_EMERGENCIA;
+	}
+	
+	public boolean isAtualizacao(){
+		return alergiaUsuario != null && alergiaUsuario.getId() != null;
 	}
 
 	
@@ -119,16 +136,6 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 	}
 
 
-	public Medicamento getMedicamento() {
-		return medicamento;
-	}
-
-
-	public void setMedicamento(Medicamento medicamento) {
-		this.medicamento = medicamento;
-	}
-
-
 	public List<Medicamento> getMedicamentos() {
 		return medicamentos;
 	}
@@ -136,16 +143,6 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 
 	public void setMedicamentos(List<Medicamento> medicamentos) {
 		this.medicamentos = medicamentos;
-	}
-
-
-	public TipoAlergia getTipoAlergia() {
-		return tipoAlergia;
-	}
-
-
-	public void setTipoAlergia(TipoAlergia tipoAlergia) {
-		this.tipoAlergia = tipoAlergia;
 	}
 
 
@@ -157,6 +154,16 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 	public void setTipoAlergias(List<TipoAlergia> tipoAlergias) {
 		this.tipoAlergias = tipoAlergias;
 	}
+
+	public boolean isEmListagemAlergia() {
+		return emListagemAlergia;
+	}
+
+	public void setEmListagemAlergia(boolean emListagemAlergia) {
+		this.emListagemAlergia = emListagemAlergia;
+	}
+	
+	
 	
 
 }

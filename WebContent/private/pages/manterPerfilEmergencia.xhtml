@@ -16,6 +16,7 @@
 		<p:accordionPanel multiple="true">
 			<p:tab title="Alergias">
 
+
 				<h:panelGroup layout="block" id="alergias">
 
 					<h:panelGrid columns="2" styleClass="mtable">
@@ -24,8 +25,8 @@
 							<p:outputLabel for="nome_medicamento" value="Medicamento" />
 							<br />
 							<p:autoComplete id="nome_medicamento"
-								value="#{manterPerfilEmergenciaMB.medicamento.nome}" size="40"
-								style="width:300px"
+								value="#{manterPerfilEmergenciaMB.alergiaUsuario.medicamentoUsuario.medicamento.nome}"
+								size="40" style="width:300px"
 								completeMethod="#{manterPerfilEmergenciaMB.completeMedicamentoAlergia}"
 								var="medicamento" itemLabel="#{medicamento}"
 								itemValue="#{medicamento.nome}"
@@ -46,10 +47,11 @@
 							<br />
 							<p:autoComplete id="tipo_alergia" dropdown="true"
 								style="width:300px"
-								value="#{manterPerfilEmergenciaMB.tipoAlergia.id}" size="40"
+								value="#{manterPerfilEmergenciaMB.alergiaUsuario.tipoAlergia.descricao}"
+								size="40"
 								completeMethod="#{manterPerfilEmergenciaMB.completeTipoAlergia}"
 								forceSelection="true" var="tpAlergia" itemLabel="#{tpAlergia}"
-								itemValue="#{tpAlergia.id}"
+								itemValue="#{tpAlergia.descricao}"
 								placeholder="Informe o tipo da alergia" />
 						</h:panelGroup>
 
@@ -68,7 +70,19 @@
 
 					<h:panelGroup layout="block" styleClass="form-group">
 						<p:commandButton value="Salvar"
+							rendered="#{not manterPerfilEmergenciaMB.atualizacao}"
 							action="#{manterPerfilEmergenciaMB.salvaAlergia}" ajax="true" />
+						<p:commandButton value="Alterar"
+							rendered="#{manterPerfilEmergenciaMB.atualizacao}"
+							action="#{manterPerfilEmergenciaMB.alteraAlergia}" ajax="true" />
+						<p:commandButton value="Voltar"
+							rendered="#{manterPerfilEmergenciaMB.atualizacao}"
+							action="listarPerfilEmergencia" ajax="false" />
+						<p:commandButton value="Limpa" type="submit"
+							rendered="#{manterPerfilEmergenciaMB.atualizacao}"
+							action="#{manterPerfilEmergenciaMB.init}" ajax="true"
+							update="alergias" immediate="false" />
+
 					</h:panelGroup>
 
 				</h:panelGroup>
@@ -89,4 +103,3 @@
 
 	</ui:define>
 </ui:composition>
-

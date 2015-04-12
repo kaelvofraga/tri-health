@@ -34,19 +34,19 @@ public class ManterAlergiaService {
 	@Inject
 	private TipoAlergiaDAO tipoAlergiaDAO;
 	
-	public boolean salvaUsario(AlergiaUsuario alergiaUsuario, Medicamento medicamento, TipoAlergia tipoAlergia) {
+	public boolean salvaUsario(AlergiaUsuario alergiaUsuario) {
 		
-		MedicamentoUsuario medUsuario = new MedicamentoUsuario();
-		medUsuario.setMedicamento(this.buscaOuCriaMedicamentoPorNome(medicamento));
-		medUsuario.setUsuario(alergiaUsuario.getUsuario());
-		
-		medicamentoUsuarioDAO.insere(medUsuario);
-		
-		alergiaUsuario.setMedicamentoUsuario(medUsuario);
-		alergiaUsuario.setTipoAlergia(tipoAlergiaDAO.busca(tipoAlergia.getId()));
+//		MedicamentoUsuario medUsuario = new MedicamentoUsuario();
+//		medUsuario.setMedicamento(this.buscaOuCriaMedicamentoPorNome(medicamento));
+//		medUsuario.setUsuario(alergiaUsuario.getUsuario());
+//		
+//		medicamentoUsuarioDAO.insere(medUsuario);
+//		
+//		alergiaUsuario.setMedicamentoUsuario(medUsuario);
+//		alergiaUsuario.setTipoAlergia(tipoAlergiaDAO.busca(tipoAlergia.getId()));
 		
 		alergiaUsuarioDAO.insere(alergiaUsuario);
-		Mensagens.define(FacesMessage.SEVERITY_INFO, "Usuario.cadastro.sucesso",alergiaUsuario.getTipoAlergia().getDescricao());
+		Mensagens.define(FacesMessage.SEVERITY_INFO, "Alergia.cadastro.sucesso");
 		
 		return true;
 	}
@@ -87,6 +87,18 @@ public class ManterAlergiaService {
 
 	public List<TipoAlergia> buscaDescricoesTipoAlergias() {
 		return  tipoAlergiaDAO.buscaTodos();
+	}
+
+
+
+	public void alteraAlergiaUsario(AlergiaUsuario alergiaUsuario) {
+		alergiaUsuarioDAO.atualiza(alergiaUsuario);
+	}
+
+
+
+	public void excluiAlergia(AlergiaUsuario alergiaUsuario) {
+		alergiaUsuarioDAO.exclui(alergiaUsuario.getId());
 	}
 
 }
