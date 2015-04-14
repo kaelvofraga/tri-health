@@ -703,4 +703,73 @@
       </ownedEnd>
     </packagedElement>
   </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_tDYocOJAEeSgO9kfaeqzrA" name="ExameUrina">
+    <ownedAttribute xmi:id="_ZCfloOJDEeSgO9kfaeqzrA" name="property1">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZCgMsOJDEeSgO9kfaeqzrA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZCgMseJDEeSgO9kfaeqzrA" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_sgGN0OJDEeSgO9kfaeqzrA" name="ExameUrina">
+    <ownedAttribute xmi:id="_yppmAOJDEeSgO9kfaeqzrA" name="usuario" type="_Ok7DAN3vEeSMD7bGtIkj9g">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yppmAeJDEeSgO9kfaeqzrA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ypqNEOJDEeSgO9kfaeqzrA" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_5eog0OJDEeSgO9kfaeqzrA" name="tipoExameUrina" type="_ZRq0oOJEEeSgO9kfaeqzrA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5epH4OJDEeSgO9kfaeqzrA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5epH4eJDEeSgO9kfaeqzrA" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_DgxUIOJEEeSgO9kfaeqzrA" name="dataExameUrina">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DgxUIeJEEeSgO9kfaeqzrA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DgxUIuJEEeSgO9kfaeqzrA" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_HEYk0OJEEeSgO9kfaeqzrA" name="observacao">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HEZL4OJEEeSgO9kfaeqzrA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HEZL4eJEEeSgO9kfaeqzrA" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ZRq0oOJEEeSgO9kfaeqzrA" name="TipoExameUrina">
+    <ownedAttribute xmi:id="_b-aHsOJEEeSgO9kfaeqzrA" name="nomeTipoExameUrina">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-aHseJEEeSgO9kfaeqzrA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-aHsuJEEeSgO9kfaeqzrA" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_qD40oOJEEeSgO9kfaeqzrA" name="resultadoExameUrina">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qD40oeJEEeSgO9kfaeqzrA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qD40ouJEEeSgO9kfaeqzrA" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_tCLKsOJEEeSgO9kfaeqzrA" name="unidadeMedida">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tCLKseJEEeSgO9kfaeqzrA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tCLKsuJEEeSgO9kfaeqzrA" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_v2Qb4OJEEeSgO9kfaeqzrA" name="valorReferencia">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_v2Qb4eJEEeSgO9kfaeqzrA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_v2Qb4uJEEeSgO9kfaeqzrA" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_95Wb0OJHEeSgO9kfaeqzrA" name="exameUrinasToTipoExameUrinas" memberEnd="_95Wb0eJHEeSgO9kfaeqzrA _95XC4uJHEeSgO9kfaeqzrA" navigableOwnedEnd="_95Wb0eJHEeSgO9kfaeqzrA _95XC4uJHEeSgO9kfaeqzrA">
+    <ownedEnd xmi:id="_95Wb0eJHEeSgO9kfaeqzrA" name="exameUrinas" type="_sgGN0OJDEeSgO9kfaeqzrA" association="_95Wb0OJHEeSgO9kfaeqzrA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_95XC4OJHEeSgO9kfaeqzrA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_95XC4eJHEeSgO9kfaeqzrA" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_95XC4uJHEeSgO9kfaeqzrA" name="tipoExameUrinas" type="_ZRq0oOJEEeSgO9kfaeqzrA" association="_95Wb0OJHEeSgO9kfaeqzrA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_95Xp8OJHEeSgO9kfaeqzrA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_95Xp8eJHEeSgO9kfaeqzrA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_hakRkOJIEeSgO9kfaeqzrA" name="exameUrinasToUsuarios" memberEnd="_hak4oOJIEeSgO9kfaeqzrA _hak4o-JIEeSgO9kfaeqzrA" navigableOwnedEnd="_hak4o-JIEeSgO9kfaeqzrA">
+    <ownedEnd xmi:id="_hak4oOJIEeSgO9kfaeqzrA" name="exameUrinas" type="_sgGN0OJDEeSgO9kfaeqzrA" aggregation="shared" association="_hakRkOJIEeSgO9kfaeqzrA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hak4oeJIEeSgO9kfaeqzrA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hak4ouJIEeSgO9kfaeqzrA" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_hak4o-JIEeSgO9kfaeqzrA" name="usuarios" type="_89r2kNdLEeSXovNDjEoHdw" association="_hakRkOJIEeSgO9kfaeqzrA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_halfsOJIEeSgO9kfaeqzrA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_halfseJIEeSgO9kfaeqzrA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
 </uml:Model>
