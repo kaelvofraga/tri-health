@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<ui:define name="content">
+
+		<h1 class="lead">Atividades Físicas</h1>
+
+		<p:accordionPanel multiple="true">
+			<p:tab title="Atividades">
+
+				<h:panelGroup layout="block" id="alergias">
+
+					<h:panelGrid columns="2" styleClass="mtable">
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="nome_medicamento" value="Medicamento" />
+							<br />
+							<p:autoComplete id="nome_medicamento"
+								value="#{manterPerfilEmergenciaMB.alergiaUsuario.medicamentoUsuario.medicamento.nome}"
+								size="40" style="width:300px"
+								completeMethod="#{manterPerfilEmergenciaMB.completeMedicamentoAlergia}"
+								var="medicamento" itemLabel="#{medicamento}"
+								itemValue="#{medicamento.nome}"
+								placeholder="Informe ao medicamento" />
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="reacao" value="Reação" />
+							<p:inputText id="reacao" styleClass="form-control" size="40"
+								style="width:300px"
+								value="#{manterPerfilEmergenciaMB.alergiaUsuario.reacao}"
+								placeholder="Informe a reação alérgica" />
+						</h:panelGroup>
+
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="tipo_alergia" value="Tipo" />
+							<br />
+							<p:autoComplete id="tipo_alergia" dropdown="true"
+								style="width:300px"
+								value="#{manterPerfilEmergenciaMB.alergiaUsuario.tipoAlergia.descricao}"
+								size="40"
+								completeMethod="#{manterPerfilEmergenciaMB.completeTipoAlergia}"
+								forceSelection="true" var="tpAlergia" itemLabel="#{tpAlergia}"
+								itemValue="#{tpAlergia.descricao}"
+								placeholder="Informe o tipo da alergia" />
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="primeira-vez-observado"
+								value="Primeira Vez Observado" />
+							<br />
+							<p:calendar id="primeira-vez-observado" style="width:300px"
+								value="#{manterPerfilEmergenciaMB.alergiaUsuario.dataPrimeiraOcorrencia}"
+								pattern="dd/MM/yyyy HH:mm:ss"
+								placeholder="Informe quando observou a alergia pela primeira vez"
+								size="40" effect="fold" icon="glyphicon-calendar" />
+						</h:panelGroup>
+
+					</h:panelGrid>
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:commandButton value="Salvar"
+							rendered="#{not manterPerfilEmergenciaMB.atualizacao}"
+							action="#{manterPerfilEmergenciaMB.salvaAlergia}" ajax="true" />
+						<p:commandButton value="Alterar"
+							rendered="#{manterPerfilEmergenciaMB.atualizacao}"
+							action="#{manterPerfilEmergenciaMB.alteraAlergia}" ajax="true" />
+						<p:commandButton value="Voltar"
+							rendered="#{manterPerfilEmergenciaMB.atualizacao}"
+							action="listarPerfilEmergencia" ajax="false" />
+						<p:commandButton value="Limpa" type="submit"
+							rendered="#{manterPerfilEmergenciaMB.atualizacao}"
+							action="#{manterPerfilEmergenciaMB.init}" ajax="true"
+							update="alergias" immediate="false" />
+
+					</h:panelGroup>
+
+				</h:panelGroup>
+			</p:tab>
+
+			<p:tab title="Situações Médicas">
+				<br />
+				<br />
+			</p:tab>
+
+
+			<p:tab title="Medicamentos em Uso">
+				<br />
+				<br />
+			</p:tab>
+		</p:accordionPanel>
+
+
+	</ui:define>
+</ui:composition>

@@ -1,11 +1,11 @@
-
+<?xml version="1.0" encoding="ISO-8859-1"?> 
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+                      
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
-
 
 	<h:form >
 		<p:panelMenu style="width:200px"> 
@@ -23,11 +23,18 @@
 				<p:menuitem value="Alimentação" url="#" />
 				<p:menuitem value="Peso" url="#" />
 				<p:menuitem value="Dimensões Corporais" url="#" />
+				<p:submenu label="Atividades F�sicas">
+					<p:menuitem value="Listar" url="/private/pages/listarAtividadesFisicas.jsf" action="#"/>
+					<p:menuitem value="Nova" url="/private/pages/manterAtividadesFisicas.jsf" action="#"/>
+				</p:submenu>				
 			</p:submenu>
 			
 			<p:separator />
 			<p:submenu label="Histórico de Saúde">
-				<p:menuitem value="Uso de Medicamentos" url="#" />
+			<p:submenu label="Uso de Medicamentos">
+					<p:menuitem value="Listar" url="/private/pages/manterUsoMedicamentos.xhtml"/>
+					<p:menuitem value="Cadastrar" url="/private/pages/manterUsoMedicamentos.xhtml"/>
+			</p:submenu>
 				<p:menuitem value="Procedimentos Médicos" url="#" />
 				<p:menuitem value="Consultas Médicas" url="#" />
 			</p:submenu>

@@ -17,6 +17,7 @@ public class Medicamento extends BaseEntity<Long> implements Serializable {
 
 	private static final long serialVersionUID = 7372369677196846335L;
 	
+	
 	@NotNull
 	private String nome;
 	
