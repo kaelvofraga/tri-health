@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<ui:define name="content">
+
+		<h1 class="lead">Refeições</h1>
+
+		<p:accordionPanel multiple="true">
+			<p:tab title="Pesquisa">
+
+				<h:panelGroup layout="block" id="alergias">
+
+					<h:panelGrid columns="2" styleClass="mtable">
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel value="De" />
+							<br />
+							<p:calendar pattern="dd/MM/yyyy HH:mm:ss" mask="true"
+								showOn="button" placeholder="Informe a data de inicio" />
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel value="Até" />
+							<br />
+							<p:calendar pattern="dd/MM/yyyy HH:mm:ss" mask="true"
+								showOn="button" placeholder="Informe a data final" />
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel value="Tipo de Alimento:" for="dd" />
+							<br />
+							<p:autoComplete id="dd" dropdown="true" />
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel value="Alimento:" for="qwd" />
+							<br />
+							<p:autoComplete id="qwd" dropdown="true" />
+						</h:panelGroup>
+
+					</h:panelGrid>
+
+					<h:panelGroup layout="block" styleClass="form-group">
+
+						<p:dataTable selectionMode="single" 
+							emptyMessage="Nenhum Registro Encontrado." var="refeicao"
+							id="tableRefeicoes">
+							<f:facet name="header">
+				            	Refeições
+				        	</f:facet>
+							<p:column headerText="Data">
+								<h:outputText />
+							</p:column>
+							<p:column headerText="Calorias">
+								<h:outputText />
+							</p:column>
+							<p:column headerText="Detalhes">
+								<h:outputText />
+							</p:column>
+							<p:column headerText="Observação">
+								<h:outputText />
+							</p:column>
+							<f:facet name="footer">
+								<p:commandButton position="west" 
+								icon="ui-icon-search" value="Visualizar" />
+							</f:facet>
+						</p:dataTable>
+
+						<br />
+
+						<p:commandButton value="Atualizar" type="submit"
+							ajax="true"
+							update="alergias" icon="ui-icon-refresh" immediate="false" />
+							 
+						<p:commandButton value="Novo"
+							icon="ui-icon-plus" ajax="true" />
+						<p:commandButton value="Editar"
+							icon="ui-icon-pencil" ajax="true" />
+						<p:commandButton value="Excluir"
+							icon="ui-icon-close" ajax="false" />					
+
+					</h:panelGroup>
+
+				</h:panelGroup>
+			</p:tab>
+
+		</p:accordionPanel>
+		
+		<p:dialog header="Detalhes Refeição" widgetVar="refeicaoDialog" modal="true" showEffect="fade" hideEffect="fade" 
+			resizable="true">
+        <p:outputPanel id="detalheRefeicao" style="text-align:center;">
+            <p:panelGrid  columns="2" columnClasses="label,value">
+                <f:facet name="header">
+                    <p:graphicImage name="Refeição"/> 
+                </f:facet>
+ 
+                <h:outputText value="Id:" />
+                <h:outputText value="" />
+ 
+                <h:outputText value="Year" />
+                <h:outputText value="" />
+ 
+                <h:outputText value="Color:" />
+                <h:outputText value="" />
+ 
+                <h:outputText value="Price" />
+                <h:outputText value="" />
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
+	</ui:define>
+</ui:composition>
+
