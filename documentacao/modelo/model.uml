@@ -247,9 +247,6 @@
         <ownedAttribute xmi:id="_rP52Z9kxEeS9V78FSqsmvg" name="data_internacao"/>
         <ownedAttribute xmi:id="_rP52aNkxEeS9V78FSqsmvg" name="data_alta"/>
         <ownedAttribute xmi:id="_rP52adkxEeS9V78FSqsmvg" name="observacoes"/>
-        <ownedAttribute xmi:id="_3eZvkNldEeSiR7vy0HzFtw" name="situacao">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_rP8SoNkxEeS9V78FSqsmvg" name="Medicos">
         <ownedAttribute xmi:id="_rP8SodkxEeS9V78FSqsmvg" name="id"/>

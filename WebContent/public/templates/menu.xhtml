@@ -1,11 +1,11 @@
-
+<?xml version="1.0" encoding="ISO-8859-1"?> 
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+                      
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
-
 
 	<h:form >
 		<p:panelMenu style="width:200px"> 
@@ -23,6 +23,10 @@
 				<p:menuitem value="Alimentação" url="#" />
 				<p:menuitem value="Peso" url="#" />
 				<p:menuitem value="Dimensões Corporais" url="#" />
+				<p:submenu label="Atividades F�sicas">
+					<p:menuitem value="Listar" url="/private/pages/listarAtividadesFisicas.jsf" action="#"/>
+					<p:menuitem value="Nova" url="/private/pages/manterAtividadesFisicas.jsf" action="#"/>
+				</p:submenu>				
 			</p:submenu>
 			
 			<p:separator />
@@ -36,6 +40,10 @@
 			<p:submenu label="Exames">
 				<p:menuitem value="Exames de Sangue" url="#" />
 				<p:menuitem value="Exames de Urina" url="#" />
+				<p:submenu label="Cateterismos">
+					<p:menuitem value="Listar" url="#" />
+					<p:menuitem value="Adicionar" url="#" />
+				</p:submenu>				
 			</p:submenu>
 
 		</p:panelMenu>
