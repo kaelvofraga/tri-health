@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<ui:define name="content">
+
+		<h1 class="lead">Histórico do Uso de Medicamentos</h1>
+		
+		<p:accordionPanel multiple="true">
+		
+		<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="data_consulta"
+								value="Data da Consulta" />
+							<br/>
+							<p:calendar id="data_consulta" style="width:300px"
+								value="#{}"
+								pattern="dd/MM/yyyy HH:mm:ss"
+								placeholder="Informe a data da consulta"
+								size="40" effect="fold" icon="glyphicon-calendar" />
+	    </h:panelGroup>
+	  
+	    <h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="nome_medicamento" value="Medicamento" />
+							<br />
+							<p:autoComplete id="nome_medicamento"
+								value="#{}"
+								size="40" style="width:300px"
+								completeMethod="#{}"
+								var="medicamento" itemLabel="#{medicamento}"
+								itemValue="#{medicamento.nome}"
+								placeholder="Informe o nome do medicamento" />
+	    </h:panelGroup>
+	    
+	    <h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="dosagem" value="Dosagem" />
+							<p:inputText id="dosagem" styleClass="form-control" size="40"
+								style="width:300px"
+								value="#{}"
+								placeholder="Informe a dosagem" />
+	    </h:panelGroup>
+	    
+	    <h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="frequencia" value="Frequência" />
+							<p:inputText id="frequencia" styleClass="form-control" size="40"
+								style="width:300px"
+								value="#{}"
+								placeholder="Informe a frequência" />
+	    </h:panelGroup>
+	    
+	    <h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="data_inicio"
+								value="Data de Inicio do Tratamento" />
+							<br/>
+							<p:calendar id="data_inicio" style="width:300px"
+								value="#{}"
+								pattern="dd/MM/yyyy HH:mm:ss"
+								placeholder="Informe a data de inicio do tratamento"
+								size="40" effect="fold" icon="glyphicon-calendar" />
+	    </h:panelGroup>
+	    
+	    <h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="data_termino"
+								value="Data de Termino do Tratamento" />
+							<br/>
+							<p:calendar id="data_termino" style="width:300px"
+								value="#{}"
+								pattern="dd/MM/yyyy HH:mm:ss"
+								placeholder="Informe a data de termino do tratamento"
+								size="40" effect="fold" icon="glyphicon-calendar" />
+	    </h:panelGroup>
+
+		
+
+		</p:accordionPanel>
+	</ui:define>
+</ui:composition>
+
+

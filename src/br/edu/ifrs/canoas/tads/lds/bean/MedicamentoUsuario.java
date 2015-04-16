@@ -38,6 +38,9 @@ public class MedicamentoUsuario extends BaseEntity<Long> implements Serializable
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataFimTratamento;
 	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataConsulta;
+	
 	private String situacao;
 	
 	private String descricao;
@@ -139,6 +142,17 @@ public class MedicamentoUsuario extends BaseEntity<Long> implements Serializable
 		this.nota = nota;
 	}
 
+
+	public Date getDataConsulta() {
+		return dataConsulta;
+	}
+
+
+	public void setDataConsulta(Date dataConsulta) {
+		this.dataConsulta = dataConsulta;
+	}
+
+	
 	
 
 }
