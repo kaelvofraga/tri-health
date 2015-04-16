@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<ui:define name="content">
+
+		<h1 class="lead">Atividades Físicas</h1>
+
+		<p:accordionPanel multiple="true">
+			<p:tab title="Atividades">
+
+				<h:panelGroup layout="block" id="alergias">
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:outputLabel for="criterio_alergia" value="Pesquisa" />
+						<p:inputText id="criterio_alergia" styleClass="form-control"
+							value="#{manterPerfilEmergenciaMB.criterioAlergia}"
+							placeholder="Entre o critério de pesquisa aqui" />
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:commandButton value="Busca" type="submit"
+							action="#{manterPerfilEmergenciaMB.busca}" ajax="true"
+							update="tab-alergias" immediate="false" />
+						<p:commandButton value="Limpa" type="submit"
+							action="#{manterPerfilEmergenciaMB.init}" ajax="true"
+							update="tab-alergias,criterio_alergia" immediate="false" />
+					</h:panelGroup>
+
+
+					<p:dataTable var="alergia" id="tab-alergias"
+						value="#{manterPerfilEmergenciaMB.alergias}">
+						<p:column headerText="Medicamento">
+							<h:outputText
+								value="#{alergia.medicamentoUsuario.medicamento.nome}" />
+						</p:column>
+						<p:column headerText="Reação">
+							<h:outputText value="#{alergia.reacao}" />
+						</p:column>
+						<p:column headerText="Tipo">
+							<h:outputText value="#{alergia.tipoAlergia.descricao}" />
+						</p:column>
+
+						<p:column headerText="Editar">
+							<p:commandButton value="Editar" action="manterPerfilEmergencia">
+								<f:setPropertyActionListener value="#{alergia}"
+									target="#{manterPerfilEmergenciaMB.alergiaUsuario}" />
+							</p:commandButton>
+						</p:column>
+
+						<p:column headerText="Excluir">
+							<p:commandButton value="Excluir" type="submit" update="tab-alergias"
+								action="#{manterPerfilEmergenciaMB.excluiAlergia}">
+								<f:setPropertyActionListener value="#{alergia}"
+									target="#{manterPerfilEmergenciaMB.alergiaUsuario}" />
+								<p:confirm header="Confirmação"
+									message="Tem certeza que deseja apagar a alergia?"
+									icon="ui-icon-alert" />
+							</p:commandButton>
+						</p:column>
+
+					</p:dataTable>
+					<br />
+				</h:panelGroup>
+
+				<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+
+			</p:tab>
+
+			<p:tab title="Situações Médicas">
+				<br />
+				<br />
+			</p:tab>
+
+
+			<p:tab title="Medicamentos em Uso">
+				<br />
+				<br />
+			</p:tab>
+		</p:accordionPanel>
+
+
+	</ui:define>
+</ui:composition>
+
+
