@@ -1,12 +1,16 @@
 package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.Length;
 
 /**
  * Entity implementation class for Entity: Usuario
@@ -17,6 +21,7 @@ public class Usuario extends BaseEntity<Long> implements Serializable {
 
 	private static final long serialVersionUID = 6262524988798723388L;
 
+		
 	@NotNull @Email 
 	private String email;
 	
@@ -29,6 +34,49 @@ public class Usuario extends BaseEntity<Long> implements Serializable {
 	@NotNull 
 	private String sobrenome;
 	
+	private String apelido;
+	
+	private Date dataNasc;
+	
+	
+	@OneToOne
+    @JoinColumn(name="ID_ENDERECO")
+	private Endereco endereco;
+	
+	    
+	
+	
+	public String getApelido() {
+		return apelido;
+	}
+
+
+	public void setApelido(String apelido) {
+		this.apelido = apelido;
+	}
+
+
+	
+	public Date getDataNasc() {
+		return dataNasc;
+	}
+
+
+	public void setDataNasc(Date dataNasc) {
+		this.dataNasc = dataNasc;
+	}
+
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+
 	public Usuario() {
 		super();
 	}
