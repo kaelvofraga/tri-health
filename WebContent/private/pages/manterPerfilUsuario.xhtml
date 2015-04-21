@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<ui:define name="content">
+
+		<h1 class="lead">Perfil de Usuário</h1>
+
+		<p:accordionPanel multiple="true">
+			<p:tab title="Dados Cadastrais">
+
+
+				<h:panelGroup layout="block" id="dadosCadastrais">
+
+					<h:panelGrid columns="2" styleClass="mtable">
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="nome_usuario" value="Nome" />
+							<p:inputText id="nome_usuario" styleClass="form-control" size="40" 
+								style="width:300px"
+								value="#{manterPerfilUsuarioMB.usuario.nome}"
+								placeholder="Informe o nome do usuário" />
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="sobrenome" value="Sobrenome" />
+							<p:inputText id="sobrenome" styleClass="form-control" size="40" 
+								style="width:300px"
+								value="#{manterPerfilUsuarioMB.usuario.sobrenome}"
+								placeholder="Informe o sobrenome do usuário" />
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="apelido" value="Apelido" />
+							<p:inputText id="apelido" styleClass="form-control" size="40" 
+								style= "width:300px"
+								value="#{manterPerfilUsuarioMB.usuario.apelido}"
+								placeholder="Informe o apelido do usuário" />
+						</h:panelGroup>
+
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="nacionalidade" value="Nacionalidade" />
+							<br />
+							<p:autoComplete id="nacionalidade" dropdown="true"
+								style="width:300px"
+								size="40"
+								value="#{manterPerfilUsuarioMB.usuario.endereco.cidade.uf.pais.nacionalidade}"
+								placeholder="Informe a nacionalidade" />
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="data_nascimento"
+								value="Data Nascimento" />
+							<br />
+							<p:calendar id="data_nascimento" style="width:200px"
+								value="#{manterPerfilUsuarioMB.usuario.dataNasc}"
+								pattern="dd/MM/yyyy HH:mm:ss"
+								placeholder="Informe a data de nascimento"
+								size="20" effect="fold" icon="glyphicon-calendar" />
+						</h:panelGroup>
+
+					</h:panelGrid>
+
+
+				</h:panelGroup>
+			</p:tab>
+
+			<p:tab title="Endereço">
+				<h:panelGroup layout="block" id="endereço">
+					<h:panelGrid columns="2" styleClass="mtable">
+				
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="cep" value="Cep"/>
+							<br />
+							<p:inputText id="cep" styleClass="form-control" size="20" 
+								style="width:200px"
+								value="#{manterPerfilUsuarioMB.usuario.endereco.cep}"
+								placeholder="Informe o CEP" />								
+							</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="rua" value="Rua" />
+							<p:inputText id="rua" styleClass="form-control" size="40" 
+								style="width:300px"
+								value="#{manterPerfilUsuarioMB.usuario.endereco.logradouro}"
+								placeholder="Informe a rua" />
+							</h:panelGroup>
+							
+							<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="numero" value="Número" />
+							<p:inputText id="numero" styleClass="form-control" size="20" 
+								style="width:200px"
+								value="#{manterPerfilUsuarioMB.usuario.endereco.numero}"
+								placeholder="Informe o número" />
+							</h:panelGroup>
+							
+							<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="complemento" value="Complemento" />
+							<p:inputText id="complemento" styleClass="form-control" size="40" 
+								style="width:300px"
+								value="#{manterPerfilUsuarioMB.usuario.endereco.complemento}"
+								placeholder="Informe o complemento" />
+							</h:panelGroup>
+							
+							<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="pais" value="Pais" />
+							<p:inputText id="pais" styleClass="form-control" size="40" 
+								style="width:300px"
+								value="#{manterPerfilUsuarioMB.usuario.endereco.cidade.uf.pais.nomePais}"
+								placeholder="Informe o País" />
+							</h:panelGroup>
+							
+							<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="estado" value="Estado" />
+							<p:inputText id="estado" styleClass="form-control" size="40" 
+								style="width:300px"
+								value="#{manterPerfilUsuarioMB.usuario.endereco.cidade.uf.nomeUf}"
+								placeholder="Informe o Estado" />
+							</h:panelGroup>
+							
+							<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="cidade" value="Cidade" />
+							<p:inputText id="cidade" styleClass="form-control" size="40" 
+								style="width:300px"
+								value="#{manterPerfilUsuarioMB.usuario.endereco.cidade.nomeCidade}"
+								placeholder="Informe a cidade" />
+							</h:panelGroup>
+					</h:panelGrid>     				    
+				</h:panelGroup>
+			</p:tab>
+
+			<p:tab title="Outras Informações">
+				<h:panelGroup layout="block" id="outrasInformacoes">
+					<h:panelGrid columns="2" styleClass="mtable">
+				
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="genero" value="Gênero"/>
+							<br />
+							<p:inputText id="genero" styleClass="form-control" size="40" 
+								style="width:300px"
+								value="#{manterPerfilUsuarioMB.usuario.genero}"
+								placeholder="Informe o gênero" />								
+							</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="tipoSanguineo" value="Tipo Sanguineo" />
+							<p:inputText id="tipoSanguineo" styleClass="form-control" size="40" 
+								style="width:300px"
+								value="#{manterPerfilUsuarioMB.usuario.tipoSanguineo}"
+								placeholder="Informe o tipo sanguineo" />
+							</h:panelGroup>
+							
+							<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="idioma" value="Idioma" />
+							<p:inputText id="idioma" styleClass="form-control" size="40" 
+								style="width:200px"
+								value="#{manterPerfilUsuarioMB.usuario.apelido}"
+								placeholder="Informe o(s) idioma(s)" />
+							</h:panelGroup>
+							
+							<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="telefone" value="Telefone" />
+							<p:inputText id="telefone" styleClass="form-control" size="40" 
+								style="width:300px"
+								value="#{manterPerfilUsuarioMB.usuario.telefone}"
+								placeholder="Informe o telefone fixo" />
+							</h:panelGroup>
+							
+							<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="celular" value="Celular" />
+							<p:inputText id="celular" styleClass="form-control" size="40" 
+								style="width:300px"
+								value="#{manterPerfilUsuarioMB.usuario.celular}"
+								placeholder="Informe o telefone celular" />
+							</h:panelGroup>
+												
+							<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="email" value="E-mail" />
+							<p:inputText id="email" styleClass="form-control" size="40" 
+								style="width:300px"
+								value="#{manterPerfilUsuarioMB.usuario.email}"
+								placeholder="Informe o e-mail" />
+							</h:panelGroup>
+							
+							<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="senha" value="Senha" />
+							<p:inputText id="senha" styleClass="form-control" size="40" 
+								style="width:300px"
+								value="#{manterPerfilUsuarioMB.usuario.senha}"
+								placeholder="Informe a senha" />
+							</h:panelGroup>
+					</h:panelGrid>     				    
+				</h:panelGroup>
+				
+				<h:panelGroup layout="block" styleClass="form-group">
+						<p:commandButton value="Salvar"
+							rendered="#{not manterPerfilEmergenciaMB.atualizacao}"
+							action="#{manterPerfilEmergenciaMB.salvaAlergia}" ajax="true" />
+						<p:commandButton value="Alterar"
+							rendered="#{manterPerfilEmergenciaMB.atualizacao}"
+							action="#{manterPerfilEmergenciaMB.alteraAlergia}" ajax="true" />
+						<p:commandButton value="Voltar"
+							rendered="#{manterPerfilEmergenciaMB.atualizacao}"
+							action="listarPerfilEmergencia" ajax="false" />
+						<p:commandButton value="Limpa" type="submit"
+							rendered="#{manterPerfilEmergenciaMB.atualizacao}"
+							action="#{manterPerfilEmergenciaMB.init}" ajax="true"
+							update="alergias" immediate="false" />
+
+					</h:panelGroup>
+				
+			</p:tab>	</p:accordionPanel>
+
+
+	</ui:define>
+</ui:composition>

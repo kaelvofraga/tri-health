@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
@@ -17,11 +19,12 @@ import org.hibernate.validator.constraints.Email;
  *
  */
 @Entity
-public class Usuario extends BaseEntity<Long> implements Serializable {
+public class Usuario extends BaseEntity<Long> implements Serializable {	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8888460954413155909L;
 
-	private static final long serialVersionUID = 6262524988798723388L;
-
-		
 	@NotNull @Email 
 	private String email;
 	
@@ -36,9 +39,34 @@ public class Usuario extends BaseEntity<Long> implements Serializable {
 	
 	private String apelido;
 	
+	private String telefone;
+		
+	private String celular;
+	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataNasc;
 	
+	private String genero;
 	
+	private String tipoSanguineo;
+	
+	public String getTipoSanguineo() {
+		return tipoSanguineo;
+	}
+
+	public void setTipoSanguineo(String tipoSanguineo) {
+		this.tipoSanguineo = tipoSanguineo;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+
 	@OneToOne
     @JoinColumn(name="ID_ENDERECO")
 	private Endereco endereco;
@@ -113,4 +141,23 @@ public class Usuario extends BaseEntity<Long> implements Serializable {
 		this.sobrenome = sobrenome;
 	}
 	
+	public String getTelefone() {
+		return telefone;
+	}
+
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+
+	public String getCelular() {
+		return celular;
+	}
+
+
+	public void setCelular(String celular) {
+		this.celular = celular;
+	}
+
 }
