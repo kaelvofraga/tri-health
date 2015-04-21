@@ -9,20 +9,24 @@
 
 	<h:form >
 		<p:panelMenu style="width:200px"> 
-			<p:submenu label="UsuÃ¡rio">
+			<p:submenu label="Usuário">
 				<p:menuitem value="Perfil" url="/private/pages/manterUsuario.jsf" />
-				<p:submenu label="Perfil de EmergÃªncial">
+				<p:submenu label="Perfil de Emergência">
 					<p:menuitem value="Listar" url="/private/pages/listarPerfilEmergencia.jsf" action="#{manterPerfilEmergenciaMB.init}"/>
 					<p:menuitem value="Cadastrar" url="/private/pages/manterPerfilEmergencia.jsf" action="#{manterPerfilEmergenciaMB.init}"/>
+				</p:submenu>
+
+				<p:submenu label="Perfil de Usuario">
+					<p:menuitem value="Cadastrar" url="/private/pages/manterPerfilUsuario.jsf" action="#{manterPerfilUsuarioMB.init}"/>
 				</p:submenu>
 			</p:submenu>
 			
 			<p:separator />
 			<p:submenu label="Medidas">
-				<p:menuitem value="PressÃ£o SanguÃ­nea" url="#" />
-				<p:menuitem value="AlimentaÃ§Ã£o" url="/private/pages/listarRefeicao.jsf" />
+				<p:menuitem value="Pressão Sanguínea" url="#" />
+				<p:menuitem value="Alimentação" url="/private/pages/listarRefeicao.jsf" />
 				<p:menuitem value="Peso" url="#" />
-				<p:menuitem value="DimensÃµes Corporais" url="#" />
+				<p:menuitem value="Dimensões Corporais" url="#" />
 				<p:submenu label="Atividades Físicas">
 					<p:menuitem value="Listar" url="/private/pages/listarAtividadesFisicas.jsf" action="#"/>
 					<p:menuitem value="Nova" url="/private/pages/manterAtividadesFisicas.jsf" action="#"/>
@@ -30,13 +34,13 @@
 			</p:submenu>
 			
 			<p:separator />
-			<p:submenu label="HistÃ³rico de SaÃºde">
+			<p:submenu label="Histórico de Saúde">
 			<p:submenu label="Uso de Medicamentos">
 					<p:menuitem value="Listar" url="/private/pages/manterUsoMedicamentos.xhtml" action="#"/>
 					<p:menuitem value="Cadastrar" url="/private/pages/manterUsoMedicamentos.xhtml" action="#"/>
 			</p:submenu>
-				<p:menuitem value="Procedimentos MÃ©dicos" url="#" />
-				<p:menuitem value="Consultas MÃ©dicas" url="#" />
+				<p:menuitem value="Procedimentos Médicos" url="#" />
+				<p:menuitem value="Consultas Médicas" url="#" />
 			</p:submenu>
 			
 			<p:separator />
