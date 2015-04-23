@@ -8,71 +8,70 @@
 	template="/public/templates/template.xhtml">
 	<ui:define name="metadata" />
 	<ui:define name="content">
+	
 		<h1 class="lead">Pressão Arterial</h1>
 		<p:accordionPanel multiple="true">
-			<p:tab title="Lista de Pressão Arterial">
-				<h:panelGroup layout="block" id="alergias">
+			<p:tab title="Novo registro de Pressão Arterial">
+				<h:panelGroup layout="block" id="pressaoArterial">
+					<h:panelGrid columns="2" styleClass="mtable">
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="paSistolica" value="Pressão Arterial Sistólica:" />
+								<p:inputText id="paSistolica" styleClass="form-control"
+									var="pressaoUsuario" itemLabel="#{pressaoUsuario}"
+									itemValue="#{pressaoUsuario.pressaoArterial.paSistolica}"
+									placeholder="Exemplo: 130" />
+						</h:panelGroup>
+						
+						<h:panelGroup layout="block" styleClass="form-group col-xs-10 pull-right">
+							<p:outputLabel for="paDiastolica" value="Pressão Arterial Diastólica:" />
+								<p:inputText id="paDiastolica" styleClass="form-control"
+									var="pressaoUsuario" itemLabel="#{pressaoUsuario}"
+									itemValue="#{pressaoUsuario.pressaoArterial.paDiastolica}"
+									placeholder="Exemplo: 80" />
+						</h:panelGroup>
+					</h:panelGrid>
+					
+					<h:panelGrid columns="3" styleClass="mtable">
+						<h:panelGroup layout="block" styleClass="form-group pull-left">
+							<p:outputLabel for="pulso" value="Pulso:" />
+							<p:inputText id="pulso" styleClass="form-control"
+									var="pulso" itemLabel="#{pressaoUsuario}"
+									itemValue="#{pressaoUsuario.pressaoArterial.pulso}"
+									placeholder="Exemplo: 70" />
+						</h:panelGroup>
+						
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="batimentoIrregular" value="Batimento Irregular?" />
+							<br />
+							<p:autoComplete id="batimentoIrregular" dropdown="true"
+								size="40" completeMethod="#" forceSelection="true"
+								var="batimentoIrregular" itemLabel="#{pressaoUsuario}"
+								itemValue="#{pressaoUsuario.pressaoArterial.batimentoIrregular}"
+								placeholder="Selecione uma opção" />
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group pull-right">
+							<p:outputLabel for="data" value="Data:" />
+							<br />
+							<p:calendar id="data" pattern="dd/MM/yyyy HH:mm:ss"
+								placeholder="Selecione uma Data" effect="fold"
+								icon="glyphicon-calendar" var="atividadeUsuario"
+								itemLabel="#{pressaoUsuario}"
+								itemValue="#{pressaoUsuario.data}" />
+						</h:panelGroup>
+
+					</h:panelGrid>
+
 					<h:panelGroup layout="block" styleClass="form-group">
-						<p:outputLabel for="criterio_alergia" value="Pesquisa" />
-						<p:inputText id="criterio_alergia" styleClass="form-control"
-							value="#{manterPerfilEmergenciaMB.criterioAlergia}"
-							placeholder="Entre o critério de pesquisa aqui" />
+						<p:outputLabel for="notas" value="Notas:" />
+						<br />
+						<p:inputTextarea id="notas" rows="6" cols="110"
+							var="pressaoUsuario" itemLabel="#{pressaoUsuario}"
+							itemValue="#{pressaoUsuario.notas}"
+							placeholder="Escreva alguma observação aqui... ;)" />
 					</h:panelGroup>
-					<h:panelGroup layout="block" styleClass="form-group">
-						<p:commandButton value="Busca" type="submit"
-							action="#{manterPerfilEmergenciaMB.busca}" ajax="true"
-							update="tab-alergias" immediate="false" />
-						<p:commandButton value="Limpa" type="submit"
-							action="#{manterPerfilEmergenciaMB.init}" ajax="true"
-							update="tab-alergias,criterio_alergia" immediate="false" />
-					</h:panelGroup>
-					<p:dataTable var="alergia" id="tab-alergias"
-						value="#{manterPerfilEmergenciaMB.alergias}">
-						<p:column headerText="Medicamento">
-							<h:outputText
-								value="#{alergia.medicamentoUsuario.medicamento.nome}" />
-						</p:column>
-						<p:column headerText="Reação">
-							<h:outputText value="#{alergia.reacao}" />
-						</p:column>
-						<p:column headerText="Tipo">
-							<h:outputText value="#{alergia.tipoAlergia.descricao}" />
-						</p:column>
-						<p:column headerText="Editar">
-							<p:commandButton value="Editar" action="manterPerfilEmergencia">
-								<f:setPropertyActionListener value="#{alergia}"
-									target="#{manterPerfilEmergenciaMB.alergiaUsuario}" />
-							</p:commandButton>
-						</p:column>
-						<p:column headerText="Excluir">
-							<p:commandButton value="Excluir" type="submit"
-								update="tab-alergias"
-								action="#{manterPerfilEmergenciaMB.excluiAlergia}">
-								<f:setPropertyActionListener value="#{alergia}"
-									target="#{manterPerfilEmergenciaMB.alergiaUsuario}" />
-								<p:confirm header="Confirmação"
-									message="Tem certeza que deseja apagar a alergia?"
-									icon="ui-icon-alert" />
-							</p:commandButton>
-						</p:column>
-					</p:dataTable>
-					<br />
+
 				</h:panelGroup>
-				<p:confirmDialog global="true" showEffect="fade"
-					hideEffect="explode">
-					<p:commandButton value="Sim" type="button"
-						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-					<p:commandButton value="Não" type="button"
-						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-				</p:confirmDialog>
-			</p:tab>
-			<p:tab title="Situações Médicas">
-				<br />
-				<br />
-			</p:tab>
-			<p:tab title="Medicamentos em Uso">
-				<br />
-				<br />
 			</p:tab>
 		</p:accordionPanel>
 	</ui:define>
