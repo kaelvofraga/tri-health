@@ -7,36 +7,26 @@ import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
-import br.edu.ifrs.canoas.tads.lds.bean.AlergiaUsuario;
+
 import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
-import br.edu.ifrs.canoas.tads.lds.bean.TipoAlergia;
+import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
-import br.edu.ifrs.canoas.tads.lds.model.dao.AlergiaUsuarioDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.MedicamentoDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.MedicamentoUsuarioDAO;
-import br.edu.ifrs.canoas.tads.lds.model.dao.TipoAlergiaDAO;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
 
 @Stateless
-public class ManterAlergiaService {
+public class ManterUsoMedicamentoService {
 
-	@Inject
-	private AlergiaUsuarioDAO alergiaUsuarioDAO;
-	
 	@Inject
 	private MedicamentoUsuarioDAO medicamentoUsuarioDAO;
 
 	@Inject
 	private MedicamentoDAO medicamentoDAO;
 	
-	@Inject
-	private TipoAlergiaDAO tipoAlergiaDAO;
 	
-	@Inject
-	private ManterUsoMedicamentoService manterUsoMedicamentoService;
-	
-	public boolean salvaUsario(AlergiaUsuario alergiaUsuario) {
+	public boolean salvaUsario(MedicamentoUsuario medicamentoUsuario) {
 		
 //		MedicamentoUsuario medUsuario = new MedicamentoUsuario();
 //		medUsuario.setMedicamento(this.buscaOuCriaMedicamentoPorNome(medicamento));
@@ -47,42 +37,51 @@ public class ManterAlergiaService {
 //		alergiaUsuario.setMedicamentoUsuario(medUsuario);
 //		alergiaUsuario.setTipoAlergia(tipoAlergiaDAO.busca(tipoAlergia.getId()));
 		
-		alergiaUsuarioDAO.insere(alergiaUsuario);
-		Mensagens.define(FacesMessage.SEVERITY_INFO, "Alergia.cadastro.sucesso");
+		medicamentoUsuarioDAO.insere(medicamentoUsuario);
+		//Mensagens.define(FacesMessage.SEVERITY_INFO, "Medicamento.cadastro.sucesso");
 		
 		return true;
 	}
 
-	private Medicamento buscaOuCriaMedicamentoPorNome(Medicamento medicamento) {
+	public Medicamento buscaOuCriaMedicamentoPorNome(Medicamento medicamento) {
+		List<Medicamento> medicamentos = medicamentoDAO.buscaPorNome(medicamento.getNome());
 		
-		return manterUsoMedicamentoService.buscaOuCriaMedicamentoPorNome(medicamento);
+		if (medicamentos.size() == 1)
+			medicamento = medicamentos.get(0);
+		else{
+			medicamentoDAO.insere(medicamento);
+		}
+		
+		return medicamento;
 	}
 
+/* 
 	@SuppressWarnings("unchecked")
 	public List<AlergiaUsuario> busca(String criterioAlergia) {
 		if (StrUtil.isNotBlank(criterioAlergia))
 			return alergiaUsuarioDAO.buscaPorCriterio(criterioAlergia);
 		else
 			return alergiaUsuarioDAO.buscaTodos();
-	}
-
+	}*/
 
 	public List<Medicamento> buscaMedicamentos(String query, Usuario usuario) {
-		
-		return manterUsoMedicamentoService.buscaMedicamentos(query,usuario);
+		if (usuario != null && usuario.getId() != null)
+			return medicamentoDAO.buscaNomeMedicamentoPorUsuario(usuario);
+		return new ArrayList<Medicamento>();
 	}
 
-
+/*
 	public List<TipoAlergia> buscaDescricoesTipoAlergias() {
 		return  tipoAlergiaDAO.buscaTodos();
+	}*/
+
+
+	public void alteraMedicamentoUsario(MedicamentoUsuario medicamentoUsuario) {
+		medicamentoUsuarioDAO.atualiza(medicamentoUsuario);
 	}
 
-	public void alteraAlergiaUsario(AlergiaUsuario alergiaUsuario) {
-		alergiaUsuarioDAO.atualiza(alergiaUsuario);
-	}
-
-	public void excluiAlergia(AlergiaUsuario alergiaUsuario) {
-		alergiaUsuarioDAO.exclui(alergiaUsuario.getId());
+	public void excluiMedicamento(MedicamentoUsuario medicamentoUsuario) {
+		medicamentoUsuarioDAO.exclui(medicamentoUsuario.getId());
 	}
 
 }

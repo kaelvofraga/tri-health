@@ -15,7 +15,12 @@
 		
 		<p:accordionPanel multiple="true">
 		
-		<h:panelGroup layout="block" styleClass="form-group">
+		<p:tab title="Medicamentos">
+		
+			<h:panelGroup layout="block" styleClass="form-group">
+		
+				<h:panelGrid columns="2" styleClass="mtable">
+						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="data_consulta"
 								value="Data da Consulta" />
 							<br/>
@@ -24,59 +29,79 @@
 								pattern="dd/MM/yyyy HH:mm:ss"
 								placeholder="Informe a data da consulta"
 								size="40" effect="fold" icon="glyphicon-calendar" />
-	    </h:panelGroup>
+	   					</h:panelGroup>
 	  
-	    <h:panelGroup layout="block" styleClass="form-group">
+	    				<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="nome_medicamento" value="Medicamento" />
 							<br />
 							<p:autoComplete id="nome_medicamento"
-								value="#{}"
+								value="#{manterUsoMedicamentoMB.medicamentoUsuario.medicamento.nome}"
 								size="40" style="width:300px"
-								completeMethod="#{}"
+								completeMethod="#{manterPerfilEmergenciaMB.completeMedicamentoAlergia}"
 								var="medicamento" itemLabel="#{medicamento}"
 								itemValue="#{medicamento.nome}"
-								placeholder="Informe o nome do medicamento" />
-	    </h:panelGroup>
+								placeholder="Informe ao medicamento" />
+	    				</h:panelGroup>
 	    
-	    <h:panelGroup layout="block" styleClass="form-group">
+	    		<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="dosagem" value="Dosagem" />
 							<p:inputText id="dosagem" styleClass="form-control" size="40"
 								style="width:300px"
-								value="#{}"
+								value="#{manterUsoMedicamentoMB.medicamentoUsuario.dosagem}"
 								placeholder="Informe a dosagem" />
-	    </h:panelGroup>
+	    		</h:panelGroup>
 	    
-	    <h:panelGroup layout="block" styleClass="form-group">
+	    		<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="frequencia" value="Frequência" />
 							<p:inputText id="frequencia" styleClass="form-control" size="40"
 								style="width:300px"
-								value="#{}"
+								value="#{manterUsoMedicamentoMB.medicamentoUsuario.frequencia}"
 								placeholder="Informe a frequência" />
-	    </h:panelGroup>
+	    		</h:panelGroup>
 	    
-	    <h:panelGroup layout="block" styleClass="form-group">
+	    		<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="data_inicio"
 								value="Data de Inicio do Tratamento" />
 							<br/>
 							<p:calendar id="data_inicio" style="width:300px"
-								value="#{}"
+								value="#{manterUsoMedicamentoMB.medicamentoUsuario.dataInicioTratamento}"
 								pattern="dd/MM/yyyy HH:mm:ss"
 								placeholder="Informe a data de inicio do tratamento"
 								size="40" effect="fold" icon="glyphicon-calendar" />
-	    </h:panelGroup>
+	    		</h:panelGroup>
 	    
-	    <h:panelGroup layout="block" styleClass="form-group">
+	    		<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="data_termino"
 								value="Data de Termino do Tratamento" />
 							<br/>
 							<p:calendar id="data_termino" style="width:300px"
-								value="#{}"
+								value="#{manterUsoMedicamentoMB.medicamentoUsuario.dataFimTratamento}"
 								pattern="dd/MM/yyyy HH:mm:ss"
 								placeholder="Informe a data de termino do tratamento"
-								size="40" effect="fold" icon="glyphicon-calendar" />
-	    </h:panelGroup>
+								size="40" effect="fold" icon="glyphicon-calendar"/>
+	    		</h:panelGroup>
+	    		
+	    	</h:panelGrid>
+	    
+	    		<h:panelGroup layout="block" styleClass="form-group">
+	    					<p:commandButton value="Salvar"
+							rendered="#{not manterUsoMedicamentoMB.atualizacao}"
+							action="#{manterUsoMedicamentoMB.salvaMedicamento}" ajax="true"/>
+						<p:commandButton value="Alterar"
+							rendered="#{manterUsoMedicamentoMB.atualizacao}"
+						action="#{manterUsoMedicamentoMB.alteraMedicamento}" ajax="true" />
+						<p:commandButton value="Voltar"
+							rendered="#{#}"
+						action="listarPerfilEmergencia" ajax="false"/>
+						<p:commandButton value="Limpa" type="submit"
+							rendered="#{#}" 
+							action="#{manterPerfilEmergenciaMB.init}" ajax="true"
+							update="alergias" immediate="false" />
 
-		
+				</h:panelGroup>
+				
+			</h:panelGroup>
+		</p:tab>
 
 		</p:accordionPanel>
 	</ui:define>
