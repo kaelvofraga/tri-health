@@ -11,68 +11,53 @@
 		<h1 class="lead">Pressão Arterial</h1>
 		<p:accordionPanel multiple="true">
 			<p:tab title="Lista de Pressão Arterial">
-				<h:panelGroup layout="block" id="alergias">
+				<h:panelGroup layout="block" id="pressaoArterial">
 					<h:panelGroup layout="block" styleClass="form-group">
-						<p:outputLabel for="criterio_alergia" value="Pesquisa" />
-						<p:inputText id="criterio_alergia" styleClass="form-control"
-							value="#{manterPerfilEmergenciaMB.criterioAlergia}"
-							placeholder="Entre o critério de pesquisa aqui" />
+						<p:outputLabel for="criterio_pressao" value="Pesquisa" />
+						<p:inputText id="criterio_pressao" styleClass="form-control"
+							value="" placeholder="Entre o critério de pesquisa aqui" />
 					</h:panelGroup>
+
 					<h:panelGroup layout="block" styleClass="form-group">
-						<p:commandButton value="Busca" type="submit"
-							action="#{manterPerfilEmergenciaMB.busca}" ajax="true"
-							update="tab-alergias" immediate="false" />
-						<p:commandButton value="Limpa" type="submit"
-							action="#{manterPerfilEmergenciaMB.init}" ajax="true"
-							update="tab-alergias,criterio_alergia" immediate="false" />
+						<p:commandButton value="Busca" type="submit" action="#"
+							ajax="true" update="tab-pressao" immediate="false"
+							icon="ui-icon-search" />
+						<p:commandButton value="Limpa" type="submit" action="#"
+							ajax="true" update="tab-pressao,criterio_pressao"
+							immediate="false" icon="ui-icon-refresh" />
 					</h:panelGroup>
-					<p:dataTable var="alergia" id="tab-alergias"
-						value="#{manterPerfilEmergenciaMB.alergias}">
-						<p:column headerText="Medicamento">
+
+					<p:dataTable var="pressao" id="tab-pressao" value="#">
+						<p:column headerText="Data">
+							<h:outputText value="#{pressaoUsuario.data}" />
+						</p:column>
+
+						<p:column headerText="Pressão Arterial Sistólica">
 							<h:outputText
-								value="#{alergia.medicamentoUsuario.medicamento.nome}" />
+								value="#{pressaoUsuario.pressaoArterial.paSistolica}" />
 						</p:column>
-						<p:column headerText="Reação">
-							<h:outputText value="#{alergia.reacao}" />
+
+						<p:column headerText="Pressão Arterial Diastólica">
+							<h:outputText
+								value="#{pressaoUsuario.pressaoArterial.paDiastolica}" />
 						</p:column>
-						<p:column headerText="Tipo">
-							<h:outputText value="#{alergia.tipoAlergia.descricao}" />
+
+						<p:column headerText="Pulso">
+							<h:outputText value="#{pressaoUsuario.pressaoArterial.pulso}" />
 						</p:column>
-						<p:column headerText="Editar">
-							<p:commandButton value="Editar" action="manterPerfilEmergencia">
-								<f:setPropertyActionListener value="#{alergia}"
-									target="#{manterPerfilEmergenciaMB.alergiaUsuario}" />
-							</p:commandButton>
+
+						<p:column headerText="Batimento Irregular?">
+							<h:outputText
+								value="#{pressaoUsuario.pressaoArterial.batimentoIrregular}" />
 						</p:column>
-						<p:column headerText="Excluir">
-							<p:commandButton value="Excluir" type="submit"
-								update="tab-alergias"
-								action="#{manterPerfilEmergenciaMB.excluiAlergia}">
-								<f:setPropertyActionListener value="#{alergia}"
-									target="#{manterPerfilEmergenciaMB.alergiaUsuario}" />
-								<p:confirm header="Confirmação"
-									message="Tem certeza que deseja apagar a alergia?"
-									icon="ui-icon-alert" />
-							</p:commandButton>
+
+						<p:column headerText="Notas">
+							<h:outputText value="#{pressaoUsuario.notas}" />
 						</p:column>
 					</p:dataTable>
 					<br />
 				</h:panelGroup>
-				<p:confirmDialog global="true" showEffect="fade"
-					hideEffect="explode">
-					<p:commandButton value="Sim" type="button"
-						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-					<p:commandButton value="Não" type="button"
-						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-				</p:confirmDialog>
-			</p:tab>
-			<p:tab title="Situações Médicas">
-				<br />
-				<br />
-			</p:tab>
-			<p:tab title="Medicamentos em Uso">
-				<br />
-				<br />
+				<p:commandButton value="Nova" icon="ui-icon-plus" ajax="true" />
 			</p:tab>
 		</p:accordionPanel>
 	</ui:define>
