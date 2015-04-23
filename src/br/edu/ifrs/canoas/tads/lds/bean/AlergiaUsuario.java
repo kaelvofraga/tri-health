@@ -14,8 +14,8 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Entity implementation class for Entity: MedicamentoUsuario
- *
- */
+ * 
+ */ 
 @Entity
 public class AlergiaUsuario extends BaseEntity<Long> implements Serializable {
 
