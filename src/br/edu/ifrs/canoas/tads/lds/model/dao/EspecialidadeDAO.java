@@ -4,12 +4,12 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
+import br.edu.ifrs.canoas.tads.lds.bean.Especialidade;
 import br.edu.ifrs.canoas.tads.lds.bean.Medico;
 
 
-
 @Stateless
-public class MedicoDAO extends BaseDAO<Medico, Long>{
+public class EspecialidadeDAO extends BaseDAO<Especialidade, Long>{
 
 	private static final long serialVersionUID = -6896321074436211850L;
 	
@@ -18,10 +18,9 @@ public class MedicoDAO extends BaseDAO<Medico, Long>{
 	public List<Medico> buscaPorNome(String criterio) {
 		return em
 				.createQuery(
-						"SELECT med FROM Medico med "
+						"SELECT e FROM Especialidade e "
 								+ "WHERE "
-								+ "lower(med.nome) like '%:nome%' "
-								+ "lower(med.crm) like '%:crm%'"
+								+ "lower(e.descricao) like '%:descricao%' "
 								)
 								.setParameter("nome", criterio.toLowerCase())
 								.setParameter("crm", criterio.toLowerCase())

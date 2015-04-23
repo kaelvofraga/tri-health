@@ -13,10 +13,12 @@ public class EspecialidadeMedica extends BaseEntity<Long> implements Serializabl
 	private static final long serialVersionUID = -3785695628695056405L;
 	
 	@NotNull @ManyToOne
-	@JoinColumn(name="ID")
+	@JoinColumn(name="ID_MEDICO")
 	private Medico medico;
 	
-	@NotNull
-	private String descricao;
+	
+	@NotNull @ManyToOne
+	@JoinColumn(name="ID_ESPECIALIDADE")
+	private Especialidade especialidade;
 
 }

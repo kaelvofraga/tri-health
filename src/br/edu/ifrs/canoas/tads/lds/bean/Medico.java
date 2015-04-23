@@ -22,7 +22,7 @@ public class Medico extends BaseEntity<Long> implements Serializable{
 	private String crm;
 
 	@OneToMany
-	@JoinColumn(name="MEDICO")
+	@JoinColumn(name="ID_MEDICO")
 	private Collection<EspecialidadeMedica> especialidades = new ArrayList<EspecialidadeMedica>();
 	
 	public String getNome() {
