@@ -3,6 +3,8 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -10,10 +12,16 @@ public class Cateterismo extends BaseEntity<Long> implements Serializable{
 
 	private static final long serialVersionUID = -7501350516318175545L;
 	
-	@NotNull
+	@NotNull @ManyToOne
+	@JoinColumn(name="ID")
+	private Usuario usuario;
+	
+	@NotNull @ManyToOne
+	@JoinColumn(name="ID_MEDICO_SOLICITANTE")
 	private Medico medicoSolicitante;
 	
-	@NotNull
+	@NotNull @ManyToOne
+	@JoinColumn(name="ID_MEDICO_RESPONSAVEL")
 	private Medico medicoResponsavel;
 	
 	@NotNull

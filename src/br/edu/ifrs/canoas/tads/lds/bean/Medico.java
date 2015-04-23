@@ -21,10 +21,10 @@ public class Medico extends BaseEntity<Long> implements Serializable{
 	@NotNull
 	private String crm;
 
-//	@OneToMany
-//	@JoinColumn(name="ID_ESPECIALIDADE")
-//	private Collection<EspecialidadeMedica> especialidades;
-//	
+	@OneToMany
+	@JoinColumn(name="MEDICO")
+	private Collection<EspecialidadeMedica> especialidades = new ArrayList<EspecialidadeMedica>();
+	
 	public String getNome() {
 		return nome;
 	}
@@ -40,14 +40,14 @@ public class Medico extends BaseEntity<Long> implements Serializable{
 	public void setCrm(String crm) {
 		this.crm = crm;
 	}
+
+	public Collection<EspecialidadeMedica> getEspecialidades() {
+		return especialidades;
+	}
+
+	public void setEspecialidades(Collection<EspecialidadeMedica> especialidades) {
+		this.especialidades = especialidades;
+	}
 	
-//	public Collection<EspecialidadeMedica> getEspecialidades() {
-//		return especialidades;
-//	}
-
-//	public void setEspecialidades(ArrayList<EspecialidadeMedica> especialidades) {
-//		this.especialidades = especialidades;
-//	}
-
 	
 }
