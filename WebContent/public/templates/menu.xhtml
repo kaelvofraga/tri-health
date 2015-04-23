@@ -23,7 +23,10 @@
 			
 			<p:separator />
 			<p:submenu label="Medidas">
-				<p:menuitem value="Pressão Sanguínea" url="#" />
+				<p:submenu label="Pressão Arterial">
+					<p:menuitem value="Listar" url="/private/pages/listarPressaoArterial.jsf" action="#"/>
+					<p:menuitem value="Manter" url="/private/pages/manterPressaoArterial.jsf" action="#"/>
+				</p:submenu>				
 				<p:menuitem value="Alimentação" url="/private/pages/listarRefeicao.jsf" />
 				<p:menuitem value="Peso" url="#" />
 				<p:menuitem value="Dimensões Corporais" url="#" />
