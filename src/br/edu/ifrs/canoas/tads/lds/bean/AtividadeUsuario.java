@@ -34,10 +34,10 @@ public class AtividadeUsuario extends BaseEntity<Long> implements Serializable {
 	@NotNull 
 	private String notas;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@NotNull @Temporal(TemporalType.TIMESTAMP)
 	private Date dataInicio;
-	
-	@Temporal(TemporalType.TIMESTAMP)
+		
+	@NotNull @Temporal(TemporalType.TIMESTAMP)
 	private Date dataFim;
 	
 	@NotNull 

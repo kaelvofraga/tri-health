@@ -32,22 +32,23 @@
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="tipo_atividade" value="Tipo:" />
 							<br />
-							<p:inputText id="tipo_atividade" styleClass="form-control" 
+							<p:inputText id="tipo_atividade" styleClass="form-control"
 								var="tipoAtividade" itemLabel="#{tipoAtividade}"
 								itemValue="#{tipoAtividade.nome}"
 								placeholder="Tipo da atividade." disabled="true" />
 						</h:panelGroup>
 
-						<h:panelGroup layout="block" styleClass="form-group col-xs-10 pull-right">
+						<h:panelGroup layout="block"
+							styleClass="form-group col-xs-10 pull-right">
 							<p:outputLabel for="distancia" value="Distância:" />
-							<p:inputText id="distancia" styleClass="form-control"
+							<p:keyboard id="distancia" styleClass="form-control"
 								var="atividadeUsuario" itemLabel="#{atividadeUsuario}"
 								itemValue="#{atividadeUsuario.distancia}"
-								placeholder="Informe a distância percorrida." />
+								placeholder="Informe a distância percorrida." keypadOnly="true" />
 						</h:panelGroup>
 
 					</h:panelGrid>
-	
+
 					<h:panelGrid columns="3" styleClass="mtable">
 
 						<h:panelGroup layout="block" styleClass="form-group">
@@ -70,7 +71,8 @@
 								itemValue="#{atividadeUsuario.dataFim}" />
 						</h:panelGroup>
 
-						<h:panelGroup layout="block" styleClass="form-group col-xs-10 pull-right">
+						<h:panelGroup layout="block"
+							styleClass="form-group col-xs-10 pull-right">
 							<p:outputLabel for="calorias" value="Calorias queimadas:" />
 							<p:inputText id="calorias" styleClass="form-control"
 								placeholder="Total de calorias queimadas." disabled="true" />
@@ -88,15 +90,21 @@
 					</h:panelGroup>
 
 					<h:panelGroup layout="block" styleClass="form-group">
-						<p:commandButton value="Salvar" rendered="" action="#" ajax="true"
-							icon="ui-icon-disk" />
-						<p:commandButton value="Editar" rendered="" action="#" ajax="true"
-							icon="ui-icon-pencil" />
-						<p:commandButton value="Voltar" rendered=""
-							action="listarAtividadeUsuario" ajax="false"
-							icon="ui-icon-extlink" />
-						<p:commandButton value="Excluir" rendered="" action="#"
-							ajax="true" icon="ui-icon-close" />
+
+						<h:panelGroup layout="block" styleClass="form-group pull-left">
+							<p:commandButton value="Salvar" action="#" ajax="true"
+								icon="ui-icon-disk" />
+							<p:commandButton value="Editar" action="#" ajax="true"
+								icon="ui-icon-pencil" />
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group pull-right">
+							<p:commandButton value="Voltar" action="listarAtividadeUsuario"
+								ajax="false" icon="ui-icon-extlink" />
+							<p:commandButton value="Excluir" action="#" ajax="true"
+								icon="ui-icon-close" />
+						</h:panelGroup>
+
 					</h:panelGroup>
 
 				</h:panelGroup>
