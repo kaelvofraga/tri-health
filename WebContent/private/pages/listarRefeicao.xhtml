@@ -35,9 +35,12 @@
 						</h:panelGroup>
 
 						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel value="Tipo de Alimento:" for="dd" />
+							<p:outputLabel value="Tipo de Alimento:" for="tipoAlimentoAuto" />
 							<br />
-							<p:autoComplete id="dd" dropdown="true" />
+							<p:autoComplete 
+								 var="tipoAlimento" 
+								 placeholder="Informe o tipo de alimento"
+								 id="tipoAlimentoAuto" dropdown="true" />		 
 						</h:panelGroup>
 
 						<h:panelGroup layout="block" styleClass="form-group">
