@@ -498,6 +498,16 @@
           </ownedAttribute>
         </nestedClassifier>
       </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_R68s0OxXEeS2yKD0kSDqIg" name="usuariosToPesoUsuarios" memberEnd="_R68s0exXEeS2yKD0kSDqIg _R7bN8exXEeS2yKD0kSDqIg" navigableOwnedEnd="_R68s0exXEeS2yKD0kSDqIg _R7bN8exXEeS2yKD0kSDqIg">
+        <ownedEnd xmi:id="_R68s0exXEeS2yKD0kSDqIg" name="usuarios" type="_89r2kNdLEeSXovNDjEoHdw" association="_R68s0OxXEeS2yKD0kSDqIg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_R7am4OxXEeS2yKD0kSDqIg"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_R7bN8OxXEeS2yKD0kSDqIg" value="*"/>
+        </ownedEnd>
+        <ownedEnd xmi:id="_R7bN8exXEeS2yKD0kSDqIg" name="pesoUsuarios" type="_IHXIUOxWEeS2yKD0kSDqIg" association="_R68s0OxXEeS2yKD0kSDqIg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_R7354OxXEeS2yKD0kSDqIg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_R7354exXEeS2yKD0kSDqIg" value="1"/>
+        </ownedEnd>
+      </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_M4H_cN3uEeSMD7bGtIkj9g" name="br.edu.ifrs.canoas.tads.lds.control.mb">
       <packagedElement xmi:type="uml:Dependency" xmi:id="_yFPWUN3uEeSMD7bGtIkj9g" client="_M4H_cN3uEeSMD7bGtIkj9g" supplier="_K6f1IN3uEeSMD7bGtIkj9g"/>
@@ -767,6 +777,39 @@
     <ownedEnd xmi:id="_hak4o-JIEeSgO9kfaeqzrA" name="usuarios" type="_89r2kNdLEeSXovNDjEoHdw" association="_hakRkOJIEeSgO9kfaeqzrA">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_halfsOJIEeSgO9kfaeqzrA" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_halfseJIEeSgO9kfaeqzrA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_IHXIUOxWEeS2yKD0kSDqIg" name="PesoUsuario">
+    <ownedAttribute xmi:id="_SRQJcOxWEeS2yKD0kSDqIg" name="id" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_eQVxoOxWEeS2yKD0kSDqIg" name="nota" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_gRDFIOxWEeS2yKD0kSDqIg" name="data" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#Date"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_vGQl4OxWEeS2yKD0kSDqIg" name="peso" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#Float"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_wyoBEOxWEeS2yKD0kSDqIg" name="user" visibility="private" type="_89r2kNdLEeSXovNDjEoHdw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_8dPOEOxWEeS2yKD0kSDqIg" name="Peso">
+    <ownedAttribute xmi:id="_9-CScOxWEeS2yKD0kSDqIg" name="id" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#Long"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AiEVcOxXEeS2yKD0kSDqIg" name="valor" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#Long"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_cjCF0OxXEeS2yKD0kSDqIg" name="pesosToPesoUsuarios" memberEnd="_cjCs4OxXEeS2yKD0kSDqIg _cjD7AOxXEeS2yKD0kSDqIg" navigableOwnedEnd="_cjD7AOxXEeS2yKD0kSDqIg">
+    <ownedEnd xmi:id="_cjCs4OxXEeS2yKD0kSDqIg" name="pesos" type="_8dPOEOxWEeS2yKD0kSDqIg" aggregation="shared" association="_cjCF0OxXEeS2yKD0kSDqIg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cjDT8OxXEeS2yKD0kSDqIg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cjDT8exXEeS2yKD0kSDqIg" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_cjD7AOxXEeS2yKD0kSDqIg" name="pesoUsuarios" type="_IHXIUOxWEeS2yKD0kSDqIg" association="_cjCF0OxXEeS2yKD0kSDqIg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cjEiEOxXEeS2yKD0kSDqIg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cjEiEexXEeS2yKD0kSDqIg" value="*"/>
     </ownedEnd>
   </packagedElement>
 </uml:Model>
