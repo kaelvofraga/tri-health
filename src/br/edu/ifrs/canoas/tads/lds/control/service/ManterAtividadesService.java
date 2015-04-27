@@ -2,16 +2,16 @@ package br.edu.ifrs.canoas.tads.lds.control.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
-import br.edu.ifrs.canoas.tads.lds.bean.Atividade;
 import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAtividade;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
-import br.edu.ifrs.canoas.tads.lds.model.dao.AtividadeDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.AtividadeUsuarioDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.TipoAtividadeDAO;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
@@ -24,53 +24,93 @@ public class ManterAtividadesService {
 	private AtividadeUsuarioDAO atividadeUsuarioDAO;
 
 	@Inject
-	private AtividadeDAO atividadeDAO;
-
-	@Inject
 	private TipoAtividadeDAO tipoAtividadeDAO;
 
 	public boolean salvaAtividadeUsuario(AtividadeUsuario atividadeUsuario) {
-		atividadeUsuarioDAO.insere(atividadeUsuario);
-		Mensagens
-				.define(FacesMessage.SEVERITY_INFO, "Atividade.cadastro.sucesso");
-
+		if (atividadeUsuario != null && atividadeUsuario.getId() != null) {
+			atividadeUsuarioDAO.insere(atividadeUsuario);
+			Mensagens.define(FacesMessage.SEVERITY_INFO,
+					"Atividade.cadastro.sucesso");
+		} else {
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					"Atividade.cadastro.erro");
+		}
 		return true;
 	}
-	
-	public Atividade buscaAtividadePorDescricao(Atividade atividade) {
-		List<Atividade> atividades = atividadeDAO
-				.buscaPorDescricao(atividade.getDescricao());
 
-		if (atividades.size() == 1)
-			atividade = atividades.get(0);
+	public AtividadeUsuario buscaAtividadeUsuarioPorID(
+			AtividadeUsuario atividadeUsuario) {
+		AtividadeUsuario atv = atividadeUsuarioDAO.busca(atividadeUsuario
+				.getId());
 
-		return atividade;
+		if (atividadeUsuario != null)
+			atividadeUsuario = atv;
+
+		return atividadeUsuario;
+	}
+
+	public List<AtividadeUsuario> buscaAtividades(Usuario usuario) {
+		if (usuario != null && usuario.getId() != null)
+			return atividadeUsuarioDAO.buscaAtividadesDoUsuario(usuario);
+		return new ArrayList<AtividadeUsuario>();
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<AtividadeUsuario> busca(String criterioAlergia) {
+	public List<AtividadeUsuario> buscaGeral(String criterioAlergia) {
 		if (StrUtil.isNotBlank(criterioAlergia))
 			return atividadeUsuarioDAO.buscaPorCriterio(criterioAlergia);
 		else
 			return atividadeUsuarioDAO.buscaTodos();
 	}
 
-	public List<Atividade> buscaAtividades(String query, Usuario usuario) {
-		if (usuario != null && usuario.getId() != null)
-			return atividadeDAO.buscaAtividadePorUsuario(usuario);
-		return new ArrayList<Atividade>();
-	}
-	
 	@SuppressWarnings("unchecked")
 	public List<TipoAtividade> buscaDescricoesTipoAtividades() {
 		return tipoAtividadeDAO.buscaTodos();
 	}
 
-	public void alteraAlergiaUsario(AtividadeUsuario atividadeUsuario) {
-		atividadeUsuarioDAO.atualiza(atividadeUsuario);
+	public void alteraAtividadeUsario(AtividadeUsuario atividadeUsuario) {
+		if (atividadeUsuario != null && atividadeUsuario.getId() != null) {
+			atividadeUsuarioDAO.atualiza(atividadeUsuario);
+			Mensagens.define(FacesMessage.SEVERITY_INFO,
+					"AtividadeUsuario.alterar.sucesso");
+		} else {
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					"AtividadeUsuario.alterar.erro");
+		}
 	}
 
-	public void excluiAlergia(AtividadeUsuario atividadeUsuario) {
-		atividadeUsuarioDAO.exclui(atividadeUsuario.getId());
+	public void excluiAtividade(AtividadeUsuario atividadeUsuario) {
+		if (atividadeUsuario != null && atividadeUsuario.getId() != null) {
+			atividadeUsuarioDAO.exclui(atividadeUsuario.getId());
+			Mensagens.define(FacesMessage.SEVERITY_INFO,
+					"AtividadeUsuario.excluir.sucesso");
+		} else {
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					"AtividadeUsuario.excluir.erro");
+		}
+	}
+	
+	public long calculaDuracao(AtividadeUsuario atividadeUsuario) {
+		long timeDifMilli = 0L;
+		long timeDifMinutes = 0L;
+		if (atividadeUsuario != null && atividadeUsuario.getId() != null){
+			Date dataIni = atividadeUsuario.getDataInicio();
+			Date dataFim = atividadeUsuario.getDataFim();
+			timeDifMilli = dataFim.getTime() - dataIni.getTime();
+			timeDifMinutes = TimeUnit.MILLISECONDS.toMinutes(timeDifMilli);
+		}
+		return timeDifMinutes;
+	}
+	
+	public double calculaCaloriasQueimadas(AtividadeUsuario atividadeUsuario) {
+		double calorias = 0.0;
+		long duracao = 0L;
+		double massaCorporal = 0.0;
+		if (atividadeUsuario != null && atividadeUsuario.getId() != null)
+		{
+			duracao = calculaDuracao(atividadeUsuario);
+			calorias = atividadeUsuario.getAtividade().getMET() * massaCorporal * duracao;
+		}
+		return calorias;
 	}
 }

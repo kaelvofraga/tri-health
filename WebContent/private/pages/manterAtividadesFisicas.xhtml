@@ -40,12 +40,13 @@
 						</h:panelGroup>
 
 						<h:panelGroup layout="block"
-							styleClass="form-group col-xs-10 pull-right">
-							<p:outputLabel for="distancia" value="Distância:" />
-							<pe:inputNumber id="distancia" styleClass="form-control"
-								var="atividadeUsuario" itemLabel="#{atividadeUsuario}"
+							styleClass="form-group pull-right">
+							<p:outputLabel for="distancia" value="Distância:"
+								style="display:block" />
+							<pe:inputNumber id="distancia" var="atividadeUsuario"
+								itemLabel="#{atividadeUsuario}"
 								itemValue="#{atividadeUsuario.distancia}"
-								placeholder="Informe a distância percorrida.">
+								placeholder="Distância em metros.">
 							</pe:inputNumber>
 						</h:panelGroup>
 
@@ -74,10 +75,10 @@
 						</h:panelGroup>
 
 						<h:panelGroup layout="block"
-							styleClass="form-group col-xs-10 pull-right">
+							styleClass="form-group pull-right">
 							<p:outputLabel for="calorias" value="Calorias queimadas:" />
 							<p:inputText id="calorias" styleClass="form-control"
-								placeholder="Total de calorias queimadas." disabled="true" />
+								placeholder="Valor em kcal." disabled="true" />
 						</h:panelGroup>
 
 					</h:panelGrid>
