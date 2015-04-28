@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<ui:define name="content">
+
+		<h1 class="lead">Dimensões Corporais</h1>
+		
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:outputLabel for="criterio_alergia" value="Pesquisa" />
+						<p:inputText id="criterio_alergia" styleClass="form-control"
+							value="#{manterPerfilEmergenciaMB.criterioAlergia}" 
+							placeholder="Entre o critério de pesquisa aqui" />
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:commandButton value="Busca" type="submit"
+							action="#{manterPerfilEmergenciaMB.busca}" ajax="true"
+							update="tab-alergias" immediate="false" />
+						<p:commandButton value="Limpa" type="submit"
+							action="#{manterPerfilEmergenciaMB.init}" ajax="true"
+							update="tab-alergias,criterio_alergia" immediate="false" />
+					</h:panelGroup>
+
+
+					<p:dataTable var="alergia" id="tab-alergias"
+						value="#{manterPerfilEmergenciaMB.alergias}">
+						<p:column headerText="Data">
+							<h:outputText
+								value="#{alergia.medicamentoUsuario.medicamento.nome}" />
+						</p:column>
+						<p:column headerText="Tipo">
+							<h:outputText value="#{alergia.reacao}" />
+						</p:column>
+						<p:column headerText="Valor">
+							<h:outputText value="#{alergia.tipoAlergia.descricao}" />
+						</p:column>
+						<p:column headerText="UDM">
+							<h:outputText value="#{alergia.tipoAlergia.descricao}" />
+						</p:column>
+						<p:column headerText="Obs.">
+							<h:outputText value="#{alergia.tipoAlergia.descricao}" />
+						</p:column>
+
+					</p:dataTable>
+					<br />
+
+				<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+	</ui:define>
+</ui:composition>
