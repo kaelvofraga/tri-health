@@ -29,7 +29,12 @@
 				</p:submenu>				
 				<p:menuitem value="Alimentação" url="/private/pages/listarRefeicao.jsf" />
 				<p:menuitem value="Peso" url="#" />
-				<p:menuitem value="Dimensões Corporais" url="#" />
+				
+				<p:submenu label="Dimensões Corporais">
+					<p:menuitem value="Listar" url="/private/pages/listaDimensoesCorporais.jsf"/>
+					<p:menuitem value="Cadastrar"/>
+				</p:submenu>
+				
 				<p:submenu label="Atividades Físicas">
 					<p:menuitem value="Listar" url="/private/pages/listarAtividadesFisicas.jsf" action="#"/>
 					<p:menuitem value="Nova" url="/private/pages/manterAtividadesFisicas.jsf" action="#"/>
