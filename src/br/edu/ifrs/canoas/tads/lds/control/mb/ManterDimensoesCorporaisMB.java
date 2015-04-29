@@ -7,15 +7,11 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.edu.ifrs.canoas.tads.lds.bean.AlergiaUsuario;
-import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
-import br.edu.ifrs.canoas.tads.lds.bean.TipoAlergia;
 import br.edu.ifrs.canoas.tads.lds.bean.ValorMedida;
-import br.edu.ifrs.canoas.tads.lds.control.service.ManterAlergiaService;
+import br.edu.ifrs.canoas.tads.lds.control.service.ManterDimensoesService;
 
 @Named
 @RequestScoped
@@ -41,7 +37,7 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	private ValorMedida valorMedida;
 	
 
-	//Lista Dimensões
+	//Lista Dimensï¿½es
 	private List<ValorMedida> medidas;
 	private String criterioTipoDimensao;
 	
