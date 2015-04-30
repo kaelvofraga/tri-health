@@ -42,6 +42,7 @@
 							<p:inputText id="apelido" styleClass="form-control" size="40" 
 								style= "width:300px"
 								value="#{manterPerfilUsuarioMB.usuario.apelido}"
+								
 								placeholder="Informe o apelido do usuário" />
 						</h:panelGroup>
 
@@ -49,11 +50,12 @@
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="nacionalidade" value="Nacionalidade" />
 							<br />
-							<p:autoComplete id="nacionalidade" dropdown="true"
-								style="width:300px"
-								size="40"
-								value="#{manterPerfilUsuarioMB.usuario.endereco.cidade.uf.pais.nacionalidade}"
-								placeholder="Informe a nacionalidade" />
+							
+							<p:selectOneMenu id="nacionalidade" value="#{manterPerfilUsuarioMB.usuario.endereco.cidade.uf.pais.nacionalidade}" style="width:300px">
+                			<f:selectItem itemLabel="Selecione a nacionalidade" itemValue="" noSelectionOption="true" />
+                			<f:selectItems value="#{manterPerfilUsuarioMB.paises}" itemLabel="#{pais.nacionalidade}" var="pais"/>
+            				</p:selectOneMenu>
+            				
 						</h:panelGroup>
 
 						<h:panelGroup layout="block" styleClass="form-group">
@@ -111,26 +113,30 @@
 							
 							<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="pais" value="Pais" />
-							<p:inputText id="pais" styleClass="form-control" size="40" 
-								style="width:300px"
-								value="#{manterPerfilUsuarioMB.usuario.endereco.cidade.uf.pais.nomePais}"
-								placeholder="Informe o País" />
+							<br />		
+							<p:selectOneMenu id="pais" value="#{manterPerfilUsuarioMB.usuario.endereco.cidade.uf.pais.nome}" style="width:300px">
+                			<f:selectItem itemLabel="Selecione o país" itemValue="" noSelectionOption="true" />
+                			<f:selectItems value="#{manterPerfilUsuarioMB.paises}" itemLabel="#{pais.nome}" var="pais"/>
+            				</p:selectOneMenu>
+			
 							</h:panelGroup>
 							
 							<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="estado" value="Estado" />
-							<p:inputText id="estado" styleClass="form-control" size="40" 
-								style="width:300px"
-								value="#{manterPerfilUsuarioMB.usuario.endereco.cidade.uf.nomeUf}"
-								placeholder="Informe o Estado" />
+							<br />		
+							<p:selectOneMenu id="estado" value="#{manterPerfilUsuarioMB.usuario.endereco.cidade.uf.nome}" style="width:300px">
+                			<f:selectItem itemLabel="Selecione o Estado" itemValue="" noSelectionOption="true" />
+                			<f:selectItems value="#{manterPerfilUsuarioMB.ufs}" itemLabel="#{estado.nome}" var="estado"/>
+                			</p:selectOneMenu>         				
 							</h:panelGroup>
 							
 							<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="cidade" value="Cidade" />
-							<p:inputText id="cidade" styleClass="form-control" size="40" 
-								style="width:300px"
-								value="#{manterPerfilUsuarioMB.usuario.endereco.cidade.nomeCidade}"
-								placeholder="Informe a cidade" />
+							<br />		
+							<p:selectOneMenu id="cidade" value="#{manterPerfilUsuarioMB.usuario.endereco.cidade.nome}" style="width:300px">
+                			<f:selectItem itemLabel="Selecione a cidade" itemValue="" noSelectionOption="true" />
+                			<f:selectItems value="#{manterPerfilUsuarioMB.cidades}" itemLabel="#{cidade.nome}" var="cidade"/>
+                			</p:selectOneMenu>	
 							</h:panelGroup>
 					</h:panelGrid>     				    
 				</h:panelGroup>
@@ -199,19 +205,9 @@
 				</h:panelGroup>
 				
 				<h:panelGroup layout="block" styleClass="form-group">
-						<p:commandButton value="Salvar"
-							rendered="#{not manterPerfilEmergenciaMB.atualizacao}"
-							action="#{manterPerfilEmergenciaMB.salvaAlergia}" ajax="true" />
-						<p:commandButton value="Alterar"
-							rendered="#{manterPerfilEmergenciaMB.atualizacao}"
-							action="#{manterPerfilEmergenciaMB.alteraAlergia}" ajax="true" />
-						<p:commandButton value="Voltar"
-							rendered="#{manterPerfilEmergenciaMB.atualizacao}"
-							action="listarPerfilEmergencia" ajax="false" />
-						<p:commandButton value="Limpa" type="submit"
-							rendered="#{manterPerfilEmergenciaMB.atualizacao}"
-							action="#{manterPerfilEmergenciaMB.init}" ajax="true"
-							update="alergias" immediate="false" />
+					<p:commandButton value="#{msg['cadastrarUsuario.button.salvar']}"
+						style="float:right !important; " update="panel"
+						action="#{cadastrarUsuarioMB.salva}" ajax="false"/>
 
 					</h:panelGroup>
 				

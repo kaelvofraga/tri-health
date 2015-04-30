@@ -26,7 +26,7 @@ public class PressaoArterial extends BaseEntity<Long> implements Serializable {
 	private int pulso;
 	
 	@NotNull
-	private boolean batimentoIrregular;
+	private char batimentoIrregular;
 
 	public double getPaSistolica() {
 		return paSistolica;
@@ -52,11 +52,11 @@ public class PressaoArterial extends BaseEntity<Long> implements Serializable {
 		this.pulso = pulso;
 	}
 
-	public boolean isBatimentoIrregular() {
+	public char isBatimentoIrregular() {
 		return batimentoIrregular;
 	}
 
-	public void setBatimentoIrregular(boolean batimentoIrregular) {
+	public void setBatimentoIrregular(char batimentoIrregular) {
 		this.batimentoIrregular = batimentoIrregular;
 	}
 

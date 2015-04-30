@@ -27,14 +27,14 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
+	
+	@Inject
+	private ValorMedida valorMedida;
+	
 
 	@EJB
 	private ManterDimensoesService dimensoesService;
 	
-
-	
-
-	private ValorMedida valorMedida;
 	
 
 	//Lista Dimens�es

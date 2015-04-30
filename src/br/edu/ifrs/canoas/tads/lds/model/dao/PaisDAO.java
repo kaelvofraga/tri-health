@@ -11,13 +11,13 @@ import br.edu.ifrs.canoas.tads.lds.bean.Pais;
 public class PaisDAO   extends BaseDAO<Pais, Long> {
 	private static final long serialVersionUID = -126746156147500109L;
 
-	public List<Pais> buscaPorCriterio(String criterioPais) {
+	public List<Pais> buscaPorNome(String nome) {
 		return em	
 				.createQuery(
 						"SELECT au FROM Pais au "
 								+ "WHERE "
-								+ "lower(au.Pais.nomePais) like '%" + criterioPais.toLowerCase() + "%' "
-								+ "ORDER BY au.Pais.nomePais")
+								+ "lower(au.Pais.nome) like '%" + nome.toLowerCase() + "%' "
+								+ "ORDER BY au.Pais.nome")
 				.getResultList();
 	}
 

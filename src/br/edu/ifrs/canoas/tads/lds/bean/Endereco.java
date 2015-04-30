@@ -16,7 +16,7 @@ public class Endereco extends BaseEntity<Long> implements Serializable {
 
 	@OneToOne
     @JoinColumn(name="ID_CIDADE")
-	private Cidade cidade;
+	private Cidade cidade = new Cidade();
 	
 	private String cep;
 	private String logradouro;

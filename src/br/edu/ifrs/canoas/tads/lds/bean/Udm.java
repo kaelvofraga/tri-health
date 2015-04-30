@@ -23,15 +23,15 @@ public class Udm extends BaseEntity<Long> implements Serializable {
 	private static final long serialVersionUID = 1392486240999537103L;
 
 	@NotNull 
-	private String tipoUdm;
+	private String descricao;
 	
 
-	public String getTipoUdm() {
-		return tipoUdm;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setTipoUdm(String tipoUdm) {
-		this.tipoUdm = tipoUdm;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	
 	

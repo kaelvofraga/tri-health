@@ -50,6 +50,10 @@ public class Usuario extends BaseEntity<Long> implements Serializable {
 	
 	private String tipoSanguineo;
 	
+	@OneToOne
+    @JoinColumn(name="ID_ENDERECO")
+	private Endereco endereco = new Endereco();
+		
 	public String getTipoSanguineo() {
 		return tipoSanguineo;
 	}
@@ -67,9 +71,6 @@ public class Usuario extends BaseEntity<Long> implements Serializable {
 	}
 
 
-	@OneToOne
-    @JoinColumn(name="ID_ENDERECO")
-	private Endereco endereco;
 	
 	    
 	

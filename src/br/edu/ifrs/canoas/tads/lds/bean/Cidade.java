@@ -13,11 +13,11 @@ public class Cidade extends BaseEntity<Long> implements Serializable {
 	 */
 	private static final long serialVersionUID = 7728449874961720940L;
 
-	private String nomeCidade;
+	private String nome;
 	
 	@OneToOne
     @JoinColumn(name="ID_UF")
-	private UnidadeFederativa uf;
+	private UnidadeFederativa uf = new UnidadeFederativa();
 	
 	
 	public UnidadeFederativa getUf() {
@@ -27,18 +27,18 @@ public class Cidade extends BaseEntity<Long> implements Serializable {
 		this.uf = uf;
 	}
 	
-	public String getNomeCidade() {
-		return nomeCidade;
+	public String getNome() {
+		return nome;
 	}
-	public void setNomeCidade(String nomeCidade) {
-		this.nomeCidade = nomeCidade;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Cidade [nomeCidade=" + nomeCidade + ", uf=" + uf + "]";
+		return "Cidade [nome=" + nome + ", uf=" + uf + "]";
 	}
 
 }
