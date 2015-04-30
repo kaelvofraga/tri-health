@@ -13,7 +13,7 @@ public class PressaoUsuarioDAO extends BaseDAO< PressaoUsuario, Long>{
 	private static final long serialVersionUID = -3230082070333146918L;
 	
 	@SuppressWarnings("unchecked")
-	public List<PressaoArterial> buscaPressaoPorUsuario(Usuario usuario){
+	public List<PressaoUsuario> buscaPressaoPorUsuario(Usuario usuario){
 		return em.createQuery(
 		         "SELECT pu.pressaoArterial " 
 		         + "FROM PressaoUsuario pu "

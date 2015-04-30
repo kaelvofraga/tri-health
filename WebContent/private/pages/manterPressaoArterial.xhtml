@@ -41,13 +41,15 @@
 						</h:panelGroup>
 						
 						<h:panelGroup layout="block" styleClass="form-group">
+						
 							<p:outputLabel for="batimentoIrregular" value="Batimento Irregular?" />
 							<br />
-							<p:autoComplete id="batimentoIrregular" dropdown="true"
-								size="40" completeMethod="#" forceSelection="true"
-								var="batimentoIrregular" itemLabel="#{pressaoUsuario}"
-								itemValue="#{pressaoUsuario.pressaoArterial.batimentoIrregular}"
-								placeholder="Selecione uma opção" />
+							<p:selectOneMenu id="batimentoIrregular" 
+                     		value="#{pressaoUsuario.pressaoArterial.batimentoIrregular}"
+                     		style="width:150px">
+        <f:selectItem id="Nao" itemLabel="Não" itemValue="N" />
+        <f:selectItem id="Sim" itemLabel="Sim" itemValue="S" />
+    </p:selectOneMenu>
 						</h:panelGroup>
 
 						<h:panelGroup layout="block" styleClass="form-group pull-right">
