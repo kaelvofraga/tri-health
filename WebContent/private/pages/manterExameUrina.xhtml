@@ -22,22 +22,10 @@
 							<br/>
 							<p:inputText id="resultadoExameUrina" styleClass="form-control" 
 								size="40" style="width:250px"
-								value="#{manterExameUrinaMB.ExameUrina.resultadoExameUrina}"
+								value="#{manterExameUrinaMB.exameUrina.resultadoExameUrina}"
 								placeholder="Informe o resultado do exame" />
 						</h:panelGroup>	
-						
-						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel for="obs" value="Observação" />
-							<br/>
-							<p:inputTextarea id="obs" styleClass="form-control" 
-								size="40" style="width:250px"
-								value="#{manterExameUrinaMB.ExameUrina.observacao}"
-								placeholder="Descreva observação do exame, se necessário" />
-						</h:panelGroup>	
-						
-							<p:calendar value="#{dateBean.date}" mode="popup"
-								showOn="button" popupIconOnly="true" />											
-
+													
 					</h:panelGrid>	
 					
 					<p:commandButton value="Salvar" update="panel" 
@@ -50,11 +38,4 @@
 	</ui:define>
 </ui:composition>
 
-						<!-- <h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel for="nomeExameUrina" value="Tipo de Exame" /><br />
-							<p:inputText id="nomeExameUrina" styleClass="form-control" 
-								size="40" style="width:250px"
-								value="#{manterExameUrinaMB.tipoExameUrina.nomeExameUrina}"
-								placeholder="Informe o nome do exame" />								
-							
-						</h:panelGroup>-->
+						
