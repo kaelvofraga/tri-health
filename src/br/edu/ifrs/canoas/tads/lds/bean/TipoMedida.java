@@ -22,14 +22,14 @@ public class TipoMedida extends BaseEntity<Long> implements Serializable {
 	private static final long serialVersionUID = -2886415432327494685L;
 	
 	@NotNull 
-	private String tipoMedida;
+	private String descricao;
 
-	public String getTipoMedida() {
-		return tipoMedida;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setTipoMedida(String tipoMedida) {
-		this.tipoMedida = tipoMedida;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}	
 	
 }

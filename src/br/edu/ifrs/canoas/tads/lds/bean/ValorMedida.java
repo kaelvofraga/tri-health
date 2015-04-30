@@ -36,6 +36,8 @@ private Date dataMedida;
 
 private String observacao;
 
+
+
 public Udm getUdm() {
 	return udm;
 }

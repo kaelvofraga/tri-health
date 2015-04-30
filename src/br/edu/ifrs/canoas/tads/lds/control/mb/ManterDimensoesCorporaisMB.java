@@ -30,6 +30,7 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	
 	@Inject
 	private ValorMedida valorMedida;
+	
 
 	@EJB
 	private ManterDimensoesService dimensoesService;

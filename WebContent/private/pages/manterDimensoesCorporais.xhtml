@@ -28,7 +28,7 @@
 							<p:autoComplete id="tipoMedida" dropdown="true"
 								style="width:300px"
 								size="30"
-								value="#"
+								value="#{manterDimensoesCorporaisMB.valorMedida.tipoMedida.tipoMedida}"
 								placeholder="Selecione o Tipo da Medida" />
 						</h:panelGroup>
 						
@@ -38,7 +38,7 @@
 							<p:autoComplete id="udm" dropdown="true"
 								style="width:300px"
 								size="30"
-								value="#"
+								value="#{manterDimensoesCorporaisMB.valorMedida.udm.tipoUdm}"
 								placeholder="Selecione a Unidade de Medida" />
 						</h:panelGroup>
 						
@@ -46,8 +46,7 @@
 							<p:outputLabel for="valorMedida" value="Valor Medida" />
 							<p:inputText id="valorMedida" styleClass="form-control" size="30"
 								style="width:250px; height:28px"
-								
-								value=""
+								value="#{manterDimensoesCorporaisMB.valorMedida.medidaValor}"
 								placeholder="Informe o Valor da Medida" />
 	    				</h:panelGroup>
 						
@@ -61,9 +60,21 @@
 								placeholder="Informe a data da Medida"
 								size="30" effect="fold" icon="glyphicon-calendar" />
 	   					</h:panelGroup>
-	  
-	    		
+	   					
+	   					<br/>
+	   					  		
 	    	</h:panelGrid>
+	    	
+	    				<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="observacoes" value="Observações:" />
+							<br/>
+							<p:inputTextarea id="observacoes" 
+								rows="9" 
+								cols="79"
+								Value=""
+								placeholder="Insira aqui sua observação " 
+							/>
+						</h:panelGroup>
 				
 			</h:panelGroup>
 		</p:tab>
