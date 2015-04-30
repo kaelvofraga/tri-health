@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<ui:define name="content">
+
+		<h1 class="lead">Exame  de Urina</h1>
+
+			<h:panelGroup layout="block" id="exameurina">
+
+					<h:panelGrid columns="2" styleClass="mtable">
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="resultadoExameUrina" value="Resultado" />
+							<br/>
+							<p:inputText id="resultadoExameUrina" styleClass="form-control" 
+								size="40" style="width:250px"
+								value="#{manterExameUrinaMB.ExameUrina.resultadoExameUrina}"
+								placeholder="Informe o resultado do exame" />
+						</h:panelGroup>	
+						
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="obs" value="Observação" />
+							<br/>
+							<p:inputTextarea id="obs" styleClass="form-control" 
+								size="40" style="width:250px"
+								value="#{manterExameUrinaMB.ExameUrina.observacao}"
+								placeholder="Descreva observação do exame, se necessário" />
+						</h:panelGroup>	
+						
+							<p:calendar value="#{dateBean.date}" mode="popup"
+								showOn="button" popupIconOnly="true" />											
+
+					</h:panelGrid>	
+					
+					<p:commandButton value="Salvar" update="panel" 
+						action="#{manterExameUrinaMB.salva}" icon="ui-icon-check"
+						ajax="false" />
+						
+
+				</h:panelGroup>
+		
+	</ui:define>
+</ui:composition>
+
+						<!-- <h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="nomeExameUrina" value="Tipo de Exame" /><br />
+							<p:inputText id="nomeExameUrina" styleClass="form-control" 
+								size="40" style="width:250px"
+								value="#{manterExameUrinaMB.tipoExameUrina.nomeExameUrina}"
+								placeholder="Informe o nome do exame" />								
+							
+						</h:panelGroup>-->
