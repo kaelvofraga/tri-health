@@ -13,11 +13,11 @@ import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 import br.edu.ifrs.canoas.tads.lds.bean.ValorMedida;
 
 @Stateless
-public class UdmDAO extends BaseDAO< ValorMedida, Long>{
+public class UdmDAO extends BaseDAO< Udm, Long>{
 
 	private static final long serialVersionUID = 2039209283467379697L;
 
-	public List<Udm> buscaDescricaoUdm(Usuario usuario) {
+	/*public List<Udm> buscaDescricaoUdm(Usuario usuario) {
 		
 		return em.createQuery(
 		         "SELECT descricao " 
@@ -25,6 +25,6 @@ public class UdmDAO extends BaseDAO< ValorMedida, Long>{
 		         + "WHERE Udm.usuario.id = :usuario ")
 		         .setParameter("usuario", usuario.getId())
 		         .getResultList();
-	}
+	}*/
 	
 }

@@ -12,9 +12,11 @@ import javax.inject.Named;
 
 import br.edu.ifrs.canoas.tads.lds.bean.Pais;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoMedida;
+import br.edu.ifrs.canoas.tads.lds.bean.Udm;
 import br.edu.ifrs.canoas.tads.lds.bean.ValorMedida;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterDimensoesService;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterTipoMedidaService;
+import br.edu.ifrs.canoas.tads.lds.control.service.ManterUdmService;
 
 @Named
 @RequestScoped
@@ -40,12 +42,17 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	@EJB
 	private ManterTipoMedidaService manterTipoMedidaService;
 	
+	@EJB
+	private ManterUdmService manterUdmService;
 	
 
-	//Lista Dimensï¿½es
+	//Lista Dimensões
 	private List<ValorMedida> medidas;
 	private List<TipoMedida> tipoMedidas;
+	private List<Udm> udm;
 	
+
+
 	private String criterioTipoDimensao;
 	
 	//Form Alergia
@@ -69,6 +76,15 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	 * GETTERS & SETTERS
 	 */
 	
+	public List<Udm> getUdm() {
+		if(udm == null)
+			udm = manterUdmService.buscaUdm();
+		return udm;
+	}
+
+	public void setUdm(List<Udm> udm) {
+		this.udm = udm;
+	}
 	
 	public List<TipoMedida> getTipoMedidas() {
 		if(tipoMedidas == null)

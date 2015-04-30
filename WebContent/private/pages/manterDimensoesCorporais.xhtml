@@ -24,7 +24,6 @@
 						
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="tipoMedida" value="Tipo da Medida" />
-								
 							<p:selectOneMenu id="tipoMedida" value="#{manterDimensoesCorporaisMB.tipoMedidas}" style="width:300px">
                 			<f:selectItem itemLabel="Selecione o Tipo da Medida" itemValue="" noSelectionOption="true" />
                 			<f:selectItems value="#{manterDimensoesCorporaisMB.tipoMedidas}" itemLabel="#{tipoMedida.descricao}" var="tipoMedida"/>
@@ -32,13 +31,11 @@
 						</h:panelGroup>
 						
 						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel for="udm" value="Unidade de Medida" />
-							<br />
-							<p:autoComplete id="udm" dropdown="true"
-								style="width:300px"
-								size="30"
-								value="#{manterDimensoesCorporaisMB.valorMedida.udm.tipoUdm}"
-								placeholder="Selecione a Unidade de Medida" />
+							<p:outputLabel for="udm" value="Tipo da Medida" />
+							<p:selectOneMenu id="udm" value="#{manterDimensoesCorporaisMB.valorMedida.udm}" style="width:300px">
+                			<f:selectItem itemLabel="Selecione a Unidade de Medida" itemValue="" noSelectionOption="true" />
+                			<f:selectItems value="#{manterDimensoesCorporaisMB.udm}" itemLabel="#{udm.descricao}" var="udm"/>
+            				</p:selectOneMenu>
 						</h:panelGroup>
 						
 						<h:panelGroup layout="block" styleClass="form-group">

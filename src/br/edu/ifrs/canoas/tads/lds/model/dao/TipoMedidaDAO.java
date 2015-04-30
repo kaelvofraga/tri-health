@@ -17,7 +17,6 @@ public class TipoMedidaDAO extends BaseDAO< TipoMedida, Long>{
 	private static final long serialVersionUID = 2039209283467379697L;
 	
 	
-
 	/*
 	public List<TipoMedida> buscaDescricaoTipoMedida(Usuario usuario) {
 		
