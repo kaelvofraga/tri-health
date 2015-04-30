@@ -32,7 +32,8 @@ public class ManterExameUrinaMB implements Serializable{
 	}
 	
 	public void salva() {
-		System.out.println("TipoExame: " + exameUrina.getTipoExameUrina().getNomeExameUrina());
+		
+		System.out.println("TipoExame: " + exameUrina.getResultadoExameUrina());
 		/*if (exameUrinaService.salvaExameUrina(exameUrina)){
 			exameUrina = new ExameUrina();
 			return "login";

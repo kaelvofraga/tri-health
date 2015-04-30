@@ -26,19 +26,13 @@ public class ManterUsoMedicamentoService {
 	private MedicamentoDAO medicamentoDAO;
 	
 	
-	public boolean salvaUsario(MedicamentoUsuario medicamentoUsuario) {
-		
-//		MedicamentoUsuario medUsuario = new MedicamentoUsuario();
-//		medUsuario.setMedicamento(this.buscaOuCriaMedicamentoPorNome(medicamento));
-//		medUsuario.setUsuario(alergiaUsuario.getUsuario());
-//		
-//		medicamentoUsuarioDAO.insere(medUsuario);
-//		
-//		alergiaUsuario.setMedicamentoUsuario(medUsuario);
-//		alergiaUsuario.setTipoAlergia(tipoAlergiaDAO.busca(tipoAlergia.getId()));
-		
+	
+	
+	
+	public boolean salvaMedicamentoUsuario(MedicamentoUsuario medicamentoUsuario) {
+			
 		medicamentoUsuarioDAO.insere(medicamentoUsuario);
-		//Mensagens.define(FacesMessage.SEVERITY_INFO, "Medicamento.cadastro.sucesso");
+		Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.cadastro.sucesso");
 		
 		return true;
 	}
@@ -83,5 +77,9 @@ public class ManterUsoMedicamentoService {
 	public void excluiMedicamento(MedicamentoUsuario medicamentoUsuario) {
 		medicamentoUsuarioDAO.exclui(medicamentoUsuario.getId());
 	}
+	
+	
+	
+	
 
 }

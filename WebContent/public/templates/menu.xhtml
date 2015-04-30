@@ -24,8 +24,8 @@
 			<p:separator />
 			<p:submenu label="Medidas">
 				<p:submenu label="Pressão Arterial">
-					<p:menuitem value="Listar" url="/private/pages/listarPressaoArterial.jsf" action="#"/>
-					<p:menuitem value="Manter" url="/private/pages/manterPressaoArterial.jsf" action="#"/>
+					<p:menuitem value="Listar" url="/private/pages/listarPressaoArterial.jsf" action="#{manterAtividadesMB.init}"/>
+					<p:menuitem value="Manter" url="/private/pages/manterPressaoArterial.jsf" action="#{manterAtividadesMB.init}"/>
 				</p:submenu>				
 				<p:menuitem value="Alimentação" url="/private/pages/listarRefeicao.jsf" />
 				<p:menuitem value="Peso" url="#" />
@@ -54,7 +54,7 @@
 			<p:separator />
 			<p:submenu label="Exames">
 				<p:menuitem value="Exames de Sangue" url="#" />
-				<p:menuitem value="Exames de Urina" url="#" />
+				<p:menuitem value="Exames de Urina" url="/private/pages/manterExameUrina.xhtml" />
 				<p:submenu label="Cateterismos">
 					<p:menuitem value="Listar" url="#" />
 					<p:menuitem value="Adicionar" url="#" />

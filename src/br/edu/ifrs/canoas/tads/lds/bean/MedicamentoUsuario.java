@@ -3,6 +3,8 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.inject.Inject;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,9 +22,9 @@ public class MedicamentoUsuario extends BaseEntity<Long> implements Serializable
 
 	private static final long serialVersionUID = 7372369677196846335L;
 	
-	@NotNull @OneToOne
+	@NotNull @OneToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="MEDICAMENTO_ID")
-	private Medicamento medicamento;
+	private Medicamento medicamento= new Medicamento();
 	
 	@NotNull @ManyToOne
 	@JoinColumn(name="USUARIO_ID")
