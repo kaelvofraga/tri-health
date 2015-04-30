@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+		
+<ui:define name="metadata" />
+<ui:define name="content">
+
+	<h1 class="lead">Tipo de Exame de Urina</h1>
+
+	<p:accordionPanel multiple="true">
+		<p:tab title="TiposExamesUrina">
+			<h:panelGroup layout="block" id="exames">
+				<h:panelGrid columns="2" styleClass="mtable">
+
+							
+					<p:outputLabel for="tipo" value ="Nome do Tipo de Exame:"/>
+					<p:inputText id="tipo" styleClass="form-control"
+								size="40" style="width:200px" value ="#{manterTipoExameUrinaMB.tipoExameUrina.nomeExameUrina}"
+								placeholder="Informe o nome do tipo de Exame de Urina"/>
+					
+					<p:outputLabel for="medida" value ="Unidade de Medida:"/>
+					<p:inputText id="medida" styleClass="form-control"
+								size="40" style="width:200px" value ="#{manterTipoExameUrinaMB.tipoExameUrina.unidadeMedida}"/>
+					
+					<p:outputLabel for="referencia" value ="Valor de Referência:"/>
+					<p:inputText id="referencia" styleClass="form-control"
+								size="40" style="width:200px" value ="#{manterTipoExameUrinaMB.tipoExameUrina.valorReferencia}"/>
+					
+					<p:commandButton value="Salvar"
+						rendered="#{manterTipoExameUrinaMB.salvaTipoExame}"
+						action="#{manterTipoExameUrinaMB.salvaTipoExame}" ajax="true" />
+					
+	
+				</h:panelGrid>
+				
+			</h:panelGroup>
+		</p:tab>
+	</p:accordionPanel>
+</ui:define>
+</ui:composition>
+				
+				<!-- <p:commandButton value="Salvar" ajax="true"/>-->
+							<!-- rendered="#{manterTipoExameUrinaMB.salvaTipoExame}"-->
+							<!-- action="#{manterTipoExameUrinaMB.salvaTipoExame}" ajax="true" />-->
+					
+					<!-- <p:commandButton value ="Salvar" action ="#{manterTipoExameUrinaMB.nomeMaiusculo(nomeExameUrina)}"/>-->	
+
+<!-- <h:panelGroup layout="block" styleClass="form-group">
+						<p:commandButton value="Salvar"
+							rendered="#{manterTipoExameUrinaMB.salvaTipoExame}"
+							action="#{manterTipoExameUrinaMB.salvaTipoExame}" ajax="true" />
+						<p:commandButton value="Alterar"
+							rendered="#{manterTipoExameUrinaMB.alteraTipoExame}"
+							action="#{manterTipoExameUrinaMB.alteraTipoExame}" ajax="true" />
+							
+						<p:commandButton value="Voltar"
+							rendered="#{manterTipoExameUrinaMB.atualizacao}"
+							action="listarTipoExameUrina" ajax="false" />
+							
+						<p:commandButton value="Excluir" type="submit"
+							rendered="#{manterTipoExameUrinaMB.excluiTipoExame}"
+							action="#{manterTipoExameUrinaMB.excluiTipoExame}" ajax="true"
+							update="exames" immediate="false" />
+
+					</h:panelGroup>-->
+
+
+<!-- 	<ui:define name="metadata" />
+
+	<ui:define name="content">
+
+		<h1 class="lead">Tipo de Exame de Urina</h1>
+
+		<p:accordionPanel multiple="true">
+			<p:tab title="TiposExamesUrina">
+
+
+				<h:panelGroup layout="block" id="exames">
+
+					<h:panelGrid columns="2" styleClass="mtable">
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="nomeExameUrina" value="Nome Exame de Urina" />
+							<br />
+							<p:inputText id="urina" styleClass="form-control" size="40"
+								style="width:300px"
+								value="#{manterTipoExameUrinaMB.tipoExameUrina.nomeExameUrina}"
+								placeholder="Informe o nome do tipo de exame da urina" />
+							<p:autoComplete id="nome_medicamento"
+								value="#{manterPerfilEmergenciaMB.alergiaUsuario.medicamentoUsuario.medicamento.nome}"
+								size="40" style="width:300px"
+								completeMethod="#{manterPerfilEmergenciaMB.completeMedicamentoAlergia}"
+								var="medicamento" itemLabel="#{medicamento}"
+								itemValue="#{medicamento.nome}"
+								placeholder="Informe ao medicamento" />
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="unidadeMedida" value="Unidade de Medida" />
+							<p:inputText id="urina" styleClass="form-control" size="40"
+								style="width:300px"
+								value="#{manterTipoExameUrinaMB.tipoExameUrina.unidadeMedida}"
+								placeholder="Informe a unidade de medida" />
+						</h:panelGroup>
+
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="valorReferencia" value="Valor de Referência" />
+							<br />
+							<p:inputText id="urina" styleClass="form-control" size="40"
+								style="width:300px"
+								value="#{manterTipoExameUrinaMB.tipoExameUrina.valorReferencia}"
+								placeholder="Informe o valor de referência" />
+							<p:autoComplete id="tipo_alergia" dropdown="true"
+								style="width:300px"
+								value="#{manterPerfilEmergenciaMB.alergiaUsuario.tipoAlergia.descricao}"
+								size="40"
+								completeMethod="#{manterPerfilEmergenciaMB.completeTipoAlergia}"
+								forceSelection="true" var="tpAlergia" itemLabel="#{tpAlergia}"
+								itemValue="#{tpAlergia.descricao}"
+								placeholder="Informe o tipo da alergia" />-->
+<!-- 						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="primeira-vez-observado"
+								value="Primeira Vez Observado" />
+							<br />
+							<p:calendar id="primeira-vez-observado" style="width:300px"
+								value="#{manterPerfilEmergenciaMB.alergiaUsuario.dataPrimeiraOcorrencia}"
+								pattern="dd/MM/yyyy HH:mm:ss"
+								placeholder="Informe quando observou a alergia pela primeira vez"
+								size="40" effect="fold" icon="glyphicon-calendar" />
+						</h:panelGroup>-->
+
+<!-- 				</h:panelGrid>
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:commandButton value="Salvar"
+							rendered="#{not manterTipoExameUrinaMB.atualizacao}"
+							action="#{manterTipoExameUrinaMB.salvaTipo}" ajax="true" />
+						<p:commandButton value="Alterar"
+							rendered="#{manterTipoExameUrinaMB.atualizacao}"
+							action="#{manterTipoExameUrinaMB.alteraTipo}" ajax="true" />
+						<p:commandButton value="Voltar"
+							rendered="#{manterTipoExameUrinaMB.atualizacao}"
+							action="listarTipoExameUrina" ajax="false" />
+						<p:commandButton value="Limpa" type="submit"
+							rendered="#{manterTipoExameUrinaMB.atualizacao}"
+							action="#{manterTipoExameUrinaMB.init}" ajax="true"
+							update="exames" immediate="false" />
+
+					</h:panelGroup>
+
+				</h:panelGroup>
+			</p:tab>
+
+			<p:tab title="Situações Médicas">
+				<br />
+				<br />
+			</p:tab>
+
+
+			<p:tab title="Medicamentos em Uso">
+				<br />
+				<br />
+			</p:tab>-->
+<!-- 		</p:accordionPanel>
+
+
+	</ui:define>
+-->	
+

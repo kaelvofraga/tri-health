@@ -12,21 +12,21 @@ public class UnidadeFederativa extends BaseEntity<Long> implements Serializable 
 	 * 
 	 */
 	private static final long serialVersionUID = -4613659829962646745L;
-	private String nomeUf;
+	private String nome;
 	@OneToOne
     @JoinColumn(name="ID_PAIS")
-	private Pais pais;
+	private Pais pais = new Pais();
 	public Pais getPais() {
 		return pais;
 	}
 	public void setPais(Pais pais) {
 		this.pais = pais;
 	}
-	public String getNomeUf() {
-		return nomeUf;
+	public String getNome() {
+		return nome;
 	}
-	public void setNomeUf(String nomeUf) {
-		this.nomeUf = nomeUf;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 }

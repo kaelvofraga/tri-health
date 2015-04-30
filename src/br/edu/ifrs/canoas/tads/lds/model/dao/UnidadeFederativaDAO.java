@@ -15,8 +15,8 @@ public class UnidadeFederativaDAO    extends BaseDAO<UnidadeFederativa, Long> {
 				.createQuery(
 						"SELECT au FROM UnidadeFederativa au "
 								+ "WHERE "
-								+ "lower(au.UnidadeFederativa.nomeUf) like '%" + criterioUF.toLowerCase() + "%' "
-								+ "ORDER BY au.UnidadeFederativa.nomeUf")
+								+ "lower(au.UnidadeFederativa.nome) like '%" + criterioUF.toLowerCase() + "%' "
+								+ "ORDER BY au.UnidadeFederativa.nome")
 				.getResultList();
 	}
 

@@ -11,7 +11,7 @@ public class Pais extends BaseEntity<Long> implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 186935749207326730L;
-	private String nomePais;
+	private String nome;
 	private String nacionalidade;
 	
 	public String getNacionalidade() {
@@ -21,18 +21,18 @@ public class Pais extends BaseEntity<Long> implements Serializable {
 		this.nacionalidade = nacionalidade;
 	}
 	
-	public String getNomePais() {
-		return nomePais;
+	public String getNome() {
+		return nome;
 	}
-	public void setNomePais(String nomePais) {
-		this.nomePais = nomePais;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Pais [nomePais=" + nomePais + ", nacionalidade="
+		return "Pais [nome=" + nome + ", nacionalidade="
 				+ nacionalidade + "]";
 	}
 	
