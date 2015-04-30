@@ -13,10 +13,6 @@
 
 		<h1 class="lead">Histórico do Uso de Medicamentos</h1>
 		
-		<p:accordionPanel multiple="true">
-		
-		<p:tab title="Medicamentos">
-		
 			<h:panelGroup layout="block" styleClass="form-group">
 		
 				<h:panelGrid columns="2" styleClass="mtable">
@@ -33,14 +29,15 @@
 	  
 	    				<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="nome_medicamento" value="Medicamento" />
-							<br />
+							<br/>
 							<p:autoComplete id="nome_medicamento"
 								value="#{manterUsoMedicamentoMB.medicamentoUsuario.medicamento.nome}"
 								size="40" style="width:300px"
-								completeMethod="#{manterPerfilEmergenciaMB.completeMedicamentoAlergia}"
+								completeMethod="#{manterUsoMedicamentoMB.completeMedicamento}"
 								var="medicamento" itemLabel="#{medicamento}"
 								itemValue="#{medicamento.nome}"
-								placeholder="Informe ao medicamento" />
+								placeholder="Informe o medicamento" />
+							
 	    				</h:panelGroup>
 	    
 	    		<h:panelGroup layout="block" styleClass="form-group">
@@ -86,7 +83,7 @@
 	    		<h:panelGroup layout="block" styleClass="form-group">
 	    					<p:commandButton value="Salvar"
 							rendered="#{not manterUsoMedicamentoMB.atualizacao}"
-							action="#{manterUsoMedicamentoMB.salvaMedicamento}" ajax="true"/>
+							action="#{manterUsoMedicamentoMB.salvaMedicamento}" ajax="false"/>
 						<p:commandButton value="Alterar"
 							rendered="#{manterUsoMedicamentoMB.atualizacao}"
 						action="#{manterUsoMedicamentoMB.alteraMedicamento}" ajax="true" />
@@ -101,9 +98,7 @@
 				</h:panelGroup>
 				
 			</h:panelGroup>
-		</p:tab>
-
-		</p:accordionPanel>
+		
 	</ui:define>
 </ui:composition>
 
