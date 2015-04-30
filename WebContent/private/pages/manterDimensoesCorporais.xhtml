@@ -24,12 +24,11 @@
 						
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="tipoMedida" value="Tipo da Medida" />
-							<br />
-							<p:autoComplete id="tipoMedida" dropdown="true"
-								style="width:300px"
-								size="30"
-								value="#{manterDimensoesCorporaisMB.valorMedida.tipoMedida.tipoMedida}"
-								placeholder="Selecione o Tipo da Medida" />
+								
+							<p:selectOneMenu id="tipoMedida" value="#{manterDimensoesCorporaisMB.valorMedida.tipoMedida.tipoMedida}" style="width:300px">
+                			<f:selectItem itemLabel="Selecione o Tipo da Medida" itemValue="" noSelectionOption="true" />
+                			<f:selectItems value="#{manterDimensoesCorporaisMB.tipoMedidas}" itemLabel="#{tipoMedidas.descricao}" var="tipoMedidas"/>
+            				</p:selectOneMenu>
 						</h:panelGroup>
 						
 						<h:panelGroup layout="block" styleClass="form-group">

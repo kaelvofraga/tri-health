@@ -10,8 +10,11 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.edu.ifrs.canoas.tads.lds.bean.Pais;
+import br.edu.ifrs.canoas.tads.lds.bean.TipoMedida;
 import br.edu.ifrs.canoas.tads.lds.bean.ValorMedida;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterDimensoesService;
+import br.edu.ifrs.canoas.tads.lds.control.service.ManterTipoMedidaService;
 
 @Named
 @RequestScoped
@@ -30,15 +33,19 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	
 	@Inject
 	private ValorMedida valorMedida;
-	
 
 	@EJB
 	private ManterDimensoesService dimensoesService;
+	
+	@EJB
+	private ManterTipoMedidaService manterTipoMedidaService;
 	
 	
 
 	//Lista Dimens�es
 	private List<ValorMedida> medidas;
+	private List<TipoMedida> tipoMedidas;
+	
 	private String criterioTipoDimensao;
 	
 	//Form Alergia
@@ -61,6 +68,18 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	/*
 	 * GETTERS & SETTERS
 	 */
+	
+	
+	public List<TipoMedida> getTipoMedidas() {
+		if(tipoMedidas == null)
+			tipoMedidas = manterTipoMedidaService.buscaTipoMedida();
+		
+		return tipoMedidas;
+	}
+	
+	public void setTipoMedidas(List<TipoMedida> tipoMedidas) {
+		this.tipoMedidas = tipoMedidas;
+	}
 	
 	
 	public ManterDimensoesService getDimensoesService() {

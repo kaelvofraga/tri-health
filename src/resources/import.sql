@@ -25,3 +25,21 @@ insert into Pais (id, nome, nacionalidade) values (1, 'Brasil','Brasileiro' );
 insert into UnidadeFederativa (id, nome, id_pais) values (1, 'Rio Grande do Sul',1 );
 insert into Cidade (id, nome, id_uf) values (1, 'Canoas',1 );
 insert into Endereco (id, cep, complemento, logradouro, numero, id_cidade) values (1, '92330-500', 'Casa', 'Rua Um', 541, 1 );
+
+--DIMENSÕES CORPORAIS
+insert into Udm (id, descricao) values (1, 'cm');
+insert into Udm (id, descricao) values (2, 'pol');
+
+insert into TipoMedida(id, descricao) values (1, 'Busto');
+insert into TipoMedida(id, descricao) values (2, 'Peito');
+insert into TipoMedida(id, descricao) values (3, 'Cabeca');
+insert into TipoMedida(id, descricao) values (4, 'Biceps Esquerdo');
+insert into TipoMedida(id, descricao) values (5, 'Biceps Direito');
+insert into TipoMedida(id, descricao) values (6, 'Pescoco');
+insert into TipoMedida(id, descricao) values (7, 'Coxa Esquerda');
+insert into TipoMedida(id, descricao) values (8, 'Pescoco');
+insert into TipoMedida(id, descricao) values (9, 'Pescoco');
+insert into TipoMedida(id, descricao) values (10, 'Pescoco');
+insert into TipoMedida(id, descricao) values (11, 'Pescoco');
+insert into TipoMedida(id, descricao) values (12, 'Coxa Direita');
+insert into TipoMedida(id, descricao) values (13, 'Altura');		   

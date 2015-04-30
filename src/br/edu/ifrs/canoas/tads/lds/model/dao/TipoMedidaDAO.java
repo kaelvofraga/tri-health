@@ -15,17 +15,20 @@ import br.edu.ifrs.canoas.tads.lds.bean.ValorMedida;
 public class TipoMedidaDAO extends BaseDAO< TipoMedida, Long>{
 
 	private static final long serialVersionUID = 2039209283467379697L;
-
 	
+	
+
+	/*
 	public List<TipoMedida> buscaDescricaoTipoMedida(Usuario usuario) {
 		
 		return em.createQuery(
 		         "SELECT descricao " 
 		         + "FROM TipoMedida "
-		         + "WHERE TipoMedida.usuario.id = :usuario ")
+		         + "WHERE TipoMedida.usuario.id = :usuario"
+		         + " ORDER BY descricao")
 		         .setParameter("usuario", usuario.getId())
 		         .getResultList();
 	}
-
+*/
 	
 }
