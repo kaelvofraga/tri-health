@@ -25,9 +25,9 @@
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="tipoMedida" value="Tipo da Medida" />
 								
-							<p:selectOneMenu id="tipoMedida" value="#{manterDimensoesCorporaisMB.valorMedida.tipoMedida.tipoMedida}" style="width:300px">
+							<p:selectOneMenu id="tipoMedida" value="#{manterDimensoesCorporaisMB.tipoMedidas}" style="width:300px">
                 			<f:selectItem itemLabel="Selecione o Tipo da Medida" itemValue="" noSelectionOption="true" />
-                			<f:selectItems value="#{manterDimensoesCorporaisMB.tipoMedidas}" itemLabel="#{tipoMedidas.descricao}" var="tipoMedidas"/>
+                			<f:selectItems value="#{manterDimensoesCorporaisMB.tipoMedidas}" itemLabel="#{tipoMedida.descricao}" var="tipoMedida"/>
             				</p:selectOneMenu>
 						</h:panelGroup>
 						
