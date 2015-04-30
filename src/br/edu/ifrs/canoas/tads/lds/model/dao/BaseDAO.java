@@ -12,8 +12,7 @@ import javax.persistence.PersistenceContext;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.jinq.jpa.JPAJinqStream;
-import org.jinq.jpa.JinqJPAStreamProvider;
+
 import br.edu.ifrs.canoas.tads.lds.bean.BaseEntity;
 
 @Stateless
@@ -80,12 +79,12 @@ public abstract class BaseDAO<T extends BaseEntity<ID>, ID> implements
 		return this.getSection().createCriteria(this.getEntityClass());
 	}
 	
-	@SuppressWarnings("unchecked")
-	public JPAJinqStream<T> getJinqStream(){
-		
-		JinqJPAStreamProvider  streams = 
-				  new JinqJPAStreamProvider(em.getEntityManagerFactory());		
-		
-		return streams.streamAll(em, getEntityClass());
-	}
+//	@SuppressWarnings("unchecked")
+//	public JPAJinqStream<T> getJinqStream(){
+//		
+//		JinqJPAStreamProvider  streams = 
+//				  new JinqJPAStreamProvider(em.getEntityManagerFactory());		
+//		
+//		return streams.streamAll(em, getEntityClass());
+//	}
 }

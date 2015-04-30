@@ -41,9 +41,9 @@ public class ListarRefeicaoMB implements Serializable {
 	public List<TipoAlimento> completeTipoAlimento(String query){
 		List<TipoAlimento> tipoAlimentoFiltrados = new ArrayList<TipoAlimento>();
          
-		tipoAlimentoFiltrados = tipoAlimentos.stream()
-				.filter(x-> x.getNome().trim().toLowerCase().startsWith(query))
-				.collect(Collectors.toList());
+//		tipoAlimentoFiltrados = tipoAlimentos.stream()
+//				.filter(x-> x.getNome().trim().toLowerCase().startsWith(query))
+//				.collect(Collectors.toList());
         
         return tipoAlimentoFiltrados;
 	}

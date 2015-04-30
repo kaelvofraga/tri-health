@@ -1,5 +1,7 @@
 package br.edu.ifrs.canoas.tads.lds.model.dao;
+import java.util.ArrayList;
 import java.util.List;
+
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAlimento;
 public class TipoAlimentoDAO extends BaseDAO<TipoAlimento, Long> {
 
@@ -10,7 +12,7 @@ public class TipoAlimentoDAO extends BaseDAO<TipoAlimento, Long> {
 
 	
 	public List<TipoAlimento> getTesteJinqStream(){
-		return super.getJinqStream().toList();
+		return new ArrayList<>();//super.getJinqStream().toList();
 	}
 	
 }
