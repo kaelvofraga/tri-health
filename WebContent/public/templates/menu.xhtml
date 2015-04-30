@@ -24,15 +24,15 @@
 			<p:separator />
 			<p:submenu label="Medidas">
 				<p:submenu label="Pressão Arterial">
-					<p:menuitem value="Listar" url="/private/pages/listarPressaoArterial.jsf" action="#"/>
-					<p:menuitem value="Manter" url="/private/pages/manterPressaoArterial.jsf" action="#"/>
+					<p:menuitem value="Listar" url="/private/pages/listarPressaoArterial.jsf" action="#{manterAtividadesMB.init}"/>
+					<p:menuitem value="Manter" url="/private/pages/manterPressaoArterial.jsf" action="#{manterAtividadesMB.init}"/>
 				</p:submenu>				
 				<p:menuitem value="Alimentação" url="/private/pages/listarRefeicao.jsf" />
 				<p:menuitem value="Peso" url="#" />
 				
 				<p:submenu label="Dimensões Corporais">
 					<p:menuitem value="Listar" url="/private/pages/listaDimensoesCorporais.jsf"/>
-					<p:menuitem value="Cadastrar"/>
+					<p:menuitem value="Cadastrar" url="/private/pages/manterDimensoesCorporais.jsf"/>
 				</p:submenu>
 				
 				<p:submenu label="Atividades Físicas">

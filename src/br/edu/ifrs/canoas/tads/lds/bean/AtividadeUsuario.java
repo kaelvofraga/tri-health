@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import br.edu.ifrs.canoas.tads.lds.bean.Atividade;
@@ -42,6 +43,12 @@ public class AtividadeUsuario extends BaseEntity<Long> implements Serializable {
 	
 	@NotNull 
 	private double distancia;
+	
+	@Transient
+	private long duracao;
+	
+	@Transient 
+	private double calorias;
 	
 	public AtividadeUsuario() {
 		super();
@@ -93,6 +100,22 @@ public class AtividadeUsuario extends BaseEntity<Long> implements Serializable {
 
 	public void setDistancia(double distancia) {
 		this.distancia = distancia;
+	}
+
+	public long getDuracao() {
+		return duracao;
+	}
+
+	public void setDuracao(long duracao) {
+		this.duracao = duracao;
+	}
+
+	public double getCalorias() {
+		return calorias;
+	}
+
+	public void setCalorias(double calorias) {
+		this.calorias = calorias;
 	}
 	
 }

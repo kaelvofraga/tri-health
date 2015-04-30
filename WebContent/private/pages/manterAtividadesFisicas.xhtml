@@ -22,8 +22,10 @@
 					<h:panelGroup layout="block" styleClass="form-group">
 						<p:outputLabel for="descricao_atividade" value="Descricao:" />
 						<br />
-						<p:autoComplete id="descricao_atividade" dropdown="true" size="88"
-							completeMethod="#" forceSelection="true" var="atividade"
+						<p:autoComplete id="descricao_atividade" 
+							value="#{manterAtividadesMB.userAtv.atividade.descricao}"
+							dropdown="true" size="88"
+							completeMethod="#{manterAtividadesMB.completeAtividades}" forceSelection="true" var="atividade"
 							itemLabel="#{atividade}" itemValue="#{atividade.descricao}"
 							placeholder="Informe a atividade desejada." />
 					</h:panelGroup>
@@ -33,7 +35,9 @@
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="tipo_atividade" value="Tipo:" />
 							<br />
-							<p:inputText id="tipo_atividade" styleClass="form-control"
+							<p:inputText id="tipo_atividade" 
+								value="#{manterAtividadesMB.userAtv.atividade.tipoAtividade.nome}"
+								styleClass="form-control"
 								var="tipoAtividade" itemLabel="#{tipoAtividade}"
 								itemValue="#{tipoAtividade.nome}"
 								placeholder="Tipo da atividade." disabled="true" />
@@ -43,7 +47,9 @@
 							styleClass="form-group pull-right">
 							<p:outputLabel for="distancia" value="Distância:"
 								style="display:block" />
-							<pe:inputNumber id="distancia" var="atividadeUsuario"
+							<pe:inputNumber id="distancia" 
+								value="#{manterAtividadesMB.userAtv.distancia}"
+								var="atividadeUsuario"
 								itemLabel="#{atividadeUsuario}"
 								itemValue="#{atividadeUsuario.distancia}"
 								placeholder="Distância em metros.">
@@ -57,7 +63,9 @@
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="inicio" value="Início:" />
 							<br />
-							<p:calendar id="inicio" pattern="dd/MM/yyyy HH:mm:ss"
+							<p:calendar id="inicio" 
+								value="#{manterAtividadesMB.userAtv.dataInicio}"
+								pattern="dd/MM/yyyy HH:mm:ss"
 								placeholder="Hora de início." effect="fold"
 								icon="glyphicon-calendar" var="atividadeUsuario"
 								itemLabel="#{atividadeUsuario}"
@@ -67,7 +75,9 @@
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="fim" value="Fim:" />
 							<br />
-							<p:calendar id="fim" pattern="dd/MM/yyyy HH:mm:ss"
+							<p:calendar id="fim" 
+								value="#{manterAtividadesMB.userAtv.dataFim}"
+								pattern="dd/MM/yyyy HH:mm:ss"
 								placeholder="Hora de finalização." effect="fold"
 								icon="glyphicon-calendar" var="atividadeUsuario"
 								itemLabel="#{atividadeUsuario}"
@@ -77,7 +87,9 @@
 						<h:panelGroup layout="block"
 							styleClass="form-group pull-right">
 							<p:outputLabel for="calorias" value="Calorias queimadas:" />
-							<p:inputText id="calorias" styleClass="form-control"
+							<p:inputText id="calorias" 
+								value="#{manterAtividadesMB.userAtv.calorias}"
+								styleClass="form-control"
 								placeholder="Valor em kcal." disabled="true" />
 						</h:panelGroup>
 
@@ -86,7 +98,9 @@
 					<h:panelGroup layout="block" styleClass="form-group">
 						<p:outputLabel for="notas" value="Notas:" />
 						<br />
-						<p:inputTextarea id="notas" rows="6" cols="94"
+						<p:inputTextarea id="notas" 
+							value="#{manterAtividadesMB.userAtv.notas}"
+							rows="6" cols="94"
 							var="atividadeUsuario" itemLabel="#{atividadeUsuario}"
 							itemValue="#{atividadeUsuario.notas}"
 							placeholder="Espaço destinado para observações e comentários." />
