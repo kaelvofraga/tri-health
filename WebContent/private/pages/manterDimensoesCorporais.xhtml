@@ -31,9 +31,9 @@
 						</h:panelGroup>
 						
 						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel for="udm" value="Tipo da Medida" />
-							<p:selectOneMenu id="udm" value="#{manterDimensoesCorporaisMB.valorMedida.udm}" style="width:300px">
-                			<f:selectItem itemLabel="Selecione a Unidade de Medida" itemValue="" noSelectionOption="true" />
+							<p:outputLabel for="udm" value="Unidade de Medida" />
+							<p:selectOneMenu id="udm" value="#{manterDimensoesCorporaisMB.valorMedida.udm}" style="width:300px" placeholder="Selecione a Unidade de Medida">
+                			<f:selectItem itemLabel="Selecione a Unidade de Medida" itemValue="" noSelectionOption="true"/>
                 			<f:selectItems value="#{manterDimensoesCorporaisMB.udm}" itemLabel="#{udm.descricao}" var="udm"/>
             				</p:selectOneMenu>
 						</h:panelGroup>
@@ -71,7 +71,22 @@
 								placeholder="Insira aqui sua observação " 
 							/>
 						</h:panelGroup>
-				
+				<h:panelGroup layout="block" styleClass="form-group">
+	    					<p:commandButton value="Salvar"
+							rendered="#{not manterUsoMedicamentoMB.atualizacao}"
+							action="#{manterUsoMedicamentoMB.salvaMedicamento}" ajax="false"/>
+						<p:commandButton value="Alterar"
+							rendered="#{manterUsoMedicamentoMB.atualizacao}"
+						action="#{manterUsoMedicamentoMB.alteraMedicamento}" ajax="true" />
+						<p:commandButton value="Voltar"
+							rendered="#{#}"
+						action="listarPerfilEmergencia" ajax="false"/>
+						<p:commandButton value="Limpa" type="submit"
+							rendered="#{#}" 
+							action="#{manterPerfilEmergenciaMB.init}" ajax="true"
+							update="alergias" immediate="false" />
+
+				</h:panelGroup>
 			</h:panelGroup>
 		</p:tab>
 
