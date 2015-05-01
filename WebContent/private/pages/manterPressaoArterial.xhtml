@@ -8,48 +8,52 @@
 	template="/public/templates/template.xhtml">
 	<ui:define name="metadata" />
 	<ui:define name="content">
-	
+
 		<h1 class="lead">Pressão Arterial</h1>
 		<p:accordionPanel multiple="true">
 			<p:tab title="Novo registro de Pressão Arterial">
 				<h:panelGroup layout="block" id="pressaoArterial">
 					<h:panelGrid columns="2" styleClass="mtable">
 						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel for="paSistolica" value="Pressão Arterial Sistólica:" />
-								<p:inputText id="paSistolica" styleClass="form-control"
-									var="pressaoUsuario" itemLabel="#{pressaoUsuario}"
-									itemValue="#{pressaoUsuario.pressaoArterial.paSistolica}"
-									placeholder="Exemplo: 130" />
+							<p:outputLabel for="paSistolica"
+								value="Pressão Arterial Sistólica:" />
+							<p:inputText id="paSistolica" styleClass="form-control"
+								var="pressaoUsuario" itemLabel="#{pressaoUsuario}"
+								itemValue="#{pressaoUsuario.pressaoArterial.paSistolica}"
+								placeholder="Exemplo: 130" />
 						</h:panelGroup>
-						
-						<h:panelGroup layout="block" styleClass="form-group col-xs-10 pull-right">
-							<p:outputLabel for="paDiastolica" value="Pressão Arterial Diastólica:" />
-								<p:inputText id="paDiastolica" styleClass="form-control"
-									var="pressaoUsuario" itemLabel="#{pressaoUsuario}"
-									itemValue="#{pressaoUsuario.pressaoArterial.paDiastolica}"
-									placeholder="Exemplo: 80" />
+
+						<h:panelGroup layout="block"
+							styleClass="form-group col-xs-10 pull-right">
+							<p:outputLabel for="paDiastolica"
+								value="Pressão Arterial Diastólica:" />
+							<p:inputText id="paDiastolica" styleClass="form-control"
+								var="pressaoUsuario" itemLabel="#{pressaoUsuario}"
+								itemValue="#{pressaoUsuario.pressaoArterial.paDiastolica}"
+								placeholder="Exemplo: 80" />
 						</h:panelGroup>
 					</h:panelGrid>
-					
+
 					<h:panelGrid columns="3" styleClass="mtable">
 						<h:panelGroup layout="block" styleClass="form-group pull-left">
 							<p:outputLabel for="pulso" value="Pulso:" />
-							<p:inputText id="pulso" styleClass="form-control"
-									var="pulso" itemLabel="#{pressaoUsuario}"
-									itemValue="#{pressaoUsuario.pressaoArterial.pulso}"
-									placeholder="Exemplo: 70" />
+							<p:inputText id="pulso" styleClass="form-control" var="pulso"
+								itemLabel="#{pressaoUsuario}"
+								itemValue="#{pressaoUsuario.pressaoArterial.pulso}"
+								placeholder="Exemplo: 70" />
 						</h:panelGroup>
-						
+
 						<h:panelGroup layout="block" styleClass="form-group">
-						
-							<p:outputLabel for="batimentoIrregular" value="Batimento Irregular?" />
+
+							<p:outputLabel for="batimentoIrregular"
+								value="Batimento Irregular?" />
 							<br />
-							<p:selectOneMenu id="batimentoIrregular" 
-                     		value="#{pressaoUsuario.pressaoArterial.batimentoIrregular}"
-                     		style="width:150px">
-        <f:selectItem id="Nao" itemLabel="Não" itemValue="N" />
-        <f:selectItem id="Sim" itemLabel="Sim" itemValue="S" />
-    </p:selectOneMenu>
+							<p:selectOneMenu id="batimentoIrregular"
+								value="#{pressaoUsuario.pressaoArterial.batimentoIrregular}"
+								style="width:150px">
+								<f:selectItem id="Nao" itemLabel="Não" itemValue="N" />
+								<f:selectItem id="Sim" itemLabel="Sim" itemValue="S" />
+							</p:selectOneMenu>
 						</h:panelGroup>
 
 						<h:panelGroup layout="block" styleClass="form-group pull-right">
@@ -58,8 +62,7 @@
 							<p:calendar id="data" pattern="dd/MM/yyyy HH:mm:ss"
 								placeholder="Selecione uma Data" effect="fold"
 								icon="glyphicon-calendar" var="atividadeUsuario"
-								itemLabel="#{pressaoUsuario}"
-								itemValue="#{pressaoUsuario.data}" />
+								itemLabel="#{pressaoUsuario}" itemValue="#{pressaoUsuario.data}" />
 						</h:panelGroup>
 
 					</h:panelGrid>
@@ -72,7 +75,13 @@
 							itemValue="#{pressaoUsuario.notas}"
 							placeholder="Escreva alguma observação aqui... ;)" />
 					</h:panelGroup>
+					
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:commandButton value="Salvar"
+							rendered="#{not manterPressaoMB.atualizacao}"
+							action="#{manterPressaooMB.salvaPressao}" ajax="true"/>
 
+					</h:panelGroup>
 				</h:panelGroup>
 			</p:tab>
 		</p:accordionPanel>
