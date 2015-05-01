@@ -29,17 +29,21 @@ public class ManterAtividadesMB implements Serializable {
 	@EJB
 	private ManterAtividadesService atvsService; //< atv = atividade 
 	
-	private AtividadeUsuario atividadeUsuario;
+	//Beans
+	private AtividadeUsuario atividadeUsuario;	
+	private Atividade atividade;
+	private TipoAtividade tipoAtividade;
 	
 	private boolean emListagemAtvs;
 
 	//Lista Atividades do Usuario
 	private List<AtividadeUsuario> atividadeUsuarioList;
 	private String criterioAtv;
-	
+
 	//Form Atividades do Usuario
-	private List<Atividade> atividades;
-	private List<TipoAtividade> tipoAtvs;
+	private List<Atividade> atividadeList;
+	private List<Atividade> atividadeListFiltrada;
+	private List<TipoAtividade> tipoAtividadeList;
 
 	public ManterAtividadesMB() {
 	}
@@ -47,46 +51,54 @@ public class ManterAtividadesMB implements Serializable {
 	@PostConstruct
 	public void init(){
 		atividadeUsuario = new AtividadeUsuario();
+		atividade = new Atividade();	
+		tipoAtividade = new TipoAtividade();
+		
 		criterioAtv = "";
-		atividadeUsuarioList = new ArrayList<>();
+		
+		atividadeUsuarioList = new ArrayList<>();	
+		tipoAtividadeList = atvsService.buscaNomeTipoAtividades();
+		atividadeList = atvsService.buscaDescricoesAtividades();
+		atividadeListFiltrada = new ArrayList<>();
 	}
 
 	public void busca(){
 		atividadeUsuarioList = atvsService.buscaGeral(criterioAtv, gerenciarLoginMB.getUsuario());
 	}
 	
-	public List<Atividade> completeAtividades(String query){
-		if (atividades == null) 
-			atividades = atvsService.buscaDescricoesAtividades();
+	/*public List<Atividade> completeAtividades(String query){
+		if (atividadeList == null) 
+			atividadeList = atvsService.buscaDescricoesAtividades();
 
-		List<Atividade> atividadesFiltradas = new ArrayList<>();
+		List<Atividade> atividadeListFiltradas = new ArrayList<>();
          
-        for (int i = 0; i < atividades.size(); i++) {
-            Atividade atv = atividades.get(i);
+        for (int i = 0; i < atividadeList.size(); i++) {
+            Atividade atv = atividadeList.get(i);
             if(atv.getDescricao().trim().toLowerCase().startsWith(query)) {
-            	atividadesFiltradas.add(atv);
+            	atividadeListFiltradas.add(atv);
             }
         }
-        return atividadesFiltradas;
+        return atividadeListFiltradas;
 	}
 	
 	public List<TipoAtividade> completeTipoAtividade(String query){
-		if (tipoAtvs == null)
-			tipoAtvs = atvsService.buscaNomeTipoAtividades();	
+		if (tipoAtividadeList == null)
+			tipoAtividadeList = atvsService.buscaNomeTipoAtividades();	
 		
 		List<TipoAtividade> tiposFiltradas = new ArrayList<>();
         
-        for (int i = 0; i < tipoAtvs.size(); i++) {
-            TipoAtividade tipo = tipoAtvs.get(i);
+        for (int i = 0; i < tipoAtividadeList.size(); i++) {
+            TipoAtividade tipo = tipoAtividadeList.get(i);
             if(tipo.getNome().trim().toLowerCase().startsWith(query)) {
             	tiposFiltradas.add(tipo);
             }
         }		
 		return tiposFiltradas;
-	}
+	}*/
 	
 	public void salvaAtividadeUsuario(){
 		atividadeUsuario.setUsuario(gerenciarLoginMB.getUsuario());
+		atividadeUsuario.setAtividade(atividade);
 		atvsService.salvaAtividadeUsuario(atividadeUsuario);
 		this.init();
 	}
@@ -112,10 +124,25 @@ public class ManterAtividadesMB implements Serializable {
 		return atividadeUsuario != null && atividadeUsuario.getId() != null;
 	}
 	
+	public void onTipoAtividadeChange(){
+		
+		atividadeListFiltrada.clear();
+		
+		if (tipoAtividade != null && tipoAtividade.getId() != null){
+			for (int i = 0; i < atividadeList.size(); i++) {
+				Atividade atv = atividadeList.get(i);
+				if(atv.getTipoAtividade().getId() == tipoAtividade.getId()) {
+					atividadeListFiltrada.add(atv);
+				}
+			}						
+		}else{
+			atividadeListFiltrada = new ArrayList<>();
+		}		
+	}
+	
 	/*
 	 * GETTERS & SETTERS
-	 */
-	
+	 */	
 	public AtividadeUsuario getAtividadeUsuario() {
 		return atividadeUsuario;
 	}
@@ -140,22 +167,24 @@ public class ManterAtividadesMB implements Serializable {
 		this.atividadeUsuarioList = atividadeUsuarioList;
 	}
 
-	public List<Atividade> getAtividades() {
-		if (atividades == null) 
-			atividades = atvsService.buscaDescricoesAtividades();
-		return atividades;
+	public List<Atividade> getAtividadeList() {
+		if (atividadeList == null) 
+			atividadeList = atvsService.buscaDescricoesAtividades();
+		return atividadeList;
 	}
 
-	public void setAtividades(List<Atividade> atividades) {
-		this.atividades = atividades;
+	public void setAtividadeList(List<Atividade> atividadeList) {
+		this.atividadeList = atividadeList;
 	}
 
-	public List<TipoAtividade> getTipoAtividades() {
-		return tipoAtvs;
+	public List<TipoAtividade> getTipoAtividadeList() {
+		if (tipoAtividadeList == null) 
+			tipoAtividadeList = atvsService.buscaNomeTipoAtividades();
+		return tipoAtividadeList;
 	}
 
-	public void setTipoAtividades(List<TipoAtividade> tipoAtvs) {
-		this.tipoAtvs = tipoAtvs;
+	public void setTipoAtividadeList(List<TipoAtividade> tipoAtividadeList) {
+		this.tipoAtividadeList = tipoAtividadeList;
 	}
 
 	public boolean isEmListagemAtividadeUsuario() {
@@ -164,6 +193,32 @@ public class ManterAtividadesMB implements Serializable {
 
 	public void setEmListagemAtividadeUsuario(boolean emListagemAtvs) {
 		this.emListagemAtvs = emListagemAtvs;
+	}
+	
+
+	public Atividade getAtividade() {
+		return atividade;
+	}
+	
+
+	public void setAtividade(Atividade atividade) {
+		this.atividade = atividade;
+	}
+		
+	public List<Atividade> getAtividadeListFiltrada() {
+		return atividadeListFiltrada;
+	}
+
+	public void setAtividadeListFiltrada(List<Atividade> atividadeListFiltrada) {
+		this.atividadeListFiltrada = atividadeListFiltrada;
+	}
+	
+	public TipoAtividade getTipoAtividade() {
+		return tipoAtividade;
+	}
+
+	public void setTipoAtividade(TipoAtividade tipoAtividade) {
+		this.tipoAtividade = tipoAtividade;
 	}	
 
 }

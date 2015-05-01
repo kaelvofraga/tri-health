@@ -31,20 +31,6 @@ public class ManterAtividadesService {
 	@Inject
 	private AtividadeDAO atividadeDAO;
 
-	private boolean executaCalculosNaLista(
-			List<AtividadeUsuario> atividadesUsuario) {
-
-		if (atividadesUsuario == null)
-			return false;
-
-		for (AtividadeUsuario au : atividadesUsuario) {
-			au.setDuracao(calculaDuracao(au));
-			au.setCalorias(calculaCaloriasQueimadas(au));
-		}
-
-		return true;
-	}
-
 	private long calculaDuracao(AtividadeUsuario atividadeUsuario) {
 		long timeDifMilli = 0L;
 		long timeDifMinutes = 0L;
@@ -70,7 +56,7 @@ public class ManterAtividadesService {
 	}
 
 	public boolean salvaAtividadeUsuario(AtividadeUsuario atividadeUsuario) {
-		if (atividadeUsuario != null && atividadeUsuario.getId() != null) {		
+		if (atividadeUsuario != null) {		
 			atividadeUsuario.setDuracao(calculaDuracao(atividadeUsuario));
 			atividadeUsuario.setCalorias(calculaCaloriasQueimadas(atividadeUsuario));
 			atividadeUsuarioDAO.insere(atividadeUsuario);

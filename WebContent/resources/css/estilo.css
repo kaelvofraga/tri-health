@@ -41,3 +41,6 @@ p { clear: both; line-height: 1.64em; margin: 0 0 15px; }
 .ui-confirm-dialog {background: #eee !important; border: 1px !important;}
 .ui-dialog-content {background: #eee !important; border: 1px !important;}
 .ui-dialog-buttonpane {background: #eee !important; border: 1px !important;}
+.ui-selectonemenu-panel .ui-widget-content{ background-color: white !important;}
+.ui-selectonemenu .ui-selectonemenu-trigger{ width: 25px !important;}
+.ui-selectonemenu-label{ width: 100% !important;}

@@ -28,5 +28,4 @@ public class TipoAtividade extends BaseEntity<Long> implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 }
