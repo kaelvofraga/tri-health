@@ -18,16 +18,25 @@
 			<p:tab title="Nova Atividade">
 
 				<h:panelGroup layout="block" id="atividades">
-
-					<h:panelGroup layout="block" styleClass="form-group">
+					<h:panelGroup layout="block" styleClass="form-group">			
 						<p:outputLabel for="descricao_atividade" value="Descricao:" />
 						<br />
-						<p:autoComplete id="descricao_atividade" 
-							value="#{manterAtividadesMB.userAtv.atividade.descricao}"
-							dropdown="true" size="88"
-							completeMethod="#{manterAtividadesMB.completeAtividades}" forceSelection="true" var="atividade"
-							itemLabel="#{atividade}" itemValue="#{atividade.descricao}"
-							placeholder="Informe a atividade desejada." />
+						<p:selectOneMenu 
+							id="descricao_atividade" 
+							value="#{manterAtividadesMB.atividades}"
+							style="width: 700px"
+							>
+                			<f:selectItem 
+                				itemLabel="Selecione uma atividade." 
+                				itemValue="" 
+                				noSelectionOption="true" 
+                			/>
+                			<f:selectItems 
+                				value="#{manterAtividadesMB.atividades}" 
+                				var="atividade"
+                				itemLabel="#{atividade.descricao}" 
+                			/>
+            			</p:selectOneMenu>
 					</h:panelGroup>
 
 					<h:panelGrid columns="2" styleClass="mtable">
@@ -35,12 +44,15 @@
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="tipo_atividade" value="Tipo:" />
 							<br />
-							<p:inputText id="tipo_atividade" 
-								value="#{manterAtividadesMB.userAtv.atividade.tipoAtividade.nome}"
+							<p:inputText 
+								id="tipo_atividade" 
+								value="#{manterAtividadesMB.atividadeUsuario.atividade.tipoAtividade.nome}"
 								styleClass="form-control"
-								var="tipoAtividade" itemLabel="#{tipoAtividade}"
+								var="tipoAtividade" 
+								itemLabel="#{tipoAtividade}"
 								itemValue="#{tipoAtividade.nome}"
-								placeholder="Tipo da atividade." disabled="true" />
+								placeholder="Tipo da atividade." 
+								disabled="true" />
 						</h:panelGroup>
 
 						<h:panelGroup layout="block"
@@ -48,7 +60,7 @@
 							<p:outputLabel for="distancia" value="Distância:"
 								style="display:block" />
 							<pe:inputNumber id="distancia" 
-								value="#{manterAtividadesMB.userAtv.distancia}"
+								value="#{manterAtividadesMB.atividadeUsuario.distancia}"
 								var="atividadeUsuario"
 								itemLabel="#{atividadeUsuario}"
 								itemValue="#{atividadeUsuario.distancia}"
@@ -64,31 +76,27 @@
 							<p:outputLabel for="inicio" value="Início:" />
 							<br />
 							<p:calendar id="inicio" 
-								value="#{manterAtividadesMB.userAtv.dataInicio}"
+								value="#{manterAtividadesMB.atividadeUsuario.dataInicio}"
 								pattern="dd/MM/yyyy HH:mm:ss"
 								placeholder="Hora de início." effect="fold"
-								icon="glyphicon-calendar" var="atividadeUsuario"
-								itemLabel="#{atividadeUsuario}"
-								itemValue="#{atividadeUsuario.dataInicio}" />
+								icon="glyphicon-calendar" />
 						</h:panelGroup>
 
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="fim" value="Fim:" />
 							<br />
 							<p:calendar id="fim" 
-								value="#{manterAtividadesMB.userAtv.dataFim}"
+								value="#{manterAtividadesMB.atividadeUsuario.dataFim}"
 								pattern="dd/MM/yyyy HH:mm:ss"
 								placeholder="Hora de finalização." effect="fold"
-								icon="glyphicon-calendar" var="atividadeUsuario"
-								itemLabel="#{atividadeUsuario}"
-								itemValue="#{atividadeUsuario.dataFim}" />
+								icon="glyphicon-calendar" />
 						</h:panelGroup>
 
 						<h:panelGroup layout="block"
 							styleClass="form-group pull-right">
 							<p:outputLabel for="calorias" value="Calorias queimadas:" />
 							<p:inputText id="calorias" 
-								value="#{manterAtividadesMB.userAtv.calorias}"
+								value="#{manterAtividadesMB.atividadeUsuario.calorias}"
 								styleClass="form-control"
 								placeholder="Valor em kcal." disabled="true" />
 						</h:panelGroup>
@@ -99,7 +107,7 @@
 						<p:outputLabel for="notas" value="Notas:" />
 						<br />
 						<p:inputTextarea id="notas" 
-							value="#{manterAtividadesMB.userAtv.notas}"
+							value="#{manterAtividadesMB.atividadeUsuario.notas}"
 							rows="6" cols="94"
 							var="atividadeUsuario" itemLabel="#{atividadeUsuario}"
 							itemValue="#{atividadeUsuario.notas}"
@@ -109,16 +117,34 @@
 					<h:panelGroup layout="block" styleClass="form-group">
 
 						<h:panelGroup layout="block" styleClass="form-group pull-left">
-							<p:commandButton value="Salvar" action="#" ajax="true"
-								icon="ui-icon-disk" />
-							<p:commandButton value="Editar" action="#" ajax="true"
-								icon="ui-icon-pencil" />
+							<p:commandButton 
+								value="Salvar" 
+								rendered="#{not manterAtividadesMB.atualizacao}"
+								action="#{manterAtividadesMB.salvaAtividadeUsuario}" 
+								ajax="true"
+								icon="ui-icon-disk" 
+							/>
+							
+							<p:commandButton 
+								value="Editar"
+								rendered="#{not manterAtividadesMB.atualizacao}"
+								action="#{manterAtividadesMB.alteraAtividadeUsuario}"  
+								ajax="true"								
+								icon="ui-icon-pencil" 
+							/>
 						</h:panelGroup>
 
 						<h:panelGroup layout="block" styleClass="form-group pull-right">
-							<p:commandButton value="Voltar" action="listarAtividadeUsuario"
-								ajax="false" icon="ui-icon-extlink" />
-							<p:commandButton value="Excluir" action="#" ajax="true"
+							<p:commandButton 
+								value="Voltar" 
+								action="listarAtividadeUsuario"
+								ajax="false" 
+								icon="ui-icon-extlink" 
+							/>
+							<p:commandButton 
+								value="Excluir" 
+								action="#{manterAtividadesMB.excluiAtividadeUsuario}"
+								ajax="true"
 								icon="ui-icon-close" />
 						</h:panelGroup>
 

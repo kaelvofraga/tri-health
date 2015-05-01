@@ -24,8 +24,8 @@
 			<p:separator />
 			<p:submenu label="Medidas">
 				<p:submenu label="Pressão Arterial">
-					<p:menuitem value="Listar" url="/private/pages/listarPressaoArterial.jsf" action="#{manterAtividadesMB.init}"/>
-					<p:menuitem value="Manter" url="/private/pages/manterPressaoArterial.jsf" action="#{manterAtividadesMB.init}"/>
+					<p:menuitem value="Listar" url="/private/pages/listarPressaoArterial.jsf" action="#"/>
+					<p:menuitem value="Manter" url="/private/pages/manterPressaoArterial.jsf" action="#"/>
 				</p:submenu>				
 				<p:menuitem value="Alimentação" url="/private/pages/listarRefeicao.jsf" />
 				<p:menuitem value="Peso" url="#" />
@@ -36,8 +36,8 @@
 				</p:submenu>
 				
 				<p:submenu label="Atividades Físicas">
-					<p:menuitem value="Listar" url="/private/pages/listarAtividadesFisicas.jsf" action="#"/>
-					<p:menuitem value="Nova" url="/private/pages/manterAtividadesFisicas.jsf" action="#"/>
+					<p:menuitem value="Listar" url="/private/pages/listarAtividadesFisicas.jsf" action="#{manterAtividadesMB.init}"/>
+					<p:menuitem value="Nova" url="/private/pages/manterAtividadesFisicas.jsf" action="#{manterAtividadesMB.init}"/>
 				</p:submenu>				
 			</p:submenu>
 			

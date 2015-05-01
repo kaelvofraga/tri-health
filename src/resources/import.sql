@@ -37,5 +37,20 @@ insert into TipoMedida(id, descricao) values (4, 'Biceps Esquerdo');
 insert into TipoMedida(id, descricao) values (5, 'Biceps Direito');
 insert into TipoMedida(id, descricao) values (6, 'Pescoco');
 insert into TipoMedida(id, descricao) values (7, 'Coxa Esquerda');
-insert into TipoMedida(id, descricao) values (8, 'Coxa Direita');
-insert into TipoMedida(id, descricao) values (9, 'Altura');		   
+insert into TipoMedida(id, descricao) values (8, 'Coxa Direita'); 
+insert into TipoMedida(id, descricao) values (9, 'Altura');	
+
+--[ Manter Atividades Físicas ]--
+
+insert into TipoAtividade(id, nome) values (1, 'Corrida');
+insert into TipoAtividade(id, nome) values (2, 'Ciclismo');
+insert into TipoAtividade(id, nome) values (3, 'Dança');
+
+insert into Atividade(id, descricao, MET, tipoAtividade_id) values (1, 'Jogging', 7, 1);
+insert into Atividade(id, descricao, MET, tipoAtividade_id) values (2, 'Correndo', 8, 1);
+
+insert into Atividade(id, descricao, MET, tipoAtividade_id) values (3, 'BMX ou Mountain Bike', 8.5, 2);
+insert into Atividade(id, descricao, MET, tipoAtividade_id) values (4, 'Pedalando para o trabalho ou por diversão', 4, 2);
+
+insert into Atividade(id, descricao, MET, tipoAtividade_id) values (5, 'Dança aeróbica', 6.5, 3);
+insert into Atividade(id, descricao, MET, tipoAtividade_id) values (6, 'Ballet ou moderna, twist, jazz, tap, jitterbug', 4.8, 3);

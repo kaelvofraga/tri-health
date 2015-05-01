@@ -70,7 +70,9 @@ public class ManterAtividadesService {
 	}
 
 	public boolean salvaAtividadeUsuario(AtividadeUsuario atividadeUsuario) {
-		if (atividadeUsuario != null && atividadeUsuario.getId() != null) {
+		if (atividadeUsuario != null && atividadeUsuario.getId() != null) {		
+			atividadeUsuario.setDuracao(calculaDuracao(atividadeUsuario));
+			atividadeUsuario.setCalorias(calculaCaloriasQueimadas(atividadeUsuario));
 			atividadeUsuarioDAO.insere(atividadeUsuario);
 			Mensagens.define(FacesMessage.SEVERITY_INFO,
 					"Atividade.cadastro.sucesso");
@@ -89,40 +91,26 @@ public class ManterAtividadesService {
 		if (atividadeUsuario != null)
 			atividadeUsuario = atv;
 
-		atividadeUsuario.setDuracao(calculaDuracao(atividadeUsuario));
-
-		atividadeUsuario
-				.setCalorias(calculaCaloriasQueimadas(atividadeUsuario));
-
 		return atividadeUsuario;
 	}
 
 	public List<AtividadeUsuario> buscaAtividadesDoUsuario(Usuario usuario) {
-		if (usuario != null && usuario.getId() != null){			
-			List<AtividadeUsuario> auList = atividadeUsuarioDAO.buscaAtividadesDoUsuario(usuario);
-			
-			executaCalculosNaLista(auList);
-			
-			return auList;			
-		}
+		
+		if (usuario != null && usuario.getId() != null)							
+			return atividadeUsuarioDAO.buscaAtividadesDoUsuario(usuario);		
 		
 		return new ArrayList<AtividadeUsuario>();
 	}
 
 	public List<AtividadeUsuario> buscaGeral(String criterioAlergia,
 			Usuario usuario) {
+		
 		if (usuario == null)
 			return null;
 
 		if (StrUtil.isNotBlank(criterioAlergia)){
-
-			List<AtividadeUsuario> auList = atividadeUsuarioDAO.buscaPorCriterio(criterioAlergia,
-					usuario);
-
-			executaCalculosNaLista(auList);
-
-			return auList;	
-			
+			return atividadeUsuarioDAO.buscaPorCriterio(criterioAlergia,
+					usuario);			
 		}else{
 			return atividadeUsuarioDAO.buscaAtividadesDoUsuario(usuario);
 		}
@@ -132,9 +120,10 @@ public class ManterAtividadesService {
 	public List<TipoAtividade> buscaNomeTipoAtividades() {
 		return tipoAtividadeDAO.buscaTodos();
 	}
-
-	public List<Atividade> buscaDescricoesAtividades(String descricao) {
-		return atividadeDAO.buscaPorDescricao(descricao);
+	
+	@SuppressWarnings("unchecked")
+	public List<Atividade> buscaDescricoesAtividades() {
+		return atividadeDAO.buscaTodos();
 	}
 
 	public void alteraAtividadeUsario(AtividadeUsuario atividadeUsuario) {
