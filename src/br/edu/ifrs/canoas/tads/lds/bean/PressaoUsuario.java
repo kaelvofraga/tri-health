@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -22,7 +23,7 @@ import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 public class PressaoUsuario extends BaseEntity<Long> implements Serializable{
 	private static final long serialVersionUID = 9138218268279147003L;
 	
-	@NotNull @ManyToOne
+	@NotNull @ManyToOne(cascade=CascadeType.PERSIST)	
 	@JoinColumn(name="PRESSAOARTERIAL_ID")
 	private PressaoArterial pressaoArterial = new PressaoArterial();
 	
