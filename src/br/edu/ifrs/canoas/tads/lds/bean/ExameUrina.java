@@ -3,6 +3,7 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,28 +24,28 @@ public class ExameUrina extends BaseEntity<Long> implements Serializable{
     @JoinColumn(name="ID_USUARIO") 
 	private Usuario usuario;
 	
-	@NotNull @OneToOne
+	@NotNull @OneToOne (cascade=CascadeType.PERSIST)
     @JoinColumn(name="ID_TIPOEXAMEURINA")
 	private TipoExameUrina tipoExameUrina;
 	
-	@NotNull
-	private String resultadoExameUrina;
+//	@NotNull
+	private String resultado;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataExameUrina;
+	private Date data;
 	private String observacao;
 	
 	public ExameUrina() {
 		super();
 	}
 
-	public ExameUrina(Usuario usuario, TipoExameUrina tipoExameUrina, String resultadoExameUrina,
-			Date dataExameUrina, String observacao) {
+	public ExameUrina(Usuario usuario, TipoExameUrina tipoExameUrina, String resultado,
+			Date data, String observacao) {
 		super();
 		this.usuario = usuario;
 		this.tipoExameUrina = tipoExameUrina;
-		this.resultadoExameUrina=resultadoExameUrina;
-		this.dataExameUrina = dataExameUrina;
+		this.resultado=resultado;
+		this.data = data;
 		this.observacao = observacao;
 	}
 
@@ -64,20 +65,20 @@ public class ExameUrina extends BaseEntity<Long> implements Serializable{
 		this.tipoExameUrina = tipoExameUrina;
 	}
 
-	public String getResultadoExameUrina() {
-		return resultadoExameUrina;
+	public String getResultado() {
+		return resultado;
 	}
 
-	public void setResultadoExameUrina(String resultadoExameUrina) {
-		this.resultadoExameUrina = resultadoExameUrina;
+	public void setResultado(String resultado) {
+		this.resultado = resultado;
 	}
 
-	public Date getDataExameUrina() {
-		return dataExameUrina;
+	public Date getData() {
+		return data;
 	}
 
-	public void setDataExameUrina(Date dataExameUrina) {
-		this.dataExameUrina = dataExameUrina;
+	public void setData(Date data) {
+		this.data = data;
 	}
 
 	public String getObservacao() {

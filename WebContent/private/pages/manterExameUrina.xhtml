@@ -14,26 +14,27 @@
 		<h1 class="lead">Exame  de Urina</h1>
 
 			<h:panelGroup layout="block" id="exameurina">
-
-					<h:panelGrid columns="2" styleClass="mtable">
-
-						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel for="resultadoExameUrina" value="Resultado" />
-							<br/>
-							<p:inputText id="resultadoExameUrina" styleClass="form-control" 
-								size="40" style="width:250px"
-								value="#{manterExameUrinaMB.exameUrina.resultadoExameUrina}"
-								placeholder="Informe o resultado do exame" />
-						</h:panelGroup>	
-													
-					</h:panelGrid>	
-					
-					<p:commandButton value="Salvar" update="panel" 
-						action="#{manterExameUrinaMB.salva}" icon="ui-icon-check"
-						ajax="false" />
-						
-
-				</h:panelGroup>
+				
+				<h:panelGrid columns="2" styleClass="mtable">
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:outputLabel for="resultado_exame" value="Resultado" />
+						<br/>
+						<p:inputText id="resultado_exame" styleClass="form-control" 
+							size="40" style="width:250px"
+							value="#{manterExameUrinaMB.exameUrina.resultado}"
+							placeholder="Informe o resultado do exame" />
+					</h:panelGroup>
+				
+									
+												
+				</h:panelGrid>	
+				
+					<h:panelGroup layout="block" styleClass="form-group">													
+							<p:commandButton value="Salvar"								
+							action="#{manterExameUrinaMB.salvaExame}" icon="ui-icon-check" ajax="false"/>
+		
+					</h:panelGroup>
+			</h:panelGroup>
 		
 	</ui:define>
 </ui:composition>

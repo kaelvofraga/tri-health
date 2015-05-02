@@ -11,31 +11,31 @@ public class TipoExameUrina extends BaseEntity<Long> implements Serializable{
 	 */
 	private static final long serialVersionUID = -3763819174766205770L;
 
-	private String nomeExameUrina;
-	private String unidadeMedida;
-	private String valorReferencia;
+	private String tipo;
+//	private String unidadeMedida;
+//	private String valorReferencia;
 	
 	public TipoExameUrina() {
 		super();
 	}
 
-	public TipoExameUrina(String nomeExameUrina, String unidadeMedida, 
-			String valorReferencia) {
+	public TipoExameUrina(String tipo){ // String unidadeMedida, 
+//			String valorReferencia) {
 		super();
-		this.nomeExameUrina = nomeExameUrina;
-		this.unidadeMedida = unidadeMedida;
-		this.valorReferencia = valorReferencia;
+		this.tipo = tipo;
+//		this.unidadeMedida = unidadeMedida;
+//		this.valorReferencia = valorReferencia;
 	}
 
-	public String getNomeExameUrina() {
-		return nomeExameUrina;
+	public String getTipo() {
+		return tipo;
 	}
 
-	public void setNomeExameUrina(String nomeExameUrina) {
-		this.nomeExameUrina = nomeExameUrina;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
-	public String getUnidadeMedida() {
+	/*public String getUnidadeMedida() {
 		return unidadeMedida;
 	}
 
@@ -50,5 +50,5 @@ public class TipoExameUrina extends BaseEntity<Long> implements Serializable{
 	public void setValorReferencia(String valorReferencia) {
 		this.valorReferencia = valorReferencia;
 	}
-
+*/
 }
