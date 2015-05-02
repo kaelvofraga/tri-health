@@ -20,7 +20,8 @@
 							<p:inputText id="paSistolica" styleClass="form-control"
 								var="pressaoUsuario" itemLabel="#{pressaoUsuario}"
 								value="#{manterPressaoMB.pressaoUsuario.pressaoArterial.paSistolica}"
-								placeholder="Exemplo: 130" />
+								placeholder="Exemplo: 130" 
+								required="true" requiredMessage="É necessário informar o valor de Pressão Arterial Sistólica" />
 						</h:panelGroup>
 
 						<h:panelGroup layout="block"
@@ -30,17 +31,19 @@
 							<p:inputText id="paDiastolica" styleClass="form-control"
 								var="pressaoUsuario" itemLabel="#{pressaoUsuario}"
 								value="#{manterPressaoMB.pressaoUsuario.pressaoArterial.paDiastolica}"
-								placeholder="Exemplo: 80" />
+								placeholder="Exemplo: 80" 
+								required="true" requiredMessage="É necessário informar o valor de Pressão Arterial Diastólica" />
 						</h:panelGroup>
 					</h:panelGrid>
 
 					<h:panelGrid columns="3" styleClass="mtable">
 						<h:panelGroup layout="block" styleClass="form-group pull-left">
-							<p:outputLabel for="pulso" value="Pulso:" />
+							<p:outputLabel for="pulso" value="Pulso:"/>
 							<p:inputText id="pulso" styleClass="form-control" var="pulso"
 								itemLabel="#{pressaoUsuario}"
 								value="#{manterPressaoMB.pressaoUsuario.pressaoArterial.pulso}"
-								placeholder="Exemplo: 70" />
+								placeholder="Exemplo: 70"
+								required="true" requiredMessage="É necessário informar a pulsação" />
 						</h:panelGroup>
 
 						<h:panelGroup layout="block" styleClass="form-group">
@@ -50,7 +53,7 @@
 							<br />
 							<p:selectOneMenu id="batimentoIrregular"
 								value="#{manterPressaoMB.pressaoUsuario.pressaoArterial.batimentoIrregular}"
-								style="width:150px">
+								style="width:150px" required="true" requiredMessage="É necessário informar a situação de batimento">
 								<f:selectItem id="Nao" itemLabel="Não" itemValue="N" />
 								<f:selectItem id="Sim" itemLabel="Sim" itemValue="S" />
 							</p:selectOneMenu>
@@ -62,7 +65,8 @@
 							<p:calendar id="data" pattern="dd/MM/yyyy HH:mm:ss"
 								placeholder="Selecione uma Data" effect="fold"
 								icon="glyphicon-calendar" var="atividadeUsuario"
-								itemLabel="#{pressaoUsuario}" value="#{manterPressaoMB.pressaoUsuario.data}" />
+								itemLabel="#{pressaoUsuario}" value="#{manterPressaoMB.pressaoUsuario.data}" 
+								required="true" requiredMessage="É necessário informar a Data" />
 						</h:panelGroup>
 
 					</h:panelGrid>
