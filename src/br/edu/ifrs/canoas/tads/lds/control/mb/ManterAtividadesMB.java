@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -14,6 +15,7 @@ import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Atividade;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAtividade;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterAtividadesService;
+import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 
 @Named
 @SessionScoped
@@ -50,16 +52,28 @@ public class ManterAtividadesMB implements Serializable {
 	
 	@PostConstruct
 	public void init(){
-		atividadeUsuario = new AtividadeUsuario();
-		atividade = new Atividade();	
-		tipoAtividade = new TipoAtividade();
 		
-		criterioAtv = "";
+		/** POJO **/
+		if(atividadeUsuario == null)
+			atividadeUsuario = new AtividadeUsuario();
+		if(atividade == null)
+			atividade = new Atividade();	
+		if(tipoAtividade == null)
+			tipoAtividade = new TipoAtividade();
 		
-		atividadeUsuarioList = new ArrayList<>();	
-		tipoAtividadeList = atvsService.buscaNomeTipoAtividades();
-		atividadeList = atvsService.buscaDescricoesAtividades();
-		atividadeListFiltrada = new ArrayList<>();
+		/** Busca **/
+		if(criterioAtv == null || criterioAtv.length() == 0)
+			criterioAtv = "";
+		
+		/** Listas **/
+		if(atividadeUsuarioList == null)
+			atividadeUsuarioList = new ArrayList<>();	
+		if(tipoAtividadeList == null)
+			tipoAtividadeList = atvsService.buscaNomeTipoAtividades();
+		if(atividadeList == null)
+			atividadeList = atvsService.buscaDescricoesAtividades();
+		if(atividadeListFiltrada == null)
+			atividadeListFiltrada = new ArrayList<>();
 	}
 
 	public void busca(){
@@ -98,11 +112,26 @@ public class ManterAtividadesMB implements Serializable {
 	
 	public void salvaAtividadeUsuario(){
 		atividadeUsuario.setUsuario(gerenciarLoginMB.getUsuario());
-		atividadeUsuario.setAtividade(atividade);
-		atvsService.salvaAtividadeUsuario(atividadeUsuario);
-		this.init();
+		if(atvsService.salvaAtividadeUsuario(atividadeUsuario))
+			this.clear();
 	}
 	
+	private void clear() {
+		/** POJO **/
+		atividadeUsuario = new AtividadeUsuario();
+		atividade = new Atividade();	
+		tipoAtividade = new TipoAtividade();
+
+		/** Busca **/
+		criterioAtv = "";
+
+		/** Listas **/
+		atividadeUsuarioList = new ArrayList<>();	
+		tipoAtividadeList = atvsService.buscaNomeTipoAtividades();
+		atividadeList = atvsService.buscaDescricoesAtividades();
+		atividadeListFiltrada = new ArrayList<>();		
+	}
+
 	public String alteraAtividadeUsuario(){
 		atvsService.alteraAtividadeUsario(atividadeUsuario);
 		return URL_LISTAR_ATIVIDADES;
@@ -120,14 +149,28 @@ public class ManterAtividadesMB implements Serializable {
 		return URL_MANTER_ATIVIDADES;
 	}
 	
+	public void calculaCalorias(){
+		if (atividadeUsuario == null) {
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					"Atividade.cadastro.erro.calculaCaloria");
+			return;
+		}	
+		atividadeUsuario.setDuracao(atvsService.calculaDuracao(atividadeUsuario));
+		if(atividadeUsuario.getDuracao() <= 0L){
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					"Atividade.cadastro.erro.dataFinalMenor");
+			return;
+		}
+		atividadeUsuario.setCalorias(atvsService.calculaCaloriasQueimadas(atividadeUsuario));			
+	}	
+	
 	public boolean isAtualizacao(){
 		return atividadeUsuario != null && atividadeUsuario.getId() != null;
 	}
 	
 	public void onTipoAtividadeChange(){
-		
 		atividadeListFiltrada.clear();
-		
+
 		if (tipoAtividade != null && tipoAtividade.getId() != null){
 			for (int i = 0; i < atividadeList.size(); i++) {
 				Atividade atv = atividadeList.get(i);
@@ -137,7 +180,11 @@ public class ManterAtividadesMB implements Serializable {
 			}						
 		}else{
 			atividadeListFiltrada = new ArrayList<>();
-		}		
+		}
+	}
+	
+	public void onSelectAtividade(){
+		atividadeUsuario.setAtividade(atividade);
 	}
 	
 	/*
@@ -195,11 +242,9 @@ public class ManterAtividadesMB implements Serializable {
 		this.emListagemAtvs = emListagemAtvs;
 	}
 	
-
 	public Atividade getAtividade() {
 		return atividade;
-	}
-	
+	}	
 
 	public void setAtividade(Atividade atividade) {
 		this.atividade = atividade;

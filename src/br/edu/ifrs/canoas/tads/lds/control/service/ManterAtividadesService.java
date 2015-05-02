@@ -31,41 +31,50 @@ public class ManterAtividadesService {
 	@Inject
 	private AtividadeDAO atividadeDAO;
 
-	private long calculaDuracao(AtividadeUsuario atividadeUsuario) {
+	public long calculaDuracao(AtividadeUsuario atividadeUsuario) {
 		long timeDifMilli = 0L;
 		long timeDifMinutes = 0L;
-		if (atividadeUsuario != null && atividadeUsuario.getId() != null) {
-			Date dataIni = atividadeUsuario.getDataInicio();
-			Date dataFim = atividadeUsuario.getDataFim();
-			timeDifMilli = dataFim.getTime() - dataIni.getTime();
-			timeDifMinutes = TimeUnit.MILLISECONDS.toMinutes(timeDifMilli);
-		}
+
+		Date dataIni = atividadeUsuario.getDataInicio();
+		Date dataFim = atividadeUsuario.getDataFim();
+		timeDifMilli = dataFim.getTime() - dataIni.getTime();
+		timeDifMinutes = TimeUnit.MILLISECONDS.toMinutes(timeDifMilli);
+
 		return timeDifMinutes;
 	}
 
-	private double calculaCaloriasQueimadas(AtividadeUsuario atividadeUsuario) {
-		double calorias = 0.0;
-		long duracao = 0L;
-		double massaCorporal = 0.0; //TODO Pegar peso do usuário da classe Peso Usuario
-		if (atividadeUsuario != null && atividadeUsuario.getId() != null) {
-			duracao = calculaDuracao(atividadeUsuario);
-			calorias = atividadeUsuario.getAtividade().getMET() * massaCorporal
-					* duracao;
-		}
-		return calorias;
+	public double calculaCaloriasQueimadas(AtividadeUsuario atividadeUsuario) {
+		double massaCorporal = 1.0; // TODO Pegar peso do usuário da classe Peso Usuario
+				
+		return  atividadeUsuario.getAtividade().getMET() * massaCorporal *  (atividadeUsuario.getDuracao()/60.0);
 	}
 
 	public boolean salvaAtividadeUsuario(AtividadeUsuario atividadeUsuario) {
-		if (atividadeUsuario != null) {		
-			atividadeUsuario.setDuracao(calculaDuracao(atividadeUsuario));
-			atividadeUsuario.setCalorias(calculaCaloriasQueimadas(atividadeUsuario));
-			atividadeUsuarioDAO.insere(atividadeUsuario);
-			Mensagens.define(FacesMessage.SEVERITY_INFO,
-					"Atividade.cadastro.sucesso");
-		} else {
+		if (atividadeUsuario == null || 
+			atividadeUsuario.getAtividade() == null || 
+			atividadeUsuario.getUsuario() == null) {
+			
 			Mensagens.define(FacesMessage.SEVERITY_ERROR,
 					"Atividade.cadastro.erro");
+			return false;
 		}
+		
+		if(atividadeUsuario.getDuracao() == 0L){
+			atividadeUsuario.setDuracao(calculaDuracao(atividadeUsuario));
+			if(atividadeUsuario.getDuracao() <= 0L){
+				Mensagens.define(FacesMessage.SEVERITY_ERROR,
+						"Atividade.cadastro.erro.dataFinalMenor");
+				return false;
+			}
+		}
+		
+		if(atividadeUsuario.getCalorias() == 0.0)
+			atividadeUsuario.setCalorias(calculaCaloriasQueimadas(atividadeUsuario));
+		
+		atividadeUsuarioDAO.insere(atividadeUsuario);
+		Mensagens.define(FacesMessage.SEVERITY_INFO,
+				"Atividade.cadastro.sucesso");
+		
 		return true;
 	}
 
@@ -81,23 +90,23 @@ public class ManterAtividadesService {
 	}
 
 	public List<AtividadeUsuario> buscaAtividadesDoUsuario(Usuario usuario) {
-		
-		if (usuario != null && usuario.getId() != null)							
-			return atividadeUsuarioDAO.buscaAtividadesDoUsuario(usuario);		
-		
+
+		if (usuario != null && usuario.getId() != null)
+			return atividadeUsuarioDAO.buscaAtividadesDoUsuario(usuario);
+
 		return new ArrayList<AtividadeUsuario>();
 	}
 
 	public List<AtividadeUsuario> buscaGeral(String criterioAlergia,
 			Usuario usuario) {
-		
+
 		if (usuario == null)
 			return null;
 
-		if (StrUtil.isNotBlank(criterioAlergia)){
+		if (StrUtil.isNotBlank(criterioAlergia)) {
 			return atividadeUsuarioDAO.buscaPorCriterio(criterioAlergia,
-					usuario);			
-		}else{
+					usuario);
+		} else {
 			return atividadeUsuarioDAO.buscaAtividadesDoUsuario(usuario);
 		}
 	}
@@ -106,7 +115,7 @@ public class ManterAtividadesService {
 	public List<TipoAtividade> buscaNomeTipoAtividades() {
 		return tipoAtividadeDAO.buscaTodos();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Atividade> buscaDescricoesAtividades() {
 		return atividadeDAO.buscaTodos();

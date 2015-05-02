@@ -14,9 +14,10 @@
 
 		<h1 class="lead">Atividades Físicas</h1>
 
-		<p:accordionPanel multiple="true">
+		<p:accordionPanel id="panel" multiple="true">
+					
 			<p:tab title="Nova Atividade">
-
+							
 				<h:panelGroup layout="block" id="tipo">
 					<h:panelGroup layout="block" styleClass="form-group">
 						<h:panelGroup layout="block" styleClass="form-group">
@@ -25,7 +26,7 @@
 							<p:selectOneMenu id="tipo_atividade"
 								value="#{manterAtividadesMB.tipoAtividade}"
 								style="width: 100%;" 
-								required="true">								
+								required="true" requiredMessage="Um tipo para a atividade deve ser escolhida.">								
 								<p:ajax listener="#{manterAtividadesMB.onTipoAtividadeChange}" update="descricao_atividade" />								
 								<f:selectItem itemLabel="Selecione o tipo da atividade."
 									itemValue="" noSelectionOption="true" />
@@ -40,7 +41,9 @@
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="descricao_atividade" value="Descricao:" />
 							<p:selectOneMenu id="descricao_atividade"
-								value="#{manterAtividadesMB.atividade}" style="width:100%;" required="true">
+								value="#{manterAtividadesMB.atividade}" style="width:100%;"
+								required="true" requiredMessage="Uma descrição para a atividade deve ser escolhida." >
+								<p:ajax listener="#{manterAtividadesMB.onSelectAtividade}" />
 								<f:selectItem itemLabel="Selecione uma atividade." itemValue=""
 									noSelectionOption="true" />
 								<f:selectItems
@@ -58,7 +61,7 @@
 								value="#{manterAtividadesMB.atividadeUsuario.distancia}"
 								var="distancia" itemLabel="#{atividadeUsuario.distancia}"
 								itemValue="#{atividadeUsuario.distancia}"
-								placeholder="Distância em metros." required="true">
+								placeholder="Distância em metros." >
 							</pe:inputNumber>
 						</h:panelGroup>
 
@@ -76,7 +79,9 @@
 								itemLabel="#{atividadeUsuario.dataInicio}"
 								itemValue="#{atividadeUsuario.dataInicio}"
 								placeholder="Hora de início."
-								effect="fold" icon="glyphicon-calendar" />
+								effect="fold" icon="glyphicon-calendar" 
+								required="true" 
+								requiredMessage="Uma data inicial deve ser escolhida."/>
 						</h:panelGroup>
 
 						<h:panelGroup layout="block" styleClass="form-group">
@@ -89,20 +94,17 @@
 								itemLabel="#{atividadeUsuario.dataFim}"
 								itemValue="#{atividadeUsuario.dataFim}"
 								placeholder="Hora de finalização."
-								effect="fold" icon="glyphicon-calendar" />
+								effect="fold" icon="glyphicon-calendar" 
+								required="true" 
+								requiredMessage="Uma data final deve ser escolhida."/>
 						</h:panelGroup>
 
-						<h:panelGroup layout="block" styleClass="form-group pull-right">
-							<p:outputLabel for="calorias" value="Calorias queimadas:"
-								style="display:block" />
-							<pe:inputNumber id="calorias" symbol=" kcal" symbolPosition="s"
-								decimalSeparator="," thousandSeparator="."
-								value="#{manterAtividadesMB.atividadeUsuario.calorias}"
-								var="calorias" itemLabel="#{atividadeUsuario.calorias}"
-								itemValue="#{atividadeUsuario.calorias}"
-								placeholder="Valor em kcal." disabled="true">
-							</pe:inputNumber>
-
+						<h:panelGroup layout="block" styleClass="form-group pull-right" style="margin-right: 5px;">																	
+							<p:outputLabel for="calorias" value="Calorias queimadas:" style="margin-right: 10px; display: block;"/>
+							<p:outputLabel id="calorias" value="#{manterAtividadesMB.atividadeUsuario.calorias}"/>
+							<p:outputLabel value="kcal" style="margin-left: 5px; margin-right: 10px;" />																																
+							<p:commandButton value="Calcular"
+								action="#{manterAtividadesMB.calculaCalorias}" ajax="true" update = "calorias"/>
 						</h:panelGroup>
 
 					</h:panelGrid>
@@ -124,7 +126,7 @@
 							<p:commandButton value="Salvar"
 								rendered="#{not manterAtividadesMB.atualizacao}"
 								action="#{manterAtividadesMB.salvaAtividadeUsuario}" ajax="true"
-								icon="ui-icon-disk" />
+								icon="ui-icon-disk" update="panel"/>
 
 							<p:commandButton value="Editar"
 								rendered="#{manterAtividadesMB.atualizacao}"
@@ -132,9 +134,7 @@
 								ajax="true" icon="ui-icon-pencil" />
 						</h:panelGroup>
 
-						<h:panelGroup layout="block" styleClass="form-group pull-right">
-							<p:commandButton value="Voltar" action="listarAtividadeUsuario"
-								ajax="false" icon="ui-icon-extlink" />
+						<h:panelGroup layout="block" styleClass="form-group pull-right">							
 							<p:commandButton value="Excluir"
 								rendered="#{manterAtividadesMB.atualizacao}"
 								action="#{manterAtividadesMB.excluiAtividadeUsuario}"
