@@ -9,10 +9,8 @@ import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
-import br.edu.ifrs.canoas.tads.lds.bean.Atividade;
-import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.PressaoUsuario;
-import br.edu.ifrs.canoas.tads.lds.bean.TipoAtividade;
+import br.edu.ifrs.canoas.tads.lds.bean.PressaoArterial;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 import br.edu.ifrs.canoas.tads.lds.model.dao.PressaoArterialDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.PressaoUsuarioDAO;
@@ -21,58 +19,32 @@ import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
 
 @Stateless
 public class ManterPressaoService {
+
 	@Inject
 	private PressaoUsuarioDAO pressaoUsuarioDAO;
 
 	@Inject
-	private PressaoArterialDAO pressaoArterialDAO;
+	private PressaoArterialDAO pressaoDAO;
 
 	public boolean salvaPressaoUsuario(PressaoUsuario pressaoUsuario) {
-		if (pressaoUsuario != null) {
-			pressaoUsuarioDAO.insere(pressaoUsuario);
-			Mensagens.define(FacesMessage.SEVERITY_INFO,
-					"Atividade.cadastro.sucesso");
-		} else {
-			Mensagens.define(FacesMessage.SEVERITY_ERROR,
-					"Atividade.cadastro.erro");
-		}
+		pressaoUsuarioDAO.insere(pressaoUsuario);
+		Mensagens.define(FacesMessage.SEVERITY_INFO,null);
 		return true;
 	}
 
-	public PressaoUsuario buscaPressaoUsuarioPorID(PressaoUsuario pressaoUsuario) {
-		PressaoUsuario pressao = pressaoUsuarioDAO.busca(pressaoUsuario.getId());
-
-		if (pressaoUsuario != null)
-			pressaoUsuario = pressao;
-
-		return pressaoUsuario;
-	}
-
-	public List<PressaoUsuario> buscaPressoesDoUsuario(Usuario usuario) {
-
+	public List<PressaoArterial> buscaPressoes(Date query, Usuario usuario) {
 		if (usuario != null && usuario.getId() != null)
-			return pressaoUsuarioDAO.buscaPressaoPorUsuario(usuario);
-
-		return new ArrayList<PressaoUsuario>();
+			return pressaoDAO.buscaPressaoPorUsuario(usuario);
+		return new ArrayList<PressaoArterial>();
 	}
 
-
+	
 	public void alteraPressaoUsario(PressaoUsuario pressaoUsuario) {
-		if (pressaoUsuario != null && pressaoUsuario.getId() != null) {
-			pressaoUsuarioDAO.atualiza(pressaoUsuario);
-			Mensagens.define(FacesMessage.SEVERITY_INFO,null);
-		} else {
-			Mensagens.define(FacesMessage.SEVERITY_ERROR, null);
-		}
+		pressaoUsuarioDAO.atualiza(pressaoUsuario);
 	}
 
-	public void excluiPressaoUsuario(PressaoUsuario pressaoUsuario) {
-		if (pressaoUsuario != null && pressaoUsuario.getId() != null) {
-			pressaoUsuarioDAO.exclui(pressaoUsuario.getId());
-			Mensagens.define(FacesMessage.SEVERITY_INFO,null);
-		} else {
-			Mensagens.define(FacesMessage.SEVERITY_ERROR,null);
-		}
+	public void excluiPressao(PressaoUsuario pressaoUsuario) {
+		pressaoUsuarioDAO.exclui(pressaoUsuario.getId());
 	}
 
 }

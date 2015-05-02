@@ -10,8 +10,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
-import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.PressaoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.PressaoArterial;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterPressaoService;
@@ -35,18 +33,18 @@ public class ManterPressaoMB implements Serializable {
 	private ManterPressaoService pressaoService;
 	
 	
-	private List<PressaoUsuario> pressaoLista;
+	private List<PressaoUsuario> listaDePressao;
 	
 	private List<PressaoArterial> pressoes;
 	
 	public void inicializa() {
 		pressaoUsuario = new PressaoUsuario();
-		pressaoLista = new ArrayList<>();
+		listaDePressao = new ArrayList<>();
 	}
 	
 	
 	public String alteraPressao() {
-		return "";
+		return "manterPressaoService";
 	}
 	
 	
@@ -60,5 +58,56 @@ public class ManterPressaoMB implements Serializable {
 	public boolean isAtualizacao(){
 		return pressaoUsuario != null && pressaoUsuario.getId() != null;
 	}
+
+
+	public GerenciarLoginMB getGerenciarLoginMB() {
+		return gerenciarLoginMB;
+	}
+
+
+	public void setGerenciarLoginMB(GerenciarLoginMB gerenciarLoginMB) {
+		this.gerenciarLoginMB = gerenciarLoginMB;
+	}
+
+
+	public PressaoUsuario getPressaoUsuario() {
+		return pressaoUsuario;
+	}
+
+
+	public void setPressaoUsuario(PressaoUsuario pressaoUsuario) {
+		this.pressaoUsuario = pressaoUsuario;
+	}
+
+
+	public ManterPressaoService getPressaoService() {
+		return pressaoService;
+	}
+
+
+	public void setPressaoService(ManterPressaoService pressaoService) {
+		this.pressaoService = pressaoService;
+	}
+
+
+	public List<PressaoUsuario> getListaDePressao() {
+		return listaDePressao;
+	}
+
+
+	public void setListaDePressao(List<PressaoUsuario> listaDePressao) {
+		this.listaDePressao = listaDePressao;
+	}
+
+
+	public List<PressaoArterial> getPressoes() {
+		return pressoes;
+	}
+
+
+	public void setPressoes(List<PressaoArterial> pressoes) {
+		this.pressoes = pressoes;
+	}
 	
+
 }
