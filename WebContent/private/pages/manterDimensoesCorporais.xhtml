@@ -24,16 +24,16 @@
 						
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="tipoMedida" value="Tipo da Medida" />
-							<p:selectOneMenu id="tipoMedida" value="#{manterDimensoesCorporaisMB.tipoMedidas}" style="width:300px">
-                			<f:selectItem itemLabel="Selecione o Tipo da Medida" itemValue="" noSelectionOption="true" />
+							<p:selectOneMenu id="tipoMedida" value="#{manterDimensoesCorporaisMB.tipoMedidas}" style="width:200px">
+                			<f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true" />
                 			<f:selectItems value="#{manterDimensoesCorporaisMB.tipoMedidas}" itemLabel="#{tipoMedida.descricao}" var="tipoMedida"/>
             				</p:selectOneMenu>
 						</h:panelGroup>
 						
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="udm" value="Unidade de Medida" />
-							<p:selectOneMenu id="udm" value="#{manterDimensoesCorporaisMB.valorMedida.udm}" style="width:300px" placeholder="Selecione a Unidade de Medida">
-                			<f:selectItem itemLabel="Selecione a Unidade de Medida" itemValue="" noSelectionOption="true"/>
+							<p:selectOneMenu id="udm" value="#{manterDimensoesCorporaisMB.valorMedida.udm}" style="width:200px">
+                			<f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true"/>
                 			<f:selectItems value="#{manterDimensoesCorporaisMB.udm}" itemLabel="#{udm.descricao}" var="udm"/>
             				</p:selectOneMenu>
 						</h:panelGroup>
@@ -41,16 +41,17 @@
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="valorMedida" value="Valor Medida" />
 							<p:inputText id="valorMedida" styleClass="form-control" size="30"
-								style="width:250px; height:28px"
-								value="#{manterDimensoesCorporaisMB.valorMedida.medidaValor}"
-								placeholder="Informe o Valor da Medida" />
+								style="width:200px; height:28px"
+								value="#{manterDimensoesCorporaisMB.valorMedida.medidaValor}">
+								 <f:validateDoubleRange minimum="0.0"/>
+							</p:inputText>
 	    				</h:panelGroup>
 						
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="data_medida"
 								value="Data da Medida" />
 							<br/>
-							<p:calendar id="data_medida" style="width:300px"
+							<p:calendar id="data_medida" style="width:200px"
 								value="#{manterDimensoesCorporaisMB.valorMedida.dataMedida}"
 								pattern="dd/MM/yyyy HH:mm:ss"
 								placeholder="Informe a data da Medida"

@@ -67,7 +67,11 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 		medidas = new ArrayList<>();
 	}
 
-
+	
+	public boolean isAtualizacao(){
+		return valorMedida != null && valorMedida.getId() != null;
+	}
+	
 	public void busca(){
 		medidas = dimensoesService.busca(criterioTipoDimensao);
 	}
