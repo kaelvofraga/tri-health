@@ -47,7 +47,7 @@ insert into TipoAtividade(id, nome) values (2, 'Ciclismo');
 insert into TipoAtividade(id, nome) values (3, 'Dança');
 
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (1, 'Jogging', 7, 1);
-insert into Atividade(id, descricao, MET, tipoAtividade_id) values (2, 'Correndo', 8, 1);
+insert into Atividade(id, descricao, MET, tipoAtividade_id) values (2, 'Correndo em 5 mph (8 quilometros por hora)', 8, 1);
 
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (3, 'BMX ou Mountain Bike', 8.5, 2);
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (4, 'Pedalando para o trabalho ou por diversão', 4, 2);
