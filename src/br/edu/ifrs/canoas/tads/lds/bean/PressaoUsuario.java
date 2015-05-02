@@ -24,7 +24,7 @@ public class PressaoUsuario extends BaseEntity<Long> implements Serializable{
 	
 	@NotNull @ManyToOne
 	@JoinColumn(name="PRESSAOARTERIAL_ID")
-	private PressaoArterial pressaoArterial;
+	private PressaoArterial pressaoArterial = new PressaoArterial();
 	
 	@NotNull @ManyToOne 
 	@JoinColumn(name="USUARIO_ID")
