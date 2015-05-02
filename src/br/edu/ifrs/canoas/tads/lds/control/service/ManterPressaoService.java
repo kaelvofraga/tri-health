@@ -28,7 +28,7 @@ public class ManterPressaoService {
 
 	public boolean salvaPressaoUsuario(PressaoUsuario pressaoUsuario) {
 		pressaoUsuarioDAO.insere(pressaoUsuario);
-		//Mensagens.define(FacesMessage.SEVERITY_INFO,null);
+		Mensagens.define(FacesMessage.SEVERITY_INFO,"pressao.cadastro.sucesso");
 		return true;
 	}
 

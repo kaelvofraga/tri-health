@@ -19,7 +19,7 @@
 								value="Pressão Arterial Sistólica:" />
 							<p:inputText id="paSistolica" styleClass="form-control"
 								var="pressaoUsuario" itemLabel="#{pressaoUsuario}"
-								itemValue="#{manterPressaoMB.pressaoUsuario.pressaoArterial.paSistolica}"
+								value="#{manterPressaoMB.pressaoUsuario.pressaoArterial.paSistolica}"
 								placeholder="Exemplo: 130" />
 						</h:panelGroup>
 
@@ -29,7 +29,7 @@
 								value="Pressão Arterial Diastólica:" />
 							<p:inputText id="paDiastolica" styleClass="form-control"
 								var="pressaoUsuario" itemLabel="#{pressaoUsuario}"
-								itemValue="#{manterPressaoMB.pressaoUsuario.pressaoArterial.paDiastolica}"
+								value="#{manterPressaoMB.pressaoUsuario.pressaoArterial.paDiastolica}"
 								placeholder="Exemplo: 80" />
 						</h:panelGroup>
 					</h:panelGrid>
@@ -39,11 +39,11 @@
 							<p:outputLabel for="pulso" value="Pulso:" />
 							<p:inputText id="pulso" styleClass="form-control" var="pulso"
 								itemLabel="#{pressaoUsuario}"
-								itemValue="#{manterPressaoMB.pressaoUsuario.pressaoArterial.pulso}"
+								value="#{manterPressaoMB.pressaoUsuario.pressaoArterial.pulso}"
 								placeholder="Exemplo: 70" />
 						</h:panelGroup>
 
-						<!-- >h:panelGroup layout="block" styleClass="form-group">
+						<h:panelGroup layout="block" styleClass="form-group">
 
 							<p:outputLabel for="batimentoIrregular"
 								value="Batimento Irregular?" />
@@ -54,7 +54,7 @@
 								<f:selectItem id="Nao" itemLabel="Não" itemValue="N" />
 								<f:selectItem id="Sim" itemLabel="Sim" itemValue="S" />
 							</p:selectOneMenu>
-						</h:panelGroup  -->
+						</h:panelGroup>
 
 						<h:panelGroup layout="block" styleClass="form-group pull-right">
 							<p:outputLabel for="data" value="Data:" />
@@ -62,7 +62,7 @@
 							<p:calendar id="data" pattern="dd/MM/yyyy HH:mm:ss"
 								placeholder="Selecione uma Data" effect="fold"
 								icon="glyphicon-calendar" var="atividadeUsuario"
-								itemLabel="#{pressaoUsuario}" itemValue="#{manterPressaoMB.pressaoUsuario.data}" />
+								itemLabel="#{pressaoUsuario}" value="#{manterPressaoMB.pressaoUsuario.data}" />
 						</h:panelGroup>
 
 					</h:panelGrid>
@@ -72,7 +72,7 @@
 						<br />
 						<p:inputTextarea id="notas" rows="6" cols="110"
 							var="pressaoUsuario" itemLabel="#{pressaoUsuario}"
-							itemValue="#{manterPressaoMB.pressaoUsuario.notas}"
+							value="#{manterPressaoMB.pressaoUsuario.notas}"
 							placeholder="Escreva alguma observação aqui... ;)" />
 					</h:panelGroup>
 
