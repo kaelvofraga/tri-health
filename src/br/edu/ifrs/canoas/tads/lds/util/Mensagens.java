@@ -1,5 +1,5 @@
 package br.edu.ifrs.canoas.tads.lds.util;
-
+/**/
 import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
