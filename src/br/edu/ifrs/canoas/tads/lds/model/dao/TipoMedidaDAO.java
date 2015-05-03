@@ -14,7 +14,11 @@ import br.edu.ifrs.canoas.tads.lds.bean.ValorMedidaUsuario;
 @Stateless
 public class TipoMedidaDAO extends BaseDAO< TipoMedida, Long>{
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -4135102423252874690L;
+
 
 	
 	

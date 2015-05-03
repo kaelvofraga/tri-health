@@ -33,4 +33,5 @@ public class TipoMedida extends BaseEntity<Long> implements Serializable {
 		this.descricao = descricao;
 	}	
 	
+	
 }

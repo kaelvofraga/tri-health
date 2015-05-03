@@ -7,6 +7,7 @@ import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
+import br.edu.ifrs.canoas.tads.lds.bean.Udm;
 import br.edu.ifrs.canoas.tads.lds.bean.ValorMedidaUsuario;
 import br.edu.ifrs.canoas.tads.lds.model.dao.TipoMedidaDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.UdmDAO;
@@ -32,7 +33,6 @@ public class ManterDimensoesCorporaisService {
 	}
 	
 	public boolean salvaMedidaUsuario(ValorMedidaUsuario medidaUsuario) {
-		
 		valorMedidaDAO.insere(medidaUsuario);
 		Mensagens.define(FacesMessage.SEVERITY_INFO, "manterDimensoesCorporais.cadastro.sucesso");
 		return true;

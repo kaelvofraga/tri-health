@@ -23,7 +23,7 @@
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="tipo_medida" value="Tipo:" />
 							<p:selectOneMenu id="tipo_medida"
-								value="#{manterDimensoesCorporaisMB.tipoMedida}" style="width:100%;"
+								value="#{manterDimensoesCorporaisMB.valorMedidaUsuario.tipoMedida}" style="width:100%;"
 								required="true" requiredMessage="Um tipo para a medida deve ser escolhido." >
 								<p:ajax listener="#{manterDimensoesCorporaisMB.onSelectTipoMedida}" />
 								<f:selectItem itemLabel="Selecione um tipo." itemValue=""
@@ -38,7 +38,7 @@
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="udm" value="Unidade de Medida:" />
 							<p:selectOneMenu id="udm"
-								value="#{manterDimensoesCorporaisMB.udm}" style="width:100%;"
+								value="#{manterDimensoesCorporaisMB.valorMedidaUsuario.udm}" style="width:100%;"
 								required="true" requiredMessage="Um tipo para a unidade de medida deve ser escolhido." >
 								<p:ajax listener="#{manterDimensoesCorporaisMB.onSelectUdm}" />
 								<f:selectItem itemLabel="Selecione uma unidade de medida" itemValue=""
