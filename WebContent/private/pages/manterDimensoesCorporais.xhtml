@@ -19,30 +19,29 @@
 		
 			<h:panelGroup layout="block" styleClass="form-group">
 				<h:panelGrid columns="2" styleClass="mtable">
-						
+												
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="tipo_medida" value="Tipo:" />
-							<br />
 							<p:selectOneMenu id="tipo_medida"
-								value="#{manterDimensoesCorporaisMB.tipoMedida}"
-								style="width: 100%;" 
-								required="true" requiredMessage="Um tipo para a atividade deve ser escolhida.">								
-								<p:ajax listener="#{manterDimensoesCorporaisMB.onTipoDimensoesChange}" />								
-								<f:selectItem itemLabel="Selecione o tipo da atividade."
-									itemValue="" noSelectionOption="true" />
-								<f:selectItems value="#{manterDimensoesCorporaisMB.tipoMedidasLista}"
-									var="tipoMedida" itemLabel="#{tipoMedida.descricao}" itemValue="#{tipoMedida}" />
+								value="#{manterDimensoesCorporaisMB.tipoMedida}" style="width:100%;"
+								required="true" requiredMessage="Um tipo para a medida deve ser escolhido." >
+								<p:ajax listener="#{manterDimensoesCorporaisMB.onSelectTipoMedida}" />
+								<f:selectItem itemLabel="Selecione um tipo." itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems
+									value="#{manterDimensoesCorporaisMB.tipoMedidasLista}"
+									var="tipoMedida" itemLabel="#{tipoMedida.descricao}"
+									itemValue="#{tipoMedida}" />
 							</p:selectOneMenu>
 						</h:panelGroup>
 						
-
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="udm" value="Unidade de Medida:" />
 							<p:selectOneMenu id="udm"
 								value="#{manterDimensoesCorporaisMB.udm}" style="width:100%;"
-								required="true" requiredMessage="Uma unidade de medida deve ser escolhida." >
-								<p:ajax listener="#{manterDimensoesCorporaisMB.onUdmChange}" />
-								<f:selectItem itemLabel="Selecione uma UDM." itemValue=""
+								required="true" requiredMessage="Um tipo para a unidade de medida deve ser escolhido." >
+								<p:ajax listener="#{manterDimensoesCorporaisMB.onSelectUdm}" />
+								<f:selectItem itemLabel="Selecione uma unidade de medida" itemValue=""
 									noSelectionOption="true" />
 								<f:selectItems
 									value="#{manterDimensoesCorporaisMB.udmLista}"
@@ -55,7 +54,7 @@
 							<p:outputLabel for="valorMedida" value="Valor Medida" />
 							<p:inputText id="valorMedida" styleClass="form-control" size="30"
 								style="width:200px; height:28px"
-								value="#{manterDimensoesCorporaisMB.valorMedida.medidaValor}">
+								value="#{manterDimensoesCorporaisMB.valorMedidaUsuario.medidaValor}">
 								 <f:validateDoubleRange minimum="0.0"/>
 							</p:inputText>
 	    				</h:panelGroup>
@@ -65,7 +64,7 @@
 								value="Data da Medida" />
 							<br/>
 							<p:calendar id="data_medida" style="width:200px"
-								value="#{manterDimensoesCorporaisMB.valorMedida.dataMedida}"
+								value="#{manterDimensoesCorporaisMB.valorMedidaUsuario.dataMedida}"
 								pattern="dd/MM/yyyy HH:mm:ss"
 								placeholder="Informe a data da Medida"
 								size="30" effect="fold" icon="glyphicon-calendar" />
@@ -78,33 +77,31 @@
 	    				<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="observacoes" value="Observações:" />
 							<br/>
-							<p:inputTextarea id="observacoes" 
-								rows="9" 
-								cols="79"
-								Value="#{manterDimensoesCorporaisMB.valorMedida.observacao}"
-								placeholder="Insira aqui sua observação " 
-							/>
+						     <p:inputTextarea id="observacoes" rows="1" cols="50" counter="obs" maxlength="100" 
+							counterTemplate="{0} caracteres disponíveis" value="#{manterDimensoesCorporaisMB.valorMedidaUsuario.observacao}" >
+							</p:inputTextarea>
+							<h:outputText id="obs" />
 						</h:panelGroup>
 						
-						<h:panelGroup layout="block" styleClass="form-group">
+						
+				<h:panelGroup layout="block" styleClass="form-group">
 	    					<p:commandButton value="Salvar"
 							rendered="#{not manterDimensoesCorporaisMB.atualizacao}"
-							action="#{manterDimensoesCorporaisMB.salvaDimensoes}" ajax="false"/>
-							
-							<p:commandButton value="Alterar"
+							action="#{manterDimensoesCorporaisMB.salvaDimensoes}" ajax="true"/>
+						<p:commandButton value="Alterar"
 							rendered="#{manterUsoMedicamentoMB.atualizacao}"
-							action="#{manterUsoMedicamentoMB.alteraMedicamento}" ajax="true" />
-							
-							<p:commandButton value="Voltar"
-							rendered="#{#}"
-							action="listarPerfilEmergencia" ajax="false"/>
-							
-							<p:commandButton value="Limpa" type="submit"
-							rendered="#{#}" 
-							action="#{manterPerfilEmergenciaMB.init}" ajax="true"
-							update="alergias" immediate="false" />
+						action="#{manterUsoMedicamentoMB.alteraMedicamento}" ajax="true" />
+						<p:commandButton value="Voltar"
+							rendered="#{manterUsoMedicamentoMB.atualizacao}"
+						action="listarUsoMedicamentos" ajax="false"/>
+						<p:commandButton value="Limpa" type="submit"
+							rendered="#{manterUsoMedicamentoMB.atualizacao}" 
+							action="#{manterUsoMedicamentoMB.init}" ajax="true"
+							update="medicamentos" immediate="false" />
 
-						</h:panelGroup>
+				</h:panelGroup>	
+					
+					
 			</h:panelGroup>
 		</p:tab>
 

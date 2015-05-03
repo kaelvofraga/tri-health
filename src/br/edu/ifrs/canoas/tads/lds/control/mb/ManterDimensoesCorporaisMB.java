@@ -48,6 +48,7 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	//Lista Dimensões
 	private List<ValorMedidaUsuario> medidas;
 	private TipoMedida tipoMedida;
+	
 	private List<TipoMedida> tipoMedidasLista;
 	private List<TipoMedida> tipoMedidasFiltrada;
 	
@@ -69,6 +70,8 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 		valorMedidaUsuario = new ValorMedidaUsuario();
 		criterioTipoDimensao = "";
 		medidas = new ArrayList<>();
+		tipoMedida = new TipoMedida();
+		udm = new Udm();
 	}
 
 	
@@ -117,6 +120,14 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 		}
 	}
 		
+	public void onSelectTipoMedida(){
+		valorMedidaUsuario.setTipoMedida(tipoMedida);
+	}
+	
+	public void onSelectUdm(){
+		valorMedidaUsuario.setUdm(udm);
+	}
+	
 	/*
 	 * GETTERS & SETTERS
 	 */
