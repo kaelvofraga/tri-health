@@ -2,8 +2,6 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
 import java.util.Date;
-
-import javax.inject.Inject;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -20,8 +18,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class MedicamentoUsuario extends BaseEntity<Long> implements Serializable {
 
-	private static final long serialVersionUID = 7372369677196846335L;
-	
+	private static final long serialVersionUID = 1754848302536341079L;
+
 	@NotNull @OneToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="MEDICAMENTO_ID")
 	private Medicamento medicamento= new Medicamento();
@@ -41,6 +39,7 @@ public class MedicamentoUsuario extends BaseEntity<Long> implements Serializable
 	private Date dataFimTratamento;
 	
 	@Temporal(TemporalType.TIMESTAMP)
+	@NotNull
 	private Date dataConsulta;
 	
 	private String situacao;
@@ -54,6 +53,10 @@ public class MedicamentoUsuario extends BaseEntity<Long> implements Serializable
 		super();
 	}
 
+	
+	
+	
+	/*GETTERS & SETTERS*/
 
 	public Medicamento getMedicamento() {
 		return medicamento;
@@ -153,8 +156,4 @@ public class MedicamentoUsuario extends BaseEntity<Long> implements Serializable
 	public void setDataConsulta(Date dataConsulta) {
 		this.dataConsulta = dataConsulta;
 	}
-
-	
-	
-
 }

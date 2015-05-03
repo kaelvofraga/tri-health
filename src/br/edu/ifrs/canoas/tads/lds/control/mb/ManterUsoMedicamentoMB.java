@@ -3,12 +3,11 @@ package br.edu.ifrs.canoas.tads.lds.control.mb;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterUsoMedicamentoService;
@@ -17,14 +16,15 @@ import br.edu.ifrs.canoas.tads.lds.control.service.ManterUsoMedicamentoService;
 @RequestScoped
 public class ManterUsoMedicamentoMB implements Serializable {
 
-	private static final String URL_LISTAR_USO_MEDICAMENTOS = "#";
-	private static final String URL_MANTER_USO_MEDICAMENTOS = "/private/pages/manterPerfilEmergencia.jsf";
-	private static final long serialVersionUID = 8840982087710515671L;
+	private static final long serialVersionUID = 6240201264929366814L;
+	private static final String URL_LISTAR_USO_MEDICAMENTOS = "/private/pages/listarUsoMedicamentos.jsf";
+	private static final String URL_MANTER_USO_MEDICAMENTOS = "/private/pages/manterUsoMedicamentos.jsf";
+	
 
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
-
-	@Inject MedicamentoUsuario medicamentoUsuario;
+ 
+	private MedicamentoUsuario medicamentoUsuario;
 	
 	@EJB
 	private ManterUsoMedicamentoService medicamentoService;
@@ -32,36 +32,39 @@ public class ManterUsoMedicamentoMB implements Serializable {
 	
 	private List<MedicamentoUsuario> medicamentosLista;
 	
+	private String criterioMedicamento;
+	
 	private List<Medicamento> medicamentos;
 	
-	public void inicializa() {
+	@PostConstruct
+	public void init(){
 		medicamentoUsuario = new MedicamentoUsuario();
+		criterioMedicamento="";
 		medicamentosLista = new ArrayList<>();
+		medicamentos = new ArrayList<>();
 	}
-	
-	
-	public String alteraMedicamento() {
-		return "manterUsoMedicamentos";
-	}
-	
 	
 	public void salvaMedicamento(){
 		medicamentoUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		medicamentoService.salvaMedicamentoUsuario(medicamentoUsuario);
-		this.inicializa();
+		this.init();
 	}
 	
+	public String alteraMedicamento() {
+		medicamentoService.alteraMedicamentoUsario(medicamentoUsuario);
+		return URL_LISTAR_USO_MEDICAMENTOS;
+	}
 	
-	/*public void excluiMedicamento(){
+	public String excluiMedicamento(){
 		medicamentoService.excluiMedicamento(medicamentoUsuario);
-		return "listarUsoMedicamentos";
-	}*/
+		this.busca();
+		return URL_LISTAR_USO_MEDICAMENTOS;
+	}
 	
 	
 	public boolean isAtualizacao(){
 		return medicamentoUsuario != null && medicamentoUsuario.getId() != null;
 	}
-	
 	
 	public List<Medicamento> completeMedicamento(String query){
 		if (medicamentos == null) 
@@ -78,16 +81,36 @@ public class ManterUsoMedicamentoMB implements Serializable {
         return medicamentosBusca;
 	}
 	
+	public void busca(){
+		medicamentosLista = medicamentoService.busca(criterioMedicamento);
+	}
 	
 	
+	/*GETTERS & SETTERS*/
+	public List<MedicamentoUsuario> getMedicamentosLista() {
+		return medicamentosLista;
+	}
 	
-	
-	
-	
-	
-	
-	
-	
+	public void setMedicamentosLista(List<MedicamentoUsuario> medicamentosLista) {
+		this.medicamentosLista = medicamentosLista;
+	}
+
+	public String getCriterioMedicamento() {
+		return criterioMedicamento;
+	}
+
+	public void setCriterioMedicamento(String criterioMedicamento) {
+		this.criterioMedicamento = criterioMedicamento;
+	}
+
+	public List<Medicamento> getMedicamentos() {
+		return medicamentos;
+	}
+
+	public void setMedicamentos(List<Medicamento> medicamentos) {
+		this.medicamentos = medicamentos;
+	}
+
 	public MedicamentoUsuario getMedicamentoUsuario() {
 		return medicamentoUsuario;
 	}
@@ -95,6 +118,5 @@ public class ManterUsoMedicamentoMB implements Serializable {
 	public void setMedicamentoUsuario(MedicamentoUsuario medicamentoUsuario) {
 		this.medicamentoUsuario = medicamentoUsuario;
 	}
-	
 
 }

@@ -5,9 +5,6 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.Length;
-
 /**
  * Entity implementation class for Entity: Medicamento
  *
@@ -15,9 +12,7 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 public class Medicamento extends BaseEntity<Long> implements Serializable {
 
-	private static final long serialVersionUID = 7372369677196846335L;
-	
-	
+	private static final long serialVersionUID = 5892853808532686182L;
 	@NotNull
 	private String nome;
 	
@@ -25,6 +20,8 @@ public class Medicamento extends BaseEntity<Long> implements Serializable {
 		super();
 	}
 
+	/*GETTERS & SETTERS*/
+	
 	public String getNome() {
 		return nome;
 	}

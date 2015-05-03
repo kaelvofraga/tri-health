@@ -2,18 +2,17 @@ package br.edu.ifrs.canoas.tads.lds.model.dao;
 
 
 import java.util.List;
-
 import javax.ejb.Stateless;
-
 import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
-import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 
 @Stateless
 public class MedicamentoDAO extends BaseDAO< Medicamento, Long>{
 
-	private static final long serialVersionUID = 6952030633247407774L;
+	private static final long serialVersionUID = -3548199147864190785L;
 
+
+	@SuppressWarnings("unchecked")
 	public List<Medicamento> buscaNomeMedicamentoPorUsuario(Usuario usuario) {
 		
 		return em.createQuery(
@@ -28,6 +27,7 @@ public class MedicamentoDAO extends BaseDAO< Medicamento, Long>{
 	}
 
 
+	@SuppressWarnings("unchecked")
 	public List<Medicamento> buscaPorNome(String nome) {
 		return em.createQuery(
 				"SELECT m " 

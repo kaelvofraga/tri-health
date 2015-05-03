@@ -12,54 +12,57 @@
 	<ui:define name="content">
 
 		<h1 class="lead">Uso de Medicamentos</h1>
-
 		
-				<h:panelGroup layout="block" id="medicamentos">
+		<p:accordionPanel multiple="true">
+			<p:tab title="Lista de Medicamentos">
+
+					<h:panelGroup layout="block" id="medicamentos">
 
 					<h:panelGroup layout="block" styleClass="form-group">
-						<p:outputLabel for="criterio_alergia" value="Pesquisa" />
-						<p:inputText id="criterio_alergia" styleClass="form-control"
-							value="#{manterPerfilEmergenciaMB.criterioAlergia}"
+						<p:outputLabel for="criterio_medicamento" value="Pesquisa" />
+						<p:inputText id="criterio_medicamento" styleClass="form-control"
+							value="#{manterUsoMedicamentoMB.criterioMedicamento}"
 							placeholder="Entre o critério de pesquisa aqui" />
 					</h:panelGroup>
 
 					<h:panelGroup layout="block" styleClass="form-group">
 						<p:commandButton value="Busca" type="submit"
-							action="#{manterPerfilEmergenciaMB.busca}" ajax="true"
-							update="tab-alergias" immediate="false" />
+							action="#{manterUsoMedicamentoMB.busca}" ajax="true"
+							update="tab-medicamentos" immediate="false" />
 						<p:commandButton value="Limpa" type="submit"
-							action="#{manterPerfilEmergenciaMB.init}" ajax="true"
-							update="tab-alergias,criterio_alergia" immediate="false" />
+							action="#{manterUsoMedicamentoMB.init}" ajax="true"
+							update="tab-medicamentos,criterio_medicamento" immediate="false" />
 					</h:panelGroup>
 
 
-					<p:dataTable var="alergia" id="tab-alergias"
-						value="#{manterPerfilEmergenciaMB.alergias}">
-						<p:column headerText="Medicamento">
+					<p:dataTable var="listMedicamento" id="tab-medicamentos"
+						value="#{manterUsoMedicamentoMB.medicamentosLista}">
+						<p:column headerText="Data Consulta">
 							<h:outputText
-								value="#{alergia.medicamentoUsuario.medicamento.nome}" />
+								value="#{listMedicamento.dataConsulta}" />
 						</p:column>
-						<p:column headerText="Reação">
-							<h:outputText value="#{alergia.reacao}" />
+						<p:column headerText="Medicamento">
+							<h:outputText value="#{listMedicamento.medicamento.nome}" />
 						</p:column>
-						<p:column headerText="Tipo">
-							<h:outputText value="#{alergia.tipoAlergia.descricao}" />
+						<p:column headerText="Dosagem">
+							<h:outputText value="#{listMedicamento.dosagem}" />
 						</p:column>
-
+						<p:column headerText="Frequencia">
+							<h:outputText value="#{listMedicamento.frequencia}" />
+						</p:column>
 						<p:column headerText="Editar">
-							<p:commandButton value="Editar" action="manterPerfilEmergencia">
-								<f:setPropertyActionListener value="#{alergia}"
-									target="#{manterPerfilEmergenciaMB.alergiaUsuario}" />
+							<p:commandButton value="Editar" action="manterUsoMedicamentos">
+								<f:setPropertyActionListener value="#{listMedicamento}"
+									target="#{manterUsoMedicamentoMB.medicamentoUsuario}" />
 							</p:commandButton>
 						</p:column>
-
 						<p:column headerText="Excluir">
-							<p:commandButton value="Excluir" type="submit" update="tab-alergias"
-								action="#{manterPerfilEmergenciaMB.excluiAlergia}">
-								<f:setPropertyActionListener value="#{alergia}"
-									target="#{manterPerfilEmergenciaMB.alergiaUsuario}" />
+							<p:commandButton value="Excluir" type="submit" update="tab-medicamentos"
+								action="#{manterUsoMedicamentoMB.excluiMedicamento}">
+								<f:setPropertyActionListener value="#{listMedicamento}"
+									target="#{manterUsoMedicamentoMB.medicamentoUsuario}" />
 								<p:confirm header="Confirmação"
-									message="Tem certeza que deseja apagar a alergia?"
+									message="Tem certeza que deseja apagar o medicamento?"
 									icon="ui-icon-alert" />
 							</p:commandButton>
 						</p:column>
@@ -76,7 +79,9 @@
 						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 				</p:confirmDialog>
 
+		</p:tab>
 
+		</p:accordionPanel>
 
 	</ui:define>
 </ui:composition>

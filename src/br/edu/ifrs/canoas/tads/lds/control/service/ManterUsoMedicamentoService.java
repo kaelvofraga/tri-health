@@ -26,9 +26,6 @@ public class ManterUsoMedicamentoService {
 	private MedicamentoDAO medicamentoDAO;
 	
 	
-	
-	
-	
 	public boolean salvaMedicamentoUsuario(MedicamentoUsuario medicamentoUsuario) {
 			
 		medicamentoUsuarioDAO.insere(medicamentoUsuario);
@@ -48,26 +45,20 @@ public class ManterUsoMedicamentoService {
 		
 		return medicamento;
 	}
-
-/* 
+ 
 	@SuppressWarnings("unchecked")
-	public List<AlergiaUsuario> busca(String criterioAlergia) {
-		if (StrUtil.isNotBlank(criterioAlergia))
-			return alergiaUsuarioDAO.buscaPorCriterio(criterioAlergia);
+	public List<MedicamentoUsuario> busca(String criterioMedicamento) {
+		if (StrUtil.isNotBlank(criterioMedicamento))
+			return medicamentoUsuarioDAO.buscaPorCriterio(criterioMedicamento);
 		else
-			return alergiaUsuarioDAO.buscaTodos();
-	}*/
+			return medicamentoUsuarioDAO.buscaTodos();
+	}
 
 	public List<Medicamento> buscaMedicamentos(String query, Usuario usuario) {
 		if (usuario != null && usuario.getId() != null)
 			return medicamentoDAO.buscaNomeMedicamentoPorUsuario(usuario);
 		return new ArrayList<Medicamento>();
 	}
-
-/*
-	public List<TipoAlergia> buscaDescricoesTipoAlergias() {
-		return  tipoAlergiaDAO.buscaTodos();
-	}*/
 
 
 	public void alteraMedicamentoUsario(MedicamentoUsuario medicamentoUsuario) {

@@ -13,9 +13,13 @@
 
 		<h1 class="lead">Histórico do Uso de Medicamentos</h1>
 		
-			<h:panelGroup layout="block" styleClass="form-group">
+		<p:accordionPanel multiple="true">
+	    <p:tab title="Medicamento">
+	    
+		<h:panelGroup layout="block" id="medicamentos">
 		
 				<h:panelGrid columns="2" styleClass="mtable">
+				
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="data_consulta"
 								value="Data da Consulta" />
@@ -24,6 +28,7 @@
 								value="#{manterUsoMedicamentoMB.medicamentoUsuario.dataConsulta}"
 								pattern="dd/MM/yyyy HH:mm:ss"
 								placeholder="Informe a data da consulta"
+								required="true" requiredMessage="Uma data de consulta deve ser informada."
 								size="40" effect="fold" icon="glyphicon-calendar" />
 	   					</h:panelGroup>
 	  
@@ -36,7 +41,9 @@
 								completeMethod="#{manterUsoMedicamentoMB.completeMedicamento}"
 								var="medicamento" itemLabel="#{medicamento}"
 								itemValue="#{medicamento.nome}"
-								placeholder="Informe o medicamento" />
+								placeholder="Informe o medicamento" 
+								required="true" requiredMessage="Um nome de medicamento deve ser informado."
+								/>
 							
 	    				</h:panelGroup>
 	    
@@ -64,7 +71,8 @@
 								value="#{manterUsoMedicamentoMB.medicamentoUsuario.dataInicioTratamento}"
 								pattern="dd/MM/yyyy HH:mm:ss"
 								placeholder="Informe a data de inicio do tratamento"
-								size="40" effect="fold" icon="glyphicon-calendar" />
+								size="40" effect="fold" icon="glyphicon-calendar"
+								required="true" requiredMessage="Uma data de inicio de tratamento deve ser informada."/>
 	    		</h:panelGroup>
 	    
 	    		<h:panelGroup layout="block" styleClass="form-group">
@@ -75,29 +83,42 @@
 								value="#{manterUsoMedicamentoMB.medicamentoUsuario.dataFimTratamento}"
 								pattern="dd/MM/yyyy HH:mm:ss"
 								placeholder="Informe a data de termino do tratamento"
-								size="40" effect="fold" icon="glyphicon-calendar"/>
+								size="40" effect="fold" icon="glyphicon-calendar"
+								required="true" requiredMessage="Uma data de termino de tratamento deve ser informada."/>
 	    		</h:panelGroup>
+	    		
+	    		<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="nota" value="Nota:" />
+							<br/>
+						     <p:inputTextarea id="nota" rows="1" cols="50" counter="counter" maxlength="100" 
+							counterTemplate="{0} characters remaining" value="#{manterUsoMedicamentoMB.medicamentoUsuario.nota}" >
+							</p:inputTextarea>
+							<h:outputText id="counter" />
+				</h:panelGroup>
 	    		
 	    	</h:panelGrid>
 	    
 	    		<h:panelGroup layout="block" styleClass="form-group">
 	    					<p:commandButton value="Salvar"
 							rendered="#{not manterUsoMedicamentoMB.atualizacao}"
-							action="#{manterUsoMedicamentoMB.salvaMedicamento}" ajax="false"/>
+							action="#{manterUsoMedicamentoMB.salvaMedicamento}" ajax="true"/>
 						<p:commandButton value="Alterar"
 							rendered="#{manterUsoMedicamentoMB.atualizacao}"
 						action="#{manterUsoMedicamentoMB.alteraMedicamento}" ajax="true" />
 						<p:commandButton value="Voltar"
-							rendered="#{#}"
-						action="listarPerfilEmergencia" ajax="false"/>
+							rendered="#{manterUsoMedicamentoMB.atualizacao}"
+						action="listarUsoMedicamentos" ajax="false"/>
 						<p:commandButton value="Limpa" type="submit"
-							rendered="#{#}" 
-							action="#{manterPerfilEmergenciaMB.init}" ajax="true"
-							update="alergias" immediate="false" />
+							rendered="#{manterUsoMedicamentoMB.atualizacao}" 
+							action="#{manterUsoMedicamentoMB.init}" ajax="true"
+							update="medicamentos" immediate="false" />
 
 				</h:panelGroup>
 				
 			</h:panelGroup>
+			
+			</p:tab>
+		</p:accordionPanel>
 		
 	</ui:define>
 </ui:composition>
