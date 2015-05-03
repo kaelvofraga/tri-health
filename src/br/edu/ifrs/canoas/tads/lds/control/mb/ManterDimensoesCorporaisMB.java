@@ -23,10 +23,8 @@ import br.edu.ifrs.canoas.tads.lds.control.service.ManterUdmService;
 @RequestScoped
 public class ManterDimensoesCorporaisMB implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1887636678868732432L;
+	private static final long serialVersionUID = 2356931811611360673L;
+
 	private static final String URL_LISTAR_DIMENSOES_CORPORAIS = "/private/pages/listarDimensoesCorporais.jsf";
 	private static final String URL_MANTER_DIMENSOES_CORPORAIS = "/private/pages/manterDimensoesCorporais.jsf";
 	
@@ -52,7 +50,10 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	private TipoMedida tipoMedida;
 	private List<TipoMedida> tipoMedidasLista;
 	private List<TipoMedida> tipoMedidasFiltrada;
-	private List<Udm> udm;
+	
+	private Udm udm;
+	private List<Udm> udmLista;
+	private List<Udm> udmListaFiltrada;
 	
 
 
@@ -100,19 +101,34 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 			tipoMedidasFiltrada = new ArrayList<>();
 		}
 	}
+	
+	public void onUdmChange(){
+		udmListaFiltrada.clear();
+
+		if (udm != null && udm.getId() != null){
+			for (int i = 0; i < udmLista.size(); i++) {
+				Udm u = udmLista.get(i);
+				if(u.getId() == udm.getId()) {
+					udmListaFiltrada.add(u);
+				}
+			}						
+		}else{
+			udmListaFiltrada = new ArrayList<>();
+		}
+	}
 		
 	/*
 	 * GETTERS & SETTERS
 	 */
 	
-	public List<Udm> getUdm() {
-		if(udm == null)
-			udm = manterUdmService.buscaUdm();
-		return udm;
+	public List<Udm> getUdmLista() {
+		if(udmLista == null)
+			udmLista = manterUdmService.buscaUdm();
+		return udmLista;
 	}
 
-	public void setUdm(List<Udm> udm) {
-		this.udm = udm;
+	public void setUdmLista(List<Udm> udmLista) {
+		this.udmLista = udmLista;
 	}
 	
 	public List<TipoMedida> getTipoMedidasLista() {
@@ -135,11 +151,11 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 		this.dimensoesService = dimensoesService;
 	}
 
-	public ValorMedidaUsuario getValorMedida() {
+	public ValorMedidaUsuario getValorMedidaUsuario() {
 		return valorMedidaUsuario;
 	}
 
-	public void setValorMedida(ValorMedidaUsuario valorMedidaUsuario) {
+	public void setValorMedidaUsuario(ValorMedidaUsuario valorMedidaUsuario) {
 		this.valorMedidaUsuario = valorMedidaUsuario;
 	}
 
@@ -173,6 +189,22 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 
 	public void setTipoMedidasFiltrada(List<TipoMedida> tipoMedidasFiltrada) {
 		this.tipoMedidasFiltrada = tipoMedidasFiltrada;
+	}
+
+	public List<Udm> getUdmListaFiltrada() {
+		return udmListaFiltrada;
+	}
+
+	public void setUdmListaFiltrada(List<Udm> udmListaFiltrada) {
+		this.udmListaFiltrada = udmListaFiltrada;
+	}
+
+	public Udm getUdm() {
+		return udm;
+	}
+
+	public void setUdm(Udm udm) {
+		this.udm = udm;
 	}
 	
 	

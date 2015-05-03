@@ -19,7 +19,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class TipoMedida extends BaseEntity<Long> implements Serializable {
 
-	private static final long serialVersionUID = -2886415432327494685L;
+	private static final long serialVersionUID = -5430266548612906186L;
+
 	
 	@NotNull 
 	private String descricao;
