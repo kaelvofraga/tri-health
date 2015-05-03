@@ -27,7 +27,7 @@
 								value="#{manterDimensoesCorporaisMB.tipoMedida}"
 								style="width: 100%;" 
 								required="true" requiredMessage="Um tipo para a atividade deve ser escolhida.">								
-								<p:ajax listener="#{manterDimensoesCorporaisMB.onTipoDimensoesChange}" update="" />								
+								<p:ajax listener="#{manterDimensoesCorporaisMB.onTipoDimensoesChange}" />								
 								<f:selectItem itemLabel="Selecione o tipo da atividade."
 									itemValue="" noSelectionOption="true" />
 								<f:selectItems value="#{manterDimensoesCorporaisMB.tipoMedidasLista}"
@@ -35,12 +35,20 @@
 							</p:selectOneMenu>
 						</h:panelGroup>
 						
+
 						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel for="udm" value="Unidade de Medida" />
-							<p:selectOneMenu id="udm" value="#{manterDimensoesCorporaisMB.valorMedida.udm}" style="width:200px">
-                			<f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true"/>
-                			<f:selectItems value="#{manterDimensoesCorporaisMB.udm}" itemLabel="#{udm.descricao}" var="udm"/>
-            				</p:selectOneMenu>
+							<p:outputLabel for="udm" value="Unidade de Medida:" />
+							<p:selectOneMenu id="udm"
+								value="#{manterDimensoesCorporaisMB.udm}" style="width:100%;"
+								required="true" requiredMessage="Uma unidade de medida deve ser escolhida." >
+								<p:ajax listener="#{manterDimensoesCorporaisMB.onUdmChange}" />
+								<f:selectItem itemLabel="Selecione uma UDM." itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems
+									value="#{manterDimensoesCorporaisMB.udmLista}"
+									var="udm" itemLabel="#{udm.descricao}"
+									itemValue="#{udm}" />
+							</p:selectOneMenu>
 						</h:panelGroup>
 						
 						<h:panelGroup layout="block" styleClass="form-group">

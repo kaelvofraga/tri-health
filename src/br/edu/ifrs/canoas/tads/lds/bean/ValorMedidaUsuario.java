@@ -14,7 +14,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class ValorMedidaUsuario extends BaseEntity<Long> implements Serializable {
 
-private static final long serialVersionUID = 3616123664819931225L;
+
+	private static final long serialVersionUID = 568800589620367270L;
 
 @NotNull @OneToOne
 @JoinColumn(name="UDM_ID")

@@ -19,8 +19,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Udm extends BaseEntity<Long> implements Serializable {
 
-	
-	private static final long serialVersionUID = 1392486240999537103L;
+	private static final long serialVersionUID = 2714240086533052657L;
 
 	@NotNull 
 	private String descricao;
