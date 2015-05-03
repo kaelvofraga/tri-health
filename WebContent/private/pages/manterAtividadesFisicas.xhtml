@@ -31,7 +31,7 @@
 								<f:selectItem itemLabel="Selecione o tipo da atividade."
 									itemValue="" noSelectionOption="true" />
 								<f:selectItems value="#{manterAtividadesMB.tipoAtividadeList}"
-									var="tipoAtividade" itemLabel="#{tipoAtividade.nome}" itemValue = "#{tipoAtividade}" />
+									var="tipoAtividade" itemLabel="#{tipoAtividade.nome}" itemValue="#{tipoAtividade}" />
 							</p:selectOneMenu>
 						</h:panelGroup>
 					</h:panelGroup>
@@ -81,7 +81,9 @@
 								placeholder="Hora de início."
 								effect="fold" icon="glyphicon-calendar" 
 								required="true" 
-								requiredMessage="Uma data inicial deve ser escolhida."/>
+								requiredMessage="Uma data inicial deve ser escolhida.">
+								<p:ajax event="dateSelect" listener="#{manterAtividadesMB.onDataChange}" update="inicio, fim"/>
+							</p:calendar>
 						</h:panelGroup>
 
 						<h:panelGroup layout="block" styleClass="form-group">
@@ -96,7 +98,9 @@
 								placeholder="Hora de finalização."
 								effect="fold" icon="glyphicon-calendar" 
 								required="true" 
-								requiredMessage="Uma data final deve ser escolhida."/>
+								requiredMessage="Uma data final deve ser escolhida." >
+								<p:ajax event="dateSelect" listener="#{manterAtividadesMB.onDataChange}" update="inicio, fim"/>
+							</p:calendar>
 						</h:panelGroup>
 
 						<h:panelGroup layout="block" styleClass="form-group pull-right" style="margin-right: 5px;">																	
@@ -128,7 +132,7 @@
 								action="#{manterAtividadesMB.salvaAtividadeUsuario}" ajax="true"
 								icon="ui-icon-disk" update="panel"/>
 
-							<p:commandButton value="Editar"
+							<p:commandButton value="Salvar alterações"
 								rendered="#{manterAtividadesMB.atualizacao}"
 								action="#{manterAtividadesMB.alteraAtividadeUsuario}"
 								ajax="true" icon="ui-icon-pencil" />

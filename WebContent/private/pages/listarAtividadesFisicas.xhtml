@@ -21,45 +21,67 @@
 					<h:panelGroup layout="block" styleClass="form-group">
 						<p:outputLabel for="criterio_atividade" value="Pesquisa" />
 						<p:inputText id="criterio_atividade" styleClass="form-control"
-							value="" placeholder="Entre o critério de pesquisa aqui" />
+							value="#{manterAtividadesMB.criterioAtividadeUsuario}" 
+							placeholder="Entre o critério de pesquisa aqui" />
 					</h:panelGroup>
 
 					<h:panelGroup layout="block" styleClass="form-group">
 
-						<p:commandButton value="Busca" type="submit" action="#"
+						<p:commandButton value="Busca" type="submit" action="#{manterAtividadesMB.busca}"
 							ajax="true" update="tab-atividades" immediate="false" icon="ui-icon-search" />
 
-						<p:commandButton value="Limpa" type="submit" action="#"
+						<p:commandButton value="Limpa" type="submit" action="#{manterAtividadesMB.clearTable}"
 							ajax="true" update="tab-atividades,criterio_atividade"
 							immediate="false" icon="ui-icon-refresh" />
 
 					</h:panelGroup>
 
-					<p:dataTable selectionMode="single"
-						emptyMessage="Nenhum Registro Encontrado." var="atividadeUsuario"
-						id="tab-atividades">
-						
-						<p:column headerText="Atividade">
-							<h:outputText value="#{atividadeUsuario.atividade.descricao}" />
+					<p:dataTable 
+						id="tab-atividades" 
+						selectionMode="single"
+						emptyMessage="Nenhum Registro Encontrado." 
+						var="atividadeUsuario"
+						selection="#{manterAtividadesMB.atividadeUsuario}"
+						value="#{manterAtividadesMB.atividadeUsuarioList}" 
+						rowKey="#{atividadeUsuario.id}"
+						reflow="true" >
+
+						<p:column style="width:48px;text-align: center">
+							<p:commandButton
+								icon="ui-icon-search"
+								title="View"
+								action="#{manterAtividadesMB.editarAtividadeUsuario}"
+								ajax="true" >
+								<f:setPropertyActionListener value="#{atividadeUsuario}"
+									target="#{manterAtividadesMB.atividadeUsuario}" />
+							</p:commandButton>
 						</p:column>
 
-						<p:column headerText="Data">
-							<h:outputText value="#{atividadeUsuario.dataInicio}" />
+						<p:column headerText="Atividade" id="colAtividade" style="width:45%;">
+							<h:outputText
+								value="#{atividadeUsuario.atividade.descricao}" />
 						</p:column>
 
-						<p:column headerText="Minutos">
-							<h:outputText value="" />
+						<p:column headerText="Data" id="colData">
+							<h:outputText
+								value="#{atividadeUsuario.dataInicio}" />
 						</p:column>
 
-						<p:column headerText="Calorias Queimadas">
-							<h:outputText value="" />						
-						</p:column>						
+						<p:column headerText="Minutos" id="colMinutos">
+							<h:outputText
+								value="#{atividadeUsuario.duracao}" />
+						</p:column>
+
+						<p:column headerText="Calorias Queimadas" id="colCalorias">
+							<h:outputText
+								value="#{atividadeUsuario.calorias}" />
+						</p:column>
 					</p:dataTable>
 					<br />
 
 				</h:panelGroup>
 
-				<p:commandButton value="Nova" icon="ui-icon-plus" ajax="true" />
+				<p:commandButton value="Nova" action="#{manterAtividadesMB.novaAtividadeUsuario}" icon="ui-icon-plus" ajax="true" />
 
 			</p:tab>
 

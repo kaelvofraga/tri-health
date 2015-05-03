@@ -48,6 +48,16 @@ public class ManterAtividadesService {
 				
 		return  atividadeUsuario.getAtividade().getMET() * massaCorporal *  (atividadeUsuario.getDuracao()/60.0);
 	}
+	
+	public boolean validaData(AtividadeUsuario atividadeUsuario) {
+		atividadeUsuario.setDuracao(calculaDuracao(atividadeUsuario));
+		if(atividadeUsuario.getDuracao() <= 0L){
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					"Atividade.cadastro.erro.dataFinalMenor");
+			return false;
+		}
+		return true;
+	}
 
 	public boolean salvaAtividadeUsuario(AtividadeUsuario atividadeUsuario) {
 		if (atividadeUsuario == null || 
@@ -58,19 +68,7 @@ public class ManterAtividadesService {
 					"Atividade.cadastro.erro");
 			return false;
 		}
-		
-		if(atividadeUsuario.getDuracao() == 0L){
-			atividadeUsuario.setDuracao(calculaDuracao(atividadeUsuario));
-			if(atividadeUsuario.getDuracao() <= 0L){
-				Mensagens.define(FacesMessage.SEVERITY_ERROR,
-						"Atividade.cadastro.erro.dataFinalMenor");
-				return false;
-			}
-		}
-		
-		if(atividadeUsuario.getCalorias() == 0.0)
-			atividadeUsuario.setCalorias(calculaCaloriasQueimadas(atividadeUsuario));
-		
+						
 		atividadeUsuarioDAO.insere(atividadeUsuario);
 		Mensagens.define(FacesMessage.SEVERITY_INFO,
 				"Atividade.cadastro.sucesso");
@@ -99,16 +97,27 @@ public class ManterAtividadesService {
 
 	public List<AtividadeUsuario> buscaGeral(String criterioAlergia,
 			Usuario usuario) {
-
+		
+		List<AtividadeUsuario> auList = null;
+		
 		if (usuario == null)
 			return null;
 
 		if (StrUtil.isNotBlank(criterioAlergia)) {
-			return atividadeUsuarioDAO.buscaPorCriterio(criterioAlergia,
+			auList = atividadeUsuarioDAO.buscaPorCriterio(criterioAlergia,
 					usuario);
 		} else {
-			return atividadeUsuarioDAO.buscaAtividadesDoUsuario(usuario);
+			auList = atividadeUsuarioDAO.buscaAtividadesDoUsuario(usuario);			
 		}
+		
+		if(auList != null){
+			for(AtividadeUsuario au: auList){
+				au.setDuracao(calculaDuracao(au));
+				au.setCalorias(calculaCaloriasQueimadas(au));
+			}
+		}
+		
+		return auList;
 	}
 
 	@SuppressWarnings("unchecked")

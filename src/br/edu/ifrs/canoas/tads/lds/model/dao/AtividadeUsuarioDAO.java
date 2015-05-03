@@ -26,17 +26,17 @@ public class AtividadeUsuarioDAO extends BaseDAO<AtividadeUsuario, Long>
 
 	@SuppressWarnings("unchecked")
 	public List<AtividadeUsuario> buscaPorCriterio(String criterio, Usuario usuario) {
-		try {
-			return em
-					.createQuery(
-							"SELECT au "
-									+ "FROM AtividadeUsuario au "
-									+ "WHERE lower(au.notas) like '%" + criterio.trim().toLowerCase() + "%' "
-									+ "OR lower(au.atividade.descricao) like '%" + criterio.trim().toLowerCase() + "%' "
-									+ "OR lower(au.atividade.tipoAtividade.nome) like '%" + criterio.trim().toLowerCase() + "%' "
-									+ "AND au.usuario.id = :usuario" 
-									+ "ORDER BY au.dataInicio").setParameter("usuario", usuario.getId()).getResultList();
-
+		try {	
+			String str = "SELECT au FROM AtividadeUsuario au WHERE lower(au.notas) like '%"; 
+			str+= criterio.trim().toLowerCase(); 
+			str+="%' OR lower(au.atividade.descricao) like '%" ;
+			str+=criterio.trim().toLowerCase();
+			str+="%' OR lower(au.atividade.tipoAtividade.nome) like '%"; 
+			str+=criterio.trim().toLowerCase();
+			str+="%' AND au.usuario.id = :usuario ORDER BY au.dataInicio";
+						
+			return em.createQuery(str).setParameter("usuario", usuario.getId()).getResultList();
+			
 		} catch (IllegalArgumentException e) {
 			return null;
 		}

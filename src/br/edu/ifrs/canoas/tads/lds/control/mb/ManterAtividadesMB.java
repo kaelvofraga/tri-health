@@ -29,7 +29,7 @@ public class ManterAtividadesMB implements Serializable {
 	private GerenciarLoginMB gerenciarLoginMB;
 
 	@EJB
-	private ManterAtividadesService atvsService; //< atv = atividade 
+	private ManterAtividadesService atvUsuarioService;
 	
 	//Beans
 	private AtividadeUsuario atividadeUsuario;	
@@ -40,7 +40,7 @@ public class ManterAtividadesMB implements Serializable {
 
 	//Lista Atividades do Usuario
 	private List<AtividadeUsuario> atividadeUsuarioList;
-	private String criterioAtv;
+	private String criterioAtividadeUsuario;
 
 	//Form Atividades do Usuario
 	private List<Atividade> atividadeList;
@@ -62,27 +62,27 @@ public class ManterAtividadesMB implements Serializable {
 			tipoAtividade = new TipoAtividade();
 		
 		/** Busca **/
-		if(criterioAtv == null || criterioAtv.length() == 0)
-			criterioAtv = "";
+		if(criterioAtividadeUsuario == null || criterioAtividadeUsuario.length() == 0)
+			criterioAtividadeUsuario = "";
 		
 		/** Listas **/
 		if(atividadeUsuarioList == null)
 			atividadeUsuarioList = new ArrayList<>();	
 		if(tipoAtividadeList == null)
-			tipoAtividadeList = atvsService.buscaNomeTipoAtividades();
+			tipoAtividadeList = atvUsuarioService.buscaNomeTipoAtividades();
 		if(atividadeList == null)
-			atividadeList = atvsService.buscaDescricoesAtividades();
+			atividadeList = atvUsuarioService.buscaDescricoesAtividades();
 		if(atividadeListFiltrada == null)
 			atividadeListFiltrada = new ArrayList<>();
 	}
 
 	public void busca(){
-		atividadeUsuarioList = atvsService.buscaGeral(criterioAtv, gerenciarLoginMB.getUsuario());
+		atividadeUsuarioList = atvUsuarioService.buscaGeral(criterioAtividadeUsuario, gerenciarLoginMB.getUsuario());
 	}
 	
 	/*public List<Atividade> completeAtividades(String query){
 		if (atividadeList == null) 
-			atividadeList = atvsService.buscaDescricoesAtividades();
+			atividadeList = atvUsuarioService.buscaDescricoesAtividades();
 
 		List<Atividade> atividadeListFiltradas = new ArrayList<>();
          
@@ -97,7 +97,7 @@ public class ManterAtividadesMB implements Serializable {
 	
 	public List<TipoAtividade> completeTipoAtividade(String query){
 		if (tipoAtividadeList == null)
-			tipoAtividadeList = atvsService.buscaNomeTipoAtividades();	
+			tipoAtividadeList = atvUsuarioService.buscaNomeTipoAtividades();	
 		
 		List<TipoAtividade> tiposFiltradas = new ArrayList<>();
         
@@ -112,7 +112,7 @@ public class ManterAtividadesMB implements Serializable {
 	
 	public void salvaAtividadeUsuario(){
 		atividadeUsuario.setUsuario(gerenciarLoginMB.getUsuario());
-		if(atvsService.salvaAtividadeUsuario(atividadeUsuario))
+		if(atvUsuarioService.salvaAtividadeUsuario(atividadeUsuario))
 			this.clear();
 	}
 	
@@ -122,47 +122,47 @@ public class ManterAtividadesMB implements Serializable {
 		atividade = new Atividade();	
 		tipoAtividade = new TipoAtividade();
 
-		/** Busca **/
-		criterioAtv = "";
-
 		/** Listas **/
-		atividadeUsuarioList = new ArrayList<>();	
-		tipoAtividadeList = atvsService.buscaNomeTipoAtividades();
-		atividadeList = atvsService.buscaDescricoesAtividades();
+		tipoAtividadeList = atvUsuarioService.buscaNomeTipoAtividades();
+		atividadeList = atvUsuarioService.buscaDescricoesAtividades();
 		atividadeListFiltrada = new ArrayList<>();		
+	}
+	
+	public void clearTable(){
+		/** POJO **/
+		atividadeUsuario = new AtividadeUsuario();
+
+		/** Zera critério de filtro **/
+		criterioAtividadeUsuario = "";
+
+		/** Limpa filtro na lista atividadesUsuarioList **/
+		this.busca();	
 	}
 
 	public String alteraAtividadeUsuario(){
-		atvsService.alteraAtividadeUsario(atividadeUsuario);
+		atvUsuarioService.alteraAtividadeUsario(atividadeUsuario);
+		this.clear();
 		return URL_LISTAR_ATIVIDADES;
 	}
 	
 	public String excluiAtividadeUsuario(){
-		atvsService.excluiAtividadeUsuario(atividadeUsuario);
+		atvUsuarioService.excluiAtividadeUsuario(atividadeUsuario);
 		this.busca();
 		return URL_LISTAR_ATIVIDADES;
 	}
 	
-	public String editarAtividadeUsuario(AtividadeUsuario atividadeUsuario){
-		this.atividadeUsuario = atividadeUsuario;
+	public String editarAtividadeUsuario(){
 		this.emListagemAtvs = false;
+		this.tipoAtividade = this.atividadeUsuario.getAtividade().getTipoAtividade();
+		this.atividade = this.atividadeUsuario.getAtividade();
 		return URL_MANTER_ATIVIDADES;
 	}
 	
-	public void calculaCalorias(){
-		if (atividadeUsuario == null) {
-			Mensagens.define(FacesMessage.SEVERITY_ERROR,
-					"Atividade.cadastro.erro.calculaCaloria");
-			return;
-		}	
-		atividadeUsuario.setDuracao(atvsService.calculaDuracao(atividadeUsuario));
-		if(atividadeUsuario.getDuracao() <= 0L){
-			Mensagens.define(FacesMessage.SEVERITY_ERROR,
-					"Atividade.cadastro.erro.dataFinalMenor");
-			return;
-		}
-		atividadeUsuario.setCalorias(atvsService.calculaCaloriasQueimadas(atividadeUsuario));			
-	}	
+	public String novaAtividadeUsuario(){
+		this.emListagemAtvs = false;
+		this.clear();
+		return URL_MANTER_ATIVIDADES;
+	}
 	
 	public boolean isAtualizacao(){
 		return atividadeUsuario != null && atividadeUsuario.getId() != null;
@@ -187,6 +187,24 @@ public class ManterAtividadesMB implements Serializable {
 		atividadeUsuario.setAtividade(atividade);
 	}
 	
+	public void onDataChange(){
+		if(atividadeUsuario.getDataFim() != null && atividadeUsuario.getDataInicio() != null){
+			if(atvUsuarioService.validaData(this.atividadeUsuario) == false){
+				this.atividadeUsuario.setDataInicio(null);
+				this.atividadeUsuario.setDataFim(null);
+			}
+		}
+	}
+	
+	public void calculaCalorias(){
+		if (atividadeUsuario == null) {
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					"Atividade.cadastro.erro.calculaCaloria");
+			return;
+		}	
+		atividadeUsuario.setCalorias(atvUsuarioService.calculaCaloriasQueimadas(atividadeUsuario));			
+	}	
+	
 	/*
 	 * GETTERS & SETTERS
 	 */	
@@ -199,14 +217,16 @@ public class ManterAtividadesMB implements Serializable {
 	}
 
 	public String getCriterioAtividadeUsuario() {
-		return criterioAtv;
+		return criterioAtividadeUsuario;
 	}
 
-	public void setCriterioAtividadeUsuario(String criterioAtv) {
-		this.criterioAtv = criterioAtv;
+	public void setCriterioAtividadeUsuario(String criterioAtividadeUsuario) {
+		this.criterioAtividadeUsuario = criterioAtividadeUsuario;
 	}
 
-	public List<AtividadeUsuario> setAtividadeUsuarioList() {
+	public List<AtividadeUsuario> getAtividadeUsuarioList() {	
+		if(atividadeUsuarioList == null || atividadeUsuarioList.size() == 0)
+			this.busca();
 		return atividadeUsuarioList;
 	}
 
@@ -216,7 +236,7 @@ public class ManterAtividadesMB implements Serializable {
 
 	public List<Atividade> getAtividadeList() {
 		if (atividadeList == null) 
-			atividadeList = atvsService.buscaDescricoesAtividades();
+			atividadeList = atvUsuarioService.buscaDescricoesAtividades();
 		return atividadeList;
 	}
 
@@ -226,7 +246,7 @@ public class ManterAtividadesMB implements Serializable {
 
 	public List<TipoAtividade> getTipoAtividadeList() {
 		if (tipoAtividadeList == null) 
-			tipoAtividadeList = atvsService.buscaNomeTipoAtividades();
+			tipoAtividadeList = atvUsuarioService.buscaNomeTipoAtividades();
 		return tipoAtividadeList;
 	}
 
