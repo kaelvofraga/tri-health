@@ -8,10 +8,10 @@ import javax.ejb.Stateless;
 import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
-import br.edu.ifrs.canoas.tads.lds.bean.ValorMedida;
+import br.edu.ifrs.canoas.tads.lds.bean.ValorMedidaUsuario;
 
 @Stateless
-public class ValorMedidaDAO extends BaseDAO< ValorMedida, Long>{
+public class ValorMedidaDAO extends BaseDAO< ValorMedidaUsuario, Long>{
 
 	private static final long serialVersionUID = 2039209283467379697L;
 

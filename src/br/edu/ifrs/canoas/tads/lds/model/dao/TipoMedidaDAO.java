@@ -9,7 +9,7 @@ import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoMedida;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
-import br.edu.ifrs.canoas.tads.lds.bean.ValorMedida;
+import br.edu.ifrs.canoas.tads.lds.bean.ValorMedidaUsuario;
 
 @Stateless
 public class TipoMedidaDAO extends BaseDAO< TipoMedida, Long>{

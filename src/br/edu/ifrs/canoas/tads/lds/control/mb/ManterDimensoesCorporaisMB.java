@@ -10,11 +10,12 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.edu.ifrs.canoas.tads.lds.bean.Atividade;
 import br.edu.ifrs.canoas.tads.lds.bean.Pais;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoMedida;
 import br.edu.ifrs.canoas.tads.lds.bean.Udm;
-import br.edu.ifrs.canoas.tads.lds.bean.ValorMedida;
-import br.edu.ifrs.canoas.tads.lds.control.service.ManterDimensoesService;
+import br.edu.ifrs.canoas.tads.lds.bean.ValorMedidaUsuario;
+import br.edu.ifrs.canoas.tads.lds.control.service.ManterDimensoesCorporaisService;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterTipoMedidaService;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterUdmService;
 
@@ -34,10 +35,10 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	private GerenciarLoginMB gerenciarLoginMB;
 	
 	@Inject
-	private ValorMedida valorMedida;
+	private ValorMedidaUsuario valorMedidaUsuario;
 
 	@EJB
-	private ManterDimensoesService dimensoesService;
+	private ManterDimensoesCorporaisService dimensoesService;
 	
 	@EJB
 	private ManterTipoMedidaService manterTipoMedidaService;
@@ -47,8 +48,10 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	
 
 	//Lista Dimensões
-	private List<ValorMedida> medidas;
-	private List<TipoMedida> tipoMedidas;
+	private List<ValorMedidaUsuario> medidas;
+	private TipoMedida tipoMedida;
+	private List<TipoMedida> tipoMedidasLista;
+	private List<TipoMedida> tipoMedidasFiltrada;
 	private List<Udm> udm;
 	
 
@@ -62,18 +65,40 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	
 	@PostConstruct
 	public void init(){
-		valorMedida = new ValorMedida();
+		valorMedidaUsuario = new ValorMedidaUsuario();
 		criterioTipoDimensao = "";
 		medidas = new ArrayList<>();
 	}
 
 	
 	public boolean isAtualizacao(){
-		return valorMedida != null && valorMedida.getId() != null;
+		return valorMedidaUsuario != null && valorMedidaUsuario.getId() != null;
 	}
+	
+	public void salvaDimensoes(){
+		valorMedidaUsuario.setUsuario(gerenciarLoginMB.getUsuario());
+		dimensoesService.salvaMedidaUsuario(valorMedidaUsuario);
+		this.init();
+	}
+	
 	
 	public void busca(){
 		medidas = dimensoesService.busca(criterioTipoDimensao);
+	}
+	
+	public void onTipoDimensoesChange(){
+		tipoMedidasFiltrada.clear();
+
+		if (tipoMedida != null && tipoMedida.getId() != null){
+			for (int i = 0; i < tipoMedidasLista.size(); i++) {
+				TipoMedida tm = tipoMedidasLista.get(i);
+				if(tm.getId() == tipoMedida.getId()) {
+					tipoMedidasFiltrada.add(tm);
+				}
+			}						
+		}else{
+			tipoMedidasFiltrada = new ArrayList<>();
+		}
 	}
 		
 	/*
@@ -90,39 +115,39 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 		this.udm = udm;
 	}
 	
-	public List<TipoMedida> getTipoMedidas() {
-		if(tipoMedidas == null)
-			tipoMedidas = manterTipoMedidaService.buscaTipoMedida();
+	public List<TipoMedida> getTipoMedidasLista() {
+		if(tipoMedidasLista == null)
+			tipoMedidasLista = manterTipoMedidaService.buscaTipoMedida();
 		
-		return tipoMedidas;
+		return tipoMedidasLista;
 	}
 	
-	public void setTipoMedidas(List<TipoMedida> tipoMedidas) {
-		this.tipoMedidas = tipoMedidas;
+	public void setTipoMedidasLista(List<TipoMedida> tipoMedidasLista) {
+		this.tipoMedidasLista = tipoMedidasLista;
 	}
 	
 	
-	public ManterDimensoesService getDimensoesService() {
+	public ManterDimensoesCorporaisService getDimensoesService() {
 		return dimensoesService;
 	}
 
-	public void setDimensoesService(ManterDimensoesService dimensoesService) {
+	public void setDimensoesService(ManterDimensoesCorporaisService dimensoesService) {
 		this.dimensoesService = dimensoesService;
 	}
 
-	public ValorMedida getValorMedida() {
-		return valorMedida;
+	public ValorMedidaUsuario getValorMedida() {
+		return valorMedidaUsuario;
 	}
 
-	public void setValorMedida(ValorMedida valorMedida) {
-		this.valorMedida = valorMedida;
+	public void setValorMedida(ValorMedidaUsuario valorMedidaUsuario) {
+		this.valorMedidaUsuario = valorMedidaUsuario;
 	}
 
-	public List<ValorMedida> getMedidas() {
+	public List<ValorMedidaUsuario> getMedidas() {
 		return medidas;
 	}
 
-	public void setMedidas(List<ValorMedida> medidas) {
+	public void setMedidas(List<ValorMedidaUsuario> medidas) {
 		this.medidas = medidas;
 	}
 
@@ -132,6 +157,22 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 
 	public void setCriterioTipoDimensao(String criterioTipoDimensao) {
 		this.criterioTipoDimensao = criterioTipoDimensao;
+	}
+
+	public TipoMedida getTipoMedida() {
+		return tipoMedida;
+	}
+
+	public void setTipoMedida(TipoMedida tipoMedida) {
+		this.tipoMedida = tipoMedida;
+	}
+
+	public List<TipoMedida> getTipoMedidasFiltrada() {
+		return tipoMedidasFiltrada;
+	}
+
+	public void setTipoMedidasFiltrada(List<TipoMedida> tipoMedidasFiltrada) {
+		this.tipoMedidasFiltrada = tipoMedidasFiltrada;
 	}
 	
 	

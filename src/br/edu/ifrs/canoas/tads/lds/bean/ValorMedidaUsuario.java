@@ -12,7 +12,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class ValorMedida extends BaseEntity<Long> implements Serializable {
+public class ValorMedidaUsuario extends BaseEntity<Long> implements Serializable {
 
 private static final long serialVersionUID = 3616123664819931225L;
 

@@ -18,16 +18,21 @@
 		<p:tab title="Dimensões Corporais">
 		
 			<h:panelGroup layout="block" styleClass="form-group">
-		
-				
 				<h:panelGrid columns="2" styleClass="mtable">
 						
 						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel for="tipoMedida" value="Tipo da Medida" />
-							<p:selectOneMenu id="tipoMedida" value="#{manterDimensoesCorporaisMB.tipoMedidas}" style="width:200px">
-                			<f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true" />
-                			<f:selectItems value="#{manterDimensoesCorporaisMB.tipoMedidas}" itemLabel="#{tipoMedida.descricao}" var="tipoMedida"/>
-            				</p:selectOneMenu>
+							<p:outputLabel for="tipo_medida" value="Tipo:" />
+							<br />
+							<p:selectOneMenu id="tipo_medida"
+								value="#{manterDimensoesCorporaisMB.tipoMedida}"
+								style="width: 100%;" 
+								required="true" requiredMessage="Um tipo para a atividade deve ser escolhida.">								
+								<p:ajax listener="#{manterDimensoesCorporaisMB.onTipoDimensoesChange}" update="" />								
+								<f:selectItem itemLabel="Selecione o tipo da atividade."
+									itemValue="" noSelectionOption="true" />
+								<f:selectItems value="#{manterDimensoesCorporaisMB.tipoMedidasLista}"
+									var="tipoMedida" itemLabel="#{tipoMedida.descricao}" itemValue="#{tipoMedida}" />
+							</p:selectOneMenu>
 						</h:panelGroup>
 						
 						<h:panelGroup layout="block" styleClass="form-group">
@@ -68,26 +73,30 @@
 							<p:inputTextarea id="observacoes" 
 								rows="9" 
 								cols="79"
-								Value=""
+								Value="#{manterDimensoesCorporaisMB.valorMedida.observacao}"
 								placeholder="Insira aqui sua observação " 
 							/>
 						</h:panelGroup>
-				<h:panelGroup layout="block" styleClass="form-group">
+						
+						<h:panelGroup layout="block" styleClass="form-group">
 	    					<p:commandButton value="Salvar"
-							rendered="#{not manterUsoMedicamentoMB.atualizacao}"
-							action="#{manterUsoMedicamentoMB.salvaMedicamento}" ajax="false"/>
-						<p:commandButton value="Alterar"
+							rendered="#{not manterDimensoesCorporaisMB.atualizacao}"
+							action="#{manterDimensoesCorporaisMB.salvaDimensoes}" ajax="false"/>
+							
+							<p:commandButton value="Alterar"
 							rendered="#{manterUsoMedicamentoMB.atualizacao}"
-						action="#{manterUsoMedicamentoMB.alteraMedicamento}" ajax="true" />
-						<p:commandButton value="Voltar"
+							action="#{manterUsoMedicamentoMB.alteraMedicamento}" ajax="true" />
+							
+							<p:commandButton value="Voltar"
 							rendered="#{#}"
-						action="listarPerfilEmergencia" ajax="false"/>
-						<p:commandButton value="Limpa" type="submit"
+							action="listarPerfilEmergencia" ajax="false"/>
+							
+							<p:commandButton value="Limpa" type="submit"
 							rendered="#{#}" 
 							action="#{manterPerfilEmergenciaMB.init}" ajax="true"
 							update="alergias" immediate="false" />
 
-				</h:panelGroup>
+						</h:panelGroup>
 			</h:panelGroup>
 		</p:tab>
 
