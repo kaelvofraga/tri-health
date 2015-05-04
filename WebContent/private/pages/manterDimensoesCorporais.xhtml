@@ -4,6 +4,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="/public/templates/template.xhtml">
 
@@ -52,11 +53,13 @@
 						
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="valorMedida" value="Valor Medida" />
-							<p:inputText id="valorMedida" styleClass="form-control" size="30"
-								style="width:200px; height:28px"
-								value="#{manterDimensoesCorporaisMB.valorMedidaUsuario.medidaValor}">
-								 <f:validateDoubleRange minimum="0.0"/>
-							</p:inputText>
+							<pe:inputNumber id="valorMedida" symbolPosition="s"
+								decimalSeparator="," thousandSeparator="."
+								value="#{manterDimensoesCorporaisMB.valorMedidaUsuario.medidaValor}"
+								var="medidaValor" itemLabel="#{valorMedidaUsuario.medidaValor}"
+								itemValue="#{valorMedidaUsuario.medidaValor}"
+								placeholder="Distância em metros." >
+							</pe:inputNumber>
 	    				</h:panelGroup>
 						
 						<h:panelGroup layout="block" styleClass="form-group">
@@ -67,7 +70,9 @@
 								value="#{manterDimensoesCorporaisMB.valorMedidaUsuario.dataMedida}"
 								pattern="dd/MM/yyyy HH:mm:ss"
 								placeholder="Informe a data da Medida"
-								size="30" effect="fold" icon="glyphicon-calendar" />
+								size="30" effect="fold" icon="glyphicon-calendar" 
+								required="true" requiredMessage="Uma data deve ser estipulada."
+								/>
 	   					</h:panelGroup>
 	   					
 	   					<br/>
@@ -77,8 +82,9 @@
 	    				<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="observacoes" value="Observações:" />
 							<br/>
-						     <p:inputTextarea id="observacoes" rows="1" cols="50" counter="obs" maxlength="100" 
-							counterTemplate="{0} caracteres disponíveis" value="#{manterDimensoesCorporaisMB.valorMedidaUsuario.observacao}" >
+						     <p:inputTextarea id="observacoes" rows="5" cols="89" counter="obs" maxlength="100" 
+							 value="#{manterDimensoesCorporaisMB.valorMedidaUsuario.observacao}"
+							 placeholder="Insire aqui uma observação." >
 							</p:inputTextarea>
 							<h:outputText id="obs" />
 						</h:panelGroup>
