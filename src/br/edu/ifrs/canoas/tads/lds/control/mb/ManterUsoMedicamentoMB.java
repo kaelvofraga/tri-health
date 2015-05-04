@@ -41,7 +41,7 @@ public class ManterUsoMedicamentoMB implements Serializable {
 		medicamentoUsuario = new MedicamentoUsuario();
 		criterioMedicamento="";
 		medicamentosLista = new ArrayList<>();
-		medicamentos = new ArrayList<>();
+		//medicamentos = new ArrayList<>();
 	}
 	
 	public void salvaMedicamento(){
