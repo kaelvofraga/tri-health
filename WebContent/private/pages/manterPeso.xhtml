@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+	<ui:define name="metadata" />
+	<ui:define name="content">
+	
+		<h1 class="lead">Controle de Peso</h1>
+		<p:accordionPanel multiple="true">
+			<p:tab title="Cadastrar">
+				<h:panelGroup layout="block" id="peso">
+					<h:panelGrid columns="2" styleClass="mtable">
+					<h:panelGroup layout="block" styleClass="form-group pull-left">
+							<p:outputLabel for="data" value="Data:" />
+							<br />
+							<p:calendar id="data" pattern="dd/MM/yyyy HH:mm:ss"
+								placeholder="Selecione uma Data" effect="fold"
+								icon="glyphicon-calendar" var="data"
+								itemLabel="#{pesoUsuario}"
+								itemValue="#{pesoUsuario.data}" />
+					</h:panelGroup>
+					</h:panelGrid>
+					<h:panelGrid columns="3" styleClass="mtable">	
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="valor" value="Valor:" />
+							<br/>
+								<p:inputText id="valor" cols="50"
+									var="pesoUsuario" itemLabel="#{pesoUsuario}"
+									itemValue="#{pesoUsuario.peso.valor}"
+									placeholder="Informe o valor..." /><b>Kg</b>
+						</h:panelGroup>
+					</h:panelGrid>
+					
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:outputLabel for="nota" value="Nota:" />
+						<br />
+						<p:inputTextarea id="nota" rows="6" cols="50"
+							var="pesoUsuario" itemLabel="#{pesoUsuario}"
+							itemValue="#{pesoUsuario.nota}"
+							placeholder="Informe algum comentario..." />
+					</h:panelGroup>
+					<h:panelGroup layout="block" styleClass="form-group">
+
+						<h:panelGroup layout="block" styleClass="form-group pull-left">
+							<p:commandButton value="Salvar" action="#{manterPesoMB.salvaPeso}" ajax="true"
+								icon="ui-icon-disk" />
+							<p:commandButton value="Editar" action="#" ajax="true"
+								icon="ui-icon-pencil" />
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group pull-right">
+							<p:commandButton value="Cancelar" action="#"
+								ajax="false" icon="ui-icon-extlink" />
+						</h:panelGroup>
+
+					</h:panelGroup>
+
+				</h:panelGroup>
+			</p:tab>
+		</p:accordionPanel>
+	</ui:define>
+</ui:composition>

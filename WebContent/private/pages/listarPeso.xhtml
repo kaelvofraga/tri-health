@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<ui:define name="content">
+
+		<h1 class="lead">Controle de Peso</h1>
+
+		<p:accordionPanel multiple="true">
+			<p:tab title="Listar">
+
+				<h:panelGroup layout="block" id="atividades">
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:outputLabel for="peso" value="Pesquisa" />
+						<p:inputText id="peso" styleClass="form-control"
+							value="" placeholder="Informe algo para pesquisar" />
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="form-group">
+
+						<p:commandButton value="Busca" type="submit" action="#"
+							ajax="true" update="tab-peso" immediate="false" icon="ui-icon-search" />
+
+					</h:panelGroup>
+
+					<p:dataTable selectionMode="single"
+						emptyMessage="Não há registros de peso." var="pesoUsuario"
+						id="tab-peso">
+						
+						<p:column headerText="Data">
+							<h:outputText value="#{pesoUsuario.peso.nota}" />
+						</p:column>
+
+						<p:column headerText="Peso">
+							<h:outputText value="#{PesoUsuario.data}" />
+						</p:column>
+						<p:column headerText="Nota">
+							<h:outputText value="#{pesoUsuario.peso.nota}" />
+						</p:column>
+
+						<p:column headerText="Editar">
+							<h:outputText value="#{PesoUsuario.data}" />
+						</p:column>
+						<p:column headerText="Excluir">
+							<h:outputText value="#{pesoUsuario.peso.nota}" />
+						</p:column>
+											
+					</p:dataTable>
+					<br />
+
+				</h:panelGroup>
+
+				<p:commandButton value="Nova" icon="ui-icon-plus" ajax="true" />
+
+			</p:tab>
+
+		</p:accordionPanel>
+
+	</ui:define>
+
+</ui:composition>
+
+
