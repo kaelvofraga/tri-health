@@ -18,7 +18,12 @@ insert into AlergiaUsuario (dataPrimeiraOcorrencia, MEDICAMENTOUSUARIO_ID, reaca
 insert into AlergiaUsuario (dataPrimeiraOcorrencia, MEDICAMENTOUSUARIO_ID, reacao, tipoAlergia_id, USUARIO_ID, id) values (sysdate, 1001, 'Reacao', 1, 1000, 1001);
 
 insert into tipoAlimento (id,nome, descricao) values (1, 'AVES','EXEMPLO: FRANGO GALINHA');
-insert into tipoAlimento (id,nome, descricao) values (2, 'FRUTAS','EXEMPLO: LARANJA MAï¿½A');
+insert into tipoAlimento (id,nome, descricao) values (2, 'FRUTAS','EXEMPLO: LARANJA MAÇA');
+insert into tipoAlimento (id,nome, descricao) values (3, 'CARNES','EXEMPLO: TESTE');
+
+insert into Alimento (id,nome, caloriasPorCemGrOuMl) values (1, 'FRANGO',250);
+insert into Alimento (id,nome, caloriasPorCemGrOuMl) values (2, 'GALINHA',200);
+
 insert into AlergiaUsuario (dataPrimeiraOcorrencia, MEDICAMENTOUSUARIO_ID, reacao, tipoAlergia_id, USUARIO_ID, id) values (sysdate, 1001, 'Reacao', 1, 1000, 1001);
 
 insert into Pais (id, nome, nacionalidade) values (1, 'Brasil','Brasileiro' );
@@ -26,7 +31,7 @@ insert into UnidadeFederativa (id, nome, id_pais) values (1, 'Rio Grande do Sul'
 insert into Cidade (id, nome, id_uf) values (1, 'Canoas',1 );
 insert into Endereco (id, cep, complemento, logradouro, numero, id_cidade) values (1, '92330-500', 'Casa', 'Rua Um', 541, 1 );
 
---DIMENSï¿½ES CORPORAIS
+--DIMENSÕES CORPORAIS
 insert into Udm (id, descricao) values (1, 'cm');
 insert into Udm (id, descricao) values (2, 'pol');
 
@@ -40,25 +45,20 @@ insert into TipoMedida(id, descricao) values (7, 'Coxa Esquerda');
 insert into TipoMedida(id, descricao) values (8, 'Coxa Direita'); 
 insert into TipoMedida(id, descricao) values (9, 'Altura');	
 
---[ Manter Atividades Fï¿½sicas ]--
+--[ Manter Atividades Físicas ]--
 
 insert into TipoAtividade(id, nome) values (1, 'Corrida');
 insert into TipoAtividade(id, nome) values (2, 'Ciclismo');
-insert into TipoAtividade(id, nome) values (3, 'Danï¿½a');
+insert into TipoAtividade(id, nome) values (3, 'Dança');
 
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (1, 'Jogging', 7, 1);
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (2, 'Correndo em 5 mph (8 quilometros por hora)', 8, 1);
 
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (3, 'BMX ou Mountain Bike', 8.5, 2);
-insert into Atividade(id, descricao, MET, tipoAtividade_id) values (4, 'Pedalando para o trabalho ou por diversï¿½o', 4, 2);
+insert into Atividade(id, descricao, MET, tipoAtividade_id) values (4, 'Pedalando para o trabalho ou por diversão', 4, 2);
 
-insert into Atividade(id, descricao, MET, tipoAtividade_id) values (5, 'Danï¿½a aerï¿½bica', 6.5, 3);
+insert into Atividade(id, descricao, MET, tipoAtividade_id) values (5, 'Dança aeróbica', 6.5, 3);
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (6, 'Ballet ou moderna, twist, jazz, tap, jitterbug', 4.8, 3);
 
-insert into AtividadeUsuario(id, atividade_id, usuario_id, dataInicio, dataFim, distancia, notas) values (1000, 2, 1000, SYSDATE, SYSDATE, 1000.0, 'Corridinha');
-insert into AtividadeUsuario(id, atividade_id, usuario_id, dataInicio, dataFim, distancia, notas) values (2000, 5, 1000, SYSDATE, SYSDATE, 0.0, '');
-
--- Manter Cateterismo
-INSERT INTO MEDICO VALUES(1,'RS123','Dr teste 1');
-INSERT INTO MEDICO VALUES(2,'RS321','Dr teste 2');
-INSERT INTO CATETERISMO(id,usuario_id,dataalta,datainternacao,laudo,observacoes,medico_sol_id,medico_res_id) VALUES (1,1000,'20150201','20150130','BLABLA BLA','OBS TSTE',1,2);
+insert into AtividadeUsuario(id, atividade_id, usuario_id, dataInicio, dataFim, distancia, notas) values (1, 2, 1000, SYSDATE, SYSDATE, 1000.0, 'Corridinha');
+insert into AtividadeUsuario(id, atividade_id, usuario_id, dataInicio, dataFim, distancia, notas) values (2, 5, 1000, SYSDATE, SYSDATE, 0.0, '');

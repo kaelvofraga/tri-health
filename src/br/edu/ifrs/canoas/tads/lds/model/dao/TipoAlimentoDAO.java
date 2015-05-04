@@ -12,7 +12,8 @@ public class TipoAlimentoDAO extends BaseDAO<TipoAlimento, Long> {
 
 	
 	public List<TipoAlimento> getTesteJinqStream(){
-		return new ArrayList<>();//super.getJinqStream().toList();
+		List<TipoAlimento> retorno = super.buscaTodos();
+		return retorno;
 	}
 	
 }

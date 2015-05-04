@@ -6,9 +6,9 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="/public/templates/template.xhtml">
-
+	
 	<ui:define name="metadata" />
-
+	
 	<ui:define name="content">
 
 		<h1 class="lead">Refeições</h1>
@@ -37,16 +37,29 @@
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel value="Tipo de Alimento:" for="tipoAlimentoAuto" />
 							<br />
-							<p:autoComplete 
-								 var="tipoAlimento" 
-								 placeholder="Informe o tipo de alimento"
-								 id="tipoAlimentoAuto" dropdown="true" />		 
+							<p:autoComplete id="tipoAlimentoAuto"
+								size="40" style="width:300px"
+								value="#{listarRefeicaoMB.tipoAlimento}"
+								var="tipoAlimento" 
+								itemLabel="#{tipoAlimento.nome}" 
+								itemValue="#{tipoAlimento}" 
+								forceSelection="true"
+							    completeMethod="#{listarRefeicaoMB.completeTipoAlimento}"
+								placeholder="Informe o tipo de alimento"/>	
 						</h:panelGroup>
 
 						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel value="Alimento:" for="qwd" />
+							<p:outputLabel value="Alimento" for="alimentoAuto"  />
 							<br />
-							<p:autoComplete id="qwd" dropdown="true" />
+							<p:autoComplete id="alimentoAuto"
+								size="40" style="width:300px"
+								value="#{listarRefeicaoMB.alimento}"
+								var="alimento" 
+								itemLabel="#{alimento.nome}" 
+								itemValue="#{alimento}" 
+								forceSelection="true"
+							    completeMethod="#{listarRefeicaoMB.completeAlimento}"
+								placeholder="Informe o alimento"/>	
 						</h:panelGroup>
 
 					</h:panelGrid>
@@ -54,7 +67,7 @@
 					<h:panelGroup layout="block" styleClass="form-group">
 
 						<p:dataTable selectionMode="single" 
-							emptyMessage="Nenhum Registro Encontrado." var="refeicao"
+							emptyMessage="Nenhum Registro Encontrado."
 							id="tableRefeicoes">
 							<f:facet name="header">
 				            	Refeições
@@ -102,7 +115,7 @@
         <p:outputPanel id="detalheRefeicao" style="text-align:center;">
             <p:panelGrid  columns="2" columnClasses="label,value">
                 <f:facet name="header">
-                    <p:graphicImage name="Refeição"/> 
+                    <p:graphicImage/> 
                 </f:facet>
  
                 <h:outputText value="Id:" />

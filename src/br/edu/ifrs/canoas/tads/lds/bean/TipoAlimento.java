@@ -1,8 +1,10 @@
 package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.Length;
 
 @Entity
@@ -40,4 +42,8 @@ public class TipoAlimento extends BaseEntity<Long> implements Serializable {
 		this.descricao = descricao;
 	}
 
+	public String toString(){
+		return this.getNome();	
+	}
+	
 }
