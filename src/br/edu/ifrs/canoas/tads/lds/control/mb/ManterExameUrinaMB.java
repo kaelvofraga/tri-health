@@ -2,6 +2,7 @@ package br.edu.ifrs.canoas.tads.lds.control.mb;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -10,7 +11,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.edu.ifrs.canoas.tads.lds.bean.ExameUrina;
+import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
+import br.edu.ifrs.canoas.tads.lds.bean.TipoExameUrina;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterExameUrinaService;
 
 @Named
@@ -30,6 +33,10 @@ public class ManterExameUrinaMB implements Serializable{
 	
 	@EJB
 	private ManterExameUrinaService exameUrinaService;
+	
+	private List<ExameUrina> examesLista;
+	
+	private List<TipoExameUrina> tipos;
 
 	public ExameUrina getExameUrina() {
 		return exameUrina;
@@ -51,8 +58,28 @@ public class ManterExameUrinaMB implements Serializable{
 	
 	public void inicializa() {
 		exameUrina = new ExameUrina();
-//		medicamentosLista = new ArrayList<>();
+		examesLista = new ArrayList<>();
+	}
+	
+	public String alteraTipoExameUrina() {
+		return "manterExameUrina";
+	}
+	
+	public List<TipoExameUrina> completeTipoExameUrina(String query){
+		if (tipos == null) 
+			tipos = exameUrinaService.buscaTiposExameUrina(query, gerenciarLoginMB.getUsuario());
+
+		List<TipoExameUrina> tiposBusca = new ArrayList<TipoExameUrina>();
+         
+        for (int i = 0; i < tipos.size(); i++) {
+            TipoExameUrina tipoExameUrina = tipos.get(i);
+            if(tipoExameUrina.getTipo().trim().toLowerCase().startsWith(query)) {
+            	tiposBusca.add(tipoExameUrina);
+            }
+        }
+        return tiposBusca;
 	}
 
 }
+
 

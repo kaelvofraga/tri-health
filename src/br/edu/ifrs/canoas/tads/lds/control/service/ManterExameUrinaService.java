@@ -1,10 +1,15 @@
 package br.edu.ifrs.canoas.tads.lds.control.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
 import br.edu.ifrs.canoas.tads.lds.bean.ExameUrina;
+import br.edu.ifrs.canoas.tads.lds.bean.TipoExameUrina;
+import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 import br.edu.ifrs.canoas.tads.lds.model.dao.ExameUrinaDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.TipoExameUrinaDAO;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
@@ -36,14 +41,35 @@ public class ManterExameUrinaService {
 
 	public boolean salvaExameUrinaUsuario(ExameUrina exameUrina) {
 		exameUrinaDAO.insere(exameUrina);
-//		Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.cadastro.sucesso");
+		Mensagens.define(FacesMessage.SEVERITY_INFO, "manterExameUrina.cadastro.sucesso");		
+		return true;		
+	}
+	
+	public TipoExameUrina buscaOuCriaTipoExameUrinaPorNome(TipoExameUrina tipoExameUrina) {
+		List<TipoExameUrina> tipos = tipoExameUrinaDAO.buscaPorTipo(tipoExameUrina.getTipo());
 		
-		return true;
+		if (tipos.size() == 1)
+			tipoExameUrina = tipos.get(0);
+		else{
+			tipoExameUrinaDAO.insere(tipoExameUrina);
+		}
 		
+		return tipoExameUrina;
+	}
+	
+	public List<TipoExameUrina> buscaTiposExameUrina(String query, Usuario usuario) {
+		if (usuario != null && usuario.getId() != null)
+			return tipoExameUrinaDAO.buscaTipoPorUsuario(usuario);
+		return new ArrayList<TipoExameUrina>();
+	}
+	
+	public void alteraExameUrina(ExameUrina exameUrina) {
+		exameUrinaDAO.atualiza(exameUrina);
 	}
 
-	
-	
-
-
+	public void excluiExameUrina(ExameUrina exameUrina) {
+		exameUrinaDAO.exclui(exameUrina.getId());
+	}
 }
+
+

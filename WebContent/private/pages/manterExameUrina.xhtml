@@ -14,26 +14,51 @@
 		<h1 class="lead">Exame  de Urina</h1>
 
 			<h:panelGroup layout="block" id="exameurina">
+				<h:panelGrid columns="3" styleClass="mtable">
 				
-				<h:panelGrid columns="2" styleClass="mtable">
+					<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="tipo_exame" value="Tipo de Exame" />
+							<br/>
+							<p:inputText id="tipo_exame" styleClass="form-control" 
+								size="40" style="width:200px"
+								value="#{manterExameUrinaMB.exameUrina.tipoExameUrina.tipo}"
+								placeholder="Informe o tipo do exame" />
+					</h:panelGroup>
+					
 					<h:panelGroup layout="block" styleClass="form-group">
 						<p:outputLabel for="resultado_exame" value="Resultado" />
 						<br/>
 						<p:inputText id="resultado_exame" styleClass="form-control" 
-							size="40" style="width:250px"
+							size="40" style="width:200px"
 							value="#{manterExameUrinaMB.exameUrina.resultado}"
 							placeholder="Informe o resultado do exame" />
 					</h:panelGroup>
-				
-									
-												
+					
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:outputLabel for="data_exame"	value="Data da análise do exame" />
+						<br/>
+						<p:calendar id="data_exame" style="width:200px"
+							value="#{manterExameUrinaMB.exameUrina.data}"
+							pattern="dd/MM/yyyy"
+							placeholder="Selecione a data da análise do exame"
+							size="10" effect="fold" icon="glyphicon-calendar" />
+	   				</h:panelGroup>	   				
+						
 				</h:panelGrid>	
 				
-					<h:panelGroup layout="block" styleClass="form-group">													
-							<p:commandButton value="Salvar"								
-							action="#{manterExameUrinaMB.salvaExame}" icon="ui-icon-check" ajax="false"/>
-		
-					</h:panelGroup>
+				<h:panelGroup layout="block" styleClass="form-group">
+					<p:outputLabel for="obs" value="Observação" />
+					<br/>
+					<p:inputTextarea id="obs" styleClass="form-control" 
+						size="50" style="width:600px" 
+						value="#{manterExameUrinaMB.exameUrina.observacao}"
+						placeholder="Descreva observação do exame, se necessário" />
+				</h:panelGroup>	
+								
+				<h:panelGroup layout="block" styleClass="form-group">													
+					<p:commandButton value="Salvar"								
+						action="#{manterExameUrinaMB.salvaExame}" icon="ui-icon-check" ajax="false"/>
+				</h:panelGroup>
 			</h:panelGroup>
 		
 	</ui:define>
