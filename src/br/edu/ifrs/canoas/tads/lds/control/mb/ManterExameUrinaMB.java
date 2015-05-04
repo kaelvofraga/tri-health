@@ -2,6 +2,7 @@ package br.edu.ifrs.canoas.tads.lds.control.mb;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -30,6 +31,8 @@ public class ManterExameUrinaMB implements Serializable{
 	
 	@EJB
 	private ManterExameUrinaService exameUrinaService;
+	
+	private List<ExameUrina> examesLista;
 
 	public ExameUrina getExameUrina() {
 		return exameUrina;
@@ -51,8 +54,19 @@ public class ManterExameUrinaMB implements Serializable{
 	
 	public void inicializa() {
 		exameUrina = new ExameUrina();
-//		medicamentosLista = new ArrayList<>();
+		examesLista = new ArrayList<>();
 	}
 
 }
+
+/*	public void inicializa() {
+		medicamentoUsuario = new MedicamentoUsuario();
+		medicamentosLista = new ArrayList<>();
+	}
+
+	public void salvaMedicamento(){
+		medicamentoUsuario.setUsuario(gerenciarLoginMB.getUsuario());
+		medicamentoService.salvaMedicamentoUsuario(medicamentoUsuario);
+		this.inicializa();
+	}*/
 

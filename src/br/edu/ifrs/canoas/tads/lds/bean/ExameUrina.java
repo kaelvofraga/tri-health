@@ -20,13 +20,15 @@ public class ExameUrina extends BaseEntity<Long> implements Serializable{
 	 */
 	private static final long serialVersionUID = -8539097274270004334L;
 
-	@NotNull @ManyToOne
+	@NotNull 
+	@ManyToOne
     @JoinColumn(name="ID_USUARIO") 
 	private Usuario usuario;
 	
-	@NotNull @OneToOne (cascade=CascadeType.PERSIST)
+	@NotNull 
+	@OneToOne (cascade=CascadeType.PERSIST)
     @JoinColumn(name="ID_TIPOEXAMEURINA")
-	private TipoExameUrina tipoExameUrina;
+	private TipoExameUrina tipoExameUrina = new TipoExameUrina();
 	
 //	@NotNull
 	private String resultado;
