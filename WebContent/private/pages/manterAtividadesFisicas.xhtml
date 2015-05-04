@@ -24,7 +24,7 @@
 							<p:outputLabel for="tipo_atividade" value="Tipo:" />
 							<br />
 							<p:selectOneMenu id="tipo_atividade"
-								value="#{manterAtividadesMB.atividadeUsuario.atividade.tipoAtividade}"
+								value="#{manterAtividadesMB.tipoAtividade}"
 								style="width: 100%;" 
 								required="true" requiredMessage="Um tipo para a atividade deve ser escolhida.">								
 								<p:ajax listener="#{manterAtividadesMB.onTipoAtividadeChange}" update="descricao_atividade" />								
@@ -41,7 +41,7 @@
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="descricao_atividade" value="Descricao:" />
 							<p:selectOneMenu id="descricao_atividade"
-								value="#{manterAtividadesMB.atividade}" style="width:100%;"
+								value="#{manterAtividadesMB.atividadeUsuario.atividade}" style="width:100%;"
 								required="true" requiredMessage="Uma descrição para a atividade deve ser escolhida." >
 								<p:ajax listener="#{manterAtividadesMB.onSelectAtividade}" />
 								<f:selectItem itemLabel="Selecione uma atividade." itemValue=""
@@ -82,7 +82,6 @@
 								effect="fold" icon="glyphicon-calendar" 
 								required="true" 
 								requiredMessage="Uma data inicial deve ser escolhida.">
-								<p:ajax event="dateSelect" listener="#{manterAtividadesMB.onDataChange}" update="inicio, fim"/>
 							</p:calendar>
 						</h:panelGroup>
 
@@ -99,7 +98,6 @@
 								effect="fold" icon="glyphicon-calendar" 
 								required="true" 
 								requiredMessage="Uma data final deve ser escolhida." >
-								<p:ajax event="dateSelect" listener="#{manterAtividadesMB.onDataChange}" update="inicio, fim"/>
 							</p:calendar>
 						</h:panelGroup>
 
