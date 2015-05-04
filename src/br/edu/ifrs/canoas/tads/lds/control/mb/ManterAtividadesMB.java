@@ -14,7 +14,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
-import org.primefaces.event.UnselectEvent;
 
 import br.edu.ifrs.canoas.tads.lds.bean.Atividade;
 import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
@@ -119,6 +118,8 @@ public class ManterAtividadesMB implements Serializable {
 		atividadeUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		if(atvUsuarioService.salvaAtividadeUsuario(atividadeUsuario))
 			this.clear();
+		else
+			atividadeUsuario = new AtividadeUsuario(); // Caso dê erro reseta atividadeUsuario
 	}
 	
 	private void clear() {
@@ -137,7 +138,7 @@ public class ManterAtividadesMB implements Serializable {
 		/** POJO **/
 		atividadeUsuario = new AtividadeUsuario();
 
-		/** Zera critï¿½rio de filtro **/
+		/** Zera critério de filtro **/
 		criterioAtividadeUsuario = "";
 
 		/** Limpa filtro na lista atividadesUsuarioList **/
@@ -192,21 +193,30 @@ public class ManterAtividadesMB implements Serializable {
 		atividadeUsuario.setAtividade(atividade);
 	}
 	
-	public void onDataChange(){
+	/*public void onDataChange(){
 		if(atividadeUsuario.getDataFim() != null && atividadeUsuario.getDataInicio() != null){
-			if(atvUsuarioService.validaData(this.atividadeUsuario) == false){
+			if(atvUsuarioService.validaDatas(this.atividadeUsuario) == false){
 				this.atividadeUsuario.setDataInicio(null);
 				this.atividadeUsuario.setDataFim(null);
 			}
 		}
-	}
+	}*/
 	
 	public void calculaCalorias(){
 		if (atividadeUsuario == null) {
 			Mensagens.define(FacesMessage.SEVERITY_ERROR,
 					"Atividade.cadastro.erro.calculaCaloria");
 			return;
-		}	
+		}
+		
+		if(atvUsuarioService.validaDatas(this.atividadeUsuario) == false){
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					"Atividade.cadastro.erro.dataFinalMenor");
+			return;
+		}
+		
+		atividadeUsuario.setDuracao(atvUsuarioService.calculaDuracao(atividadeUsuario));
+		
 		atividadeUsuario.setCalorias(atvUsuarioService.calculaCaloriasQueimadas(atividadeUsuario));			
 	}	
 	

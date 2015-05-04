@@ -1,5 +1,4 @@
 package br.edu.ifrs.canoas.tads.lds.control.service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
@@ -49,14 +48,8 @@ public class ManterAtividadesService {
 		return  atividadeUsuario.getAtividade().getMET() * massaCorporal *  (atividadeUsuario.getDuracao()/60.0);
 	}
 	
-	public boolean validaData(AtividadeUsuario atividadeUsuario) {
-		atividadeUsuario.setDuracao(calculaDuracao(atividadeUsuario));
-		if(atividadeUsuario.getDuracao() <= 0L){
-			Mensagens.define(FacesMessage.SEVERITY_ERROR,
-					"Atividade.cadastro.erro.dataFinalMenor");
-			return false;
-		}
-		return true;
+	public boolean validaDatas(AtividadeUsuario atividadeUsuario) {
+		return calculaDuracao(atividadeUsuario) > 0L;
 	}
 
 	public boolean salvaAtividadeUsuario(AtividadeUsuario atividadeUsuario) {
@@ -68,8 +61,21 @@ public class ManterAtividadesService {
 					"Atividade.cadastro.erro");
 			return false;
 		}
-						
-		atividadeUsuarioDAO.insere(atividadeUsuario);
+		
+		if(validaDatas(atividadeUsuario) == false){
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					"Atividade.cadastro.erro.dataFinalMenor");
+			return false;
+		}			
+		
+		try{
+			atividadeUsuarioDAO.insere(atividadeUsuario);
+		}catch(Exception e){
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					"Atividade.cadastro.erro");			
+			return false;
+		}
+		
 		Mensagens.define(FacesMessage.SEVERITY_INFO,
 				"Atividade.cadastro.sucesso");
 		
