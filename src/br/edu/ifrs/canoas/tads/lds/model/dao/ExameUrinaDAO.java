@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import br.edu.ifrs.canoas.tads.lds.bean.ExameUrina;
-import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
+import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 
 @Stateless
@@ -27,7 +27,28 @@ public class ExameUrinaDAO extends BaseDAO<ExameUrina, Long>{
 				.setParameter("usuario",usuario.getId())
 				.getResultList();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<ExameUrina> buscaPorCriterio(String criterioTipoExameUrina) {
+		try {
+			return em
+					.createQuery(
+							"SELECT eu "
+									+ "FROM ExameUrina eu "
+									+ "WHERE lower(eu.data) like '%" + criterioTipoExameUrina.trim().toLowerCase() + "%' "
+									+ "OR lower(eu.tipoexameurina.tipo) like '%" + criterioTipoExameUrina.trim().toLowerCase() + "%' "
+									+ "OR lower(eu.resultado) like '%" + criterioTipoExameUrina.trim().toLowerCase() + "%' "
+//									+ "OR lower(mu.frequencia) like '%" + criterioMedicamento.toLowerCase() + "%' "
+									+ "ORDER BY eu.tipoexameurina.tipo").getResultList();
+
+		} catch (IllegalArgumentException e) {
+			return null;
+		}
+	}
 }
+	
+
+
 	
 
 

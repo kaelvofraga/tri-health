@@ -53,13 +53,17 @@
 			
 			<p:separator />
 			<p:submenu label="Exames">
-				<p:menuitem value="Exames de Sangue" url="#" />
-				<p:menuitem value="Exames de Urina" url="/private/pages/manterExameUrina.xhtml" />
+				<p:submenu label="Exames de Sangue" url="#" />
+				<p:submenu label="Exames de Urina">
+					<p:menuitem value="Listar" url="/private/pages/manterExameUrina.xhtml" />
+					<p:menuitem value="Cadastrar" url="/private/pages/manterExameUrina.xhtml" />
+				</p:submenu>
 				<p:submenu label="Cateterismos">
 					<p:menuitem value="Listar" url="#" />
 					<p:menuitem value="Adicionar" url="#" />
-				</p:submenu>				
+				</p:submenu>								
 			</p:submenu>
+			
 
 		</p:panelMenu>
 	</h:form>
