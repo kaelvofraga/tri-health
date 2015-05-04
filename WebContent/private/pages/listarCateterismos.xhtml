@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<ui:define name="content">
+
+		<h1 class="lead">Listar Cateterismos</h1>
+
+		<p:dataTable id="tableCateterismos" 
+						selectionMode="single"
+						emptyMessage="Nenhum Registro Encontrado." 
+						var="exame"
+						selection="#{manterCateterismoMB.exame}"
+						value="#{manterCateterismoMB.listExames}" 
+						rowKey="#{exame.id}"
+						reflow="true"
+						 >
+
+		    <p:column headerText="Data Internação">
+		        <h:outputText value="#{exame.dataInternacao}" />
+		    </p:column>
+		 
+		    <p:column headerText="Médico Solicitante">
+		        <h:outputText value="#{exame.medicoSolicitante.nome}" />
+		    </p:column>
+		 
+		    <p:column headerText="Médico Responsável">
+		        <h:outputText value="#{exame.medicoResponsavel.nome}" />
+		    </p:column>
+		 
+		    <p:column headerText="Laudo">
+		        <h:outputText value="#{exame.laudo}" />
+		    </p:column>
+		    <p:column headerText="Data Alta">
+		        <h:outputText value="#{exame.dataAlta}" />
+		    </p:column>
+		    <p:column headerText="Observações">
+		        <h:outputText value="#{exame.observacoes}" />
+		    </p:column>
+		    
+		    <p:column style="width:50px;text-align: center" headerText="Ações">
+							<p:commandButton
+								icon="ui-icon-search"
+								title="Editar"
+								action="/private/pages/manterCateterismos.xhtml"
+								ajax="true" >
+								<f:setPropertyActionListener value="#{exame}"
+									target="#{manterCateterismoMB.exame}" />
+							</p:commandButton>
+						</p:column>
+		    
+		</p:dataTable>
+					
+		
+	</ui:define>
+</ui:composition>
+
+						

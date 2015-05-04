@@ -1,5 +1,7 @@
 package br.edu.ifrs.canoas.tads.lds.control.service;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
@@ -29,7 +31,22 @@ public class GerenciarCateterismosService {
 	}
 
 	private boolean validaExame(Cateterismo cateterismo) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		if(cateterismo.getMedicoSolicitante() == null ||
+				cateterismo.getMedicoSolicitante() == null ||
+				cateterismo.getLaudo() == null){ 
+			return false;
+		}
+		
+		return true;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Cateterismo> busca(String criterio) {
+		if(criterio != null && criterio != ""){
+			return cateterismosDao.buscaPorCriterio(criterio);
+		}else{
+			return cateterismosDao.buscaTodos();
+		}
 	}
 }
