@@ -60,6 +60,7 @@ public class ListarRefeicaoMB implements Serializable {
 			this.setTipoAlimentos(listarRefeicaoService.buscaTodosTiposAlimentos());
 		}
 		
+		
 		List<TipoAlimento> tipoAlimentoFiltrados = new ArrayList<TipoAlimento>();
          
 		 for (int i = 0; i < getTipoAlimentos().size(); i++) {
