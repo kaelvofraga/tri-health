@@ -2,6 +2,7 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -13,7 +14,7 @@ public class UnidadeFederativa extends BaseEntity<Long> implements Serializable 
 	 */
 	private static final long serialVersionUID = -4613659829962646745L;
 	private String nome;
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="ID_PAIS")
 	private Pais pais = new Pais();
 	public Pais getPais() {

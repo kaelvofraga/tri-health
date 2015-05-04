@@ -10,14 +10,14 @@ public class Idioma extends BaseEntity<Long> implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -6181295878306601637L;
-	private String nomeIdioma;
+	private String nome;
 
-	public String getNomeIdioma() {
-		return nomeIdioma;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomeIdioma(String nomeIdioma) {
-		this.nomeIdioma = nomeIdioma;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	
 

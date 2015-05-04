@@ -28,7 +28,7 @@ public class ManterPerfilUsuarioMB implements Serializable{
 	private static final long serialVersionUID = -6343391229889538808L;
 
 	@Inject
-	private GerenciarLoginMB gerenciarLoginMB;
+	private GerenciarLoginMB gerenciarLoginMB = new GerenciarLoginMB();
 		
 	@Inject
 	private Usuario usuario;
@@ -57,6 +57,8 @@ public class ManterPerfilUsuarioMB implements Serializable{
 	public ManterPerfilUsuarioMB() {
 	}
 
+	
+	//VER SE ASSIM QUE SE PEGA UM USUÁRIO LOGADO
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -154,13 +156,13 @@ public class ManterPerfilUsuarioMB implements Serializable{
 		this.usuarioService = usuarioService;
 	}
 
-	public String salva() {
-		if (usuarioService.salvaUsario(usuario)){
-			gerenciarLoginMB.setUsuario(usuario);
-			usuario = new Usuario();
-			return "login";
-		}
-		else return "manterUsuario";
+	public void salva() {
+		usuarioService.salvaUsario(usuario);
+	}
+
+	
+	public void atualizaUsuarioSecao(){
+		this.usuario =  gerenciarLoginMB.getUsuario();
 	}
 
 }

@@ -2,7 +2,9 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
@@ -15,7 +17,7 @@ public class Cidade extends BaseEntity<Long> implements Serializable {
 
 	private String nome;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="ID_UF")
 	private UnidadeFederativa uf = new UnidadeFederativa();
 	

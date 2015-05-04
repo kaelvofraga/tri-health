@@ -2,7 +2,9 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
@@ -14,7 +16,7 @@ public class Endereco extends BaseEntity<Long> implements Serializable {
 	 */
 	private static final long serialVersionUID = 1445737913096083057L;
 
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="ID_CIDADE")
 	private Cidade cidade = new Cidade();
 	
