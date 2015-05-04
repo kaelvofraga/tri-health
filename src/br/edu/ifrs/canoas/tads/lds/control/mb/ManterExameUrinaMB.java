@@ -21,9 +21,12 @@ import br.edu.ifrs.canoas.tads.lds.control.service.ManterExameUrinaService;
 public class ManterExameUrinaMB implements Serializable{
 
 	/**
-	 * 
+	 * Classe bean do Exame de Urina
 	 */
+//atributos
 	private static final long serialVersionUID = 7113326743475818284L;
+	private static final String URL_LISTAR_USO_TIPOSEXAMEURINA = "/private/pages/listarExameUrina.jsf";
+	private static final String URL_MANTER_USO_EXAMEURINA = "/private/pages/manterExameUrina.jsf";
 	
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
@@ -34,10 +37,11 @@ public class ManterExameUrinaMB implements Serializable{
 	@EJB
 	private ManterExameUrinaService exameUrinaService;
 	
-	private List<ExameUrina> examesLista;
-	
+	private List<ExameUrina> examesLista;	
 	private List<TipoExameUrina> tipos;
-
+	private String criterioExameUrina;
+	
+//getters and setters
 	public ExameUrina getExameUrina() {
 		return exameUrina;
 	}
@@ -46,6 +50,30 @@ public class ManterExameUrinaMB implements Serializable{
 		this.exameUrina = exameUrina;
 	}
 	
+	public List<ExameUrina> getExamesLista() {
+		return examesLista;
+	}
+
+	public void setExamesLista(List<ExameUrina> examesLista) {
+		this.examesLista = examesLista;
+	}
+
+	public List<TipoExameUrina> getTipos() {
+		return tipos;
+	}
+
+	public void setTipos(List<TipoExameUrina> tipos) {
+		this.tipos = tipos;
+	}
+
+	public String getCriterioExameUrina() {
+		return criterioExameUrina;
+	}
+
+	public void setCriterioExameUrina(String criterioExameUrina) {
+		this.criterioExameUrina = criterioExameUrina;
+	}
+//métodos
 	public void salvaExame(){
 		exameUrina.setUsuario(gerenciarLoginMB.getUsuario());
 		exameUrinaService.salvaExameUrinaUsuario(exameUrina);
@@ -59,10 +87,22 @@ public class ManterExameUrinaMB implements Serializable{
 	public void inicializa() {
 		exameUrina = new ExameUrina();
 		examesLista = new ArrayList<>();
+		criterioExameUrina="";
 	}
 	
 	public String alteraTipoExameUrina() {
-		return "manterExameUrina";
+		exameUrinaService.alteraExameUrina(exameUrina);
+		return URL_LISTAR_USO_TIPOSEXAMEURINA;
+	}
+	
+	public String excluiTipoExameUrina(){
+		exameUrinaService.excluiExameUrina(exameUrina);
+		this.busca();
+		return URL_LISTAR_USO_TIPOSEXAMEURINA;
+	}
+	
+	public void busca(){
+		examesLista = exameUrinaService.busca(criterioExameUrina);
 	}
 	
 	public List<TipoExameUrina> completeTipoExameUrina(String query){
@@ -81,5 +121,7 @@ public class ManterExameUrinaMB implements Serializable{
 	}
 
 }
+
+
 
 

@@ -8,11 +8,13 @@ import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
 import br.edu.ifrs.canoas.tads.lds.bean.ExameUrina;
+import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoExameUrina;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 import br.edu.ifrs.canoas.tads.lds.model.dao.ExameUrinaDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.TipoExameUrinaDAO;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
+import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
 
 @Stateless
 public class ManterExameUrinaService {
@@ -63,6 +65,14 @@ public class ManterExameUrinaService {
 		return new ArrayList<TipoExameUrina>();
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<ExameUrina> busca(String criterioExameUrina) {
+		if (StrUtil.isNotBlank(criterioExameUrina))
+			return exameUrinaDAO.buscaPorCriterio(criterioExameUrina);
+		else
+			return exameUrinaDAO.buscaTodos();
+	}
+	
 	public void alteraExameUrina(ExameUrina exameUrina) {
 		exameUrinaDAO.atualiza(exameUrina);
 	}
@@ -70,6 +80,15 @@ public class ManterExameUrinaService {
 	public void excluiExameUrina(ExameUrina exameUrina) {
 		exameUrinaDAO.exclui(exameUrina.getId());
 	}
+	
+	
 }
+
+/*public List<MedicamentoUsuario> busca(String criterioMedicamento) {
+		if (StrUtil.isNotBlank(criterioMedicamento))
+			return medicamentoUsuarioDAO.buscaPorCriterio(criterioMedicamento);
+		else
+			return medicamentoUsuarioDAO.buscaTodos();
+	}*/
 
 
