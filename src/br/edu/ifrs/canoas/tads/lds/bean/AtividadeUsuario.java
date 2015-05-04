@@ -26,7 +26,7 @@ public class AtividadeUsuario extends BaseEntity<Long> implements Serializable {
 
 	@NotNull @ManyToOne 
 	@JoinColumn(name="ATIVIDADE_ID")
-	private  Atividade atividade;
+	private  Atividade atividade = new Atividade();
 	
 	@NotNull @ManyToOne
 	@JoinColumn(name="USUARIO_ID")

@@ -8,8 +8,6 @@ import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
 import br.edu.ifrs.canoas.tads.lds.bean.ExameUrina;
-import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
-import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoExameUrina;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 import br.edu.ifrs.canoas.tads.lds.model.dao.ExameUrinaDAO;
