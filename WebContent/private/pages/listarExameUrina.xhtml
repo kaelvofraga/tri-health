@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+	template="/public/templates/template.xhtml">
+	
+	<ui:define name="metadata" />
+	<ui:define name="content">
+
+		<h1 class="lead">Exames Realizados</h1>
+		
+		<p:accordionPanel multiple="true">
+			<p:tab title="Lista de Exames de Urina">
+
+					<h:panelGroup layout="block" id="exames">
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:outputLabel for="criterio_exame" value="Pesquisa" />
+						<p:inputText id="criterio_exame" styleClass="form-control"
+							value="#{manterExameUrinaMB.criterioExameUrina}"
+							placeholder="Digite o valor para pesquisa" />
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:commandButton value="Buscar" type="submit"
+							action="#{manterExameUrinaMB.busca}" ajax="true"
+							update="tab-exames" immediate="false" />
+						<p:commandButton value="Limpar" type="submit"
+							action="#{manterExameUrinaMB.inicializa()}" ajax="true"
+							update="tab-exames,criterio_exame" immediate="false" />
+					</h:panelGroup>
+
+
+					<p:dataTable var="listExameUrina" id="tab-exames"
+						value="#{manterExameUrinaMB.examesLista}">
+						<p:column headerText="Data Exame">
+							<h:outputText value="#{listExameUrina.data}" />
+						</p:column>
+						<p:column headerText="Tipo Exame">
+							<h:outputText value="#{listExameUrina.tipoExameUrina.tipo}" />
+						</p:column>
+						<p:column headerText="Resultado">
+							<h:outputText value="#{listExameUrina.resultado}" />
+						</p:column>
+						<p:column headerText="Observação">
+							<h:outputText value="#{listExameUrina.observacao}" />
+						</p:column>
+
+
+					</p:dataTable>
+					<br />
+				</h:panelGroup>
+
+				<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+
+		</p:tab>
+
+		</p:accordionPanel>
+
+	</ui:define>
+</ui:composition>
