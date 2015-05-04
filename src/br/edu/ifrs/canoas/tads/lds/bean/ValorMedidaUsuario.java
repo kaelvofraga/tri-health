@@ -3,6 +3,7 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -32,8 +33,8 @@ private TipoMedida tipoMedida;
 @JoinColumn(name="USUARIO_ID")
 private Usuario usuario;
 
-@NotNull 
-private float medidaValor;
+@NotNull @Column(precision=8, scale=2)
+private double medidaValor;
 
 @NotNull @Temporal(TemporalType.TIMESTAMP)
 private Date dataMedida;
@@ -66,11 +67,11 @@ public void setUsuario(Usuario usuario) {
 	this.usuario = usuario;
 }
 
-public float getMedidaValor() {
+public double getMedidaValor() {
 	return medidaValor;
 }
 
-public void setMedidaValor(float medidaValor) {
+public void setMedidaValor(double medidaValor) {
 	this.medidaValor = medidaValor;
 }
 
