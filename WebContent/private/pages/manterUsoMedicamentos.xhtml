@@ -95,21 +95,46 @@
 	    		
 	    	</h:panelGrid>
 	    
-	    		<h:panelGroup layout="block" styleClass="form-group">
-	    					<p:commandButton value="Salvar"
+	    		<h:panelGroup layout="block" styleClass="form-group" id="buttons">
+	    		
+	    			<h:panelGroup layout="block" styleClass="form-group pull-left">
+	    			   <p:commandButton value="Salvar"
 							rendered="#{not manterUsoMedicamentoMB.atualizacao}"
-							action="#{manterUsoMedicamentoMB.salvaMedicamento}" ajax="true"/>
-						<p:commandButton value="Alterar"
-							rendered="#{manterUsoMedicamentoMB.atualizacao}"
-						action="#{manterUsoMedicamentoMB.alteraMedicamento}" ajax="true" />
-						<p:commandButton value="Voltar"
-							rendered="#{manterUsoMedicamentoMB.atualizacao}"
-						action="listarUsoMedicamentos" ajax="false"/>
-						<p:commandButton value="Limpa" type="submit"
+							action="#{manterUsoMedicamentoMB.salvaMedicamento}" ajax="true"
+					   />
+					   
+					   <p:commandButton value="Limpa" type="submit"
 							rendered="#{manterUsoMedicamentoMB.atualizacao}" 
 							action="#{manterUsoMedicamentoMB.init}" ajax="true"
-							update="medicamentos" immediate="false" />
-
+							update="medicamentos" immediate="false" 
+					   />
+				
+					   <p:commandButton value="Alterar"
+							rendered="#{manterUsoMedicamentoMB.atualizacao}"
+							action="#{manterUsoMedicamentoMB.alteraMedicamento}" ajax="true" 
+					   />
+					
+				    </h:panelGroup> 
+				    
+				    <h:panelGroup layout="block" styleClass="form-group pull-right">	  
+					   <p:commandButton value="Excluir"
+							rendered="#{manterUsoMedicamentoMB.atualizacao}"
+							action="#{manterUsoMedicamentoMB.excluiMedicamento}" ajax="true" 
+					   />
+					   <p:commandButton value="Voltar"
+							rendered="#{manterUsoMedicamentoMB.atualizacao}"
+							action="listarUsoMedicamentos" ajax="false"
+					   />
+					</h:panelGroup> 
+					
+					<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>  
+					   
 				</h:panelGroup>
 				
 			</h:panelGroup>

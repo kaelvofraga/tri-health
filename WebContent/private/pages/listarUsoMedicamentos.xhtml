@@ -35,49 +35,28 @@
 					</h:panelGroup>
 
 
-					<p:dataTable var="listMedicamento" id="tab-medicamentos"
-						value="#{manterUsoMedicamentoMB.medicamentosLista}">
-						<p:column headerText="Data Consulta">
+					<p:dataTable 
+					var="listMedicamento" id="tab-medicamentos" selectionMode="single" selection="#{manterUsoMedicamentoMB.medicamentoUsuario}"
+					rowKey="#{listMedicamento.id}" value="#{manterUsoMedicamentoMB.medicamentosLista}" emptyMessage="Nenhum Registro Encontrado."
+					reflow="true">
+					<p:ajax event="rowSelect" listener="#{manterAtividadesMB.onRowSelect}" oncomplete="manterUsoMedicamentos"/>
+						<p:column headerText="Data Consulta" id="colDataConsulta">
 							<h:outputText
 								value="#{listMedicamento.dataConsulta}" />
 						</p:column>
-						<p:column headerText="Medicamento">
+						<p:column headerText="Medicamento" id="colMedicamento">
 							<h:outputText value="#{listMedicamento.medicamento.nome}" />
 						</p:column>
-						<p:column headerText="Dosagem">
+						<p:column headerText="Dosagem" id="colDosagem">
 							<h:outputText value="#{listMedicamento.dosagem}" />
 						</p:column>
-						<p:column headerText="Frequencia">
+						<p:column headerText="Frequencia" id="colFrequencia">
 							<h:outputText value="#{listMedicamento.frequencia}" />
-						</p:column>
-						<p:column headerText="Editar">
-							<p:commandButton value="Editar" action="manterUsoMedicamentos">
-								<f:setPropertyActionListener value="#{listMedicamento}"
-									target="#{manterUsoMedicamentoMB.medicamentoUsuario}" />
-							</p:commandButton>
-						</p:column>
-						<p:column headerText="Excluir">
-							<p:commandButton value="Excluir" type="submit" update="tab-medicamentos"
-								action="#{manterUsoMedicamentoMB.excluiMedicamento}">
-								<f:setPropertyActionListener value="#{listMedicamento}"
-									target="#{manterUsoMedicamentoMB.medicamentoUsuario}" />
-								<p:confirm header="Confirmação"
-									message="Tem certeza que deseja apagar o medicamento?"
-									icon="ui-icon-alert" />
-							</p:commandButton>
 						</p:column>
 
 					</p:dataTable>
-					<br />
+					<br/>
 				</h:panelGroup>
-
-				<p:confirmDialog global="true" showEffect="fade"
-					hideEffect="explode">
-					<p:commandButton value="Sim" type="button"
-						styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
-					<p:commandButton value="Não" type="button"
-						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-				</p:confirmDialog>
 
 		</p:tab>
 
