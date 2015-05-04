@@ -24,7 +24,7 @@
 							<p:outputLabel for="tipo_atividade" value="Tipo:" />
 							<br />
 							<p:selectOneMenu id="tipo_atividade"
-								value="#{manterAtividadesMB.tipoAtividade}"
+								value="#{manterAtividadesMB.atividadeUsuario.atividade.tipoAtividade}"
 								style="width: 100%;" 
 								required="true" requiredMessage="Um tipo para a atividade deve ser escolhida.">								
 								<p:ajax listener="#{manterAtividadesMB.onTipoAtividadeChange}" update="descricao_atividade" />								
@@ -136,6 +136,9 @@
 								rendered="#{manterAtividadesMB.atualizacao}"
 								action="#{manterAtividadesMB.alteraAtividadeUsuario}"
 								ajax="true" icon="ui-icon-pencil" />
+								
+							<!-- Implementar quando vier do listar --> <p:commandButton value="Voltar" /> 
+								
 						</h:panelGroup>
 
 						<h:panelGroup layout="block" styleClass="form-group pull-right">							

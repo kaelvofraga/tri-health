@@ -1,5 +1,6 @@
 package br.edu.ifrs.canoas.tads.lds.control.mb;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,11 +9,15 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
+
 import br.edu.ifrs.canoas.tads.lds.bean.Atividade;
+import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAtividade;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterAtividadesService;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
@@ -32,9 +37,9 @@ public class ManterAtividadesMB implements Serializable {
 	private ManterAtividadesService atvUsuarioService;
 	
 	//Beans
-	private AtividadeUsuario atividadeUsuario;	
-	private Atividade atividade;
-	private TipoAtividade tipoAtividade;
+	@Inject private AtividadeUsuario atividadeUsuario;	
+	@Inject private Atividade atividade;
+	@Inject private TipoAtividade tipoAtividade;
 	
 	private boolean emListagemAtvs;
 
@@ -54,12 +59,12 @@ public class ManterAtividadesMB implements Serializable {
 	public void init(){
 		
 		/** POJO **/
-		if(atividadeUsuario == null)
-			atividadeUsuario = new AtividadeUsuario();
-		if(atividade == null)
-			atividade = new Atividade();	
-		if(tipoAtividade == null)
-			tipoAtividade = new TipoAtividade();
+//		if(atividadeUsuario == null)
+//			atividadeUsuario = new AtividadeUsuario();
+//		if(atividade == null)
+//			atividade = new Atividade();	
+//		if(tipoAtividade == null)
+//			tipoAtividade = new TipoAtividade();
 		
 		/** Busca **/
 		if(criterioAtividadeUsuario == null || criterioAtividadeUsuario.length() == 0)
@@ -132,7 +137,7 @@ public class ManterAtividadesMB implements Serializable {
 		/** POJO **/
 		atividadeUsuario = new AtividadeUsuario();
 
-		/** Zera critério de filtro **/
+		/** Zera critï¿½rio de filtro **/
 		criterioAtividadeUsuario = "";
 
 		/** Limpa filtro na lista atividadesUsuarioList **/
@@ -204,6 +209,14 @@ public class ManterAtividadesMB implements Serializable {
 		}	
 		atividadeUsuario.setCalorias(atvUsuarioService.calculaCaloriasQueimadas(atividadeUsuario));			
 	}	
+	
+	
+	public void onRowSelect(SelectEvent event) throws IOException {
+		this.atividadeUsuario = (AtividadeUsuario) event.getObject();
+        FacesContext.getCurrentInstance().getExternalContext().redirect("manterAtividadesFisicas.jsf");
+    }
+ 
+    
 	
 	/*
 	 * GETTERS & SETTERS

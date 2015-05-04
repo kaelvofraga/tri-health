@@ -46,7 +46,9 @@
 						rowKey="#{atividadeUsuario.id}"
 						reflow="true" >
 
-						<p:column style="width:48px;text-align: center">
+						<p:ajax event="rowSelect" listener="#{manterAtividadesMB.onRowSelect}" oncomplete="manterAtividadesFisicas"/>
+        				
+						<!-- <p:column style="width:48px;text-align: center">
 							<p:commandButton
 								icon="ui-icon-search"
 								title="View"
@@ -55,7 +57,7 @@
 								<f:setPropertyActionListener value="#{atividadeUsuario}"
 									target="#{manterAtividadesMB.atividadeUsuario}" />
 							</p:commandButton>
-						</p:column>
+						</p:column> -->
 
 						<p:column headerText="Atividade" id="colAtividade" style="width:45%;">
 							<h:outputText
