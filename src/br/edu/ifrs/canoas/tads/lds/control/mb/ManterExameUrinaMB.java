@@ -11,7 +11,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.edu.ifrs.canoas.tads.lds.bean.ExameUrina;
+import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
+import br.edu.ifrs.canoas.tads.lds.bean.TipoExameUrina;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterExameUrinaService;
 
 @Named
@@ -33,6 +35,8 @@ public class ManterExameUrinaMB implements Serializable{
 	private ManterExameUrinaService exameUrinaService;
 	
 	private List<ExameUrina> examesLista;
+	
+	private List<TipoExameUrina> tipos;
 
 	public ExameUrina getExameUrina() {
 		return exameUrina;
@@ -56,17 +60,26 @@ public class ManterExameUrinaMB implements Serializable{
 		exameUrina = new ExameUrina();
 		examesLista = new ArrayList<>();
 	}
+	
+	public String alteraTipoExameUrina() {
+		return "manterExameUrina";
+	}
+	
+	public List<TipoExameUrina> completeTipoExameUrina(String query){
+		if (tipos == null) 
+			tipos = exameUrinaService.buscaTiposExameUrina(query, gerenciarLoginMB.getUsuario());
+
+		List<TipoExameUrina> tiposBusca = new ArrayList<TipoExameUrina>();
+         
+        for (int i = 0; i < tipos.size(); i++) {
+            TipoExameUrina tipoExameUrina = tipos.get(i);
+            if(tipoExameUrina.getTipo().trim().toLowerCase().startsWith(query)) {
+            	tiposBusca.add(tipoExameUrina);
+            }
+        }
+        return tiposBusca;
+	}
 
 }
 
-/*	public void inicializa() {
-		medicamentoUsuario = new MedicamentoUsuario();
-		medicamentosLista = new ArrayList<>();
-	}
-
-	public void salvaMedicamento(){
-		medicamentoUsuario.setUsuario(gerenciarLoginMB.getUsuario());
-		medicamentoService.salvaMedicamentoUsuario(medicamentoUsuario);
-		this.inicializa();
-	}*/
 

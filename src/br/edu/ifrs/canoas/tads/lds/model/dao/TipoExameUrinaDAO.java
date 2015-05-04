@@ -10,7 +10,7 @@ import br.edu.ifrs.canoas.tads.lds.bean.TipoExameUrina;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 
 @Stateless
-public class TipoExameUrinaDAO extends BaseDAO<ExameUrina, Long> {
+public class TipoExameUrinaDAO extends BaseDAO<TipoExameUrina, Long> {
 
 	/**
 	 * 
