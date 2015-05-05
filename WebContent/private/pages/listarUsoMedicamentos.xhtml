@@ -39,10 +39,9 @@
 					var="listMedicamento" id="tab-medicamentos" selectionMode="single" selection="#{manterUsoMedicamentoMB.medicamentoUsuario}"
 					rowKey="#{listMedicamento.id}" value="#{manterUsoMedicamentoMB.medicamentosLista}" emptyMessage="Nenhum Registro Encontrado."
 					reflow="true">
-					<p:ajax event="rowSelect" listener="#{manterAtividadesMB.onRowSelect}" oncomplete="manterUsoMedicamentos"/>
+					<p:ajax event="rowSelect" listener="#{manterUsoMedicamentoMB.onRowSelect}" oncomplete="manterUsoMedicamentos"/>
 						<p:column headerText="Data Consulta" id="colDataConsulta">
-							<h:outputText
-								value="#{listMedicamento.dataConsulta}" />
+							<h:outputText value="#{listMedicamento.dataConsulta}" />
 						</p:column>
 						<p:column headerText="Medicamento" id="colMedicamento">
 							<h:outputText value="#{listMedicamento.medicamento.nome}" />

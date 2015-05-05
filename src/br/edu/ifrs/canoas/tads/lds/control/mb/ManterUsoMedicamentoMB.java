@@ -1,13 +1,20 @@
 package br.edu.ifrs.canoas.tads.lds.control.mb;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.primefaces.event.SelectEvent;
+
+import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterUsoMedicamentoService;
@@ -60,6 +67,11 @@ public class ManterUsoMedicamentoMB implements Serializable {
 		this.busca();
 		return URL_LISTAR_USO_MEDICAMENTOS;
 	}
+	
+	public void onRowSelect(SelectEvent event) throws IOException {
+		this.medicamentoUsuario = (MedicamentoUsuario) event.getObject();
+        FacesContext.getCurrentInstance().getExternalContext().redirect("manterUsoMedicamentos.jsf");
+    }
 	
 	
 	public boolean isAtualizacao(){
