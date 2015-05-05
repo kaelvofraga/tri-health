@@ -22,7 +22,7 @@ public class MedicamentoUsuario extends BaseEntity<Long> implements Serializable
 
 	@NotNull @OneToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="MEDICAMENTO_ID")
-	private Medicamento medicamento= new Medicamento();
+	private Medicamento medicamento;
 	
 	@NotNull @ManyToOne
 	@JoinColumn(name="USUARIO_ID")
