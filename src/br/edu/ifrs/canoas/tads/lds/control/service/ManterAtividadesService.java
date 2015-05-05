@@ -1,4 +1,6 @@
 package br.edu.ifrs.canoas.tads.lds.control.service;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
@@ -41,11 +43,19 @@ public class ManterAtividadesService {
 
 		return timeDifMinutes;
 	}
+	
+	public double round(double value, int places) {
+	    if (places < 0) throw new IllegalArgumentException();
 
+	    BigDecimal bd = new BigDecimal(value);
+	    bd = bd.setScale(places, RoundingMode.HALF_UP);
+	    return bd.doubleValue();
+	}
+	
 	public double calculaCaloriasQueimadas(AtividadeUsuario atividadeUsuario) {
 		double massaCorporal = 1.0; // TODO Pegar peso do usuário da classe Peso Usuario
 				
-		return  atividadeUsuario.getAtividade().getMET() * massaCorporal *  (atividadeUsuario.getDuracao()/60.0);
+		return this.round((atividadeUsuario.getAtividade().getMET() * massaCorporal *  (atividadeUsuario.getDuracao()/60.0)), 2);
 	}
 	
 	public boolean validaDatas(AtividadeUsuario atividadeUsuario) {
