@@ -8,6 +8,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -20,7 +21,7 @@ import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterUsoMedicamentoService;
 
 @Named
-@RequestScoped
+@SessionScoped
 public class ManterUsoMedicamentoMB implements Serializable {
 
 	private static final long serialVersionUID = 6240201264929366814L;
@@ -69,7 +70,7 @@ public class ManterUsoMedicamentoMB implements Serializable {
 	}
 	
 	public void onRowSelect(SelectEvent event) throws IOException {
-		this.medicamentoUsuario = (MedicamentoUsuario) event.getObject();
+		this.medicamentoUsuario = (MedicamentoUsuario)event.getObject();
         FacesContext.getCurrentInstance().getExternalContext().redirect("manterUsoMedicamentos.jsf");
     }
 	

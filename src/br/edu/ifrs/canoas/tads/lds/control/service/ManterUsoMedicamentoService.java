@@ -7,7 +7,6 @@ import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
-
 import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
@@ -26,13 +25,7 @@ public class ManterUsoMedicamentoService {
 	private MedicamentoDAO medicamentoDAO;
 	
 	
-	public boolean salvaMedicamentoUsuario(MedicamentoUsuario medicamentoUsuario) {
-			
-		medicamentoUsuarioDAO.insere(medicamentoUsuario);
-		Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.cadastro.sucesso");
-		
-		return true;
-	}
+	
 
 	public Medicamento buscaOuCriaMedicamentoPorNome(Medicamento medicamento) {
 		List<Medicamento> medicamentos = medicamentoDAO.buscaPorNome(medicamento.getNome());
@@ -42,10 +35,39 @@ public class ManterUsoMedicamentoService {
 		else{
 			medicamentoDAO.insere(medicamento);
 		}
-		
 		return medicamento;
 	}
  
+	
+
+	public List<Medicamento> buscaMedicamentos(String query, Usuario usuario) {
+		if (usuario != null && usuario.getId() != null)
+			return medicamentoDAO.buscaPorNome(query);
+		//	return medicamentoDAO.buscaNomeMedicamentoPorUsuario(usuario);
+		return new ArrayList<Medicamento>();
+	}
+	
+	
+	
+
+
+	
+	public boolean salvaMedicamentoUsuario(MedicamentoUsuario medicamentoUsuario) {	
+		if (medicamentoUsuario == null || medicamentoUsuario.getMedicamento() == null || medicamentoUsuario.getUsuario() == null) {
+		//Mensagens.define(FacesMessage.SEVERITY_ERROR,"Medicamento.cadastro.erro");
+		return false;
+		}
+		try{
+			medicamentoUsuarioDAO.insere(medicamentoUsuario);
+		}catch(Exception e){
+		//Mensagens.define(FacesMessage.SEVERITY_ERROR,"Medicamento.cadastro.erro");			
+			return false;
+		}
+		
+		Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.cadastro.sucesso");
+		return true;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<MedicamentoUsuario> busca(String criterioMedicamento) {
 		if (StrUtil.isNotBlank(criterioMedicamento))
@@ -53,14 +75,7 @@ public class ManterUsoMedicamentoService {
 		else
 			return medicamentoUsuarioDAO.buscaTodos();
 	}
-
-	public List<Medicamento> buscaMedicamentos(String query, Usuario usuario) {
-		if (usuario != null && usuario.getId() != null)
-			return medicamentoDAO.buscaNomeMedicamentoPorUsuario(usuario);
-		return new ArrayList<Medicamento>();
-	}
-
-
+	
 	public void alteraMedicamentoUsario(MedicamentoUsuario medicamentoUsuario) {
 		medicamentoUsuarioDAO.atualiza(medicamentoUsuario);
 	}
@@ -70,7 +85,4 @@ public class ManterUsoMedicamentoService {
 	}
 	
 	
-	
-	
-
 }
