@@ -18,8 +18,10 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
 import br.edu.ifrs.canoas.tads.lds.bean.Cateterismo;
+import br.edu.ifrs.canoas.tads.lds.bean.Medico;
 import br.edu.ifrs.canoas.tads.lds.control.service.GerenciarCateterismosService;
 import br.edu.ifrs.canoas.tads.lds.model.dao.CateterismosDAO;
+import br.edu.ifrs.canoas.tads.lds.model.dao.MedicoDAO;
 
 @Named
 @RequestScoped
@@ -34,11 +36,16 @@ public class ManterCateterismoMB implements Serializable {
 	private GerenciarCateterismosService cateterismoService;
 	
 	private String criterio = "";
+	
 	private List<Cateterismo> listExames;
+	private List<Medico> listMedico;
+	
 
 	@PostConstruct
     public void init() {
 		listExames = new ArrayList<Cateterismo>();
+		listMedico = new ArrayList<Medico>();
+
 	}
 	
 	public void busca() {
@@ -85,4 +92,13 @@ public class ManterCateterismoMB implements Serializable {
         FacesMessage msg = new FacesMessage("Exame Desmarcado");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
+
+	public List<Medico> getListMedico() {
+		listMedico = cateterismoService.buscaMedicos("");
+		return listMedico;
+	}
+
+	public void setListMedico(List<Medico> listMedico) {
+		this.listMedico = listMedico;
+	}
 }

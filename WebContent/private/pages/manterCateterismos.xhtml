@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<ui:define name="content">
+
+	<p:panel id="principal" header="Cadastrar Novo Exame">
+
+		<h:panelGroup layout="block" id="datas">
+			<h:panelGrid columns="4" class="table">
+
+				<f:validateBean>
+
+					<p:outputLabel for="dataInternacao" value="Data da Internação:" />
+        			<p:calendar id="dataInternacao" 
+        			value="#{manterCateterismoMB.exame.dataAlta}" 
+        			pattern="dd/MM/yyyy" 
+        			mask="true"
+        			required="true" />
+
+					<p:outputLabel for="dataAlta" value="Data da Alta:" />
+        			<p:calendar id="dataAlta" 
+        			value="#{manterCateterismoMB.exame.dataAlta}" 
+        			pattern="dd/MM/yyyy" 
+        			mask="true"
+        			required="true" />
+ 
+
+				</f:validateBean>
+				
+			</h:panelGrid>
+		</h:panelGroup>
+		
+		<h:panelGroup layout="block" id="medicos">
+		
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="medicoSolicitante" value="Médico Solicitante:" />
+							<br />
+							<p:selectOneMenu id="medicoSolicitante"
+								value="#{manterCateterismoMB.exame.medicoSolicitante}"
+								style="width: 50%;" 
+								required="true" requiredMessage="Médico solicitante deve ser selecionado">														
+								<f:selectItem itemLabel="Selecione um médico."
+									itemValue="" noSelectionOption="true" />
+								<f:selectItems value="#{manterCateterismoMB.listMedico}"
+									var="medico" itemLabel="#{medico.nome}" itemValue="#{medico}" />
+							</p:selectOneMenu>
+						</h:panelGroup>
+						
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="medicoResponsavel" value="Médico Responsável:" />
+							<br />
+							<p:selectOneMenu id="medicoResponsavel"
+								value="#{manterCateterismoMB.exame.medicoResponsavel}"
+								style="width: 50%;" 
+								required="true" requiredMessage="Médico solicitante deve ser selecionado">														
+								<f:selectItem itemLabel="Selecione um médico."
+									itemValue="" noSelectionOption="true" />
+								<f:selectItems value="#{manterCateterismoMB.listMedico}"
+									var="medico" itemLabel="#{medico.nome}" itemValue="#{medico}" />
+							</p:selectOneMenu>
+						</h:panelGroup>
+						
+					</h:panelGroup>
+			
+	</p:panel>					
+		
+	</ui:define>
+
+</ui:composition>

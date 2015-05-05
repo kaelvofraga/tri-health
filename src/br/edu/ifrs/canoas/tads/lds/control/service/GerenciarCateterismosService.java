@@ -7,7 +7,9 @@ import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
 import br.edu.ifrs.canoas.tads.lds.bean.Cateterismo;
+import br.edu.ifrs.canoas.tads.lds.bean.Medico;
 import br.edu.ifrs.canoas.tads.lds.model.dao.CateterismosDAO;
+import br.edu.ifrs.canoas.tads.lds.model.dao.MedicoDAO;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 
 @Stateless
@@ -16,6 +18,9 @@ public class GerenciarCateterismosService {
 	@Inject
 	private CateterismosDAO cateterismosDao;
 	
+	@Inject
+	private MedicoDAO medicosDao;
+
 	public boolean salvaCateterismo(Cateterismo cateterismo) {
 
 		
@@ -48,5 +53,12 @@ public class GerenciarCateterismosService {
 		}else{
 			return cateterismosDao.buscaTodos();
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Medico> buscaMedicos(String criterio) {
+		
+		return medicosDao.buscaTodos();
+	
 	}
 }
