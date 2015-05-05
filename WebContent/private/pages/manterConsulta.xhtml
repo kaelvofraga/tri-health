@@ -12,9 +12,28 @@
 
 	<ui:define name="content">
 
-		<h1>Consultas</h1>
+		<p:panel header="Cadastro de Consulta" id="painel" style="height=200px">
+			<h:panelGrid columns="2">
+				<p:outputLabel for="sintomas" value="Sintomas:" />
+				<p:inputText id="sintomas" value="#{manterConsultasMB.consulta.sintomas}" />
+				
+				<p:outputLabel for="diagnostico" value="Diagnóstico:" />
+				<p:inputText id="diagnostico" value="#{manterConsultasMB.consulta.diagnostico}" />
+			</h:panelGrid>
 
-		<p:outputLabel value="#{manterConsultasMB.teste}"/>
+			<h:panelGroup>
+				<p:commandButton value="Salvar" action="#{manterConsultasMB.salva}" rendered="#{not manterConsultasMB.atualizacao}"
+					ajax="true" update="painel" />
+				<p:commandButton value="Salvar Alterações" action="#{manterConsultasMB.altera}" rendered="#{manterConsultasMB.atualizacao}"
+					ajax="true" update="painel" />
+				<p:commandButton value="Voltar"  immediate="true" rendered="#{manterConsultasMB.atualizacao}"
+					action="#{manterConsultasMB.voltarParaListar}" ajax="true"
+					update="painel" />
+				<p:commandButton value="Excluir" rendered="#{manterConsultasMB.atualizacao}"
+					action="#{manterConsultasMB.exclui}" ajax="true" update="painel" />
+			</h:panelGroup>
+			<p:spacer height="200" />
+		</p:panel>
 
 	</ui:define>
 

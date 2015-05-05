@@ -2,7 +2,6 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -12,9 +11,6 @@ import javax.faces.context.FacesContext;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -73,12 +69,8 @@ public class Usuario extends BaseEntity<Long> implements Serializable {
      //          )
     private DualListModel<String> idiomas;
 	
-    @OneToMany(mappedBy="usuario")
-    private List<Consulta> consultas;/**/
-    
     public Usuario() {
 		super();
-		consultas = new ArrayList<Consulta>();
 	}
 	
 	public String getTipoSanguineo() {
@@ -148,14 +140,6 @@ public class Usuario extends BaseEntity<Long> implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-/**/
-	public List<Consulta> getConsultas() {
-		return consultas;
-	}
-
-	public void setConsultas(List<Consulta> consultas) {
-		this.consultas = consultas;
 	}
 
 	public String getSobrenome() {

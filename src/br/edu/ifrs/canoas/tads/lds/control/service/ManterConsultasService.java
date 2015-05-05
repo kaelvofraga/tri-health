@@ -3,10 +3,14 @@ package br.edu.ifrs.canoas.tads.lds.control.service;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
+import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Consulta;
+import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 import br.edu.ifrs.canoas.tads.lds.model.dao.ConsultaDAO;
+import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 
 @Stateless
 public class ManterConsultasService {
@@ -21,12 +25,32 @@ public class ManterConsultasService {
 	
 	public boolean salva(Consulta consulta) {
 		try{
-			consultaDAO.insere(consulta);
-			System.out.println("Salvo com sucesso");
+			consultaDAO.atualiza(consulta);
+			Mensagens.define(FacesMessage.SEVERITY_INFO, "Consulta salva com sucesso");
 		}catch(Exception e){
-			System.out.println("Exception ao Salvar");
+			System.out.println("Exception ao Salvar: "+e.getMessage());
+			e.printStackTrace();
 			return false;
 		}
 		return true;
+	}	
+	
+	public boolean insere(Consulta consulta, Usuario usuario) {
+		try{
+			consultaDAO.insere(consulta);
+			consulta.setUsuario(usuario);
+			consultaDAO.atualiza(consulta);	
+			Mensagens.define(FacesMessage.SEVERITY_INFO, "Consulta Inserida com sucesso");
+		}catch(Exception e){
+			System.out.println("Exception ao Inserir: "+e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	public void exclui(Consulta consulta) {
+		consultaDAO.exclui(consulta.getId());
+		Mensagens.define(FacesMessage.SEVERITY_INFO, "Consulta excluida com sucesso");
 	}
 }
