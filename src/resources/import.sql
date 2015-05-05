@@ -31,10 +31,13 @@ insert into UnidadeFederativa (id, nome, id_pais) values (1, 'Rio Grande do Sul'
 insert into Cidade (id, nome, id_uf) values (1, 'Canoas',1 );
 insert into Endereco (id, cep, complemento, logradouro, numero, id_cidade) values (1, '92330-500', 'Casa', 'Rua Um', 541, 1 );
 
---DIMENSÕES CORPORAIS
+--[DIMENSÕES CORPORAIS]--
+
+--table udm
 insert into Udm (id, descricao) values (1, 'cm');
 insert into Udm (id, descricao) values (2, 'pol');
 
+--table tipoMedida
 insert into TipoMedida(id, descricao) values (1, 'Busto');
 insert into TipoMedida(id, descricao) values (2, 'Peito');
 insert into TipoMedida(id, descricao) values (3, 'Cabeca');
@@ -44,6 +47,11 @@ insert into TipoMedida(id, descricao) values (6, 'Pescoco');
 insert into TipoMedida(id, descricao) values (7, 'Coxa Esquerda');
 insert into TipoMedida(id, descricao) values (8, 'Coxa Direita'); 
 insert into TipoMedida(id, descricao) values (9, 'Altura');	
+
+--table valorMedida
+insert into ValorMedidaUsuario(id, USUARIO_ID, UDM_ID, TIPOMEDIDA_ID, medidaValor, dataMedida, observacao) values (100000, 1000, 1, 2, 140.39, sysdate, 'lesao muscular no lado esquerdo do peito.');
+insert into ValorMedidaUsuario(id, USUARIO_ID, UDM_ID, TIPOMEDIDA_ID, medidaValor, dataMedida, observacao) values (100001, 1000, 2, 3, 40.00, sysdate, 'nao possuo lesao corporal.');
+
 
 --[ Manter Atividades Físicas ]--
 
@@ -59,3 +67,19 @@ insert into Atividade(id, descricao, MET, tipoAtividade_id) values (4, 'Pedaland
 
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (5, 'Dança aeróbica', 6.5, 3);
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (6, 'Ballet ou moderna, twist, jazz, tap, jitterbug', 4.8, 3);
+
+--table TipoExameUrina
+insert into TipoExameUrina (id, tipo) values (1,'Glicose');
+insert into TipoExameUrina (id, tipo) values (2,'Bilirrubinas');
+insert into TipoExameUrina (id, tipo) values (3,'Corpos Cetônicos');
+insert into TipoExameUrina (id, tipo) values (4,'Densidade');
+insert into TipoExameUrina (id, tipo) values (5,'pH');
+insert into TipoExameUrina (id, tipo) values (6,'Proteínas');
+insert into TipoExameUrina (id, tipo) values (7,'Urobilinogênio');
+insert into TipoExameUrina (id, tipo) values (8,'Nitrito');
+insert into TipoExameUrina (id, tipo) values (9,'Hemoglobina');
+insert into TipoExameUrina (id, tipo) values (10,'Leucócitos');
+insert into TipoExameUrina (id, tipo) values (11,'Hemácias');
+insert into TipoExameUrina (id, tipo) values (12,'Células Epiteliais');
+insert into TipoExameUrina (id, tipo) values (13,'Bacteriúria');
+insert into TipoExameUrina (id, tipo) values (14,'Cilindros');

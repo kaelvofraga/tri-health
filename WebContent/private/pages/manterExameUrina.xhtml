@@ -19,16 +19,18 @@
 					<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="tipo_exame" value="Tipo de Exame" />
 							<br/>
-							
-								
-								<p:autoComplete id="tipo_exame"
+							<p:selectOneMenu id="tipo_exame"
 								value="#{manterExameUrinaMB.exameUrina.tipoExameUrina.tipo}"
-								size="40" style="width:200px"
-								completeMethod="#{manterExameUrinaMB.completeTipoExameUrina}"
-								var="tipo" itemLabel="#{tipoExameUrina}"
-								itemValue="#{tipoExameUrina.tipo}"
-								placeholder="Informe o tipo de exame" 
-								required="true" requiredMessage="Um nome de exame deve ser informado."/>
+								size="20" style="width:200px" 
+								required="true" requiredMessage="Um tipo de exame deve ser selecionado">								
+								<p:ajax listener="#{manterExameUrinaMB.completeTipoExameUrina}" />								
+								<f:selectItem itemLabel="Selecione o tipo do exame."
+									itemValue="" noSelectionOption="true" />
+								<f:selectItems value="#{manterExameUrinaMB.tipos}"
+									var="tipoExameUrina" itemLabel="#{tipoExameUrina.tipo}" itemValue="#{tipoExameUrina}" />
+							</p:selectOneMenu>
+							
+							
 								
 					</h:panelGroup>
 					
