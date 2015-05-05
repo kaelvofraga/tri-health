@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -22,9 +22,9 @@ public class Atividade extends BaseEntity<Long> implements Serializable {
 	@NotNull 
 	private double MET;
 
-	@NotNull @OneToOne
+	@NotNull @ManyToOne
 	@JoinColumn(name="TIPOATIVIDADE_ID")
-	private TipoAtividade tipoAtividade;
+	private TipoAtividade tipoAtividade = new TipoAtividade();
 	
 	public Atividade() {
 		super();

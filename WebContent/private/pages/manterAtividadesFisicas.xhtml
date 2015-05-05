@@ -24,10 +24,10 @@
 							<p:outputLabel for="tipo_atividade" value="Tipo:" />
 							<br />
 							<p:selectOneMenu id="tipo_atividade"
-								value="#{manterAtividadesMB.tipoAtividade}"
+								value="#{manterAtividadesMB.atividadeUsuario.atividade.tipoAtividade}"
 								style="width: 100%;" 
 								required="true" requiredMessage="Um tipo para a atividade deve ser escolhida.">								
-								<p:ajax listener="#{manterAtividadesMB.onTipoAtividadeChange}" update="descricao_atividade" />								
+								<p:ajax listener="#{manterAtividadesMB.filtrarAtividades}" update="descricao_atividade" />								
 								<f:selectItem itemLabel="Selecione o tipo da atividade."
 									itemValue="" noSelectionOption="true" />
 								<f:selectItems value="#{manterAtividadesMB.tipoAtividadeList}"
@@ -43,7 +43,6 @@
 							<p:selectOneMenu id="descricao_atividade"
 								value="#{manterAtividadesMB.atividadeUsuario.atividade}" style="width:100%;"
 								required="true" requiredMessage="Uma descrição para a atividade deve ser escolhida." >
-								<p:ajax listener="#{manterAtividadesMB.onSelectAtividade}" />
 								<f:selectItem itemLabel="Selecione uma atividade." itemValue=""
 									noSelectionOption="true" />
 								<f:selectItems
@@ -116,8 +115,7 @@
 						<br />
 						<p:inputTextarea id="notas"
 							value="#{manterAtividadesMB.atividadeUsuario.notas}" rows="4"
-							cols="94" var="atividadeUsuario" itemLabel="#{atividadeUsuario.notas}"
-							itemValue="#{atividadeUsuario.notas}"
+							cols="94"
 							placeholder="Espaço destinado para observações e comentários." 
 							style="width:100%;"/>
 					</h:panelGroup>
@@ -134,14 +132,17 @@
 								rendered="#{manterAtividadesMB.atualizacao}"
 								action="#{manterAtividadesMB.alteraAtividadeUsuario}"
 								ajax="true" icon="ui-icon-pencil" />
-								
-							<!-- Implementar quando vier do listar --> <p:commandButton value="Voltar" /> 
-								
+
+							<p:commandButton value="Voltar" immediate="true"
+								rendered="#{manterAtividadesMB.atualizacao}"
+								action="#{manterAtividadesMB.voltarParaListar}" ajax="true" />
+
 						</h:panelGroup>
 
 						<h:panelGroup layout="block" styleClass="form-group pull-right">							
 							<p:commandButton value="Excluir"
 								rendered="#{manterAtividadesMB.atualizacao}"
+								immediate="true"
 								action="#{manterAtividadesMB.excluiAtividadeUsuario}"
 								ajax="true" icon="ui-icon-close" />
 						</h:panelGroup>

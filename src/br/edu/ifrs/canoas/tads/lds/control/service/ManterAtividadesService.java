@@ -54,31 +54,25 @@ public class ManterAtividadesService {
 
 	public boolean salvaAtividadeUsuario(AtividadeUsuario atividadeUsuario) {
 		if (atividadeUsuario == null || 
-			atividadeUsuario.getAtividade() == null || 
-			atividadeUsuario.getUsuario() == null) {
-			
+				atividadeUsuario.getAtividade() == null || 
+				atividadeUsuario.getUsuario() == null) {
+
 			Mensagens.define(FacesMessage.SEVERITY_ERROR,
 					"Atividade.cadastro.erro");
 			return false;
 		}
-		
+
 		if(validaDatas(atividadeUsuario) == false){
 			Mensagens.define(FacesMessage.SEVERITY_ERROR,
 					"Atividade.cadastro.erro.dataFinalMenor");
 			return false;
 		}			
-		
-		try{
-			atividadeUsuarioDAO.insere(atividadeUsuario);
-		}catch(Exception e){
-			Mensagens.define(FacesMessage.SEVERITY_ERROR,
-					"Atividade.cadastro.erro");			
-			return false;
-		}
-		
+
+		atividadeUsuarioDAO.insere(atividadeUsuario);
+
 		Mensagens.define(FacesMessage.SEVERITY_INFO,
 				"Atividade.cadastro.sucesso");
-		
+
 		return true;
 	}
 

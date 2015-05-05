@@ -60,5 +60,5 @@ insert into Atividade(id, descricao, MET, tipoAtividade_id) values (4, 'Pedaland
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (5, 'Dança aeróbica', 6.5, 3);
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (6, 'Ballet ou moderna, twist, jazz, tap, jitterbug', 4.8, 3);
 
-insert into AtividadeUsuario(id, atividade_id, usuario_id, dataInicio, dataFim, distancia, notas) values (1, 2, 1000, SYSDATE, SYSDATE, 1000.0, 'Corridinha');
-insert into AtividadeUsuario(id, atividade_id, usuario_id, dataInicio, dataFim, distancia, notas) values (2, 5, 1000, SYSDATE, SYSDATE, 0.0, '');
+insert into AtividadeUsuario(id, atividade_id, usuario_id, dataInicio, dataFim, distancia, notas) values (10001, 2, 1000, SYSDATE, SYSDATE, 1000.0, 'Corridinha');
+insert into AtividadeUsuario(id, atividade_id, usuario_id, dataInicio, dataFim, distancia, notas) values (10002, 5, 1000, SYSDATE, SYSDATE, 0.0, '');

@@ -36,12 +36,9 @@ public class ManterAtividadesMB implements Serializable {
 	private ManterAtividadesService atvUsuarioService;
 	
 	//Beans
-	@Inject private AtividadeUsuario atividadeUsuario;	
-	@Inject private Atividade atividade;
-	@Inject private TipoAtividade tipoAtividade;
+	@Inject 
+	private AtividadeUsuario atividadeUsuario;	
 	
-	private boolean emListagemAtvs;
-
 	//Lista Atividades do Usuario
 	private List<AtividadeUsuario> atividadeUsuarioList;
 	private String criterioAtividadeUsuario;
@@ -57,14 +54,6 @@ public class ManterAtividadesMB implements Serializable {
 	@PostConstruct
 	public void init(){
 		
-		/** POJO **/
-//		if(atividadeUsuario == null)
-//			atividadeUsuario = new AtividadeUsuario();
-//		if(atividade == null)
-//			atividade = new Atividade();	
-//		if(tipoAtividade == null)
-//			tipoAtividade = new TipoAtividade();
-		
 		/** Busca **/
 		if(criterioAtividadeUsuario == null || criterioAtividadeUsuario.length() == 0)
 			criterioAtividadeUsuario = "";
@@ -76,62 +65,24 @@ public class ManterAtividadesMB implements Serializable {
 			tipoAtividadeList = atvUsuarioService.buscaNomeTipoAtividades();
 		if(atividadeList == null)
 			atividadeList = atvUsuarioService.buscaDescricoesAtividades();
-		if(atividadeListFiltrada == null)
+		if(atividadeListFiltrada == null){
 			atividadeListFiltrada = new ArrayList<>();
+			this.filtrarAtividades();
+		}	
 	}
 
 	public void busca(){
 		atividadeUsuarioList = atvUsuarioService.buscaGeral(criterioAtividadeUsuario, gerenciarLoginMB.getUsuario());
 	}
 	
-	/*public List<Atividade> completeAtividades(String query){
-		if (atividadeList == null) 
-			atividadeList = atvUsuarioService.buscaDescricoesAtividades();
-
-		List<Atividade> atividadeListFiltradas = new ArrayList<>();
-         
-        for (int i = 0; i < atividadeList.size(); i++) {
-            Atividade atv = atividadeList.get(i);
-            if(atv.getDescricao().trim().toLowerCase().startsWith(query)) {
-            	atividadeListFiltradas.add(atv);
-            }
-        }
-        return atividadeListFiltradas;
-	}
-	
-	public List<TipoAtividade> completeTipoAtividade(String query){
-		if (tipoAtividadeList == null)
-			tipoAtividadeList = atvUsuarioService.buscaNomeTipoAtividades();	
-		
-		List<TipoAtividade> tiposFiltradas = new ArrayList<>();
-        
-        for (int i = 0; i < tipoAtividadeList.size(); i++) {
-            TipoAtividade tipo = tipoAtividadeList.get(i);
-            if(tipo.getNome().trim().toLowerCase().startsWith(query)) {
-            	tiposFiltradas.add(tipo);
-            }
-        }		
-		return tiposFiltradas;
-	}*/
-	
-	public void salvaAtividadeUsuario(){
-		atividadeUsuario.setUsuario(gerenciarLoginMB.getUsuario());
-		if(atvUsuarioService.salvaAtividadeUsuario(atividadeUsuario))
-			this.clear();
-		else
-			atividadeUsuario = new AtividadeUsuario(); // Caso dê erro reseta atividadeUsuario
-	}
-	
 	private void clear() {
 		/** POJO **/
 		atividadeUsuario = new AtividadeUsuario();
-		atividade = new Atividade();	
-		tipoAtividade = new TipoAtividade();
-
+		
 		/** Listas **/
 		tipoAtividadeList = atvUsuarioService.buscaNomeTipoAtividades();
 		atividadeList = atvUsuarioService.buscaDescricoesAtividades();
-		atividadeListFiltrada = new ArrayList<>();		
+		this.filtrarAtividades();		
 	}
 	
 	public void clearTable(){
@@ -144,9 +95,20 @@ public class ManterAtividadesMB implements Serializable {
 		/** Limpa filtro na lista atividadesUsuarioList **/
 		this.busca();	
 	}
-
+	
+	public void salvaAtividadeUsuario(){
+		atividadeUsuario.setUsuario(gerenciarLoginMB.getUsuario());
+		if(atvUsuarioService.salvaAtividadeUsuario(atividadeUsuario))
+			this.clear();
+	}
+	
 	public String alteraAtividadeUsuario(){
 		atvUsuarioService.alteraAtividadeUsario(atividadeUsuario);
+		this.clear();
+		return URL_LISTAR_ATIVIDADES;
+	}
+	
+	public String voltarParaListar(){
 		this.clear();
 		return URL_LISTAR_ATIVIDADES;
 	}
@@ -157,15 +119,7 @@ public class ManterAtividadesMB implements Serializable {
 		return URL_LISTAR_ATIVIDADES;
 	}
 	
-	public String editarAtividadeUsuario(){
-		this.emListagemAtvs = false;
-		this.tipoAtividade = this.atividadeUsuario.getAtividade().getTipoAtividade();
-		this.atividade = this.atividadeUsuario.getAtividade();
-		return URL_MANTER_ATIVIDADES;
-	}
-	
 	public String novaAtividadeUsuario(){
-		this.emListagemAtvs = false;
 		this.clear();
 		return URL_MANTER_ATIVIDADES;
 	}
@@ -174,33 +128,21 @@ public class ManterAtividadesMB implements Serializable {
 		return atividadeUsuario != null && atividadeUsuario.getId() != null;
 	}
 	
-	public void onTipoAtividadeChange(){
-		atividadeListFiltrada.clear();
-
-		if (tipoAtividade != null && tipoAtividade.getId() != null){
+	public void filtrarAtividades(){
+		this.atividadeListFiltrada.clear();
+		TipoAtividade ta = atividadeUsuario.getAtividade().getTipoAtividade();
+		if ( ta != null && ta.getId() != null ){			
 			for (int i = 0; i < atividadeList.size(); i++) {
 				Atividade atv = atividadeList.get(i);
-				if(atv.getTipoAtividade().getId() == tipoAtividade.getId()) {
+				if(atv.getTipoAtividade().getId() == ta.getId()) {
 					atividadeListFiltrada.add(atv);
 				}
-			}						
+			}
+
 		}else{
 			atividadeListFiltrada = new ArrayList<>();
 		}
 	}
-	
-	public void onSelectAtividade(){
-		atividadeUsuario.setAtividade(atividade);
-	}
-	
-	/*public void onDataChange(){
-		if(atividadeUsuario.getDataFim() != null && atividadeUsuario.getDataInicio() != null){
-			if(atvUsuarioService.validaDatas(this.atividadeUsuario) == false){
-				this.atividadeUsuario.setDataInicio(null);
-				this.atividadeUsuario.setDataFim(null);
-			}
-		}
-	}*/
 	
 	public void calculaCalorias(){
 		if (atividadeUsuario == null) {
@@ -219,14 +161,12 @@ public class ManterAtividadesMB implements Serializable {
 		
 		atividadeUsuario.setCalorias(atvUsuarioService.calculaCaloriasQueimadas(atividadeUsuario));			
 	}	
-	
-	
+		
 	public void onRowSelect(SelectEvent event) throws IOException {
 		this.atividadeUsuario = (AtividadeUsuario) event.getObject();
-        FacesContext.getCurrentInstance().getExternalContext().redirect("manterAtividadesFisicas.jsf");
+		FacesContext.getCurrentInstance().getExternalContext().redirect("manterAtividadesFisicas.jsf");
     }
- 
-    
+	
 	
 	/*
 	 * GETTERS & SETTERS
@@ -276,23 +216,7 @@ public class ManterAtividadesMB implements Serializable {
 	public void setTipoAtividadeList(List<TipoAtividade> tipoAtividadeList) {
 		this.tipoAtividadeList = tipoAtividadeList;
 	}
-
-	public boolean isEmListagemAtividadeUsuario() {
-		return emListagemAtvs;
-	}
-
-	public void setEmListagemAtividadeUsuario(boolean emListagemAtvs) {
-		this.emListagemAtvs = emListagemAtvs;
-	}
-	
-	public Atividade getAtividade() {
-		return atividade;
-	}	
-
-	public void setAtividade(Atividade atividade) {
-		this.atividade = atividade;
-	}
-		
+			
 	public List<Atividade> getAtividadeListFiltrada() {
 		return atividadeListFiltrada;
 	}
@@ -300,13 +224,4 @@ public class ManterAtividadesMB implements Serializable {
 	public void setAtividadeListFiltrada(List<Atividade> atividadeListFiltrada) {
 		this.atividadeListFiltrada = atividadeListFiltrada;
 	}
-	
-	public TipoAtividade getTipoAtividade() {
-		return tipoAtividade;
-	}
-
-	public void setTipoAtividade(TipoAtividade tipoAtividade) {
-		this.tipoAtividade = tipoAtividade;
-	}	
-
 }
