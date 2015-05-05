@@ -32,15 +32,16 @@ public class MedicamentoUsuarioDAO extends BaseDAO< MedicamentoUsuario, Long>{
 		try {
 			return em
 					.createQuery(
-							"SELECT mu "
-									+ "FROM MedicamentoUsuario mu "
-									+ "WHERE lower(mu.dataConsulta) like '%" + criterioMedicamento.trim().toLowerCase() + "%' "
-									+ "OR lower(mu.medicamento.nome) like '%" + criterioMedicamento.trim().toLowerCase() + "%' "
-									+ "OR lower(mu.dosagem) like '%" + criterioMedicamento.trim().toLowerCase() + "%' "
+							"SELECT mu FROM MedicamentoUsuario mu "
+									+ "WHERE "
+									+ "OR lower(mu.medicamento.nome) like '%" + criterioMedicamento.toLowerCase() + "%' "
+									+ "OR lower(mu.dosagem) like '%" + criterioMedicamento.toLowerCase() + "%' "
 									+ "OR lower(mu.frequencia) like '%" + criterioMedicamento.toLowerCase() + "%' "
-									+ "ORDER BY au.medicamento.nome").getResultList();
-
-		} catch (IllegalArgumentException e) {
+									+ "ORDER BY mu.medicamento.nome")
+					.getResultList();
+			//+ "lower(mu.dataConsulta) like '%" + criterioMedicamento.toLowerCase() + "%' "
+		}
+		catch (IllegalArgumentException e) {
 			return null;
 		}
 	}

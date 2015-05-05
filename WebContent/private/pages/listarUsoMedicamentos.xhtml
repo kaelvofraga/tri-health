@@ -26,11 +26,9 @@
 					</h:panelGroup>
 
 					<h:panelGroup layout="block" styleClass="form-group">
-						<p:commandButton value="Busca" type="submit"
-							action="#{manterUsoMedicamentoMB.busca}" ajax="true"
+						<p:commandButton value="Busca" type="submit" action="#{manterUsoMedicamentoMB.busca}" ajax="true"
 							update="tab-medicamentos" immediate="false" />
-						<p:commandButton value="Limpa" type="submit"
-							action="#{manterUsoMedicamentoMB.init}" ajax="true"
+						<p:commandButton value="Limpa" type="submit" action="#{manterUsoMedicamentoMB.init}" ajax="true"
 							update="tab-medicamentos,criterio_medicamento" immediate="false" />
 					</h:panelGroup>
 
@@ -40,9 +38,9 @@
 					rowKey="#{listMedicamento.id}" value="#{manterUsoMedicamentoMB.medicamentosLista}" emptyMessage="Nenhum Registro Encontrado."
 					reflow="true">
 					<p:ajax event="rowSelect" listener="#{manterUsoMedicamentoMB.onRowSelect}" oncomplete="manterUsoMedicamentos"/>
-						<p:column headerText="Data Consulta" id="colDataConsulta">
+						<!-- <p:column headerText="Data Consulta" id="colDataConsulta">
 							<h:outputText value="#{listMedicamento.dataConsulta}" />
-						</p:column>
+						</p:column>-->
 						<p:column headerText="Medicamento" id="colMedicamento">
 							<h:outputText value="#{listMedicamento.medicamento.nome}" />
 						</p:column>
