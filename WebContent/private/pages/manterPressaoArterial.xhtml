@@ -17,7 +17,7 @@
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="paSistolica"
 								value="Pressão Arterial Sistólica:" />
-							<p:inputText id="paSistolica" styleClass="form-control"
+							<p:inputNumber id="paSistolica" styleClass="form-control"
 								var="pressaoUsuario" itemLabel="#{pressaoUsuario}"
 								value="#{manterPressaoMB.pressaoUsuario.pressaoArterial.paSistolica}"
 								placeholder="Exemplo: 130" 
@@ -28,7 +28,7 @@
 							styleClass="form-group col-xs-10 pull-right">
 							<p:outputLabel for="paDiastolica"
 								value="Pressão Arterial Diastólica:" />
-							<p:inputText id="paDiastolica" styleClass="form-control"
+							<p:inputNumber id="paDiastolica" styleClass="form-control"
 								var="pressaoUsuario" itemLabel="#{pressaoUsuario}"
 								value="#{manterPressaoMB.pressaoUsuario.pressaoArterial.paDiastolica}"
 								placeholder="Exemplo: 80" 
@@ -39,7 +39,7 @@
 					<h:panelGrid columns="3" styleClass="mtable">
 						<h:panelGroup layout="block" styleClass="form-group pull-left">
 							<p:outputLabel for="pulso" value="Pulso:"/>
-							<p:inputText id="pulso" styleClass="form-control" var="pulso"
+							<p:inputNumber id="pulso" styleClass="form-control" var="pulso"
 								itemLabel="#{pressaoUsuario}"
 								value="#{manterPressaoMB.pressaoUsuario.pressaoArterial.pulso}"
 								placeholder="Exemplo: 70"
