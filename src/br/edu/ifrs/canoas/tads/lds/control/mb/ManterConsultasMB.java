@@ -57,9 +57,9 @@ public class ManterConsultasMB implements Serializable {
 	public void salvaConsulta(){
 		Usuario user = gerenciarLoginMB.getUsuario();
 		consulta.setUsuario(user);
-		if(!user.getConsultas().contains(consulta)){
+		/*if(!user.getConsultas().contains(consulta)){
 			user.getConsultas().add(consulta);
-		}
+		}*/
 		consultaService.salva(consulta);
 	}
 	

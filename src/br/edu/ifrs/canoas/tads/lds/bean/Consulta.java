@@ -21,8 +21,8 @@ public class Consulta extends BaseEntity<Long> implements Serializable  {
 	@NotNull 
 	private String descricao;
 
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="id_usuario", referencedColumnName="id_usuario")
+	//@ManyToOne(cascade=CascadeType.ALL)
+	//@JoinColumn(name="id_usuario", referencedColumnName="id_usuario")
 	private Usuario usuario;
 	
 	public Consulta() {
