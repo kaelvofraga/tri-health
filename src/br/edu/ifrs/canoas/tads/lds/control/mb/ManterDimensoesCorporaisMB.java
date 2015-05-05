@@ -15,6 +15,8 @@ import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
 
 import br.edu.ifrs.canoas.tads.lds.bean.Atividade;
+import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
+import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Pais;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoMedida;
@@ -78,7 +80,11 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 		tipoMedida = new TipoMedida();
 		udm = new Udm();
 	}
-
+	
+	private void clear() {
+		/** POJO **/
+		valorMedidaUsuario = new ValorMedidaUsuario();		
+	}
 	
 	public void onRowSelect(SelectEvent event) throws IOException {
 		this.valorMedidaUsuario = (ValorMedidaUsuario)event.getObject();
@@ -137,6 +143,25 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	public void onSelectUdm(){
 		valorMedidaUsuario.setUdm(udm);
 	}
+	
+	
+	public void initListar(){
+		valorMedidaUsuario = new ValorMedidaUsuario();
+		criterioMedida="";
+		medidas = new ArrayList<ValorMedidaUsuario>();
+	}
+	
+	public void initManter(){
+		valorMedidaUsuario = new ValorMedidaUsuario();
+		valorMedidaUsuario.setTipoMedida(new TipoMedida());
+		valorMedidaUsuario.setUdm(new Udm());
+	}
+	
+	public String novaMedidaUsuario(){
+		this.clear();
+		return URL_MANTER_DIMENSOES_CORPORAIS;
+	}
+	
 	
 	/*
 	 * GETTERS & SETTERS

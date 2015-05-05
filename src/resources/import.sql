@@ -31,10 +31,13 @@ insert into UnidadeFederativa (id, nome, id_pais) values (1, 'Rio Grande do Sul'
 insert into Cidade (id, nome, id_uf) values (1, 'Canoas',1 );
 insert into Endereco (id, cep, complemento, logradouro, numero, id_cidade) values (1, '92330-500', 'Casa', 'Rua Um', 541, 1 );
 
---DIMENSÕES CORPORAIS
+--[DIMENSÕES CORPORAIS]--
+
+--table udm
 insert into Udm (id, descricao) values (1, 'cm');
 insert into Udm (id, descricao) values (2, 'pol');
 
+--table tipoMedida
 insert into TipoMedida(id, descricao) values (1, 'Busto');
 insert into TipoMedida(id, descricao) values (2, 'Peito');
 insert into TipoMedida(id, descricao) values (3, 'Cabeca');
@@ -44,6 +47,11 @@ insert into TipoMedida(id, descricao) values (6, 'Pescoco');
 insert into TipoMedida(id, descricao) values (7, 'Coxa Esquerda');
 insert into TipoMedida(id, descricao) values (8, 'Coxa Direita'); 
 insert into TipoMedida(id, descricao) values (9, 'Altura');	
+
+--table valorMedida
+insert into ValorMedidaUsuario(id, USUARIO_ID, UDM_ID, TIPOMEDIDA_ID, medidaValor, dataMedida, observacao) values (100000, 1000, 1, 2, 140.39, sysdate, 'lesao muscular no lado esquerdo do peito.');
+insert into ValorMedidaUsuario(id, USUARIO_ID, UDM_ID, TIPOMEDIDA_ID, medidaValor, dataMedida, observacao) values (100001, 1000, 2, 3, 40.00, sysdate, 'nao possuo lesao corporal.');
+
 
 --[ Manter Atividades Físicas ]--
 

@@ -38,9 +38,6 @@
 					rowKey="#{listMedidas.id}" value="#{manterDimensoesCorporaisMB.medidas}" emptyMessage="Nenhum Registro Encontrado."
 					reflow="true">
 					<p:ajax event="rowSelect" listener="#{manterDimensoesCorporaisMB.onRowSelect}" oncomplete="/private/pages/manterDimensoesCorporais.jsf"/>
-						<!-- <p:column headerText="Data Consulta" id="colDataConsulta">
-							<h:outputText value="#{listMedicamento.dataConsulta}" />
-						</p:column>-->
 						<p:column headerText="Tipo" id="colTipo">
 							<h:outputText value="#{listMedidas.tipoMedida.descricao}" />
 						</p:column>
@@ -60,7 +57,7 @@
 					</p:dataTable>
 					<br/>
 				</h:panelGroup>
-
+			<p:commandButton value="Nova Medida" action="#{manterDimensoesCorporaisMB.novaMedidaUsuario}" icon="ui-icon-plus" ajax="true" />
 		</p:tab>
 
 		</p:accordionPanel>
