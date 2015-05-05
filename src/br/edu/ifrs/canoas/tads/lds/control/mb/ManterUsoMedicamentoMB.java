@@ -12,10 +12,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import org.primefaces.event.SelectEvent;
-
-import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterUsoMedicamentoService;
@@ -73,7 +70,6 @@ public class ManterUsoMedicamentoMB implements Serializable {
 		this.medicamentoUsuario = (MedicamentoUsuario)event.getObject();
         FacesContext.getCurrentInstance().getExternalContext().redirect("manterUsoMedicamentos.jsf");
     }
-	
 	
 	public boolean isAtualizacao(){
 		return medicamentoUsuario != null && medicamentoUsuario.getId() != null;

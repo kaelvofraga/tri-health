@@ -34,7 +34,7 @@ public class MedicamentoUsuarioDAO extends BaseDAO< MedicamentoUsuario, Long>{
 					.createQuery(
 							"SELECT mu FROM MedicamentoUsuario mu "
 									+ "WHERE "
-									+ "OR lower(mu.medicamento.nome) like '%" + criterioMedicamento.toLowerCase() + "%' "
+									+ "lower(mu.medicamento.nome) like '%" + criterioMedicamento.toLowerCase() + "%' "
 									+ "OR lower(mu.dosagem) like '%" + criterioMedicamento.toLowerCase() + "%' "
 									+ "OR lower(mu.frequencia) like '%" + criterioMedicamento.toLowerCase() + "%' "
 									+ "ORDER BY mu.medicamento.nome")
