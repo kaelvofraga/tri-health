@@ -49,6 +49,23 @@ public class ManterUsoMedicamentoMB implements Serializable {
 		//medicamentos = new ArrayList<>();
 	}
 	
+	public String initListar(){
+		medicamentoUsuario = new MedicamentoUsuario();
+		criterioMedicamento="";
+		medicamentosLista = new ArrayList<>();
+		return "/private/pages/listarUsoMedicamentos.xhtml";
+	}
+	
+	public String initManter(){
+		medicamentoUsuario = new MedicamentoUsuario();
+		medicamentoUsuario.setMedicamento(new Medicamento());
+		return "/private/pages/manterUsoMedicamentos.xhtml";
+	}
+	
+	
+	
+	
+	
 	public void salvaMedicamento(){
 		medicamentoUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		medicamentoService.salvaMedicamentoUsuario(medicamentoUsuario);
@@ -68,7 +85,7 @@ public class ManterUsoMedicamentoMB implements Serializable {
 	
 	public void onRowSelect(SelectEvent event) throws IOException {
 		this.medicamentoUsuario = (MedicamentoUsuario)event.getObject();
-        FacesContext.getCurrentInstance().getExternalContext().redirect("manterUsoMedicamentos.jsf");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("../../private/pages/manterUsoMedicamentos.jsf");
     }
 	
 	public boolean isAtualizacao(){
