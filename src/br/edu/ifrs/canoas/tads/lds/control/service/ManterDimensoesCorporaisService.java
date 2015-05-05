@@ -13,6 +13,7 @@ import br.edu.ifrs.canoas.tads.lds.model.dao.TipoMedidaDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.UdmDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.ValorMedidaDAO;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
+import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
 
 @Stateless
 public class ManterDimensoesCorporaisService {
@@ -27,9 +28,12 @@ public class ManterDimensoesCorporaisService {
 	TipoMedidaDAO tipoMedidaDAO;
 	
 	
-	public List<ValorMedidaUsuario> busca(String criterioTipoDimensao) {
-		// TODO Auto-generated method stub
-		return null;
+	@SuppressWarnings("unchecked")
+	public List<ValorMedidaUsuario> busca(String criterioMedida) {
+		if (StrUtil.isNotBlank(criterioMedida))
+			return valorMedidaDAO.buscaPorCriterio(criterioMedida);
+		else
+			return valorMedidaDAO.buscaTodos();
 	}
 	
 	public boolean salvaMedidaUsuario(ValorMedidaUsuario medidaUsuario) {

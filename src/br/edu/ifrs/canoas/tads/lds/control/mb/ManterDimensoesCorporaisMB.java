@@ -63,7 +63,7 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	
 
 
-	private String criterioTipoDimensao;
+	private String criterioMedida;
 	
 	//Form Alergia
 
@@ -73,7 +73,7 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	@PostConstruct
 	public void init(){
 		valorMedidaUsuario = new ValorMedidaUsuario();
-		criterioTipoDimensao = "";
+		criterioMedida = "";
 		medidas = new ArrayList<>();
 		tipoMedida = new TipoMedida();
 		udm = new Udm();
@@ -97,7 +97,7 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	
 	
 	public void busca(){
-		medidas = dimensoesService.busca(criterioTipoDimensao);
+		medidas = dimensoesService.busca(criterioMedida);
 	}
 	
 	public void onTipoDimensoesChange(){
@@ -188,12 +188,12 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 		this.medidas = medidas;
 	}
 
-	public String getCriterioTipoDimensao() {
-		return criterioTipoDimensao;
+	public String getCriterioMedida() {
+		return criterioMedida;
 	}
 
-	public void setCriterioTipoDimensao(String criterioTipoDimensao) {
-		this.criterioTipoDimensao = criterioTipoDimensao;
+	public void setCriterioMedida(String criterioMedida) {
+		this.criterioMedida = criterioMedida;
 	}
 
 	public TipoMedida getTipoMedida() {

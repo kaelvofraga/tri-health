@@ -18,7 +18,23 @@ public class ValorMedidaDAO extends BaseDAO< ValorMedidaUsuario, Long>{
 	 */
 	private static final long serialVersionUID = -6004161395440143951L;
 
-
+	
+	@SuppressWarnings("unchecked")
+	public List<ValorMedidaUsuario> buscaPorCriterio(String criterioMedida) {
+		try {
+			return em
+					.createQuery(
+							"SELECT vmu FROM ValorMedidaUsuario vmu "
+									+ "WHERE "
+									+ "lower(vmu.udm.descricao) like '%" + criterioMedida.toLowerCase() + "%' "
+									+ "OR lower(vmu.tipoMedida.descricao) like '%" + criterioMedida.toLowerCase() + "%' "
+									+ "ORDER BY vmu.tipoMedida.descricao")
+					.getResultList();
+		}
+		catch (IllegalArgumentException e) {
+			return null;
+		}
+	}
 
 
 
