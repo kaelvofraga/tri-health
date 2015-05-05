@@ -19,6 +19,7 @@ import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Pais;
+import br.edu.ifrs.canoas.tads.lds.bean.TipoAtividade;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoMedida;
 import br.edu.ifrs.canoas.tads.lds.bean.Udm;
 import br.edu.ifrs.canoas.tads.lds.bean.ValorMedidaUsuario;
@@ -75,21 +76,65 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	@PostConstruct
 	public void init(){
 		valorMedidaUsuario = new ValorMedidaUsuario();
-		criterioMedida = "";
-		medidas = new ArrayList<>();
 		tipoMedida = new TipoMedida();
 		udm = new Udm();
+		criterioMedida = "";
+		medidas = new ArrayList<>();
+		udmLista = this.getUdmLista();
+		tipoMedidasLista = this.getTipoMedidasLista();
+		udmListaFiltrada = new ArrayList<>();
+		tipoMedidasFiltrada = new ArrayList<>();
+		
+		
 	}
 	
-	private void clear() {
-		/** POJO **/
-		valorMedidaUsuario = new ValorMedidaUsuario();		
+	
+	public void filtrarUdm(){
+		this.udmListaFiltrada.clear();
+		Udm u = valorMedidaUsuario.getUdm();
+		if ( u != null && u.getId() != null ){			
+			for (int i = 0; i < udmLista.size(); i++) {
+				Udm udm = udmLista.get(i);
+				if(u.getId() == udm.getId()) {
+					udmListaFiltrada.add(udm);
+				}
+			}
+
+		}else{
+			udmListaFiltrada = new ArrayList<>();
+		}
 	}
+	
+	public void filtrarTipoMedida(){
+		this.tipoMedidasFiltrada.clear();
+		TipoMedida tm = valorMedidaUsuario.getTipoMedida();
+		if ( tm != null && tm.getId() != null ){			
+			for (int i = 0; i < tipoMedidasLista.size(); i++) {
+				TipoMedida t = tipoMedidasLista.get(i);
+				if(tm.getId() == t.getId()) {
+					tipoMedidasFiltrada.add(t);
+				}
+			}
+
+		}else{
+			udmListaFiltrada = new ArrayList<>();
+		}
+	}
+	
 	
 	public void onRowSelect(SelectEvent event) throws IOException {
 		this.valorMedidaUsuario = (ValorMedidaUsuario)event.getObject();
-        FacesContext.getCurrentInstance().getExternalContext().redirect("../../private/pages/manterDimensoesCorporais.jsf");
+		this.filtrarUdm();
+		this.filtrarTipoMedida();
+		FacesContext.getCurrentInstance().getExternalContext().redirect("manterDimensoesCorporais.jsf");
     }
+	
+	
+	private void clear() {
+		/** POJO **/
+		valorMedidaUsuario = new ValorMedidaUsuario();
+				
+	}
 	
 	public boolean isAtualizacao(){
 		return valorMedidaUsuario != null && valorMedidaUsuario.getId() != null;
