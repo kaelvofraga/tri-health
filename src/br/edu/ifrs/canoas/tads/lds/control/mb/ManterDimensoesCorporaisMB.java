@@ -8,6 +8,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -28,7 +29,7 @@ import br.edu.ifrs.canoas.tads.lds.control.service.ManterTipoMedidaService;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterUdmService;
 
 @Named
-@RequestScoped
+@SessionScoped
 public class ManterDimensoesCorporaisMB implements Serializable {
 
 	private static final long serialVersionUID = 2356931811611360673L;
@@ -89,43 +90,9 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	}
 	
 	
-	public void filtrarUdm(){
-		this.udmListaFiltrada.clear();
-		Udm u = valorMedidaUsuario.getUdm();
-		if ( u != null && u.getId() != null ){			
-			for (int i = 0; i < udmLista.size(); i++) {
-				Udm udm = udmLista.get(i);
-				if(u.getId() == udm.getId()) {
-					udmListaFiltrada.add(udm);
-				}
-			}
-
-		}else{
-			udmListaFiltrada = new ArrayList<>();
-		}
-	}
-	
-	public void filtrarTipoMedida(){
-		this.tipoMedidasFiltrada.clear();
-		TipoMedida tm = valorMedidaUsuario.getTipoMedida();
-		if ( tm != null && tm.getId() != null ){			
-			for (int i = 0; i < tipoMedidasLista.size(); i++) {
-				TipoMedida t = tipoMedidasLista.get(i);
-				if(tm.getId() == t.getId()) {
-					tipoMedidasFiltrada.add(t);
-				}
-			}
-
-		}else{
-			udmListaFiltrada = new ArrayList<>();
-		}
-	}
-	
 	
 	public void onRowSelect(SelectEvent event) throws IOException {
 		this.valorMedidaUsuario = (ValorMedidaUsuario)event.getObject();
-		this.filtrarUdm();
-		this.filtrarTipoMedida();
 		FacesContext.getCurrentInstance().getExternalContext().redirect("manterDimensoesCorporais.jsf");
     }
 	
@@ -149,6 +116,17 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	
 	public void busca(){
 		medidas = dimensoesService.busca(criterioMedida);
+	}
+	
+	public String alteraMedida() {
+		dimensoesService.alteraMedida(valorMedidaUsuario);
+		return URL_LISTAR_DIMENSOES_CORPORAIS;
+	}
+	
+	public String excluiMedida(){
+		dimensoesService.excluiMedida(valorMedidaUsuario);
+		this.busca();
+		return URL_LISTAR_DIMENSOES_CORPORAIS;
 	}
 	
 	public void onTipoDimensoesChange(){

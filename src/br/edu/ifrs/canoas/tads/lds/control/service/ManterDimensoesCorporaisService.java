@@ -41,5 +41,15 @@ public class ManterDimensoesCorporaisService {
 		Mensagens.define(FacesMessage.SEVERITY_INFO, "manterDimensoesCorporais.cadastro.sucesso");
 		return true;
 	}
+	
+	public void alteraMedida(ValorMedidaUsuario valorMedidaUsuario) {
+		valorMedidaDAO.atualiza(valorMedidaUsuario);
+		Mensagens.define(FacesMessage.SEVERITY_INFO, "manterDimensoesCorporais.alterar.sucesso");
+	}
+
+	public void excluiMedida(ValorMedidaUsuario valorMedidaUsuario) {
+		valorMedidaDAO.exclui(valorMedidaUsuario.getId());
+		Mensagens.define(FacesMessage.SEVERITY_INFO, "manterDimensoesCorporais.excluir.sucesso");
+	}
 
 }
