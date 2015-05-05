@@ -1,5 +1,6 @@
 package br.edu.ifrs.canoas.tads.lds.control.mb;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,10 +8,14 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.event.SelectEvent;
+
 import br.edu.ifrs.canoas.tads.lds.bean.Atividade;
+import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Pais;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoMedida;
 import br.edu.ifrs.canoas.tads.lds.bean.Udm;
@@ -74,6 +79,11 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 		udm = new Udm();
 	}
 
+	
+	public void onRowSelect(SelectEvent event) throws IOException {
+		this.valorMedidaUsuario = (ValorMedidaUsuario)event.getObject();
+        FacesContext.getCurrentInstance().getExternalContext().redirect("../../private/pages/manterDimensoesCorporais.jsf");
+    }
 	
 	public boolean isAtualizacao(){
 		return valorMedidaUsuario != null && valorMedidaUsuario.getId() != null;

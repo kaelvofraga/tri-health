@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<ui:define name="content">
+
+		<h1 class="lead">Dimensões Corporais</h1>
+		
+		<p:accordionPanel multiple="true">
+			<p:tab title="Lista de Dimensões Corporais">
+
+					<h:panelGroup layout="block" id="medidas">
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:outputLabel for="criterio_medidas" value="Pesquisa" />
+						<p:inputText id="criterio_medidas" styleClass="form-control"
+							value="#{manterDimensoesCorporaisMB.criterioTipoDimensao}"
+							placeholder="Entre o critério de pesquisa aqui" />
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:commandButton value="Busca" type="submit" action="#{manterDimensoesCorporaisMB.busca}" ajax="true"
+							update="tab-medidas" immediate="false" />
+						<p:commandButton value="Limpa" type="submit" action="#{manterDimensoesCorporaisMB.init}" ajax="true"
+							update="tab-medidas,criterio_medidas" immediate="false" />
+					</h:panelGroup>
+
+
+					<p:dataTable 
+					var="listMedidas" id="tab-medidas" selectionMode="single" selection="#{manterDimensoesCorporaisMB.valorMedidaUsuario}"
+					rowKey="#{listMedidas.id}" value="#{manterDimensoesCorporaisMB.medidas}" emptyMessage="Nenhum Registro Encontrado."
+					reflow="true">
+					<p:ajax event="rowSelect" listener="#{manterDimensoesCorporaisMB.onRowSelect}" oncomplete="/private/pages/manterDimensoesCorporais.jsf"/>
+						<!-- <p:column headerText="Data Consulta" id="colDataConsulta">
+							<h:outputText value="#{listMedicamento.dataConsulta}" />
+						</p:column>-->
+						<p:column headerText="Tipo" id="colTipo">
+							<h:outputText value="#{listMedidas.tipoMedida.descricao}" />
+						</p:column>
+						<p:column headerText="Valor" id="colValor">
+							<h:outputText value="#{listMedidas.medidaValor}" />
+						</p:column>
+						<p:column headerText="UDM" id="colUDM">
+							<h:outputText value="#{listMedidas.udm.descricao}" />
+						</p:column>
+						<p:column headerText="Data" id="colData">
+							<h:outputText value="#{listMedidas.dataMedida}" />
+						</p:column>
+						<p:column headerText="Nota" id="colNota">
+							<h:outputText value="#{listMedidas.observacao}" />
+						</p:column>
+
+					</p:dataTable>
+					<br/>
+				</h:panelGroup>
+
+		</p:tab>
+
+		</p:accordionPanel>
+
+	</ui:define>
+</ui:composition>
+
+
