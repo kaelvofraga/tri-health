@@ -47,8 +47,8 @@
 			<p:separator />
 			<p:submenu label="Histórico de Saúde">
 			<p:submenu label="Uso de Medicamentos">
-					<p:menuitem value="Listar" action="#{manterUsoMedicamentoMB.initListar}"/>
-					<p:menuitem value="Cadastrar" action="#{manterUsoMedicamentoMB.initManter}"/>
+					<p:menuitem value="Listar" url="/private/pages/listarUsoMedicamentos.jsf" action="#{manterUsoMedicamentoMB.init}"/>
+					<p:menuitem value="Cadastrar" url="/private/pages/manterUsoMedicamentos.jsf" action="#{manterUsoMedicamentoMB.init}"/>
 			</p:submenu>
 				<p:menuitem value="Procedimentos Médicos" url="#" />
 				<p:submenu label="Consultas Médicas">

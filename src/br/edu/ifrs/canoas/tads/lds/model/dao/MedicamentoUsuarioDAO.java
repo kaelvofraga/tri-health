@@ -45,6 +45,18 @@ public class MedicamentoUsuarioDAO extends BaseDAO< MedicamentoUsuario, Long>{
 			return null;
 		}
 	}
-
+	
+	public List<Integer> buscaIdMedicamentoAlergiaUsuario(MedicamentoUsuario medicamentoUsuario) {
+		
+		return em.createQuery(
+		         "SELECT au.medicamentoUsuario.id " 
+		         + "FROM AlergiaUsuario au, MedicamentoUsuario mu "
+		         + "WHERE mu.id = :medicamento and "
+		         + "au.medicamentoUsuario.id=mu.id")
+		         .setParameter("medicamento",medicamentoUsuario.getId()).getResultList();
+		         
+	}
+	
+	
 	
 }

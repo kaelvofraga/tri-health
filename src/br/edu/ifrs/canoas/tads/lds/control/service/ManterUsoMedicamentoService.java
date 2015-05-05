@@ -40,10 +40,10 @@ public class ManterUsoMedicamentoService {
  
 	
 
-	public List<Medicamento> buscaMedicamentos(String query, Usuario usuario) {
+	public List<Medicamento> buscaMedicamentoUsuario(String query, Usuario usuario) {
 		if (usuario != null && usuario.getId() != null)
-			return medicamentoDAO.buscaPorNome(query);
-		//	return medicamentoDAO.buscaNomeMedicamentoPorUsuario(usuario);
+			
+			return medicamentoDAO.buscaNomeMedicamentoPorUsuario(usuario);
 		return new ArrayList<Medicamento>();
 	}
 	
@@ -81,6 +81,13 @@ public class ManterUsoMedicamentoService {
 	}
 
 	public void excluiMedicamento(MedicamentoUsuario medicamentoUsuario) {
+		List<Integer> lista = new ArrayList<Integer>();
+		lista=medicamentoUsuarioDAO.buscaIdMedicamentoAlergiaUsuario(medicamentoUsuario);
+		if(!lista.isEmpty()){
+		Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.cadastro.sucesso");
+		System.out.println("entrou nessa desgraçaaaa");
+		}
+		
 		medicamentoUsuarioDAO.exclui(medicamentoUsuario.getId());
 	}
 }

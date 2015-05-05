@@ -12,7 +12,10 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+
 import org.primefaces.event.SelectEvent;
+
+import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterUsoMedicamentoService;
@@ -43,33 +46,29 @@ public class ManterUsoMedicamentoMB implements Serializable {
 	
 	@PostConstruct
 	public void init(){
+		if(medicamentoUsuario==null)
 		medicamentoUsuario = new MedicamentoUsuario();
+		if(criterioMedicamento==null ||criterioMedicamento.length()==0)
 		criterioMedicamento="";
+		if(medicamentosLista==null)
 		medicamentosLista = new ArrayList<>();
-		//medicamentos = new ArrayList<>();
+		if(medicamentoUsuario.getMedicamento()==null)
+		medicamentoUsuario.setMedicamento(new Medicamento());	
+		if(medicamentos==null)
+		medicamentos = new ArrayList<>();
 	}
 	
-	public String initListar(){
-		medicamentoUsuario = new MedicamentoUsuario();
-		criterioMedicamento="";
-		medicamentosLista = new ArrayList<>();
-		return "/private/pages/listarUsoMedicamentos.xhtml";
-	}
-	
-	public String initManter(){
+	private void clear() {
 		medicamentoUsuario = new MedicamentoUsuario();
 		medicamentoUsuario.setMedicamento(new Medicamento());
-		return "/private/pages/manterUsoMedicamentos.xhtml";
+		medicamentos = new ArrayList<>();
 	}
 	
-	
-	
-	
-	
+		
 	public void salvaMedicamento(){
 		medicamentoUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		medicamentoService.salvaMedicamentoUsuario(medicamentoUsuario);
-		this.init();
+		this.clear();
 	}
 	
 	public String alteraMedicamento() {
@@ -85,7 +84,7 @@ public class ManterUsoMedicamentoMB implements Serializable {
 	
 	public void onRowSelect(SelectEvent event) throws IOException {
 		this.medicamentoUsuario = (MedicamentoUsuario)event.getObject();
-        FacesContext.getCurrentInstance().getExternalContext().redirect("../../private/pages/manterUsoMedicamentos.jsf");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("manterUsoMedicamentos.jsf");
     }
 	
 	public boolean isAtualizacao(){
@@ -93,8 +92,8 @@ public class ManterUsoMedicamentoMB implements Serializable {
 	}
 	
 	public List<Medicamento> completeMedicamento(String query){
-		if (medicamentos == null) 
-			medicamentos = medicamentoService.buscaMedicamentos(query, gerenciarLoginMB.getUsuario());
+		if (medicamentos.isEmpty()) 
+			medicamentos = medicamentoService.buscaMedicamentoUsuario(query, gerenciarLoginMB.getUsuario());
 
 		List<Medicamento> medicamentosBusca = new ArrayList<Medicamento>();
          

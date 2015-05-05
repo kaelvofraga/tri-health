@@ -69,7 +69,7 @@ public class ManterAlergiaService {
 
 	public List<Medicamento> buscaMedicamentos(String query, Usuario usuario) {
 		
-		return manterUsoMedicamentoService.buscaMedicamentos(query,usuario);
+		return manterUsoMedicamentoService.buscaMedicamentoUsuario(query,usuario);
 	}
 
 

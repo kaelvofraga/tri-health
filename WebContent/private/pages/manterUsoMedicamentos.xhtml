@@ -100,12 +100,14 @@
 	    			<h:panelGroup layout="block" styleClass="form-group pull-left">
 	    			   <p:commandButton value="Salvar"
 							rendered="#{not manterUsoMedicamentoMB.atualizacao}"
-							action="#{manterUsoMedicamentoMB.salvaMedicamento}" ajax="true">
+							action="#{manterUsoMedicamentoMB.salvaMedicamento}" 
+							ajax="true" update="medicamentos" icon="ui-icon-disk">
 					   </p:commandButton>
 					   
 					  <p:commandButton value="Alterar"
 							rendered="#{manterUsoMedicamentoMB.atualizacao}"
-							action="#{manterUsoMedicamentoMB.alteraMedicamento}" ajax="true">
+							action="#{manterUsoMedicamentoMB.alteraMedicamento}" 
+							ajax="true" icon="ui-icon-pencil">
 				     </p:commandButton>
 					
 				    </h:panelGroup> 
@@ -113,7 +115,8 @@
 				    <h:panelGroup layout="block" styleClass="form-group pull-right">	  
 					   <p:commandButton value="Excluir"
 							rendered="#{manterUsoMedicamentoMB.atualizacao}"
-							action="#{manterUsoMedicamentoMB.excluiMedicamento}" ajax="true"> 
+							action="#{manterUsoMedicamentoMB.excluiMedicamento}"
+							ajax="true" icon="ui-icon-close"> 
 					   <p:confirm header="Confirmação" message="Tem certeza que deseja apagar o medicamento?" icon="ui-icon-alert" />
 					   </p:commandButton>
 					   
