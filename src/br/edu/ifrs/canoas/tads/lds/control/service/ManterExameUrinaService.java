@@ -8,6 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
 import br.edu.ifrs.canoas.tads.lds.bean.ExameUrina;
+import br.edu.ifrs.canoas.tads.lds.bean.TipoAtividade;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoExameUrina;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 import br.edu.ifrs.canoas.tads.lds.model.dao.ExameUrinaDAO;
@@ -78,6 +79,11 @@ public class ManterExameUrinaService {
 
 	public void excluiExameUrina(ExameUrina exameUrina) {
 		exameUrinaDAO.exclui(exameUrina.getId());
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<TipoExameUrina> buscaTipoExameUrina() {
+		return tipoExameUrinaDAO.buscaTodos();
 	}
 	
 	
