@@ -65,10 +65,8 @@ public class ManterAtividadesMB implements Serializable {
 			tipoAtividadeList = atvUsuarioService.buscaNomeTipoAtividades();
 		if(atividadeList == null)
 			atividadeList = atvUsuarioService.buscaDescricoesAtividades();
-		if(atividadeListFiltrada == null){
+		if(atividadeListFiltrada == null)
 			atividadeListFiltrada = new ArrayList<>();
-			this.filtrarAtividades();
-		}	
 	}
 
 	public void busca(){
@@ -164,6 +162,7 @@ public class ManterAtividadesMB implements Serializable {
 		
 	public void onRowSelect(SelectEvent event) throws IOException {
 		this.atividadeUsuario = (AtividadeUsuario) event.getObject();
+		this.filtrarAtividades();
 		FacesContext.getCurrentInstance().getExternalContext().redirect("manterAtividadesFisicas.jsf");
     }
 	
