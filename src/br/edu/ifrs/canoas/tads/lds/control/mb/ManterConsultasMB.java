@@ -31,7 +31,8 @@ public class ManterConsultasMB implements Serializable {
 	@EJB
 	private ManterConsultasService consultaService;
 	
-	@Inject private Consulta consulta;	
+	@Inject 
+	private Consulta consulta;	
 
 	private List<Consulta> consultas;
 	
@@ -43,7 +44,7 @@ public class ManterConsultasMB implements Serializable {
 	@PostConstruct
 	public void init(){
 		/** Inicia Lista **/
-		consultas = consultaService.buscaTodos();
+		//consultas = consultaService.buscaTodos();
 	}
 
 	public void busca(){

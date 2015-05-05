@@ -2,10 +2,13 @@ package br.edu.ifrs.canoas.tads.lds.control.service;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
+
 import br.edu.ifrs.canoas.tads.lds.bean.Consulta;
 import br.edu.ifrs.canoas.tads.lds.model.dao.ConsultaDAO;
 
+@Stateless
 public class ManterConsultasService {
 	
 	@Inject

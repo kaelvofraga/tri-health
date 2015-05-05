@@ -73,9 +73,14 @@ public class Usuario extends BaseEntity<Long> implements Serializable {
      //          )
     private DualListModel<String> idiomas;
 	
-    /*@OneToMany(mappedBy="usuario")
-    private List<Consulta> consultas;*/
+    @OneToMany(mappedBy="usuario")
+    private List<Consulta> consultas;/**/
     
+    public Usuario() {
+		super();
+		consultas = new ArrayList<Consulta>();
+	}
+	
 	public String getTipoSanguineo() {
 		return tipoSanguineo;
 	}
@@ -121,12 +126,6 @@ public class Usuario extends BaseEntity<Long> implements Serializable {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-
-
-	public Usuario() {
-		super();
-	}
-	
 	
 	public String getEmail() {
 		return this.email;
@@ -150,7 +149,7 @@ public class Usuario extends BaseEntity<Long> implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-/*
+/**/
 	public List<Consulta> getConsultas() {
 		return consultas;
 	}
@@ -158,7 +157,7 @@ public class Usuario extends BaseEntity<Long> implements Serializable {
 	public void setConsultas(List<Consulta> consultas) {
 		this.consultas = consultas;
 	}
-*/
+
 	public String getSobrenome() {
 		return sobrenome;
 	}

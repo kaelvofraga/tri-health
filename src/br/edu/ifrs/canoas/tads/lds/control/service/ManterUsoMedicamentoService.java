@@ -83,6 +83,4 @@ public class ManterUsoMedicamentoService {
 	public void excluiMedicamento(MedicamentoUsuario medicamentoUsuario) {
 		medicamentoUsuarioDAO.exclui(medicamentoUsuario.getId());
 	}
-	
-	
 }
