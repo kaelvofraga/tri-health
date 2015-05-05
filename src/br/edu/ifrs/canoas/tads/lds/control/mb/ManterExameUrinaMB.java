@@ -15,6 +15,7 @@ import org.primefaces.event.SelectEvent;
 
 import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.ExameUrina;
+import br.edu.ifrs.canoas.tads.lds.bean.TipoAtividade;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoExameUrina;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterExameUrinaService;
 
@@ -62,9 +63,11 @@ public class ManterExameUrinaMB implements Serializable{
 	}
 
 	public List<TipoExameUrina> getTipos() {
+		if (tipos == null)
+			tipos = exameUrinaService.buscaTipoExameUrina();
 		return tipos;
 	}
-
+	
 	public void setTipos(List<TipoExameUrina> tipos) {
 		this.tipos = tipos;
 	}
@@ -133,6 +136,8 @@ public class ManterExameUrinaMB implements Serializable{
 		this.exameUrina = (ExameUrina) event.getObject();
         FacesContext.getCurrentInstance().getExternalContext().redirect("manterExameUrina.jsf");
     }
+	
+	
 
 }
 

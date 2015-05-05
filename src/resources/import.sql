@@ -67,3 +67,19 @@ insert into Atividade(id, descricao, MET, tipoAtividade_id) values (4, 'Pedaland
 
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (5, 'Dança aeróbica', 6.5, 3);
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (6, 'Ballet ou moderna, twist, jazz, tap, jitterbug', 4.8, 3);
+
+--table TipoExameUrina
+insert into TipoExameUrina (id, tipo) values (1,'Glicose');
+insert into TipoExameUrina (id, tipo) values (2,'Bilirrubinas');
+insert into TipoExameUrina (id, tipo) values (3,'Corpos Cetônicos');
+insert into TipoExameUrina (id, tipo) values (4,'Densidade');
+insert into TipoExameUrina (id, tipo) values (5,'pH');
+insert into TipoExameUrina (id, tipo) values (6,'Proteínas');
+insert into TipoExameUrina (id, tipo) values (7,'Urobilinogênio');
+insert into TipoExameUrina (id, tipo) values (8,'Nitrito');
+insert into TipoExameUrina (id, tipo) values (9,'Hemoglobina');
+insert into TipoExameUrina (id, tipo) values (10,'Leucócitos');
+insert into TipoExameUrina (id, tipo) values (11,'Hemácias');
+insert into TipoExameUrina (id, tipo) values (12,'Células Epiteliais');
+insert into TipoExameUrina (id, tipo) values (13,'Bacteriúria');
+insert into TipoExameUrina (id, tipo) values (14,'Cilindros');

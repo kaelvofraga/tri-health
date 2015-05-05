@@ -33,10 +33,10 @@ public class ExameUrinaDAO extends BaseDAO<ExameUrina, Long>{
 		try {
 			return em.createQuery(
 				"SELECT eu "
-						+ "FROM ExameUrina eu "
-//						+ "WHERE lower(eu.data) like '%" + criterioTipoExameUrina.trim().toLowerCase() + "%' "
-						+ "OR lower(eu.tipoexameurina.tipo) like '%" + criterioTipoExameUrina.trim().toLowerCase() + "%' "
-						+ "OR lower(eu.resultado) like '%" + criterioTipoExameUrina.trim().toLowerCase() + "%' "
+						+ "FROM ExameUrina eu WHERE"
+//						+ "lower(eu.data) like '%" + criterioTipoExameUrina.trim().toLowerCase() + "%' "
+						+ "lower(eu.tipoexameurina.tipo) like '%" + criterioTipoExameUrina.trim().toLowerCase() + "%' "
+//						+ "OR lower(eu.resultado) like '%" + criterioTipoExameUrina.trim().toLowerCase() + "%' "
 						+ "ORDER BY eu.tipoexameurina.tipo").getResultList();
 
 		} catch (IllegalArgumentException e) {
