@@ -4,6 +4,7 @@ package br.edu.ifrs.canoas.tads.lds.model.dao;
 import java.util.List;
 
 import javax.ejb.Stateless;
+
 import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
@@ -16,13 +17,17 @@ public class MedicamentoUsuarioDAO extends BaseDAO< MedicamentoUsuario, Long>{
 
 	@SuppressWarnings("unchecked")
 	public List<Medicamento> buscaNomeMedicamentoPorUsuario(Usuario usuario) {
-		
+		try {
 		return em.createQuery(
 		         "SELECT mu.medicamento " 
 		         + "FROM MedicamentoUsuario mu "
 		         + "WHERE mu.usuario.id = :usuario ")
 		         .setParameter("usuario", usuario.getId())
 		         .getResultList();
+		}
+		catch (IllegalArgumentException e) {
+			return null;
+		}
 		
 	}
 	
@@ -39,21 +44,24 @@ public class MedicamentoUsuarioDAO extends BaseDAO< MedicamentoUsuario, Long>{
 									+ "OR lower(mu.frequencia) like '%" + criterioMedicamento.toLowerCase() + "%' "
 									+ "ORDER BY mu.medicamento.nome")
 					.getResultList();
-			//+ "lower(mu.dataConsulta) like '%" + criterioMedicamento.toLowerCase() + "%' "
 		}
 		catch (IllegalArgumentException e) {
 			return null;
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Integer> buscaIdMedicamentoAlergiaUsuario(MedicamentoUsuario medicamentoUsuario) {
-		
+		try {
 		return em.createQuery(
 		         "SELECT au.medicamentoUsuario.id " 
 		         + "FROM AlergiaUsuario au, MedicamentoUsuario mu "
 		         + "WHERE mu.id = :medicamento and "
 		         + "au.medicamentoUsuario.id=mu.id")
 		         .setParameter("medicamento",medicamentoUsuario.getId()).getResultList();
+		}catch (IllegalArgumentException e) {
+			return null;
+		}
 		         
 	}
 	

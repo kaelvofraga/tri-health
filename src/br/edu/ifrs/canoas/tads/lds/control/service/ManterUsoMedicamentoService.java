@@ -77,17 +77,34 @@ public class ManterUsoMedicamentoService {
 	}
 	
 	public void alteraMedicamentoUsario(MedicamentoUsuario medicamentoUsuario) {
+		try{
 		medicamentoUsuarioDAO.atualiza(medicamentoUsuario);
+		Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.altera.erro");
+		}
+		catch (IllegalArgumentException e) {
+			   Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.altera.excecao.erro");
+	   }
 	}
 
 	public void excluiMedicamento(MedicamentoUsuario medicamentoUsuario) {
+		if(medicamentoUsuario!=null && medicamentoUsuario.getId()!=null){
 		List<Integer> lista = new ArrayList<Integer>();
 		lista=medicamentoUsuarioDAO.buscaIdMedicamentoAlergiaUsuario(medicamentoUsuario);
-		if(!lista.isEmpty()){
-		Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.cadastro.sucesso");
-		System.out.println("entrou nessa desgraçaaaa");
+			
+			if(lista.isEmpty()){
+				try{
+				medicamentoUsuarioDAO.exclui(medicamentoUsuario.getId());
+			    }
+			   catch (IllegalArgumentException e) {
+			   Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.excecao.erro");
+			   }
+			}		
+			else{
+			Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.alergia.usuario.erro");	
+			}
 		}
-		
-		medicamentoUsuarioDAO.exclui(medicamentoUsuario.getId());
-	}
+		else{
+			Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.medicamentousuario.nulo.erro");
+		}
+		}
 }
