@@ -23,11 +23,13 @@
 												
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="tipo_medida" value="Tipo:" />
+							<br/>
 							<p:selectOneMenu id="tipo_medida"
-								value="#{manterDimensoesCorporaisMB.valorMedidaUsuario.tipoMedida}" style="width:100%;"
+								value="#{manterDimensoesCorporaisMB.valorMedidaUsuario.tipoMedida}" 
+								style="width:90%"
 								required="true" requiredMessage="Um tipo para a medida deve ser escolhido." >
 								<p:ajax listener="#{manterDimensoesCorporaisMB.onSelectTipoMedida}" />
-								<f:selectItem itemLabel="Selecione um tipo." itemValue=""
+								<f:selectItem itemLabel="Selecione..." itemValue=""
 									noSelectionOption="true" />
 								<f:selectItems
 									value="#{manterDimensoesCorporaisMB.tipoMedidasLista}"
@@ -37,12 +39,29 @@
 						</h:panelGroup>
 						
 						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="valorMedida" value="Valor Medida:" />
+							<br/>
+							<pe:inputNumber id="valorMedida" symbolPosition="s"
+								style="width:80%;"
+								decimalSeparator="," thousandSeparator="."
+								value="#{manterDimensoesCorporaisMB.valorMedidaUsuario.medidaValor}"
+								required="true" requiredMessage="Um valor para a medida deve ser informado."
+								var="medidaValor" itemLabel="#{valorMedidaUsuario.medidaValor}"
+								itemValue="#{valorMedidaUsuario.medidaValor}"
+								placeholder="Distância em metros." >
+							</pe:inputNumber>
+	    				</h:panelGroup>
+						
+						
+						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="udm" value="Unidade de Medida:" />
+							<br/>
 							<p:selectOneMenu id="udm"
-								value="#{manterDimensoesCorporaisMB.valorMedidaUsuario.udm}" style="width:100%;"
+								value="#{manterDimensoesCorporaisMB.valorMedidaUsuario.udm}" 
+								style="width:90%;"
 								required="true" requiredMessage="Um tipo para a unidade de medida deve ser escolhido." >
 								<p:ajax listener="#{manterDimensoesCorporaisMB.onSelectUdm}" />
-								<f:selectItem itemLabel="Selecione uma unidade de medida" itemValue=""
+								<f:selectItem itemLabel="Selecione..." itemValue=""
 									noSelectionOption="true" />
 								<f:selectItems
 									value="#{manterDimensoesCorporaisMB.udmLista}"
@@ -51,26 +70,17 @@
 							</p:selectOneMenu>
 						</h:panelGroup>
 						
-						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel for="valorMedida" value="Valor Medida" />
-							<pe:inputNumber id="valorMedida" symbolPosition="s"
-								decimalSeparator="," thousandSeparator="."
-								value="#{manterDimensoesCorporaisMB.valorMedidaUsuario.medidaValor}"
-								var="medidaValor" itemLabel="#{valorMedidaUsuario.medidaValor}"
-								itemValue="#{valorMedidaUsuario.medidaValor}"
-								placeholder="Distância em metros." >
-							</pe:inputNumber>
-	    				</h:panelGroup>
+						
 						
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="data_medida"
 								value="Data da Medida" />
 							<br/>
-							<p:calendar id="data_medida" style="width:200px"
+							<p:calendar id="data_medida"
 								value="#{manterDimensoesCorporaisMB.valorMedidaUsuario.dataMedida}"
 								pattern="dd/MM/yyyy HH:mm:ss"
-								placeholder="Informe a data da Medida"
-								size="30" effect="fold" icon="glyphicon-calendar" 
+								placeholder="Informe a data da medida"
+								size="20" effect="fold" icon="glyphicon-calendar" 
 								required="true" requiredMessage="Uma data deve ser estipulada."
 								/>
 	   					</h:panelGroup>
@@ -93,7 +103,8 @@
 				<h:panelGroup layout="block" styleClass="form-group">
 	    					<p:commandButton value="Salvar"
 							rendered="#{not manterDimensoesCorporaisMB.atualizacao}"
-							action="#{manterDimensoesCorporaisMB.salvaDimensoes}" ajax="true"/>
+							action="#{manterDimensoesCorporaisMB.salvaDimensoes}"
+							icon="ui-icon-disk" ajax="true"/>
 						<p:commandButton value="Alterar"
 							rendered="#{manterUsoMedicamentoMB.atualizacao}"
 						action="#{manterUsoMedicamentoMB.alteraMedicamento}" ajax="true" />
