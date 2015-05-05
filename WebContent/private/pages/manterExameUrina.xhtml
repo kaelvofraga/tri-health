@@ -19,10 +19,17 @@
 					<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="tipo_exame" value="Tipo de Exame" />
 							<br/>
-							<p:inputText id="tipo_exame" styleClass="form-control" 
-								size="40" style="width:200px"
+							
+								
+								<p:autoComplete id="tipo_exame"
 								value="#{manterExameUrinaMB.exameUrina.tipoExameUrina.tipo}"
-								placeholder="Informe o tipo do exame" />
+								size="40" style="width:200px"
+								completeMethod="#{manterExameUrinaMB.completeTipoExameUrina}"
+								var="tipo" itemLabel="#{tipoExameUrina}"
+								itemValue="#{tipoExameUrina.tipo}"
+								placeholder="Informe o tipo de exame" 
+								required="true" requiredMessage="Um nome de exame deve ser informado."/>
+								
 					</h:panelGroup>
 					
 					<h:panelGroup layout="block" styleClass="form-group">

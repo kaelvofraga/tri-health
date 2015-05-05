@@ -8,7 +8,6 @@ import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
 import br.edu.ifrs.canoas.tads.lds.bean.ExameUrina;
-import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoExameUrina;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 import br.edu.ifrs.canoas.tads.lds.model.dao.ExameUrinaDAO;
@@ -84,11 +83,6 @@ public class ManterExameUrinaService {
 	
 }
 
-/*public List<MedicamentoUsuario> busca(String criterioMedicamento) {
-		if (StrUtil.isNotBlank(criterioMedicamento))
-			return medicamentoUsuarioDAO.buscaPorCriterio(criterioMedicamento);
-		else
-			return medicamentoUsuarioDAO.buscaTodos();
-	}*/
+
 
 

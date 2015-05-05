@@ -14,7 +14,7 @@
 		<h1 class="lead">Exames Realizados</h1>
 		
 		<p:accordionPanel multiple="true">
-			<p:tab title="Lista de Exames de Urina">
+			<p:tab title="Exames de Urina">
 
 					<h:panelGroup layout="block" id="exames">
 
@@ -22,6 +22,7 @@
 						<p:outputLabel for="criterio_exame" value="Pesquisa" />
 						<p:inputText id="criterio_exame" styleClass="form-control"
 							value="#{manterExameUrinaMB.criterioExameUrina}"
+							style="width:250px"
 							placeholder="Digite o valor para pesquisa" />
 					</h:panelGroup>
 
@@ -37,6 +38,9 @@
 
 					<p:dataTable var="listExameUrina" id="tab-exames"
 						value="#{manterExameUrinaMB.examesLista}">
+						
+						<p:ajax event="rowSelect" listener="#{manterExameUrinaMB.onRowSelect}" oncomplete="manterExameUrina"/>
+						
 						<p:column headerText="Data Exame">
 							<h:outputText value="#{listExameUrina.data}" />
 						</p:column>
@@ -54,14 +58,10 @@
 					</p:dataTable>
 					<br />
 				</h:panelGroup>
+				
+				<p:commandButton value="Cadastrar Novo Exame" action="#{manterExameUrinaMB.novoExameUrina}" icon="ui-icon-plus" ajax="true" />
 
-				<p:confirmDialog global="true" showEffect="fade"
-					hideEffect="explode">
-					<p:commandButton value="Sim" type="button"
-						styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
-					<p:commandButton value="Não" type="button"
-						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-				</p:confirmDialog>
+				
 
 		</p:tab>
 

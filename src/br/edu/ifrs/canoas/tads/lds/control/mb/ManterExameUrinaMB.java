@@ -1,18 +1,20 @@
 package br.edu.ifrs.canoas.tads.lds.control.mb;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.event.SelectEvent;
+
+import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.ExameUrina;
-import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
-import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoExameUrina;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterExameUrinaService;
 
@@ -27,6 +29,7 @@ public class ManterExameUrinaMB implements Serializable{
 	private static final long serialVersionUID = 7113326743475818284L;
 	private static final String URL_LISTAR_USO_TIPOSEXAMEURINA = "/private/pages/listarExameUrina.jsf";
 	private static final String URL_MANTER_USO_EXAMEURINA = "/private/pages/manterExameUrina.jsf";
+	private static final String URL_MANTER_NOVO_EXAMEURINA = "/private/pages/manterExameUrina.xhtml";
 	
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
@@ -119,6 +122,17 @@ public class ManterExameUrinaMB implements Serializable{
         }
         return tiposBusca;
 	}
+	
+	public String novoExameUrina(){
+//		this.emListagemAtvs = false;
+//		this.clear();
+		return URL_MANTER_NOVO_EXAMEURINA;
+	}
+	
+	public void onRowSelect(SelectEvent event) throws IOException {
+		this.exameUrina = (ExameUrina) event.getObject();
+        FacesContext.getCurrentInstance().getExternalContext().redirect("manterExameUrina.jsf");
+    }
 
 }
 
