@@ -107,7 +107,7 @@
 					  <p:commandButton value="Alterar"
 							rendered="#{manterUsoMedicamentoMB.atualizacao}"
 							action="#{manterUsoMedicamentoMB.alteraMedicamento}" 
-							ajax="true" icon="ui-icon-pencil">
+							ajax="false" icon="ui-icon-pencil">
 				     </p:commandButton>
 					
 				    </h:panelGroup> 
@@ -126,19 +126,23 @@
 					   </p:commandButton>
 					</h:panelGroup> 
 					
+					</h:panelGroup>
+					
+			</h:panelGroup>
+					
 					<p:confirmDialog global="true" showEffect="fade"
 					hideEffect="explode">
 					<p:commandButton value="Sim" type="button"
-						styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" >
 					</p:commandButton>	
 					<p:commandButton value="Não" type="button"
 						styleClass="ui-confirmdialog-no" icon="ui-icon-close">
 				    </p:commandButton>		
 					</p:confirmDialog>  
 					   
-				</h:panelGroup>
 				
-			</h:panelGroup>
+				
+			
 		
 	</ui:define>
 </ui:composition>

@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Entity implementation class for Entity: Medicamento
+ * @author Alisson Lorscheiter
  *
  */
 @Entity
