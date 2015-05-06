@@ -20,7 +20,7 @@ public class Peso extends BaseEntity<Long> implements Serializable {
 	private Double valor;
 	
 	public Peso() {
-		valor = 0.0;
+		super();
 	}
 
 	public Double getValor() {
