@@ -33,11 +33,11 @@
 							<p:outputLabel for="nome_medicamento" value="Medicamento" />
 							<br/>
 							<p:autoComplete id="nome_medicamento"
-								value="#{manterUsoMedicamentoMB.medicamentoUsuario.medicamento.nome}"
+								value="#{manterUsoMedicamentoMB.medicamentoUsuario.medicamento}"
 								size="40" style="width:300px"
 								completeMethod="#{manterUsoMedicamentoMB.completeMedicamento}"
-								var="medicamento" itemLabel="#{medicamento}"
-								itemValue="#{medicamento.nome}"
+								var="medicamento" itemLabel="#{medicamento.nome}"
+								itemValue="#{medicamento}"
 								placeholder="Informe o medicamento" 
 								required="true" requiredMessage="Um nome de medicamento deve ser informado."
 								/>
@@ -140,9 +140,6 @@
 				    </p:commandButton>		
 					</p:confirmDialog>  
 					   
-				
-				
-			
 		
 	</ui:define>
 </ui:composition>

@@ -38,7 +38,6 @@ public class ManterUsoMedicamentoService {
 		return medicamento;
 	}
  
-	
 
 	public List<Medicamento> buscaMedicamentoUsuario(String query, Usuario usuario) {
 		if (usuario != null && usuario.getId() != null)
@@ -47,10 +46,6 @@ public class ManterUsoMedicamentoService {
 		return new ArrayList<Medicamento>();
 	}
 	
-	
-	
-
-
 	
 	public boolean salvaMedicamentoUsuario(MedicamentoUsuario medicamentoUsuario) {	
 		if (medicamentoUsuario == null || medicamentoUsuario.getMedicamento() == null || medicamentoUsuario.getUsuario() == null) {
@@ -88,21 +83,17 @@ public class ManterUsoMedicamentoService {
 	   }
 	}
 
-	/*Metodo para fazer exclus�o do Medicamento Usuario*/ 
+	/*Metodo para fazer exclusao do Medicamento Usuario*/ 
 	public boolean excluiMedicamento(MedicamentoUsuario medicamentoUsuario) {
 		List<Integer> lista = new ArrayList<Integer>();
 		lista=medicamentoUsuarioDAO.buscaIdMedicamentoAlergiaUsuario(medicamentoUsuario);
-		for(int i=0;i<lista.size();i++){
-			System.out.println("lista:"+lista.get(i));
-		}
 		
 		if(lista.isEmpty()){
 			System.out.println("entrou no empty");
 			System.out.println("if empty"+ lista.isEmpty());
 			medicamentoUsuarioDAO.exclui(medicamentoUsuario.getId());
 			Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.sucesso");
-			return true;
-			   
+			return true;	   
 		}
 		//Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.excecao.erro");
 		else{

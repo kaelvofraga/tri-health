@@ -4,14 +4,12 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import org.primefaces.event.SelectEvent;
 import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
@@ -44,15 +42,10 @@ public class ManterUsoMedicamentoMB implements Serializable {
 	
 	@PostConstruct/*Metodo que inicializa as views de listar e manter Uso de Medicamentos.*/
 	public void init(){
-		if(medicamentoUsuario==null)
 		medicamentoUsuario = new MedicamentoUsuario();
-		if(criterioMedicamento==null ||criterioMedicamento.length()==0)
 		criterioMedicamento="";
-		if(medicamentosLista==null)
 		medicamentosLista = new ArrayList<>();
-		if(medicamentoUsuario.getMedicamento()==null)
 		medicamentoUsuario.setMedicamento(new Medicamento());	
-		if(medicamentos==null)
 		medicamentos = new ArrayList<>();
 	}
 	

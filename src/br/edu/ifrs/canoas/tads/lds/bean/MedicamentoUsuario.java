@@ -20,7 +20,7 @@ public class MedicamentoUsuario extends BaseEntity<Long> implements Serializable
 
 	private static final long serialVersionUID = 1754848302536341079L;
 
-	@NotNull @OneToOne(cascade=CascadeType.PERSIST)
+	@NotNull @OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="MEDICAMENTO_ID") // JOIN medicamentousuario com medicamento.
 	private Medicamento medicamento;
 	
