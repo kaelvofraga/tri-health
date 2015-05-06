@@ -56,4 +56,25 @@ public class RefeicaoAlimento extends BaseEntity<Long> implements Serializable {
 	public void setPesoEmGramasOuMl(double pesoEmGramasOuMl) {
 		this.pesoEmGramasOuMl = pesoEmGramasOuMl;
 	}
+	
+	public String getQuantidadeCalorias(){
+		String retorno = "Sem Alimento.";
+		
+		if(this.getAlimento() != null){
+			retorno = this.getQuantidadeCaloriasValor() + " Calorias";
+		}
+		
+		return retorno;
+	}
+	
+	public double getQuantidadeCaloriasValor(){
+		double retorno = 0;
+		
+		if(this.getAlimento() != null){
+			double multiplicadorCalorias = this.getPesoEmGramasOuMl() / 100;			
+			retorno += this.getAlimento().getCaloriasPorCemGrOuMl() * multiplicadorCalorias;
+		}
+		
+		return retorno;
+	}
 }

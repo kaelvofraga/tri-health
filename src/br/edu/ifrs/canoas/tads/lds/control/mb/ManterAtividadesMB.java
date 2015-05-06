@@ -148,7 +148,7 @@ public class ManterAtividadesMB implements Serializable {
 					"Atividade.cadastro.erro.calculaCaloria");
 			return;
 		}
-		
+	
 		if(atvUsuarioService.validaDatas(this.atividadeUsuario) == false){
 			Mensagens.define(FacesMessage.SEVERITY_ERROR,
 					"Atividade.cadastro.erro.dataFinalMenor");

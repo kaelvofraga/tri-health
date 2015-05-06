@@ -82,7 +82,7 @@ public class Refeicao extends BaseEntity<Long> implements Serializable {
 			for (RefeicaoAlimento refeicaoAlimento : this.getRefeicaoAlimentos()) {
 				if(refeicaoAlimento.getAlimento() != null){
 					double divisor = refeicaoAlimento.getPesoEmGramasOuMl() / 100;
-					calorias = refeicaoAlimento.getAlimento().getCaloriasPorCemGrOuMl() * divisor;
+					calorias += refeicaoAlimento.getAlimento().getCaloriasPorCemGrOuMl() * divisor;
 				}
 			}				
 			retorno = calorias + " Calorias";

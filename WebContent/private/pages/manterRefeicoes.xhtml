@@ -37,12 +37,13 @@
 							<p:outputLabel value="Tipo de Alimento:" for="tipoAlimentoAuto" />
 							<br />
 							<p:selectOneMenu id="tipoAlimentoAuto"
-								value="#{manterRefeicaoMB.tipoAlimento}">								
-								<p:ajax listener="#{manterRefeicaoMB.onTipoAlimentoChange}" update="descricao_alimento" />								
+								value="#{manterRefeicoesMB.tipoAlimento}">								
+								<p:ajax listener="#{manterRefeicoesMB.onTipoAlimentoChange}" update="descricao_alimento" />								
 								<f:selectItem itemLabel="Selecione o tipo de alimento."
 									itemValue="" noSelectionOption="true" />
-								<f:selectItems value="#{manterRefeicaoMB.tipoAlimentos}"
-									var="tipoAlimento" itemLabel="#{tipoAlimento.nome}" itemValue="#{tipoAlimento}" />
+								<f:selectItems value="#{manterRefeicoesMB.tipoAlimentos}"
+									var="tipoAlimento" itemLabel="#{tipoAlimento.nome}" 
+									itemValue="#{tipoAlimento}" />
 							</p:selectOneMenu>
 						</h:panelGroup>
 
@@ -50,12 +51,11 @@
 							<p:outputLabel value="Alimento"   />
 							<br />
 							<p:selectOneMenu id="descricao_alimento"
-								value="#{manterRefeicaoMB.alimento}">
-								<p:ajax listener="#{manterRefeicaoMB.onAlimentoChange}" update="valorQuantidade" />		
+								value="#{manterRefeicoesMB.alimento}">		
 								<f:selectItem itemLabel="Selecione um alimento." itemValue=""
 									noSelectionOption="true" />
 								<f:selectItems
-									value="#{manterRefeicaoMB.alimentos}"
+									value="#{manterRefeicoesMB.alimentos}"
 									var="alimento" itemLabel="#{alimento.nome}"
 									itemValue="#{alimento}" />
 							</p:selectOneMenu>	
@@ -69,18 +69,75 @@
 				<h:panelGrid  styleClass="mtable">					
 						<p:outputLabel for="valorQuantidade" value="Quantidade (gr ou ml)"
 								style="display:block" />
-						<pe:inputNumber id="valorQuantidade" symbol=" m" symbolPosition="s"
+						<pe:inputNumber id="valorQuantidade" symbolPosition="s"
 								decimalSeparator="," thousandSeparator="."
-								value="#{manterRefeicaoMB.quantidadeGrMl}"
+								value="#{manterRefeicoesMB.quantidadeGrMl}"
 								placeholder="Quantidade.">
 						</pe:inputNumber>
 				</h:panelGrid>
 				
 				<br />
+				<h:panelGroup layout="block" styleClass="form-group pull-left">
+						<p:commandButton value="Adicionar" 
+							ajax="true"
+							type="submit"
+							id="btnAdicionar"
+							immediate="false"
+							update="data-refeicoes totalCalorias"
+							action="#{manterRefeicoesMB.adicionarRefeicoes}" 
+							icon="ui-icon-disk"/>
+			    </h:panelGroup>
+				<br/>
+				<h:panelGroup>
+					<p:dataTable  
+							id="data-refeicoes" 
+							emptyMessage="Nenhum Registro." 
+							var="refeicaoAlimento"
+							value="#{manterRefeicoesMB.refeicao.refeicaoAlimentos}" 
+							rowKey="#{refeicaoAlimento.id}"
+							reflow="true">
+							
+						<p:column headerText="Alimento" id="colAlimento">
+							<h:outputText
+								value="#{refeicaoAlimento.alimento.nome}" />
+						</p:column>
+
+						<p:column headerText="Calorias" id="colCalorias">
+							<h:outputText
+								value="#{refeicaoAlimento.quantidadeCalorias}" />
+						</p:column>
+						
+					</p:dataTable>
+				</h:panelGroup>
 				
-				<p:commandButton value="Adicionar" ajax="true"
+				<br/>
+				
+				<h:panelGrid  styleClass="mtable">					
+						<p:outputLabel for="totalCalorias" value="Total:"
+								style="display:block" />
+						<pe:inputNumber id="totalCalorias" symbolPosition="s"
+								decimalSeparator="," thousandSeparator="."
+								readonly="true"
+								value="#{manterRefeicoesMB.totalCalorias}"
+								placeholder="Total">
+						</pe:inputNumber>
+				</h:panelGrid>
+				
+				<br/>
+				
+				<h:panelGroup layout="block" styleClass="form-group" id="buttons">
+				
+						<h:panelGroup layout="block" styleClass="form-group pull-left">
+							<p:commandButton value="Salvar" 
+								ajax="true"
+								id="btnSalvar"
+								update="dataRefeicao tipoAlimentoAuto descricao_alimento valorQuantidade data-refeicoes totalCalorias"
+								immediate="true"
+								action="#{manterRefeicoesMB.salvarRefeicoes}" 
 								icon="ui-icon-disk"/>
-				
+						</h:panelGroup>
+
+					</h:panelGroup>					
 			</p:tab>
 
 		</p:accordionPanel>
