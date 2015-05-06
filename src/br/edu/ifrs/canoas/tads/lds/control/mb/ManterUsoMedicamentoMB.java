@@ -28,20 +28,21 @@ public class ManterUsoMedicamentoMB implements Serializable {
 
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
- 
-	private MedicamentoUsuario medicamentoUsuario;
 	
 	@EJB
 	private ManterUsoMedicamentoService medicamentoService;
 	
+	private MedicamentoUsuario medicamentoUsuario;
 	
+	private String criterioMedicamento;  
+	
+	//Lista MedicamentosUsuario
 	private List<MedicamentoUsuario> medicamentosLista;
 	
-	private String criterioMedicamento;
-	
+	//Form medicamentos.
 	private List<Medicamento> medicamentos;
 	
-	@PostConstruct
+	@PostConstruct/*Metodo que inicializa as views de listar e manter Uso de Medicamentos.*/
 	public void init(){
 		if(medicamentoUsuario==null)
 		medicamentoUsuario = new MedicamentoUsuario();
@@ -55,19 +56,20 @@ public class ManterUsoMedicamentoMB implements Serializable {
 		medicamentos = new ArrayList<>();
 	}
 	
+	/*Metodo que inicializa as variaveis após Salvar*/
 	private void clear() {
 		medicamentoUsuario = new MedicamentoUsuario();
 		medicamentoUsuario.setMedicamento(new Medicamento());
 		medicamentos = new ArrayList<>();
 	}
 	
-		
+	/*Metodo do MB que chama o service para salvar o Medicamento para o Usuario que está logado*/	
 	public void salvaMedicamento(){
 		medicamentoUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		medicamentoService.salvaMedicamentoUsuario(medicamentoUsuario);
 		this.clear();
 	}
-	
+	/*Metodo do MB que chama o service para alterar o MedicamentoUsuario passando ele como parametro retorna a url de listagem.*/
 	public String alteraMedicamento() {
 		medicamentoService.alteraMedicamentoUsario(medicamentoUsuario);
 		return URL_LISTAR_USO_MEDICAMENTOS;

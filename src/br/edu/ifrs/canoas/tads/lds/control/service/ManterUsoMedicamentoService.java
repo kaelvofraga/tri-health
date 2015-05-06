@@ -68,6 +68,7 @@ public class ManterUsoMedicamentoService {
 		return true;
 	}
 	
+	/* Método da opção Buscar do Listar que realiza busca por critério informado ou retorna todos elementos cadastrados.*/
 	@SuppressWarnings("unchecked")
 	public List<MedicamentoUsuario> busca(String criterioMedicamento) {
 		if (StrUtil.isNotBlank(criterioMedicamento))
@@ -76,35 +77,37 @@ public class ManterUsoMedicamentoService {
 			return medicamentoUsuarioDAO.buscaTodos();
 	}
 	
+	/*Metodo para fazer alteração no Medicamento do Usuario*/
 	public void alteraMedicamentoUsario(MedicamentoUsuario medicamentoUsuario) {
 		try{
 		medicamentoUsuarioDAO.atualiza(medicamentoUsuario);
-		Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.altera.erro");
+		Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.altera.sucesso");
 		}
 		catch (IllegalArgumentException e) {
 			   Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.altera.excecao.erro");
 	   }
 	}
 
+	/*Metodo para fazer exclusão do Medicamento Usuario*/ 
 	public void excluiMedicamento(MedicamentoUsuario medicamentoUsuario) {
-		if(medicamentoUsuario!=null && medicamentoUsuario.getId()!=null){
 		List<Integer> lista = new ArrayList<Integer>();
 		lista=medicamentoUsuarioDAO.buscaIdMedicamentoAlergiaUsuario(medicamentoUsuario);
-			
-			if(lista.isEmpty()){
-				try{
-				medicamentoUsuarioDAO.exclui(medicamentoUsuario.getId());
-			    }
-			   catch (IllegalArgumentException e) {
-			   Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.excecao.erro");
-			   }
-			}		
-			else{
+		for(int i=0;i<lista.size();i++){
+			System.out.println("lista:"+lista.get(i));
+		}
+		
+		if(lista.isEmpty()){
+			System.out.println("entrou no empty");
+			System.out.println("if empty"+ lista.isEmpty());
+			medicamentoUsuarioDAO.exclui(medicamentoUsuario.getId());
+			Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.sucesso");
+			   
+		}
+		//Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.excecao.erro");
+		else{
+			System.out.println("entrou no else empty");
 			Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.alergia.usuario.erro");	
 			}
-		}
-		else{
-			Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.medicamentousuario.nulo.erro");
-		}
+		//	Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.medicamentousuario.nulo.erro");
 		}
 }

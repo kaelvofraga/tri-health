@@ -50,7 +50,16 @@ public class ManterConsultasService {
 	}
 	
 	public void exclui(Consulta consulta) {
-		consultaDAO.exclui(consulta.getId());
-		Mensagens.define(FacesMessage.SEVERITY_INFO, "Consulta excluida com sucesso");
+		if (consulta != null && consulta.getId() != null) {
+			consultaDAO.exclui(consulta.getId());
+			consulta = null;
+			System.out.println("Excluido totality!!!");
+			/*
+			Mensagens.define(FacesMessage.SEVERITY_INFO,
+					"Consulta excluida com sucesso");*/
+		} else {
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					"Consulta excluida com ERRO");
+		}
 	}
 }
