@@ -53,6 +53,7 @@ public class ManterUsoMedicamentoService {
 		return false;
 		}
 		try{
+			medicamentoUsuario.setMedicamento(buscaOuCriaMedicamentoPorNome(medicamentoUsuario.getMedicamento()));
 			medicamentoUsuarioDAO.insere(medicamentoUsuario);
 		}catch(Exception e){
 		//Mensagens.define(FacesMessage.SEVERITY_ERROR,"Medicamento.cadastro.erro");			
