@@ -74,17 +74,17 @@ insert into Atividade(id, descricao, MET, tipoAtividade_id) values (6, 'Ballet o
 --table TipoExameUrina
 insert into TipoExameUrina (id, tipo) values (10001,'Glicose');
 insert into TipoExameUrina (id, tipo) values (10002,'Bilirrubinas');
-insert into TipoExameUrina (id, tipo) values (10003,'Corpos Cetï¿½nicos');
+insert into TipoExameUrina (id, tipo) values (10003,'Corpos Cetônicos');
 insert into TipoExameUrina (id, tipo) values (10004,'Densidade');
 insert into TipoExameUrina (id, tipo) values (10005,'pH');
-insert into TipoExameUrina (id, tipo) values (10006,'Proteï¿½nas');
-insert into TipoExameUrina (id, tipo) values (10007,'Urobilinogï¿½nio');
+insert into TipoExameUrina (id, tipo) values (10006,'Proteínas');
+insert into TipoExameUrina (id, tipo) values (10007,'Urobilinogênio');
 insert into TipoExameUrina (id, tipo) values (10008,'Nitrito');
 insert into TipoExameUrina (id, tipo) values (10009,'Hemoglobina');
-insert into TipoExameUrina (id, tipo) values (10010,'Leucï¿½citos');
-insert into TipoExameUrina (id, tipo) values (10011,'Hemï¿½cias');
-insert into TipoExameUrina (id, tipo) values (10012,'Cï¿½lulas Epiteliais');
-insert into TipoExameUrina (id, tipo) values (10013,'Bacteriï¿½ria');
+insert into TipoExameUrina (id, tipo) values (10010,'Leucócitos');
+insert into TipoExameUrina (id, tipo) values (10011,'Hemácias');
+insert into TipoExameUrina (id, tipo) values (10012,'Células Epiteliais');
+insert into TipoExameUrina (id, tipo) values (10013,'Bacteriúria');
 insert into TipoExameUrina (id, tipo) values (10014,'Cilindros');
 
 -- Manter Cateterismo
