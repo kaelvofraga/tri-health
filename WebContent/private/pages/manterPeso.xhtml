@@ -39,15 +39,14 @@
 						<p:outputLabel for="nota" value="Nota:" />
 						<br />
 						<p:inputTextarea id="nota" rows="6" cols="50"
-							var="pesoUsuario" itemLabel="#{pesoUsuario}"
-							itemValue="#{pesoUsuario.nota}"
+							var="peso" itemLabel="#{peso}"
+							itemValue="#{peso.nota}"
 							placeholder="Informe algum comentario..." />
 					</h:panelGroup>
 					<h:panelGroup layout="block" styleClass="form-group">
 
 						<h:panelGroup layout="block" styleClass="form-group pull-left">
-							<p:commandButton value="Salvar" action="#{manterPesoMB.salvaPeso}" ajax="true"
-								icon="ui-icon-disk" />
+							<p:commandButton value="Salvar" action="#{manterPesoMB.salvaPeso}" ajax="false"/>
 							<p:commandButton value="Editar" action="#" ajax="true"
 								icon="ui-icon-pencil" />
 						</h:panelGroup>

@@ -9,6 +9,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
+import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
+import br.edu.ifrs.canoas.tads.lds.bean.Peso;
 import br.edu.ifrs.canoas.tads.lds.bean.PesoUsuario;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterPesoService;
 
@@ -40,7 +43,7 @@ public class ManterPesoMB implements Serializable {
 	public void salvaPeso(){
 		pesoUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		pesoService.salvaPesoUsuario(pesoUsuario);
-		this.inicializa();
+		//this.inicializa();
 	}	
-
+	
 }

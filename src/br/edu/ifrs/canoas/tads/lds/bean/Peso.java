@@ -2,6 +2,7 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
@@ -15,14 +16,14 @@ public class Peso extends BaseEntity<Long> implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -2819412320994175355L;
-	@NotNull
-	private double valor;
+	@NotNull	
+	private Double valor;
 	
 	public Peso() {
-		super();
+		valor = 0.0;
 	}
 
-	public double getValor() {
+	public Double getValor() {
 		return valor;
 	}
 
@@ -30,8 +31,4 @@ public class Peso extends BaseEntity<Long> implements Serializable {
 		this.valor = valor;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-		
 }
