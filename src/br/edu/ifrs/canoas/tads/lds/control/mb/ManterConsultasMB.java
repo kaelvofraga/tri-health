@@ -27,6 +27,7 @@ import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 public class ManterConsultasMB implements Serializable {
 	private static final long serialVersionUID = -6833487765093285579L;
 	private static final String URL_LISTAR = "/private/pages/listarConsulta.jsf";
+	private static final String URL_CADASTRAR = "/private/pages/manterConsulta.jsf";
 	
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
@@ -74,9 +75,14 @@ public class ManterConsultasMB implements Serializable {
 		return URL_LISTAR;
 	}
 	
+	public String novaConsulta(){
+		consulta = new Consulta();
+		return URL_CADASTRAR;
+	}
+	
 	public void onRowSelect(SelectEvent event) throws IOException {
 		this.consulta = (Consulta) event.getObject();
-        FacesContext.getCurrentInstance().getExternalContext().redirect("manterConsultas.xhtml");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("manterConsulta.xhtml");
     }
 	
 	public boolean isAtualizacao(){
@@ -94,8 +100,12 @@ public class ManterConsultasMB implements Serializable {
 		this.consulta = consulta;
 	}
 
+	public List<Consulta> getListaConsultas() {
+		return consultaService.buscaTodos();
+	}
+
 	public List<Consulta> getConsultas() {
-		return consultas;
+		return this.consultas;
 	}
 
 	public void setConsultas(List<Consulta> consultas) {

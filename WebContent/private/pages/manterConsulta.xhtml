@@ -19,6 +19,9 @@
 				
 				<p:outputLabel for="diagnostico" value="Diagnóstico:" />
 				<p:inputText id="diagnostico" value="#{manterConsultasMB.consulta.diagnostico}" />
+
+				<p:outputLabel for="data" value="Data:" />
+				<p:calendar id="data" value="#{manterConsultasMB.consulta.data}" />
 			</h:panelGrid>
 
 			<h:panelGroup>
@@ -29,8 +32,8 @@
 				<p:commandButton value="Voltar"  immediate="true" rendered="#{manterConsultasMB.atualizacao}"
 					action="#{manterConsultasMB.voltarParaListar}" ajax="true"
 					update="painel" />
-				<p:commandButton value="Excluir" rendered="#{manterConsultasMB.atualizacao}"
-					action="#{manterConsultasMB.exclui}" ajax="true" update="painel" />
+				<p:commandButton value="Excluir" rendered="#{manterConsultasMB.atualizacao}" immediate="true"
+					action="#{manterConsultasMB.exclui}" ajax="true"/>
 			</h:panelGroup>
 			<p:spacer height="200" />
 		</p:panel>

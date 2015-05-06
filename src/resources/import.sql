@@ -89,3 +89,5 @@ INSERT INTO MEDICO VALUES(1,'RS123','Dr teste 1');
 INSERT INTO MEDICO VALUES(2,'RS321','Dr teste 2');
 INSERT INTO CATETERISMO(id,usuario_id,dataalta,datainternacao,laudo,observacoes,medico_sol_id,medico_res_id) VALUES (1,1000,'20150201','20150130','BLABLA BLA','OBS TSTE',1,2);
 
+INSERT INTO CONSULTA (id,diagnostico,sintomas,id_usuario,data) values (1001,'Gripe','coriza',1000,sysdate);
+INSERT INTO CONSULTA (id,diagnostico,sintomas,id_usuario,data) values (1002,'Febre','dor no corpo',1000,sysdate);

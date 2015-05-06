@@ -1,6 +1,7 @@
 package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 @NamedQueries({
@@ -25,18 +27,31 @@ public class Consulta extends BaseEntity<Long> implements Serializable  {
 	private String sintomas;
 	@NotNull 
 	private String diagnostico;
+	
+	private Date data;
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_usuario")
 	private Usuario usuario;
 	
+	/*@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn
+	private Medico medico;*/
+	
 	/* Aplicação dos Medicamentos (Exemplo de bidirecional)
 	 * @OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
     private List<Consulta> consultas;*/
-    
-	
+    	
 	public Consulta() {
 		super();
+	}
+
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
 	}
 
 	public String getSintomas() {
