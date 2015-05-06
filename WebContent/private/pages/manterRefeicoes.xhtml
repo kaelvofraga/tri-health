@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<ui:define name="content">
+
+		<h1 class="lead">Refeições</h1>
+
+		<p:accordionPanel id="panel" multiple="true">
+					
+			<p:tab title="Cadastro de Refeição">
+							
+				<h:panelGroup layout="block" id="tipo">
+				
+					<h:panelGroup layout="block" styleClass="form-group">
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="dataRefeicao" value="Data:" />
+							<br />
+							<p:calendar pattern="dd/MM/yyyy HH:mm" mask="true"
+							    value="#{manterRefeicoesMB.refeicao.refeicaoData}"
+							    id="dataRefeicao"
+								showOn="button" placeholder="Informe a data de inicio" />
+						</h:panelGroup>
+					</h:panelGroup>
+
+					<h:panelGrid columns="2" styleClass="mtable">
+						
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel value="Tipo de Alimento:" for="tipoAlimentoAuto" />
+							<br />
+							<p:selectOneMenu id="tipoAlimentoAuto"
+								value="#{manterRefeicaoMB.tipoAlimento}">								
+								<p:ajax listener="#{manterRefeicaoMB.onTipoAlimentoChange}" update="descricao_alimento" />								
+								<f:selectItem itemLabel="Selecione o tipo de alimento."
+									itemValue="" noSelectionOption="true" />
+								<f:selectItems value="#{manterRefeicaoMB.tipoAlimentos}"
+									var="tipoAlimento" itemLabel="#{tipoAlimento.nome}" itemValue="#{tipoAlimento}" />
+							</p:selectOneMenu>
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group pull-right">						
+							<p:outputLabel value="Alimento"   />
+							<br />
+							<p:selectOneMenu id="descricao_alimento"
+								value="#{manterRefeicaoMB.alimento}">
+								<p:ajax listener="#{manterRefeicaoMB.onAlimentoChange}" update="valorQuantidade" />		
+								<f:selectItem itemLabel="Selecione um alimento." itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems
+									value="#{manterRefeicaoMB.alimentos}"
+									var="alimento" itemLabel="#{alimento.nome}"
+									itemValue="#{alimento}" />
+							</p:selectOneMenu>	
+						</h:panelGroup>
+
+					</h:panelGrid>
+				</h:panelGroup>
+				
+				<br />
+				
+				<h:panelGrid  styleClass="mtable">					
+						<p:outputLabel for="valorQuantidade" value="Quantidade (gr ou ml)"
+								style="display:block" />
+						<pe:inputNumber id="valorQuantidade" symbol=" m" symbolPosition="s"
+								decimalSeparator="," thousandSeparator="."
+								value="#{manterRefeicaoMB.quantidadeGrMl}"
+								placeholder="Quantidade.">
+						</pe:inputNumber>
+				</h:panelGrid>
+				
+				<br />
+				
+				<p:commandButton value="Adicionar" ajax="true"
+								icon="ui-icon-disk"/>
+				
+			</p:tab>
+
+		</p:accordionPanel>
+
+	</ui:define>
+
+</ui:composition>

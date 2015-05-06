@@ -41,9 +41,5 @@ public class TipoAlimento extends BaseEntity<Long> implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
-	public String toString(){
-		return this.getNome();	
-	}
 	
 }

@@ -9,11 +9,5 @@ public class TipoAlimentoDAO extends BaseDAO<TipoAlimento, Long> {
 	 * 
 	 */
 	private static final long serialVersionUID = 5014335249510417493L;
-
-	
-	public List<TipoAlimento> getTesteJinqStream(){
-		List<TipoAlimento> retorno = super.buscaTodos();
-		return retorno;
-	}
 	
 }
