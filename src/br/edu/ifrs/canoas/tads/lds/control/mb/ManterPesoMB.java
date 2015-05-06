@@ -44,6 +44,36 @@ public class ManterPesoMB implements Serializable {
 		pesoUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		pesoService.salvaPesoUsuario(pesoUsuario);
 		//this.inicializa();
+	}
+
+	public GerenciarLoginMB getGerenciarLoginMB() {
+		return gerenciarLoginMB;
+	}
+
+	public void setGerenciarLoginMB(GerenciarLoginMB gerenciarLoginMB) {
+		this.gerenciarLoginMB = gerenciarLoginMB;
+	}
+
+	public PesoUsuario getPesoUsuario() {
+		return pesoUsuario;
+	}
+
+	public void setPesoUsuario(PesoUsuario pesoUsuario) {
+		this.pesoUsuario = pesoUsuario;
+	}
+
+	public ManterPesoService getPesoService() {
+		return pesoService;
+	}
+
+	public void setPesoService(ManterPesoService pesoService) {
+		this.pesoService = pesoService;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}	
+	
+	
 	
 }
