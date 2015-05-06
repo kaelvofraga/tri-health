@@ -9,6 +9,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -16,13 +17,10 @@ import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
 
 import br.edu.ifrs.canoas.tads.lds.bean.Alimento;
-import br.edu.ifrs.canoas.tads.lds.bean.Atividade;
-import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Refeicao;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAlimento;
 import br.edu.ifrs.canoas.tads.lds.control.service.ListarRefeicaoService;
 import br.edu.ifrs.canoas.tads.lds.util.DateUtil;
-import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
 
 @Named
 @SessionScoped
@@ -35,6 +33,9 @@ public class ListarRefeicaoMB implements Serializable {
 	
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
+	
+	@Inject
+	private ManterRefeicoesMB manterRefeicoesMB;
 
 	@EJB
 	private ListarRefeicaoService listarRefeicaoService;
@@ -53,24 +54,12 @@ public class ListarRefeicaoMB implements Serializable {
 	private List<Alimento> alimentos;
 	private List<Refeicao> refeicoes;
 	
-	public ListarRefeicaoMB() {
-		tipoAlimento = null;
-		alimento = null;
-		refeicao = null;
-		dataDe = DateUtil.getDataAtual();
-		dataAte = DateUtil.getDataAtualIncrementa(1);
+	public ListarRefeicaoMB() {	
 	}
 
 	@PostConstruct
 	public void init() {
-
-		/** Listas **/
-		if (tipoAlimentos == null)
-			tipoAlimentos = listarRefeicaoService.buscaTodosTiposAlimentos();
-		if (alimentos == null)
-			alimentos = listarRefeicaoService.buscaAlimentos(null);
-		if (refeicoes == null)
-			refeicoes = new ArrayList<>();
+		this.clear();
 	}
 	
 	public void onTipoAlimentoChange(){
@@ -82,12 +71,33 @@ public class ListarRefeicaoMB implements Serializable {
 	}
 	
 	public void onRefeicaoSelect(SelectEvent event) throws IOException {
-		//this.setRefeicao((Refeicao) event.getObject());
-        //FacesContext.getCurrentInstance().getExternalContext().redirect("manterAtividadesFisicas.jsf");
+		manterRefeicoesMB.clear();
+		manterRefeicoesMB.setRefeicao(getRefeicao());
+        FacesContext.getCurrentInstance().getExternalContext().redirect("manterRefeicoes.jsf");
     }
+	
+	public void novaRefeicao() throws IOException{
+		manterRefeicoesMB.clear();
+        FacesContext.getCurrentInstance().getExternalContext().redirect("manterRefeicoes.jsf");
+	}
 	
 	public void atualizarDataTable(){
 		this.setRefeicoes(listarRefeicaoService.buscaRefeicoes(this.getDataDe(),this.getDataAte(),this.getAlimento(), gerenciarLoginMB.getUsuario()));
+	}
+	
+	public void clear(){
+		tipoAlimento = null;
+		alimento = null;
+		refeicao = null;
+		dataDe = DateUtil.getDataAtual();
+		dataAte = DateUtil.getDataAtualIncrementa(1);
+		alimentos = listarRefeicaoService.buscaAlimentos(null);
+
+		/** Listas **/
+		if (tipoAlimentos == null)
+			tipoAlimentos = listarRefeicaoService.buscaTodosTiposAlimentos();		
+		if (refeicoes == null)
+			refeicoes = new ArrayList<>();
 	}
 
 	// Getters e Setters
