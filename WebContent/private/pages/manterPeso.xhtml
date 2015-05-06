@@ -21,7 +21,7 @@
 								placeholder="Selecione uma Data" effect="fold"
 								icon="glyphicon-calendar" var="data"
 								itemLabel="#{pesoUsuario}"
-								itemValue="#{pesoUsuario.data}" />
+								itemValue="#{manterPesoMB.pesoUsuario.data}" />
 					</h:panelGroup>
 					</h:panelGrid>
 					<h:panelGrid columns="3" styleClass="mtable">	
@@ -30,7 +30,7 @@
 							<br/>
 								<p:inputText id="valor" cols="50"
 									var="pesoUsuario" itemLabel="#{pesoUsuario}"
-									itemValue="#{pesoUsuario.peso.valor}"
+									itemValue="#{manterPesoMB.pesoUsuario.peso.valor}"
 									placeholder="Informe o valor..." /><b>Kg</b>
 						</h:panelGroup>
 					</h:panelGrid>
@@ -40,7 +40,7 @@
 						<br />
 						<p:inputTextarea id="nota" rows="6" cols="50"
 							var="peso" itemLabel="#{peso}"
-							itemValue="#{peso.nota}"
+							itemValue="#{manterPesoMB.pesoUsuario.nota}"
 							placeholder="Informe algum comentario..." />
 					</h:panelGroup>
 					<h:panelGroup layout="block" styleClass="form-group">
