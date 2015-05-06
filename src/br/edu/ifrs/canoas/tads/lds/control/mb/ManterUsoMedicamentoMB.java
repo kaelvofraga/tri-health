@@ -56,14 +56,14 @@ public class ManterUsoMedicamentoMB implements Serializable {
 		medicamentos = new ArrayList<>();
 	}
 	
-	/*Metodo que inicializa as variaveis após Salvar*/
+	/*Metodo que inicializa as variaveis apï¿½s Salvar*/
 	private void clear() {
 		medicamentoUsuario = new MedicamentoUsuario();
 		medicamentoUsuario.setMedicamento(new Medicamento());
 		medicamentos = new ArrayList<>();
 	}
 	
-	/*Metodo do MB que chama o service para salvar o Medicamento para o Usuario que está logado*/	
+	/*Metodo do MB que chama o service para salvar o Medicamento para o Usuario que estï¿½ logado*/	
 	public void salvaMedicamento(){
 		medicamentoUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		medicamentoService.salvaMedicamentoUsuario(medicamentoUsuario);
@@ -76,9 +76,11 @@ public class ManterUsoMedicamentoMB implements Serializable {
 	}
 	
 	public String excluiMedicamento(){
-		medicamentoService.excluiMedicamento(medicamentoUsuario);
-		this.busca();
-		return URL_LISTAR_USO_MEDICAMENTOS;
+		if (medicamentoService.excluiMedicamento(medicamentoUsuario)){
+			this.busca();
+			return URL_LISTAR_USO_MEDICAMENTOS;
+		}
+		return URL_MANTER_USO_MEDICAMENTOS;
 	}
 	
 	public void onRowSelect(SelectEvent event) throws IOException {
