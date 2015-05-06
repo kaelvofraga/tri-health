@@ -1,15 +1,14 @@
 package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.Type;
 
 @Entity
 public class Cateterismo extends BaseEntity<Long> implements Serializable{
@@ -34,11 +33,11 @@ public class Cateterismo extends BaseEntity<Long> implements Serializable{
 	@NotNull
 	private String laudo;
 	
-	@NotNull
-	private String dataInternacao;
+	@NotNull @Temporal(TemporalType.TIMESTAMP)
+	private Date dataInternacao;
 	
-	@NotNull
-	private String dataAlta;
+	@NotNull @Temporal(TemporalType.TIMESTAMP)
+	private Date dataAlta;
 	
 	@NotNull
 	private String observacoes;
@@ -67,19 +66,20 @@ public class Cateterismo extends BaseEntity<Long> implements Serializable{
 		this.laudo = laudo;
 	}
 
-	public String getDataInternacao() {
+	public Date getDataInternacao() {
 		return dataInternacao;
 	}
 
-	public void setDataInternacao(String dataInternacao) {
+	public void setDataInternacao(Date dataInternacao) {
 		this.dataInternacao = dataInternacao;
+		System.out.println("DATA: "+dataInternacao+"FIM");
 	}
 
-	public String getDataAlta() {
+	public Date getDataAlta() {
 		return dataAlta;
 	}
 
-	public void setDataAlta(String dataAlta) {
+	public void setDataAlta(Date dataAlta) {
 		this.dataAlta = dataAlta;
 	}
 
@@ -89,6 +89,14 @@ public class Cateterismo extends BaseEntity<Long> implements Serializable{
 
 	public void setObservacoes(String observacoes) {
 		this.observacoes = observacoes;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 		
 	

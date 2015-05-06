@@ -87,5 +87,5 @@ insert into TipoExameUrina (id, tipo) values (14,'Cilindros');
 -- Manter Cateterismo
 INSERT INTO MEDICO VALUES(1,'RS123','Dr teste 1');
 INSERT INTO MEDICO VALUES(2,'RS321','Dr teste 2');
-INSERT INTO CATETERISMO(id,usuario_id,dataalta,datainternacao,laudo,observacoes,medico_sol_id,medico_res_id) VALUES (1,1000,'20150201','20150130','BLABLA BLA','OBS TSTE',1,2);
+INSERT INTO CATETERISMO(id,usuario_id,dataalta,datainternacao,laudo,observacoes,medico_sol_id,medico_res_id) VALUES (1000,1000,'20150201','20150130','BLABLA BLA','OBS TSTE',1,2);
 
