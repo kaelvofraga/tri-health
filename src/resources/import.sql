@@ -69,20 +69,20 @@ insert into Atividade(id, descricao, MET, tipoAtividade_id) values (5, 'Danï¿½a 
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (6, 'Ballet ou moderna, twist, jazz, tap, jitterbug', 4.8, 3);
 
 --table TipoExameUrina
-insert into TipoExameUrina (id, tipo) values (1,'Glicose');
-insert into TipoExameUrina (id, tipo) values (2,'Bilirrubinas');
-insert into TipoExameUrina (id, tipo) values (3,'Corpos Cetônicos');
-insert into TipoExameUrina (id, tipo) values (4,'Densidade');
-insert into TipoExameUrina (id, tipo) values (5,'pH');
-insert into TipoExameUrina (id, tipo) values (6,'Proteínas');
-insert into TipoExameUrina (id, tipo) values (7,'Urobilinogênio');
-insert into TipoExameUrina (id, tipo) values (8,'Nitrito');
-insert into TipoExameUrina (id, tipo) values (9,'Hemoglobina');
-insert into TipoExameUrina (id, tipo) values (10,'Leucócitos');
-insert into TipoExameUrina (id, tipo) values (11,'Hemácias');
-insert into TipoExameUrina (id, tipo) values (12,'Células Epiteliais');
-insert into TipoExameUrina (id, tipo) values (13,'Bacteriúria');
-insert into TipoExameUrina (id, tipo) values (14,'Cilindros');
+insert into TipoExameUrina (id, tipo) values (10001,'Glicose');
+insert into TipoExameUrina (id, tipo) values (10002,'Bilirrubinas');
+insert into TipoExameUrina (id, tipo) values (10003,'Corpos Cetônicos');
+insert into TipoExameUrina (id, tipo) values (10004,'Densidade');
+insert into TipoExameUrina (id, tipo) values (10005,'pH');
+insert into TipoExameUrina (id, tipo) values (10006,'Proteínas');
+insert into TipoExameUrina (id, tipo) values (10007,'Urobilinogênio');
+insert into TipoExameUrina (id, tipo) values (10008,'Nitrito');
+insert into TipoExameUrina (id, tipo) values (10009,'Hemoglobina');
+insert into TipoExameUrina (id, tipo) values (10010,'Leucócitos');
+insert into TipoExameUrina (id, tipo) values (10011,'Hemácias');
+insert into TipoExameUrina (id, tipo) values (10012,'Células Epiteliais');
+insert into TipoExameUrina (id, tipo) values (10013,'Bacteriúria');
+insert into TipoExameUrina (id, tipo) values (10014,'Cilindros');
 
 -- Manter Cateterismo
 INSERT INTO MEDICO VALUES(1,'RS123','Dr teste 1');
