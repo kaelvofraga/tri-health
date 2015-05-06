@@ -11,7 +11,7 @@
 	<ui:define name="metadata" />
 
 	<ui:define name="content">
-
+	
 		<h1 class="lead">Atividades Físicas</h1>
 
 		<p:accordionPanel id="panel" multiple="true">
@@ -117,7 +117,7 @@
 							value="#{manterAtividadesMB.atividadeUsuario.notas}" rows="4"
 							cols="94"
 							placeholder="Espaço destinado para observações e comentários." 
-							counter="counter" maxlength="144" 
+							counter="counter" maxlength="500" 
 							counterTemplate=" Restam {0} caracteres!"
 							style="width:100%;"/>
 							<h:outputText id="counter" />
@@ -142,20 +142,33 @@
 
 						</h:panelGroup>
 
-						<h:panelGroup layout="block" styleClass="form-group pull-right">							
+						<h:panelGroup layout="block" styleClass="form-group pull-right">
 							<p:commandButton value="Excluir"
-								rendered="#{manterAtividadesMB.atualizacao}"
-								immediate="true"
+								rendered="#{manterAtividadesMB.atualizacao}" immediate="true"
 								action="#{manterAtividadesMB.excluiAtividadeUsuario}"
-								ajax="true" icon="ui-icon-close" />
+								ajax="true" icon="ui-icon-close" update=":mainForm:msgs">
+								<p:confirm header="Confirmação"
+									message="Tem certeza que deseja apagar a atividade?"
+									icon="ui-icon-alert" />
+							</p:commandButton>
 						</h:panelGroup>
 
 					</h:panelGroup>
 
 				</h:panelGroup>
 
-			</p:tab>
+				<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
+					</p:commandButton>
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close">
+					</p:commandButton>
+				</p:confirmDialog>
 
+			</p:tab>
+				
 		</p:accordionPanel>
 
 	</ui:define>

@@ -34,7 +34,7 @@ public class AtividadeUsuario extends BaseEntity<Long> implements Serializable {
 	@JoinColumn(name="USUARIO_ID")
 	private Usuario usuario;
 	
-	@NotNull @Length(max=144, message="As notas devem possuir no máximo 144 caracteres!") 
+	@NotNull @Length(max=500, message="As notas devem possuir no máximo 144 caracteres!") 
 	private String notas;
 	
 	@NotNull @Temporal(TemporalType.TIMESTAMP)

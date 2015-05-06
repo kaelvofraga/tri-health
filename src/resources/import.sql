@@ -17,12 +17,15 @@ insert into AlergiaUsuario (dataPrimeiraOcorrencia, MEDICAMENTOUSUARIO_ID, reaca
 
 insert into AlergiaUsuario (dataPrimeiraOcorrencia, MEDICAMENTOUSUARIO_ID, reacao, tipoAlergia_id, USUARIO_ID, id) values (sysdate, 1011, 'Reacao', 1, 1000, 1001);
 
-insert into tipoAlimento (id,nome, descricao) values (1, 'AVES','EXEMPLO: FRANGO GALINHA');
-insert into tipoAlimento (id,nome, descricao) values (2, 'FRUTAS','EXEMPLO: LARANJA MAï¿½A');
-insert into tipoAlimento (id,nome, descricao) values (3, 'CARNES','EXEMPLO: TESTE');
+insert into tipoAlimento (id,nome, descricao) values (1000, 'AVES','EXEMPLO: FRANGO GALINHA');
+insert into tipoAlimento (id,nome, descricao) values (1001, 'FRUTAS','EXEMPLO: LARANJA MAï¿½A');
+insert into tipoAlimento (id,nome, descricao) values (1002, 'CARNES','EXEMPLO: TESTE');
 
-insert into Alimento (id,nome, caloriasPorCemGrOuMl) values (1, 'FRANGO',250);
-insert into Alimento (id,nome, caloriasPorCemGrOuMl) values (2, 'GALINHA',200);
+insert into Alimento (id,nome, caloriasPorCemGrOuMl,TIPOALIMENTO_ID) values (1000, 'FRANGO',250,1000);
+insert into Alimento (id,nome, caloriasPorCemGrOuMl,TIPOALIMENTO_ID) values (1001, 'GALINHA',200,1000);
+insert into Alimento (id,nome, caloriasPorCemGrOuMl,TIPOALIMENTO_ID) values (1002, 'MAÇÃ',200,1001);
+insert into Alimento (id,nome, caloriasPorCemGrOuMl,TIPOALIMENTO_ID) values (1003, 'BOI',200,1002);
+
 
 insert into AlergiaUsuario (dataPrimeiraOcorrencia, MEDICAMENTOUSUARIO_ID, reacao, tipoAlergia_id, USUARIO_ID, id) values (sysdate, 1001, 'Reacao', 1, 1000, 1001);
 
@@ -53,19 +56,19 @@ insert into ValorMedidaUsuario(id, USUARIO_ID, UDM_ID, TIPOMEDIDA_ID, medidaValo
 insert into ValorMedidaUsuario(id, USUARIO_ID, UDM_ID, TIPOMEDIDA_ID, medidaValor, dataMedida, observacao) values (100001, 1000, 2, 3, 40.00, sysdate, 'nao possuo lesao corporal.');
 
 
---[ Manter Atividades Fï¿½sicas ]--
+--[ Manter Atividades ]--
 
 insert into TipoAtividade(id, nome) values (1, 'Corrida');
 insert into TipoAtividade(id, nome) values (2, 'Ciclismo');
-insert into TipoAtividade(id, nome) values (3, 'Danï¿½a');
+insert into TipoAtividade(id, nome) values (3, 'Dança');
 
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (1, 'Jogging', 7, 1);
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (2, 'Correndo em 5 mph (8 quilometros por hora)', 8, 1);
 
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (3, 'BMX ou Mountain Bike', 8.5, 2);
-insert into Atividade(id, descricao, MET, tipoAtividade_id) values (4, 'Pedalando para o trabalho ou por diversï¿½o', 4, 2);
+insert into Atividade(id, descricao, MET, tipoAtividade_id) values (4, 'Pedalando para o trabalho ou por diversão', 4, 2);
 
-insert into Atividade(id, descricao, MET, tipoAtividade_id) values (5, 'Danï¿½a aerï¿½bica', 6.5, 3);
+insert into Atividade(id, descricao, MET, tipoAtividade_id) values (5, 'Dança aeróbica', 6.5, 3);
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (6, 'Ballet ou moderna, twist, jazz, tap, jitterbug', 4.8, 3);
 
 --table TipoExameUrina

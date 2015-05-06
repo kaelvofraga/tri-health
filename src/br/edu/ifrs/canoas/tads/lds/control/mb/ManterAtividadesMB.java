@@ -91,7 +91,7 @@ public class ManterAtividadesMB implements Serializable {
 		criterioAtividadeUsuario = "";
 
 		/** Limpa filtro na lista atividadesUsuarioList **/
-		this.busca();	
+		this.busca();
 	}
 	
 	public void salvaAtividadeUsuario(){
@@ -111,7 +111,7 @@ public class ManterAtividadesMB implements Serializable {
 		return URL_LISTAR_ATIVIDADES;
 	}
 	
-	public String excluiAtividadeUsuario(){
+	public String excluiAtividadeUsuario(){	
 		atvUsuarioService.excluiAtividadeUsuario(atividadeUsuario);
 		this.busca();
 		return URL_LISTAR_ATIVIDADES;
