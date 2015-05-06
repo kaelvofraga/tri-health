@@ -43,7 +43,34 @@ public class ExameUrinaDAO extends BaseDAO<ExameUrina, Long>{
 			return null;
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Integer> buscaExameUrinaPorUsuario(ExameUrina exameUrina){
+		try{
+			return em.createQuery(
+			         "SELECT eu.id " 
+			         + "FROM ExameUrina eu "
+			         + "WHERE eu.id = :tipoExameUrina")
+			         .setParameter("tipoExameUrina",exameUrina.getId()).getResultList();
+			}catch (IllegalArgumentException e) {
+				return null;	
+		}
+	}
 }
+
+/*public List<Integer> buscaIdMedicamentoAlergiaUsuario(MedicamentoUsuario medicamentoUsuario) {
+		try {
+		return em.createQuery(
+		         "SELECT au.medicamentoUsuario.id " 
+		         + "FROM AlergiaUsuario au, MedicamentoUsuario mu "
+		         + "WHERE mu.id = :medicamento and "
+		         + "au.medicamentoUsuario.id=mu.id")
+		         .setParameter("medicamento",medicamentoUsuario.getId()).getResultList();
+		}catch (IllegalArgumentException e) {
+			return null;
+		}
+		         
+	}*/
 	
 
 

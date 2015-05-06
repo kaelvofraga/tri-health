@@ -14,14 +14,14 @@
 		<h1 class="lead">Exames Realizados</h1>
 		
 		<p:accordionPanel multiple="true">
-			<p:tab title="Exames de Urina">
+			<p:tab title="Resultados das Análises">
 
 					<h:panelGroup layout="block" id="exames">
 
 					<h:panelGroup layout="block" styleClass="form-group">
 						<p:outputLabel for="criterio_exame" value="Pesquisa" />
 						<p:inputText id="criterio_exame" styleClass="form-control"
-							value="#{manterExameUrinaMB.criterioExameUrina}"
+							value="#{manterExameUrinaMB.criterioTipoExameUrina}"
 							style="width:250px"
 							placeholder="Digite o valor para pesquisa" />
 					</h:panelGroup>

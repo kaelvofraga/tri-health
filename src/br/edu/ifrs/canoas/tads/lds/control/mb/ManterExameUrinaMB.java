@@ -15,6 +15,8 @@ import org.primefaces.event.SelectEvent;
 
 import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.ExameUrina;
+import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
+import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAtividade;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoExameUrina;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterExameUrinaService;
@@ -41,9 +43,11 @@ public class ManterExameUrinaMB implements Serializable{
 	@EJB
 	private ManterExameUrinaService exameUrinaService;
 	
+	private String criterioTipoExameUrina;
+	
+//listas exames e tipos de exame
 	private List<ExameUrina> examesLista;	
 	private List<TipoExameUrina> tipos;
-	private String criterioExameUrina;
 	
 //getters and setters
 	public ExameUrina getExameUrina() {
@@ -73,42 +77,53 @@ public class ManterExameUrinaMB implements Serializable{
 	}
 
 	public String getCriterioExameUrina() {
-		return criterioExameUrina;
+		return criterioTipoExameUrina;
 	}
 
-	public void setCriterioExameUrina(String criterioExameUrina) {
-		this.criterioExameUrina = criterioExameUrina;
+	public void setCriterioTipoExameUrina(String criterioTipoExameUrina) {
+		this.criterioTipoExameUrina = criterioTipoExameUrina;
 	}
 //métodos
-	public void salvaExame(){
-		exameUrina.setUsuario(gerenciarLoginMB.getUsuario());
-		exameUrinaService.salvaExameUrinaUsuario(exameUrina);
-		this.inicializa();
+	
+	public void inicializa() {	//inicialização do listar e manter
+		exameUrina = new ExameUrina();
+		exameUrina.setTipoExameUrina(new TipoExameUrina());
+		examesLista = new ArrayList<>();
+		tipos = new ArrayList<>();
+		criterioTipoExameUrina="";
 	}
 	
 	public boolean isAtualizacao(){
 		return exameUrina != null && exameUrina.getId() != null;
 	}
 	
-	public void inicializa() {
-		exameUrina = new ExameUrina();
-		examesLista = new ArrayList<>();
-		criterioExameUrina="";
+	public void salvaExame(){
+		exameUrina.setUsuario(gerenciarLoginMB.getUsuario());
+		exameUrinaService.salvaExameUrinaUsuario(exameUrina);
+		this.inicializa();
 	}
 	
-	public String alteraTipoExameUrina() {
+	public String alteraExameUrina() {
 		exameUrinaService.alteraExameUrina(exameUrina);
 		return URL_LISTAR_USO_TIPOSEXAMEURINA;
-	}
+	}	
 	
-	public String excluiTipoExameUrina(){
-		exameUrinaService.excluiExameUrina(exameUrina);
-		this.busca();
-		return URL_LISTAR_USO_TIPOSEXAMEURINA;
-	}
+	/*public String excluiExameUrina(){
+		if (exameUrinaService.excluiExameUrina(exameUrina)){
+			this.busca();
+			return URL_LISTAR_USO_TIPOSEXAMEURINA;
+		}
+		return URL_MANTER_USO_EXAMEURINA;
+	}*/
 	
 	public void busca(){
-		examesLista = exameUrinaService.busca(criterioExameUrina);
+		examesLista = exameUrinaService.busca(criterioTipoExameUrina);
+	}
+	
+	public void clear(){
+		exameUrina = new ExameUrina();
+//		exameUrina.setTipoExameUrina(new TipoExameUrina());
+		examesLista = new ArrayList<>();
 	}
 	
 	public List<TipoExameUrina> completeTipoExameUrina(String query){

@@ -8,6 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
 import br.edu.ifrs.canoas.tads.lds.bean.ExameUrina;
+import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAtividade;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoExameUrina;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
@@ -77,8 +78,23 @@ public class ManterExameUrinaService {
 		exameUrinaDAO.atualiza(exameUrina);
 	}
 
-	public void excluiExameUrina(ExameUrina exameUrina) {
-		exameUrinaDAO.exclui(exameUrina.getId());
+	public boolean excluiExameUrina(ExameUrina exameUrina) {
+		List<Integer> lista = new ArrayList<Integer>();
+		lista = exameUrinaDAO.buscaExameUrinaPorUsuario(exameUrina);//ver
+		
+		if (lista.isEmpty()){
+			System.out.println("entrou no empty");
+			System.out.println("if empty"+ lista.isEmpty());
+			exameUrinaDAO.exclui(exameUrina.getId());
+			Mensagens.define(FacesMessage.SEVERITY_INFO, "manterExameUrina.exclui.sucesso");
+			return true;	   
+		}
+		else{
+			System.out.println("entrou no else empty");
+			Mensagens.define(FacesMessage.SEVERITY_INFO, "manterExameUrina.exclui.erro");
+			return false;
+			}
+//		exameUrinaDAO.exclui(exameUrina.getId());
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -88,6 +104,27 @@ public class ManterExameUrinaService {
 	
 	
 }
+
+/*public boolean excluiMedicamento(MedicamentoUsuario medicamentoUsuario) {
+		List<Integer> lista = new ArrayList<Integer>();
+		lista=medicamentoUsuarioDAO.buscaIdMedicamentoAlergiaUsuario(medicamentoUsuario);
+		
+		if(lista.isEmpty()){
+			System.out.println("entrou no empty");
+			System.out.println("if empty"+ lista.isEmpty());
+			medicamentoUsuarioDAO.exclui(medicamentoUsuario.getId());
+			Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.sucesso");
+			return true;	   
+		}
+		//Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.excecao.erro");
+		else{
+			System.out.println("entrou no else empty");
+			Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.alergia.usuario.erro");
+			return false;
+			}
+		//	Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.medicamentousuario.nulo.erro");
+		
+		}*/
 
 
 
