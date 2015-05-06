@@ -1,5 +1,10 @@
 package br.edu.ifrs.canoas.tads.lds.control.mb;
 
+/**
+ * ManageBean Implementation for class ManterUsoMedicamentosMB
+ * @author Alisson Lorscheiter
+ *
+ */
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -49,6 +54,19 @@ public class ManterUsoMedicamentoMB implements Serializable {
 		medicamentos = new ArrayList<>();
 	}
 	
+	public String initListar(){
+		medicamentoUsuario = new MedicamentoUsuario();
+		criterioMedicamento="";
+		medicamentosLista = new ArrayList<>();	
+		return URL_LISTAR_USO_MEDICAMENTOS;
+	}
+	public String initManter(){
+		medicamentoUsuario = new MedicamentoUsuario();
+		medicamentoUsuario.setMedicamento(new Medicamento());	
+		medicamentos = new ArrayList<>();
+		return URL_MANTER_USO_MEDICAMENTOS;
+	}
+	
 	/*Metodo que inicializa as variaveis ap�s Salvar*/
 	private void clear() {
 		medicamentoUsuario = new MedicamentoUsuario();
@@ -78,7 +96,7 @@ public class ManterUsoMedicamentoMB implements Serializable {
 	
 	public void onRowSelect(SelectEvent event) throws IOException {
 		this.medicamentoUsuario = (MedicamentoUsuario)event.getObject();
-        FacesContext.getCurrentInstance().getExternalContext().redirect("manterUsoMedicamentos.jsf");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("../../private/pages/manterUsoMedicamentos.jsf");
     }
 	
 	public boolean isAtualizacao(){
