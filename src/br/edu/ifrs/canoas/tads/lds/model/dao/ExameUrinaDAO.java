@@ -29,13 +29,13 @@ public class ExameUrinaDAO extends BaseDAO<ExameUrina, Long>{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<ExameUrina> buscaPorCriterio(String criterioTipoExameUrina) {
+	public List<ExameUrina> buscaPorCriterio(String criterioExameUrina) {
 		try {
 			return em.createQuery(
 				"SELECT eu "
 						+ "FROM ExameUrina eu WHERE"
 //						+ "lower(eu.data) like '%" + criterioTipoExameUrina.trim().toLowerCase() + "%' "
-						+ "lower(eu.tipoexameurina.tipo) like '%" + criterioTipoExameUrina.trim().toLowerCase() + "%' "
+						+ "lower(eu.tipoexameurina.tipo) like '%" + criterioExameUrina.trim().toLowerCase() + "%' "
 //						+ "OR lower(eu.resultado) like '%" + criterioTipoExameUrina.trim().toLowerCase() + "%' "
 						+ "ORDER BY eu.tipoexameurina.tipo").getResultList();
 

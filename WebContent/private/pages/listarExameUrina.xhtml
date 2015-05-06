@@ -21,9 +21,9 @@
 					<h:panelGroup layout="block" styleClass="form-group">
 						<p:outputLabel for="criterio_exame" value="Pesquisa" />
 						<p:inputText id="criterio_exame" styleClass="form-control"
-							value="#{manterExameUrinaMB.criterioTipoExameUrina}"
+							value="#{manterExameUrinaMB.criterioExameUrina}"
 							style="width:250px"
-							placeholder="Digite o valor para pesquisa" />
+							placeholder="Digite o tipo da análise para pesquisa" />
 					</h:panelGroup>
 
 					<h:panelGroup layout="block" styleClass="form-group">
@@ -36,10 +36,11 @@
 					</h:panelGroup>
 
 
-					<p:dataTable var="listExameUrina" id="tab-exames"
-						value="#{manterExameUrinaMB.examesLista}">
+					<p:dataTable var="listExameUrina" id="tab-exames" selectionMode="single" selection="#{manterExameUrinaMB.exameUrina}"
+								rowKey="#{listExameUrina.id}" value="#{manterExameUrinaMB.examesLista}" emptyMessage="Nenhum Registro Encontrado."
+								reflow="true">
 						
-						<p:ajax event="rowSelect" listener="#{manterExameUrinaMB.onRowSelect}" oncomplete="manterExameUrina"/>
+						<p:ajax event="rowSelect" listener="#{manterExameUrinaMB.onRowSelect}" oncomplete="/private/pages/manterExameUrina.jsf"/>
 						
 						<p:column headerText="Data Exame">
 							<h:outputText value="#{listExameUrina.data}" />

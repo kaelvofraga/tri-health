@@ -43,7 +43,7 @@ public class ManterExameUrinaMB implements Serializable{
 	@EJB
 	private ManterExameUrinaService exameUrinaService;
 	
-	private String criterioTipoExameUrina;
+	private String criterioExameUrina;
 	
 //listas exames e tipos de exame
 	private List<ExameUrina> examesLista;	
@@ -77,11 +77,11 @@ public class ManterExameUrinaMB implements Serializable{
 	}
 
 	public String getCriterioExameUrina() {
-		return criterioTipoExameUrina;
+		return criterioExameUrina;
 	}
 
-	public void setCriterioTipoExameUrina(String criterioTipoExameUrina) {
-		this.criterioTipoExameUrina = criterioTipoExameUrina;
+	public void setCriterioExameUrina(String criterioExameUrina) {
+		this.criterioExameUrina = criterioExameUrina;
 	}
 //métodos
 	
@@ -90,7 +90,7 @@ public class ManterExameUrinaMB implements Serializable{
 		exameUrina.setTipoExameUrina(new TipoExameUrina());
 		examesLista = new ArrayList<>();
 		tipos = new ArrayList<>();
-		criterioTipoExameUrina="";
+		criterioExameUrina="";
 	}
 	
 	public boolean isAtualizacao(){
@@ -117,7 +117,7 @@ public class ManterExameUrinaMB implements Serializable{
 	}*/
 	
 	public void busca(){
-		examesLista = exameUrinaService.busca(criterioTipoExameUrina);
+		examesLista = exameUrinaService.busca(criterioExameUrina);
 	}
 	
 	public void clear(){
