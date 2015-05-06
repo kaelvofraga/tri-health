@@ -108,20 +108,20 @@
 							icon="ui-icon-disk" update="panel" />
 
 						<p:commandButton value="Salvar alterações"
-							rendered="#{manterAtividadesMB.atualizacao}"
-							action="#{manterAtividadesMB.alteraAtividadeUsuario}" ajax="true"
+							rendered="#manterCateterismoMB.atualizacao}"
+							action="#{manterCateterismoMB.alteraExame}" ajax="true"
 							icon="ui-icon-pencil" />
 
 						<p:commandButton value="Voltar" immediate="true"
-							rendered="#{manterAtividadesMB.atualizacao}"
-							action="#{manterAtividadesMB.voltarParaListar}" ajax="true" />
+							rendered="#{manterCateterismoMB.atualizacao}"
+							action="#{manterCateterismoMB.voltaPraLista}" ajax="true" />
 
 					</h:panelGroup>
 
 					<h:panelGroup layout="block" styleClass="form-group pull-right">
 						<p:commandButton value="Excluir"
-							rendered="#{manterAtividadesMB.atualizacao}" immediate="true"
-							action="#{manterAtividadesMB.excluiAtividadeUsuario}" ajax="true"
+							rendered="#{manterCateterismoMB.atualizacao}" immediate="true"
+							action="#{manterCateterismoMB.excluiExame}" ajax="true"
 							icon="ui-icon-close" />
 					</h:panelGroup>
 

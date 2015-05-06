@@ -68,6 +68,18 @@ public class ManterCateterismoMB implements Serializable {
 		return URL_MANTER_EXAMES;
 	}
 	
+	public String voltaPraLista(){
+		return URL_LISTAR_EXAMES;
+	}
+	
+	public void excluiExame(){
+		cateterismoService.excluiExame(exame);
+	}
+	
+	public void alteraExame(){
+		cateterismoService.alteraExame(exame);
+	}
+	
 	public void salvaExame() {
 		System.out.println("DATAS:"+exame.getDataInternacao()+exame.getDataAlta());
 		exame.setUsuario(gerenciarLoginMB.getUsuario());

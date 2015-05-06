@@ -71,23 +71,23 @@ insert into Atividade(id, descricao, MET, tipoAtividade_id) values (6, 'Ballet o
 --table TipoExameUrina
 insert into TipoExameUrina (id, tipo) values (10001,'Glicose');
 insert into TipoExameUrina (id, tipo) values (10002,'Bilirrubinas');
-insert into TipoExameUrina (id, tipo) values (10003,'Corpos Cetônicos');
+insert into TipoExameUrina (id, tipo) values (10003,'Corpos Cetï¿½nicos');
 insert into TipoExameUrina (id, tipo) values (10004,'Densidade');
 insert into TipoExameUrina (id, tipo) values (10005,'pH');
-insert into TipoExameUrina (id, tipo) values (10006,'Proteínas');
-insert into TipoExameUrina (id, tipo) values (10007,'Urobilinogênio');
+insert into TipoExameUrina (id, tipo) values (10006,'Proteï¿½nas');
+insert into TipoExameUrina (id, tipo) values (10007,'Urobilinogï¿½nio');
 insert into TipoExameUrina (id, tipo) values (10008,'Nitrito');
 insert into TipoExameUrina (id, tipo) values (10009,'Hemoglobina');
-insert into TipoExameUrina (id, tipo) values (10010,'Leucócitos');
-insert into TipoExameUrina (id, tipo) values (10011,'Hemácias');
-insert into TipoExameUrina (id, tipo) values (10012,'Células Epiteliais');
-insert into TipoExameUrina (id, tipo) values (10013,'Bacteriúria');
+insert into TipoExameUrina (id, tipo) values (10010,'Leucï¿½citos');
+insert into TipoExameUrina (id, tipo) values (10011,'Hemï¿½cias');
+insert into TipoExameUrina (id, tipo) values (10012,'Cï¿½lulas Epiteliais');
+insert into TipoExameUrina (id, tipo) values (10013,'Bacteriï¿½ria');
 insert into TipoExameUrina (id, tipo) values (10014,'Cilindros');
 
 -- Manter Cateterismo
 INSERT INTO MEDICO VALUES(1,'RS123','Dr teste 1');
 INSERT INTO MEDICO VALUES(2,'RS321','Dr teste 2');
-INSERT INTO CATETERISMO(id,usuario_id,dataalta,datainternacao,laudo,observacoes,medico_sol_id,medico_res_id) VALUES (1000,1000,'20150201','20150130','BLABLA BLA','OBS TSTE',1,2);
+INSERT INTO MEDICO VALUES(2,'RS441','Dr teste 3');
 
 INSERT INTO CONSULTA (id,diagnostico,sintomas,id_usuario,data) values (1001,'Gripe','coriza',1000,sysdate);
 INSERT INTO CONSULTA (id,diagnostico,sintomas,id_usuario,data) values (1002,'Febre','dor no corpo',1000,sysdate);

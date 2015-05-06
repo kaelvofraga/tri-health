@@ -46,23 +46,7 @@
 		    <p:column headerText="Observações">
 		        <h:outputText value="#{exame.observacoes}" />
 		    </p:column>
-		    <p:column headerText="Editar">
-							<p:commandButton value="Editar" action="manterCateterismo">
-								<f:setPropertyActionListener value="#{exame}"
-									target="#{manterCateterismoMB.exame}" />
-							</p:commandButton>
-						</p:column>
-
-						<p:column headerText="Excluir">
-							<p:commandButton value="Excluir" type="submit" update="tableCateterismos"
-								action="#">
-								<f:setPropertyActionListener value="#{exame}"
-									target="#{manterCateterismoMB.exame}" />
-								<p:confirm header="Confirmação"
-									message="Tem certeza que deseja excluir o registro?"
-									icon="ui-icon-alert" />
-							</p:commandButton>
-						</p:column>
+		   
 		</p:dataTable>
 		
 		</h:panelGroup>		
