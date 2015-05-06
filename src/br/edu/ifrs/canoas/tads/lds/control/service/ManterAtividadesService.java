@@ -105,7 +105,7 @@ public class ManterAtividadesService {
 		return new ArrayList<AtividadeUsuario>();
 	}
 
-	public List<AtividadeUsuario> buscaGeral(String criterioAlergia,
+	public List<AtividadeUsuario> buscaGeral(String criterioAtividadeUsuario,
 			Usuario usuario) {
 		
 		List<AtividadeUsuario> auList = null;
@@ -113,8 +113,8 @@ public class ManterAtividadesService {
 		if (usuario == null)
 			return null;
 
-		if (StrUtil.isNotBlank(criterioAlergia)) {
-			auList = atividadeUsuarioDAO.buscaPorCriterio(criterioAlergia,
+		if (StrUtil.isNotBlank(criterioAtividadeUsuario) && criterioAtividadeUsuario != null) {
+			auList = atividadeUsuarioDAO.buscaPorCriterio(criterioAtividadeUsuario,
 					usuario);
 		} else {
 			auList = atividadeUsuarioDAO.buscaAtividadesDoUsuario(usuario);			

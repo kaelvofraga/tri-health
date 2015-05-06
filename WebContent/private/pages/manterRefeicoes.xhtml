@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<ui:define name="content">
+
+		<h1 class="lead">Refeições</h1>
+
+		<p:accordionPanel id="panel" multiple="true">
+					
+			<p:tab title="Cadastro de Refeição">
+							
+				<h:panelGroup layout="block" id="tipo">
+				
+					<h:panelGroup layout="block" styleClass="form-group">
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="dataRefeicao" value="Data:" />
+							<br />
+							<p:calendar pattern="dd/MM/yyyy HH:mm" mask="true"
+							    value="#{manterRefeicoesMB.refeicao.refeicaoData}"
+							    id="dataRefeicao"
+								showOn="button" placeholder="Informe a data de inicio" />
+						</h:panelGroup>
+					</h:panelGroup>
+
+					<h:panelGrid columns="2" styleClass="mtable">
+						
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel value="Tipo de Alimento:" for="tipoAlimentoAuto" />
+							<br />
+							<p:selectOneMenu id="tipoAlimentoAuto"
+								value="#{manterRefeicoesMB.tipoAlimento}">								
+								<p:ajax listener="#{manterRefeicoesMB.onTipoAlimentoChange}" update="descricao_alimento" />								
+								<f:selectItem itemLabel="Selecione o tipo de alimento."
+									itemValue="" noSelectionOption="true" />
+								<f:selectItems value="#{manterRefeicoesMB.tipoAlimentos}"
+									var="tipoAlimento" itemLabel="#{tipoAlimento.nome}" 
+									itemValue="#{tipoAlimento}" />
+							</p:selectOneMenu>
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group pull-right">						
+							<p:outputLabel value="Alimento"   />
+							<br />
+							<p:selectOneMenu id="descricao_alimento"
+								value="#{manterRefeicoesMB.alimento}">		
+								<f:selectItem itemLabel="Selecione um alimento." itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems
+									value="#{manterRefeicoesMB.alimentos}"
+									var="alimento" itemLabel="#{alimento.nome}"
+									itemValue="#{alimento}" />
+							</p:selectOneMenu>	
+						</h:panelGroup>
+
+					</h:panelGrid>
+				</h:panelGroup>
+				
+				<br />
+				
+				<h:panelGrid  styleClass="mtable">					
+						<p:outputLabel for="valorQuantidade" value="Quantidade (gr ou ml)"
+								style="display:block" />
+						<pe:inputNumber id="valorQuantidade" symbolPosition="s"
+								decimalSeparator="," thousandSeparator="."
+								value="#{manterRefeicoesMB.quantidadeGrMl}"
+								placeholder="Quantidade.">
+						</pe:inputNumber>
+				</h:panelGrid>
+				
+				<br />
+				<h:panelGroup layout="block" styleClass="form-group pull-left">
+						<p:commandButton value="Adicionar" 
+							ajax="true"
+							type="submit"
+							id="btnAdicionar"
+							immediate="false"
+							update="data-refeicoes totalCalorias"
+							action="#{manterRefeicoesMB.adicionarRefeicoes}" 
+							icon="ui-icon-disk"/>
+			    </h:panelGroup>
+				<br/>
+				<h:panelGroup>
+					<p:dataTable  
+							id="data-refeicoes" 
+							emptyMessage="Nenhum Registro." 
+							var="refeicaoAlimento"
+							value="#{manterRefeicoesMB.refeicao.refeicaoAlimentos}" 
+							rowKey="#{refeicaoAlimento.id}"
+							reflow="true">
+							
+						<p:column headerText="Alimento" id="colAlimento">
+							<h:outputText
+								value="#{refeicaoAlimento.alimento.nome}" />
+						</p:column>
+
+						<p:column headerText="Calorias" id="colCalorias">
+							<h:outputText
+								value="#{refeicaoAlimento.quantidadeCalorias}" />
+						</p:column>
+						
+					</p:dataTable>
+				</h:panelGroup>
+				
+				<br/>
+				
+				<h:panelGrid  styleClass="mtable">					
+						<p:outputLabel for="totalCalorias" value="Total:"
+								style="display:block" />
+						<pe:inputNumber id="totalCalorias" symbolPosition="s"
+								decimalSeparator="," thousandSeparator="."
+								readonly="true"
+								value="#{manterRefeicoesMB.totalCalorias}"
+								placeholder="Total">
+						</pe:inputNumber>
+				</h:panelGrid>
+				
+				<br/>
+				
+				<h:panelGroup layout="block" styleClass="form-group" id="buttons">
+				
+						<h:panelGroup layout="block" styleClass="form-group pull-left">
+							<p:commandButton value="Salvar" 
+								ajax="true"
+								id="btnSalvar"
+								update="dataRefeicao tipoAlimentoAuto descricao_alimento valorQuantidade data-refeicoes totalCalorias"
+								immediate="true"
+								action="#{manterRefeicoesMB.salvarRefeicoes}" 
+								icon="ui-icon-disk"/>
+						</h:panelGroup>
+
+					</h:panelGroup>					
+			</p:tab>
+
+		</p:accordionPanel>
+
+	</ui:define>
+
+</ui:composition>

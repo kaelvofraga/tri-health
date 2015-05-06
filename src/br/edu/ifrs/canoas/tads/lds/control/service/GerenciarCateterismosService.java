@@ -61,4 +61,13 @@ public class GerenciarCateterismosService {
 		return medicosDao.buscaTodos();
 	
 	}
+	
+	public void excluiExame(Cateterismo exame){
+		cateterismosDao.exclui(exame.getId());
+	}
+	
+	public void alteraExame(Cateterismo exame){
+		cateterismosDao.atualiza(exame);
+	}
+	
 }

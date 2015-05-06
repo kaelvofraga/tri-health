@@ -30,7 +30,7 @@
 						<p:commandButton value="Busca" type="submit" action="#{manterAtividadesMB.busca}"
 							ajax="true" update="tab-atividades" immediate="false" icon="ui-icon-search" />
 
-						<p:commandButton value="Limpa" type="submit" action="#{manterAtividadesMB.clearTable}"
+						<p:commandButton value="Limpar filtro" type="submit" action="#{manterAtividadesMB.clearTable}"
 							ajax="true" update="tab-atividades,criterio_atividade"
 							immediate="false" icon="ui-icon-refresh" />
 
@@ -48,17 +48,6 @@
 
 						<p:ajax event="rowSelect" listener="#{manterAtividadesMB.onRowSelect}" oncomplete="manterAtividadesFisicas"/>
         				
-						<!-- <p:column style="width:48px;text-align: center">
-							<p:commandButton
-								icon="ui-icon-search"
-								title="View"
-								action="#{manterAtividadesMB.editarAtividadeUsuario}"
-								ajax="true" >
-								<f:setPropertyActionListener value="#{atividadeUsuario}"
-									target="#{manterAtividadesMB.atividadeUsuario}" />
-							</p:commandButton>
-						</p:column> -->
-
 						<p:column headerText="Atividade" id="colAtividade" style="width:45%;">
 							<h:outputText
 								value="#{atividadeUsuario.atividade.descricao}" />

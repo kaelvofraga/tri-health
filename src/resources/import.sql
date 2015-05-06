@@ -17,12 +17,15 @@ insert into AlergiaUsuario (dataPrimeiraOcorrencia, MEDICAMENTOUSUARIO_ID, reaca
 
 insert into AlergiaUsuario (dataPrimeiraOcorrencia, MEDICAMENTOUSUARIO_ID, reacao, tipoAlergia_id, USUARIO_ID, id) values (sysdate, 1011, 'Reacao', 1, 1000, 1001);
 
-insert into tipoAlimento (id,nome, descricao) values (1, 'AVES','EXEMPLO: FRANGO GALINHA');
-insert into tipoAlimento (id,nome, descricao) values (2, 'FRUTAS','EXEMPLO: LARANJA MAï¿½A');
-insert into tipoAlimento (id,nome, descricao) values (3, 'CARNES','EXEMPLO: TESTE');
+insert into tipoAlimento (id,nome, descricao) values (1000, 'AVES','EXEMPLO: FRANGO GALINHA');
+insert into tipoAlimento (id,nome, descricao) values (1001, 'FRUTAS','EXEMPLO: LARANJA MAï¿½A');
+insert into tipoAlimento (id,nome, descricao) values (1002, 'CARNES','EXEMPLO: TESTE');
 
-insert into Alimento (id,nome, caloriasPorCemGrOuMl) values (1, 'FRANGO',250);
-insert into Alimento (id,nome, caloriasPorCemGrOuMl) values (2, 'GALINHA',200);
+insert into Alimento (id,nome, caloriasPorCemGrOuMl,TIPOALIMENTO_ID) values (1000, 'FRANGO',250,1000);
+insert into Alimento (id,nome, caloriasPorCemGrOuMl,TIPOALIMENTO_ID) values (1001, 'GALINHA',200,1000);
+insert into Alimento (id,nome, caloriasPorCemGrOuMl,TIPOALIMENTO_ID) values (1002, 'MAÇÃ',200,1001);
+insert into Alimento (id,nome, caloriasPorCemGrOuMl,TIPOALIMENTO_ID) values (1003, 'BOI',200,1002);
+
 
 insert into AlergiaUsuario (dataPrimeiraOcorrencia, MEDICAMENTOUSUARIO_ID, reacao, tipoAlergia_id, USUARIO_ID, id) values (sysdate, 1001, 'Reacao', 1, 1000, 1001);
 
@@ -53,39 +56,41 @@ insert into ValorMedidaUsuario(id, USUARIO_ID, UDM_ID, TIPOMEDIDA_ID, medidaValo
 insert into ValorMedidaUsuario(id, USUARIO_ID, UDM_ID, TIPOMEDIDA_ID, medidaValor, dataMedida, observacao) values (100001, 1000, 2, 3, 40.00, sysdate, 'nao possuo lesao corporal.');
 
 
---[ Manter Atividades Fï¿½sicas ]--
+--[ Manter Atividades ]--
 
 insert into TipoAtividade(id, nome) values (1, 'Corrida');
 insert into TipoAtividade(id, nome) values (2, 'Ciclismo');
-insert into TipoAtividade(id, nome) values (3, 'Danï¿½a');
+insert into TipoAtividade(id, nome) values (3, 'Dança');
 
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (1, 'Jogging', 7, 1);
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (2, 'Correndo em 5 mph (8 quilometros por hora)', 8, 1);
 
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (3, 'BMX ou Mountain Bike', 8.5, 2);
-insert into Atividade(id, descricao, MET, tipoAtividade_id) values (4, 'Pedalando para o trabalho ou por diversï¿½o', 4, 2);
+insert into Atividade(id, descricao, MET, tipoAtividade_id) values (4, 'Pedalando para o trabalho ou por diversão', 4, 2);
 
-insert into Atividade(id, descricao, MET, tipoAtividade_id) values (5, 'Danï¿½a aerï¿½bica', 6.5, 3);
+insert into Atividade(id, descricao, MET, tipoAtividade_id) values (5, 'Dança aeróbica', 6.5, 3);
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (6, 'Ballet ou moderna, twist, jazz, tap, jitterbug', 4.8, 3);
 
 --table TipoExameUrina
-insert into TipoExameUrina (id, tipo) values (1,'Glicose');
-insert into TipoExameUrina (id, tipo) values (2,'Bilirrubinas');
-insert into TipoExameUrina (id, tipo) values (3,'Corpos Cetï¿½nicos');
-insert into TipoExameUrina (id, tipo) values (4,'Densidade');
-insert into TipoExameUrina (id, tipo) values (5,'pH');
-insert into TipoExameUrina (id, tipo) values (6,'Proteï¿½nas');
-insert into TipoExameUrina (id, tipo) values (7,'Urobilinogï¿½nio');
-insert into TipoExameUrina (id, tipo) values (8,'Nitrito');
-insert into TipoExameUrina (id, tipo) values (9,'Hemoglobina');
-insert into TipoExameUrina (id, tipo) values (10,'Leucï¿½citos');
-insert into TipoExameUrina (id, tipo) values (11,'Hemï¿½cias');
-insert into TipoExameUrina (id, tipo) values (12,'Cï¿½lulas Epiteliais');
-insert into TipoExameUrina (id, tipo) values (13,'Bacteriï¿½ria');
-insert into TipoExameUrina (id, tipo) values (14,'Cilindros');
+insert into TipoExameUrina (id, tipo) values (10001,'Glicose');
+insert into TipoExameUrina (id, tipo) values (10002,'Bilirrubinas');
+insert into TipoExameUrina (id, tipo) values (10003,'Corpos Cetï¿½nicos');
+insert into TipoExameUrina (id, tipo) values (10004,'Densidade');
+insert into TipoExameUrina (id, tipo) values (10005,'pH');
+insert into TipoExameUrina (id, tipo) values (10006,'Proteï¿½nas');
+insert into TipoExameUrina (id, tipo) values (10007,'Urobilinogï¿½nio');
+insert into TipoExameUrina (id, tipo) values (10008,'Nitrito');
+insert into TipoExameUrina (id, tipo) values (10009,'Hemoglobina');
+insert into TipoExameUrina (id, tipo) values (10010,'Leucï¿½citos');
+insert into TipoExameUrina (id, tipo) values (10011,'Hemï¿½cias');
+insert into TipoExameUrina (id, tipo) values (10012,'Cï¿½lulas Epiteliais');
+insert into TipoExameUrina (id, tipo) values (10013,'Bacteriï¿½ria');
+insert into TipoExameUrina (id, tipo) values (10014,'Cilindros');
 
 -- Manter Cateterismo
 INSERT INTO MEDICO VALUES(1,'RS123','Dr teste 1');
 INSERT INTO MEDICO VALUES(2,'RS321','Dr teste 2');
-INSERT INTO CATETERISMO(id,usuario_id,dataalta,datainternacao,laudo,observacoes,medico_sol_id,medico_res_id) VALUES (1,1000,'20150201','20150130','BLABLA BLA','OBS TSTE',1,2);
+INSERT INTO MEDICO VALUES(2,'RS441','Dr teste 3');
 
+INSERT INTO CONSULTA (id,diagnostico,sintomas,id_usuario,data) values (1001,'Gripe','coriza',1000,sysdate);
+INSERT INTO CONSULTA (id,diagnostico,sintomas,id_usuario,data) values (1002,'Febre','dor no corpo',1000,sysdate);

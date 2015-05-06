@@ -23,80 +23,88 @@
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel value="De" />
 							<br />
-							<p:calendar pattern="dd/MM/yyyy HH:mm:ss" mask="true"
+							<p:calendar pattern="dd/MM/yyyy HH:mm" mask="true"
+							    value="#{listarRefeicaoMB.dataDe}"
 								showOn="button" placeholder="Informe a data de inicio" />
 						</h:panelGroup>
 
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel value="Até" />
 							<br />
-							<p:calendar pattern="dd/MM/yyyy HH:mm:ss" mask="true"
+							<p:calendar pattern="dd/MM/yyyy HH:mm" mask="true"
+							    value="#{listarRefeicaoMB.dataAte}"
 								showOn="button" placeholder="Informe a data final" />
 						</h:panelGroup>
 
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel value="Tipo de Alimento:" for="tipoAlimentoAuto" />
 							<br />
-							<p:autoComplete id="tipoAlimentoAuto"
-								size="40" style="width:300px"
-								value="#{listarRefeicaoMB.tipoAlimento}"
-								var="tipoAlimento" 
-								itemLabel="#{tipoAlimento.nome}" 
-								itemValue="#{tipoAlimento}" 
-								forceSelection="true"
-							    completeMethod="#{listarRefeicaoMB.completeTipoAlimento}"
-								placeholder="Informe o tipo de alimento"/>	
+							<p:selectOneMenu id="tipoAlimentoAuto"
+								value="#{listarRefeicaoMB.tipoAlimento}">								
+								<p:ajax listener="#{listarRefeicaoMB.onTipoAlimentoChange}" update="descricao_alimento" />								
+								<f:selectItem itemLabel="Selecione o tipo de alimento."
+									itemValue="" noSelectionOption="true" />
+								<f:selectItems value="#{listarRefeicaoMB.tipoAlimentos}"
+									var="tipoAlimento" itemLabel="#{tipoAlimento.nome}" itemValue="#{tipoAlimento}" />
+							</p:selectOneMenu>
 						</h:panelGroup>
 
 						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel value="Alimento" for="alimentoAuto"  />
+							<p:outputLabel value="Alimento"   />
 							<br />
-							<p:autoComplete id="alimentoAuto"
-								size="40" style="width:300px"
-								value="#{listarRefeicaoMB.alimento}"
-								var="alimento" 
-								itemLabel="#{alimento.nome}" 
-								itemValue="#{alimento}" 
-								forceSelection="true"
-							    completeMethod="#{listarRefeicaoMB.completeAlimento}"
-								placeholder="Informe o alimento"/>	
+							<p:selectOneMenu id="descricao_alimento"
+								value="#{listarRefeicaoMB.alimento}">
+								<f:selectItem itemLabel="Selecione um alimento." itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems
+									value="#{listarRefeicaoMB.alimentos}"
+									var="alimento" itemLabel="#{alimento.nome}"
+									itemValue="#{alimento}" />
+							</p:selectOneMenu>
 						</h:panelGroup>
 
 					</h:panelGrid>
 
 					<h:panelGroup layout="block" styleClass="form-group">
 
-						<p:dataTable selectionMode="single" 
-							emptyMessage="Nenhum Registro Encontrado."
-							id="tableRefeicoes">
-							<f:facet name="header">
-				            	Refeições
-				        	</f:facet>
-							<p:column headerText="Data">
-								<h:outputText />
-							</p:column>
-							<p:column headerText="Calorias">
-								<h:outputText />
-							</p:column>
-							<p:column headerText="Detalhes">
-								<h:outputText />
-							</p:column>
-							<p:column headerText="Observação">
-								<h:outputText />
-							</p:column>
-							<f:facet name="footer">
-								<p:commandButton position="west" 
-								icon="ui-icon-search" value="Visualizar" />
-							</f:facet>
-						</p:dataTable>
+						<p:dataTable 
+							id="data-refeicoes" 
+							selectionMode="single"
+							emptyMessage="Nenhum Registro Encontrado." 
+							var="refeicao"
+							selection="#{listarRefeicaoMB.refeicao}"
+							value="#{listarRefeicaoMB.refeicoes}" 
+							rowKey="#{refeicao.id}"
+							reflow="true">
+						<p:ajax event="rowSelect" listener="#{listarRefeicaoMB.onRefeicaoSelect}"/>
 
+						<p:column headerText="Data" id="colData">
+							<h:outputText
+								value="#{refeicao.refeicaoData}" />
+						</p:column>
+
+						<p:column headerText="Calorias" id="colCalorias">
+							<h:outputText
+								value="#{refeicao.calorias}" />
+						</p:column>
+						
+						<p:column headerText="Observação" id="colObservacao">
+							<h:outputText
+								value="#{refeicao.observacao}" />
+						</p:column>
+						
+					</p:dataTable>
+					
 						<br />
-
+						
 						<p:commandButton value="Atualizar" type="submit"
 							ajax="true"
-							update="alergias" icon="ui-icon-refresh" immediate="false" />
+							action="#{listarRefeicaoMB.atualizarDataTable}"
+							update="data-refeicoes" 
+							icon="ui-icon-refresh" immediate="false" />
 							 
 						<p:commandButton value="Novo"
+							action="{#listarRefeicaoMB.novaRefeicao}"
 							icon="ui-icon-plus" ajax="true" />
 						<p:commandButton value="Editar"
 							icon="ui-icon-pencil" ajax="true" />

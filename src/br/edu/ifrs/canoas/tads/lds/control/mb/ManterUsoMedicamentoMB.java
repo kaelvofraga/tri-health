@@ -4,14 +4,12 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import org.primefaces.event.SelectEvent;
 import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
@@ -28,55 +26,54 @@ public class ManterUsoMedicamentoMB implements Serializable {
 
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
- 
-	private MedicamentoUsuario medicamentoUsuario;
 	
 	@EJB
 	private ManterUsoMedicamentoService medicamentoService;
 	
+	private MedicamentoUsuario medicamentoUsuario;
 	
+	private String criterioMedicamento;  
+	
+	//Lista MedicamentosUsuario
 	private List<MedicamentoUsuario> medicamentosLista;
 	
-	private String criterioMedicamento;
-	
+	//Form medicamentos.
 	private List<Medicamento> medicamentos;
 	
-	@PostConstruct
+	@PostConstruct/*Metodo que inicializa as views de listar e manter Uso de Medicamentos.*/
 	public void init(){
-		if(medicamentoUsuario==null)
 		medicamentoUsuario = new MedicamentoUsuario();
-		if(criterioMedicamento==null ||criterioMedicamento.length()==0)
 		criterioMedicamento="";
-		if(medicamentosLista==null)
 		medicamentosLista = new ArrayList<>();
-		if(medicamentoUsuario.getMedicamento()==null)
 		medicamentoUsuario.setMedicamento(new Medicamento());	
-		if(medicamentos==null)
 		medicamentos = new ArrayList<>();
 	}
 	
+	/*Metodo que inicializa as variaveis ap�s Salvar*/
 	private void clear() {
 		medicamentoUsuario = new MedicamentoUsuario();
 		medicamentoUsuario.setMedicamento(new Medicamento());
 		medicamentos = new ArrayList<>();
 	}
 	
-		
+	/*Metodo do MB que chama o service para salvar o Medicamento para o Usuario que est� logado*/	
 	public void salvaMedicamento(){
 		medicamentoUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		medicamentoService.salvaMedicamentoUsuario(medicamentoUsuario);
 		this.clear();
 	}
-	
+	/*Metodo do MB que chama o service para alterar o MedicamentoUsuario passando ele como parametro retorna a url de listagem.*/
 	public String alteraMedicamento() {
 		medicamentoService.alteraMedicamentoUsario(medicamentoUsuario);
 		return URL_LISTAR_USO_MEDICAMENTOS;
 	}
 	
 	public String excluiMedicamento(){
-		medicamentoService.excluiMedicamento(medicamentoUsuario);
-		this.busca();
-		return URL_LISTAR_USO_MEDICAMENTOS;
+		if (medicamentoService.excluiMedicamento(medicamentoUsuario)){
+			this.busca();
+			return URL_LISTAR_USO_MEDICAMENTOS;
+		}
+		return URL_MANTER_USO_MEDICAMENTOS;
 	}
 	
 	public void onRowSelect(SelectEvent event) throws IOException {

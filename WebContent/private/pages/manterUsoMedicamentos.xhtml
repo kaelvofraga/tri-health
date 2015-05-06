@@ -37,8 +37,9 @@
 								size="40" style="width:300px"
 								completeMethod="#{manterUsoMedicamentoMB.completeMedicamento}"
 								var="medicamento" itemLabel="#{medicamento}"
-								itemValue="#{medicamento.nome}"
+								itemValue="#{medicamento.nome}" 
 								placeholder="Informe o medicamento" 
+								immediate="true"
 								required="true" requiredMessage="Um nome de medicamento deve ser informado."
 								/>
 							
@@ -107,7 +108,7 @@
 					  <p:commandButton value="Alterar"
 							rendered="#{manterUsoMedicamentoMB.atualizacao}"
 							action="#{manterUsoMedicamentoMB.alteraMedicamento}" 
-							ajax="true" icon="ui-icon-pencil">
+							ajax="false" icon="ui-icon-pencil">
 				     </p:commandButton>
 					
 				    </h:panelGroup> 
@@ -116,7 +117,7 @@
 					   <p:commandButton value="Excluir"
 							rendered="#{manterUsoMedicamentoMB.atualizacao}"
 							action="#{manterUsoMedicamentoMB.excluiMedicamento}"
-							ajax="true" icon="ui-icon-close"> 
+							ajax="true" icon="ui-icon-close" update="msgs"> 
 					   <p:confirm header="Confirmação" message="Tem certeza que deseja apagar o medicamento?" icon="ui-icon-alert" />
 					   </p:commandButton>
 					   
@@ -126,19 +127,20 @@
 					   </p:commandButton>
 					</h:panelGroup> 
 					
+					</h:panelGroup>
+					
+			</h:panelGroup>
+					
 					<p:confirmDialog global="true" showEffect="fade"
 					hideEffect="explode">
 					<p:commandButton value="Sim" type="button"
-						styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" >
 					</p:commandButton>	
 					<p:commandButton value="Não" type="button"
 						styleClass="ui-confirmdialog-no" icon="ui-icon-close">
 				    </p:commandButton>		
 					</p:confirmDialog>  
 					   
-				</h:panelGroup>
-				
-			</h:panelGroup>
 		
 	</ui:define>
 </ui:composition>

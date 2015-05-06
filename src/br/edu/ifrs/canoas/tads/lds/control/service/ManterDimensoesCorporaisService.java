@@ -46,10 +46,15 @@ public class ManterDimensoesCorporaisService {
 		valorMedidaDAO.atualiza(valorMedidaUsuario);
 		Mensagens.define(FacesMessage.SEVERITY_INFO, "manterDimensoesCorporais.alterar.sucesso");
 	}
-
+	
 	public void excluiMedida(ValorMedidaUsuario valorMedidaUsuario) {
-		valorMedidaDAO.exclui(valorMedidaUsuario.getId());
-		Mensagens.define(FacesMessage.SEVERITY_INFO, "manterDimensoesCorporais.excluir.sucesso");
+		if (valorMedidaUsuario != null && valorMedidaUsuario.getId() != null) {
+			valorMedidaDAO.exclui(valorMedidaUsuario.getId());
+			Mensagens.define(FacesMessage.SEVERITY_INFO,
+					"manterDimensoesCorporais.excluir.sucesso");
+		} else {
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					"manterDimensoesCorporais.excluir.erro");
+		}
 	}
-
 }

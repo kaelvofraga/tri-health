@@ -18,7 +18,7 @@
 		
 		<p:tab title="Dimensões Corporais">
 		
-			<h:panelGroup layout="block" styleClass="form-group" id="Medidas">
+			<h:panelGroup layout="block" styleClass="form-group" id="medidas">
 				<h:panelGrid columns="2" styleClass="mtable">
 												
 						<h:panelGroup layout="block" styleClass="form-group">
@@ -98,54 +98,50 @@
 						
 					<h:panelGroup layout="block" styleClass="form-group" id="buttons">
 
-						<h:panelGroup layout="block" styleClass="form-group pull-left">
-							<p:commandButton value="Salvar"
-								rendered="#{not manterDimensoesCorporaisMB.atualizacao}"
-								action="#{manterAtividadesMB.salvaAtividadeUsuario}" ajax="true"
-								icon="ui-icon-disk" update="Medidas"/>
-
-							<p:commandButton value="Salvar alterações"
-								rendered="#{manterDimensoesCorporaisMB.atualizacao}"
-								action="#{manterDimensoesCorporaisMB.alteraMedida}"
-								ajax="true" icon="ui-icon-pencil" />
-
-							<p:commandButton value="Voltar" immediate="true"
-								rendered="#{manterDimensoesCorporaisMB.atualizacao}"
-								action="#{listarDimensoesCoporais}" ajax="true" />
-
-						</h:panelGroup>
-
-						<h:panelGroup layout="block" styleClass="form-group pull-right">							
-							<p:commandButton value="Excluir"
-								rendered="#{manterDimensoesCorporaisMB.atualizacao}"
-								immediate="true"
-								action="#{manterDimensoesCorporaisMB.excluiMedida}"
-								ajax="true" icon="ui-icon-close">
-								<p:confirm header="Confirmação" message="Tem certeza que deseja apagar a medida?" icon="ui-icon-alert" />
-							</p:commandButton>
-						</h:panelGroup>
-
-				
+					<h:panelGroup layout="block" styleClass="form-group pull-left">
 						
-					<p:confirmDialog 
-							global="true" 
-							showEffect="fade"
-							hideEffect="explode">
-							<p:commandButton 
-								value="Sim" 
-								type="button"
-								styleClass="ui-confirmdialog-yes" 
-								icon="ui-icon-check">
-						</p:commandButton>	
-						<p:commandButton 
-								value="Não" 
-								type="button"
-								styleClass="ui-confirmdialog-no" 
-								icon="ui-icon-close">
-				    	</p:commandButton>		
-					</p:confirmDialog>  
-			</h:panelGroup>
+		    			   <p:commandButton value="Salvar"
+								rendered="#{not manterDimensoesCorporaisMB.atualizacao}"
+								action="#{manterDimensoesCorporaisMB.salvaDimensoes}" 
+								ajax="true" update="medidas" icon="ui-icon-disk">
+						   </p:commandButton>
+						   
+						  <p:commandButton value="Alterar"
+								rendered="#{manterDimensoesCorporaisMB.atualizacao}"
+								action="#{manterDimensoesCorporaisMB.alteraMedida}" 
+								ajax="false" icon="ui-icon-pencil">
+					     </p:commandButton>
+					     
+						 <h:panelGroup layout="block" styleClass="form-group pull-right">	  
+						   <p:commandButton value="Excluir"
+								rendered="#{manterDimensoesCorporaisMB.atualizacao}"
+								action="#{manterDimensoesCorporaisMB.excluiMedida}"
+								ajax="true" icon="ui-icon-close"> 
+						   <p:confirm header="Confirmação" message="Tem certeza que deseja apagar a medida?" icon="ui-icon-alert" />
+						   </p:commandButton>
+						   
+						   <p:commandButton value="Voltar"
+								rendered="#{manterDimensoesCorporaisMB.atualizacao}"
+								action="listarDimensoesCorporais" ajax="false">
+						   </p:commandButton>
+						 
+					
+					</h:panelGroup>
+					
+					
+				    </h:panelGroup> 
+						
+					</h:panelGroup>
 		</h:panelGroup>
+				<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" >
+					</p:commandButton>	
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close">
+				    </p:commandButton>		
+					</p:confirmDialog> 
 		</p:tab>
 
 		</p:accordionPanel>

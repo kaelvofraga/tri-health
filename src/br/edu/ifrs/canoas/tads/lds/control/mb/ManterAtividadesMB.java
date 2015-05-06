@@ -91,7 +91,7 @@ public class ManterAtividadesMB implements Serializable {
 		criterioAtividadeUsuario = "";
 
 		/** Limpa filtro na lista atividadesUsuarioList **/
-		this.busca();	
+		this.busca();
 	}
 	
 	public void salvaAtividadeUsuario(){
@@ -111,7 +111,7 @@ public class ManterAtividadesMB implements Serializable {
 		return URL_LISTAR_ATIVIDADES;
 	}
 	
-	public String excluiAtividadeUsuario(){
+	public String excluiAtividadeUsuario(){	
 		atvUsuarioService.excluiAtividadeUsuario(atividadeUsuario);
 		this.busca();
 		return URL_LISTAR_ATIVIDADES;
@@ -148,7 +148,7 @@ public class ManterAtividadesMB implements Serializable {
 					"Atividade.cadastro.erro.calculaCaloria");
 			return;
 		}
-		
+	
 		if(atvUsuarioService.validaDatas(this.atividadeUsuario) == false){
 			Mensagens.define(FacesMessage.SEVERITY_ERROR,
 					"Atividade.cadastro.erro.dataFinalMenor");

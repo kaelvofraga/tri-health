@@ -38,7 +38,6 @@ public class ManterUsoMedicamentoService {
 		return medicamento;
 	}
  
-	
 
 	public List<Medicamento> buscaMedicamentoUsuario(String query, Usuario usuario) {
 		if (usuario != null && usuario.getId() != null)
@@ -48,16 +47,13 @@ public class ManterUsoMedicamentoService {
 	}
 	
 	
-	
-
-
-	
 	public boolean salvaMedicamentoUsuario(MedicamentoUsuario medicamentoUsuario) {	
 		if (medicamentoUsuario == null || medicamentoUsuario.getMedicamento() == null || medicamentoUsuario.getUsuario() == null) {
 		//Mensagens.define(FacesMessage.SEVERITY_ERROR,"Medicamento.cadastro.erro");
 		return false;
 		}
 		try{
+			medicamentoUsuario.setMedicamento(buscaOuCriaMedicamentoPorNome(medicamentoUsuario.getMedicamento()));
 			medicamentoUsuarioDAO.insere(medicamentoUsuario);
 		}catch(Exception e){
 		//Mensagens.define(FacesMessage.SEVERITY_ERROR,"Medicamento.cadastro.erro");			
@@ -68,6 +64,7 @@ public class ManterUsoMedicamentoService {
 		return true;
 	}
 	
+	/* M�todo da op��o Buscar do Listar que realiza busca por crit�rio informado ou retorna todos elementos cadastrados.*/
 	@SuppressWarnings("unchecked")
 	public List<MedicamentoUsuario> busca(String criterioMedicamento) {
 		if (StrUtil.isNotBlank(criterioMedicamento))
@@ -76,35 +73,37 @@ public class ManterUsoMedicamentoService {
 			return medicamentoUsuarioDAO.buscaTodos();
 	}
 	
+	/*Metodo para fazer altera��o no Medicamento do Usuario*/
 	public void alteraMedicamentoUsario(MedicamentoUsuario medicamentoUsuario) {
 		try{
 		medicamentoUsuarioDAO.atualiza(medicamentoUsuario);
-		Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.altera.erro");
+		Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.altera.sucesso");
 		}
 		catch (IllegalArgumentException e) {
 			   Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.altera.excecao.erro");
 	   }
 	}
 
-	public void excluiMedicamento(MedicamentoUsuario medicamentoUsuario) {
-		if(medicamentoUsuario!=null && medicamentoUsuario.getId()!=null){
+	/*Metodo para fazer exclusao do Medicamento Usuario*/ 
+	public boolean excluiMedicamento(MedicamentoUsuario medicamentoUsuario) {
 		List<Integer> lista = new ArrayList<Integer>();
 		lista=medicamentoUsuarioDAO.buscaIdMedicamentoAlergiaUsuario(medicamentoUsuario);
-			
-			if(lista.isEmpty()){
-				try{
-				medicamentoUsuarioDAO.exclui(medicamentoUsuario.getId());
-			    }
-			   catch (IllegalArgumentException e) {
-			   Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.excecao.erro");
-			   }
-			}		
-			else{
-			Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.alergia.usuario.erro");	
-			}
+		
+		if(lista.isEmpty()){
+			System.out.println("entrou no empty");
+			System.out.println("if empty"+ lista.isEmpty());
+			medicamentoUsuarioDAO.exclui(medicamentoUsuario.getId());
+			Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.sucesso");
+			return true;	   
 		}
+		//Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.excecao.erro");
 		else{
-			Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.medicamentousuario.nulo.erro");
+			System.out.println("entrou no else empty");
+			Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.alergia.usuario.erro");
+			return false;
+			}
+		//	Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.medicamentousuario.nulo.erro");
+		
 		}
-		}
+	
 }

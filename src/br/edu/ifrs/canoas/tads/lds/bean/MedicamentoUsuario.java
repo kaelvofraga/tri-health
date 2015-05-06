@@ -13,19 +13,19 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Entity implementation class for Entity: MedicamentoUsuario
- *
+ *@author Alisson Lorscheiter
  */
 @Entity
 public class MedicamentoUsuario extends BaseEntity<Long> implements Serializable {
 
 	private static final long serialVersionUID = 1754848302536341079L;
 
-	@NotNull @OneToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn(name="MEDICAMENTO_ID")
+	@NotNull @OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="MEDICAMENTO_ID") // JOIN medicamentousuario com medicamento.
 	private Medicamento medicamento;
 	
 	@NotNull @ManyToOne
-	@JoinColumn(name="USUARIO_ID")
+	@JoinColumn(name="USUARIO_ID") //JOIN medicamentousuario com usuario.
 	private Usuario usuario;
 	
 	private String dosagem;

@@ -4,11 +4,11 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:span="http://primefaces.org/ui/extensions"
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="/public/templates/template.xhtml">
 	<ui:define name="metadata" />
 	<ui:define name="content">
-
 		<h1 class="lead">Pressão Arterial</h1>
 		<p:accordionPanel multiple="true">
 			<p:tab title="Novo registro de Pressão Arterial">
@@ -16,70 +16,65 @@
 					<h:panelGrid columns="2" styleClass="mtable">
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="paSistolica"
-								value="Pressão Arterial Sistólica:" />
-							<p:inputNumber id="paSistolica" styleClass="form-control"
+								value="Pressão Arterial Sistólica:" style="display:block"/>
+							<span:inputNumber id="paSistolica"
 								var="pressaoUsuario" itemLabel="#{pressaoUsuario}"
 								value="#{manterPressaoMB.pressaoUsuario.pressaoArterial.paSistolica}"
-								placeholder="Exemplo: 130" 
-								required="true" requiredMessage="É necessário informar o valor de Pressão Arterial Sistólica" />
+								placeholder="Exemplo: 130" required="true"
+								requiredMessage="É necessário informar o valor de Pressão Arterial Sistólica"></span:inputNumber>
 						</h:panelGroup>
-
 						<h:panelGroup layout="block"
-							styleClass="form-group col-xs-10 pull-right">
+							styleClass="form-group pull-right">
 							<p:outputLabel for="paDiastolica"
-								value="Pressão Arterial Diastólica:" />
-							<p:inputNumber id="paDiastolica" styleClass="form-control"
+								value="Pressão Arterial Diastólica:" style="display:block" />
+							<span:inputNumber id="paDiastolica" 
 								var="pressaoUsuario" itemLabel="#{pressaoUsuario}"
 								value="#{manterPressaoMB.pressaoUsuario.pressaoArterial.paDiastolica}"
-								placeholder="Exemplo: 80" 
-								required="true" requiredMessage="É necessário informar o valor de Pressão Arterial Diastólica" />
+								placeholder="Exemplo: 80" required="true"
+								requiredMessage="É necessário informar o valor de Pressão Arterial Diastólica"></span:inputNumber>
 						</h:panelGroup>
 					</h:panelGrid>
-
 					<h:panelGrid columns="3" styleClass="mtable">
 						<h:panelGroup layout="block" styleClass="form-group pull-left">
-							<p:outputLabel for="pulso" value="Pulso:"/>
-							<p:inputNumber id="pulso" styleClass="form-control" var="pulso"
+							<p:outputLabel for="pulso" value="Pulso:" style="display:block"/>
+							<span:inputNumber id="pulso"  var="pulso"
 								itemLabel="#{pressaoUsuario}"
 								value="#{manterPressaoMB.pressaoUsuario.pressaoArterial.pulso}"
-								placeholder="Exemplo: 70"
-								required="true" requiredMessage="É necessário informar a pulsação" />
+								placeholder="Exemplo: 70" required="true"
+								requiredMessage="É necessário informar a pulsação"></span:inputNumber>
 						</h:panelGroup>
-
 						<h:panelGroup layout="block" styleClass="form-group">
-
 							<p:outputLabel for="batimentoIrregular"
 								value="Batimento Irregular?" />
 							<br />
 							<p:selectOneMenu id="batimentoIrregular"
 								value="#{manterPressaoMB.pressaoUsuario.pressaoArterial.batimentoIrregular}"
-								style="width:150px" required="true" requiredMessage="É necessário informar a situação de batimento">
+								style="width:150px" required="true"
+								requiredMessage="É necessário informar a situação de batimento">
 								<f:selectItem id="Nao" itemLabel="Não" itemValue="N" />
 								<f:selectItem id="Sim" itemLabel="Sim" itemValue="S" />
 							</p:selectOneMenu>
 						</h:panelGroup>
-
 						<h:panelGroup layout="block" styleClass="form-group pull-right">
 							<p:outputLabel for="data" value="Data:" />
 							<br />
 							<p:calendar id="data" pattern="dd/MM/yyyy HH:mm:ss"
 								placeholder="Selecione uma Data" effect="fold"
 								icon="glyphicon-calendar" var="atividadeUsuario"
-								itemLabel="#{pressaoUsuario}" value="#{manterPressaoMB.pressaoUsuario.data}" 
-								required="true" requiredMessage="É necessário informar a Data" />
+								itemLabel="#{pressaoUsuario}"
+								value="#{manterPressaoMB.pressaoUsuario.data}" required="true"
+								requiredMessage="É necessário informar a Data" />
 						</h:panelGroup>
-
 					</h:panelGrid>
-
 					<h:panelGroup layout="block" styleClass="form-group">
 						<p:outputLabel for="notas" value="Notas:" />
 						<br />
-						<p:inputTextarea id="notas" rows="6" cols="110"
+						<p:inputTextarea id="notas" rows="6" cols="50" counter="counter" maxlength="144" 
+							counterTemplate=" Restam {0} caracteres!"
 							var="pressaoUsuario" itemLabel="#{pressaoUsuario}"
 							value="#{manterPressaoMB.pressaoUsuario.notas}"
-							placeholder="Escreva alguma observação aqui... ;)" />
+							placeholder="Escreva alguma observação aqui... ;)" /> <h:outputText id="counter" />
 					</h:panelGroup>
-
 					<h:panelGroup layout="block" styleClass="form-group">
 						<p:commandButton value="Salvar"
 							rendered="#{not manterPressaoMB.atualizacao}"

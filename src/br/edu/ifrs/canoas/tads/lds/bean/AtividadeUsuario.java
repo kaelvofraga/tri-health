@@ -11,6 +11,8 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
+
 import br.edu.ifrs.canoas.tads.lds.bean.Atividade;
 import br.edu.ifrs.canoas.tads.lds.bean.BaseEntity;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
@@ -32,7 +34,7 @@ public class AtividadeUsuario extends BaseEntity<Long> implements Serializable {
 	@JoinColumn(name="USUARIO_ID")
 	private Usuario usuario;
 	
-	@NotNull 
+	@NotNull @Length(max=500, message="As notas devem possuir no máximo 144 caracteres!") 
 	private String notas;
 	
 	@NotNull @Temporal(TemporalType.TIMESTAMP)

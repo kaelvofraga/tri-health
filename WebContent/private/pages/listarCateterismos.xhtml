@@ -12,6 +12,7 @@
 	<ui:define name="content">
 
 		<h1 class="lead">Listar Cateterismos</h1>
+		<h:panelGroup layout="block" styleClass="form-group" id="Medidas">
 
 		<p:dataTable id="tableCateterismos" 
 						selectionMode="single"
@@ -22,6 +23,7 @@
 						rowKey="#{exame.id}"
 						reflow="true"
 						 >
+			<p:ajax event="rowSelect" listener="#{manterCateterismoMB.onRowSelect}" oncomplete="manterCateterismos"/>
 
 		    <p:column headerText="Data Internação">
 		        <h:outputText value="#{exame.dataInternacao}" />
@@ -44,20 +46,12 @@
 		    <p:column headerText="Observações">
 		        <h:outputText value="#{exame.observacoes}" />
 		    </p:column>
-		    
-		    <p:column style="width:50px;text-align: center" headerText="Ações">
-							<p:commandButton
-								icon="ui-icon-search"
-								title="Editar"
-								action="/private/pages/manterCateterismos.xhtml"
-								ajax="true" >
-								<f:setPropertyActionListener value="#{exame}"
-									target="#{manterCateterismoMB.exame}" />
-							</p:commandButton>
-						</p:column>
-		    
+		   
 		</p:dataTable>
-					
+		
+		</h:panelGroup>		
+		<br/>
+		<p:commandButton value="Novo Exame" action="#{manterCateterismoMB.novo}" icon="ui-icon-plus" ajax="true" />
 		
 	</ui:define>
 </ui:composition>
