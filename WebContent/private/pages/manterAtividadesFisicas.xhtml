@@ -117,7 +117,10 @@
 							value="#{manterAtividadesMB.atividadeUsuario.notas}" rows="4"
 							cols="94"
 							placeholder="Espaço destinado para observações e comentários." 
+							counter="counter" maxlength="144" 
+							counterTemplate=" Restam {0} caracteres!"
 							style="width:100%;"/>
+							<h:outputText id="counter" />
 					</h:panelGroup>
 
 					<h:panelGroup layout="block" styleClass="form-group" id="buttons">

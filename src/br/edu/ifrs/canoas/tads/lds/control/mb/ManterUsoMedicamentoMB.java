@@ -4,14 +4,12 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import org.primefaces.event.SelectEvent;
 import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
@@ -44,26 +42,21 @@ public class ManterUsoMedicamentoMB implements Serializable {
 	
 	@PostConstruct/*Metodo que inicializa as views de listar e manter Uso de Medicamentos.*/
 	public void init(){
-		if(medicamentoUsuario==null)
 		medicamentoUsuario = new MedicamentoUsuario();
-		if(criterioMedicamento==null ||criterioMedicamento.length()==0)
 		criterioMedicamento="";
-		if(medicamentosLista==null)
 		medicamentosLista = new ArrayList<>();
-		if(medicamentoUsuario.getMedicamento()==null)
 		medicamentoUsuario.setMedicamento(new Medicamento());	
-		if(medicamentos==null)
 		medicamentos = new ArrayList<>();
 	}
 	
-	/*Metodo que inicializa as variaveis após Salvar*/
+	/*Metodo que inicializa as variaveis apï¿½s Salvar*/
 	private void clear() {
 		medicamentoUsuario = new MedicamentoUsuario();
 		medicamentoUsuario.setMedicamento(new Medicamento());
 		medicamentos = new ArrayList<>();
 	}
 	
-	/*Metodo do MB que chama o service para salvar o Medicamento para o Usuario que está logado*/	
+	/*Metodo do MB que chama o service para salvar o Medicamento para o Usuario que estï¿½ logado*/	
 	public void salvaMedicamento(){
 		medicamentoUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		medicamentoService.salvaMedicamentoUsuario(medicamentoUsuario);
@@ -76,9 +69,11 @@ public class ManterUsoMedicamentoMB implements Serializable {
 	}
 	
 	public String excluiMedicamento(){
-		medicamentoService.excluiMedicamento(medicamentoUsuario);
-		this.busca();
-		return URL_LISTAR_USO_MEDICAMENTOS;
+		if (medicamentoService.excluiMedicamento(medicamentoUsuario)){
+			this.busca();
+			return URL_LISTAR_USO_MEDICAMENTOS;
+		}
+		return URL_MANTER_USO_MEDICAMENTOS;
 	}
 	
 	public void onRowSelect(SelectEvent event) throws IOException {
