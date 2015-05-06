@@ -1,6 +1,9 @@
 package br.edu.ifrs.canoas.tads.lds.model.dao;
-
-
+/**
+ * DAO implementation class: MedicamentoDAO
+ * @author Alisson Lorscheiter
+ *
+ */
 import java.util.List;
 import javax.ejb.Stateless;
 import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
@@ -11,7 +14,7 @@ public class MedicamentoDAO extends BaseDAO< Medicamento, Long>{
 
 	private static final long serialVersionUID = -3548199147864190785L;
 
-
+    /*Metodo para buscar do banco os medicamentos do usuario*/
 	@SuppressWarnings("unchecked")
 	public List<Medicamento> buscaNomeMedicamentoPorUsuario(Usuario usuario) {
 		
@@ -26,7 +29,7 @@ public class MedicamentoDAO extends BaseDAO< Medicamento, Long>{
 		         .getResultList();
 	}
 
-
+	 /*Metodo para buscar do banco os medicamentos pelo nome*/
 	@SuppressWarnings("unchecked")
 	public List<Medicamento> buscaPorNome(String nome) {
 		return em.createQuery(

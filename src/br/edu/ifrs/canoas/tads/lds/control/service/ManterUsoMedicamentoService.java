@@ -45,7 +45,6 @@ public class ManterUsoMedicamentoService {
     /*Busca medicamentos que estão cadastrados pro usuario*/
 	public List<Medicamento> buscaMedicamentoUsuario(String query, Usuario usuario) {
 		if (usuario != null && usuario.getId() != null)
-			
 			return medicamentoDAO.buscaNomeMedicamentoPorUsuario(usuario);
 		return new ArrayList<Medicamento>();
 	}
@@ -71,11 +70,27 @@ public class ManterUsoMedicamentoService {
 	/* Metodo busca do Listar que realiza busca por criterio informado ou retorna todos elementos cadastrados.*/
 	@SuppressWarnings("unchecked")
 	public List<MedicamentoUsuario> busca(String criterioMedicamento) {
-		if (StrUtil.isNotBlank(criterioMedicamento))
+		if (StrUtil.isNotBlank(criterioMedicamento) && criterioMedicamento!=null)
 			return medicamentoUsuarioDAO.buscaPorCriterio(criterioMedicamento);
 		else
 			return medicamentoUsuarioDAO.buscaTodos();
 	}
+	
+	/*
+@SuppressWarnings("unchecked")
+	public List<MedicamentoUsuario> busca(String criterioMedicamento) {
+		if (StrUtil.isNotBlank(criterioMedicamento) && criterioMedicamento!=null){
+			 if(!medicamentoUsuarioDAO.buscaPorCriterio(criterioMedicamento).isEmpty()){
+			 return medicamentoUsuarioDAO.buscaPorCriterio(criterioMedicamento);
+			 }
+			 else{
+				 Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.altera.sucesso");	 
+				 return new ArrayList<MedicamentoUsuario>();
+			 }
+		}else
+			return medicamentoUsuarioDAO.buscaTodos();
+	}
+	 */
 	
 	/*Metodo para fazer alteracao no Medicamento do Usuario que testa se o medicamento ja esta na tabela
 	 *  medicamentos caso necessário ele será criado*/
@@ -89,12 +104,13 @@ public class ManterUsoMedicamentoService {
 		Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.altera.sucesso");
 		}
 		catch (IllegalArgumentException e) {
-			   Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.altera.excecao.erro");
+			Mensagens.define(FacesMessage.SEVERITY_ERROR, "manterMedicamento.altera.excecao.erro");
 	   }
 	}
 
 	/*Metodo para fazer exclusao do Medicamento Usuario*/ 
 	public boolean excluiMedicamento(MedicamentoUsuario medicamentoUsuario) {
+		if (medicamentoUsuario.getId()!= null && medicamentoUsuario != null ){
 		List<Integer> lista = new ArrayList<Integer>();
 		lista=medicamentoUsuarioDAO.buscaIdMedicamentoAlergiaUsuario(medicamentoUsuario);
 		
@@ -107,12 +123,15 @@ public class ManterUsoMedicamentoService {
 		}
 		//Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.excecao.erro");
 		else{
-			System.out.println("entrou no else empty");
 			Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.alergia.usuario.erro");
 			return false;
 			}
-		//	Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.medicamentousuario.nulo.erro");
+		}
+		else{
+			Mensagens.define(FacesMessage.SEVERITY_ERROR, "manterMedicamento.exclui.medicamentousuario.nulo.erro");
+			return false;
+		}
+		
 		
 		}
-	
 }
