@@ -77,17 +77,17 @@ insert into Atividade(id, descricao, MET, tipoAtividade_id) values (6, 'Ballet o
 --table TipoExameUrina
 insert into TipoExameUrina (id, tipo) values (10001,'Glicose');
 insert into TipoExameUrina (id, tipo) values (10002,'Bilirrubinas');
-insert into TipoExameUrina (id, tipo) values (10003,'Corpos Cet�nicos');
+insert into TipoExameUrina (id, tipo) values (10003,'Corpos Cetonicos');
 insert into TipoExameUrina (id, tipo) values (10004,'Densidade');
 insert into TipoExameUrina (id, tipo) values (10005,'pH');
-insert into TipoExameUrina (id, tipo) values (10006,'Prote�nas');
-insert into TipoExameUrina (id, tipo) values (10007,'Urobilinog�nio');
+insert into TipoExameUrina (id, tipo) values (10006,'Proteinas');
+insert into TipoExameUrina (id, tipo) values (10007,'Urobilinogenio');
 insert into TipoExameUrina (id, tipo) values (10008,'Nitrito');
 insert into TipoExameUrina (id, tipo) values (10009,'Hemoglobina');
-insert into TipoExameUrina (id, tipo) values (10010,'Leuc�citos');
-insert into TipoExameUrina (id, tipo) values (10011,'Hem�cias');
-insert into TipoExameUrina (id, tipo) values (10012,'C�lulas Epiteliais');
-insert into TipoExameUrina (id, tipo) values (10013,'Bacteri�ria');
+insert into TipoExameUrina (id, tipo) values (10010,'Leucocitos');
+insert into TipoExameUrina (id, tipo) values (10011,'Hemacias');
+insert into TipoExameUrina (id, tipo) values (10012,'Celulas Epiteliais');
+insert into TipoExameUrina (id, tipo) values (10013,'Bacteriuria');
 insert into TipoExameUrina (id, tipo) values (10014,'Cilindros');
 
 -- Manter Cateterismo
