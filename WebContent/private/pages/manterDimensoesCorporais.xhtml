@@ -109,7 +109,8 @@
 						  <p:commandButton value="Alterar"
 								rendered="#{manterDimensoesCorporaisMB.atualizacao}"
 								action="#{manterDimensoesCorporaisMB.alteraMedida}" 
-								ajax="false" icon="ui-icon-pencil">
+								ajax="true" icon="ui-icon-pencil">
+						 <p:confirm header="Confirmação" message="Tem certeza que deseja alterar a medida?" icon="ui-icon-alert" />
 					     </p:commandButton>
 					     
 						 <h:panelGroup layout="block" styleClass="form-group pull-right">	  

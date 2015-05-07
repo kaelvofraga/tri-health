@@ -36,7 +36,7 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
-
+	
 	@EJB
 	private ManterDimensoesCorporaisService dimensoesService;
 	
@@ -46,25 +46,19 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	@EJB
 	private ManterUdmService manterUdmService;
 	
-	
+	//Variables
 	private ValorMedidaUsuario valorMedidaUsuario;
 	private String criterioMedida;
-
+	private TipoMedida tipoMedida;
+	private Udm udm;
+	
 	//Lists
 	private List<ValorMedidaUsuario> medidas;
-	private TipoMedida tipoMedida;
-	
 	private List<TipoMedida> tipoMedidasLista;
-	private List<TipoMedida> tipoMedidasFiltrada;
-	
-	private Udm udm;
 	private List<Udm> udmLista;
-	private List<Udm> udmListaFiltrada;
 	
-
 	
-	public ManterDimensoesCorporaisMB() {
-	}
+	public ManterDimensoesCorporaisMB() {}
 	
 	/**
 	 * Metodo que inicializa as variáveis para views de listar e manter Dimensoes Corporais.
@@ -78,8 +72,6 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 		medidas = new ArrayList<>();
 		udmLista = this.getUdmLista();
 		tipoMedidasLista = this.getTipoMedidasLista();
-		udmListaFiltrada = new ArrayList<>();
-		tipoMedidasFiltrada = new ArrayList<>();
 	}
 	
 	public void onRowSelect(SelectEvent event) throws IOException {
@@ -117,37 +109,7 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 		this.busca();
 		return URL_LISTAR_DIMENSOES_CORPORAIS;
 	}
-	
-	public void onTipoDimensoesChange(){
-		tipoMedidasFiltrada.clear();
-
-		if (tipoMedida != null && tipoMedida.getId() != null){
-			for (int i = 0; i < tipoMedidasLista.size(); i++) {
-				TipoMedida tm = tipoMedidasLista.get(i);
-				if(tm.getId() == tipoMedida.getId()) {
-					tipoMedidasFiltrada.add(tm);
-				}
-			}						
-		}else{
-			tipoMedidasFiltrada = new ArrayList<>();
-		}
-	}
-	
-	public void onUdmChange(){
-		udmListaFiltrada.clear();
-
-		if (udm != null && udm.getId() != null){
-			for (int i = 0; i < udmLista.size(); i++) {
-				Udm u = udmLista.get(i);
-				if(u.getId() == udm.getId()) {
-					udmListaFiltrada.add(u);
-				}
-			}						
-		}else{
-			udmListaFiltrada = new ArrayList<>();
-		}
-	}
-		
+			
 	public void onSelectTipoMedida(){
 		valorMedidaUsuario.setTipoMedida(tipoMedida);
 	}
@@ -241,22 +203,6 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 
 	public void setTipoMedida(TipoMedida tipoMedida) {
 		this.tipoMedida = tipoMedida;
-	}
-
-	public List<TipoMedida> getTipoMedidasFiltrada() {
-		return tipoMedidasFiltrada;
-	}
-
-	public void setTipoMedidasFiltrada(List<TipoMedida> tipoMedidasFiltrada) {
-		this.tipoMedidasFiltrada = tipoMedidasFiltrada;
-	}
-
-	public List<Udm> getUdmListaFiltrada() {
-		return udmListaFiltrada;
-	}
-
-	public void setUdmListaFiltrada(List<Udm> udmListaFiltrada) {
-		this.udmListaFiltrada = udmListaFiltrada;
 	}
 
 	public Udm getUdm() {
