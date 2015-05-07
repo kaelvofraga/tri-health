@@ -1,6 +1,5 @@
 package br.edu.ifrs.canoas.tads.lds.control.service;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
@@ -17,9 +16,14 @@ import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 import br.edu.ifrs.canoas.tads.lds.model.dao.AtividadeDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.AtividadeUsuarioDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.TipoAtividadeDAO;
+import br.edu.ifrs.canoas.tads.lds.util.MathUtil;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
 
+/** Service da US Manter Atividades Físicas
+* @author Kael Fraga
+* @since 07/05/2015
+* */
 @Stateless
 public class ManterAtividadesService {
 
@@ -31,7 +35,15 @@ public class ManterAtividadesService {
 
 	@Inject
 	private AtividadeDAO atividadeDAO;
-
+	
+	/*@Inject
+	private PesoDAO pesoDAO;*/
+	
+	/** 
+	 * @brief Calcula duração da prática de uma atividade através da data inicial e data final.  	 		  
+	 * @param AtividadeUsuario atividadeUsuario: atividade relacionada a um usuário
+	 * @return long: duração da atividade convertida para minutos
+	 * */
 	public long calculaDuracao(AtividadeUsuario atividadeUsuario) {
 		long timeDifMilli = 0L;
 		long timeDifMinutes = 0L;
@@ -44,24 +56,33 @@ public class ManterAtividadesService {
 		return timeDifMinutes;
 	}
 	
-	public double round(double value, int places) {
-	    if (places < 0) throw new IllegalArgumentException();
-
-	    BigDecimal bd = new BigDecimal(value);
-	    bd = bd.setScale(places, RoundingMode.HALF_UP);
-	    return bd.doubleValue();
-	}
-	
+	/** 
+	 * @brief Calcula calorias queimadas durante execução de uma atividade. 	 		  
+	 * @param AtividadeUsuario atividadeUsuario: atividade relacionada a um usuário
+	 * @return double: valor de calorias gastas arredondado para 2 casas decimais
+	 * */
 	public double calculaCaloriasQueimadas(AtividadeUsuario atividadeUsuario) {
-		double massaCorporal = 1.0; // TODO Pegar peso do usuário da classe Peso Usuario
+		double massaCorporal = 1.0;
+		
+		//TODO implementar relacionamento com peso do usuário na próxima Sprint
 				
-		return this.round((atividadeUsuario.getAtividade().getMET() * massaCorporal *  (atividadeUsuario.getDuracao()/60.0)), 2);
+		return MathUtil.round((atividadeUsuario.getAtividade().getMET() * massaCorporal *  (atividadeUsuario.getDuracao()/60.0)), 2);
 	}
 	
+	/** 
+	 * @brief Valida se a data Final é maior que a Inicial.	  	 		  
+	 * @param AtividadeUsuario atividadeUsuario: atividade relacionada a um usuário
+	 * @return true se for maior, false se não
+	 * */
 	public boolean validaDatas(AtividadeUsuario atividadeUsuario) {
 		return calculaDuracao(atividadeUsuario) > 0L;
 	}
-
+	
+	/** 
+	 * @brief Salva atividade relacionada a um usuário no BD.	  	 		  
+	 * @param AtividadeUsuario atividadeUsuario: atividade relacionada a um usuário
+	 * @return true se salva com sucesso, false se um erro ocorreu
+	 * */
 	public boolean salvaAtividadeUsuario(AtividadeUsuario atividadeUsuario) {
 		if (atividadeUsuario == null || 
 				atividadeUsuario.getAtividade() == null || 
@@ -85,7 +106,12 @@ public class ManterAtividadesService {
 
 		return true;
 	}
-
+	
+	/** 
+	 * @brief Busca uma atividade específica relacionada a um usuário.	  	 		  
+	 * @param AtividadeUsuario atividadeUsuario: atividade relacionada a um usuário
+	 * @return AtividadeUsuario: atividade encontrada ou null se um erro ocorrer
+	 * */
 	public AtividadeUsuario buscaAtividadeUsuarioPorID(
 			AtividadeUsuario atividadeUsuario) {
 		AtividadeUsuario atv = atividadeUsuarioDAO.busca(atividadeUsuario
@@ -96,7 +122,12 @@ public class ManterAtividadesService {
 
 		return atividadeUsuario;
 	}
-
+	
+	/** 
+	 * @brief Busca todas as atividades relacionadas a um usuário.  	 		  
+	 * @param Usuario usuario: usuário relacionado as atividades
+	 * @return ArrayList<AtividadeUsuario>: lista de atividades do usuario ou null se um erro ocorrer
+	 * */
 	public List<AtividadeUsuario> buscaAtividadesDoUsuario(Usuario usuario) {
 
 		if (usuario != null && usuario.getId() != null)
@@ -104,7 +135,13 @@ public class ManterAtividadesService {
 
 		return new ArrayList<AtividadeUsuario>();
 	}
-
+	
+	/** 
+	 * @brief Busca atividades relacionadas a um usuário e a um critério de pesquisa.	  	 		  
+	 * @param String criterioAtividadeUsuario: critério de pesquisa
+	 * @param Usuario usuario: usuário relacionado as atividades
+	 * @return List<AtividadeUsuario>: lista de atividades do usuario ou null se um erro ocorrer
+	 * */
 	public List<AtividadeUsuario> buscaGeral(String criterioAtividadeUsuario,
 			Usuario usuario) {
 		
@@ -129,17 +166,32 @@ public class ManterAtividadesService {
 		
 		return auList;
 	}
-
+	
+	/** 
+	 * @brief Busca tipos de atividades.	  	 		  
+	 * @param void
+	 * @return List<TipoAtividade>: lista de tipos de atividades ou null se um erro ocorrer
+	 * */
 	@SuppressWarnings("unchecked")
 	public List<TipoAtividade> buscaNomeTipoAtividades() {
 		return tipoAtividadeDAO.buscaTodos();
 	}
-
+	
+	/** 
+	 * @brief Busca atividades.	  	 		  
+	 * @param void
+	 * @return List<Atividade>: lista de atividades ou null se um erro ocorrer
+	 * */
 	@SuppressWarnings("unchecked")
 	public List<Atividade> buscaDescricoesAtividades() {
 		return atividadeDAO.buscaTodos();
 	}
-
+	
+	/** 
+	 * @brief Atualiza valores da atividade no BD.	  	 		  
+	 * @param AtividadeUsuario atividadeUsuario: atividade relacionada a um usuário
+	 * @return void
+	 * */
 	public void alteraAtividadeUsario(AtividadeUsuario atividadeUsuario) {
 		if (atividadeUsuario != null && atividadeUsuario.getId() != null) {
 			atividadeUsuarioDAO.atualiza(atividadeUsuario);
@@ -151,6 +203,11 @@ public class ManterAtividadesService {
 		}
 	}
 
+	/** 
+	 * @brief Exclui atividade no BD.	  	 		  
+	 * @param AtividadeUsuario atividadeUsuario: atividade relacionada a um usuário
+	 * @return void
+	 * */
 	public void excluiAtividadeUsuario(AtividadeUsuario atividadeUsuario) {
 		if (atividadeUsuario != null && atividadeUsuario.getId() != null) {
 			atividadeUsuarioDAO.exclui(atividadeUsuario.getId());

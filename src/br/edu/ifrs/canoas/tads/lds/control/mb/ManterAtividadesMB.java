@@ -21,6 +21,10 @@ import br.edu.ifrs.canoas.tads.lds.bean.TipoAtividade;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterAtividadesService;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 
+/** ManageBean das views de Manter e Listar Atividades Físicas
+* @author Kael Fraga
+* @since 07/05/2015
+* */
 @Named
 @SessionScoped
 public class ManterAtividadesMB implements Serializable {
@@ -52,8 +56,7 @@ public class ManterAtividadesMB implements Serializable {
 	}
 	
 	@PostConstruct
-	public void init(){
-		
+	public void init(){		
 		/** Busca **/
 		if(criterioAtividadeUsuario == null || criterioAtividadeUsuario.length() == 0)
 			criterioAtividadeUsuario = "";
@@ -68,21 +71,36 @@ public class ManterAtividadesMB implements Serializable {
 		if(atividadeListFiltrada == null)
 			atividadeListFiltrada = new ArrayList<>();
 	}
-
+	
+	/** 
+	 * @brief Busca atividades relacionadas ao usuário logado de acordo com um critério de pesquisa.	  	 		  
+	 * @param void
+	 * @return void
+	 * */
 	public void busca(){
 		atividadeUsuarioList = atvUsuarioService.buscaGeral(criterioAtividadeUsuario, gerenciarLoginMB.getUsuario());
 	}
 	
+	/** 
+	 * @brief Zera os atributos do objeto atividadeUsuario e inicializa as listas de atividades e tipos.	  	 		  
+	 * @param void
+	 * @return void
+	 * */
 	private void clear() {
-		/** POJO **/
+		/** Zera POJO **/
 		atividadeUsuario = new AtividadeUsuario();
 		
-		/** Listas **/
+		/** Zera Listas **/
 		tipoAtividadeList = atvUsuarioService.buscaNomeTipoAtividades();
 		atividadeList = atvUsuarioService.buscaDescricoesAtividades();
 		this.filtrarAtividades();		
 	}
 	
+	/** 
+	 * @brief Reinicia dados exibidos na tabela de listagem.	  	 		  
+	 * @param void
+	 * @return void
+	 * */
 	public void clearTable(){
 		/** POJO **/
 		atividadeUsuario = new AtividadeUsuario();
@@ -94,38 +112,73 @@ public class ManterAtividadesMB implements Serializable {
 		this.busca();
 	}
 	
+	/** 
+	 * @brief Vincula usuário logado à atividade e inseri a nova atividade no BD, após limpa formulário
+	 * @param void
+	 * @return void
+	 * **/
 	public void salvaAtividadeUsuario(){
 		atividadeUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		if(atvUsuarioService.salvaAtividadeUsuario(atividadeUsuario))
 			this.clear();
 	}
 	
+	/** 
+	 * @brief Atualiza dados da atividade no BD.	  	 		  
+	 * @param void
+	 * @return String: url da listagem de atividades
+	 * */
 	public String alteraAtividadeUsuario(){
 		atvUsuarioService.alteraAtividadeUsario(atividadeUsuario);
 		this.clear();
 		return URL_LISTAR_ATIVIDADES;
 	}
-	
+
+	/** 
+	 * @brief Retorna da view de cadastro para view de listagem.	  	 		  
+	 * @param void
+	 * @return String: url da listagem de atividades
+	 * */
 	public String voltarParaListar(){
 		this.clear();
 		return URL_LISTAR_ATIVIDADES;
 	}
 	
+	/** 
+	 * @brief Exclui atividade cadastrada do BD.	  	 		  
+	 * @param void
+	 * @return String: url da listagem de atividades
+	 * */
 	public String excluiAtividadeUsuario(){	
 		atvUsuarioService.excluiAtividadeUsuario(atividadeUsuario);
 		this.busca();
 		return URL_LISTAR_ATIVIDADES;
 	}
 	
+	/** 
+	 * @brief Redireciona da view de listagem para view de cadastro.	  	 		  
+	 * @param void
+	 * @return String: url do cadastro de atividades
+	 * */
 	public String novaAtividadeUsuario(){
 		this.clear();
 		return URL_MANTER_ATIVIDADES;
 	}
 	
+	/** 
+	 * @brief Verifica se a atividade atual está sendo inserida nova ou atualizada uma antiga.	  	 		  
+	 * @param void
+	 * @return true se está atualizando atividade ou false se não.
+	 * */
 	public boolean isAtualizacao(){
 		return atividadeUsuario != null && atividadeUsuario.getId() != null;
 	}
 	
+	/** 
+	 * @brief Filtra lista de atividades de acordo com o tipo escolhido previamente.	  	 		  
+	 * @param void
+	 * @return void
+	 * */
 	public void filtrarAtividades(){
 		this.atividadeListFiltrada.clear();
 		TipoAtividade ta = atividadeUsuario.getAtividade().getTipoAtividade();
@@ -142,6 +195,11 @@ public class ManterAtividadesMB implements Serializable {
 		}
 	}
 	
+	/** 
+	 * @brief Efetua cálculo de calorias queimadas.	  	 		  
+	 * @param void
+	 * @return void
+	 * */
 	public void calculaCalorias(){
 		if (atividadeUsuario == null) {
 			Mensagens.define(FacesMessage.SEVERITY_ERROR,
@@ -159,7 +217,12 @@ public class ManterAtividadesMB implements Serializable {
 		
 		atividadeUsuario.setCalorias(atvUsuarioService.calculaCaloriasQueimadas(atividadeUsuario));			
 	}	
-		
+	
+	/** 
+	 * @brief Evento gerado ao selecionar uma linha da tabela de atividades.	  	 		  
+	 * @param void
+	 * @return void
+	 * */
 	public void onRowSelect(SelectEvent event) throws IOException {
 		this.atividadeUsuario = (AtividadeUsuario) event.getObject();
 		this.filtrarAtividades();
