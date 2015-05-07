@@ -10,6 +10,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+/**
+ * Classe para representar a entidade de Exame de Cateterismo, onde serão contidos, valores e métodos para o mesmo.
+
+ * @author Luciano Acosta
+
+ */
+
 @Entity
 public class Cateterismo extends BaseEntity<Long> implements Serializable{
 

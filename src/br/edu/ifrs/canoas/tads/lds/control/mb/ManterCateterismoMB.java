@@ -7,24 +7,27 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.primefaces.event.CellEditEvent;
-import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
-import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Cateterismo;
 import br.edu.ifrs.canoas.tads.lds.bean.Medico;
 import br.edu.ifrs.canoas.tads.lds.control.service.GerenciarCateterismosService;
-import br.edu.ifrs.canoas.tads.lds.model.dao.CateterismosDAO;
-import br.edu.ifrs.canoas.tads.lds.model.dao.MedicoDAO;
+
+/**
+ * Classe para representar a View manterCateterismos.jsf.
+ * 
+ * Está responder as ações da view.
+
+ * @author Luciano Acosta
+
+ */
 
 @Named
 @SessionScoped
@@ -90,7 +93,6 @@ public class ManterCateterismoMB implements Serializable {
 		return exame != null && exame.getId() != null;
 	}
 
-		
 	public List<Cateterismo> getListExames() {
 		this.busca();
 		return listExames;

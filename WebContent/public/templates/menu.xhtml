@@ -24,9 +24,11 @@
 				<p:submenu label="Pressão Arterial">
 					<p:menuitem value="Listar" url="/private/pages/listarPressaoArterial.jsf" action="#"/>
 					<p:menuitem value="Manter" url="/private/pages/manterPressaoArterial.jsf" action="#"/>
-				</p:submenu>				
-				<p:menuitem value="Alimentação" url="/private/pages/listarRefeicao.jsf" 
-					action="#{listarRefeicaoMB.init}"/>
+				</p:submenu>		
+				<p:submenu label="Alimentação">
+					<p:menuitem value="Listar" url="/private/pages/listarRefeicao.jsf" action="#{listarRefeicaoMB.init}"/>
+					<p:menuitem value="Manter" url="/private/pages/manterRefeicoes.jsf" action="#{manterRefeicoesMB.init}"/>
+				</p:submenu>			
 				<p:submenu label="Peso">
 					<p:menuitem value="Listar" url="/private/pages/listarPeso.jsf" action="#{manterPesooMB.init}"/>
 					<p:menuitem value="Cadastrar" url="/private/pages/manterPeso.jsf" action="#{manterPesooMB.init}"/>
