@@ -16,6 +16,7 @@ import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
 
 import br.edu.ifrs.canoas.tads.lds.bean.Consulta;
+import br.edu.ifrs.canoas.tads.lds.bean.Medico;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterConsultasService;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
@@ -68,6 +69,7 @@ public class ManterConsultasMB implements Serializable {
 	
 	public String exclui(){
 		consultaService.exclui(consulta);
+		System.out.println("Excluido!!!");
 		return URL_LISTAR;
 	}
 	
@@ -111,4 +113,9 @@ public class ManterConsultasMB implements Serializable {
 	public void setConsultas(List<Consulta> consultas) {
 		this.consultas = consultas;
 	}
+	
+	public List<Medico> completeMedico(String query) {
+        return consultaService.getMedico(query);
+    }
+
 }

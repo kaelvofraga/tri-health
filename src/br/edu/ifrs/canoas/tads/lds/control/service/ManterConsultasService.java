@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Consulta;
+import br.edu.ifrs.canoas.tads.lds.bean.Medico;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 import br.edu.ifrs.canoas.tads.lds.model.dao.ConsultaDAO;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
@@ -53,13 +54,20 @@ public class ManterConsultasService {
 		if (consulta != null && consulta.getId() != null) {
 			consultaDAO.exclui(consulta.getId());
 			consulta = null;
-			System.out.println("Excluido totality!!!");
 			/*
 			Mensagens.define(FacesMessage.SEVERITY_INFO,
 					"Consulta excluida com sucesso");*/
 		} else {
 			Mensagens.define(FacesMessage.SEVERITY_ERROR,
-					"Consulta excluida com ERRO");
+					"Consulta não excluida");
 		}
 	}
+	
+	/*
+     * retorna a lista de Medicos do autoComplete
+     */
+    public List<Medico> getMedico(String descricao) {
+    	return consultaDAO.getMedico(descricao);
+    }
+
 }

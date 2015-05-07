@@ -12,28 +12,42 @@
 
 	<ui:define name="content">
 
-		<p:panel header="Cadastro de Consulta" id="painel" style="height=200px">
+		<p:panel header="Cadastro de Consulta" id="painel"
+			style="height=200px">
 			<h:panelGrid columns="2">
 				<p:outputLabel for="sintomas" value="Sintomas:" />
-				<p:inputText id="sintomas" value="#{manterConsultasMB.consulta.sintomas}" />
-				
+				<p:inputText id="sintomas"
+					value="#{manterConsultasMB.consulta.sintomas}" />
+
 				<p:outputLabel for="diagnostico" value="Diagnóstico:" />
-				<p:inputText id="diagnostico" value="#{manterConsultasMB.consulta.diagnostico}" />
+				<p:inputText id="diagnostico"
+					value="#{manterConsultasMB.consulta.diagnostico}" />
 
 				<p:outputLabel for="data" value="Data:" />
 				<p:calendar id="data" value="#{manterConsultasMB.consulta.data}" />
+
+				<p:outputLabel value="Médico" for="medico" />
+				<p:autoComplete id="medico" dropdown="true"
+					value="#{manterConsultasMB.consulta.medico}" 
+					completeMethod="#{manterConsultasMB.completeMedico}" converter="entityConverter" 
+					var="m" itemLabel="#{m.nome}" itemValue="#{m}" forceSelection="true"/>					
 			</h:panelGrid>
 
 			<h:panelGroup>
-				<p:commandButton value="Salvar" action="#{manterConsultasMB.salva}" rendered="#{not manterConsultasMB.atualizacao}"
-					ajax="true" update="painel" />
-				<p:commandButton value="Salvar Alterações" action="#{manterConsultasMB.altera}" rendered="#{manterConsultasMB.atualizacao}"
-					ajax="true" update="painel" />
-				<p:commandButton value="Voltar"  immediate="true" rendered="#{manterConsultasMB.atualizacao}"
+				<p:commandButton value="Salvar" action="#{manterConsultasMB.salva}"
+					rendered="#{not manterConsultasMB.atualizacao}" ajax="true"
+					update="painel" />
+				<p:commandButton value="Salvar Alterações"
+					action="#{manterConsultasMB.altera}"
+					rendered="#{manterConsultasMB.atualizacao}" ajax="true"
+					update="painel" />
+				<p:commandButton value="Voltar" immediate="true"
+					rendered="#{manterConsultasMB.atualizacao}"
 					action="#{manterConsultasMB.voltarParaListar}" ajax="true"
 					update="painel" />
-				<p:commandButton value="Excluir" rendered="#{manterConsultasMB.atualizacao}" immediate="true"
-					action="#{manterConsultasMB.exclui}" ajax="true"/>
+				<p:commandButton value="Excluir"
+					rendered="#{manterConsultasMB.atualizacao}" immediate="true"
+					action="#{manterConsultasMB.exclui}" ajax="true" />
 			</h:panelGroup>
 			<p:spacer height="200" />
 		</p:panel>

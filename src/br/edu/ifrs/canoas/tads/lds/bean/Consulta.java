@@ -3,21 +3,13 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
-@NamedQueries({
-	@NamedQuery(name="todasConsultas", query = "SELECT c FROM Consulta c")
-})
 @Entity
 public class Consulta extends BaseEntity<Long> implements Serializable  {
 	
@@ -28,15 +20,16 @@ public class Consulta extends BaseEntity<Long> implements Serializable  {
 	@NotNull 
 	private String diagnostico;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date data;
 
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="id_usuario")
 	private Usuario usuario;
-	
-	/*@ManyToOne(cascade=CascadeType.ALL)
+
+	@ManyToOne
 	@JoinColumn
-	private Medico medico;*/
+	private Medico medico;/**/
 	
 	/* Aplicação dos Medicamentos (Exemplo de bidirecional)
 	 * @OneToMany(fetch = FetchType.EAGER, mappedBy="usuario", cascade = CascadeType.ALL)
@@ -44,6 +37,14 @@ public class Consulta extends BaseEntity<Long> implements Serializable  {
     	
 	public Consulta() {
 		super();
+	}
+	
+	public Medico getMedico() {
+		return medico;
+	}
+
+	public void setMedico(Medico medico) {
+		this.medico = medico;
 	}
 
 	public Date getData() {
