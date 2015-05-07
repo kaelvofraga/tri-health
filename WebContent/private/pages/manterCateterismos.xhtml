@@ -11,27 +11,26 @@
 	<ui:define name="metadata" />
 
 	<ui:define name="content">
-
+		<h1 class="lead">Exames de Cateterismo</h1>
+		
 		<p:accordionPanel id="panel" multiple="true">
-		<br/>
+			<br />
 			<p:tab title="Nova Atividade">
 
-			<p:panel id="principal" header="Cadastrar Novo Exame">
+				<p:panel id="principal" header="Cadastrar Novo Exame">
 
-				<h:panelGrid columns="2" styleClass="mtable" id="datas">
+					<h:panelGrid columns="2" styleClass="mtable" id="datas">
 
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="datainternacao" value="Internação:" />
 							<br />
 							<p:calendar id="datainternacao"
 								value="#{manterCateterismoMB.exame.dataInternacao}"
-								pattern="dd/MM/yyyy" 
-								var="data_inicio"
+								pattern="dd/MM/yyyy" var="data_inicio"
 								itemLabel="#{exame.dataInternacao}"
 								itemValue="#{exame.dataInternacao}"
-								placeholder="Data de internação"
-								effect="fold" icon="glyphicon-calendar" 
-								required="true" 
+								placeholder="Data de internação" effect="fold"
+								icon="glyphicon-calendar" required="true"
 								requiredMessage="Uma data de internacao deve ser informada.">
 							</p:calendar>
 						</h:panelGroup>
@@ -41,92 +40,100 @@
 							<br />
 							<p:calendar id="dataalta"
 								value="#{manterCateterismoMB.exame.dataAlta}"
-								pattern="dd/MM/yyyy" 
-								var="data_inicio"
-								itemLabel="#{exame.dataAlta}"
-								itemValue="#{exame.dataAlta}"
-								placeholder="Data de internação"
-								effect="fold" icon="glyphicon-calendar" 
-								required="true" 
+								pattern="dd/MM/yyyy" var="data_inicio"
+								itemLabel="#{exame.dataAlta}" itemValue="#{exame.dataAlta}"
+								placeholder="Data de internação" effect="fold"
+								icon="glyphicon-calendar" required="true"
 								requiredMessage="Uma data de alta deve ser informada.">
 							</p:calendar>
 						</h:panelGroup>
 
 
-				</h:panelGrid>
-				<h:panelGroup layout="block" id="medicos">
-					<h:panelGrid columns="6" class="table">
-
-						<p:outputLabel for="medicoSolicitante" value="Solicitante:" />
-						<p:selectOneMenu id="medicoSolicitante"
-							value="#{manterCateterismoMB.exame.medicoSolicitante}"
-							style="width: 100%;" required="true"
-							requiredMessage="Médico solicitante deve ser selecionado">
-							<f:selectItem itemLabel="Selecione um médico." itemValue=""
-								noSelectionOption="true" />
-							<f:selectItems value="#{manterCateterismoMB.listMedico}"
-								var="medico" itemLabel="#{medico.nome}" itemValue="#{medico}" />
-						</p:selectOneMenu>
-
-						<p:outputLabel for="medicoResponsavel" value="Responsável:" />
-						<p:selectOneMenu id="medicoResponsavel"
-							value="#{manterCateterismoMB.exame.medicoResponsavel}"
-							style="width: 100%;" required="true"
-							requiredMessage="Médico solicitante deve ser selecionado">
-							<f:selectItem itemLabel="Selecione um médico." itemValue=""
-								noSelectionOption="true" />
-							<f:selectItems value="#{manterCateterismoMB.listMedico}"
-								var="medico" itemLabel="#{medico.nome}" itemValue="#{medico}" />
-						</p:selectOneMenu>
 					</h:panelGrid>
-				</h:panelGroup>
+					<h:panelGrid columns="2" class="mtable">
+						<h:panelGroup layout="block" styleClass="form-group">
 
-				<h:panelGroup layout="block" id="extras">
-					<h:panelGrid columns="7" class="table">
+							<p:outputLabel for="medicoSolicitante" value="Solicitante:" />
+							<br />
+							<p:selectOneMenu id="medicoSolicitante"
+								value="#{manterCateterismoMB.exame.medicoSolicitante}"
+								style="width: 60%;" required="true"
+								requiredMessage="Médico solicitante deve ser selecionado">
+								<f:selectItem itemLabel="Selecione um médico." itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems value="#{manterCateterismoMB.listMedico}"
+									var="medico" itemLabel="#{medico.nome}" itemValue="#{medico}" />
+							</p:selectOneMenu>
+						</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="form-group">
 
-						<p:outputLabel for="laudo" value="Laudo:" />
-						<br />
-						<p:inputText id="laudo" value="#{manterCateterismoMB.exame.laudo}"
-							required="true" requiredMessage="Insira um laudo.">
+							<p:outputLabel for="medicoResponsavel" value="Responsável:" />
+							<br />
+							<p:selectOneMenu id="medicoResponsavel"
+								value="#{manterCateterismoMB.exame.medicoResponsavel}"
+								style="width: 60%;" required="true"
+								requiredMessage="Médico solicitante deve ser selecionado">
+								<f:selectItem itemLabel="Selecione um médico." itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems value="#{manterCateterismoMB.listMedico}"
+									var="medico" itemLabel="#{medico.nome}" itemValue="#{medico}" />
+							</p:selectOneMenu>
+						</h:panelGroup>
 
-						</p:inputText>
-
-						<p:outputLabel for="laudo" value="Observações:" />
-						<p:inputTextarea id="observacoes" rows="5" cols="30"
-							counter="display" maxlength="200"
-							counterTemplate="{0} caracteres disponíveis." autoResize="false"
-							value="#{manterCateterismoMB.exame.observacoes}" />
-						<h:outputText id="display" />
 					</h:panelGrid>
-				</h:panelGroup>
-				<h:panelGroup layout="block" styleClass="form-group" id="buttons">
 
-					<h:panelGroup layout="block" styleClass="form-group pull-left">
-						<p:commandButton value="Salvar"
-							rendered="#{not manterCateterismoMB.atualizacao}"
-							action="#{manterCateterismoMB.salvaExame}" ajax="true"
-							icon="ui-icon-disk" update="panel" />
+					<h:panelGrid columns="1" class="mtable">
+						<h:panelGroup layout="block" styleClass="form-group">
 
-						<p:commandButton value="Salvar alterações"
-							rendered="#manterCateterismoMB.atualizacao}"
-							action="#{manterCateterismoMB.alteraExame}" ajax="true"
-							icon="ui-icon-pencil" />
+							<p:outputLabel for="laudo" value="Laudo:" />
+							<br />
+							<p:inputText id="laudo"
+								value="#{manterCateterismoMB.exame.laudo}" required="true"
+								requiredMessage="Insira um laudo.">
 
-						<p:commandButton value="Voltar" immediate="true"
-							rendered="#{manterCateterismoMB.atualizacao}"
-							action="#{manterCateterismoMB.voltaPraLista}" ajax="true" />
+							</p:inputText>
+						</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="form-group">
+
+							<p:outputLabel for="laudo" value="Observações:" />
+							<br />
+							<p:inputTextarea id="observacoes" rows="5" cols="30"
+								counter="display" maxlength="200"
+								counterTemplate="{0} caracteres disponíveis." autoResize="false"
+								value="#{manterCateterismoMB.exame.observacoes}" />
+								<br/>
+							<h:outputText id="display" />
+						</h:panelGroup>
+
+					</h:panelGrid>
+					<h:panelGroup layout="block" styleClass="form-group" id="buttons">
+
+						<h:panelGroup layout="block" styleClass="form-group pull-left">
+							<p:commandButton value="Salvar"
+								rendered="#{not manterCateterismoMB.atualizacao}"
+								action="#{manterCateterismoMB.salvaExame}" ajax="true"
+								icon="ui-icon-disk" update="panel" />
+
+							<p:commandButton value="Salvar alterações"
+								rendered="#{manterCateterismoMB.atualizacao}"
+								action="#{manterCateterismoMB.alteraExame}" ajax="true"
+								icon="ui-icon-pencil" />
+
+							<p:commandButton value="Voltar" immediate="true"
+								rendered="#{manterCateterismoMB.atualizacao}"
+								action="#{manterCateterismoMB.voltaPraLista}" ajax="true" />
+
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group pull-right">
+							<p:commandButton value="Excluir"
+								rendered="#{manterCateterismoMB.atualizacao}" immediate="true"
+								action="#{manterCateterismoMB.excluiExame}" ajax="true"
+								icon="ui-icon-close" />
+						</h:panelGroup>
 
 					</h:panelGroup>
-
-					<h:panelGroup layout="block" styleClass="form-group pull-right">
-						<p:commandButton value="Excluir"
-							rendered="#{manterCateterismoMB.atualizacao}" immediate="true"
-							action="#{manterCateterismoMB.excluiExame}" ajax="true"
-							icon="ui-icon-close" />
-					</h:panelGroup>
-
-				</h:panelGroup>
-			</p:panel>
+				</p:panel>
 			</p:tab>
 		</p:accordionPanel>
 	</ui:define>

@@ -26,12 +26,12 @@ public class GerenciarCateterismosService {
 		
 		if (this.validaExame(cateterismo)) { 
 			cateterismosDao.insere(cateterismo);
-			//Mensagens.define(FacesMessage.SEVERITY_INFO, "Usuario.cadastro.sucesso",usuario.getEmail());
+			Mensagens.define(FacesMessage.SEVERITY_INFO, "Cateterismo.cadastro.sucesso");
 			return true;
 			
 		} 
 		
-		//Mensagens.define(FacesMessage.SEVERITY_ERROR, "Usuario.email.erro.cadastrado",usuario.getEmail());
+		Mensagens.define(FacesMessage.SEVERITY_ERROR, "Cateterismo.cadastro.erro");
 		return false;
 	}
 
@@ -64,10 +64,13 @@ public class GerenciarCateterismosService {
 	
 	public void excluiExame(Cateterismo exame){
 		cateterismosDao.exclui(exame.getId());
+		Mensagens.define(FacesMessage.SEVERITY_INFO, "Cateterismo.exclui.sucesso");
+
 	}
 	
 	public void alteraExame(Cateterismo exame){
 		cateterismosDao.atualiza(exame);
+		Mensagens.define(FacesMessage.SEVERITY_INFO, "Cateterismo.cadastro.sucesso");
 	}
 	
 }
