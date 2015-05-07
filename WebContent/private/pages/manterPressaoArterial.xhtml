@@ -23,7 +23,7 @@ Version 06/05/2015
 								value="Pressão Arterial Sistólica:" style="display:block" />
 							<span:inputNumber id="paSistolica" var="pressaoUsuario"
 								itemLabel="#{pressaoUsuario}"
-								value="#{manterPressaoMB.pressaoUsuario.pressaoArterial.paSistolica}"
+								value="#{manterPressaoMB.pressaoArterial.paSistolica}"
 								placeholder="Exemplo: 130" required="true"
 								requiredMessage="É necessário informar o valor de Pressão Arterial Sistólica"></span:inputNumber>
 						</h:panelGroup>
@@ -32,7 +32,7 @@ Version 06/05/2015
 								value="Pressão Arterial Diastólica:" style="display:block" />
 							<span:inputNumber id="paDiastolica" var="pressaoUsuario"
 								itemLabel="#{pressaoUsuario}"
-								value="#{manterPressaoMB.pressaoUsuario.pressaoArterial.paDiastolica}"
+								value="#{manterPressaoMB.pressaoArterial.paDiastolica}"
 								placeholder="Exemplo: 80" required="true"
 								requiredMessage="É necessário informar o valor de Pressão Arterial Diastólica"></span:inputNumber>
 						</h:panelGroup>
@@ -42,7 +42,7 @@ Version 06/05/2015
 							<p:outputLabel for="pulso" value="Pulso:" style="display:block" />
 							<span:inputNumber id="pulso" var="pulso"
 								itemLabel="#{pressaoUsuario}"
-								value="#{manterPressaoMB.pressaoUsuario.pressaoArterial.pulso}"
+								value="#{manterPressaoMB.pressaoArterial.pulso}"
 								placeholder="Exemplo: 70" required="true"
 								requiredMessage="É necessário informar a pulsação"></span:inputNumber>
 						</h:panelGroup>
@@ -51,7 +51,7 @@ Version 06/05/2015
 								value="Batimento Irregular?" />
 							<br />
 							<p:selectOneMenu id="batimentoIrregular"
-								value="#{manterPressaoMB.pressaoUsuario.pressaoArterial.batimentoIrregular}"
+								value="#{manterPressaoMB.pressaoArterial.batimentoIrregular}"
 								style="width:150px" required="true"
 								requiredMessage="É necessário informar a situação de batimento">
 								<f:selectItem id="Nao" itemLabel="Não" itemValue="N" />
@@ -65,7 +65,7 @@ Version 06/05/2015
 								placeholder="Selecione uma Data" effect="fold"
 								icon="glyphicon-calendar" var="atividadeUsuario"
 								itemLabel="#{pressaoUsuario}"
-								value="#{manterPressaoMB.pressaoUsuario.data}" required="true"
+								value="#{manterPressaoMB.pressaoArterial.data}" required="true"
 								requiredMessage="É necessário informar a Data" />
 						</h:panelGroup>
 					</h:panelGrid>
@@ -75,7 +75,7 @@ Version 06/05/2015
 						<p:inputTextarea id="notas" rows="6" cols="50" counter="counter"
 							maxlength="144" counterTemplate=" Restam {0} caracteres!"
 							var="pressaoUsuario" itemLabel="#{pressaoUsuario}"
-							value="#{manterPressaoMB.pressaoUsuario.notas}"
+							value="#{manterPressaoMB.pressaoArterial.notas}"
 							placeholder="Escreva alguma observação aqui... ;)" />
 						<h:outputText id="counter" />
 					</h:panelGroup>

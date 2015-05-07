@@ -1,42 +1,81 @@
 package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 /**
  * Entity implementation class for Entity: PressaoArterial
  *
- * Esta classe é responsável pelo "modelo" de informações de pressão arterial
- * necessárias conforme a especificação do projeto
+ * Esta classe ï¿½ responsï¿½vel pelo "modelo" de informaï¿½ï¿½es de pressï¿½o arterial
+ * necessï¿½rias conforme a especificaï¿½ï¿½o do projeto
  *
  * @author Pablo Diehl da Silva
  * @version 06/05/2015
  *
- *          Atributos: - paSistolica (Double): Corresponde ao valor de Pressão
- *          arterial sistólica; - paDiastolica (Double): Corresponde ao valor de
- *          Pressão arterial diastólica; - pulso (int): Corresponde à pulsação
+ *          Atributos: - paSistolica (Double): Corresponde ao valor de Pressï¿½o
+ *          arterial sistï¿½lica; - paDiastolica (Double): Corresponde ao valor de
+ *          Pressï¿½o arterial diastï¿½lica; - pulso (int): Corresponde ï¿½ pulsaï¿½ï¿½o
  *          arterial; - batimentoIrregular (char): Corresponde ao estado de
- *          batimento (se este encontra-se irregular ou não);
+ *          batimento (se este encontra-se irregular ou nï¿½o);
  *
  */
 @Entity
 public class PressaoArterial extends BaseEntity<Long> implements Serializable {
 	private static final long serialVersionUID = -679045406140081158L;
-	// Todos atibutos são marcados como "@NotNull" para evitar a inserção de
+	// Todos atibutos sï¿½o marcados como "@NotNull" para evitar a inserï¿½ï¿½o de
 	// valores nulos na base de dados
-	@NotNull @DecimalMax(value= "30.00", message = "Valores de pressão devem ser menores que 30.00")
+	@NotNull
+	@JoinColumn(name = "USUARIO_ID")
+	private Usuario usuario;
+	@NotNull
+	@DecimalMax(value = "30.00", message = "Valores de pressï¿½o devem ser menores que 30.00")
 	private double paSistolica;
-	@NotNull @DecimalMax(value= "30.00", message = "Valores de pressão devem ser menores que 30.00")
+	@NotNull
+	@DecimalMax(value = "30.00", message = "Valores de pressï¿½o devem ser menores que 30.00")
 	private double paDiastolica;
 	@NotNull
 	private int pulso;
 	@NotNull
 	private char batimentoIrregular;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date data;
+	@NotNull
+	@Length(max = 144, message = "As notas devem possuir no mï¿½ximo 144 caracteres!")
+	private String notas;
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
+
+	public String getNotas() {
+		return notas;
+	}
+
+	public void setNotas(String notas) {
+		this.notas = notas;
+	}
 
 	public double getPaSistolica() {
 		return paSistolica;

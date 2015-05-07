@@ -7,11 +7,9 @@ import java.util.concurrent.TimeUnit;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
-import br.edu.ifrs.canoas.tads.lds.bean.PressaoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.PressaoArterial;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 import br.edu.ifrs.canoas.tads.lds.model.dao.PressaoArterialDAO;
-import br.edu.ifrs.canoas.tads.lds.model.dao.PressaoUsuarioDAO;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
 
@@ -23,18 +21,16 @@ import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
 @Stateless
 public class ManterPressaoService {
 	@Inject
-	private PressaoUsuarioDAO pressaoUsuarioDAO;
-	@Inject
 	private PressaoArterialDAO pressaoDAO;
 
 	/*
-	 * Responsável pela inserção de novo registro de pressão arterial na base de
+	 * Responsï¿½vel pela inserï¿½ï¿½o de novo registro de pressï¿½o arterial na base de
 	 * dados
 	 * 
 	 * @param pressaoUsuario Objeto do tipo "PressaoUsuario" a ser cadastrado.
 	 */
-	public boolean salvaPressaoUsuario(PressaoUsuario pressaoUsuario) {
-		pressaoUsuarioDAO.insere(pressaoUsuario);
+	public boolean salvaPressaoArterial(PressaoArterial pressaoArterial) {
+		pressaoDAO.insere(pressaoArterial);
 		Mensagens
 				.define(FacesMessage.SEVERITY_INFO, "pressao.cadastro.sucesso");
 		return true;
@@ -46,11 +42,11 @@ public class ManterPressaoService {
 		return new ArrayList<PressaoArterial>();
 	}
 
-	public void alteraPressaoUsario(PressaoUsuario pressaoUsuario) {
-		pressaoUsuarioDAO.atualiza(pressaoUsuario);
+	public void alteraPressaoUsario(PressaoArterial pressaoArterial) {
+		pressaoDAO.atualiza(pressaoArterial);
 	}
 
-	public void excluiPressao(PressaoUsuario pressaoUsuario) {
-		pressaoUsuarioDAO.exclui(pressaoUsuario.getId());
+	public void excluiPressao(PressaoArterial pressaoArterial) {
+		pressaoDAO.exclui(pressaoArterial.getId());
 	}
 }
