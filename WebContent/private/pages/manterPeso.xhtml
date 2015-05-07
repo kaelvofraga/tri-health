@@ -5,21 +5,26 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="/public/templates/template.xhtml">
+	template="/public/templates/template.xhtml"
+                xmlns:span="http://primefaces.org/ui/extensions">
 	<ui:define name="metadata" />
 	<ui:define name="content">
-	
+	<!-- 
+		Author: Luana Gomes 
+		Version 06/05/2015
+	 -->
 		<h1 class="lead">Controle de Peso</h1>
 		<p:accordionPanel multiple="true">
 			<p:tab title="Cadastrar">
-				<h:panelGroup layout="block" id="peso">
+				<h:panelGroup layout="block" id="pesoUsuario">
 					<h:panelGrid columns="2" styleClass="mtable">
 					<h:panelGroup layout="block" styleClass="form-group pull-left">
 							<p:outputLabel for="data" value="Data:" />
 							<br />
-							<p:calendar id="data" pattern="dd/MM/yyyy HH:mm:ss"
-								placeholder="Selecione uma Data" effect="fold"
-								icon="glyphicon-calendar" var="data"
+							<p:calendar id="data" pattern="dd/MM/yyyy"
+								placeholder="Selecione uma Data"
+								icon="glyphicon-calendar"
+								required="true"
 								itemLabel="#{pesoUsuario}"
 								itemValue="#{manterPesoMB.pesoUsuario.data}" />
 					</h:panelGroup>
@@ -28,10 +33,11 @@
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="valor" value="Valor:" />
 							<br/>
-								<p:inputText id="valor" cols="50"
-									var="pesoUsuario" itemLabel="#{pesoUsuario}"
+								<span:inputNumber id="valor" cols="50"
+									required="true"
+									var="valor" itemLabel="#{pesoUsuario}"
 									itemValue="#{manterPesoMB.pesoUsuario.peso.valor}"
-									placeholder="Informe o valor..." /><b>Kg</b>
+									placeholder="Informe o valor..." ></span:inputNumber><b>Kg</b>
 						</h:panelGroup>
 					</h:panelGrid>
 					
@@ -39,7 +45,8 @@
 						<p:outputLabel for="nota" value="Nota:" />
 						<br />
 						<p:inputTextarea id="nota" rows="6" cols="50"
-							var="peso" itemLabel="#{peso}"
+							var="nota" itemLabel="#{pesoUsuario}"
+							required="true"
 							itemValue="#{manterPesoMB.pesoUsuario.nota}"
 							placeholder="Informe algum comentario..." />
 					</h:panelGroup>
@@ -47,13 +54,11 @@
 
 						<h:panelGroup layout="block" styleClass="form-group pull-left">
 							<p:commandButton value="Salvar" action="#{manterPesoMB.salvaPeso}" ajax="false"/>
-							<p:commandButton value="Editar" action="#" ajax="true"
-								icon="ui-icon-pencil" />
+							<!--<p:commandButton value="Editar" action="#" ajax="true"	icon="ui-icon-pencil" />-->
 						</h:panelGroup>
 
 						<h:panelGroup layout="block" styleClass="form-group pull-right">
-							<p:commandButton value="Cancelar" action="#"
-								ajax="false" icon="ui-icon-extlink" />
+							<p:commandButton value="Cancelar" action="#" ajax="false" icon="ui-icon-extlink" />
 						</h:panelGroup>
 
 					</h:panelGroup>

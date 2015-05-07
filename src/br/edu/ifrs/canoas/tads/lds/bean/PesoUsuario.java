@@ -7,7 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -15,22 +14,22 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Entity implementation class for Entity: PesoUsuario
+ * Possui valores peso, usuario
+ * @author Luana
+ * @version 06/05/2015	 
  */
 @Entity
 public class PesoUsuario extends BaseEntity<Long> implements Serializable{	
-	
-	/**
-	 * 
-	 */
+		
 	private static final long serialVersionUID = -1508218881376423095L;
 
-	@NotNull @OneToOne(cascade=CascadeType.PERSIST)
+	@NotNull @ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="PESO_ID")
 	private Peso peso = new Peso();	
-	
-	@NotNull @ManyToOne
+		
+	@NotNull @OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="USUARIO_ID")
-	private Usuario usuario;
+	private Usuario usuario = new Usuario();
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data;
@@ -44,6 +43,12 @@ public class PesoUsuario extends BaseEntity<Long> implements Serializable{
 
 	public Peso getPeso() {
 		return peso;
+	}
+
+	@Override
+	public String toString() {
+		return "PesoUsuario [peso=" + peso + ", usuario=" + usuario + ", data="
+				+ data + ", nota=" + nota + "]";
 	}
 
 	public void setPeso(Peso peso) {

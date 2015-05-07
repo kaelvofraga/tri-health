@@ -7,10 +7,13 @@ package br.edu.ifrs.canoas.tads.lds.control.service;
  *
  */
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
+
 import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
@@ -131,5 +134,19 @@ public class ManterUsoMedicamentoService {
 		}
 		
 		
+	}
+	
+	public boolean validaDatas(MedicamentoUsuario medicamentoUsuario){
+		
+		///hgf
+		Date dataCons = medicamentoUsuario.getDataConsulta();
+		Date dataIni = medicamentoUsuario.getDataInicioTratamento();
+		Date dataFim = medicamentoUsuario.getDataFimTratamento();
+		
+		if(dataCons.getTime() > System.currentTimeMillis()){
+			
 		}
+		
+		return false;
+	}
 }
