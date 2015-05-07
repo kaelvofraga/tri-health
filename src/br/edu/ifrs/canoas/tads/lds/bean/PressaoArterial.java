@@ -5,39 +5,36 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.NotNull;
 
 /**
- * Entity implementation class for Entity: PressaoArterial 
- * 
- * Esta classe √©
- * respons√°vel pelo "modelo" de informa√ß√µes de press√£o arterial necess√°rias
- * conforme a especifica√ß√£o do projeto
+ * Entity implementation class for Entity: PressaoArterial
+ *
+ * Esta classe È respons·vel pelo "modelo" de informaÁıes de press„o arterial
+ * necess·rias conforme a especificaÁ„o do projeto
  *
  * @author Pablo Diehl da Silva
  * @version 06/05/2015
- * 
- * Atributos:
- * - paSistolica (Double): Corresponde ao valor de Press√£o arterial sist√≥lica;
- * - paDiastolica (Double): Corresponde ao valor de Press√£o arterial diast√≥lica;
- * - pulso (int): Corresponde √† pulsa√ß√£o arterial;
- * - batimentoIrregular (char): Corresponde ao estado de batimento (se este encontra-se irregular ou n√£o);
- * 
+ *
+ *          Atributos: - paSistolica (Double): Corresponde ao valor de Press„o
+ *          arterial sistÛlica; - paDiastolica (Double): Corresponde ao valor de
+ *          Press„o arterial diastÛlica; - pulso (int): Corresponde ‡ pulsaÁ„o
+ *          arterial; - batimentoIrregular (char): Corresponde ao estado de
+ *          batimento (se este encontra-se irregular ou n„o);
+ *
  */
 @Entity
 public class PressaoArterial extends BaseEntity<Long> implements Serializable {
-
 	private static final long serialVersionUID = -679045406140081158L;
-	//Todos atibutos s√£o marcados como "@NotNull" para evitar a inser√ß√£o de valores nulos na base de dados
-	@NotNull
+	// Todos atibutos s„o marcados como "@NotNull" para evitar a inserÁ„o de
+	// valores nulos na base de dados
+	@NotNull @DecimalMax(value= "30.00", message = "Valores de press„o devem ser menores que 30.00")
 	private double paSistolica;
-
-	@NotNull
+	@NotNull @DecimalMax(value= "30.00", message = "Valores de press„o devem ser menores que 30.00")
 	private double paDiastolica;
-
 	@NotNull
 	private int pulso;
-
 	@NotNull
 	private char batimentoIrregular;
 
@@ -72,5 +69,4 @@ public class PressaoArterial extends BaseEntity<Long> implements Serializable {
 	public void setBatimentoIrregular(char batimentoIrregular) {
 		this.batimentoIrregular = batimentoIrregular;
 	}
-
 }

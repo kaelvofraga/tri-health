@@ -7,13 +7,10 @@
 	xmlns:span="http://primefaces.org/ui/extensions"
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="/public/templates/template.xhtml">
-	
-	<!-- 
-		Author: Pablo Diehl da Silva
-		Version 06/05/2015
-	 -->
-	
-	
+	<!--
+Author: Pablo Diehl da Silva
+Version 06/05/2015
+-->
 	<ui:define name="metadata" />
 	<ui:define name="content">
 		<h1 class="lead">Pressão Arterial</h1>
@@ -23,19 +20,18 @@
 					<h:panelGrid columns="2" styleClass="mtable">
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="paSistolica"
-								value="Pressão Arterial Sistólica:" style="display:block"/>
-							<span:inputNumber id="paSistolica"
-								var="pressaoUsuario" itemLabel="#{pressaoUsuario}"
+								value="Pressão Arterial Sistólica:" style="display:block" />
+							<span:inputNumber id="paSistolica" var="pressaoUsuario"
+								itemLabel="#{pressaoUsuario}"
 								value="#{manterPressaoMB.pressaoUsuario.pressaoArterial.paSistolica}"
 								placeholder="Exemplo: 130" required="true"
 								requiredMessage="É necessário informar o valor de Pressão Arterial Sistólica"></span:inputNumber>
 						</h:panelGroup>
-						<h:panelGroup layout="block"
-							styleClass="form-group pull-right">
+						<h:panelGroup layout="block" styleClass="form-group pull-right">
 							<p:outputLabel for="paDiastolica"
 								value="Pressão Arterial Diastólica:" style="display:block" />
-							<span:inputNumber id="paDiastolica" 
-								var="pressaoUsuario" itemLabel="#{pressaoUsuario}"
+							<span:inputNumber id="paDiastolica" var="pressaoUsuario"
+								itemLabel="#{pressaoUsuario}"
 								value="#{manterPressaoMB.pressaoUsuario.pressaoArterial.paDiastolica}"
 								placeholder="Exemplo: 80" required="true"
 								requiredMessage="É necessário informar o valor de Pressão Arterial Diastólica"></span:inputNumber>
@@ -43,8 +39,8 @@
 					</h:panelGrid>
 					<h:panelGrid columns="3" styleClass="mtable">
 						<h:panelGroup layout="block" styleClass="form-group pull-left">
-							<p:outputLabel for="pulso" value="Pulso:" style="display:block"/>
-							<span:inputNumber id="pulso"  var="pulso"
+							<p:outputLabel for="pulso" value="Pulso:" style="display:block" />
+							<span:inputNumber id="pulso" var="pulso"
 								itemLabel="#{pressaoUsuario}"
 								value="#{manterPressaoMB.pressaoUsuario.pressaoArterial.pulso}"
 								placeholder="Exemplo: 70" required="true"
@@ -76,11 +72,12 @@
 					<h:panelGroup layout="block" styleClass="form-group">
 						<p:outputLabel for="notas" value="Notas:" />
 						<br />
-						<p:inputTextarea id="notas" rows="6" cols="50" counter="counter" maxlength="144" 
-							counterTemplate=" Restam {0} caracteres!"
+						<p:inputTextarea id="notas" rows="6" cols="50" counter="counter"
+							maxlength="144" counterTemplate=" Restam {0} caracteres!"
 							var="pressaoUsuario" itemLabel="#{pressaoUsuario}"
 							value="#{manterPressaoMB.pressaoUsuario.notas}"
-							placeholder="Escreva alguma observação aqui... ;)" /> <h:outputText id="counter" />
+							placeholder="Escreva alguma observação aqui... ;)" />
+						<h:outputText id="counter" />
 					</h:panelGroup>
 					<h:panelGroup layout="block" styleClass="form-group">
 						<p:commandButton value="Salvar"
