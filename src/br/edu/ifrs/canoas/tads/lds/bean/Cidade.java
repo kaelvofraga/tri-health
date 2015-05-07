@@ -4,9 +4,15 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+
+/**
+ * 
+ * @author: Miromar J. Lima
+ * Proposito da Classe: Gerar a cidade do usuário para compor o endereço 
+ *         
+ */
 
 @Entity
 public class Cidade extends BaseEntity<Long> implements Serializable {

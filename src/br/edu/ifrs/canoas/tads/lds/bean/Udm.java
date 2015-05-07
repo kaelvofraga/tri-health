@@ -1,19 +1,21 @@
 package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.Date;
-
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 /**
  * Entity implementation class for Entity: ValorMedida
+ * Classe Udm (Unidade de Medida). Irá possuir id e descrição
+ * 
+ * @author JuarezMonteiro
+ * @brief Classe que representa uma Unidade de Medida 
+ * @since 07/05/2015
+ * 
+ * 
+ * Atributos:
+ * descricao (String): descricao da unidade de medida
+ * 
  */
 
 @Entity

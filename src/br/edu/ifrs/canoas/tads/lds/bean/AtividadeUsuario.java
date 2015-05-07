@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
@@ -20,7 +22,21 @@ import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 /**
  * Entity implementation class for Entity: AtividadeUsuario
  *
- */
+ * @brief Classe de relacionamento entre atividade a usuário.
+ * @author Kael Fraga
+ * @since 07/05/2015
+ * 
+ * Atributos:
+ * - atividade (Atividade): atividade relacionada.
+ * - usuario (Usuario): usuario relacionado.
+ * - notas (String): observações e detalhes, máximo 500 caracteres.
+ * - dataInicio (Date): data de início da atividade.
+ * - dataFim (Date): data de término da atividade.
+ * - distancia (double): distãncia em metros percorrida durante execução da atividade. Valor máximo permitido é 99999.9999 metros.
+ * - duracao (long): duração da atividade em minutos.
+ * - calorias (double): calorias queimadas durante a atividade.
+ * 
+ * **/
 @Entity
 public class AtividadeUsuario extends BaseEntity<Long> implements Serializable {
 
@@ -44,6 +60,7 @@ public class AtividadeUsuario extends BaseEntity<Long> implements Serializable {
 	private Date dataFim;
 	
 	@NotNull 
+	@DecimalMax(value= "99999.9999", message = "Distâncias maiores que 99999.9999 não são aceitas!")
 	private double distancia;
 	
 	@Transient
@@ -119,5 +136,4 @@ public class AtividadeUsuario extends BaseEntity<Long> implements Serializable {
 	public void setCalorias(double calorias) {
 		this.calorias = calorias;
 	}
-	
 }

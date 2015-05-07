@@ -8,6 +8,12 @@ import javax.inject.Inject;
 import br.edu.ifrs.canoas.tads.lds.bean.UnidadeFederativa;
 import br.edu.ifrs.canoas.tads.lds.model.dao.UnidadeFederativaDAO;
 
+/**
+ * 
+ * @author: Miromar J. Lima
+ * Proposito da Classe: Intermediar a camada de interface com o usuário e o banco de dados
+ *         
+ */
 
 @Stateless
 public class ManterUfService {

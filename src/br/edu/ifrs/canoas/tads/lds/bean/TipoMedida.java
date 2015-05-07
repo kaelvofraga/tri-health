@@ -1,19 +1,20 @@
 package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.Date;
-
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 /**
  * Entity implementation class for Entity: ValorMedida
+ * @author JuarezMonteiro
+ * 
+ * @brief Classe que representa um Tipo de Medida 
+ * @since 07/05/2015
+ * 
+ * 
+ * Atributos:
+ * descricao (String): descricao do tipo da medida
+ * 
  */
 
 @Entity

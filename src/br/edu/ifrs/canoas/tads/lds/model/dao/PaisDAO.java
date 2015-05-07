@@ -7,6 +7,12 @@ import javax.ejb.Stateless;
 import br.edu.ifrs.canoas.tads.lds.bean.Pais;
 
 
+/**
+ * 
+ * @author: Miromar J. Lima
+ * Proposito da Classe: Intermediar a camada de serviço com o usuário e o banco de dados
+ *         
+ */
 @Stateless
 public class PaisDAO   extends BaseDAO<Pais, Long> {
 	private static final long serialVersionUID = -126746156147500109L;

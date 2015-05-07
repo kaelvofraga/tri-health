@@ -6,7 +6,13 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="/public/templates/template.xhtml">
-
+	
+	<!-- 
+	  	@brief View de listagem atividades relacionadas a um usuário
+ 	 	@author Kael Fraga
+  		@since 07/05/2015
+	 -->
+	
 	<ui:define name="metadata" />
 
 	<ui:define name="content">
@@ -48,11 +54,16 @@
 
 						<p:ajax event="rowSelect" listener="#{manterAtividadesMB.onRowSelect}" oncomplete="manterAtividadesFisicas"/>
         				
-						<p:column headerText="Atividade" id="colAtividade" style="width:45%;">
+						<p:column headerText="Atividade" id="colAtividade" style="width:40%;">
 							<h:outputText
 								value="#{atividadeUsuario.atividade.descricao}" />
 						</p:column>
-
+						
+						<p:column headerText="Tipo" id="colTipo">
+							<h:outputText
+								value="#{atividadeUsuario.atividade.tipoAtividade.nome}" />
+						</p:column>						
+						
 						<p:column headerText="Data" id="colData">
 							<h:outputText
 								value="#{atividadeUsuario.dataInicio}" />

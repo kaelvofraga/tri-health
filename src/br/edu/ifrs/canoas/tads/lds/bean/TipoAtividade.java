@@ -8,7 +8,14 @@ import javax.validation.constraints.NotNull;
 /**
  * Entity implementation class for Entity: TipoAtividade
  *
- */
+ * @brief Classe que representa o tipo (categoria) de uma atividade.
+ * @author Kael Fraga
+ * @since 07/05/2015
+ * 
+ * Atributos:
+ * - nome (String): nome do tipo de atividade.
+ * 
+ * **/
 @Entity
 public class TipoAtividade extends BaseEntity<Long> implements Serializable {
 

@@ -9,8 +9,17 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Entity implementation class for Entity: Atividade
- *
- */
+ * 
+ * @brief Classe que representa uma atividade física.
+ * @author Kael Fraga
+ * @since 07/05/2015
+ * 
+ * Atributos:
+ * - descricao (String): descricao (nome) da atividade.
+ * - tipoAtividade (TipoAtividade): tipo (categoria) associado à atividade.
+ * - MET (double): fator associado à atividade para cálculo de calorias queimadas.
+ * 
+ * **/
 @Entity
 public class Atividade extends BaseEntity<Long> implements Serializable {
 

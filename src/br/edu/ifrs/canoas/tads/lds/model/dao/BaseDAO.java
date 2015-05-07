@@ -78,13 +78,4 @@ public abstract class BaseDAO<T extends BaseEntity<ID>, ID> implements
 	public Criteria createCriteria(){
 		return this.getSection().createCriteria(this.getEntityClass());
 	}
-	
-//	@SuppressWarnings("unchecked")
-//	public JPAJinqStream<T> getJinqStream(){
-//		
-//		JinqJPAStreamProvider  streams = 
-//				  new JinqJPAStreamProvider(em.getEntityManagerFactory());		
-//		
-//		return streams.streamAll(em, getEntityClass());
-//	}
 }
