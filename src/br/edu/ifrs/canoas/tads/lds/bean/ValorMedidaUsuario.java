@@ -2,6 +2,7 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -11,9 +12,22 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
+
 /**
  * Entity implementation class for Entity: ValorMedidaUsuario
  * @author JuarezMonteiro
+ * @brief Classe de relacionamento entre Medida a usuário. 
+ * @since 07/05/2015
+ * 
+ * Atributos:
+ * udm (Udm): unidade de medida relacionada.
+ * tipoMedida (TipoMedida): tipo de medida relacionado.
+ * usuario (Usuario): usuario relacionado.
+ * observacao (String): observações e detalhes, máximo 200 caracteres.
+ * dataMedida (Date): data em que ocorreu a mensuração.
+ * medidaValor (double): Valor da mensuração. Valor com máscara de duas casas decimais e 8 caracteres no total. Ex.: 123456,78.
+ * 
  */
 
 @Entity
@@ -39,6 +53,7 @@ public class ValorMedidaUsuario extends BaseEntity<Long> implements Serializable
 	@NotNull @Temporal(TemporalType.TIMESTAMP)
 	private Date dataMedida;
 	
+	@Length(max=200, message="As observacoes devem possuir no máximo 100 caracteres!")
 	private String observacao;
 	
 	

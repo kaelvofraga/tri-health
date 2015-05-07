@@ -9,6 +9,13 @@ import javax.validation.constraints.NotNull;
  * Classe Udm (Unidade de Medida). Irá possuir id e descrição
  * 
  * @author JuarezMonteiro
+ * @brief Classe que representa uma Unidade de Medida 
+ * @since 07/05/2015
+ * 
+ * 
+ * Atributos:
+ * descricao (String): descricao da unidade de medida
+ * 
  */
 
 @Entity

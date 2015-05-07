@@ -7,6 +7,14 @@ import javax.validation.constraints.NotNull;
 /**
  * Entity implementation class for Entity: ValorMedida
  * @author JuarezMonteiro
+ * 
+ * @brief Classe que representa um Tipo de Medida 
+ * @since 07/05/2015
+ * 
+ * 
+ * Atributos:
+ * descricao (String): descricao do tipo da medida
+ * 
  */
 
 @Entity
