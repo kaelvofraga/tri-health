@@ -12,8 +12,9 @@ import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 @Stateless
 public class PesoDAO extends BaseDAO<Peso, Long> implements Serializable {
 
-	/**
-	 * 
+	/** 
+	 * @author Luana
+	 * @version 06/05/2015
 	 */
 	private static final long serialVersionUID = -7932771645088001580L;
 

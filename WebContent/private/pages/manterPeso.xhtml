@@ -8,7 +8,10 @@
 	template="/public/templates/template.xhtml">
 	<ui:define name="metadata" />
 	<ui:define name="content">
-	
+	<!-- 
+		Author: Luana Gomes 
+		Version 06/05/2015
+	 -->
 		<h1 class="lead">Controle de Peso</h1>
 		<p:accordionPanel multiple="true">
 			<p:tab title="Cadastrar">
@@ -20,6 +23,7 @@
 							<p:calendar id="data" pattern="dd/MM/yyyy HH:mm:ss"
 								placeholder="Selecione uma Data" effect="fold"
 								icon="glyphicon-calendar" var="data"
+								required="true"
 								itemLabel="#{pesoUsuario}"
 								itemValue="#{manterPesoMB.pesoUsuario.data}" />
 					</h:panelGroup>
@@ -29,7 +33,8 @@
 							<p:outputLabel for="valor" value="Valor:" />
 							<br/>
 								<p:inputText id="valor" cols="50"
-									var="pesoUsuario" itemLabel="#{pesoUsuario}"
+									required="true"
+									var="valor" itemLabel="#{pesoUsuario}"
 									itemValue="#{manterPesoMB.pesoUsuario.peso.valor}"
 									placeholder="Informe o valor..." /><b>Kg</b>
 						</h:panelGroup>
@@ -40,6 +45,7 @@
 						<br />
 						<p:inputTextarea id="nota" rows="6" cols="50"
 							var="peso" itemLabel="#{peso}"
+							required="true"
 							itemValue="#{manterPesoMB.pesoUsuario.nota}"
 							placeholder="Informe algum comentario..." />
 					</h:panelGroup>

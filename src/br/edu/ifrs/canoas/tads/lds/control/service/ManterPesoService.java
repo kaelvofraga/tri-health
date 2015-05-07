@@ -11,6 +11,11 @@ import br.edu.ifrs.canoas.tads.lds.bean.PressaoUsuario;
 import br.edu.ifrs.canoas.tads.lds.model.dao.PesoUsuarioDAO;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 
+/** 
+ * @author Luana
+ * @version 06/05/2015
+ */
+
 @Stateless
 public class ManterPesoService {
 
@@ -18,22 +23,13 @@ public class ManterPesoService {
 	private PesoUsuarioDAO pesoUsuarioDAO;
 
 	public Boolean salvaPesoUsuario(PesoUsuario pesoUsuario) {
-		try{
+	
 		if(pesoUsuario == null || pesoUsuario.getNota() == null || pesoUsuario.getUsuario() == null ){			
 			Mensagens.define(FacesMessage.SEVERITY_ERROR, "Peso.cadastro.erro");
-		}
-		}catch (Exception e) {
-			System.out.println(e.getStackTrace());
-			System.out.println(e.getMessage());
-			System.out.println("user"+pesoUsuario.getNota());
-			System.out.println("user"+pesoUsuario.getUsuario());
-			System.out.println("user"+pesoUsuario);			
 			return false;
-		
-		}
+		}		
 		pesoUsuarioDAO.insere(pesoUsuario);
 		Mensagens.define(FacesMessage.SEVERITY_INFO, "Peso.cadastro.sucesso");
-		return true;
-	   
+		return true;   
 	}	
-	}
+}

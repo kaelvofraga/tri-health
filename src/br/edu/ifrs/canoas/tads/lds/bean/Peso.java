@@ -12,18 +12,22 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Peso extends BaseEntity<Long> implements Serializable {
 
-	/**
-	 * 
+	/** 
+	 * @author Luana
+	 * @version 06/05/2015
 	 */
 	private static final long serialVersionUID = -2819412320994175355L;
 	@NotNull	
-	private Double valor;
+	private double valor;
 	
-	public Peso() {
+	public Peso(){}
+
+	public Peso(double valor) {
 		super();
+		this.valor = valor;
 	}
 
-	public Double getValor() {
+	public double getValor() {
 		return valor;
 	}
 

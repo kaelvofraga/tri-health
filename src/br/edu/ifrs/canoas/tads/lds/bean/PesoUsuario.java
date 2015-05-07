@@ -19,16 +19,17 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class PesoUsuario extends BaseEntity<Long> implements Serializable{	
 	
-	/**
-	 * 
+	/** 
+	 * @author Luana
+	 * @version 06/05/2015
 	 */
 	private static final long serialVersionUID = -1508218881376423095L;
 
-	@NotNull @OneToOne(cascade=CascadeType.PERSIST)
+	@NotNull @ManyToOne
 	@JoinColumn(name="PESO_ID")
 	private Peso peso = new Peso();	
-	
-	@NotNull @ManyToOne
+		
+	@NotNull @ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="USUARIO_ID")
 	private Usuario usuario;
 	

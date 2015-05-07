@@ -15,6 +15,11 @@ import br.edu.ifrs.canoas.tads.lds.bean.Peso;
 import br.edu.ifrs.canoas.tads.lds.bean.PesoUsuario;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterPesoService;
 
+/** 
+ * @author Luana
+ * @version 06/05/2015
+ */
+
 @Named 
 @RequestScoped 
 public class ManterPesoMB implements Serializable {
@@ -25,26 +30,27 @@ public class ManterPesoMB implements Serializable {
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
 
-	@Inject 
+	
 	private PesoUsuario pesoUsuario;
 	
 	@EJB
 	private ManterPesoService pesoService;
 	
 	
-	//private List<PesoUsuario> valores;
+	private List<PesoUsuario> valores;
 	
 	
 	public void inicializa() {
 		pesoUsuario = new PesoUsuario();
-		//valores = new ArrayList<PesoUsuario>();
+		setValores(new ArrayList<PesoUsuario>());
 	}
 	
 	public void salvaPeso(){
 		pesoUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		pesoService.salvaPesoUsuario(pesoUsuario);
-		//this.inicializa();
+		this.inicializa();
 	}
+	
 
 	public GerenciarLoginMB getGerenciarLoginMB() {
 		return gerenciarLoginMB;
@@ -72,6 +78,14 @@ public class ManterPesoMB implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public List<PesoUsuario> getValores() {
+		return valores;
+	}
+
+	public void setValores(List<PesoUsuario> valores) {
+		this.valores = valores;
 	}	
 	
 	

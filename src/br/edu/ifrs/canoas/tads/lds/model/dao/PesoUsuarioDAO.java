@@ -11,8 +11,9 @@ import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 @Stateless
 public class PesoUsuarioDAO extends BaseDAO< PesoUsuario, Long>{
 
-	/**
-	 * 
+	/** 
+	 * @author Luana
+	 * @version 06/05/2015
 	 */
 	private static final long serialVersionUID = -2732933055922684415L;
 
