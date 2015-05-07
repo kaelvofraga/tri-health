@@ -4,6 +4,13 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 
+
+/**
+ * 
+ * @author: Miromar J. Lima
+ * Proposito da Classe: Compor relação de idioma(s) do usuário 
+ *         
+ */
 @Entity
 public class Idioma extends BaseEntity<Long> implements Serializable {
 	/**

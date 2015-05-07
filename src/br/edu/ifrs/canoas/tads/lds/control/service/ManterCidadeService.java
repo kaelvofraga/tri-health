@@ -9,6 +9,13 @@ import br.edu.ifrs.canoas.tads.lds.bean.Cidade;
 import br.edu.ifrs.canoas.tads.lds.model.dao.CidadeDAO;
 
 
+
+/**
+ * 
+ * @author: Miromar J. Lima
+ * Proposito da Classe: Intermediar a camada de interface com o usuário e o banco de dados
+ *         
+ */
 @Stateless
 public class ManterCidadeService  {
 	@Inject

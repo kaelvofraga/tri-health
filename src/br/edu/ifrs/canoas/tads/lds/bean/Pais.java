@@ -4,11 +4,18 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 
+
+/**
+ * 
+ * @author: Miromar J. Lima
+ * Proposito da Classe: Compor endereço de usuário 
+ *         
+ */
 @Entity
 public class Pais extends BaseEntity<Long> implements Serializable {
 	
 	/**
-	 * 
+	 * Variáveis foram iniciadas para evitar erros ao incluir novos usuários
 	 */
 	private static final long serialVersionUID = 186935749207326730L;
 	private String nome  = " ";

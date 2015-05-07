@@ -1,5 +1,10 @@
 package br.edu.ifrs.canoas.tads.lds.model.dao;
 
+/**
+ * @author: Rodrigo Noll
+ * Proposito da Classe: Intermediar a camada de serviço com o usuário e o banco de dados
+ *         
+ */
 
 import java.util.ArrayList;
 import java.util.List;

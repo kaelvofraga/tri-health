@@ -6,6 +6,12 @@ import javax.ejb.Stateless;
 
 import br.edu.ifrs.canoas.tads.lds.bean.UnidadeFederativa;
 
+/**
+ * 
+ * @author: Miromar J. Lima
+ * Proposito da Classe: Intermediar a camada de serviço com o usuário e o banco de dados
+ *         
+ */
 @Stateless
 public class UnidadeFederativaDAO    extends BaseDAO<UnidadeFederativa, Long> {
 	private static final long serialVersionUID = -126746156147500109L;

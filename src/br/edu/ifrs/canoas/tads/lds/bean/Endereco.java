@@ -4,18 +4,24 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+
+/**
+ * 
+ * @author: Miromar J. Lima
+ * Proposito da Classe: Compo o endereço do usuário 
+ *         
+ */
 
 @Entity
 public class Endereco extends BaseEntity<Long> implements Serializable {
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1445737913096083057L;
-
+	/**
+	 * Estabelecer relacionamento com a tabela de cidade
+	 */
 	@OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="ID_CIDADE")
 	private Cidade cidade = new Cidade();

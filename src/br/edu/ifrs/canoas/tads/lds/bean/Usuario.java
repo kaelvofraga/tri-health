@@ -2,7 +2,6 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -12,8 +11,6 @@ import javax.faces.context.FacesContext;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,6 +21,14 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.primefaces.model.DualListModel;
 
+
+
+/**
+ * @author: Rodrigo Noll
+ * @author: Miromar J. Lima
+ * Proposito da Classe: Classe que se relacionará com as demais classes do sistema.
+ *         
+ */
 /**
  * Entity implementation class for Entity: Usuario
  *
@@ -64,13 +69,18 @@ public class Usuario extends BaseEntity<Long> implements Serializable {
     @JoinColumn(name="ID_ENDERECO")
 	private Endereco endereco = new Endereco();
 
+	/*
+	 *Código foi comentado durante teste na tentativa de buscar solução para idioma de usuário 
+	 * 
+	 * */
+	
 	//@ManyToMany(cascade=CascadeType.ALL)
     //@JoinTable(name="IDIOMA_USUARIO", 
      //          joinColumns=@JoinColumn(name="ID_USUARIO"),
      //          inverseJoinColumns=
      //                    @JoinColumn(name="ID_IDIOMA")
      //          )
-    private DualListModel<String> idiomas;
+    
 	
 	public String getTipoSanguineo() {
 		return tipoSanguineo;
@@ -181,39 +191,7 @@ public class Usuario extends BaseEntity<Long> implements Serializable {
 	//	return idiomas;
 	//}
 
-	/**
-	 * @param idiomas the idiomas to set
-	 */
-	//public void setIdiomas(Collection<Idioma> idiomas) {
-	//	this.idiomas = idiomas;
-	//}
-	@PostConstruct
-    public void init() {
-        //idiomas
-        List<String> listaDeIdiomas = new ArrayList<String>();
-        List<String> alvoIdioma = new ArrayList<String>();
-         
-        listaDeIdiomas.add("Portugês");
-        listaDeIdiomas.add("Inglês");
-        listaDeIdiomas.add("Francês");
-        listaDeIdiomas.add("Estanhól");
-        listaDeIdiomas.add("Alemão");
-        listaDeIdiomas.add("Italiano");
-        listaDeIdiomas.add("Japonês");
-         
-        idiomas = new DualListModel<String>(listaDeIdiomas, alvoIdioma);
-         
-        
-    }
- 
-    public DualListModel<String> getIdiomas() {
-        return idiomas;
-    }
- 
-    public void setIdioma(DualListModel<String> idiomas) {
-        this.idiomas = idiomas;
-    }
- 
+		
  
     public void onSelect(SelectEvent event) {
         FacesContext context = FacesContext.getCurrentInstance();

@@ -57,7 +57,6 @@ public class ManterPerfilUsuarioMB implements Serializable{
 	}
 
 	
-	//VER SE ASSIM QUE SE PEGA UM USUÁRIO LOGADO
 	public Usuario getUsuario() {
 		return usuario;
 	}
