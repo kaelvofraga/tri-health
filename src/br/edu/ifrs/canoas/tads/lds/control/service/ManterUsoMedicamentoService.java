@@ -28,9 +28,7 @@ public class ManterUsoMedicamentoService {
 	@Inject
 	private MedicamentoDAO medicamentoDAO;
 	
-	
-	
-   /*Metodo para buscar medicamento no banco se ele existir retorna ou ent�o cria ele na tabela medicamento.*/
+   /*Metodo para buscar medicamento no banco se ele existir retorna ou entao cria ele na tabela medicamento.*/
 	public Medicamento buscaOuCriaMedicamentoPorNome(Medicamento medicamento) {
 		List<Medicamento> medicamentos = medicamentoDAO.buscaPorNome(medicamento.getNome());
 		
@@ -43,7 +41,7 @@ public class ManterUsoMedicamentoService {
 		return medicamento;
 	}
  
-    /*Busca medicamentos que est�o cadastrados pro usuario*/
+    /*Busca medicamentos que estao cadastrados pro usuario*/
 	public List<Medicamento> buscaMedicamentoUsuario(String query, Usuario usuario) {
 		if (usuario != null && usuario.getId() != null)
 			return medicamentoDAO.buscaNomeMedicamentoPorUsuario(usuario);
@@ -116,8 +114,6 @@ public class ManterUsoMedicamentoService {
 		lista=medicamentoUsuarioDAO.buscaIdMedicamentoAlergiaUsuario(medicamentoUsuario);
 		
 		if(lista.isEmpty()){
-			System.out.println("entrou no empty");
-			System.out.println("if empty"+ lista.isEmpty());
 			medicamentoUsuarioDAO.exclui(medicamentoUsuario.getId());
 			Mensagens.define(FacesMessage.SEVERITY_INFO, "manterMedicamento.exclui.sucesso");
 			return true;	   

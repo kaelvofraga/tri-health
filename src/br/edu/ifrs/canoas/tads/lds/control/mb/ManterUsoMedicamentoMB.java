@@ -45,7 +45,7 @@ public class ManterUsoMedicamentoMB implements Serializable {
 	//Form medicamentos.
 	private List<Medicamento> medicamentos;
 	
-	@PostConstruct/*Metodo que inicializa as views de listar e manter Uso de Medicamentos.*/
+	@PostConstruct
 	public void init(){
 		medicamentoUsuario = new MedicamentoUsuario();
 		criterioMedicamento="";
@@ -54,12 +54,15 @@ public class ManterUsoMedicamentoMB implements Serializable {
 		medicamentos = new ArrayList<>();
 	}
 	
+	/*Metodo que limpa MedicamentoUsuario,criterio de busca, lista de medicamnetousuario ao entrar na view de Listar*/
 	public String initListar(){
 		medicamentoUsuario = new MedicamentoUsuario();
 		criterioMedicamento="";
 		medicamentosLista = new ArrayList<>();	
 		return URL_LISTAR_USO_MEDICAMENTOS;
 	}
+	
+	/*Metodo que limpa MedicamentoUsuario, Medicamento, e lista de medicamentos do autocomplete da view de manter*/
 	public String initManter(){
 		medicamentoUsuario = new MedicamentoUsuario();
 		medicamentoUsuario.setMedicamento(new Medicamento());	
@@ -67,25 +70,27 @@ public class ManterUsoMedicamentoMB implements Serializable {
 		return URL_MANTER_USO_MEDICAMENTOS;
 	}
 	
-	/*Metodo que inicializa as variaveis apï¿½s Salvar*/
+	/*Metodo que inicializa as variaveis apos Salvar*/
 	private void clear() {
 		medicamentoUsuario = new MedicamentoUsuario();
 		medicamentoUsuario.setMedicamento(new Medicamento());
 		medicamentos = new ArrayList<>();
 	}
 	
-	/*Metodo do MB que chama o service para salvar o Medicamento para o Usuario que estï¿½ logado*/	
+	/*Metodo que chama o service para salvar o Medicamento para o Usuario que esta logado*/	
 	public void salvaMedicamento(){
 		medicamentoUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		medicamentoService.salvaMedicamentoUsuario(medicamentoUsuario);
 		this.clear();
 	}
-	/*Metodo do MB que chama o service para alterar o MedicamentoUsuario passando ele como parametro retorna a url de listagem.*/
+	
+	/*Metodo que chama o service para alterar o MedicamentoUsuario passando ele como parametro retorna a url de listagem.*/
 	public String alteraMedicamento() {
 		medicamentoService.alteraMedicamentoUsario(medicamentoUsuario);
 		return URL_LISTAR_USO_MEDICAMENTOS;
 	}
 	
+	/*Metodo que chama o service para excluir o MedicamentoUsuario e retorna URL listar ou manter*/
 	public String excluiMedicamento(){
 		if (medicamentoService.excluiMedicamento(medicamentoUsuario)){
 			this.busca();
@@ -94,15 +99,17 @@ public class ManterUsoMedicamentoMB implements Serializable {
 		return URL_MANTER_USO_MEDICAMENTOS;
 	}
 	
+	/*Metodo que pega o evento de selecão da linha da tabela e carrega na view manter o objeto Medicamentousuario selecionado.*/
 	public void onRowSelect(SelectEvent event) throws IOException {
 		this.medicamentoUsuario = (MedicamentoUsuario)event.getObject();
         FacesContext.getCurrentInstance().getExternalContext().redirect("../../private/pages/manterUsoMedicamentos.jsf");
     }
 	
+	/*Metodo boolean para verificar se o medicamentoUsuario existe para renderizar ou não os command button na view*/
 	public boolean isAtualizacao(){
 		return medicamentoUsuario != null && medicamentoUsuario.getId() != null;
 	}
-	
+	/*Metodo que realiza o autocomplete do input de medicamento na view de manterUsoMedicamentos*/
 	public List<Medicamento> completeMedicamento(String query){
 		if (medicamentos.isEmpty()) 
 			medicamentos = medicamentoService.buscaMedicamentoUsuario(query, gerenciarLoginMB.getUsuario());
@@ -118,10 +125,12 @@ public class ManterUsoMedicamentoMB implements Serializable {
         return medicamentosBusca;
 	}
 	
+	/*Metodo de busca da view Listar*/
 	public void busca(){
 		medicamentosLista = medicamentoService.busca(criterioMedicamento);
 	}
 	
+
 	
 	/*GETTERS & SETTERS*/
 	public List<MedicamentoUsuario> getMedicamentosLista() {
