@@ -2,28 +2,25 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 /**
  * Entity implementation class for Entity: Peso
+ * Possui a variavel valor, que representa o peso.
+ * 
+ * @author Luana
+ * 	
  */
 @Entity
 public class Peso extends BaseEntity<Long> implements Serializable {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -2819412320994175355L;
 	@NotNull	
-	private Double valor;
-	
-	public Peso() {
-		super();
-	}
+	private double valor;
 
-	public Double getValor() {
+	public double getValor() {
 		return valor;
 	}
 
