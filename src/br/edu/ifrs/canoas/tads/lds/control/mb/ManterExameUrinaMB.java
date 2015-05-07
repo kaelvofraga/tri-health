@@ -87,7 +87,7 @@ public class ManterExameUrinaMB implements Serializable{
 	
 	public void inicializa() {	//inicialização do listar e manter
 		exameUrina = new ExameUrina();
-		exameUrina.setTipoExameUrina(new TipoExameUrina());
+//		exameUrina.setTipoExameUrina(new TipoExameUrina());
 		examesLista = new ArrayList<>();
 		tipos = new ArrayList<>();
 		criterioExameUrina="";
@@ -99,6 +99,7 @@ public class ManterExameUrinaMB implements Serializable{
 	
 	public void salvaExame(){
 		exameUrina.setUsuario(gerenciarLoginMB.getUsuario());
+//		exameUrina.setTipoExameUrina(exameUrina.getTipoExameUrina().getId());
 		exameUrinaService.salvaExameUrinaUsuario(exameUrina);
 		this.inicializa();
 	}

@@ -90,4 +90,6 @@ public class ExameUrina extends BaseEntity<Long> implements Serializable{
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
+
+
 }
