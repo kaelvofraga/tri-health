@@ -37,11 +37,6 @@ insert into Alimento (id,nome, caloriasPorCemGrOuMl,TIPOALIMENTO_ID) values (100
 
 insert into AlergiaUsuario (dataPrimeiraOcorrencia, MEDICAMENTOUSUARIO_ID, reacao, tipoAlergia_id, USUARIO_ID, id) values (sysdate, 1001, 'Reacao', 1, 1000, 1001);
 
-insert into Pais (id, nome, nacionalidade) values (1, 'Brasil','Brasileiro' );
-insert into UnidadeFederativa (id, nome, id_pais) values (1, 'Rio Grande do Sul',1 );
-insert into Cidade (id, nome, id_uf) values (1, 'Canoas',1 );
-insert into Endereco (id, cep, complemento, logradouro, numero, id_cidade) values (1, '92330-500', 'Casa', 'Rua Um', 541, 1 );
-
 --[DIMENS�ES CORPORAIS]--
 
 --table udm
