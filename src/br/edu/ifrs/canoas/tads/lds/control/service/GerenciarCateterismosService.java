@@ -12,6 +12,14 @@ import br.edu.ifrs.canoas.tads.lds.model.dao.CateterismosDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.MedicoDAO;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 
+/**
+ * Classe para controle e validação de dados, 
+ * juntamente com a comunicação com a classe responsavel por persistir dados ao banco.
+ * 
+ * @author Luciano Acosta
+
+ */
+
 @Stateless
 public class GerenciarCateterismosService {
 
@@ -22,7 +30,6 @@ public class GerenciarCateterismosService {
 	private MedicoDAO medicosDao;
 
 	public boolean salvaCateterismo(Cateterismo cateterismo) {
-
 		
 		if (this.validaExame(cateterismo)) { 
 			cateterismosDao.insere(cateterismo);

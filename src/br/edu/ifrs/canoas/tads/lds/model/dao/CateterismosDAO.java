@@ -6,6 +6,13 @@ import javax.ejb.Stateless;
 
 import br.edu.ifrs.canoas.tads.lds.bean.Cateterismo;
 
+/**
+ * Classe responsável por persistir e buscar dados no banco
+ * 
+ * @author Luciano Acosta
+
+ */
+
 @Stateless
 public class CateterismosDAO extends BaseDAO<Cateterismo, Long>{
 

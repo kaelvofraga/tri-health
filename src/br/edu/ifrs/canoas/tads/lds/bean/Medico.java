@@ -9,6 +9,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+
+/**
+ * Classe para representar a entidade Médico, onde serão contidos, valores e métodos para o mesmo.
+
+ * @author Luciano Acosta
+
+ */
+
+
 @Entity
 public class Medico extends BaseEntity<Long> implements Serializable{
 	
