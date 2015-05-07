@@ -87,6 +87,12 @@ public class ManterRefeicoesMB implements Serializable {
 							"Erro ao salvar os dados."));
 			return;
 		}
+		else{
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo com sucesso.",
+							"Salvo com sucesso."));
+		}
 		
 		this.clear();
 	}
@@ -106,6 +112,7 @@ public class ManterRefeicoesMB implements Serializable {
 		tipoAlimento = null;
 		alimento = null;
 		this.alimentos = new ArrayList<>();
+		this.setQuantidadeGrMl(0);
 		setRefeicao(new Refeicao());
 	}
 	
