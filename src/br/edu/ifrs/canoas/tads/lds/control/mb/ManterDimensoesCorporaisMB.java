@@ -4,32 +4,25 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import org.primefaces.event.SelectEvent;
-
-import br.edu.ifrs.canoas.tads.lds.bean.Atividade;
-import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
-import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
-import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
-import br.edu.ifrs.canoas.tads.lds.bean.Pais;
-import br.edu.ifrs.canoas.tads.lds.bean.TipoAtividade;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoMedida;
 import br.edu.ifrs.canoas.tads.lds.bean.Udm;
 import br.edu.ifrs.canoas.tads.lds.bean.ValorMedidaUsuario;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterDimensoesCorporaisService;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterTipoMedidaService;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterUdmService;
-import br.edu.ifrs.canoas.tads.lds.model.dao.ValorMedidaDAO;
-import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
+
+/**
+ * 
+ * @author JuarezMonteiro;
+ *
+ */
 
 @Named
 @SessionScoped
@@ -43,9 +36,6 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
-	
-	@Inject
-	private ValorMedidaUsuario valorMedidaUsuario;
 
 	@EJB
 	private ManterDimensoesCorporaisService dimensoesService;
@@ -56,8 +46,11 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	@EJB
 	private ManterUdmService manterUdmService;
 	
+	
+	private ValorMedidaUsuario valorMedidaUsuario;
+	private String criterioMedida;
 
-	//Lista Dimensões
+	//Lists
 	private List<ValorMedidaUsuario> medidas;
 	private TipoMedida tipoMedida;
 	
@@ -69,14 +62,13 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	private List<Udm> udmListaFiltrada;
 	
 
-
-	private String criterioMedida;
 	
-	//Form Alergia
-
 	public ManterDimensoesCorporaisMB() {
 	}
 	
+	/**
+	 * Metodo que inicializa as variáveis para views de listar e manter Dimensoes Corporais.
+	 * */
 	@PostConstruct
 	public void init(){
 		valorMedidaUsuario = new ValorMedidaUsuario();
@@ -90,8 +82,6 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 		tipoMedidasFiltrada = new ArrayList<>();
 	}
 	
-	
-	
 	public void onRowSelect(SelectEvent event) throws IOException {
 		this.valorMedidaUsuario = (ValorMedidaUsuario)event.getObject();
 		FacesContext.getCurrentInstance().getExternalContext().redirect("manterDimensoesCorporais.jsf");
@@ -99,9 +89,7 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	
 	
 	private void clear() {
-		/** POJO **/
 		valorMedidaUsuario = new ValorMedidaUsuario();
-				
 	}
 	
 	public boolean isAtualizacao(){
