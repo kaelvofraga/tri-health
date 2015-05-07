@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -22,7 +23,7 @@ import br.edu.ifrs.canoas.tads.lds.bean.TipoExameUrina;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterExameUrinaService;
 
 @Named
-@RequestScoped
+@SessionScoped
 public class ManterExameUrinaMB implements Serializable{
 
 	/**
