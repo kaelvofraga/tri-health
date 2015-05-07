@@ -9,9 +9,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
-import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
-import br.edu.ifrs.canoas.tads.lds.bean.Peso;
 import br.edu.ifrs.canoas.tads.lds.bean.PesoUsuario;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterPesoService;
 
@@ -30,19 +27,14 @@ public class ManterPesoMB implements Serializable {
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
 
-	
+	@Inject
 	private PesoUsuario pesoUsuario;
 	
 	@EJB
 	private ManterPesoService pesoService;
 	
-	
-	private List<PesoUsuario> valores;
-	
-	
 	public void inicializa() {
 		pesoUsuario = new PesoUsuario();
-		setValores(new ArrayList<PesoUsuario>());
 	}
 	
 	public void salvaPeso(){
@@ -50,7 +42,6 @@ public class ManterPesoMB implements Serializable {
 		pesoService.salvaPesoUsuario(pesoUsuario);
 		this.inicializa();
 	}
-	
 
 	public GerenciarLoginMB getGerenciarLoginMB() {
 		return gerenciarLoginMB;
@@ -68,26 +59,6 @@ public class ManterPesoMB implements Serializable {
 		this.pesoUsuario = pesoUsuario;
 	}
 
-	public ManterPesoService getPesoService() {
-		return pesoService;
-	}
-
-	public void setPesoService(ManterPesoService pesoService) {
-		this.pesoService = pesoService;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public List<PesoUsuario> getValores() {
-		return valores;
-	}
-
-	public void setValores(List<PesoUsuario> valores) {
-		this.valores = valores;
-	}	
-	
 	
 	
 }
