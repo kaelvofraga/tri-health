@@ -14,7 +14,7 @@ public class MedicamentoDAO extends BaseDAO< Medicamento, Long>{
 
 	private static final long serialVersionUID = -3548199147864190785L;
 
-    /*Metodo para buscar do banco os medicamentos do usuario*/
+    /*Metodo para buscar do banco os medicamentos do usuario passando parametro do usuario*/
 	@SuppressWarnings("unchecked")
 	public List<Medicamento> buscaNomeMedicamentoPorUsuario(Usuario usuario) {
 		
@@ -29,7 +29,7 @@ public class MedicamentoDAO extends BaseDAO< Medicamento, Long>{
 		         .getResultList();
 	}
 
-	 /*Metodo para buscar do banco os medicamentos pelo nome*/
+	 /*Metodo para buscar do banco os medicamentos pelo parametro do nome domedicamento*/
 	@SuppressWarnings("unchecked")
 	public List<Medicamento> buscaPorNome(String nome) {
 		return em.createQuery(

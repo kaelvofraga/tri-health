@@ -18,7 +18,7 @@ public class MedicamentoUsuarioDAO extends BaseDAO< MedicamentoUsuario, Long>{
 
 	private static final long serialVersionUID = -5538941133814935745L;
 
-	/*Metodo para buscar do banco os medicamentos do MedicamentoUsuario */
+	/*Metodo para buscar do banco os medicamentos do MedicamentoUsuario passando como parametro o usuario */
 	@SuppressWarnings("unchecked")
 	public List<Medicamento> buscaNomeMedicamentoPorUsuario(Usuario usuario) {
 		try {
@@ -53,7 +53,8 @@ public class MedicamentoUsuarioDAO extends BaseDAO< MedicamentoUsuario, Long>{
 			return null;
 		}
 	}
-	/*Metodo para buscar id do MedicamentoUsuario que se encontra na AlergiaUsuario */
+	/*Metodo para buscar id do MedicamentoUsuario que se encontra na AlergiaUsuario passa como parametro
+	 * o medicamentoUsuario*/
 	@SuppressWarnings("unchecked")
 	public List<Integer> buscaIdMedicamentoAlergiaUsuario(MedicamentoUsuario medicamentoUsuario) {
 		try {

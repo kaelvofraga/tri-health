@@ -99,7 +99,7 @@ public class ManterUsoMedicamentoMB implements Serializable {
 		return URL_MANTER_USO_MEDICAMENTOS;
 	}
 	
-	/*Metodo que pega o evento de selecão da linha da tabela e carrega na view manter o objeto Medicamentousuario selecionado.*/
+	/*Metodo que pega o evento de selecão da linha da tabela por parametro e carrega na view manter o objeto Medicamentousuario selecionado.*/
 	public void onRowSelect(SelectEvent event) throws IOException {
 		this.medicamentoUsuario = (MedicamentoUsuario)event.getObject();
         FacesContext.getCurrentInstance().getExternalContext().redirect("../../private/pages/manterUsoMedicamentos.jsf");
