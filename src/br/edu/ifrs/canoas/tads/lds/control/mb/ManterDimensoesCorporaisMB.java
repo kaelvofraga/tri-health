@@ -169,16 +169,18 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	}
 	
 	
-	public void initListar(){
+	public String initListar(){
 		valorMedidaUsuario = new ValorMedidaUsuario();
 		criterioMedida="";
 		medidas = new ArrayList<ValorMedidaUsuario>();
+		return URL_LISTAR_DIMENSOES_CORPORAIS;
 	}
 	
-	public void initManter(){
+	public String initManter(){
 		valorMedidaUsuario = new ValorMedidaUsuario();
 		valorMedidaUsuario.setTipoMedida(new TipoMedida());
 		valorMedidaUsuario.setUdm(new Udm());
+		return URL_MANTER_DIMENSOES_CORPORAIS;
 	}
 	
 	public String novaMedidaUsuario(){
