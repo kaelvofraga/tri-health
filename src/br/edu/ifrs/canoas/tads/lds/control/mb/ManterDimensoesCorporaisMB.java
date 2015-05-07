@@ -84,7 +84,7 @@ public class ManterDimensoesCorporaisMB implements Serializable {
 	
 	public void onRowSelect(SelectEvent event) throws IOException {
 		this.valorMedidaUsuario = (ValorMedidaUsuario)event.getObject();
-		FacesContext.getCurrentInstance().getExternalContext().redirect("manterDimensoesCorporais.jsf");
+		FacesContext.getCurrentInstance().getExternalContext().redirect("../../private/pages/manterDimensoesCorporais.jsf");
     }
 	
 	
