@@ -3,13 +3,11 @@ package br.edu.ifrs.canoas.tads.lds.control.mb;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import br.edu.ifrs.canoas.tads.lds.bean.PressaoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.PressaoArterial;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterPressaoService;
@@ -19,32 +17,24 @@ import br.edu.ifrs.canoas.tads.lds.control.service.ManterUsoMedicamentoService;
  * @author Pablo Diehl da Silva
  * @version 06/05/2015
  */
-
 @Named
 @SessionScoped
 public class ManterPressaoMB implements Serializable {
-
 	private static final long serialVersionUID = 1695998945721419655L;
-	private static final String URL_LISTAR_PRESSAO = "/private/pages/listarPressaoArterial.jsf";
-	private static final String URL_MANTER_PRESSAO = "/private/pages/manterPressaoArterial.jsf";
-
+	//private static final String URL_LISTAR_PRESSAO = "/private/pages/listarPressaoArterial.jsf";
+	//private static final String URL_MANTER_PRESSAO = "/private/pages/manterPressaoArterial.jsf";
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
-
 	@Inject
 	private PressaoUsuario pressaoUsuario;
-
 	@EJB
 	private ManterPressaoService pressaoService;
-
 	private List<PressaoUsuario> listaDePressao;
-
 	private List<PressaoArterial> pressoes;
 
 	/*
-	 * Inicializa atributos para serem utilizados em outros m√©todos
+	 * Inicializa atributos para serem utilizados em outros mÈtodos
 	 */
-
 	public void inicializa() {
 		pressaoUsuario = new PressaoUsuario();
 		listaDePressao = new ArrayList<>();
@@ -55,10 +45,9 @@ public class ManterPressaoMB implements Serializable {
 	}
 
 	/*
-	 * "Envia" objeto do tipo "PressaoUsuario" para o service afim de salv√°-lo
+	 * "Envia" objeto do tipo "PressaoUsuario" para o service afim de salv·-lo
 	 * na base de dados.
 	 */
-
 	public void salvaPressao() {
 		pressaoUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		pressaoService.salvaPressaoUsuario(pressaoUsuario);
@@ -66,9 +55,9 @@ public class ManterPressaoMB implements Serializable {
 	}
 
 	/*
-	 * Verifica se o objeto que est√° sendo manipulado √© "novo" e dever√° ser
-	 * cadastrado em um novo registro da base de dados, ou se ele "j√° existe" na
-	 * base de dados e dever√° ser atualizado.
+	 * Verifica se o objeto que est· sendo manipulado È "novo" e dever· ser
+	 * cadastrado em um novo registro da base de dados, ou se ele "j· existe" na
+	 * base de dados e dever· ser atualizado.
 	 */
 	public boolean isAtualizacao() {
 		return pressaoUsuario != null && pressaoUsuario.getId() != null;
@@ -113,5 +102,4 @@ public class ManterPressaoMB implements Serializable {
 	public void setPressoes(List<PressaoArterial> pressoes) {
 		this.pressoes = pressoes;
 	}
-
 }

@@ -6,13 +6,10 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="/public/templates/template.xhtml">
-	
-	<!-- 
+	<!--
 		Author: Pablo Diehl da Silva
 		Version 06/05/2015
-	 -->
-	
-	
+	-->
 	<ui:define name="metadata" />
 	<ui:define name="content">
 		<h1 class="lead">Pressão Arterial</h1>
@@ -24,7 +21,6 @@
 						<p:inputText id="criterio_pressao" styleClass="form-control"
 							value="" placeholder="Entre o critério de pesquisa aqui" />
 					</h:panelGroup>
-
 					<h:panelGroup layout="block" styleClass="form-group">
 						<p:commandButton value="Busca" type="submit" action="#"
 							ajax="true" update="tab-pressao" immediate="false"
@@ -33,31 +29,25 @@
 							ajax="true" update="tab-pressao,criterio_pressao"
 							immediate="false" icon="ui-icon-refresh" />
 					</h:panelGroup>
-
 					<p:dataTable var="pressao" id="tab-pressao" value="#">
 						<p:column headerText="Data">
 							<h:outputText value="#{pressaoUsuario.data}" />
 						</p:column>
-
 						<p:column headerText="Pressão Arterial Sistólica">
 							<h:outputText
 								value="#{pressaoUsuario.pressaoArterial.paSistolica}" />
 						</p:column>
-
 						<p:column headerText="Pressão Arterial Diastólica">
 							<h:outputText
 								value="#{pressaoUsuario.pressaoArterial.paDiastolica}" />
 						</p:column>
-
 						<p:column headerText="Pulso">
 							<h:outputText value="#{pressaoUsuario.pressaoArterial.pulso}" />
 						</p:column>
-
 						<p:column headerText="Batimento Irregular?">
 							<h:outputText
 								value="#{pressaoUsuario.pressaoArterial.batimentoIrregular}" />
 						</p:column>
-
 						<p:column headerText="Notas">
 							<h:outputText value="#{pressaoUsuario.notas}" />
 						</p:column>
