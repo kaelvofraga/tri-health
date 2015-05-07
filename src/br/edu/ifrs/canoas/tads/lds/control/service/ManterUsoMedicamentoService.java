@@ -30,19 +30,20 @@ public class ManterUsoMedicamentoService {
 	
 	
 	
-   /*Metodo para buscar medicamento no banco se ele existir retorna ou então cria ele na tabela medicamento.*/
+   /*Metodo para buscar medicamento no banco se ele existir retorna ou entï¿½o cria ele na tabela medicamento.*/
 	public Medicamento buscaOuCriaMedicamentoPorNome(Medicamento medicamento) {
 		List<Medicamento> medicamentos = medicamentoDAO.buscaPorNome(medicamento.getNome());
 		
 		if (medicamentos.size() == 1)
 			medicamento = medicamentos.get(0);
 		else{
+			medicamento.setId(null);
 			medicamentoDAO.insere(medicamento);
 		}
 		return medicamento;
 	}
  
-    /*Busca medicamentos que estão cadastrados pro usuario*/
+    /*Busca medicamentos que estï¿½o cadastrados pro usuario*/
 	public List<Medicamento> buscaMedicamentoUsuario(String query, Usuario usuario) {
 		if (usuario != null && usuario.getId() != null)
 			return medicamentoDAO.buscaNomeMedicamentoPorUsuario(usuario);
@@ -93,7 +94,7 @@ public class ManterUsoMedicamentoService {
 	 */
 	
 	/*Metodo para fazer alteracao no Medicamento do Usuario que testa se o medicamento ja esta na tabela
-	 *  medicamentos caso necessário ele será criado*/
+	 *  medicamentos caso necessï¿½rio ele serï¿½ criado*/
 	public void alteraMedicamentoUsario(MedicamentoUsuario medicamentoUsuario) {
 		try{
 		medicamentoUsuario.setMedicamento(buscaOuCriaMedicamentoPorNome(medicamentoUsuario.getMedicamento()));	

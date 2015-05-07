@@ -19,11 +19,23 @@ import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 
 /**
  * Entity implementation class for Entity: PressaoUsuario
+ * 
+ * Esta é a classe responsável pelo relacionamento das classes PressaoArterial e Usuario.
+ * 
+ * @author Pablo Diehl da Silva
+ * @version 06/05/2015
+ * 
+ * Atributos:
+ * - pressaoArterial (PressaoArterial): Objeto da classe PressaoArterial;
+ * - usuario (Usuario): Objeto da classe Usuario;
+ * - data (Date): Corresponde à data de medição da pressão arterial a ser registrada;
+ * - notas (String): Atributo textual para salvar possíveis observações.
+ * 
  */
 @Entity
 public class PressaoUsuario extends BaseEntity<Long> implements Serializable{
 	private static final long serialVersionUID = 9138218268279147003L;
-	
+	//Todos atibutos são marcados como "@NotNull" para evitar a inserção de valores nulos na base de dados
 	@NotNull @ManyToOne(cascade=CascadeType.PERSIST)	
 	@JoinColumn(name="PRESSAOARTERIAL_ID")
 	private PressaoArterial pressaoArterial = new PressaoArterial();
@@ -35,7 +47,7 @@ public class PressaoUsuario extends BaseEntity<Long> implements Serializable{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data;
 	
-	@NotNull @Length(max=144, message="As notas devem possuir no m�ximo 144 caracteres!")
+	@NotNull @Length(max=144, message="As notas devem possuir no m�ximo 144 caracteres!")
 	private String notas;
 	
 	public PressaoUsuario(){

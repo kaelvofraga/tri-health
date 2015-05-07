@@ -17,6 +17,11 @@ import br.edu.ifrs.canoas.tads.lds.model.dao.PressaoUsuarioDAO;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
 
+/*
+ * @author Pablo Diehl da Silva
+ * @version 06/05/2015 
+ * 
+*/
 @Stateless
 public class ManterPressaoService {
 
@@ -25,7 +30,12 @@ public class ManterPressaoService {
 
 	@Inject
 	private PressaoArterialDAO pressaoDAO;
-
+	
+	/*
+	 * Responsável pela inserção de novo registro de pressão arterial na base de dados
+	 * 
+	 * @param pressaoUsuario Objeto do tipo "PressaoUsuario" a ser cadastrado. 
+	 */
 	public boolean salvaPressaoUsuario(PressaoUsuario pressaoUsuario) {
 		pressaoUsuarioDAO.insere(pressaoUsuario);
 		Mensagens.define(FacesMessage.SEVERITY_INFO,"pressao.cadastro.sucesso");
