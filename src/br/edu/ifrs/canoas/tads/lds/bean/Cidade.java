@@ -15,10 +15,10 @@ public class Cidade extends BaseEntity<Long> implements Serializable {
 	 */
 	private static final long serialVersionUID = 7728449874961720940L;
 
-	private String nome;
+	private String nome  = " ";
 	
 	@OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="ID_UF")
+    @JoinColumn(name="ID_UF", nullable = true)
 	private UnidadeFederativa uf = new UnidadeFederativa();
 	
 	

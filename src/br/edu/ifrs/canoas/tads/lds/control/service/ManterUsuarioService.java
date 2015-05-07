@@ -34,6 +34,23 @@ public class ManterUsuarioService {
 		return false;
 	}
 
+	public boolean salvaUsarioEdicao(Usuario usuario) {
+
+		int qtdEmailCadastrado = this.validaEmail(usuario);
+		//Como esta atualziando deve permitir que tenha apenas um email cadastrato
+		if (qtdEmailCadastrado == 1) {
+			if (validaSenha(usuario)){
+				
+				usuarioDAO.atualiza(usuario);
+				Mensagens.define(FacesMessage.SEVERITY_INFO, "Usuario.cadastro.sucesso",usuario.getEmail());
+				return true;
+			}
+		} 
+		
+		Mensagens.define(FacesMessage.SEVERITY_ERROR, "Usuario.email.erro.cadastrado",usuario.getEmail());
+		return false;
+	}
+
 	
 	/**
 	 * Valida a senha do usuário. Testa o algoritmo de criptografia

@@ -13,9 +13,9 @@ public class UnidadeFederativa extends BaseEntity<Long> implements Serializable 
 	 * 
 	 */
 	private static final long serialVersionUID = -4613659829962646745L;
-	private String nome;
+	private String nome  = " ";
 	@OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="ID_PAIS")
+    @JoinColumn(name="ID_PAIS", nullable = true)
 	private Pais pais = new Pais();
 	public Pais getPais() {
 		return pais;

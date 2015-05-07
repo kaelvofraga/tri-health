@@ -2,6 +2,7 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,8 @@ import javax.faces.context.FacesContext;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -33,29 +36,29 @@ public class Usuario extends BaseEntity<Long> implements Serializable {
 	private static final long serialVersionUID = 8888460954413155909L;
 
 	@NotNull @Email 
-	private String email;
+	private String email ;
 	
 	@NotNull
-	private String senha;
+	private String senha ;
 	
 	@NotNull
-	private String nome;
+	private String nome ;
 	
 	@NotNull 
 	private String sobrenome;
 	
-	private String apelido;
+	private String apelido ;
 	
 	private String telefone;
 		
-	private String celular;
+	private String celular ;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataNasc;
+	private Date dataNasc ;
 	
-	private String genero;
+	private String genero ;
 	
-	private String tipoSanguineo;
+	private String tipoSanguineo ;
 	
 	@OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="ID_ENDERECO")
@@ -68,10 +71,6 @@ public class Usuario extends BaseEntity<Long> implements Serializable {
      //                    @JoinColumn(name="ID_IDIOMA")
      //          )
     private DualListModel<String> idiomas;
-	
-    public Usuario() {
-		super();
-	}
 	
 	public String getTipoSanguineo() {
 		return tipoSanguineo;
@@ -118,6 +117,12 @@ public class Usuario extends BaseEntity<Long> implements Serializable {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+
+
+	public Usuario() {	
+		super();
+	}
+	
 	
 	public String getEmail() {
 		return this.email;
@@ -192,7 +197,7 @@ public class Usuario extends BaseEntity<Long> implements Serializable {
         listaDeIdiomas.add("Inglês");
         listaDeIdiomas.add("Francês");
         listaDeIdiomas.add("Estanhól");
-        listaDeIdiomas.add("Alemanaha");
+        listaDeIdiomas.add("Alemão");
         listaDeIdiomas.add("Italiano");
         listaDeIdiomas.add("Japonês");
          

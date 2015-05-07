@@ -11,8 +11,8 @@ public class Pais extends BaseEntity<Long> implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 186935749207326730L;
-	private String nome;
-	private String nacionalidade;
+	private String nome  = " ";
+	private String nacionalidade  = " ";
 	
 	public String getNacionalidade() {
 		return nacionalidade;

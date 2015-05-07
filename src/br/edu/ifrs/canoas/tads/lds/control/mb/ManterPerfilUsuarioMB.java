@@ -28,7 +28,7 @@ public class ManterPerfilUsuarioMB implements Serializable{
 	private static final long serialVersionUID = -6343391229889538808L;
 
 	@Inject
-	private GerenciarLoginMB gerenciarLoginMB = new GerenciarLoginMB();
+	private GerenciarLoginMB gerenciarLoginMB;
 		
 	@Inject
 	private Usuario usuario;
@@ -52,7 +52,6 @@ public class ManterPerfilUsuarioMB implements Serializable{
 	
 	private List<Cidade> cidades;	
 
-	
 	
 	public ManterPerfilUsuarioMB() {
 	}
@@ -157,12 +156,13 @@ public class ManterPerfilUsuarioMB implements Serializable{
 	}
 
 	public void salva() {
-		usuarioService.salvaUsario(usuario);
+		usuarioService.salvaUsarioEdicao(usuario);
 	}
 
 	
-	public void atualizaUsuarioSecao(){
+	public String atualizaUsuarioSecao(){
 		this.usuario =  gerenciarLoginMB.getUsuario();
+		return "/private/pages/manterPerfilUsuario.jsf";
 	}
 
 }

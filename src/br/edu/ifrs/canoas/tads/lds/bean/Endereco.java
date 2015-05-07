@@ -20,10 +20,10 @@ public class Endereco extends BaseEntity<Long> implements Serializable {
     @JoinColumn(name="ID_CIDADE")
 	private Cidade cidade = new Cidade();
 	
-	private String cep;
-	private String logradouro;
-	private Integer numero;
-	private String complemento;
+	private String cep  = " ";
+	private String logradouro = " ";
+	private Integer numero = 0;
+	private String complemento = " ";
 	
 	public Cidade getCidade() {
 		return cidade;

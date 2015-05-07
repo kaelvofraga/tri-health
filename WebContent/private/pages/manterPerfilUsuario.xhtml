@@ -50,7 +50,7 @@
 							<p:outputLabel for="nacionalidade" value="Nacionalidade" />
 							<br/>							
 							<p:selectOneMenu id="nacionalidade" value="#{manterPerfilUsuarioMB.usuario.endereco.cidade.uf.pais.nacionalidade}" style="width:300px">
-                			<f:selectItem itemLabel="Selecione a nacionalidade" itemValue="" noSelectionOption="true" />
+                			<f:selectItem itemLabel="#{manterPerfilUsuarioMB.usuario.endereco.cidade.uf.pais.nacionalidade}" itemValue="" noSelectionOption="true" />
                 			<f:selectItems value="#{manterPerfilUsuarioMB.paises}" itemLabel="#{pais.nacionalidade}" var="pais"/>
             				</p:selectOneMenu>
             				
@@ -113,7 +113,7 @@
 							<p:outputLabel for="pais" value="Pais" />
 							<br />		
 							<p:selectOneMenu id="pais" value="#{manterPerfilUsuarioMB.usuario.endereco.cidade.uf.pais.nome}" style="width:300px">
-                			<f:selectItem itemLabel="Selecione o País" itemValue="" noSelectionOption="true" />
+                			<f:selectItem itemLabel="#{manterPerfilUsuarioMB.usuario.endereco.cidade.uf.pais.nome}" itemValue="" noSelectionOption="true" />
                 			<f:selectItems value="#{manterPerfilUsuarioMB.paises}" itemLabel="#{pais.nome}" var="pais"/>
             				</p:selectOneMenu>
 			
@@ -123,7 +123,7 @@
 							<p:outputLabel for="estado" value="Estado" />
 							<br />		
 							<p:selectOneMenu id="estado" value="#{manterPerfilUsuarioMB.usuario.endereco.cidade.uf.nome}" style="width:300px">
-                			<f:selectItem itemLabel="Selecione o Estado" itemValue="" noSelectionOption="true" />
+                			<f:selectItem itemLabel="#{manterPerfilUsuarioMB.usuario.endereco.cidade.uf.nome}" itemValue="" noSelectionOption="true" />
                 			<f:selectItems value="#{manterPerfilUsuarioMB.ufs}" itemLabel="#{estado.nome}" var="estado"/>
                 			</p:selectOneMenu>         				
 							</h:panelGroup>
@@ -132,7 +132,7 @@
 							<p:outputLabel for="cidade" value="Cidade" />
 							<br />		
 							<p:selectOneMenu id="cidade" value="#{manterPerfilUsuarioMB.usuario.endereco.cidade.nome}" style="width:300px">
-                			<f:selectItem itemLabel="Selecione a cidade" itemValue="" noSelectionOption="true" />
+                			<f:selectItem itemLabel="#{manterPerfilUsuarioMB.usuario.endereco.cidade.nome}" itemValue="" noSelectionOption="true" />
                 			<f:selectItems value="#{manterPerfilUsuarioMB.cidades}" itemLabel="#{cidade.nome}" var="cidade"/>
                 			</p:selectOneMenu>	
 							</h:panelGroup>
@@ -149,20 +149,20 @@
 							<h:outputLabel for="genero" value="Gênero *" />
 							<br/>
             				<h:selectOneMenu id="genero" value="#{manterPerfilUsuarioMB.usuario.genero}" required="true" label="Gênero">
-                				<f:selectItem itemLabel="Selecione o gênero" itemValue="" noSelectionOption="true" />
-                				<f:selectItem itemLabel="Masculino" itemValue="M" />
-                				<f:selectItem itemLabel="Feminino" itemValue="F" />
-                				<f:selectItem itemLabel="Não informar" itemValue="NI" />
+                				<f:selectItem itemLabel="#{manterPerfilUsuarioMB.usuario.genero}" itemValue="" noSelectionOption="true" />
+                				<f:selectItem itemLabel="Masculino" itemValue="Maculino" />
+                				<f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+                				<f:selectItem itemLabel="Não informar" itemValue="Não Informado" />
             				</h:selectOneMenu>
             				<p:message for="genero" />
-            				<h:outputText value="#{manterPerfilUsuarioMB.usuario.genero}" />
+            				<h:outputText value="" />
 						</h:panelGroup>
 							
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="tipoSanguineo" value="Tipo Sanguineo" />							
 							<br/>
             				<h:selectOneMenu id="tipoSanguineo" value="#{manterPerfilUsuarioMB.usuario.tipoSanguineo}" required="true" label="Tipo sanguineo">
-                				<f:selectItem itemLabel="Selecione o tipo sanquineo" itemValue="" noSelectionOption="true" />
+                				<f:selectItem itemLabel="#{manterPerfilUsuarioMB.usuario.tipoSanguineo}" itemValue="" noSelectionOption="true" />
                 				<f:selectItem itemLabel="A+" itemValue="A+" />
                 				<f:selectItem itemLabel="B+" itemValue="B+" />
                 				<f:selectItem itemLabel="AB+" itemValue="AB+" />
@@ -173,7 +173,7 @@
                 				<f:selectItem itemLabel="O-" itemValue="O-" />
             				</h:selectOneMenu>
             				<p:message for="tipoSanguineo" />
-            				<h:outputText value="#{manterPerfilUsuarioMB.usuario.tipoSanguineo}" />
+            				<h:outputText value="" />
 							</h:panelGroup>							
 													
 							<h:panelGroup layout="block" styleClass="form-group">
