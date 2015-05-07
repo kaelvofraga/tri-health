@@ -7,6 +7,11 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="/public/templates/template.xhtml">
 
+    <!-- 
+		Author: Luana Gomes
+		Version 06/05/2015
+	 -->
+	 
 	<ui:define name="metadata" />
 
 	<ui:define name="content">
@@ -32,18 +37,18 @@
 					</h:panelGroup>
 
 					<p:dataTable selectionMode="single"
-						emptyMessage="Não há registros de peso." var="pesoUsuario"
+						emptyMessage="Não há registros de peso do usuario." var="pesoUsuario"
 						id="tab-peso">
 						
 						<p:column headerText="Data">
-							<h:outputText value="#{pesoUsuario.peso.nota}" />
+							<h:outputText value="#{manterPesoMB.pesoUsuario.data}" />
 						</p:column>
 
 						<p:column headerText="Peso">
-							<h:outputText value="#{PesoUsuario.data}" />
+							<h:outputText value="#{manterPesoMB.pesoUsuario.peso.valor}" />
 						</p:column>
 						<p:column headerText="Nota">
-							<h:outputText value="#{pesoUsuario.peso.nota}" />
+							<h:outputText value="#{manterPesoMB.pesoUsuario.nota}" />
 						</p:column>
 
 						<p:column headerText="Editar">

@@ -50,8 +50,10 @@
 					<p:menuitem value="Listar" action="#{manterUsoMedicamentoMB.initListar}"/>
 					<p:menuitem value="Cadastrar" action="#{manterUsoMedicamentoMB.initManter}"/>
 			</p:submenu>
-				<p:menuitem value="Procedimentos Médicos" url="#" />
-				<p:menuitem value="Consultas Médicas" url="#" />
+			<p:submenu label="Procedimentos Médicos">
+					<p:menuitem value="Listar" url="/private/pages/listarConsulta.xhtml"/>
+					<p:menuitem value="Cadastrar" url="/private/pages/manterConsulta.xhtml"/>
+			</p:submenu>
 			</p:submenu>
 			
 			<p:separator />

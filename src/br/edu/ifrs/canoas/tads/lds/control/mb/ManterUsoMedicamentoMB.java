@@ -35,6 +35,7 @@ public class ManterUsoMedicamentoMB implements Serializable {
 	@EJB
 	private ManterUsoMedicamentoService medicamentoService;
 	
+	@Inject
 	private MedicamentoUsuario medicamentoUsuario;
 	
 	private String criterioMedicamento;  

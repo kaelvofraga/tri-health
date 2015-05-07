@@ -11,13 +11,15 @@ import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 @Stateless
 public class PesoUsuarioDAO extends BaseDAO< PesoUsuario, Long>{
 
-	/**
-	 * 
+	/** 
+	 * Classe que busca dados no banco
+	 * @author Luana
+	 * @version 06/05/2015
 	 */
 	private static final long serialVersionUID = -2732933055922684415L;
 
 	@SuppressWarnings("unchecked")
-	public List<Peso> buscaPesoUsuario(Usuario usuario) {
+	public List<PesoUsuario> buscaPesoUsuario(Usuario usuario) {
 		
 		return em.createQuery("SELECT pu " 
 		                      + "FROM PesoUsuario pu "
