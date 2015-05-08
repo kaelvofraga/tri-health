@@ -200,20 +200,18 @@
 								placeholder="Informe o e-mail" />
 							</h:panelGroup>
 							
-							<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel for="senha" value="Senha" />
-							<p:inputText id="senha" styleClass="form-control" size="40" 
-								style="width:300px"
-								value="#{manterPerfilUsuarioMB.usuario.senha}"
-								placeholder="Informe a senha" />
-							</h:panelGroup>
+
+							<h:panelGrid columns="2" id="matchGrid" cellpadding="5">                   
+        						<h:outputLabel for="pwd1" value="Senha 1: *" />
+        						<p:password id="pwd1" value="#{manterPerfilUsuarioMB.usuario.senha}" match="pwd2" label="Senha 1" required="true" />
+ 						        <h:outputLabel for="pwd2" value="Senha 2: *" />
+        						<p:password id="pwd2" value="#{manterPerfilUsuarioMB.usuario.senha}" label="Senha 2" required="true" />
+    						</h:panelGrid>
+							
 					</h:panelGrid>     				    
 				</h:panelGroup>
 				
-				
-				
-	  
-				
+			
 				<h:panelGroup layout="block" styleClass="form-group">
 					<p:commandButton value="#{msg['cadastrarUsuario.button.salvar']}"
 						style="float:right !important; " update="panel"

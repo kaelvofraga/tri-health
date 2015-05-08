@@ -1,4 +1,13 @@
-insert into usuario(id, email, nome, senha, sobrenome) values (1000, '123@123.123', '123', 'f5bb0c8de146c67b44babbf4e6584cc0','123'); 
+insert into Pais (id, nome, nacionalidade) values (1000, 'Brasil','Brasileiro' );
+insert into Pais (id, nome, nacionalidade) values (1001, 'EUA','Americano' );
+insert into UnidadeFederativa (id, nome, id_pais) values (1000, 'Rio Grande do Sul',1000 );
+insert into UnidadeFederativa (id, nome, id_pais) values (1001, 'Nova York',1001 );
+insert into Cidade (id, nome, id_uf) values (1000, 'Canoas',1000 );
+insert into Cidade (id, nome, id_uf) values (1001, 'Albany',1001 );
+insert into Endereco (id, cep, complemento, logradouro, numero, id_cidade) values (1000, '92330-500', 'Casa', 'Rua Um', 541, 1000 );
+insert into Endereco (id, cep, complemento, logradouro, numero, id_cidade) values (1001, '91330-000', 'AP', 'Street One', 542, 1001 );
+insert into usuario(id, email, nome, senha, sobrenome, apelido, telefone, celular , dataNasc, genero, tipoSanguineo , ID_ENDERECO) values (1000, '123@123.123', '123', 'f5bb0c8de146c67b44babbf4e6584cc0','123', '456' ,  '456456456','0909090909', SYSDATE, 'Masculino',  'AB+',1001); 
+ 
 
 insert into medicamento (id, nome) values (1001, 'Paracetamol');
 insert into medicamento (id, nome) values (1002, 'Benegripe');
@@ -29,10 +38,6 @@ insert into Alimento (id,nome, caloriasPorCemGrOuMl,TIPOALIMENTO_ID) values (100
 
 insert into AlergiaUsuario (dataPrimeiraOcorrencia, MEDICAMENTOUSUARIO_ID, reacao, tipoAlergia_id, USUARIO_ID, id) values (sysdate, 1001, 'Reacao', 1, 1000, 1001);
 
-insert into Pais (id, nome, nacionalidade) values (1, 'Brasil','Brasileiro' );
-insert into UnidadeFederativa (id, nome, id_pais) values (1, 'Rio Grande do Sul',1 );
-insert into Cidade (id, nome, id_uf) values (1, 'Canoas',1 );
-insert into Endereco (id, cep, complemento, logradouro, numero, id_cidade) values (1, '92330-500', 'Casa', 'Rua Um', 541, 1 );
 
 --[DIMENS�ES CORPORAIS]--
 

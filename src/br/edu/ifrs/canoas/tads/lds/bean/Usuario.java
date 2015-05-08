@@ -11,6 +11,8 @@ import javax.faces.context.FacesContext;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -74,13 +76,14 @@ public class Usuario extends BaseEntity<Long> implements Serializable {
 	 * 
 	 * */
 	
-	//@ManyToMany(cascade=CascadeType.ALL)
-    //@JoinTable(name="IDIOMA_USUARIO", 
-     //          joinColumns=@JoinColumn(name="ID_USUARIO"),
-     //          inverseJoinColumns=
-     //                    @JoinColumn(name="ID_IDIOMA")
-     //          )
-    
+	@ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(name="IDIOMA_USUARIO", 
+              joinColumns=@JoinColumn(name="ID_USUARIO"),
+              inverseJoinColumns=
+                        @JoinColumn(name="ID_IDIOMA")
+    )	
+   private List<Idioma>  idiomas = new ArrayList<>();
+
 	
 	public String getTipoSanguineo() {
 		return tipoSanguineo;
