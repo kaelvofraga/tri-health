@@ -11,7 +11,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.edu.ifrs.canoas.tads.lds.bean.PressaoUsuario;
-import br.edu.ifrs.canoas.tads.lds.bean.PressaoArterial;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterPressaoService;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterUsoMedicamentoService;
 
@@ -38,8 +37,6 @@ public class ManterPressaoMB implements Serializable {
 	private ManterPressaoService pressaoService;
 
 	private List<PressaoUsuario> listaDePressao;
-
-	private List<PressaoArterial> pressoes;
 
 	/*
 	 * Inicializa atributos para serem utilizados em outros métodos
@@ -104,14 +101,6 @@ public class ManterPressaoMB implements Serializable {
 
 	public void setListaDePressao(List<PressaoUsuario> listaDePressao) {
 		this.listaDePressao = listaDePressao;
-	}
-
-	public List<PressaoArterial> getPressoes() {
-		return pressoes;
-	}
-
-	public void setPressoes(List<PressaoArterial> pressoes) {
-		this.pressoes = pressoes;
 	}
 
 }

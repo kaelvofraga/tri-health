@@ -10,9 +10,7 @@ import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
 import br.edu.ifrs.canoas.tads.lds.bean.PressaoUsuario;
-import br.edu.ifrs.canoas.tads.lds.bean.PressaoArterial;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
-import br.edu.ifrs.canoas.tads.lds.model.dao.PressaoArterialDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.PressaoUsuarioDAO;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
@@ -27,9 +25,6 @@ public class ManterPressaoService {
 
 	@Inject
 	private PressaoUsuarioDAO pressaoUsuarioDAO;
-
-	@Inject
-	private PressaoArterialDAO pressaoDAO;
 	
 	/*
 	 * Responsável pela inserção de novo registro de pressão arterial na base de dados
@@ -42,13 +37,6 @@ public class ManterPressaoService {
 		return true;
 	}
 
-	public List<PressaoArterial> buscaPressoes(Date query, Usuario usuario) {
-		if (usuario != null && usuario.getId() != null)
-			return pressaoDAO.buscaPressaoPorUsuario(usuario);
-		return new ArrayList<PressaoArterial>();
-	}
-
-	
 	public void alteraPressaoUsario(PressaoUsuario pressaoUsuario) {
 		pressaoUsuarioDAO.atualiza(pressaoUsuario);
 	}

@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
-import br.edu.ifrs.canoas.tads.lds.bean.PressaoArterial;
 import br.edu.ifrs.canoas.tads.lds.bean.PressaoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 /*
@@ -27,7 +26,7 @@ public class PressaoUsuarioDAO extends BaseDAO< PressaoUsuario, Long>{
 	@SuppressWarnings("unchecked")
 	public List<PressaoUsuario> buscaPressaoPorUsuario(Usuario usuario){
 		return em.createQuery(
-		         "SELECT pu.pressaoArterial " 
+		         "SELECT pu.pressaoUsuario " 
 		         + "FROM PressaoUsuario pu "
 		         + "WHERE pu.usuario.id = :usuario ")
 		         .setParameter("usuario", usuario.getId())

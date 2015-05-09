@@ -13,7 +13,6 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
-import br.edu.ifrs.canoas.tads.lds.bean.PressaoArterial;
 import br.edu.ifrs.canoas.tads.lds.bean.BaseEntity;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 
@@ -36,13 +35,22 @@ import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 public class PressaoUsuario extends BaseEntity<Long> implements Serializable{
 	private static final long serialVersionUID = 9138218268279147003L;
 	//Todos atibutos são marcados como "@NotNull" para evitar a inserção de valores nulos na base de dados
-	@NotNull @ManyToOne(cascade=CascadeType.PERSIST)	
-	@JoinColumn(name="PRESSAOARTERIAL_ID")
-	private PressaoArterial pressaoArterial = new PressaoArterial();
-	
-	@NotNull @ManyToOne 
+
+	@NotNull @ManyToOne(targetEntity=Usuario.class)
 	@JoinColumn(name="USUARIO_ID")
 	private Usuario usuario;
+	
+	@NotNull
+	private double paSistolica;
+
+	@NotNull
+	private double paDiastolica;
+
+	@NotNull
+	private int pulso;
+
+	@NotNull
+	private char batimentoIrregular;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data;
@@ -54,20 +62,44 @@ public class PressaoUsuario extends BaseEntity<Long> implements Serializable{
 		super();
 	}
 
-	public PressaoArterial getPressaoArterial() {
-		return pressaoArterial;
-	}
-
-	public void setPressaoArterial(PressaoArterial pressaoArterial) {
-		this.pressaoArterial = pressaoArterial;
-	}
-
 	public Usuario getUsuario() {
 		return usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public double getPaSistolica() {
+		return paSistolica;
+	}
+
+	public void setPaSistolica(double paSistolica) {
+		this.paSistolica = paSistolica;
+	}
+
+	public double getPaDiastolica() {
+		return paDiastolica;
+	}
+
+	public void setPaDiastolica(double paDiastolica) {
+		this.paDiastolica = paDiastolica;
+	}
+
+	public int getPulso() {
+		return pulso;
+	}
+
+	public void setPulso(int pulso) {
+		this.pulso = pulso;
+	}
+
+	public char getBatimentoIrregular() {
+		return batimentoIrregular;
+	}
+
+	public void setBatimentoIrregular(char batimentoIrregular) {
+		this.batimentoIrregular = batimentoIrregular;
 	}
 
 	public Date getData() {
@@ -84,9 +116,5 @@ public class PressaoUsuario extends BaseEntity<Long> implements Serializable{
 
 	public void setNotas(String notas) {
 		this.notas = notas;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 }
