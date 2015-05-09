@@ -50,7 +50,7 @@
 							<p:outputLabel for="nacionalidade" value="Nacionalidade" />
 							<br/>							
 							<p:selectOneMenu id="nacionalidade" value="#{manterPerfilUsuarioMB.usuario.endereco.cidade.uf.pais.nacionalidade}" style="width:300px">
-                			<f:selectItem itemLabel="#{manterPerfilUsuarioMB.usuario.endereco.cidade.uf.pais.nacionalidade}" itemValue="" noSelectionOption="true" />
+                			<f:selectItem itemLabel="" itemValue="" noSelectionOption="true" />
                 			<f:selectItems value="#{manterPerfilUsuarioMB.paises}" itemLabel="#{pais.nacionalidade}" var="pais"/>
             				</p:selectOneMenu>
             				
@@ -113,7 +113,7 @@
 							<p:outputLabel for="pais" value="Pais" />
 							<br />		
 							<p:selectOneMenu id="pais" value="#{manterPerfilUsuarioMB.usuario.endereco.cidade.uf.pais.nome}" style="width:300px">
-                			<f:selectItem itemLabel="#{manterPerfilUsuarioMB.usuario.endereco.cidade.uf.pais.nome}" itemValue="" noSelectionOption="true" />
+                			<f:selectItem itemLabel="" itemValue="" noSelectionOption="true" />
                 			<f:selectItems value="#{manterPerfilUsuarioMB.paises}" itemLabel="#{pais.nome}" var="pais"/>
             				</p:selectOneMenu>
 			
@@ -123,7 +123,7 @@
 							<p:outputLabel for="estado" value="Estado" />
 							<br />		
 							<p:selectOneMenu id="estado" value="#{manterPerfilUsuarioMB.usuario.endereco.cidade.uf.nome}" style="width:300px">
-                			<f:selectItem itemLabel="#{manterPerfilUsuarioMB.usuario.endereco.cidade.uf.nome}" itemValue="" noSelectionOption="true" />
+                			<f:selectItem itemLabel="" itemValue="" noSelectionOption="true" />
                 			<f:selectItems value="#{manterPerfilUsuarioMB.ufs}" itemLabel="#{estado.nome}" var="estado"/>
                 			</p:selectOneMenu>         				
 							</h:panelGroup>
@@ -132,7 +132,7 @@
 							<p:outputLabel for="cidade" value="Cidade" />
 							<br />		
 							<p:selectOneMenu id="cidade" value="#{manterPerfilUsuarioMB.usuario.endereco.cidade.nome}" style="width:300px">
-                			<f:selectItem itemLabel="#{manterPerfilUsuarioMB.usuario.endereco.cidade.nome}" itemValue="" noSelectionOption="true" />
+                			<f:selectItem itemLabel="" itemValue="" noSelectionOption="true" />
                 			<f:selectItems value="#{manterPerfilUsuarioMB.cidades}" itemLabel="#{cidade.nome}" var="cidade"/>
                 			</p:selectOneMenu>	
 							</h:panelGroup>
@@ -142,14 +142,12 @@
 
 			<p:tab title="Outras Informações">
 				<h:panelGroup layout="block" id="outrasInformacoes">
-					<h:panelGrid columns="2" styleClass="mtable">
-				
-						<h:panelGroup layout="block" styleClass="form-group">
-						
-							<h:outputLabel for="genero" value="Gênero *" />
+					<h:panelGrid columns="2" styleClass="mtable">				
+						<h:panelGroup layout="block" styleClass="form-group">						
+							<h:outputLabel for="genero" value="Gênero" />
 							<br/>
             				<h:selectOneMenu id="genero" value="#{manterPerfilUsuarioMB.usuario.genero}" required="true" label="Gênero">
-                				<f:selectItem itemLabel="#{manterPerfilUsuarioMB.usuario.genero}" itemValue="" noSelectionOption="true" />
+                				<f:selectItem itemLabel="" itemValue="" noSelectionOption="true" />
                 				<f:selectItem itemLabel="Masculino" itemValue="Maculino" />
                 				<f:selectItem itemLabel="Feminino" itemValue="Feminino" />
                 				<f:selectItem itemLabel="Não informar" itemValue="Não Informado" />
@@ -162,7 +160,7 @@
 							<p:outputLabel for="tipoSanguineo" value="Tipo Sanguineo" />							
 							<br/>
             				<h:selectOneMenu id="tipoSanguineo" value="#{manterPerfilUsuarioMB.usuario.tipoSanguineo}" required="true" label="Tipo sanguineo">
-                				<f:selectItem itemLabel="#{manterPerfilUsuarioMB.usuario.tipoSanguineo}" itemValue="" noSelectionOption="true" />
+                				<f:selectItem itemLabel="" itemValue="" noSelectionOption="true" />
                 				<f:selectItem itemLabel="A+" itemValue="A+" />
                 				<f:selectItem itemLabel="B+" itemValue="B+" />
                 				<f:selectItem itemLabel="AB+" itemValue="AB+" />
@@ -212,14 +210,13 @@
 				</h:panelGroup>
 				
 			
-				<h:panelGroup layout="block" styleClass="form-group">
-					<p:commandButton value="#{msg['cadastrarUsuario.button.salvar']}"
+								
+			</p:tab>	</p:accordionPanel>
+			<h:panelGroup layout="block" styleClass="form-group">
+				<p:commandButton value="#{msg['cadastrarUsuario.button.salvar']}"
 						style="float:right !important; " update="panel"
 						action="#{manterPerfilUsuarioMB.salva}" ajax="false"/>
-
 				</h:panelGroup>
-				
-			</p:tab>	</p:accordionPanel>
 
 
 	</ui:define>
