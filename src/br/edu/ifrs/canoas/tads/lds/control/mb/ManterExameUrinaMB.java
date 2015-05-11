@@ -101,7 +101,7 @@ public class ManterExameUrinaMB implements Serializable{
 		exameUrina.setUsuario(gerenciarLoginMB.getUsuario());
 //		exameUrina.setTipoExameUrina(exameUrina.getTipoExameUrina().getId());
 		exameUrinaService.salvaExameUrinaUsuario(exameUrina);
-		this.inicializa();
+//		this.inicializa();
 	}
 	
 	public String alteraExameUrina() {
@@ -127,7 +127,12 @@ public class ManterExameUrinaMB implements Serializable{
 		examesLista = new ArrayList<>();
 	}
 	
-	public List<TipoExameUrina> completeTipoExameUrina(String query){
+	/*public void aoSelecionarTipoExameUrina(){
+		exameUrina.setTipoExameUrina(tipoExameUrina.getTipo());
+		exameUrinaService.setTipoExameUrinaDAO(tipoExameUrina);
+	}*/
+	
+	/*public List<TipoExameUrina> completeTipoExameUrina(String query){
 		if (tipos == null) 
 			tipos = exameUrinaService.buscaTiposExameUrina(query, gerenciarLoginMB.getUsuario());
 
@@ -140,7 +145,7 @@ public class ManterExameUrinaMB implements Serializable{
             }
         }
         return tiposBusca;
-	}
+	}*/
 	
 	public String novoExameUrina(){
 //		this.emListagemAtvs = false;

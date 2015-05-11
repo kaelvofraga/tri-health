@@ -51,11 +51,11 @@ public class ManterExameUrinaService {
 	public TipoExameUrina buscaOuCriaTipoExameUrinaPorNome(TipoExameUrina tipoExameUrina) {
 		List<TipoExameUrina> tipos = tipoExameUrinaDAO.buscaPorTipo(tipoExameUrina.getTipo());
 		
-		if (tipos.size() == 1)
+		/*if (tipos.size() == 1)
 			tipoExameUrina = tipos.get(0);
 		else{
 			tipoExameUrinaDAO.insere(tipoExameUrina);
-		}
+		}*/
 		
 		return tipoExameUrina;
 	}

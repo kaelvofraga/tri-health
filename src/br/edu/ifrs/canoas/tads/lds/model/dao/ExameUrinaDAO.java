@@ -58,19 +58,7 @@ public class ExameUrinaDAO extends BaseDAO<ExameUrina, Long>{
 	}
 }
 
-/*public List<Integer> buscaIdMedicamentoAlergiaUsuario(MedicamentoUsuario medicamentoUsuario) {
-		try {
-		return em.createQuery(
-		         "SELECT au.medicamentoUsuario.id " 
-		         + "FROM AlergiaUsuario au, MedicamentoUsuario mu "
-		         + "WHERE mu.id = :medicamento and "
-		         + "au.medicamentoUsuario.id=mu.id")
-		         .setParameter("medicamento",medicamentoUsuario.getId()).getResultList();
-		}catch (IllegalArgumentException e) {
-			return null;
-		}
-		         
-	}*/
+
 	
 
 
