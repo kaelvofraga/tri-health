@@ -21,7 +21,7 @@
 							<br/>
 							<p:selectOneMenu id="tipo_exame" value="#{manterExameUrinaMB.exameUrina.tipoExameUrina.tipo}" style="width:200px" 
 								required="true" requiredMessage="Um tipo de análise deve ser selecionado">								
-							
+								<p:ajax listener="#{manterExameUrinaMB.aoSelecionarTipo}" />	
 								<f:selectItem itemLabel="Selecione o tipo do exame." itemValue="" noSelectionOption="true" />
 								<f:selectItems value="#{manterExameUrinaMB.tipos}" var="tipoExameUrina" itemLabel="#{tipoExameUrina.tipo}" itemValue="#{tipoExameUrina}"/>
 							</p:selectOneMenu>	

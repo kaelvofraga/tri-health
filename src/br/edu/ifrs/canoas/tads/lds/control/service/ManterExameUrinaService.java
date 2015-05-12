@@ -43,6 +43,7 @@ public class ManterExameUrinaService {
 	}
 
 	public boolean salvaExameUrinaUsuario(ExameUrina exameUrina) {
+		
 		exameUrinaDAO.insere(exameUrina);
 		Mensagens.define(FacesMessage.SEVERITY_INFO, "manterExameUrina.cadastro.sucesso");		
 		return true;		

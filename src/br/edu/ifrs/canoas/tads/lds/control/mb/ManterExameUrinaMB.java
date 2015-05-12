@@ -20,6 +20,7 @@ import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAtividade;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoExameUrina;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterExameUrinaService;
+import br.edu.ifrs.canoas.tads.lds.model.dao.TipoExameUrinaDAO;
 
 @Named
 @RequestScoped
@@ -32,7 +33,7 @@ public class ManterExameUrinaMB implements Serializable{
 	private static final long serialVersionUID = 7113326743475818284L;
 	private static final String URL_LISTAR_USO_TIPOSEXAMEURINA = "/private/pages/listarExameUrina.jsf";
 	private static final String URL_MANTER_USO_EXAMEURINA = "/private/pages/manterExameUrina.jsf";
-	private static final String URL_MANTER_NOVO_EXAMEURINA = "/private/pages/manterExameUrina.xhtml";
+	private static final String URL_MANTER_NOVO_EXAMEURINA = "/private/pages/manterExameUrina.jsf";
 	
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
@@ -43,6 +44,8 @@ public class ManterExameUrinaMB implements Serializable{
 	@EJB
 	private ManterExameUrinaService exameUrinaService;
 	
+	@Inject
+	private TipoExameUrina tipoExameUrina;
 	private String criterioExameUrina;
 	
 //listas exames e tipos de exame
@@ -67,7 +70,7 @@ public class ManterExameUrinaMB implements Serializable{
 	}
 
 	public List<TipoExameUrina> getTipos() {
-		if (tipos == null)
+//		if (tipos == null)
 			tipos = exameUrinaService.buscaTipoExameUrina();
 		return tipos;
 	}
@@ -83,11 +86,21 @@ public class ManterExameUrinaMB implements Serializable{
 	public void setCriterioExameUrina(String criterioExameUrina) {
 		this.criterioExameUrina = criterioExameUrina;
 	}
-//métodos
+
 	
+	public ManterExameUrinaService getExameUrinaService() {
+		return exameUrinaService;
+	}
+
+	public void setExameUrinaService(ManterExameUrinaService exameUrinaService) {
+		this.exameUrinaService = exameUrinaService;
+	}
+	
+	//métodos
+
 	public void inicializa() {	//inicialização do listar e manter
 		exameUrina = new ExameUrina();
-//		exameUrina.setTipoExameUrina(new TipoExameUrina());
+		exameUrina.setTipoExameUrina(new TipoExameUrina());
 		examesLista = new ArrayList<>();
 		tipos = new ArrayList<>();
 		criterioExameUrina="";
@@ -99,9 +112,9 @@ public class ManterExameUrinaMB implements Serializable{
 	
 	public void salvaExame(){
 		exameUrina.setUsuario(gerenciarLoginMB.getUsuario());
-//		exameUrina.setTipoExameUrina(exameUrina.getTipoExameUrina().getId());
+		exameUrina.setTipoExameUrina(tipoExameUrina);
 		exameUrinaService.salvaExameUrinaUsuario(exameUrina);
-//		this.inicializa();
+		this.inicializa();
 	}
 	
 	public String alteraExameUrina() {
@@ -127,10 +140,9 @@ public class ManterExameUrinaMB implements Serializable{
 		examesLista = new ArrayList<>();
 	}
 	
-	/*public void aoSelecionarTipoExameUrina(){
-		exameUrina.setTipoExameUrina(tipoExameUrina.getTipo());
-		exameUrinaService.setTipoExameUrinaDAO(tipoExameUrina);
-	}*/
+	public void aoSelecionarTipo(){
+		exameUrinaService.getTipoExameUrinaDAO();
+	}
 	
 	/*public List<TipoExameUrina> completeTipoExameUrina(String query){
 		if (tipos == null) 
