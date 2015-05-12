@@ -55,10 +55,16 @@ public class ManterCateterismoMB implements Serializable {
 	
 
 	@PostConstruct
-    public void init() {
+    public String initListar() {
 		listExames = new ArrayList<Cateterismo>();
 		listMedico = new ArrayList<Medico>();
-
+		return URL_LISTAR_EXAMES;
+	}
+	
+	@PostConstruct
+    public String initManter() {
+		exame = new Cateterismo();
+		return URL_MANTER_EXAMES;
 	}
 	
 	public void busca() {
@@ -75,8 +81,9 @@ public class ManterCateterismoMB implements Serializable {
 		return URL_LISTAR_EXAMES;
 	}
 	
-	public void excluiExame(){
+	public String excluiExame(){
 		cateterismoService.excluiExame(exame);
+		return URL_LISTAR_EXAMES;
 	}
 	
 	public void alteraExame(){

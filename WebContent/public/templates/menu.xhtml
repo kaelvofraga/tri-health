@@ -9,23 +9,23 @@
 
 	<h:form >
 		<p:panelMenu style="width:200px"> 
-			<p:submenu label="Usuário">
+			<p:submenu label="Usuï¿½rio">
 				<p:menuitem value="Perfil" url="/private/pages/manterUsuario.jsf" />
-				<p:submenu label="Perfil de Emergência">
+				<p:submenu label="Perfil de Emergï¿½ncia">
 					<p:menuitem value="Listar" url="/private/pages/listarPerfilEmergencia.jsf" action="#{manterPerfilEmergenciaMB.init}"/>
 					<p:menuitem value="Cadastrar" url="/private/pages/manterPerfilEmergencia.jsf" action="#{manterPerfilEmergenciaMB.init}"/>
 				</p:submenu>
 
-				<p:menuitem value="Editar Perfil do Usuário"  action="#{manterPerfilUsuarioMB.atualizaUsuarioSecao}" />
+				<p:menuitem value="Editar Perfil do Usuï¿½rio"  action="#{manterPerfilUsuarioMB.atualizaUsuarioSecao}" />
 			</p:submenu>
 			
 			<p:separator />
 			<p:submenu label="Medidas">
-				<p:submenu label="Pressão Arterial">
+				<p:submenu label="Pressï¿½o Arterial">
 					<p:menuitem value="Listar" url="/private/pages/listarPressaoArterial.jsf" action="#"/>
 					<p:menuitem value="Manter" url="/private/pages/manterPressaoArterial.jsf" action="#"/>
 				</p:submenu>		
-				<p:submenu label="Alimentação">
+				<p:submenu label="Alimentaï¿½ï¿½o">
 					<p:menuitem value="Listar" url="/private/pages/listarRefeicao.jsf" action="#{listarRefeicaoMB.init}"/>
 					<p:menuitem value="Manter" url="/private/pages/manterRefeicoes.jsf" action="#{manterRefeicoesMB.init}"/>
 				</p:submenu>			
@@ -33,25 +33,25 @@
 					<p:menuitem value="Listar" url="/private/pages/listarPeso.jsf" action="#{manterPesooMB.init}"/>
 					<p:menuitem value="Cadastrar" url="/private/pages/manterPeso.jsf" action="#{manterPesooMB.init}"/>
 				</p:submenu>
-				<p:submenu label="Dimensões Corporais">
+				<p:submenu label="Dimensï¿½es Corporais">
 					<p:menuitem value="Listar" action="#{manterDimensoesCorporaisMB.initListar}"/>
 					<p:menuitem value="Cadastrar" action="#{manterDimensoesCorporaisMB.initManter}"/>
 				</p:submenu>
 				
-				<p:submenu label="Atividades Físicas">
+				<p:submenu label="Atividades Fï¿½sicas">
 					<p:menuitem value="Listar" url="/private/pages/listarAtividadesFisicas.jsf" action="#{manterAtividadesMB.init}"/>
 					<p:menuitem value="Nova" url="/private/pages/manterAtividadesFisicas.jsf" action="#{manterAtividadesMB.init}"/>
 				</p:submenu>				
 			</p:submenu>
 			
 			<p:separator />
-			<p:submenu label="Histórico de Saúde">
+			<p:submenu label="Histï¿½rico de Saï¿½de">
 			<p:submenu label="Uso de Medicamentos">
 					<p:menuitem value="Listar" action="#{manterUsoMedicamentoMB.initListar}"/>
 					<p:menuitem value="Cadastrar" action="#{manterUsoMedicamentoMB.initManter}"/>
 			</p:submenu>
-				<p:menuitem value="Procedimentos Médicos" url="#" />
-				<p:menuitem value="Consultas Médicas" url="#" />
+				<p:menuitem value="Procedimentos Mï¿½dicos" url="#" />
+				<p:menuitem value="Consultas Mï¿½dicas" url="#" />
 			</p:submenu>
 			
 			<p:separator />
@@ -62,8 +62,8 @@
 					<p:menuitem value="Cadastrar" url="/private/pages/manterExameUrina.xhtml" />
 				</p:submenu>
 				<p:submenu label="Cateterismos">
-					<p:menuitem value="Listar" url="/private/pages/listarCateterismos.xhtml" action="#{manterCateterismoMB.init}"/>
-					<p:menuitem value="Cadastrar" url="/private/pages/manterCateterismos.xhtml" action="#{manterCateterismoMB.init}"/>
+					<p:menuitem value="Listar" action="#{manterCateterismoMB.initListar}"/>
+					<p:menuitem value="Cadastrar" action="#{manterCateterismoMB.initManter}"/>
 				</p:submenu>								
 			</p:submenu>
 			
