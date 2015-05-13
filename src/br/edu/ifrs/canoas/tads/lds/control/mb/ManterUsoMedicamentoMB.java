@@ -45,14 +45,14 @@ public class ManterUsoMedicamentoMB implements Serializable {
 	//Form medicamentos.
 	private List<Medicamento> medicamentos;
 	
-	@PostConstruct
+	/*@PostConstruct
 	public void init(){
 		medicamentoUsuario = new MedicamentoUsuario();
 		criterioMedicamento="";
 		medicamentosLista = new ArrayList<>();
 		medicamentoUsuario.setMedicamento(new Medicamento());	
 		medicamentos = new ArrayList<>();
-	}
+	}*/
 	
 	/*Metodo que limpa MedicamentoUsuario,criterio de busca, lista de medicamnetousuario ao entrar na view de Listar*/
 	public String initListar(){
