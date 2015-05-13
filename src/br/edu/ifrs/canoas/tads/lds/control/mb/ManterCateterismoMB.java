@@ -61,7 +61,6 @@ public class ManterCateterismoMB implements Serializable {
 		return URL_LISTAR_EXAMES;
 	}
 	
-	@PostConstruct
     public String initManter() {
 		exame = new Cateterismo();
 		return URL_MANTER_EXAMES;
