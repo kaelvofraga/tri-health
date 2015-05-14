@@ -16,6 +16,8 @@ import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
 
 import br.edu.ifrs.canoas.tads.lds.bean.Consulta;
+import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
+import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Medico;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterConsultasService;
@@ -28,7 +30,7 @@ import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 public class ManterConsultasMB implements Serializable {
 	private static final long serialVersionUID = -6833487765093285579L;
 	private static final String URL_LISTAR = "/private/pages/listarConsulta.jsf";
-	private static final String URL_CADASTRAR = "/private/pages/manterConsulta.jsf";
+	private static final String URL_MANTER = "/private/pages/manterConsulta.jsf";
 	
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
@@ -37,40 +39,111 @@ public class ManterConsultasMB implements Serializable {
 	private ManterConsultasService consultaService;
 	
 	@Inject 
-	private Consulta consulta;	
+	private Consulta consultaMedica;	
 
-	private List<Consulta> consultas;
-	
+	// Lista da listagem
+		private List<Consulta> consultasMedicas;
+		
+	// Lista do autoComplete
+	private List<Medico> medicos;
+		
+	//string de busca
+	private String criterioConsulta;
 	
 	public ManterConsultasMB() {
-		consulta = new Consulta();
 	}
 	
-	@PostConstruct
-	public void init(){
-		/** Inicia Lista **/
-		//consultas = consultaService.buscaTodos();
-		
-	}
-
-	public void busca(){
-//		consultas = consultaService.busca...
-	}
-
-	public void salva(){
-		Usuario user = gerenciarLoginMB.getUsuario();
-		consultaService.insere(consulta, user);
-		consulta = new Consulta();
-	}
-
-	public void altera(){
-		consultaService.salva(consulta);
-	}
-	
-	public String exclui(){
-		consultaService.exclui(consulta);
-		System.out.println("Excluido!!!");
+	/*
+	 * Metodo que limpa Consulta,criterio de busca, lista de
+	 * Consulta ao entrar na view de Listar
+	 */
+	public String initListar() {
+		criterioConsulta = "";
+		clear();
 		return URL_LISTAR;
+	}
+
+	/*
+	 * Metodo que limpaConsulta, e lista de Consulta
+	 * do autocomplete da view de manter
+	 */
+	public String initManter() {
+		clear();
+		return URL_MANTER;
+	}
+	
+	/* Metodo que inicializa as variaveis apos Salvar */
+	private void clear() {
+		consultaMedica = new Consulta();
+		consultasMedicas = new ArrayList<>();
+	}
+	
+	/*
+	 * Metodo que chama o service para salvar a Consulta para o Usuario que
+	 * esta logado
+	 */
+	public void salvaConsulta(){
+		Usuario user = gerenciarLoginMB.getUsuario();
+		consultaService.insere(consultaMedica, user);
+		this.clear();
+	}
+
+	/*
+	 * Metodo que chama o service para alterar a Consulta passando ela
+	 * como parametro retorna a url de listagem.
+	 */
+	public String alteraConsulta(){
+		consultaService.salva(consultaMedica);
+		return URL_LISTAR;
+	}
+	
+	/*
+	 * Metodo que chama o service para excluir a Consulta e retorna
+	 * URL listar ou manter
+	 */
+	public String exclui(){
+		if (consultaService.exclui(consultaMedica)) {
+			this.busca();
+			return URL_LISTAR;
+		}
+		return URL_MANTER;
+	}
+	
+	/*
+	 * Metodo que pega o evento de selecão da linha da tabela por parametro e
+	 * carrega na view manter o objeto Medicamentousuario selecionado.
+	 */
+	public void onRowSelect(SelectEvent event) throws IOException {
+		this.consultaMedica = (Consulta) event.getObject();
+        FacesContext.getCurrentInstance().getExternalContext().redirect("manterConsulta.xhtml");
+    }
+
+	public boolean isAtualizacao(){
+		return consultaMedica != null && consultaMedica.getId() != null;
+	}
+	
+	/*
+	 * Metodo que realiza o autocomplete do input de Medico na view de
+	 * manterUsoMedicamentos
+	 */
+	public List<Medico> completeMedico(String query) {
+		if (medicos.isEmpty())
+			medicos = consultaService.buscaMedico(query);
+
+		List<Medico> medicosBusca = new ArrayList<Medico>();
+
+		for (int i = 0; i < medicos.size(); i++) {
+			Medico medico = medicos.get(i);
+			if (medico.getNome().trim().toLowerCase().startsWith(query)) {
+				medicosBusca.add(medico);
+			}
+		}
+		return medicosBusca;
+	}
+	
+	/* Metodo de busca da view Listar */
+	public void busca() {
+		consultasMedicas = consultaService.busca(criterioConsulta);
 	}
 	
 	public String voltarParaListar(){
@@ -78,44 +151,35 @@ public class ManterConsultasMB implements Serializable {
 	}
 	
 	public String novaConsulta(){
-		consulta = new Consulta();
-		return URL_CADASTRAR;
-	}
-	
-	public void onRowSelect(SelectEvent event) throws IOException {
-		this.consulta = (Consulta) event.getObject();
-        FacesContext.getCurrentInstance().getExternalContext().redirect("manterConsulta.xhtml");
-    }
-	
-	public boolean isAtualizacao(){
-		return consulta != null && consulta.getId() != null;
+		consultaMedica = new Consulta();
+		return URL_MANTER;
 	}
 	
 	/*
 	 * Gets e Sets
 	 */	
-	public Consulta getConsulta() {
-		return consulta;
+
+	public List<Medico> getMedicos() {
+		return medicos;
 	}
 
-	public void setConsulta(Consulta consulta) {
-		this.consulta = consulta;
+	public void setMedicos(List<Medico> medicos) {
+		this.medicos = medicos;
 	}
 
-	public List<Consulta> getListaConsultas() {
-		return consultaService.buscaTodos();
+	public Consulta getConsultaMedica() {
+		return consultaMedica;
 	}
 
-	public List<Consulta> getConsultas() {
-		return this.consultas;
+	public void setConsultaMedica(Consulta consultaMedica) {
+		this.consultaMedica = consultaMedica;
 	}
 
-	public void setConsultas(List<Consulta> consultas) {
-		this.consultas = consultas;
+	public List<Consulta> getConsultasMedicas() {
+		return consultasMedicas;
 	}
-	
-	public List<Medico> completeMedico(String query) {
-        return consultaService.getMedico(query);
-    }
 
+	public void setConsultasMedicas(List<Consulta> consultasMedicas) {
+		this.consultasMedicas = consultasMedicas;
+	}
 }

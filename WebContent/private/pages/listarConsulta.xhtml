@@ -14,8 +14,8 @@
 
 		<p:panel header="Lista de Consulta" id="painel" style="height=200px">
 			<p:dataTable id="tabela" var="item"
-				value="#{manterConsultasMB.listaConsultas}" selectionMode="single"
-				selection="#{manterConsultasMB.consulta}" rowKey="#{item.sintomas}">
+				value="#{manterConsultasMB.consultasMedicas}" selectionMode="single"
+				selection="#{manterConsultasMB.consultaMedica}" rowKey="#{item.sintomas}">
 
 				<p:ajax event="rowSelect"
 					listener="#{manterConsultasMB.onRowSelect}" />

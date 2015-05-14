@@ -17,28 +17,28 @@
 			<h:panelGrid columns="2">
 				<p:outputLabel for="sintomas" value="Sintomas:" />
 				<p:inputText id="sintomas"
-					value="#{manterConsultasMB.consulta.sintomas}" />
+					value="#{manterConsultasMB.consultaMedica.sintomas}" />
 
 				<p:outputLabel for="diagnostico" value="Diagnóstico:" />
 				<p:inputText id="diagnostico"
-					value="#{manterConsultasMB.consulta.diagnostico}" />
+					value="#{manterConsultasMB.consultaMedica.diagnostico}" />
 
 				<p:outputLabel for="data" value="Data:" />
-				<p:calendar id="data" value="#{manterConsultasMB.consulta.data}" />
+				<p:calendar id="data" value="#{manterConsultasMB.consultaMedica.data}" />
 
 				<p:outputLabel value="Médico" for="medico" />
 				<p:autoComplete id="medico" dropdown="true"
-					value="#{manterConsultasMB.consulta.medico}" 
+					value="#{manterConsultasMB.consultaMedica.medico}" 
 					completeMethod="#{manterConsultasMB.completeMedico}" converter="entityConverter" 
 					var="m" itemLabel="#{m.nome}" itemValue="#{m}" forceSelection="true"/>					
 			</h:panelGrid>
 
 			<h:panelGroup>
-				<p:commandButton value="Salvar" action="#{manterConsultasMB.salva}"
+				<p:commandButton value="Salvar" action="#{manterConsultasMB.salvaConsulta}"
 					rendered="#{not manterConsultasMB.atualizacao}" ajax="true"
 					update="painel" />
 				<p:commandButton value="Salvar Alterações"
-					action="#{manterConsultasMB.altera}"
+					action="#{manterConsultasMB.alteraConsulta}"
 					rendered="#{manterConsultasMB.atualizacao}" ajax="true"
 					update="painel" />
 				<p:commandButton value="Voltar" immediate="true"
