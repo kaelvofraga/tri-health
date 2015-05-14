@@ -12,60 +12,67 @@
 	<ui:define name="content">
 
 		<h1 class="lead">Controle de Peso</h1>
-
+		
 		<p:accordionPanel multiple="true">
-			<p:tab title="Listar">
+			<p:tab title="Listar Peso">
 
-				<h:panelGroup layout="block" id="atividades">
-
+				<h:panelGroup layout="block" id="peso">
+				
 					<h:panelGroup layout="block" styleClass="form-group">
-						<p:outputLabel for="peso" value="Pesquisa" />
-						<p:inputText id="peso" styleClass="form-control"
-							value="" placeholder="Informe algo para pesquisar" />
+						<p:outputLabel for="buscaPeso" value="Busca" />
+						<p:inputText id="buscaPeso" styleClass="form-control"
+							value="#{manterPesoMB.buscaPeso}" 
+							placeholder="Entre com sua pesquisa aqui" />
 					</h:panelGroup>
 
 					<h:panelGroup layout="block" styleClass="form-group">
 
-						<p:commandButton value="Busca" type="submit" action="#"
-							ajax="true" update="tab-peso" immediate="false" icon="ui-icon-search" />
+						<p:commandButton 
+							value="Busca" 
+							type="submit" 
+							action="#{manterPesoUsuarioMB.busca}"
+							ajax="true" 
+							update="tab-peso" 
+							immediate="false" 
+							icon="ui-icon-search" />				
 
 					</h:panelGroup>
 
-					<p:dataTable selectionMode="single"
-						emptyMessage="Não há registros de peso." var="pesoUsuario"
-						id="tab-peso">
+
+					<p:dataTable 
+						id="tab-peso" 
+						selectionMode="single"
+						emptyMessage="Nenhum Registro Encontrado." 
+						var="listPeso" 
+						selection="#{manterPesoMB.pesoUsuario}" 
+						value="#{manterPesoMB.pesoUSuarioList}"
+						rowKey="#{listPeso.id}"
+						reflow="true">
 						
-						<p:column headerText="Data">
-							<h:outputText value="#{pesoUsuario.peso.nota}" />
+						<p:ajax event="rowSelect" listener="#{manterPesoMB.onRowSelect}"
+							oncomplete="/private/pages/manterPeso.jsf" />
+						<p:column headerText="Data" id="colData">
+							<h:outputText value="#{listPeso.data}" />
+						</p:column>
+						<p:column headerText="Valor" id="colPeso">
+							<h:outputText value="#{listPeso.valor}" />
+						</p:column>
+						<p:column headerText="Udm" id="colUdm">
+							<h:outputText value="#{listPeso.udm.descricao}" />
+						</p:column>
+						<p:column headerText="Nota" id="colNota">
+							<h:outputText value="#{listPeso.nota}" />
 						</p:column>
 
-						<p:column headerText="Peso">
-							<h:outputText value="#{PesoUsuario.data}" />
-						</p:column>
-						<p:column headerText="Nota">
-							<h:outputText value="#{pesoUsuario.peso.nota}" />
-						</p:column>
-
-						<p:column headerText="Editar">
-							<h:outputText value="#{PesoUsuario.data}" />
-						</p:column>
-						<p:column headerText="Excluir">
-							<h:outputText value="#{pesoUsuario.peso.nota}" />
-						</p:column>
-											
 					</p:dataTable>
-					<br />
-
-				</h:panelGroup>
-
-				<p:commandButton value="Nova" icon="ui-icon-plus" ajax="true" />
-
-			</p:tab>
+					<br/>
+				 </h:panelGroup>
+			<p:commandButton value="Novo Peso" action="#{manterPesoMB.novoPesoUsuario}" icon="ui-icon-plus" ajax="true" />
+		  </p:tab>
 
 		</p:accordionPanel>
 
 	</ui:define>
-
 </ui:composition>
 
 

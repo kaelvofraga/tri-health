@@ -1,65 +1,106 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="/public/templates/template.xhtml">
+
 	<ui:define name="metadata" />
+
 	<ui:define name="content">
-	
+
 		<h1 class="lead">Controle de Peso</h1>
+		
 		<p:accordionPanel multiple="true">
-			<p:tab title="Cadastrar">
-				<h:panelGroup layout="block" id="peso">
-					<h:panelGrid columns="2" styleClass="mtable">
-					<h:panelGroup layout="block" styleClass="form-group pull-left">
-							<p:outputLabel for="data" value="Data:" />
-							<br />
-							<p:calendar id="data" pattern="dd/MM/yyyy HH:mm:ss"
-								placeholder="Selecione uma Data" effect="fold"
-								icon="glyphicon-calendar" var="data"
-								itemLabel="#{pesoUsuario}"
-								itemValue="#{manterPesoMB.pesoUsuario.data}" />
-					</h:panelGroup>
-					</h:panelGrid>
-					<h:panelGrid columns="3" styleClass="mtable">	
+		
+		<p:tab title="Cadastrar">
+		
+			<h:panelGroup layout="block" styleClass="form-group" id="peso">
+				<h:panelGrid columns="2" styleClass="mtable">
+												
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="valor" value="Valor:" />
 							<br/>
-								<p:inputText id="valor" cols="50"
-									var="pesoUsuario" itemLabel="#{pesoUsuario}"
-									itemValue="#{manterPesoMB.pesoUsuario.peso.valor}"
-									placeholder="Informe o valor..." /><b>Kg</b>
+							<pe:inputNumber id="valor" symbolPosition="s"
+								style="width:80%;"
+								decimalSeparator="," thousandSeparator="."
+								value="#{manterPesoMB.pesoUsuario.valor}"
+								required="true" requiredMessage="Peso deve ser informado."
+								var="valor" itemLabel="#{pesoUsuario.valor}"
+								itemValue="#{pesoUsuario.valor}" >
+							</pe:inputNumber>
+	    				</h:panelGroup>
+						
+						
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="udm" value="Unidade de Medida:" />
+							<br/>
+							<p:selectOneMenu id="udm"
+								value="#{manterPesoMB.pesoUsuario.udm}" 
+								style="width:90%;"
+								required="true" requiredMessage="Um tipo para a unidade de medida deve ser escolhido." >
+								<p:ajax listener="#{manterPesoMB.onSelectUdm}" />
+								<f:selectItem itemLabel="Selecione..." itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems
+									value="#{manterPesoMB.udmLista}"
+									var="udm" itemLabel="#{udm.descricao}"
+									itemValue="#{udm}" />
+							</p:selectOneMenu>
 						</h:panelGroup>
-					</h:panelGrid>
-					
-					<h:panelGroup layout="block" styleClass="form-group">
-						<p:outputLabel for="nota" value="Nota:" />
-						<br />
-						<p:inputTextarea id="nota" rows="6" cols="50"
-							var="peso" itemLabel="#{peso}"
-							itemValue="#{manterPesoMB.pesoUsuario.nota}"
-							placeholder="Informe algum comentario..." />
+						
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="data"
+								value="Data" />
+							<br/>
+							<p:calendar id="data"
+								value="#{manterPesoMB.pesoUsuario.data}"
+								pattern="dd/MM/yyyy HH:mm:ss"
+								placeholder="Informe a data da medida"
+								size="20" effect="fold" icon="glyphicon-calendar" 
+								required="true" requiredMessage="Uma data deve ser estipulada."
+							/>
+	   					</h:panelGroup>
+	   					
+	   					<br/>		
+	    	</h:panelGrid>
+	    				<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="observacoes" value="Observações:" />
+							<br/>
+						     <p:inputTextarea id="observacoes" rows="5" cols="89" counter="obs" maxlength="100" 
+							 value="#{manterPesoMB.pesoUsuario.nota}"
+							 placeholder="Insire aqui uma observação." >
+							</p:inputTextarea>
+							<h:outputText id="obs" />
+						</h:panelGroup>
+						
+						
+					<h:panelGroup layout="block" styleClass="form-group" id="buttons">
 					</h:panelGroup>
-					<h:panelGroup layout="block" styleClass="form-group">
 
-						<h:panelGroup layout="block" styleClass="form-group pull-left">
-							<p:commandButton value="Salvar" action="#{manterPesoMB.salvaPeso}" ajax="false"/>
-							<p:commandButton value="Editar" action="#" ajax="true"
-								icon="ui-icon-pencil" />
-						</h:panelGroup>
+					<h:panelGroup layout="block" styleClass="form-group pull-left">
+						
+		    			   <p:commandButton value="Salvar"
+								action="#{manterPesoMB.salvaPeso}" 
+								ajax="true" update="peso" icon="ui-icon-disk">
+						   </p:commandButton>		
+				    </h:panelGroup> 
+						
+		</h:panelGroup>
+				<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" >
+					</p:commandButton>	
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close">
+				    </p:commandButton>		
+					</p:confirmDialog> 
+		</p:tab>
 
-						<h:panelGroup layout="block" styleClass="form-group pull-right">
-							<p:commandButton value="Cancelar" action="#"
-								ajax="false" icon="ui-icon-extlink" />
-						</h:panelGroup>
-
-					</h:panelGroup>
-
-				</h:panelGroup>
-			</p:tab>
 		</p:accordionPanel>
 	</ui:define>
 </ui:composition>

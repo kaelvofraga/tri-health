@@ -1,4 +1,5 @@
 package br.edu.ifrs.canoas.tads.lds.model.dao;
+/*package br.edu.ifrs.canoas.tads.lds.model.dao;
 
 import java.io.Serializable;
 import java.util.List;
@@ -8,13 +9,23 @@ import javax.ejb.Stateless;
 import br.edu.ifrs.canoas.tads.lds.bean.Peso;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 
+<<<<<<< Upstream, based on origin/master
 
+=======
+	/**
+	 * * Classe que busca dados do banco
+	 * /** 
+	 * @author Luana
+	 * @version 06/05/2015
+	 */
+	 /*
+>>>>>>> e1bb03f Alteração Peso + import
 @Stateless
 public class PesoDAO extends BaseDAO<Peso, Long> implements Serializable {
 
 	/**
 	 * 
-	 */
+	
 	private static final long serialVersionUID = -7932771645088001580L;
 
 	@SuppressWarnings("unchecked")
@@ -28,5 +39,6 @@ public class PesoDAO extends BaseDAO<Peso, Long> implements Serializable {
 		         + "  where au.usuario.id = :u) ")
 		         .setParameter("usuario", u.getId()).getResultList();
 	}
-}	
+}
 
+*/
