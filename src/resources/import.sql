@@ -107,3 +107,4 @@ insert into Idioma (id, nome) values (1002, 'Espanhôl' );
 insert into Idioma (id, nome) values (1003, 'Francês' );
 insert into Idioma (id, nome) values (1004, 'Alemão' );
 insert into Idioma (id, nome) values (1005, 'Mandarin' );
+insert into Idioma (id, nome) values (1005, 'Japonês' );
