@@ -13,7 +13,24 @@
 
 		<h1 class="lead">Listar Cateterismos</h1>
 		<h:panelGroup layout="block" styleClass="form-group" id="Medidas">
+			<h:panelGroup layout="block" styleClass="form-group">
+						<p:outputLabel for="criterio_exame" value="Pesquisa" />
+						<p:inputText id="criterio_exame" styleClass="form-control"
+							value="#{manterCateterismoMB.criterio}" 
+							placeholder="Pesquise aqui" />
+					</h:panelGroup>
 
+					<h:panelGroup layout="block" styleClass="form-group">
+
+						<p:commandButton value="Busca" type="submit" action="#{manterCateterismoMB.busca}"
+							ajax="true" update="tableCateterismos" immediate="false" icon="ui-icon-search" />
+
+						<p:commandButton value="Limpar filtro" type="submit" action="#{manterCateterismoMB.clearTable}"
+							ajax="true" update="tableCateterismos,criterio_exame"
+							immediate="false" icon="ui-icon-refresh" />
+
+					</h:panelGroup>
+			
 		<p:dataTable id="tableCateterismos" 
 						selectionMode="single"
 						emptyMessage="Nenhum Registro Encontrado." 
@@ -23,7 +40,7 @@
 						rowKey="#{exame.id}"
 						reflow="true"
 						 >
-			<p:ajax event="rowSelect" listener="#{manterCateterismoMB.onRowSelect}" oncomplete="manterCateterismos"/>
+			<p:ajax event="rowSelect"  listener="#{manterCateterismoMB.onRowSelect}" oncomplete="manterCateterismos"/>
 
 		    <p:column headerText="Data Internação">
 		        <h:outputText value="#{exame.dataInternacao}" />

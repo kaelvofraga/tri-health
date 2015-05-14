@@ -16,6 +16,7 @@ import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
+import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Cateterismo;
 import br.edu.ifrs.canoas.tads.lds.bean.Medico;
 import br.edu.ifrs.canoas.tads.lds.control.service.GerenciarCateterismosService;
@@ -67,8 +68,13 @@ public class ManterCateterismoMB implements Serializable {
 	}
 	
 	public void busca() {
-		listExames = cateterismoService.busca("");
-		System.out.println(listExames.size());
+		listExames = cateterismoService.busca(this.criterio);
+	}
+	
+	public void clearTable(){
+		exame = new Cateterismo();
+		this.criterio = "";
+		this.busca();
 	}
 
 	public String novo(){
@@ -90,7 +96,6 @@ public class ManterCateterismoMB implements Serializable {
 	}
 	
 	public void salvaExame() {
-		System.out.println("DATAS:"+exame.getDataInternacao()+exame.getDataAlta());
 		exame.setUsuario(gerenciarLoginMB.getUsuario());
 		cateterismoService.salvaCateterismo(exame);
 	
@@ -130,7 +135,7 @@ public class ManterCateterismoMB implements Serializable {
 	
     public void onRowSelect(SelectEvent event) throws IOException {
     	this.exame = (Cateterismo) event.getObject();
-		FacesContext.getCurrentInstance().getExternalContext().redirect("manterCateterismos.xhtml");
+		FacesContext.getCurrentInstance().getExternalContext().redirect("manterCateterismos.jsf");
     }
  
     public void onRowUnselect(UnselectEvent event) {

@@ -31,7 +31,12 @@ public class GerenciarCateterismosService {
 
 	public boolean salvaCateterismo(Cateterismo cateterismo) {
 		
-		if (this.validaExame(cateterismo)) { 
+		if (this.validaExame(cateterismo)) { 			
+			if(cateterismo.getDataInternacao().after(cateterismo.getDataAlta())){
+				Mensagens.define(FacesMessage.SEVERITY_ERROR, "Cateterismo.cadastro.data.erro");
+				return false;
+			}
+			
 			cateterismosDao.insere(cateterismo);
 			Mensagens.define(FacesMessage.SEVERITY_INFO, "Cateterismo.cadastro.sucesso");
 			return true;

@@ -21,18 +21,12 @@ public class CateterismosDAO extends BaseDAO<Cateterismo, Long>{
 	@SuppressWarnings("unchecked")
 	public List<Cateterismo> buscaPorCriterio(String criterio){
 		return em.createQuery(
-		         "SELECT u "
+		         "SELECT c "
 		         + "FROM Cateterismo c "
-		         + "INNER JOIN MEDICO m "
-		         + "ON m.ID_MEDICO = c.ID_MEDICO_SOLICITANTE "
-		         + "INNER JOIN MEDICO m2 "
-		         + "ON m2.ID_MEDICO = c.ID_MEDICO_RESPONSAVEL "
-		         + "WHERE lower(m.nome) like '%:nome%' "
-		         + " or lower (m2.nome) like '%:nome2%' "
-		         + " or lower (c.laudo) like '%:laudo%' ")
-		         .setParameter("nome", criterio.trim().toLowerCase())
-		         .setParameter("nome2", criterio.trim().toLowerCase())
-		         .setParameter("laudo", criterio.trim().toLowerCase())
+		         + "WHERE lower(c.observacoes) LIKE :obs "
+		         + " or lower (c.laudo) LIKE :laudo")
+		         .setParameter("obs", "%"+criterio.trim().toLowerCase()+"%")
+		         .setParameter("laudo", "%"+criterio.trim().toLowerCase()+"%")
 		         .getResultList();
 	} 
 
