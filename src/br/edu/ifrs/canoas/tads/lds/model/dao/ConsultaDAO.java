@@ -39,7 +39,7 @@ public class ConsultaDAO extends BaseDAO<Consulta, Long> implements Serializable
 									+ "lower(c.sintomas) like '%" + criterioConsulta.toLowerCase() + "%' "
 									+ "OR lower(c.diagnostico) like '%" + criterioConsulta.toLowerCase() + "%' "
 									+ "OR lower(c.medico.nome) like '%" + criterioConsulta.toLowerCase() + "%' "
-									+ "ORDER BY c.medico.nome")
+									+ "ORDER BY c.data DESC")
 					.getResultList();
 		}
 		catch (IllegalArgumentException e) {

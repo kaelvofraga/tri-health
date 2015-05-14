@@ -11,33 +11,60 @@
 	<ui:define name="metadata" />
 
 	<ui:define name="content">
+		<h1 class="lead">Consultas</h1>
 
-		<p:panel header="Lista de Consulta" id="painel" style="height=200px">
-			<p:dataTable id="tabela" var="item"
-				value="#{manterConsultasMB.consultasMedicas}" selectionMode="single"
-				selection="#{manterConsultasMB.consultaMedica}" rowKey="#{item.sintomas}">
+		<p:accordionPanel multiple="true">
+			<p:tab title="Lista de Consultas">
 
-				<p:ajax event="rowSelect"
-					listener="#{manterConsultasMB.onRowSelect}" />
-				<f:facet name="header">
-            Consultas Cadastradas
-        </f:facet>
-				<p:column filterBy="#{item.medico.nome}" filterMatchMode="contains" headerText="Medico">
-					<h:outputText value="#{item.medico.nome}" />
-				</p:column>
-				<p:column filterBy="#{item.sintomas}" filterMatchMode="contains" headerText="Sintomas">
-					<h:outputText value="#{item.sintomas}" />
-				</p:column>
-				<p:column filterBy="#{item.diagnostico}" filterMatchMode="contains" headerText="Diagnóstico">
-					<h:outputText value="#{item.diagnostico}" />
-				</p:column>
-				<p:column headerText="Data">
-					<h:outputText value="#{item.data}" />
-				</p:column>
-			</p:dataTable>
-		</p:panel>
-		<p:commandButton value="Nova Consulta" action="#{manterConsultasMB.novaConsulta}" ajax="true" />
+				<h:panelGroup layout="block" id="consultas">
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:outputLabel for="criterio_consulta" value="Pesquisa" />
+						<p:inputText id="criterio_consulta" styleClass="form-control"
+							value="#{manterConsultasMB.criterioConsulta}"
+							placeholder="Pesquise aqui por Medico, sintomas e diagnostico" />
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:commandButton value="Busca" type="submit"
+							action="#{manterConsultasMB.busca}" ajax="true"
+							update="tab-consultas" immediate="false" />
+						<p:commandButton value="Limpa" type="submit"
+							action="#{manterConsultasMB.initListar}" ajax="true"
+							update="tab-consultas,criterio_consulta" immediate="false" />
+					</h:panelGroup>
+
+					<p:dataTable var="item" id="tab-consultas"
+						selectionMode="single"
+						selection="#{manterConsultasMB.consultaMedica}"
+						rowKey="#{item.id}"
+						value="#{manterConsultasMB.consultasMedicas}"
+						emptyMessage="Nenhum Registro Encontrado." reflow="true">
+						<p:ajax event="rowSelect"
+							listener="#{manterConsultasMB.onRowSelect}"
+							oncomplete="/private/pages/manterConsulta.jsf" />
+						<p:column headerText="Medico">
+							<h:outputText value="#{item.medico.nome}" />
+						</p:column>
+						<p:column headerText="Sintomas">
+							<h:outputText value="#{item.sintomas}" />
+						</p:column>
+						<p:column headerText="Diagnóstico">
+							<h:outputText value="#{item.diagnostico}" />
+						</p:column>
+						<p:column headerText="Data">
+							<h:outputText value="#{item.data}" />
+						</p:column>
+
+
+					</p:dataTable>
+					<br />
+				</h:panelGroup>
+				<p:commandButton value="Nova Consulta"
+			action="#{manterConsultasMB.novaConsulta}" ajax="true" />
+			</p:tab>
 		
+		</p:accordionPanel>
 
 	</ui:define>
 

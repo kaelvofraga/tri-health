@@ -24,11 +24,11 @@ public class Consulta extends BaseEntity<Long> implements Serializable  {
 	private Date data;
 
 	@ManyToOne
-	@JoinColumn(name="id_usuario")
+	@JoinColumn(name="USUARIO_ID")
 	private Usuario usuario;
 
 	@ManyToOne
-	@JoinColumn
+	@JoinColumn(name="MEDICO_ID")
 	private Medico medico;/**/
 	
 	/* Aplicação dos Medicamentos (Exemplo de bidirecional)

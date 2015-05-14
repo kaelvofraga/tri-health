@@ -163,6 +163,14 @@ public class ManterConsultasMB implements Serializable {
 		return medicos;
 	}
 
+	public String getCriterioConsulta() {
+		return criterioConsulta;
+	}
+
+	public void setCriterioConsulta(String criterioConsulta) {
+		this.criterioConsulta = criterioConsulta;
+	}
+
 	public void setMedicos(List<Medico> medicos) {
 		this.medicos = medicos;
 	}
