@@ -1,12 +1,12 @@
 insert into Pais (id, nome, nacionalidade) values (1000, 'Brasil','Brasileiro' );
 insert into Pais (id, nome, nacionalidade) values (1001, 'EUA','Americano' );
 insert into UnidadeFederativa (id, nome, id_pais) values (1000, 'Rio Grande do Sul',1000 );
-insert into UnidadeFederativa (id, nome, id_pais) values (1001, 'Nova York',1001 );
+insert into UnidadeFederativa (id, nome, id_pais) values (1001, 'New York',1001 );
 insert into Cidade (id, nome, id_uf) values (1000, 'Canoas',1000 );
 insert into Cidade (id, nome, id_uf) values (1001, 'Albany',1001 );
 insert into Endereco (id, cep, complemento, logradouro, numero, id_cidade) values (1000, '92330-500', 'Casa', 'Rua Um', 541, 1000 );
 insert into Endereco (id, cep, complemento, logradouro, numero, id_cidade) values (1001, '91330-000', 'AP', 'Street One', 542, 1001 );
-insert into usuario(id, email, nome, senha, sobrenome, apelido, telefone, celular , dataNasc, genero, tipoSanguineo , ID_ENDERECO) values (1000, '123@123.123', '123', 'f5bb0c8de146c67b44babbf4e6584cc0','123', '456' ,  '456456456','0909090909', SYSDATE, 'Masculino',  'AB+',1001); 
+insert into usuario(id, email, nome, senha, sobrenome, apelido, telefone, celular , dataNasc, genero, tipoSanguineo , ID_ENDERECO) values (1000, '123@123.123', '123', 'f5bb0c8de146c67b44babbf4e6584cc0','123', '456' ,  '45645645656','0909090909', SYSDATE, 'Masculino',  'AB+',1001); 
 
 insert into medicamento (id, nome) values (1001, 'Paracetamol');
 insert into medicamento (id, nome) values (1002, 'Benegripe');
@@ -98,3 +98,10 @@ INSERT INTO MEDICO VALUES(1003,'RS441','Dr teste 3');
 
 INSERT INTO CONSULTA (id,diagnostico,sintomas,id_usuario,data) values (1001,'Gripe','coriza',1000,sysdate);
 INSERT INTO CONSULTA (id,diagnostico,sintomas,id_usuario,data) values (1002,'Febre','dor no corpo',1000,sysdate);
+
+insert into Idioma (id, nome) values (1000, 'Português' );
+insert into Idioma (id, nome) values (1001, 'Inglês' );
+insert into Idioma (id, nome) values (1002, 'Espanhôl' );
+insert into Idioma (id, nome) values (1003, 'Francês' );
+insert into Idioma (id, nome) values (1004, 'Alemão' );
+insert into Idioma (id, nome) values (1005, 'Mandarin' );
