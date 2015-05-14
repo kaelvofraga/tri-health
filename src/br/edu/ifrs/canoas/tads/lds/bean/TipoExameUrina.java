@@ -1,31 +1,32 @@
 package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Entity;
+
+/**
+ * @author: André Ficht
+ * Proposito da Classe: Classe que representa a entidade dos tipos de exames presentes na Urina.
+ * @author: Alisson Lorscheiter
+ * 
+ *          
+ */
 
 @Entity
 public class TipoExameUrina extends BaseEntity<Long> implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -3763819174766205770L;
-
+	
+	private static final long serialVersionUID = 6235100045027463775L;
+	
 	private String tipo;
-//	private String unidadeMedida;
-//	private String valorReferencia;
+	private String unidadeMedida;
+	private String valorReferencia;
+	
 	
 	public TipoExameUrina() {
 		super();
 	}
-
-	public TipoExameUrina(String tipo){ // String unidadeMedida, 
-//			String valorReferencia) {
-		super();
-		this.tipo = tipo;
-//		this.unidadeMedida = unidadeMedida;
-//		this.valorReferencia = valorReferencia;
-	}
+	
+	
+	/*GETTERS & SETTERS*/
 
 	public String getTipo() {
 		return tipo;
@@ -35,7 +36,7 @@ public class TipoExameUrina extends BaseEntity<Long> implements Serializable{
 		this.tipo = tipo;
 	}
 
-	/*public String getUnidadeMedida() {
+	public String getUnidadeMedida() {
 		return unidadeMedida;
 	}
 
@@ -50,5 +51,10 @@ public class TipoExameUrina extends BaseEntity<Long> implements Serializable{
 	public void setValorReferencia(String valorReferencia) {
 		this.valorReferencia = valorReferencia;
 	}
-*/
+	/*
+	@Override
+	public String toString() {
+		return "TipoExameUrina [tipo=" + tipo + ", unidadeMedida="
+				+ unidadeMedida + ", valorReferencia=" + valorReferencia + "]";
+	}*/
 }

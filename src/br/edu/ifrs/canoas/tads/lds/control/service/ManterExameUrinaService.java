@@ -7,7 +7,7 @@ import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
-import br.edu.ifrs.canoas.tads.lds.bean.ExameUrina;
+import br.edu.ifrs.canoas.tads.lds.bean.ExameUrinaUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAtividade;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoExameUrina;
@@ -42,7 +42,7 @@ public class ManterExameUrinaService {
 		this.tipoExameUrinaDAO = tipoExameUrinaDAO;
 	}
 
-	public boolean salvaExameUrinaUsuario(ExameUrina exameUrina) {
+	public boolean salvaExameUrinaUsuario(ExameUrinaUsuario exameUrina) {
 		
 		exameUrinaDAO.insere(exameUrina);
 		Mensagens.define(FacesMessage.SEVERITY_INFO, "manterExameUrina.cadastro.sucesso");		
@@ -68,18 +68,18 @@ public class ManterExameUrinaService {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<ExameUrina> busca(String criterioExameUrina) {
+	public List<ExameUrinaUsuario> busca(String criterioExameUrina) {
 		if (StrUtil.isNotBlank(criterioExameUrina))
 			return exameUrinaDAO.buscaPorCriterio(criterioExameUrina);
 		else
 			return exameUrinaDAO.buscaTodos();
 	}
 	
-	public void alteraExameUrina(ExameUrina exameUrina) {
+	public void alteraExameUrina(ExameUrinaUsuario exameUrina) {
 		exameUrinaDAO.atualiza(exameUrina);
 	}
 
-	public boolean excluiExameUrina(ExameUrina exameUrina) {
+	public boolean excluiExameUrina(ExameUrinaUsuario exameUrina) {
 		List<Integer> lista = new ArrayList<Integer>();
 		lista = exameUrinaDAO.buscaExameUrinaPorUsuario(exameUrina);//ver
 		

@@ -14,7 +14,7 @@ import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
 
 import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
-import br.edu.ifrs.canoas.tads.lds.bean.ExameUrina;
+import br.edu.ifrs.canoas.tads.lds.bean.ExameUrinaUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAtividade;
@@ -39,7 +39,7 @@ public class ManterExameUrinaMB implements Serializable{
 	private GerenciarLoginMB gerenciarLoginMB;
 	
 	@Inject
-	private ExameUrina exameUrina;
+	private ExameUrinaUsuario exameUrina;
 	
 	@EJB
 	private ManterExameUrinaService exameUrinaService;
@@ -49,23 +49,23 @@ public class ManterExameUrinaMB implements Serializable{
 	private String criterioExameUrina;
 	
 //listas exames e tipos de exame
-	private List<ExameUrina> examesLista;	
+	private List<ExameUrinaUsuario> examesLista;	
 	private List<TipoExameUrina> tipos;
 	
 //getters and setters
-	public ExameUrina getExameUrina() {
+	public ExameUrinaUsuario getExameUrina() {
 		return exameUrina;
 	}
 
-	public void setExameUrina(ExameUrina exameUrina) {
+	public void setExameUrina(ExameUrinaUsuario exameUrina) {
 		this.exameUrina = exameUrina;
 	}
 	
-	public List<ExameUrina> getExamesLista() {
+	public List<ExameUrinaUsuario> getExamesLista() {
 		return examesLista;
 	}
 
-	public void setExamesLista(List<ExameUrina> examesLista) {
+	public void setExamesLista(List<ExameUrinaUsuario> examesLista) {
 		this.examesLista = examesLista;
 	}
 
@@ -99,8 +99,8 @@ public class ManterExameUrinaMB implements Serializable{
 	//métodos
 
 	public void inicializa() {	//inicialização do listar e manter
-		exameUrina = new ExameUrina();
-		exameUrina.setTipoExameUrina(new TipoExameUrina());
+		exameUrina = new ExameUrinaUsuario();
+		//exameUrina.setTipoExameUrina(new TipoExameUrina());
 		examesLista = new ArrayList<>();
 		tipos = new ArrayList<>();
 		criterioExameUrina="";
@@ -135,7 +135,7 @@ public class ManterExameUrinaMB implements Serializable{
 	}
 	
 	public void clear(){
-		exameUrina = new ExameUrina();
+		exameUrina = new ExameUrinaUsuario();
 //		exameUrina.setTipoExameUrina(new TipoExameUrina());
 		examesLista = new ArrayList<>();
 	}
@@ -166,7 +166,7 @@ public class ManterExameUrinaMB implements Serializable{
 	}
 	
 	public void onRowSelect(SelectEvent event) throws IOException {
-		this.exameUrina = (ExameUrina) event.getObject();
+		this.exameUrina = (ExameUrinaUsuario) event.getObject();
         FacesContext.getCurrentInstance().getExternalContext().redirect("manterExameUrina.jsf");
     }
 	

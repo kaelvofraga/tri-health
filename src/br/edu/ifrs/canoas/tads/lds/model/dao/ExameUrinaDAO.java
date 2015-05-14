@@ -6,12 +6,12 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import br.edu.ifrs.canoas.tads.lds.bean.ExameUrina;
+import br.edu.ifrs.canoas.tads.lds.bean.ExameUrinaUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 
 @Stateless
-public class ExameUrinaDAO extends BaseDAO<ExameUrina, Long>{
+public class ExameUrinaDAO extends BaseDAO<ExameUrinaUsuario, Long>{
 
 	/**
 	 * 
@@ -19,7 +19,7 @@ public class ExameUrinaDAO extends BaseDAO<ExameUrina, Long>{
 	private static final long serialVersionUID = 2520975190400364647L;
 
 	@SuppressWarnings("unchecked")
-	public List<ExameUrina> buscaExameUrinaPorUsuario(Usuario usuario) {
+	public List<ExameUrinaUsuario> buscaExameUrinaPorUsuario(Usuario usuario) {
 		
 		return em.createQuery(
 				"SELECT euu.tipoexameurina "
@@ -29,7 +29,7 @@ public class ExameUrinaDAO extends BaseDAO<ExameUrina, Long>{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<ExameUrina> buscaPorCriterio(String criterioExameUrina) {
+	public List<ExameUrinaUsuario> buscaPorCriterio(String criterioExameUrina) {
 		try {
 			return em.createQuery(
 				"SELECT eu "
@@ -45,7 +45,7 @@ public class ExameUrinaDAO extends BaseDAO<ExameUrina, Long>{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Integer> buscaExameUrinaPorUsuario(ExameUrina exameUrina){
+	public List<Integer> buscaExameUrinaPorUsuario(ExameUrinaUsuario exameUrina){
 		try{
 			return em.createQuery(
 			         "SELECT eu.id " 
