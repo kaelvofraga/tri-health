@@ -36,9 +36,6 @@ public class ManterAtividadesService {
 	@Inject
 	private AtividadeDAO atividadeDAO;
 	
-	/*@Inject
-	private PesoDAO pesoDAO;*/
-	
 	/** 
 	 * @brief Calcula duração da prática de uma atividade através da data inicial e data final.  	 		  
 	 * @param AtividadeUsuario atividadeUsuario: atividade relacionada a um usuário
@@ -57,6 +54,15 @@ public class ManterAtividadesService {
 	}
 	
 	/** 
+	 * @brief Valida se a data Final é maior que a Inicial.	  	 		  
+	 * @param AtividadeUsuario atividadeUsuario: atividade relacionada a um usuário
+	 * @return true se for maior, false se não
+	 * */
+	public boolean validaDatas(AtividadeUsuario atividadeUsuario) {
+		return calculaDuracao(atividadeUsuario) > 0L;
+	}	
+	
+	/** 
 	 * @brief Calcula calorias queimadas durante execução de uma atividade. 	 		  
 	 * @param AtividadeUsuario atividadeUsuario: atividade relacionada a um usuário
 	 * @return double: valor de calorias gastas arredondado para 2 casas decimais
@@ -65,17 +71,22 @@ public class ManterAtividadesService {
 		double massaCorporal = 1.0;
 		
 		//TODO implementar relacionamento com peso do usuário na próxima Sprint
-				
-		return MathUtil.round((atividadeUsuario.getAtividade().getMET() * massaCorporal *  (atividadeUsuario.getDuracao()/60.0)), 2);
-	}
+		
+		if (atividadeUsuario == null) {
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					"Atividade.cadastro.erro.calculaCaloria");
+			return 0.0;
+		}
 	
-	/** 
-	 * @brief Valida se a data Final é maior que a Inicial.	  	 		  
-	 * @param AtividadeUsuario atividadeUsuario: atividade relacionada a um usuário
-	 * @return true se for maior, false se não
-	 * */
-	public boolean validaDatas(AtividadeUsuario atividadeUsuario) {
-		return calculaDuracao(atividadeUsuario) > 0L;
+		if(this.validaDatas(atividadeUsuario) == false){
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					"Atividade.cadastro.erro.dataFinalMenor");
+			return 0.0;
+		}
+		
+		atividadeUsuario.setDuracao(this.calculaDuracao(atividadeUsuario));
+
+		return MathUtil.round((atividadeUsuario.getAtividade().getMET() * massaCorporal * (atividadeUsuario.getDuracao()/60.0)), 2);	
 	}
 	
 	/** 
@@ -172,7 +183,6 @@ public class ManterAtividadesService {
 	 * @param void
 	 * @return List<TipoAtividade>: lista de tipos de atividades ou null se um erro ocorrer
 	 * */
-	@SuppressWarnings("unchecked")
 	public List<TipoAtividade> buscaNomeTipoAtividades() {
 		return tipoAtividadeDAO.buscaTodos();
 	}
@@ -182,7 +192,6 @@ public class ManterAtividadesService {
 	 * @param void
 	 * @return List<Atividade>: lista de atividades ou null se um erro ocorrer
 	 * */
-	@SuppressWarnings("unchecked")
 	public List<Atividade> buscaDescricoesAtividades() {
 		return atividadeDAO.buscaTodos();
 	}
@@ -194,6 +203,13 @@ public class ManterAtividadesService {
 	 * */
 	public void alteraAtividadeUsario(AtividadeUsuario atividadeUsuario) {
 		if (atividadeUsuario != null && atividadeUsuario.getId() != null) {
+
+			if(validaDatas(atividadeUsuario) == false){
+				Mensagens.define(FacesMessage.SEVERITY_ERROR,
+						"Atividade.cadastro.erro.dataFinalMenor");
+				return;
+			}			
+			
 			atividadeUsuarioDAO.atualiza(atividadeUsuario);
 			Mensagens.define(FacesMessage.SEVERITY_INFO,
 					"AtividadeUsuario.alterar.sucesso");

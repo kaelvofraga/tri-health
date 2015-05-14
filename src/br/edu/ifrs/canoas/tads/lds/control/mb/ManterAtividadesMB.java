@@ -55,21 +55,30 @@ public class ManterAtividadesMB implements Serializable {
 	public ManterAtividadesMB() {
 	}
 	
-	@PostConstruct
-	public void init(){		
+	public String initListar(){			
 		/** Busca **/
-		if(criterioAtividadeUsuario == null || criterioAtividadeUsuario.length() == 0)
-			criterioAtividadeUsuario = "";
+		criterioAtividadeUsuario = "";
 		
 		/** Listas **/
-		if(atividadeUsuarioList == null)
-			atividadeUsuarioList = new ArrayList<>();	
-		if(tipoAtividadeList == null)
-			tipoAtividadeList = atvUsuarioService.buscaNomeTipoAtividades();
-		if(atividadeList == null)
-			atividadeList = atvUsuarioService.buscaDescricoesAtividades();
-		if(atividadeListFiltrada == null)
-			atividadeListFiltrada = new ArrayList<>();
+		atividadeUsuarioList = new ArrayList<>();
+		
+		return URL_LISTAR_ATIVIDADES;
+	}
+	
+	@PostConstruct
+	public String initManter(){			
+		/** Zera POJO **/
+		atividadeUsuario = new AtividadeUsuario();
+		
+		/** Listas **/
+		tipoAtividadeList = atvUsuarioService.buscaNomeTipoAtividades();
+		
+		atividadeList = atvUsuarioService.buscaDescricoesAtividades();
+		
+		atividadeListFiltrada = new ArrayList<>();
+		this.filtrarAtividades();	
+		
+		return URL_MANTER_ATIVIDADES;
 	}
 	
 	/** 
@@ -79,21 +88,6 @@ public class ManterAtividadesMB implements Serializable {
 	 * */
 	public void busca(){
 		atividadeUsuarioList = atvUsuarioService.buscaGeral(criterioAtividadeUsuario, gerenciarLoginMB.getUsuario());
-	}
-	
-	/** 
-	 * @brief Zera os atributos do objeto atividadeUsuario e inicializa as listas de atividades e tipos.	  	 		  
-	 * @param void
-	 * @return void
-	 * */
-	private void clear() {
-		/** Zera POJO **/
-		atividadeUsuario = new AtividadeUsuario();
-		
-		/** Zera Listas **/
-		tipoAtividadeList = atvUsuarioService.buscaNomeTipoAtividades();
-		atividadeList = atvUsuarioService.buscaDescricoesAtividades();
-		this.filtrarAtividades();		
 	}
 	
 	/** 
@@ -120,7 +114,7 @@ public class ManterAtividadesMB implements Serializable {
 	public void salvaAtividadeUsuario(){
 		atividadeUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		if(atvUsuarioService.salvaAtividadeUsuario(atividadeUsuario))
-			this.clear();
+			this.initManter();
 	}
 	
 	/** 
@@ -130,20 +124,10 @@ public class ManterAtividadesMB implements Serializable {
 	 * */
 	public String alteraAtividadeUsuario(){
 		atvUsuarioService.alteraAtividadeUsario(atividadeUsuario);
-		this.clear();
+		this.initManter();
 		return URL_LISTAR_ATIVIDADES;
 	}
 
-	/** 
-	 * @brief Retorna da view de cadastro para view de listagem.	  	 		  
-	 * @param void
-	 * @return String: url da listagem de atividades
-	 * */
-	public String voltarParaListar(){
-		this.clear();
-		return URL_LISTAR_ATIVIDADES;
-	}
-	
 	/** 
 	 * @brief Exclui atividade cadastrada do BD.	  	 		  
 	 * @param void
@@ -154,17 +138,7 @@ public class ManterAtividadesMB implements Serializable {
 		this.busca();
 		return URL_LISTAR_ATIVIDADES;
 	}
-	
-	/** 
-	 * @brief Redireciona da view de listagem para view de cadastro.	  	 		  
-	 * @param void
-	 * @return String: url do cadastro de atividades
-	 * */
-	public String novaAtividadeUsuario(){
-		this.clear();
-		return URL_MANTER_ATIVIDADES;
-	}
-	
+
 	/** 
 	 * @brief Verifica se a atividade atual está sendo inserida nova ou atualizada uma antiga.	  	 		  
 	 * @param void
@@ -196,26 +170,12 @@ public class ManterAtividadesMB implements Serializable {
 	}
 	
 	/** 
-	 * @brief Efetua cálculo de calorias queimadas.	  	 		  
+	 * @brief Atribui valor de calorias queimadas a atividadeUsuario que está sendo trabalhada.	  	 		  
 	 * @param void
 	 * @return void
 	 * */
 	public void calculaCalorias(){
-		if (atividadeUsuario == null) {
-			Mensagens.define(FacesMessage.SEVERITY_ERROR,
-					"Atividade.cadastro.erro.calculaCaloria");
-			return;
-		}
-	
-		if(atvUsuarioService.validaDatas(this.atividadeUsuario) == false){
-			Mensagens.define(FacesMessage.SEVERITY_ERROR,
-					"Atividade.cadastro.erro.dataFinalMenor");
-			return;
-		}
-		
-		atividadeUsuario.setDuracao(atvUsuarioService.calculaDuracao(atividadeUsuario));
-		
-		atividadeUsuario.setCalorias(atvUsuarioService.calculaCaloriasQueimadas(atividadeUsuario));			
+		this.atividadeUsuario.setCalorias(atvUsuarioService.calculaCaloriasQueimadas(this.atividadeUsuario));			
 	}	
 	
 	/** 
