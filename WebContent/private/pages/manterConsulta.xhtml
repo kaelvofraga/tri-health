@@ -11,46 +11,104 @@
 	<ui:define name="metadata" />
 
 	<ui:define name="content">
+		<h1 class="lead">Cadastro de Consulta</h1>
 
-		<p:panel header="Cadastro de Consulta" id="painel"
-			style="height=200px">
-			<h:panelGrid columns="2">
-				<p:outputLabel for="sintomas" value="Sintomas:" />
-				<p:inputText id="sintomas"
-					value="#{manterConsultasMB.consultaMedica.sintomas}" />
+		<h:panelGroup layout="block" id="consultas">
 
-				<p:outputLabel for="diagnostico" value="Diagnóstico:" />
-				<p:inputText id="diagnostico"
-					value="#{manterConsultasMB.consultaMedica.diagnostico}" />
+			<h:panelGrid columns="2" styleClass="mtable">
 
-				<p:outputLabel for="data" value="Data:" />
-				<p:calendar id="data" value="#{manterConsultasMB.consultaMedica.data}" />
+				<h:panelGroup layout="block" styleClass="form-group">
+					<p:outputLabel for="sintomas" value="Sintomas" />
+					<p:inputTextarea rows="2" cols="70" id="sintomas" styleClass="form-control"
+						style="width:200px"
+						value="#{manterConsultasMB.consultaMedica.sintomas}"
+						placeholder="Informe os sintomas" 
+						required="true"/>
+				</h:panelGroup>
 
-				<p:outputLabel value="Médico" for="medico" />
-				<p:autoComplete id="medico" dropdown="true"
-					value="#{manterConsultasMB.consultaMedica.medico}" 
-					completeMethod="#{manterConsultasMB.completeMedico}" converter="entityConverter" 
-					var="m" itemLabel="#{m.nome}" itemValue="#{m}" forceSelection="true"/>					
+				<h:panelGroup layout="block" styleClass="form-group">
+					<p:outputLabel for="medico" value="Medico" />
+					<br />
+					<p:autoComplete id="medico"
+						value="#{manterConsultasMB.consultaMedica.medico.nome}" size="35"
+						style="width:200px"
+						completeMethod="#{manterConsultasMB.completeMedico}"
+						var="medico" itemLabel="#{medico}" itemValue="#{medico.nome}"
+						placeholder="Informe o nome do medico" immediate="true"
+						required="true"
+						requiredMessage="Um nome de medico deve ser informado." />
+						
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" styleClass="form-group">
+					<p:outputLabel for="diagnostico" value="Diagnóstico" />
+					<p:inputTextarea rows="2" cols="70" id="diagnostico" styleClass="form-control"
+						style="width:200px"
+						value="#{manterConsultasMB.consultaMedica.diagnostico}"
+						placeholder="Informe o diagnostico"
+						required="true" />
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" styleClass="form-group">
+					<p:outputLabel for="data_consulta" value="Data da Consulta" />
+					<br />
+					<p:calendar id="data_consulta" style="width:200px"
+						value="#{manterConsultasMB.consultaMedica.data}"
+						pattern="dd/MM/yyyy HH:mm:ss"
+						placeholder="Informe a data da consulta" required="true"
+						requiredMessage="Uma data de consulta deve ser informada."
+						size="35" effect="fold" icon="glyphicon-calendar" />
+				</h:panelGroup>
 			</h:panelGrid>
 
-			<h:panelGroup>
-				<p:commandButton value="Salvar" action="#{manterConsultasMB.salvaConsulta}"
-					rendered="#{not manterConsultasMB.atualizacao}" ajax="true"
-					update="painel" />
-				<p:commandButton value="Salvar Alterações"
-					action="#{manterConsultasMB.alteraConsulta}"
-					rendered="#{manterConsultasMB.atualizacao}" ajax="true"
-					update="painel" />
-				<p:commandButton value="Voltar" immediate="true"
-					rendered="#{manterConsultasMB.atualizacao}"
-					action="#{manterConsultasMB.voltarParaListar}" ajax="true"
-					update="painel" />
-				<p:commandButton value="Excluir"
-					rendered="#{manterConsultasMB.atualizacao}" immediate="true"
-					action="#{manterConsultasMB.exclui}" ajax="true" />
+			<h:panelGroup layout="block" styleClass="form-group" id="buttons">
+
+				<h:panelGroup layout="block" styleClass="form-group pull-left">
+					<p:commandButton value="Salvar"
+						rendered="#{not manterConsultasMB.atualizacao}"
+						action="#{manterConsultasMB.salvaConsulta}" ajax="true"
+						update="consultas" icon="ui-icon-disk">
+					</p:commandButton>
+
+					<p:commandButton value="Alterar"
+						rendered="#{manterConsultasMB.atualizacao}"
+						action="#{manterConsultasMB.alteraConsulta}" ajax="false"
+						icon="ui-icon-pencil">
+					</p:commandButton>
+
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" styleClass="form-group pull-right">
+					<p:commandButton value="Excluir"
+						rendered="#{manterConsultasMB.atualizacao}"
+						action="#{manterConsultasMB.exclui}" ajax="true"
+						icon="ui-icon-close" update="msgs">
+						<p:confirm header="Confirmação"
+							message="Tem certeza que deseja apagar a consulta?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+
+					<p:commandButton value="Voltar"
+						rendered="#{manterConsultasMB.atualizacao}"
+						action="#{manterConsultasMB.initListar}" ajax="false">
+					</p:commandButton>
+				</h:panelGroup>
+
 			</h:panelGroup>
-			<p:spacer height="200" />
-		</p:panel>
+
+		</h:panelGroup>
+
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+			<p:commandButton value="Sim" type="button"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
+			</p:commandButton>
+			<p:commandButton value="Não" type="button"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close">
+			</p:commandButton>
+		</p:confirmDialog>
+
+
+
 
 	</ui:define>
 

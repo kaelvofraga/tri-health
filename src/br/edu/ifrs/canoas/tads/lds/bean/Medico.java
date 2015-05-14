@@ -57,6 +57,9 @@ public class Medico extends BaseEntity<Long> implements Serializable{
 	public void setEspecialidades(Collection<EspecialidadeMedica> especialidades) {
 		this.especialidades = especialidades;
 	}
-	
+	@Override
+	public String toString() {
+		return nome;
+	}
 	
 }

@@ -75,6 +75,7 @@ public class ManterConsultasMB implements Serializable {
 	/* Metodo que inicializa as variaveis apos Salvar */
 	private void clear() {
 		consultaMedica = new Consulta();
+		consultaMedica.setMedico(new Medico());
 		consultasMedicas = new ArrayList<>();
 	}
 	
@@ -83,11 +84,10 @@ public class ManterConsultasMB implements Serializable {
 	 * esta logado
 	 */
 	public void salvaConsulta(){
-		Usuario user = gerenciarLoginMB.getUsuario();
-		consultaService.insere(consultaMedica, user);
+		consultaMedica.setUsuario(gerenciarLoginMB.getUsuario());
+		consultaService.salvaConsulta(consultaMedica);
 		this.clear();
 	}
-
 	/*
 	 * Metodo que chama o service para alterar a Consulta passando ela
 	 * como parametro retorna a url de listagem.
@@ -115,7 +115,7 @@ public class ManterConsultasMB implements Serializable {
 	 */
 	public void onRowSelect(SelectEvent event) throws IOException {
 		this.consultaMedica = (Consulta) event.getObject();
-        FacesContext.getCurrentInstance().getExternalContext().redirect("manterConsulta.xhtml");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("../../private/pages/manterConsulta.jsf");
     }
 
 	public boolean isAtualizacao(){
@@ -127,11 +127,12 @@ public class ManterConsultasMB implements Serializable {
 	 * manterUsoMedicamentos
 	 */
 	public List<Medico> completeMedico(String query) {
-		if (medicos.isEmpty())
+		if (medicos == null || medicos.isEmpty())
 			medicos = consultaService.buscaMedico(query);
-
+		
 		List<Medico> medicosBusca = new ArrayList<Medico>();
-
+		System.out.println(	);
+		
 		for (int i = 0; i < medicos.size(); i++) {
 			Medico medico = medicos.get(i);
 			if (medico.getNome().trim().toLowerCase().startsWith(query)) {
