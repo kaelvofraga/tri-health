@@ -44,8 +44,8 @@ public class ManterExameUrinaMB implements Serializable{
 	@EJB
 	private ManterExameUrinaService exameUrinaService;
 	
-	@Inject
-	private TipoExameUrina tipoExameUrina;
+//	@Inject
+//	private TipoExameUrina tipoExameUrina;
 	private String criterioExameUrina;
 	
 //listas exames e tipos de exame
@@ -112,7 +112,7 @@ public class ManterExameUrinaMB implements Serializable{
 	
 	public void salvaExame(){
 		exameUrina.setUsuario(gerenciarLoginMB.getUsuario());
-		exameUrina.setTipoExameUrina(tipoExameUrina);
+//		exameUrina.setTipoExameUrina(tipos);
 		exameUrinaService.salvaExameUrinaUsuario(exameUrina);
 		this.inicializa();
 	}
