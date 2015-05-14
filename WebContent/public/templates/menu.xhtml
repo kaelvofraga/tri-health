@@ -45,7 +45,10 @@
 					<p:menuitem value="Listar" action="#{manterUsoMedicamentoMB.initListar}"/>
 					<p:menuitem value="Cadastrar" action="#{manterUsoMedicamentoMB.initManter}"/>
 			</p:submenu>
-
+			<p:submenu label="Consultas">
+					<p:menuitem value="Listar" action="#{manterConsultasMB.initListar}"/>
+					<p:menuitem value="Cadastrar" action="#{manterConsultasMB.initManter}"/>
+			</p:submenu>
 			<p:separator />
 			<p:submenu label="Exames de Urina" styleClass="nav nav-second-level">
 				<p:menuitem value="Listar" url="/private/pages/listarExameUrina.xhtml" />
