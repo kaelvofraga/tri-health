@@ -43,6 +43,8 @@ insert into AlergiaUsuario (dataPrimeiraOcorrencia, MEDICAMENTOUSUARIO_ID, reaca
 --table udm
 insert into Udm (id, descricao) values (1, 'cm');
 insert into Udm (id, descricao) values (2, 'pol');
+insert into Udm (id, descricao) values (3, 'kg');
+insert into Udm (id, descricao) values (4, 'lbs');
 
 --table tipoMedida
 insert into TipoMedida(id, descricao) values (1, 'Busto');

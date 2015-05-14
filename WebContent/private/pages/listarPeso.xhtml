@@ -16,27 +16,8 @@
 		<p:accordionPanel multiple="true">
 			<p:tab title="Listar Peso">
 
-				<h:panelGroup layout="block" id="peso">
-				
-					<h:panelGroup layout="block" styleClass="form-group">
-						<p:outputLabel for="buscaPeso" value="Busca" />
-						<p:inputText id="buscaPeso" styleClass="form-control"
-							value="#{manterPesoMB.buscaPeso}" 
-							placeholder="Entre com sua pesquisa aqui" />
-					</h:panelGroup>
+					 <h:panelGroup layout="block" id="peso">
 
-					<h:panelGroup layout="block" styleClass="form-group">
-
-						<p:commandButton 
-							value="Busca" 
-							type="submit" 
-							action="#{manterPesoUsuarioMB.busca}"
-							ajax="true" 
-							update="tab-peso" 
-							immediate="false" 
-							icon="ui-icon-search" />				
-
-					</h:panelGroup>
 
 
 					<p:dataTable 

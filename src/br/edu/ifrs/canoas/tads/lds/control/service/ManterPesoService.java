@@ -1,6 +1,5 @@
 package br.edu.ifrs.canoas.tads.lds.control.service;
 
-
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,10 +11,8 @@ import javax.inject.Inject;
 import br.edu.ifrs.canoas.tads.lds.bean.PesoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Udm;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
-import br.edu.ifrs.canoas.tads.lds.bean.ValorMedidaUsuario;
 import br.edu.ifrs.canoas.tads.lds.model.dao.PesoUsuarioDAO;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
-import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
 
 /** 
  * Classe de controle que possui o método salvar, alterar, buscar e excluir
@@ -55,11 +52,6 @@ public class ManterPesoService {
 	
 	public List<PesoUsuario> listaPeso() {
 		return pesoUsuarioDAO.buscaTodos();
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<PesoUsuario> buscaPeso(String pesquisaPeso) {
-			return pesoUsuarioDAO.buscaPorNota(pesquisaPeso);		
 	}
 	
 	

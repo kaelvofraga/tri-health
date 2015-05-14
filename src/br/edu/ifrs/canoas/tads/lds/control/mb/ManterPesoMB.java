@@ -1,6 +1,5 @@
 package br.edu.ifrs.canoas.tads.lds.control.mb;
 
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,8 +14,10 @@ import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
 
+import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.PesoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Udm;
+import br.edu.ifrs.canoas.tads.lds.bean.ValorMedidaUsuario;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterPesoService;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterUdmService;
 
@@ -58,10 +59,6 @@ public class ManterPesoMB implements Serializable {
 		
 	}
 	
-	public void busca(){
-		pesoUSuarioList = pesoService.buscaPeso(buscaPeso);
-	}
-	
 	public void onRowSelect(SelectEvent event) throws IOException {
 		this.pesoUsuario = (PesoUsuario)event.getObject();
 		FacesContext.getCurrentInstance().getExternalContext().redirect("manterPeso.jsf");
@@ -82,9 +79,9 @@ public class ManterPesoMB implements Serializable {
 		this.inicializa();
 	}
 
-	/*public void onSelectUdm(){
+	public void onSelectUdm(){
 		pesoUsuario.setUdm(udm);
-	}*/
+	}
 	
 	public List<Udm> getUdmLista() {
 		if(udmLista == null)
