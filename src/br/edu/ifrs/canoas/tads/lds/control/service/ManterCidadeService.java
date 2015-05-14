@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import br.edu.ifrs.canoas.tads.lds.bean.Cidade;
+import br.edu.ifrs.canoas.tads.lds.bean.UnidadeFederativa;
 import br.edu.ifrs.canoas.tads.lds.model.dao.CidadeDAO;
 
 
@@ -23,6 +24,10 @@ public class ManterCidadeService  {
 	
 	public List<Cidade> buscaCidades() {
 		return  cidadeDAO.buscaTodos();
+	}
+
+	public List<Cidade> buscaCidadesPorUf(UnidadeFederativa unidadeFederativa) {
+		return cidadeDAO.buscaPorUf(unidadeFederativa);
 	}
 	
 

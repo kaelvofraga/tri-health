@@ -21,7 +21,7 @@ public class IdiomasDAO extends BaseDAO<Idioma, Long> {
 						"SELECT au FROM Idioma"
 								+ "WHERE "
 								+ "lower(au.Idioma.nome) like '%" + criterioIdioma.toLowerCase() + "%' "
-								+ "ORDER BY Idioma.nome")
+								+ "ORDER BY Idioma.nome", Idioma.class)
 				.getResultList();
 	}
 

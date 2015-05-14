@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 /**
  * 
  * @author: Miromar J. Lima
- * Proposito da Classe: Compor relação de idioma(s) do usuário 
+ * Propósito da Classe: Compor relação de idioma(s) do usuário 
  *         
  */
 @Entity
@@ -25,6 +25,11 @@ public class Idioma extends BaseEntity<Long> implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	@Override
+	public String toString() {
+		return nome;
 	}
 	
 

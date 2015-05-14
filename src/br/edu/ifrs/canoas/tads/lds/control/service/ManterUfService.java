@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import br.edu.ifrs.canoas.tads.lds.bean.Pais;
 import br.edu.ifrs.canoas.tads.lds.bean.UnidadeFederativa;
 import br.edu.ifrs.canoas.tads.lds.model.dao.UnidadeFederativaDAO;
 
@@ -22,6 +23,10 @@ public class ManterUfService {
 	
 	public List<UnidadeFederativa> buscaUfs() {
 		return  ufDAO.buscaTodos();
+	}
+
+	public List<UnidadeFederativa> buscaUfsPorPais(Pais pais) {
+		return ufDAO.buscaPorPais(pais);
 	}
 	
 

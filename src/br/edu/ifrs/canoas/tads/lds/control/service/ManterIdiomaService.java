@@ -6,9 +6,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import br.edu.ifrs.canoas.tads.lds.bean.Idioma;
-import br.edu.ifrs.canoas.tads.lds.bean.Pais;
 import br.edu.ifrs.canoas.tads.lds.model.dao.IdiomasDAO;
-import br.edu.ifrs.canoas.tads.lds.model.dao.PaisDAO;
 
 /**
  * 

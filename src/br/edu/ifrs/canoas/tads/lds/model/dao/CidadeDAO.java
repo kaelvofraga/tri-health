@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 
 import br.edu.ifrs.canoas.tads.lds.bean.Cidade;
+import br.edu.ifrs.canoas.tads.lds.bean.UnidadeFederativa;
 
 
 /**
@@ -23,7 +24,17 @@ public class CidadeDAO extends BaseDAO<Cidade, Long> {
 						"SELECT au FROM Cidade au "
 								+ "WHERE "
 								+ "lower(au.Cidade.nome) like '%" + criterioCidade.toLowerCase() + "%' "
-								+ "ORDER BY au.Cidade.nome")
+								+ "ORDER BY au.Cidade.nome", Cidade.class)
+				.getResultList();
+	}
+
+	public List<Cidade> buscaPorUf(UnidadeFederativa unidadeFederativa) {
+		return em
+				.createQuery(
+						"SELECT au FROM Cidade au "
+								+ "WHERE "
+								+ "au.uf.id = " + unidadeFederativa.getId()
+								+ "ORDER BY au.nome", Cidade.class)
 				.getResultList();
 	}
 

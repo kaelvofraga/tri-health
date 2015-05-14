@@ -67,12 +67,9 @@ public abstract class BaseDAO<T extends BaseEntity<ID>, ID> implements
 		em.persist(t);
 	}
 
-	@SuppressWarnings("rawtypes")
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
-	public List buscaTodos() {
-		return em.createQuery(
-				"Select entity FROM " + getEntityClass().getSimpleName()
-						+ " entity").getResultList();
+	public List<T> buscaTodos() {
+		return em.createQuery("Select entity FROM " + getEntityClass().getSimpleName() + " entity").getResultList();
 	}
 	
 	public Criteria createCriteria(){

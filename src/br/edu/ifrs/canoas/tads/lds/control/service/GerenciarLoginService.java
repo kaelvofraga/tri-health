@@ -6,6 +6,8 @@ import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
+import org.hibernate.Hibernate;
+
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 import br.edu.ifrs.canoas.tads.lds.model.dao.UsuarioDAO;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
@@ -27,7 +29,9 @@ public class GerenciarLoginService {
 		if (usuarios.size() == 1) {
 			Mensagens.define(FacesMessage.SEVERITY_INFO,
 					"Usuario.login.sucesso", usuario.getEmail());
-			return usuarios.get(0);
+			Usuario usuarioLoaded = usuarios.get(0);
+			Hibernate.initialize(usuarioLoaded.getIdiomas());
+			return usuarioLoaded;
 		} else {
 			Mensagens.define(FacesMessage.SEVERITY_ERROR, "Usuario.login.erro",
 					usuario.getEmail());

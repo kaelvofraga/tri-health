@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
+import br.edu.ifrs.canoas.tads.lds.bean.Pais;
 import br.edu.ifrs.canoas.tads.lds.bean.UnidadeFederativa;
 
 /**
@@ -13,7 +14,7 @@ import br.edu.ifrs.canoas.tads.lds.bean.UnidadeFederativa;
  *         
  */
 @Stateless
-public class UnidadeFederativaDAO    extends BaseDAO<UnidadeFederativa, Long> {
+public class UnidadeFederativaDAO extends BaseDAO<UnidadeFederativa, Long> {
 	private static final long serialVersionUID = -126746156147500109L;
 
 	public List<UnidadeFederativa> buscaPorCriterio(String criterioUF) {
@@ -22,7 +23,17 @@ public class UnidadeFederativaDAO    extends BaseDAO<UnidadeFederativa, Long> {
 						"SELECT au FROM UnidadeFederativa au "
 								+ "WHERE "
 								+ "lower(au.UnidadeFederativa.nome) like '%" + criterioUF.toLowerCase() + "%' "
-								+ "ORDER BY au.UnidadeFederativa.nome")
+								+ "ORDER BY au.UnidadeFederativa.nome", UnidadeFederativa.class)
+				.getResultList();
+	}
+
+	public List<UnidadeFederativa> buscaPorPais(Pais pais) {
+		return em	
+				.createQuery(
+						"SELECT au FROM UnidadeFederativa au "
+								+ "WHERE "
+								+ "au.pais.id = " + pais.getId()
+								+ "ORDER BY au.nome", UnidadeFederativa.class)
 				.getResultList();
 	}
 
