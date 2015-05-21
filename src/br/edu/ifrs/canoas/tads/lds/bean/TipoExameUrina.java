@@ -51,6 +51,7 @@ public class TipoExameUrina extends BaseEntity<Long> implements Serializable{
 	public void setValorReferencia(String valorReferencia) {
 		this.valorReferencia = valorReferencia;
 	}
+	
 	/*
 	@Override
 	public String toString() {

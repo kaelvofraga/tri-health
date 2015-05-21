@@ -1,15 +1,17 @@
 package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+
+
 
 /**@author: André Ficht
  * Proposito da Classe: Classe que representa a entidade do Exame de Urina referenciando ao 
@@ -30,7 +32,8 @@ public class ExameUrinaUsuario extends BaseEntity<Long> implements Serializable{
 	private Usuario usuario;
 	
 	@NotNull
-	private ItemExameUrina itemExame;
+	@OneToMany (mappedBy="exameUsuario")
+	private Collection<ItemExameUrina> itensExame;
 		
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data;
@@ -56,4 +59,17 @@ public class ExameUrinaUsuario extends BaseEntity<Long> implements Serializable{
 	public void setData(Date data) {
 		this.data = data;
 	}
+
+	public Collection<ItemExameUrina> getItensExame() {
+		return itensExame;
+	}
+
+	public void setItensExame(Collection<ItemExameUrina> itensExame) {
+		this.itensExame = itensExame;
+	}
+	
+	
+
+	
+	
 }

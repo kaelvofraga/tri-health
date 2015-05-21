@@ -11,59 +11,73 @@
 
 	<ui:define name="content">
 
-		<h1 class="lead">Exame  de Urina</h1>
+		<h1 class="lead">Exame de Urina</h1>
 
-			<h:panelGroup layout="block" id="exameurina">
-				<h:panelGrid columns="3" styleClass="mtable">
-				
-					<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel for="tipo_exame" value="Tipo de Exame" />
-							<br/>
-							<p:selectOneMenu id="tipo_exame" value="#{manterExameUrinaMB.exameUrina.tipoExameUrina.tipo}" style="width:200px" 
-								required="true" requiredMessage="Um tipo de análise deve ser selecionado">								
-								<p:ajax listener="#{manterExameUrinaMB.aoSelecionarTipo}" />	
-								<f:selectItem itemLabel="Selecione o tipo do exame." itemValue="" noSelectionOption="true" />
-								<f:selectItems value="#{manterExameUrinaMB.tipos}" var="tipoExameUrina" itemLabel="#{tipoExameUrina.tipo}" itemValue="#{tipoExameUrina}"/>
-							</p:selectOneMenu>	
-							
-					</h:panelGroup>
-					
-					<h:panelGroup layout="block" styleClass="form-group">
-						<p:outputLabel for="resultado_exame" value="Resultado" />
-						<br/>
-						<p:inputText id="resultado_exame" styleClass="form-control" 
-							size="40" style="width:200px" required="true"
-							value="#{manterExameUrinaMB.exameUrina.resultado}"
-							placeholder="Informe o resultado da análise" />
-					</h:panelGroup>
-					
-					<h:panelGroup layout="block" styleClass="form-group">
-						<p:outputLabel for="data_exame"	value="Data da análise do exame" />
-						<br/>
-						<p:calendar id="data_exame" style="width:200px"
-							value="#{manterExameUrinaMB.exameUrina.data}"
-							pattern="dd/MM/yyyy" required="true"
-							placeholder="Selecione a data da análise do exame"
-							size="10" effect="fold" icon="glyphicon-calendar" />
-	   				</h:panelGroup>	   				
-						
-				</h:panelGrid>	
-				
+		<h:panelGroup layout="block" id="exameurina">
+			<h:panelGrid columns="3" styleClass="mtable">
+
+				<h:panelGroup layout="block" styleClass="form-group">
+					<p:outputLabel for="data_exame" value="Data do Exame" />
+					<br />
+					<p:calendar id="data_exame" style="width:200px"
+						value="#{manterExameUrinaMB.exameUrina.data}" pattern="dd/MM/yyyy"
+						required="true" placeholder="Selecione a data do exame"
+						size="25" effect="fold" icon="glyphicon-calendar" />
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" styleClass="form-group">
+					<p:outputLabel for="tipo_exame" value="Tipo de Exame" />
+					<br/>
+					<p:selectOneMenu id="tipo_exame"
+						value="#{manterExameUrinaMB.itemExameUrina.tipoExameUrina.tipo}"
+						style="width:250px" required="true"
+						requiredMessage="Um tipo de análise deve ser selecionado">
+						<p:ajax listener="#{manterExameUrinaMB.aoSelecionarTipo}" />
+						<f:selectItem itemLabel="Selecione tipo do exame" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{manterExameUrinaMB.tipos}"
+							var="tipoExameUrina" itemLabel="#{tipoExameUrina.tipo}"
+							itemValue="#{tipoExameUrina}" />
+					</p:selectOneMenu>
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" styleClass="form-group">
+					<p:outputLabel for="resultado_exame" value="Resultado do Exame" />
+					<br />
+					<p:inputText id="resultado_exame" styleClass="form-control"
+						size="25" style="width:200px" required="true"
+						value="#{manterExameUrinaMB.itemExameUrina.resultado}"
+						placeholder="Informe o resultado" />
+				</h:panelGroup>
+
 				<h:panelGroup layout="block" styleClass="form-group">
 					<p:outputLabel for="obs" value="Observação" />
 					<br/>
-					<p:inputTextarea id="obs" styleClass="form-control" 
-						size="50" style="width:600px" 
-						value="#{manterExameUrinaMB.exameUrina.observacao}"
+					<p:inputTextarea id="obs" styleClass="form-control" size="50"
+						style="width:200px"
+						value="#{manterExameUrinaMB.itemExameUrina.observacao}"
 						placeholder="Descreva observação do exame, se necessário" />
-				</h:panelGroup>	
-								
-				<h:panelGroup layout="block" styleClass="form-group">													
-					<p:commandButton value="Salvar"	action="#{manterExameUrinaMB.salvaExame}" icon="ui-icon-check" ajax="false"/>
 				</h:panelGroup>
+
+			</h:panelGrid>
+
+
+			<p:accordionPanel multiple="true">
+				<p:tab title="Exame de Urina">
+
+
+
+				</p:tab>
+
+			</p:accordionPanel>
+
+			<h:panelGroup layout="block" styleClass="form-group">
+				<p:commandButton value="Salvar"
+					action="#{manterExameUrinaMB.salvaExame}" icon="ui-icon-check"
+					ajax="false" />
 			</h:panelGroup>
-		
+		</h:panelGroup>
+
 	</ui:define>
 </ui:composition>
 
-						

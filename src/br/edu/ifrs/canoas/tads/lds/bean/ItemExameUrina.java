@@ -1,9 +1,9 @@
 package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
@@ -16,13 +16,17 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class ItemExameUrina extends BaseEntity<Long> implements Serializable{
 	
-	private static final long serialVersionUID = -8539097274270004334L;
 
-	
+	private static final long serialVersionUID = -7293203217920585961L;
+
 	@NotNull 
-	@OneToOne (cascade=CascadeType.ALL)
+	@OneToOne
     @JoinColumn(name="ID_TIPOEXAMEURINA")
 	private TipoExameUrina tipoExameUrina;
+	
+	@ManyToOne
+	@JoinColumn(name="ID_EXAME_URINA_USUARIO")
+	private ExameUrinaUsuario exameUsuario;
 	
 	@NotNull
 	private String resultado;

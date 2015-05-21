@@ -51,8 +51,8 @@
 			</p:submenu>
 			<p:separator />
 			<p:submenu label="Exames de Urina" styleClass="nav nav-second-level">
-				<p:menuitem value="Listar" url="/private/pages/listarExameUrina.xhtml" />
-				<p:menuitem value="Cadastrar" url="/private/pages/manterExameUrina.xhtml" />
+				<p:menuitem value="Listar" action="#{manterExameUrinaMB.initListar}"/>
+					<p:menuitem value="Cadastrar" action="#{manterExameUrinaMB.initManter}"/>
 			</p:submenu>
 
 			<p:separator />
