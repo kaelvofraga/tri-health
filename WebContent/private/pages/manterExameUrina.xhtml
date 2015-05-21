@@ -18,13 +18,13 @@
 
 				<h:panelGroup layout="block" styleClass="form-group">
 					<p:outputLabel for="data_exame" value="Data do Exame" />
-					<br />
+					<br/>
 					<p:calendar id="data_exame" style="width:200px"
 						value="#{manterExameUrinaMB.exameUrina.data}" pattern="dd/MM/yyyy"
 						required="true" placeholder="Selecione a data do exame"
 						size="25" effect="fold" icon="glyphicon-calendar" />
 				</h:panelGroup>
-
+				<br/>
 				<h:panelGroup layout="block" styleClass="form-group">
 					<p:outputLabel for="tipo_exame" value="Tipo de Exame" />
 					<br/>
@@ -58,13 +58,31 @@
 						value="#{manterExameUrinaMB.itemExameUrina.observacao}"
 						placeholder="Descreva observação do exame, se necessário" />
 				</h:panelGroup>
-
+				
 			</h:panelGrid>
+			
+			<h:panelGroup layout="block" styleClass="form-group">
+				<p:commandButton value="Adicionar"
+					action="#{manterExameUrinaMB.salvaExame}" icon="ui-icon-check"
+					ajax="false" />
+			</h:panelGroup>
 
 
 			<p:accordionPanel multiple="true">
 				<p:tab title="Exame de Urina">
-
+				
+				<p:dataTable 
+					var="listItemExame" id="tab-itensExame" selectionMode="single" selection="#{manterExameUrinaMB.itemExameUrina}"
+					rowKey="#{listItemExame.id}" value="#{manterExameUrinaMB.listaItensExame}" emptyMessage="Nenhum Registro Encontrado."
+					reflow="true">
+					<p:ajax event="rowSelect" listener="#{manterUsoMedicamentoMB.onRowSelect}" oncomplete="/private/pages/manterUsoMedicamentos.jsf"/>
+						<p:column headerText="Tipo de Exame" id="colTipoExame">
+							<h:outputText value="#{listMedicamento.medicamento.nome}" />
+						</p:column>
+						<p:column headerText="Resultado" id="colResultado">
+							<h:outputText value="#{listMedicamento.dosagem}" />
+						</p:column>
+					</p:dataTable>
 
 
 				</p:tab>

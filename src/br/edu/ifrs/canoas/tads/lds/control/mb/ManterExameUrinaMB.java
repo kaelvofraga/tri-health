@@ -49,7 +49,7 @@ public class ManterExameUrinaMB implements Serializable{
 	
 	
 //listas exames e tipos de exame
-	private List<ExameUrinaUsuario> examesLista;	
+	private List<ItemExameUrina> listaItensExame;	
 	private List<TipoExameUrina> tipos;
 	
 	
@@ -60,10 +60,10 @@ public class ManterExameUrinaMB implements Serializable{
 		return URL_LISTAR_EXAMEURINA;
 	}
 	
-	
 	public String initManter() {
 		exameUrina.setItensExame(new ArrayList<>());
 		itemExameUrina.setTipoExameUrina(new TipoExameUrina());
+		listaItensExame = new ArrayList<>();
 		
 		return URL_MANTER_EXAMEURINA;
 	}
@@ -102,13 +102,13 @@ public class ManterExameUrinaMB implements Serializable{
 	}*/
 	
 	public void busca(){
-		examesLista = exameUrinaService.busca(criterioExameUrina);
+	//	examesLista = exameUrinaService.busca(criterioExameUrina);
 	}
 	
 	public void clear(){
 		exameUrina = new ExameUrinaUsuario();
 //		exameUrina.setTipoExameUrina(new TipoExameUrina());
-		examesLista = new ArrayList<>();
+//		examesLista = new ArrayList<>();
 	}
 	
 	public void aoSelecionarTipo(){
@@ -152,13 +152,15 @@ public class ManterExameUrinaMB implements Serializable{
 		this.exameUrina = exameUrina;
 	}
 	
-	public List<ExameUrinaUsuario> getExamesLista() {
-		return examesLista;
+	public List<ItemExameUrina> getListaItensExame() {
+		return listaItensExame;
 	}
 
-	public void setExamesLista(List<ExameUrinaUsuario> examesLista) {
-		this.examesLista = examesLista;
+
+	public void setListaItensExame(List<ItemExameUrina> listaItensExame) {
+		this.listaItensExame = listaItensExame;
 	}
+
 
 	public List<TipoExameUrina> getTipos() {
 //		if (tipos == null)
