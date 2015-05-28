@@ -14,80 +14,94 @@
 		<h1 class="lead">Exame de Urina</h1>
 
 		<h:panelGroup layout="block" id="exameurina">
-			<h:panelGrid columns="3" styleClass="mtable">
-
-				<h:panelGroup layout="block" styleClass="form-group">
-					<p:outputLabel for="data_exame" value="Data do Exame" />
-					<br/>
-					<p:calendar id="data_exame" style="width:200px"
-						value="#{manterExameUrinaMB.exameUrina.data}" pattern="dd/MM/yyyy"
-						required="true" placeholder="Selecione a data do exame"
-						size="25" effect="fold" icon="glyphicon-calendar" />
-				</h:panelGroup>
-				<br/>
-				<h:panelGroup layout="block" styleClass="form-group">
-					<p:outputLabel for="tipo_exame" value="Tipo de Exame" />
-					<br/>
-					<p:selectOneMenu id="tipo_exame"
-						value="#{manterExameUrinaMB.itemExameUrina.tipoExameUrina.tipo}"
-						style="width:250px" required="true"
-						requiredMessage="Um tipo de análise deve ser selecionado">
-						<p:ajax listener="#{manterExameUrinaMB.aoSelecionarTipo}" />
-						<f:selectItem itemLabel="Selecione tipo do exame" itemValue=""
-							noSelectionOption="true" />
-						<f:selectItems value="#{manterExameUrinaMB.tipos}"
-							var="tipoExameUrina" itemLabel="#{tipoExameUrina.tipo}"
-							itemValue="#{tipoExameUrina}" />
-					</p:selectOneMenu>
-				</h:panelGroup>
-
-				<h:panelGroup layout="block" styleClass="form-group">
-					<p:outputLabel for="resultado_exame" value="Resultado do Exame" />
-					<br />
-					<p:inputText id="resultado_exame" styleClass="form-control"
-						size="25" style="width:200px" required="true"
-						value="#{manterExameUrinaMB.itemExameUrina.resultado}"
-						placeholder="Informe o resultado" />
-				</h:panelGroup>
-
-				<h:panelGroup layout="block" styleClass="form-group">
-					<p:outputLabel for="obs" value="Observação" />
-					<br/>
-					<p:inputTextarea id="obs" styleClass="form-control" size="50"
-						style="width:200px"
-						value="#{manterExameUrinaMB.itemExameUrina.observacao}"
-						placeholder="Descreva observação do exame, se necessário" />
-				</h:panelGroup>
-				
-			</h:panelGrid>
-			
-			<h:panelGroup layout="block" styleClass="form-group">
-				<p:commandButton value="Adicionar"
-					action="#{manterExameUrinaMB.salvaExame}" icon="ui-icon-check"
-					ajax="false" />
-			</h:panelGroup>
-
 
 			<p:accordionPanel multiple="true">
-				<p:tab title="Exame de Urina">
-				
-				<p:dataTable 
-					var="listItemExame" id="tab-itensExame" selectionMode="single" selection="#{manterExameUrinaMB.itemExameUrina}"
-					rowKey="#{listItemExame.id}" value="#{manterExameUrinaMB.listaItensExame}" emptyMessage="Nenhum Registro Encontrado."
-					reflow="true">
-					<p:ajax event="rowSelect" listener="#{manterUsoMedicamentoMB.onRowSelect}" oncomplete="/private/pages/manterUsoMedicamentos.jsf"/>
-						<p:column headerText="Tipo de Exame" id="colTipoExame">
-							<h:outputText value="#{listMedicamento.medicamento.nome}" />
-						</p:column>
-						<p:column headerText="Resultado" id="colResultado">
-							<h:outputText value="#{listMedicamento.dosagem}" />
-						</p:column>
-					</p:dataTable>
+				<p:tab title="Analises Realizadas">
+					<h:panelGrid columns="2" styleClass="mtable">
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="tipo_exame" value="Tipo de Exame" />
+							<br />
+							<p:selectOneMenu id="tipo_exame"
+								value="#{manterExameUrinaMB.itemExameUrina.tipoAnalise}"
+								style="width:250px" required="true"
+								requiredMessage="Um tipo de análise deve ser selecionado">
+								<f:selectItem itemLabel="Selecione tipo do exame" itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems value="#{manterExameUrinaMB.tipos}"
+									var="tipoAnalise" itemLabel="#{tipoAnalise.tipo}"
+									itemValue="#{tipoAnalise}" />
+							</p:selectOneMenu>
+						</h:panelGroup>
 
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="resultado_exame" value="Resultado do Exame" />
+							<br />
+							<p:inputText id="resultado_exame" styleClass="form-control"
+								size="25" style="width:200px" required="true"
+								value="#{manterExameUrinaMB.itemExameUrina.resultado}"
+								placeholder="Informe o resultado" />
+						</h:panelGroup>
+
+					</h:panelGrid>
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:commandButton value="Adicionar"
+							icon="ui-icon-check"
+							update="tab-itensExame"
+							action="#{manterExameUrinaMB.adicionarExameAnalisado}"
+							ajax="false" />
+					</h:panelGroup>
 
 				</p:tab>
 
 			</p:accordionPanel>
+
+			<p:accordionPanel multiple="true">
+				<p:tab title="Exame de Urina">
+					
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:outputLabel for="data_exame" value="Data do Exame" />
+						<br />
+						<p:calendar id="data_exame" style="width:200px"
+							value="#{manterExameUrinaMB.exameUrina.data}"
+							pattern="dd/MM/yyyy" required="true"
+							placeholder="Selecione a data do exame" size="25" effect="fold"
+							icon="glyphicon-calendar" />
+					</h:panelGroup>
+
+					<p:dataTable var="listItemExame" id="tab-itensExame"
+						selectionMode="single"
+						selection="#{manterExameUrinaMB.itemExameUrina}"
+						rowKey="#{listItemExame.id}"
+						value="#{manterExameUrinaMB.exameUrina.itensExame}"
+						emptyMessage="Nenhum Registro Encontrado." reflow="true">
+						<p:ajax event="rowSelect"
+							listener="#{manterUsoMedicamentoMB.onRowSelect}"
+							oncomplete="/private/pages/manterUsoMedicamentos.jsf" />
+						<p:column headerText="Tipo de Exame" id="colTipoExame">
+							<h:outputText value="#{listItemExame.ItemExameUrina.TipoAnalise.tipo}" />
+						</p:column>
+						<p:column headerText="Resultado" id="colResultado">
+							<h:outputText value="#{listItemExame.ItemExameUrina.resultado}" />
+						</p:column>
+					</p:dataTable>
+					<br />
+					
+					<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="obs" value="Observação:"/>
+							<br/>
+						     <p:inputTextarea id="obs" rows="1" cols="37" counter="counter" maxlength="100" 
+							counterTemplate="{0} caracteres restantes" value="#{manterExameUrinaMB.exameUrina.observacao}" 
+							placeholder="Descreva observação do exame, se necessário">
+							</p:inputTextarea>
+							<br/>
+							<h:outputText id="counter" />
+					</h:panelGroup>
+
+				</p:tab>
+
+			</p:accordionPanel>
+
 
 			<h:panelGroup layout="block" styleClass="form-group">
 				<p:commandButton value="Salvar"

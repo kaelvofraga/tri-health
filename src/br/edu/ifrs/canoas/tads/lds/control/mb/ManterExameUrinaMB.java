@@ -4,22 +4,19 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import org.primefaces.event.SelectEvent;
-
 import br.edu.ifrs.canoas.tads.lds.bean.ExameUrinaUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.ItemExameUrina;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAnalise;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterExameUrinaService;
 
 @Named
-@RequestScoped
+@SessionScoped
 public class ManterExameUrinaMB implements Serializable{
 
 	/**
@@ -38,7 +35,7 @@ public class ManterExameUrinaMB implements Serializable{
 	
 	@Inject
 	private ItemExameUrina itemExameUrina;
-	
+	 
 	
 	@EJB
 	private ManterExameUrinaService exameUrinaService;
@@ -47,34 +44,26 @@ public class ManterExameUrinaMB implements Serializable{
 	
 	
 //listas exames e tipos de exame
-	private List<ItemExameUrina> listaItensExame;	
-	private List<TipoAnalise> tipos;
+	private List<ExameUrinaUsuario> listaExamesUsuario;	
+	private List<TipoAnalise> tiposAnalise;
 	
 	
 	public String initListar() {
-		//medicamentoUsuario = new MedicamentoUsuario();
-	//	criterioMedicamento = "";
-	//	medicamentosLista = new ArrayList<>();
+		listaExamesUsuario= new ArrayList<>();
 		return URL_LISTAR_EXAMEURINA;
 	}
 	
 	public String initManter() {
 		exameUrina.setItensExame(new ArrayList<>());
 		itemExameUrina.setTipoAnalise(new TipoAnalise());
-		listaItensExame = new ArrayList<>();
-		
 		return URL_MANTER_EXAMEURINA;
 	}
 	
-	
-	/*public void inicializa() {	//inicialização do listar e manter
-		exameUrina = new ExameUrinaUsuario();
-		//exameUrina.setTipoExameUrina(new TipoExameUrina());
-		examesLista = new ArrayList<>();
-		tipos = new ArrayList<>();
-		criterioExameUrina="";
-	}*/
-	
+	public void adicionarExameAnalisado(){
+		exameUrina.getItensExame().add(itemExameUrina);
+		itemExameUrina= new ItemExameUrina();	
+	}
+
 	public boolean isAtualizacao(){
 		return exameUrina != null && exameUrina.getId() != null;
 	}
@@ -109,9 +98,7 @@ public class ManterExameUrinaMB implements Serializable{
 //		examesLista = new ArrayList<>();
 	}
 	
-	public void aoSelecionarTipo(){
-		exameUrinaService.getTipoExameUrinaDAO();
-	}
+	
 	
 	/*public List<TipoExameUrina> completeTipoExameUrina(String query){
 		if (tipos == null) 
@@ -150,24 +137,22 @@ public class ManterExameUrinaMB implements Serializable{
 		this.exameUrina = exameUrina;
 	}
 	
-	public List<ItemExameUrina> getListaItensExame() {
-		return listaItensExame;
-	}
-
-
-	public void setListaItensExame(List<ItemExameUrina> listaItensExame) {
-		this.listaItensExame = listaItensExame;
-	}
-
-
-	public List<TipoAnalise> getTipos() {
-//		if (tipos == null)
-			tipos = exameUrinaService.buscaTipoExameUrina();
-		return tipos;
-	}
 	
-	public void setTipos(List<TipoAnalise> tipos) {
-		this.tipos = tipos;
+
+	public List<ExameUrinaUsuario> getListaExamesUsuario() {
+		return listaExamesUsuario;
+	}
+
+	public void setListaExamesUsuario(List<ExameUrinaUsuario> listaExamesUsuario) {
+		this.listaExamesUsuario = listaExamesUsuario;
+	}
+
+	public List<TipoAnalise> getTiposAnalise() {
+		return tiposAnalise;
+	}
+
+	public void setTiposAnalise(List<TipoAnalise> tiposAnalise) {
+		this.tiposAnalise = tiposAnalise;
 	}
 
 	public String getCriterioExameUrina() {
