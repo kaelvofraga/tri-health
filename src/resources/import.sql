@@ -17,8 +17,8 @@ insert into tipoalergia (id, descricao) values (3, 'Animal');
 insert into tipoalergia (id, descricao) values (4, 'Medicação');
 insert into tipoalergia (id, descricao) values (5, 'Planta');
 
-insert into medicamentousuario (ID,DATACONSULTA, DATAFIMTRATAMENTO,DATAINICIOTRATAMENTO, DESCRICAO, DOSAGEM, FREQUENCIA, NOTA, SITUACAO, MEDICAMENTO_ID, USUARIO_ID) VALUES (1010,SYSDATE, SYSDATE, SYSDATE, 'DESCRICAO', 'DOSAGEM', 'FREQUENCIA', 'NOTA', 'SITUACAO', 1001, 1000);
-insert into medicamentousuario (ID,DATACONSULTA, DATAFIMTRATAMENTO,DATAINICIOTRATAMENTO, DESCRICAO, DOSAGEM, FREQUENCIA, NOTA, SITUACAO, MEDICAMENTO_ID, USUARIO_ID) VALUES (1011,SYSDATE, SYSDATE, SYSDATE, 'DESCRICAO', 'DOSAGEM', 'FREQUENCIA', 'NOTA', 'SITUACAO', 1002, 1000);
+insert into MedicamentoUsuario (ID,DATACONSULTA, DATAFIMTRATAMENTO,DATAINICIOTRATAMENTO, DESCRICAO, DOSAGEM, FREQUENCIA, NOTA, SITUACAO, MEDICAMENTO_ID, USUARIO_ID) VALUES (1010,SYSDATE, SYSDATE, SYSDATE, 'DESCRICAO', 'DOSAGEM', 'FREQUENCIA', 'NOTA', 'SITUACAO', 1001, 1000);
+insert into MedicamentoUsuario (ID,DATACONSULTA, DATAFIMTRATAMENTO,DATAINICIOTRATAMENTO, DESCRICAO, DOSAGEM, FREQUENCIA, NOTA, SITUACAO, MEDICAMENTO_ID, USUARIO_ID) VALUES (1011,SYSDATE, SYSDATE, SYSDATE, 'DESCRICAO', 'DOSAGEM', 'FREQUENCIA', 'NOTA', 'SITUACAO', 1002, 1000);
 
 
 insert into AlergiaUsuario (dataPrimeiraOcorrencia, MEDICAMENTOUSUARIO_ID, reacao, tipoAlergia_id, USUARIO_ID, id) values (sysdate, 1010, 'Reacao', 1, 1000, 1000);
@@ -77,21 +77,30 @@ insert into Atividade(id, descricao, MET, tipoAtividade_id) values (4, 'Pedaland
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (5, 'Dan�a aer�bica', 6.5, 3);
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (6, 'Ballet ou moderna, twist, jazz, tap, jitterbug', 4.8, 3);
 
---table TipoExameUrina
-insert into TipoExameUrina (id, tipo) values (10001,'Glicose');
-insert into TipoExameUrina (id, tipo) values (10002,'Bilirrubinas');
-insert into TipoExameUrina (id, tipo) values (10003,'Corpos Cet�nicos');
-insert into TipoExameUrina (id, tipo) values (10004,'Densidade');
-insert into TipoExameUrina (id, tipo) values (10005,'pH');
-insert into TipoExameUrina (id, tipo) values (10006,'Prote�nas');
-insert into TipoExameUrina (id, tipo) values (10007,'Urobilinog�nio');
-insert into TipoExameUrina (id, tipo) values (10008,'Nitrito');
-insert into TipoExameUrina (id, tipo) values (10009,'Hemoglobina');
-insert into TipoExameUrina (id, tipo) values (10010,'Leuc�citos');
-insert into TipoExameUrina (id, tipo) values (10011,'Hem�cias');
-insert into TipoExameUrina (id, tipo) values (10012,'C�lulas Epiteliais');
-insert into TipoExameUrina (id, tipo) values (10013,'Bacteri�ria');
-insert into TipoExameUrina (id, tipo) values (10014,'Cilindros');
+--Manter Exame Urina
+insert into TipoAnalise (id, tipo) values (10001,'Glicose','180');
+insert into TipoAnalise (id, tipo) values (10002,'Bilirrubinas','1100 a 1600');
+insert into TipoAnalise (id, tipo) values (10003,'Corpos Cetonicos','1');
+insert into TipoAnalise (id, tipo) values (10004,'Densidade','1000 a 1400');
+insert into TipoAnalise (id, tipo) values (10005,'pH','5 a 7');
+insert into TipoAnalise (id, tipo) values (10006,'Proteinas','30 a 500');
+insert into TipoAnalise (id, tipo) values (10007,'Urobilinogenio','1,5');
+insert into TipoAnalise (id, tipo) values (10008,'Nitrito','1000');
+insert into TipoAnalise (id, tipo) values (10009,'Hemoglobina','4');
+insert into TipoAnalise (id, tipo) values (10010,'Leucocitos','5');
+insert into TipoAnalise (id, tipo) values (10011,'Hemacias','3 a 5');
+insert into TipoAnalise (id, tipo) values (10012,'Celulas Epiteliais','1');
+insert into TipoAnalise (id, tipo) values (10013,'Bacteria','1000 a 1500');
+insert into TipoAnalise (id, tipo) values (10014,'Cilindros','1000 a 2000');
+
+insert into ExameUrinaUsuario(ID_USUARIO,data,observacao) values (1000,SYSDATE,'OBSERVACAO');
+
+insert into ItemExameUrina (ID_TIPOANALISE,ID_EXAME_URINA_USUARIO, resultado) values (10001,1000,'ok');
+insert into ItemExameUrina (ID_TIPOANALISE,ID_EXAME_URINA_USUARIO, resultado) values (10002,1000,'ok');
+insert into ItemExameUrina (ID_TIPOANALISE,ID_EXAME_URINA_USUARIO, resultado) values (10003,1000,'ok');
+insert into ItemExameUrina (ID_TIPOANALISE,ID_EXAME_URINA_USUARIO, resultado) values (10004,1000,'ok');
+
+
 
 -- Manter Cateterismo
 INSERT INTO MEDICO VALUES(1001,'RS123','Dr teste 1');

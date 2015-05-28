@@ -3,6 +3,7 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -38,11 +39,23 @@ public class ExameUrinaUsuario extends BaseEntity<Long> implements Serializable{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data;
 	
+	private String observacao;
+	
+	
+
 	public ExameUrinaUsuario() {
 		super();
 	}
 	
 	/*GETTERS & SETTERS*/
+	
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
 
 	public Usuario getUsuario() {
 		return usuario;

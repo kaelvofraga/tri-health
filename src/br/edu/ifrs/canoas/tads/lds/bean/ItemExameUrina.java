@@ -31,7 +31,7 @@ public class ItemExameUrina extends BaseEntity<Long> implements Serializable{
 	@NotNull
 	private String resultado;
 	
-	private String observacao;
+	
 	
 	public ItemExameUrina() {
 		super();
@@ -55,12 +55,5 @@ public class ItemExameUrina extends BaseEntity<Long> implements Serializable{
 		this.resultado = resultado;
 	}
 
-	public String getObservacao() {
-		return observacao;
-	}
-
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
-	}
 
 }
