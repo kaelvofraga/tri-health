@@ -15,8 +15,6 @@ import org.primefaces.event.SelectEvent;
 
 import br.edu.ifrs.canoas.tads.lds.bean.ExameUrinaUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.ItemExameUrina;
-import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
-import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAnalise;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterExameUrinaService;
 
@@ -62,7 +60,7 @@ public class ManterExameUrinaMB implements Serializable{
 	
 	public String initManter() {
 		exameUrina.setItensExame(new ArrayList<>());
-		itemExameUrina.setTipoExameUrina(new TipoAnalise());
+		itemExameUrina.setTipoAnalise(new TipoAnalise());
 		listaItensExame = new ArrayList<>();
 		
 		return URL_MANTER_EXAMEURINA;

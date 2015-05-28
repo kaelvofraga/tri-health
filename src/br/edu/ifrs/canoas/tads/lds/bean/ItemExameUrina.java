@@ -21,8 +21,8 @@ public class ItemExameUrina extends BaseEntity<Long> implements Serializable{
 
 	@NotNull 
 	@OneToOne
-    @JoinColumn(name="ID_TIPOEXAMEURINA")
-	private TipoAnalise tipoExameUrina;
+    @JoinColumn(name="ID_TIPOANALISE")
+	private TipoAnalise tipoAnalise;
 	
 	@ManyToOne
 	@JoinColumn(name="ID_EXAME_URINA_USUARIO")
@@ -31,20 +31,18 @@ public class ItemExameUrina extends BaseEntity<Long> implements Serializable{
 	@NotNull
 	private String resultado;
 	
-	
-	
 	public ItemExameUrina() {
 		super();
 	}
 	
 	/*GETTERS & SETTERS*/
 
-	public TipoAnalise getTipoExameUrina() {
-		return tipoExameUrina;
+	public TipoAnalise getTipoAnalise() {
+		return tipoAnalise;
 	}
 
-	public void setTipoExameUrina(TipoAnalise tipoExameUrina) {
-		this.tipoExameUrina = tipoExameUrina;
+	public void setTipoAnalise(TipoAnalise tipoAnalise) {
+		this.tipoAnalise = tipoAnalise;
 	}
 
 	public String getResultado() {

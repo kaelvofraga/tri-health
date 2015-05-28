@@ -78,27 +78,27 @@ insert into Atividade(id, descricao, MET, tipoAtividade_id) values (5, 'Danï¿½a 
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (6, 'Ballet ou moderna, twist, jazz, tap, jitterbug', 4.8, 3);
 
 --Manter Exame Urina
-insert into TipoAnalise (id, tipo) values (10001,'Glicose','180');
-insert into TipoAnalise (id, tipo) values (10002,'Bilirrubinas','1100 a 1600');
-insert into TipoAnalise (id, tipo) values (10003,'Corpos Cetonicos','1');
-insert into TipoAnalise (id, tipo) values (10004,'Densidade','1000 a 1400');
-insert into TipoAnalise (id, tipo) values (10005,'pH','5 a 7');
-insert into TipoAnalise (id, tipo) values (10006,'Proteinas','30 a 500');
-insert into TipoAnalise (id, tipo) values (10007,'Urobilinogenio','1,5');
-insert into TipoAnalise (id, tipo) values (10008,'Nitrito','1000');
-insert into TipoAnalise (id, tipo) values (10009,'Hemoglobina','4');
-insert into TipoAnalise (id, tipo) values (10010,'Leucocitos','5');
-insert into TipoAnalise (id, tipo) values (10011,'Hemacias','3 a 5');
-insert into TipoAnalise (id, tipo) values (10012,'Celulas Epiteliais','1');
-insert into TipoAnalise (id, tipo) values (10013,'Bacteria','1000 a 1500');
-insert into TipoAnalise (id, tipo) values (10014,'Cilindros','1000 a 2000');
+insert into TipoAnalise (id, tipo,valorReferencia) values (10001,'Glicose','180');
+insert into TipoAnalise (id, tipo,valorReferencia) values (10002,'Bilirrubinas','1100 a 1600');
+insert into TipoAnalise (id, tipo,valorReferencia) values (10003,'Corpos Cetonicos','1');
+insert into TipoAnalise (id, tipo,valorReferencia) values (10004,'Densidade','1000 a 1400');
+insert into TipoAnalise (id, tipo,valorReferencia) values (10005,'pH','5 a 7');
+insert into TipoAnalise (id, tipo,valorReferencia) values (10006,'Proteinas','30 a 500');
+insert into TipoAnalise (id, tipo,valorReferencia) values (10007,'Urobilinogenio','1,5');
+insert into TipoAnalise (id, tipo,valorReferencia) values (10008,'Nitrito','1000');
+insert into TipoAnalise (id, tipo,valorReferencia) values (10009,'Hemoglobina','4');
+insert into TipoAnalise (id, tipo,valorReferencia) values (10010,'Leucocitos','5');
+insert into TipoAnalise (id, tipo,valorReferencia) values (10011,'Hemacias','3 a 5');
+insert into TipoAnalise (id, tipo,valorReferencia) values (10012,'Celulas Epiteliais','1');
+insert into TipoAnalise (id, tipo,valorReferencia) values (10013,'Bacteria','1000 a 1500');
+insert into TipoAnalise (id, tipo,valorReferencia) values (10014,'Cilindros','1000 a 2000');
 
-insert into ExameUrinaUsuario(ID_USUARIO,data,observacao) values (1000,SYSDATE,'OBSERVACAO');
+insert into ExameUrinaUsuario(id,ID_USUARIO,data,observacao) values (1001,1000,SYSDATE,'OBSERVACAO');
 
-insert into ItemExameUrina (ID_TIPOANALISE,ID_EXAME_URINA_USUARIO, resultado) values (10001,1000,'ok');
-insert into ItemExameUrina (ID_TIPOANALISE,ID_EXAME_URINA_USUARIO, resultado) values (10002,1000,'ok');
-insert into ItemExameUrina (ID_TIPOANALISE,ID_EXAME_URINA_USUARIO, resultado) values (10003,1000,'ok');
-insert into ItemExameUrina (ID_TIPOANALISE,ID_EXAME_URINA_USUARIO, resultado) values (10004,1000,'ok');
+insert into ItemExameUrina (id,ID_TIPOANALISE,ID_EXAME_URINA_USUARIO, resultado) values (2000,10001,1001,'ok');
+insert into ItemExameUrina (id,ID_TIPOANALISE,ID_EXAME_URINA_USUARIO, resultado) values (2001,10002,1001,'ok');
+insert into ItemExameUrina (id,ID_TIPOANALISE,ID_EXAME_URINA_USUARIO, resultado) values (2002,10003,1001,'ok');
+insert into ItemExameUrina (id,ID_TIPOANALISE,ID_EXAME_URINA_USUARIO, resultado) values (2003,10004,1001,'ok');
 
 
 
@@ -116,4 +116,4 @@ insert into Idioma (id, nome) values (1002, 'Espanhôl' );
 insert into Idioma (id, nome) values (1003, 'Francês' );
 insert into Idioma (id, nome) values (1004, 'Alemão' );
 insert into Idioma (id, nome) values (1005, 'Mandarin' );
-insert into Idioma (id, nome) values (1005, 'Japonês' );
+insert into Idioma (id, nome) values (1006, 'Japonês' );
