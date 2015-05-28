@@ -1,9 +1,9 @@
 
-REGRAS DE NEG√ìCIO 
+REGRAS DE NEG”CIO 
 =================
-RNG 01.01 = Se o Hospital selecionado n√£o possuir as coordenadas geogr√°ficas, ent√£o o sistema emitir√° uma mensagem de impossibilidade de localizar o hospital no mapa
-RNG 01.02 = Se n√£o houver sinal de internet, ent√£o o sistema informar√° a impossibilidade de localiza√ß√£o do hospital
+RNG 01.01 = Se o Hospital selecionado n„o possuir as coordenadas geogr·ficas, ent„o o sistema emitir· uma mensagem de impossibilidade de localizar o hospital no mapa.
+RNG 01.02 = Se n„o houver sinal de internet, ent„o o sistema informar· a impossibilidade de localizaÁ„o do hospital.
 
 MENSAGENS DO SISTEMA
 ====================
-MSG 01.01 = Hospital cadastrado sem as coordenadas geogr√°ficas. Verifique com o administrador do sistema [Notifica√ß√£o]MSG 01.02 = Sistema sem sinal de internet [Notifica√ß√£o]
+MSG 01.01 = Hospital cadastrado sem as coordenadas geogr·ficas. Verifique com o administrador do sistema [NotificaÁ„o]MSG 01.02 = Sistema sem sinal de internet [NotificaÁ„o ]
