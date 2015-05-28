@@ -17,7 +17,7 @@ import br.edu.ifrs.canoas.tads.lds.bean.ExameUrinaUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.ItemExameUrina;
 import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
-import br.edu.ifrs.canoas.tads.lds.bean.TipoExameUrina;
+import br.edu.ifrs.canoas.tads.lds.bean.TipoAnalise;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterExameUrinaService;
 
 @Named
@@ -50,7 +50,7 @@ public class ManterExameUrinaMB implements Serializable{
 	
 //listas exames e tipos de exame
 	private List<ItemExameUrina> listaItensExame;	
-	private List<TipoExameUrina> tipos;
+	private List<TipoAnalise> tipos;
 	
 	
 	public String initListar() {
@@ -62,7 +62,7 @@ public class ManterExameUrinaMB implements Serializable{
 	
 	public String initManter() {
 		exameUrina.setItensExame(new ArrayList<>());
-		itemExameUrina.setTipoExameUrina(new TipoExameUrina());
+		itemExameUrina.setTipoExameUrina(new TipoAnalise());
 		listaItensExame = new ArrayList<>();
 		
 		return URL_MANTER_EXAMEURINA;
@@ -162,13 +162,13 @@ public class ManterExameUrinaMB implements Serializable{
 	}
 
 
-	public List<TipoExameUrina> getTipos() {
+	public List<TipoAnalise> getTipos() {
 //		if (tipos == null)
 			tipos = exameUrinaService.buscaTipoExameUrina();
 		return tipos;
 	}
 	
-	public void setTipos(List<TipoExameUrina> tipos) {
+	public void setTipos(List<TipoAnalise> tipos) {
 		this.tipos = tipos;
 	}
 

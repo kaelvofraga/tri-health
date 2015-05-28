@@ -12,7 +12,7 @@ import javax.persistence.Entity;
  */
 
 @Entity
-public class TipoExameUrina extends BaseEntity<Long> implements Serializable{
+public class TipoAnalise extends BaseEntity<Long> implements Serializable{
 	
 	private static final long serialVersionUID = 6235100045027463775L;
 	
@@ -21,7 +21,7 @@ public class TipoExameUrina extends BaseEntity<Long> implements Serializable{
 	private String valorReferencia;
 	
 	
-	public TipoExameUrina() {
+	public TipoAnalise() {
 		super();
 	}
 	

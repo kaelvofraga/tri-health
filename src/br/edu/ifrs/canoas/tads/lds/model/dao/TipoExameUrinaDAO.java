@@ -6,11 +6,11 @@ import javax.ejb.Stateless;
 
 import br.edu.ifrs.canoas.tads.lds.bean.ExameUrinaUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
-import br.edu.ifrs.canoas.tads.lds.bean.TipoExameUrina;
+import br.edu.ifrs.canoas.tads.lds.bean.TipoAnalise;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 
 @Stateless
-public class TipoExameUrinaDAO extends BaseDAO<TipoExameUrina, Long> {
+public class TipoExameUrinaDAO extends BaseDAO<TipoAnalise, Long> {
 
 	/**
 	 * 
@@ -18,7 +18,7 @@ public class TipoExameUrinaDAO extends BaseDAO<TipoExameUrina, Long> {
 	private static final long serialVersionUID = 8705987299342646987L;
 	
 	@SuppressWarnings("unchecked")
-	public List<TipoExameUrina> buscaPorTipo(String tipo) {
+	public List<TipoAnalise> buscaPorTipo(String tipo) {
 		return em.createQuery(
 				"SELECT teu " 
 		         + "FROM TipoExameUrina teu "
@@ -28,7 +28,7 @@ public class TipoExameUrinaDAO extends BaseDAO<TipoExameUrina, Long> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<TipoExameUrina> buscaTipoPorUsuario(Usuario usuario) {
+	public List<TipoAnalise> buscaTipoPorUsuario(Usuario usuario) {
 		return em.createQuery(
 				"SELECT teu " 
 		         + "FROM TipoExameUrina teu "

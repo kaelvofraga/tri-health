@@ -22,7 +22,7 @@ public class ItemExameUrina extends BaseEntity<Long> implements Serializable{
 	@NotNull 
 	@OneToOne
     @JoinColumn(name="ID_TIPOEXAMEURINA")
-	private TipoExameUrina tipoExameUrina;
+	private TipoAnalise tipoExameUrina;
 	
 	@ManyToOne
 	@JoinColumn(name="ID_EXAME_URINA_USUARIO")
@@ -39,11 +39,11 @@ public class ItemExameUrina extends BaseEntity<Long> implements Serializable{
 	
 	/*GETTERS & SETTERS*/
 
-	public TipoExameUrina getTipoExameUrina() {
+	public TipoAnalise getTipoExameUrina() {
 		return tipoExameUrina;
 	}
 
-	public void setTipoExameUrina(TipoExameUrina tipoExameUrina) {
+	public void setTipoExameUrina(TipoAnalise tipoExameUrina) {
 		this.tipoExameUrina = tipoExameUrina;
 	}
 

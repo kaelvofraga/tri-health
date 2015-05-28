@@ -5,7 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 
 import br.edu.ifrs.canoas.tads.lds.bean.PesoUsuario;
-import br.edu.ifrs.canoas.tads.lds.bean.TipoExameUrina;
+import br.edu.ifrs.canoas.tads.lds.bean.TipoAnalise;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 
 @Stateless

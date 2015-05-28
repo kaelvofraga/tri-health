@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import br.edu.ifrs.canoas.tads.lds.bean.ExameUrinaUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAtividade;
-import br.edu.ifrs.canoas.tads.lds.bean.TipoExameUrina;
+import br.edu.ifrs.canoas.tads.lds.bean.TipoAnalise;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 import br.edu.ifrs.canoas.tads.lds.model.dao.ExameUrinaDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.TipoExameUrinaDAO;
@@ -49,8 +49,8 @@ public class ManterExameUrinaService {
 		return true;		
 	}
 	
-	public TipoExameUrina buscaOuCriaTipoExameUrinaPorNome(TipoExameUrina tipoExameUrina) {
-		List<TipoExameUrina> tipos = tipoExameUrinaDAO.buscaPorTipo(tipoExameUrina.getTipo());
+	public TipoAnalise buscaOuCriaTipoExameUrinaPorNome(TipoAnalise tipoExameUrina) {
+		List<TipoAnalise> tipos = tipoExameUrinaDAO.buscaPorTipo(tipoExameUrina.getTipo());
 		
 		/*if (tipos.size() == 1)
 			tipoExameUrina = tipos.get(0);
@@ -61,10 +61,10 @@ public class ManterExameUrinaService {
 		return tipoExameUrina;
 	}
 	
-	public List<TipoExameUrina> buscaTiposExameUrina(String query, Usuario usuario) {
+	public List<TipoAnalise> buscaTiposExameUrina(String query, Usuario usuario) {
 		if (usuario != null && usuario.getId() != null)
 			return tipoExameUrinaDAO.buscaTipoPorUsuario(usuario);
-		return new ArrayList<TipoExameUrina>();
+		return new ArrayList<TipoAnalise>();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -99,7 +99,7 @@ public class ManterExameUrinaService {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<TipoExameUrina> buscaTipoExameUrina() {
+	public List<TipoAnalise> buscaTipoExameUrina() {
 		return tipoExameUrinaDAO.buscaTodos();
 	}
 	
