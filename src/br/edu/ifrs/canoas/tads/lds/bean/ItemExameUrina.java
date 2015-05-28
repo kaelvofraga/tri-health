@@ -17,11 +17,11 @@ import javax.validation.constraints.NotNull;
 public class ItemExameUrina extends BaseEntity<Long> implements Serializable{
 	
 
-	private static final long serialVersionUID = -7293203217920585961L;
+	private static final long serialVersionUID = 4776981056845635368L;
 
 	@NotNull 
 	@OneToOne
-    @JoinColumn(name="ID_TIPOANALISE")
+    @JoinColumn(name="ID_TIPO_ANALISE")
 	private TipoAnalise tipoAnalise;
 	
 	@ManyToOne
@@ -53,5 +53,12 @@ public class ItemExameUrina extends BaseEntity<Long> implements Serializable{
 		this.resultado = resultado;
 	}
 
+	public ExameUrinaUsuario getExameUsuario() {
+		return exameUsuario;
+	}
 
+	public void setExameUsuario(ExameUrinaUsuario exameUsuario) {
+		this.exameUsuario = exameUsuario;
+	}
+	
 }

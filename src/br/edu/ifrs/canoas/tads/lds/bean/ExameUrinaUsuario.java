@@ -14,18 +14,16 @@ import javax.validation.constraints.NotNull;
 
 
 
-/**@author: André Ficht
+/**@author: André Ficht/Alisson Lorscheiter
  * Proposito da Classe: Classe que representa a entidade do Exame de Urina referenciando ao 
  * usuario e aos tipos de exames presentes na urina.
- * @author: Alisson Lorscheiter
- * 
  * 
  */
 
 @Entity
 public class ExameUrinaUsuario extends BaseEntity<Long> implements Serializable{
 	
-	private static final long serialVersionUID = -8539097274270004334L;
+	private static final long serialVersionUID = -1792527376641748489L;
 
 	@NotNull 
 	@ManyToOne
@@ -40,7 +38,6 @@ public class ExameUrinaUsuario extends BaseEntity<Long> implements Serializable{
 	private Date data;
 	
 	private String observacao;
-	
 	
 
 	public ExameUrinaUsuario() {

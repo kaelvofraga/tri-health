@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -14,15 +15,13 @@ import br.edu.ifrs.canoas.tads.lds.bean.ExameUrinaUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.ItemExameUrina;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAnalise;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterExameUrinaService;
+import br.edu.ifrs.canoas.tads.lds.control.service.ManterTipoAnaliseService;
 
 @Named
 @SessionScoped
 public class ManterExameUrinaMB implements Serializable{
 
-	/**
-	 * Classe bean do Exame de Urina
-	 */
-//atributos
+	
 	private static final long serialVersionUID = 7113326743475818284L;
 	private static final String URL_LISTAR_EXAMEURINA = "/private/pages/listarExameUrina.jsf";
 	private static final String URL_MANTER_EXAMEURINA = "/private/pages/manterExameUrina.jsf";
@@ -35,15 +34,17 @@ public class ManterExameUrinaMB implements Serializable{
 	
 	@Inject
 	private ItemExameUrina itemExameUrina;
-	 
 	
 	@EJB
 	private ManterExameUrinaService exameUrinaService;
 	
+	@EJB
+	private ManterTipoAnaliseService tipoAnaliseService;
+	
 	private String criterioExameUrina;
 	
 	
-//listas exames e tipos de exame
+	//listas exames e tipos de exame
 	private List<ExameUrinaUsuario> listaExamesUsuario;	
 	private List<TipoAnalise> tiposAnalise;
 	
@@ -54,13 +55,23 @@ public class ManterExameUrinaMB implements Serializable{
 	}
 	
 	public String initManter() {
-		exameUrina.setItensExame(new ArrayList<>());
+		exameUrina.setItensExame(new ArrayList<ItemExameUrina>());
 		itemExameUrina.setTipoAnalise(new TipoAnalise());
 		return URL_MANTER_EXAMEURINA;
 	}
 	
+	public void onSelectTipoAnalise(){
+		itemExameUrina.getTipoAnalise();
+	}
+	
+	public void onRowSelect(SelectEvent event) throws IOException {
+		this.itemExameUrina = (ItemExameUrina) event.getObject();
+		FacesContext.getCurrentInstance().getExternalContext()
+				.redirect("../../private/pages/manterExameUrina.jsf");
+	}
+	
 	public void adicionarExameAnalisado(){
-		exameUrina.getItensExame().add(itemExameUrina);
+		this.exameUrina.getItensExame().add(itemExameUrina);
 		itemExameUrina= new ItemExameUrina();	
 	}
 
@@ -70,9 +81,8 @@ public class ManterExameUrinaMB implements Serializable{
 	
 	public void salvaExame(){
 		exameUrina.setUsuario(gerenciarLoginMB.getUsuario());
-//		exameUrina.setTipoExameUrina(tipos);
+
 		exameUrinaService.salvaExameUrinaUsuario(exameUrina);
-	//	this.inicializa();
 	}
 	
 //	public String alteraExameUrina() {
@@ -121,14 +131,8 @@ public class ManterExameUrinaMB implements Serializable{
 		return URL_MANTER_NOVO_EXAMEURINA;
 	}*/
 	
-	public void onRowSelect(SelectEvent event) throws IOException {
-		this.exameUrina = (ExameUrinaUsuario) event.getObject();
-        FacesContext.getCurrentInstance().getExternalContext().redirect("manterExameUrina.jsf");
-    }
-	
-	
-	
-//getters and setters
+
+	/*GETTERS & SETTERS*/
 	public ExameUrinaUsuario getExameUrina() {
 		return exameUrina;
 	}
@@ -137,8 +141,6 @@ public class ManterExameUrinaMB implements Serializable{
 		this.exameUrina = exameUrina;
 	}
 	
-	
-
 	public List<ExameUrinaUsuario> getListaExamesUsuario() {
 		return listaExamesUsuario;
 	}
@@ -148,6 +150,7 @@ public class ManterExameUrinaMB implements Serializable{
 	}
 
 	public List<TipoAnalise> getTiposAnalise() {
+		tiposAnalise = tipoAnaliseService.buscaTipoAnalise();
 		return tiposAnalise;
 	}
 
@@ -181,10 +184,6 @@ public class ManterExameUrinaMB implements Serializable{
 		this.itemExameUrina = itemExameUrina;
 	}
 	
-	
-	
-	
-
 }
 
 

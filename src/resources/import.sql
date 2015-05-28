@@ -95,10 +95,10 @@ insert into TipoAnalise (id, tipo,valorReferencia) values (10014,'Cilindros','10
 
 insert into ExameUrinaUsuario(id,ID_USUARIO,data,observacao) values (1001,1000,SYSDATE,'OBSERVACAO');
 
-insert into ItemExameUrina (id,ID_TIPOANALISE,ID_EXAME_URINA_USUARIO, resultado) values (2000,10001,1001,'ok');
-insert into ItemExameUrina (id,ID_TIPOANALISE,ID_EXAME_URINA_USUARIO, resultado) values (2001,10002,1001,'ok');
-insert into ItemExameUrina (id,ID_TIPOANALISE,ID_EXAME_URINA_USUARIO, resultado) values (2002,10003,1001,'ok');
-insert into ItemExameUrina (id,ID_TIPOANALISE,ID_EXAME_URINA_USUARIO, resultado) values (2003,10004,1001,'ok');
+insert into ItemExameUrina (id,ID_TIPO_ANALISE,ID_EXAME_URINA_USUARIO, resultado) values (2000,10001,1001,'ok');
+insert into ItemExameUrina (id,ID_TIPO_ANALISE,ID_EXAME_URINA_USUARIO, resultado) values (2001,10002,1001,'ok');
+insert into ItemExameUrina (id,ID_TIPO_ANALISE,ID_EXAME_URINA_USUARIO, resultado) values (2002,10003,1001,'ok');
+insert into ItemExameUrina (id,ID_TIPO_ANALISE,ID_EXAME_URINA_USUARIO, resultado) values (2003,10004,1001,'ok');
 
 
 

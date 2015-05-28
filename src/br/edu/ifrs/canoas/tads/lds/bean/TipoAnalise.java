@@ -4,20 +4,18 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 
 /**
- * @author: André Ficht
- * Proposito da Classe: Classe que representa a entidade dos tipos de exames presentes na Urina.
- * @author: Alisson Lorscheiter
- * 
+ * @author: André Ficht/Alisson Lorscheiter
+ * Proposito da Classe: Classe que representa a entidade dos tipos de exames presentes nos diferentes exames. 
  *          
  */
 
 @Entity
 public class TipoAnalise extends BaseEntity<Long> implements Serializable{
 	
-	private static final long serialVersionUID = 6235100045027463775L;
+
+	private static final long serialVersionUID = 97366118737547620L;
 	
 	private String tipo;
-	private String unidadeMedida;
 	private String valorReferencia;
 	
 	
@@ -36,14 +34,6 @@ public class TipoAnalise extends BaseEntity<Long> implements Serializable{
 		this.tipo = tipo;
 	}
 
-	public String getUnidadeMedida() {
-		return unidadeMedida;
-	}
-
-	public void setUnidadeMedida(String unidadeMedida) {
-		this.unidadeMedida = unidadeMedida;
-	}
-
 	public String getValorReferencia() {
 		return valorReferencia;
 	}
@@ -55,7 +45,6 @@ public class TipoAnalise extends BaseEntity<Long> implements Serializable{
 	/*
 	@Override
 	public String toString() {
-		return "TipoExameUrina [tipo=" + tipo + ", unidadeMedida="
-				+ unidadeMedida + ", valorReferencia=" + valorReferencia + "]";
+		return "TipoExameUrina [tipo=" + tipo + ", valorReferencia=" + valorReferencia + "]";
 	}*/
 }
