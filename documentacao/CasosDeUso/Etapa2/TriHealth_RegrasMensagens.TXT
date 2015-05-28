@@ -1,0 +1,9 @@
+
+REGRAS DE NEGÓCIO 
+=================
+RNG 01.01 = Se o Hospital selecionado não possuir as coordenadas geográficas, então o sistema emitirá uma mensagem de impossibilidade de localizar o hospital no mapa
+RNG 01.02 = Se não houver sinal de internet, então o sistema informará a impossibilidade de localização do hospital
+
+MENSAGENS DO SISTEMA
+====================
+MSG 01.01 = Hospital cadastrado sem as coordenadas geográficas. Verifique com o administrador do sistema [Notificação]MSG 01.02 = Sistema sem sinal de internet [Notificação]
