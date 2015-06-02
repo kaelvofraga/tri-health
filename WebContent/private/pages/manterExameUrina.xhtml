@@ -18,45 +18,44 @@
 
 				<h:panelGroup layout="block" id="exameurina">
 
-					<h:panelGroup layout="block" styleClass="form-group">
-						<p:outputLabel for="data_exame" value="Data do Exame" />
-						<br />
-						<p:calendar id="data_exame" style="width:200px"
-							value="#{manterExameUrinaMB.exameUrina.data}"
-							pattern="dd/MM/yyyy" required="true"
-							placeholder="Selecione a data do exame" size="25" effect="fold"
-							icon="glyphicon-calendar" />
-					</h:panelGroup>
-
-					<h:panelGrid columns="2" styleClass="mtable">
-
 						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel for="tipo_exame" value="Tipo de Exame" />
+							<p:outputLabel for="data_exame" value="Data do Exame" />
 							<br />
-							<p:selectOneMenu id="tipo_exame"
-								value="#{manterExameUrinaMB.itemExameUrina.tipoAnalise}"
-								style="width:250px" required="true"
-								requiredMessage="Um tipo de análise deve ser selecionado">
-								<p:ajax listener="#{manterExameUrinaMB.onSelectTipoAnalise}" />
-								<f:selectItem itemLabel="Selecione tipo do exame" itemValue=""
-									noSelectionOption="true" />
-								<f:selectItems value="#{manterExameUrinaMB.tiposAnalise}"
-									var="tipoAnalise" itemLabel="#{tipoAnalise.tipo}"
-									itemValue="#{tipoAnalise}" />
-							</p:selectOneMenu>
+							<p:calendar id="data_exame" style="width:200px"
+								value="#{manterExameUrinaMB.exameUrina.data}"
+								pattern="dd/MM/yyyy" required="true"
+								placeholder="Selecione a data do exame" size="25" effect="fold"
+								icon="glyphicon-calendar" />
 						</h:panelGroup>
-
-						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel for="resultado_exame" value="Resultado do Exame" />
-							<br />
-							<p:inputText id="resultado_exame" styleClass="form-control"
-								size="25" style="width:200px" required="true"
-								value="#{manterExameUrinaMB.itemExameUrina.resultado}"
-								placeholder="Informe o resultado" />
-						</h:panelGroup>
-
-					</h:panelGrid>
-
+	
+						<h:panelGrid columns="2" styleClass="mtable">
+	
+							<h:panelGroup layout="block" styleClass="form-group">
+								<p:outputLabel for="tipo_exame" value="Tipo de Exame" />
+								<br />
+								<p:selectOneMenu id="tipo_exame"
+									value="#{manterExameUrinaMB.itemExameUrina.tipoAnalise}"
+									style="width:250px" required="true"
+									requiredMessage="Um tipo de análise deve ser selecionado">
+									<p:ajax listener="#{manterExameUrinaMB.onSelectTipoAnalise}" />
+									<f:selectItem itemLabel="Selecione tipo do exame" itemValue=""
+										noSelectionOption="true" />
+									<f:selectItems value="#{manterExameUrinaMB.tiposAnalise}"
+										var="tipoAnalise" itemLabel="#{tipoAnalise.tipo}"
+										itemValue="#{tipoAnalise}" />
+								</p:selectOneMenu>
+							</h:panelGroup>
+	
+							<h:panelGroup layout="block" styleClass="form-group">
+								<p:outputLabel for="resultado_exame" value="Resultado do Exame" />
+								<br />
+								<p:inputText id="resultado_exame" styleClass="form-control"
+									size="25" style="width:200px" required="true"
+									value="#{manterExameUrinaMB.itemExameUrina.resultado}"
+									placeholder="Informe o resultado" />
+							</h:panelGroup>
+	
+						</h:panelGrid>
 					<h:panelGroup layout="block" styleClass="form-group pull-left">
 						<p:commandButton value="Adicionar" ajax="true" type="submit"
 							id="btnAdicionar" immediate="false" update="tab-itensExame"
@@ -66,9 +65,8 @@
 
 						<p:dataTable var="listItensExameUrina" id="tab-itensExame"
 							value="#{manterExameUrinaMB.exameUrina.itensExame}"
-							selectionMode="single"
-							selection="#{manterExameUrinaMB.itemExameUrina}"
-							rowKey="#{listItensExameUrina.id}"
+							
+							rowKey="#{listItensExameUrina}"
 							emptyMessage="Nenhum Registro Encontrado." reflow="true">
 							<p:ajax event="rowSelect"
 							listener="#{manterExameUrinaMB.onRowSelect}"
@@ -79,6 +77,19 @@
 							<p:column headerText="Resultado" id="colResultado">
 								<h:outputText value="#{listItensExameUrina.resultado}" />
 							</p:column>
+							<p:column headerText="Editar">
+				                <h:commandLink value="Editar">
+				                    <f:setPropertyActionListener value="#{listItensExameUrina}" 
+				                        target="#{manterExameUrinaMB.itemExameUrina}" />
+				                </h:commandLink>
+				            </p:column> 
+				            <p:column headerText="Excluir">
+				                 <p:commandButton value="Excluir" action="#{manterExameUrinaMB.exclui}" 
+				                 ajax="true"  update="tab-itensExame" >
+				                    <f:setPropertyActionListener value="#{listItensExameUrina}"  
+				                        target="#{manterExameUrinaMB.itemExameUrina}" />
+				                </p:commandButton>
+				            </p:column>
 						</p:dataTable>
 					<br />
 

@@ -71,7 +71,8 @@ public class ManterExameUrinaMB implements Serializable{
 	}
 	
 	public void adicionarExameAnalisado(){
-		this.exameUrina.getItensExame().add(itemExameUrina);
+		if (itemExameUrina != null && this.exameUrina.getItensExame().contains(itemExameUrina))
+			this.exameUrina.getItensExame().add(itemExameUrina);
 		itemExameUrina= new ItemExameUrina();	
 	}
 
@@ -182,6 +183,13 @@ public class ManterExameUrinaMB implements Serializable{
 
 	public void setItemExameUrina(ItemExameUrina itemExameUrina) {
 		this.itemExameUrina = itemExameUrina;
+	}
+	
+	public void exclui() {
+		if (itemExameUrina != null && this.exameUrina.getItensExame().contains(itemExameUrina))
+			this.exameUrina.getItensExame().remove(itemExameUrina);
+		itemExameUrina= new ItemExameUrina();	
+
 	}
 	
 }
