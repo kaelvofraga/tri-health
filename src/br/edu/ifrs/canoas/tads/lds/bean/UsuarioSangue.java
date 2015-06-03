@@ -27,10 +27,10 @@ public class UsuarioSangue extends BaseEntity<Long> implements Serializable{
 	private Usuario usuario;
 	
 	@NotNull
-	@OneToMany //(mappedBy="exameUsuario")
+	@OneToMany (mappedBy="usuarioSangue")
 	private Collection<ItemExameSangue> itensExame;
 		
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP)//(TemporalType.DATE)
 	private Date data;
 	
 	private String observacao;
