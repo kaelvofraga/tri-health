@@ -4,17 +4,17 @@ REGRAS DE NEGÓCIO
 RNG 01.01 = Se o Hospital selecionado não possuir as coordenadas geográficas (latitude e longitude) cadastradas, então o sistema emitirá uma mensagem de impossibilidade de localizar o hospital no mapa.
 RNG 01.02 = Se não houver sinal de internet, então o sistema informará a impossibilidade de localização do hospital.
 
-RNG 02.01 = Se o usuário não preencher a data, então o sistema emitirá uma mensagem advertindo da obrigatoriedade deste campo.
-RNG 02.02 = Se a soma dos valores dos componentes não for 100%, então o sistema emitirá uma mensagem advertindo que a soma dos valores deve ser 100%.
-RNG 02.03 = Se um valor ultrapassar 100%, então o sistema emitirá uma mensagem advertindo que o valor máximo é 100%.
-RNG 02.04 = Se a consulta não retornou dados, então o sistema emitirá uma mensagem advertindo que não há dados a serem exibidos.
-RNG 02.05 = Se o usuário desejar excluir um registro, então o sistema emitirá uma mensagem confirmando a ação.
-RNG 02.06 = Se o cadastro de um registro não foi salvo no banco com sucesso, então o sistema emitirá uma mensagem de erro.
-RNG 02.07 = Se as modificações não conseguiram ser salvas no banco, então o sistema emitirá uma mensagem de erro.
-RNG 02.08 = Se um registro não pode ser excluído do banco, então o sistema emitirá uma mensagem de erro.
-RNG 02.09 = Se o cadastro foi salvo no banco com sucesso, então o sistema emitirá uma mensagem de notificação.
-RNG 02.10 = Se as modificações foram salvas no banco com sucesso, então o sistema emitirá uma mensagem de notificação.
-RNG 02.11 = Se a exclusão de um registro foi realizada com sucesso, então o sistema emitirá uma mensagem de notificação.MENSAGENS DO SISTEMA
+RNG 02.01 = Se o usuário não preencher a data, então o sistema não deverá salvar os dados e emitirá a mensagem MSG 02.01.
+RNG 02.02 = Se a soma dos valores dos componentes não for 100%, então o sistema não deverá salvar os dados e emitirá a mensagem MSG 02.02.
+RNG 02.03 = Se um valor ultrapassar 100%, então o sistema não deverá salvar os dados e emitirá a mensagem MSG 02.03.
+RNG 02.04 = Se a consulta não retornou dados, então o sistema emitirá a mensagem MSG 02.04.
+RNG 02.05 = Se o usuário desejar excluir um registro, então o sistema emitirá a mensagem MSG 02.05.
+RNG 02.06 = Se o cadastro de um registro não foi salvo com sucesso, então o sistema emitirá a mensagem MSG 02.06.
+RNG 02.07 = Se as modificações não foram salvas com sucesso, então o sistema emitirá a mensagem MSG 02.07.
+RNG 02.08 = Se um registro não foi excluído com sucesso, então o sistema emitirá a mensagem MSG 02.08.
+RNG 02.09 = Se o cadastro foi salvo com sucesso, então o sistema emitirá a mensagem MSG 02.09.
+RNG 02.10 = Se as modificações foram salvas com sucesso, então o sistema emitirá a mensagem MSG 02.10.
+RNG 02.11 = Se a exclusão de um registro foi realizada com sucesso, então o sistema emitirá a mensagem MSG 02.11.MENSAGENS DO SISTEMA
 ====================
 -->>Opções para tipo de mensagem, utilizados ao final entre colchetes [Notificação, Alerta, Erro ou Confirmação]
 
