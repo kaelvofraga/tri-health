@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+		xmlns="http://www.w3.org/1999/xhtml"
+	    xmlns:ui="http://java.sun.com/jsf/facelets"
+	    xmlns:f="http://java.sun.com/jsf/core"
+	    xmlns:h="http://java.sun.com/jsf/html"
+	    xmlns:p="http://primefaces.org/ui">
+<ui:composition
+		template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+	
+	<ui:define name="content">
+		<h1 class="lead">Exames Realizados - Sangue</h1>
+		
+		<h:panelGroup layout="block" id="exames">
+		
+			<h:panelGrid columns="3" styleClass="mtable">
+				
+				<h:panelGroup layout="block" styleClass="form-group">
+					<p:outputLabel for="data_inicio" value="Data Inicial" /><br />
+					<p:calendar id="data_inicio" style="width:50px"
+						pattern="dd/MM/yyyy" required="true"
+						placeholder="Selecione a data inicial" effect="fold"
+						icon="glyphicon-calendar" />
+				</h:panelGroup>
+				
+				<h:panelGroup layout="block" styleClass="form-group">
+					<p:outputLabel for="data_final" value="Data Final" /><br />
+					<p:calendar id="data_final" style="width:50px"
+						pattern="dd/MM/yyyy" required="true"
+						placeholder="Selecione a data final" size="25" effect="fold"
+						icon="glyphicon-calendar" />
+				</h:panelGroup>
+				
+				<h:panelGroup layout="block" styleClass="form-group"><br />
+					<p:commandButton value="Buscar" type="submit"
+						action="#{manterExameSangueMB.busca}" ajax="false"
+						update="tab-exames" immediate="false" />
+				</h:panelGroup>			
+			
+			</h:panelGrid>
+			
+			<p:dataTable var="listExameSangue" id="tab-exames" selectionMode="single" selection="#{manterExameSangueMB.exameSangue}"
+						rowKey="#{listExameSangue.id}" value="#{manterExameSangueMB.examesLista}" emptyMessage="Nenhum Registro Encontrado."
+						reflow="true">
+				
+				<p:ajax event="rowSelect" listener="#{manterExameSangueMB.onRowSelect}" oncomplete="/private/pages/manterExameSangue.jsf"/>
+				
+				<p:column headerText="Data Exame" style="width:20%">
+					<h:outputText value="#{listExameSangue.data}" />
+				</p:column>
+				<p:column headerText="Análises realizadas - lista">
+					<h:outputText value="#{listExameSangue.tipoExameSangue}" />    <!-- retirei o ponto tipo -->
+				</p:column>
+
+			</p:dataTable>
+			
+		</h:panelGroup>	
+	
+	</ui:define>
+</ui:composition>
+</html>
