@@ -19,7 +19,7 @@ public class ItemExameSangue extends BaseEntity<Long> implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="ID_USUARIO_SANGUE")
-	private UsuarioSangue usuarioSangue;
+	private UsuarioExame usuarioExame;
 	
 	@NotNull 
 	@OneToOne
@@ -30,10 +30,10 @@ public class ItemExameSangue extends BaseEntity<Long> implements Serializable{
 	private String resultado;
 	
 //construtores	
-	public ItemExameSangue(UsuarioSangue usuarioSangue,
+	public ItemExameSangue(UsuarioExame usuarioExame,
 			TipoAnalise tipoAnalise, String resultado) {
 		super();
-		this.usuarioSangue = usuarioSangue;
+		this.usuarioExame = usuarioExame;
 		this.tipoAnalise = tipoAnalise;
 		this.resultado = resultado;
 	}
@@ -43,12 +43,12 @@ public class ItemExameSangue extends BaseEntity<Long> implements Serializable{
 	}
 	
 //getters and setters
-	public UsuarioSangue getUsuarioSangue() {
-		return usuarioSangue;
+	public UsuarioExame getUsuarioExame() {
+		return usuarioExame;
 	}
 
-	public void setUsuarioSangue(UsuarioSangue usuarioSangue) {
-		this.usuarioSangue = usuarioSangue;
+	public void setUsuarioExame(UsuarioExame usuarioExame) {
+		this.usuarioExame = usuarioExame;
 	}
 
 	public TipoAnalise getTipoAnalise() {

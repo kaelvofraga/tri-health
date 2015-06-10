@@ -13,7 +13,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class UsuarioSangue extends BaseEntity<Long> implements Serializable{
+public class UsuarioExame extends BaseEntity<Long> implements Serializable{
 
 	/**
 	 * @author André ficht
@@ -27,7 +27,7 @@ public class UsuarioSangue extends BaseEntity<Long> implements Serializable{
 	private Usuario usuario;
 	
 	@NotNull
-	@OneToMany (mappedBy="usuarioSangue")
+	@OneToMany (mappedBy="usuarioExame")
 	private Collection<ItemExameSangue> itensExame;
 		
 	@Temporal(TemporalType.TIMESTAMP)//(TemporalType.DATE)
@@ -36,7 +36,7 @@ public class UsuarioSangue extends BaseEntity<Long> implements Serializable{
 	private String observacao;
 	
 //construtores	
-	public UsuarioSangue(Usuario usuario,
+	public UsuarioExame(Usuario usuario,
 			Collection<ItemExameSangue> itensExame, Date data, String observacao) {
 		super();
 		this.usuario = usuario;
@@ -45,7 +45,7 @@ public class UsuarioSangue extends BaseEntity<Long> implements Serializable{
 		this.observacao = observacao;
 	}
 
-	public UsuarioSangue() {
+	public UsuarioExame() {
 		super();
 	}
 	
