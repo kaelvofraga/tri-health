@@ -24,15 +24,15 @@
 			<p:submenu label="Medidas">
 				<p:submenu label="Press&atilde;o Arterial" styleClass="nav nav-second-level">
 						<p:menuitem value="Listar" url="/private/pages/listarPressaoArterial.jsf" action="#"/>
-						<p:menuitem value="Manter" url="/private/pages/manterPressaoArterial.jsf" action="#"/>
+						<p:menuitem value="Cadastrar" url="/private/pages/manterPressaoArterial.jsf" action="#"/>
 				</p:submenu>		
 				<p:submenu label="Alimenta&ccedil;&atilde;o" styleClass="nav nav-second-level">
 					<p:menuitem value="Listar" url="/private/pages/listarRefeicao.jsf" action="#{listarRefeicaoMB.init}"/>
-					<p:menuitem value="Manter" url="/private/pages/manterRefeicoes.jsf" action="#{manterRefeicoesMB.init}"/>
+					<p:menuitem value="Cadastrar" url="/private/pages/manterRefeicoes.jsf" action="#{manterRefeicoesMB.init}"/>
 				</p:submenu>			
 				<p:submenu label="Peso" styleClass="nav nav-second-level">
-					<p:menuitem value="Listar" url="/private/pages/listarPeso.jsf" action="#{manterPesooMB.init}"/>
-					<p:menuitem value="Cadastrar" url="/private/pages/manterPeso.jsf" action="#{manterPesooMB.init}"/>
+					<p:menuitem value="Listar" url="/private/pages/listarPeso.jsf" action="#{manterPesoMB.initListar}"/>
+					<p:menuitem value="Cadastrar" url="/private/pages/manterPeso.jsf" action="#{manterPesoMB.initManter}"/>
 				</p:submenu>
 				<p:submenu label="Dimens&otilde;es Corporais" styleClass="nav nav-second-level">
 					<p:menuitem value="Listar" action="#{manterDimensoesCorporaisMB.initListar}"/>
@@ -41,7 +41,7 @@
 				
 				<p:submenu label="Atividades F&iacute;sicas" styleClass="nav nav-second-level">
 					<p:menuitem value="Listar" action="#{manterAtividadesMB.initListar}"/>
-					<p:menuitem value="Nova" action="#{manterAtividadesMB.initManter}"/>
+					<p:menuitem value="Cadastrar" action="#{manterAtividadesMB.initManter}"/>
 				</p:submenu>				
 			</p:submenu>
 			<p:separator />

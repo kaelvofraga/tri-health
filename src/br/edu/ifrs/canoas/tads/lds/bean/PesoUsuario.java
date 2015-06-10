@@ -2,7 +2,6 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -16,7 +15,12 @@ import javax.validation.constraints.NotNull;
  * Entity implementation class for Entity: PesoUsuario
  * Possui identificacao do usuario, udm, data, nota e valor
  * @author Luana
- * @version 06/05/2015	 
+ * @version 06/05/2015
+ * 
+ * @author Alisson Lorscheiter
+ * @version 10/06/2015
+ * *Adição do Peso como Join.
+ * 	 
  */
 @Entity
 public class PesoUsuario extends BaseEntity<Long> implements Serializable{	
@@ -26,6 +30,10 @@ public class PesoUsuario extends BaseEntity<Long> implements Serializable{
 	@NotNull @ManyToOne
 	@JoinColumn(name="USUARIO_ID")
 	private Usuario usuario;
+	
+	@NotNull @OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="PESO_ID") // JOIN pesoUsuario com peso.
+	private Peso peso;
 	
     @OneToOne
 	@JoinColumn(name="UDM_ID")
@@ -37,7 +45,6 @@ public class PesoUsuario extends BaseEntity<Long> implements Serializable{
 	@NotNull 
 	private String nota;
 	
-	private double valor;
 	
 	public PesoUsuario(){
 		super();
@@ -75,12 +82,12 @@ public class PesoUsuario extends BaseEntity<Long> implements Serializable{
 		this.udm = udm;
 	}
 
-	public double getValor() {
-		return valor;
+	public Peso getPeso() {
+		return peso;
 	}
 
-	public void setValor(double valor) {
-		this.valor = valor;
+	public void setPeso(Peso peso) {
+		this.peso = peso;
 	}
-	
+		
 }

@@ -1,10 +1,8 @@
-/*package br.edu.ifrs.canoas.tads.lds.model.dao;
+package br.edu.ifrs.canoas.tads.lds.model.dao;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.ejb.Stateless;
-
 import br.edu.ifrs.canoas.tads.lds.bean.Peso;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 
@@ -14,7 +12,7 @@ import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 	 * @author Luana
 	 * @version 06/05/2015
 	 */
-	 /*
+	 
 @Stateless
 public class PesoDAO extends BaseDAO<Peso, Long> implements Serializable {
 	
@@ -31,4 +29,3 @@ public class PesoDAO extends BaseDAO<Peso, Long> implements Serializable {
 	}
 }
 
-*/

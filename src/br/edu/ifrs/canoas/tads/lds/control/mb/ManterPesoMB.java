@@ -14,16 +14,22 @@ import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
 
-import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
+import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
+import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
+import br.edu.ifrs.canoas.tads.lds.bean.Peso;
 import br.edu.ifrs.canoas.tads.lds.bean.PesoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Udm;
-import br.edu.ifrs.canoas.tads.lds.bean.ValorMedidaUsuario;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterPesoService;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterUdmService;
 
 /** 
  * @author Luana
  * @version 06/05/2015
+ * @author Alisson Lorscheiter
+ * @version 10/06/2015
+ * Adição dos metodos,initManter e initListar.
+ * 
+ *
  */
 
 @Named 
@@ -31,7 +37,8 @@ import br.edu.ifrs.canoas.tads.lds.control.service.ManterUdmService;
 public class ManterPesoMB implements Serializable {
 	
 	private static final long serialVersionUID = 8840982087710515671L;
-	private static final String URL_NOVO_PESO = "/private/pages/manterPeso.jsf";
+	private static final String URL_MANTER_PESO = "/private/pages/manterPeso.jsf";
+	private static final String URL_LISTAR_PESO = "/private/pages/listarPeso.jsf";
 
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
@@ -44,19 +51,38 @@ public class ManterPesoMB implements Serializable {
 	@EJB
 	private ManterPesoService pesoService;
 	
-	private List<PesoUsuario> pesoUSuarioList;
+	private List<PesoUsuario> pesoUsuarioList;
 	private List<Udm> udmLista;
 	
 	private Udm udm;	
 	private String buscaPeso;
 	
-	@PostConstruct
+	/*@PostConstruct
 	public void inicializa() {
 		pesoUsuario = new PesoUsuario();
 		udm = new Udm();
 		udmLista = this.getUdmLista();	
 		pesoUSuarioList = pesoService.listaPeso(); 
 		
+	}*/
+	
+	public String initListar() {
+		pesoUsuario = new PesoUsuario();
+		buscaPeso = "";
+		pesoUsuarioList = new ArrayList<>();
+		return URL_LISTAR_PESO;
+	}
+
+	/*
+	 * Metodo que limpa MedicamentoUsuario, Medicamento, e lista de medicamentos
+	 * do autocomplete da view de manter
+	 */
+	public String initManter() {
+		udm = new Udm();
+		udmLista= this.getUdmLista();
+		pesoUsuario = new PesoUsuario();
+		pesoUsuario.setPeso(new Peso());
+		return URL_MANTER_PESO;
 	}
 	
 	public void onRowSelect(SelectEvent event) throws IOException {
@@ -65,8 +91,8 @@ public class ManterPesoMB implements Serializable {
     }
 	
 	public String novoPesoUsuario(){
-		this.inicializa();
-		return URL_NOVO_PESO;
+		//this.clear();
+		return URL_MANTER_PESO;
 	}	
 
 	public void setUdmLista(List<Udm> udmLista) {
@@ -76,7 +102,7 @@ public class ManterPesoMB implements Serializable {
 	public void salvaPeso(){
 		pesoUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		pesoService.salvaPesoUsuario(pesoUsuario);
-		this.inicializa();
+		this.initManter();
 	}
 
 	public void onSelectUdm(){
@@ -99,14 +125,6 @@ public class ManterPesoMB implements Serializable {
 		this.pesoService = pesoService;
 	}
 	
-	public GerenciarLoginMB getGerenciarLoginMB() {
-		return gerenciarLoginMB;
-	}
-
-	public void setGerenciarLoginMB(GerenciarLoginMB gerenciarLoginMB) {
-		this.gerenciarLoginMB = gerenciarLoginMB;
-	}
-
 	public PesoUsuario getPesoUsuario() {
 		return pesoUsuario;
 	}
@@ -125,15 +143,14 @@ public class ManterPesoMB implements Serializable {
 	}
 
 	public List<PesoUsuario> getPesoUSuarioList() {
-		if(pesoUSuarioList == null || pesoUSuarioList.size() == 0) {
-				 pesoUSuarioList = new ArrayList<PesoUsuario>();
+		if(pesoUsuarioList == null || pesoUsuarioList.size() == 0) {
+				 pesoUsuarioList = new ArrayList<PesoUsuario>();
 		}
-		return pesoUSuarioList;
+		return pesoUsuarioList;
 	}
 	
-
 	public void setPesoUSuarioList(List<PesoUsuario> pesoUSuarioList) {
-		this.pesoUSuarioList = pesoUSuarioList;
+		this.pesoUsuarioList = pesoUSuarioList;
 	}
 
 	public Udm getUdm() {
@@ -142,10 +159,6 @@ public class ManterPesoMB implements Serializable {
 
 	public void setUdm(Udm udm) {
 		this.udm = udm;
-	}
-
-	public static String getUrlNovoPeso() {
-		return URL_NOVO_PESO;
 	}
 
 	public String getBuscaPeso() {

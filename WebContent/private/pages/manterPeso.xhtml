@@ -25,12 +25,10 @@
 							<p:outputLabel for="valor" value="Valor:" />
 							<br/>
 							<pe:inputNumber id="valor" symbolPosition="s"
-								style="width:80%;"
+								style="width:80%"
 								decimalSeparator="," thousandSeparator="."
-								value="#{manterPesoMB.pesoUsuario.valor}"
-								required="true" requiredMessage="Peso deve ser informado."
-								var="valor" itemLabel="#{pesoUsuario.valor}"
-								itemValue="#{pesoUsuario.valor}" >
+								value="#{manterPesoMB.pesoUsuario.peso.valor}"
+								required="true" requiredMessage="Peso deve ser informado.">
 							</pe:inputNumber>
 	    				</h:panelGroup>
 						
