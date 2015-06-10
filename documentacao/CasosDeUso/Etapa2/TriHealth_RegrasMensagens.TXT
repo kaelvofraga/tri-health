@@ -1,34 +1,39 @@
-
-REGRAS DE NEGÓCIO 
+ï»¿
+REGRAS DE NEGï¿½CIO 
 =================
-RNG 01.01 = Se o Hospital selecionado não possuir as coordenadas geográficas (latitude e longitude) cadastradas, então o sistema emitirá uma mensagem de impossibilidade de localizar o hospital no mapa.
-RNG 01.02 = Se não houver sinal de internet, então o sistema informará a impossibilidade de localização do hospital.
+RNG 01.01 = Se o Hospital selecionado nï¿½o possuir as coordenadas geogrï¿½ficas (latitude e longitude) cadastradas, entï¿½o o sistema emitirï¿½ uma mensagem de impossibilidade de localizar o hospital no mapa.
+RNG 01.02 = Se nï¿½o houver sinal de internet, entï¿½o o sistema informarï¿½ a impossibilidade de localizaï¿½ï¿½o do hospital.
 
-RNG 02.01 = Se o usuário não preencher a data, então o sistema não deverá salvar os dados e emitirá a mensagem MSG 02.01.
-RNG 02.02 = Se a soma dos valores dos componentes não for 100%, então o sistema não deverá salvar os dados e emitirá a mensagem MSG 02.02.
-RNG 02.03 = Se um valor ultrapassar 100%, então o sistema não deverá salvar os dados e emitirá a mensagem MSG 02.03.
-RNG 02.04 = Se a consulta não retornou dados, então o sistema emitirá a mensagem MSG 02.04.
-RNG 02.05 = Se o usuário desejar excluir um registro, então o sistema emitirá a mensagem MSG 02.05.
-RNG 02.06 = Se o cadastro de um registro não foi salvo com sucesso, então o sistema emitirá a mensagem MSG 02.06.
-RNG 02.07 = Se as modificações não foram salvas com sucesso, então o sistema emitirá a mensagem MSG 02.07.
-RNG 02.08 = Se um registro não foi excluído com sucesso, então o sistema emitirá a mensagem MSG 02.08.
-RNG 02.09 = Se o cadastro foi salvo com sucesso, então o sistema emitirá a mensagem MSG 02.09.
-RNG 02.10 = Se as modificações foram salvas com sucesso, então o sistema emitirá a mensagem MSG 02.10.
-RNG 02.11 = Se a exclusão de um registro foi realizada com sucesso, então o sistema emitirá a mensagem MSG 02.11.MENSAGENS DO SISTEMA
+RNG 02.01 = Se o usuï¿½rio nï¿½o preencher a data, entï¿½o o sistema nï¿½o deverï¿½ salvar os dados e emitirï¿½ a mensagem MSG 02.01.
+RNG 02.02 = Se a soma dos valores dos componentes nï¿½o for 100%, entï¿½o o sistema nï¿½o deverï¿½ salvar os dados e emitirï¿½ a mensagem MSG 02.02.
+RNG 02.03 = Se um valor ultrapassar 100%, entï¿½o o sistema nï¿½o deverï¿½ salvar os dados e emitirï¿½ a mensagem MSG 02.03.
+RNG 02.04 = Se a consulta nï¿½o retornou dados, entï¿½o o sistema emitirï¿½ a mensagem MSG 02.04.
+RNG 02.05 = Se o usuï¿½rio desejar excluir um registro, entï¿½o o sistema emitirï¿½ a mensagem MSG 02.05.
+RNG 02.06 = Se o cadastro de um registro nï¿½o foi salvo com sucesso, entï¿½o o sistema emitirï¿½ a mensagem MSG 02.06.
+RNG 02.07 = Se as modificaï¿½ï¿½es nï¿½o foram salvas com sucesso, entï¿½o o sistema emitirï¿½ a mensagem MSG 02.07.
+RNG 02.08 = Se um registro nï¿½o foi excluï¿½do com sucesso, entï¿½o o sistema emitirï¿½ a mensagem MSG 02.08.
+RNG 02.09 = Se o cadastro foi salvo com sucesso, entï¿½o o sistema emitirï¿½ a mensagem MSG 02.09.
+RNG 02.10 = Se as modificaï¿½ï¿½es foram salvas com sucesso, entï¿½o o sistema emitirï¿½ a mensagem MSG 02.10.
+RNG 02.11 = Se a exclusï¿½o de um registro foi realizada com sucesso, entï¿½o o sistema emitirï¿½ a mensagem MSG 02.11.
+
+RNG 03.01 = O sistema podera apenas publicar uma postagem em nome do usuario, sem ter acesso a qualquer outra informaÃ§ao de seu perfil.
+
+
+MENSAGENS DO SISTEMA
 ====================
--->>Opções para tipo de mensagem, utilizados ao final entre colchetes [Notificação, Alerta, Erro ou Confirmação]
+-->>Opï¿½ï¿½es para tipo de mensagem, utilizados ao final entre colchetes [Notificaï¿½ï¿½o, Alerta, Erro ou Confirmaï¿½ï¿½o]
 
-MSG 01.01 = Hospital cadastrado sem as coordenadas geográficas. Verifique com o administrador do sistema [Notificação]MSG 01.02 = Sistema sem sinal de internet [Notificação]
+MSG 01.01 = Hospital cadastrado sem as coordenadas geogrï¿½ficas. Verifique com o administrador do sistema [Notificaï¿½ï¿½o]MSG 01.02 = Sistema sem sinal de internet [Notificaï¿½ï¿½o]
 
 MSG 02.01 = Uma data deve ser escolhida! [Erro]
 MSG 02.02 = A soma de todos os valores deve ser 100%! [Erro]
-MSG 02.03 = O valor máximo permitido é 100%! [Erro] 
+MSG 02.03 = O valor mï¿½ximo permitido ï¿½ 100%! [Erro] 
 MSG 02.04 = Nenhum registro encontrado. [Alerta]
-MSG 02.05 = Tem certeza que deseja apagar esse registro? [Confirmação]
+MSG 02.05 = Tem certeza que deseja apagar esse registro? [Confirmaï¿½ï¿½o]
 MSG 02.06 = Erro ao tentar salvar o registro! [Erro]
-MSG 02.07 = Erro ao tentar salvar as modificações! [Erro]
+MSG 02.07 = Erro ao tentar salvar as modificaï¿½ï¿½es! [Erro]
 MSG 02.08 = Erro ao tentar excluir o registro! [Erro]
-MSG 02.09 = Cadastro de composições corporais realizado com sucesso. [Notificação]
-MSG 02.10 = Modificações salvas com sucesso. [Notificação]
-MSG 02.11 = Registro excluído com sucesso. [Notificação]
-
+MSG 02.09 = Cadastro de composiï¿½ï¿½es corporais realizado com sucesso. [Notificaï¿½ï¿½o]
+MSG 02.10 = Modificaï¿½ï¿½es salvas com sucesso. [Notificaï¿½ï¿½o]
+MSG 02.11 = Registro excluï¿½do com sucesso. [Notificaï¿½ï¿½o]
+
