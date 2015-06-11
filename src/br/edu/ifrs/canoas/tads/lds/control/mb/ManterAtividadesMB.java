@@ -186,7 +186,7 @@ public class ManterAtividadesMB implements Serializable {
 	public void onRowSelect(SelectEvent event) throws IOException {
 		this.atividadeUsuario = (AtividadeUsuario) event.getObject();
 		this.filtrarAtividades();
-		FacesContext.getCurrentInstance().getExternalContext().redirect("manterAtividadesFisicas.jsf");
+		FacesContext.getCurrentInstance().getExternalContext().redirect("../.."+URL_MANTER_ATIVIDADES);
     }
 	
 	
