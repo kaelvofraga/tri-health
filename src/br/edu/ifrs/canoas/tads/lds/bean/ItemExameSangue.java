@@ -18,7 +18,7 @@ public class ItemExameSangue extends BaseEntity<Long> implements Serializable{
 	private static final long serialVersionUID = 6438502909147720009L;
 	
 	@ManyToOne
-	@JoinColumn(name="ID_USUARIO_SANGUE")
+	@JoinColumn(name="ID_USUARIO_EXAME")
 	private UsuarioExame usuarioExame;
 	
 	@NotNull 

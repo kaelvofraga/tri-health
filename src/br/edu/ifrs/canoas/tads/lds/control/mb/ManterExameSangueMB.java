@@ -1,6 +1,7 @@
 package br.edu.ifrs.canoas.tads.lds.control.mb;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -93,7 +94,11 @@ public class ManterExameSangueMB implements Serializable{
 	}
 	
 //métodos
-	
+	public String initManter(){
+		usuarioExame.setItensExame(new ArrayList<ItemExameSangue>());
+		itemExameSangue.setTipoAnalise(new TipoAnalise());
+		return URL_MANTER_EXAMESANGUE;		
+	}
 	
 	
 
