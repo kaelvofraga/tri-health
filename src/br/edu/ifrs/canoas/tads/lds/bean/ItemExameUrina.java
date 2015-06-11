@@ -1,6 +1,7 @@
 package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,8 +19,7 @@ public class ItemExameUrina extends BaseEntity<Long> implements Serializable{
 	
 
 	private static final long serialVersionUID = 4776981056845635368L;
-
-	@NotNull 
+ 
 	@OneToOne
     @JoinColumn(name="ID_TIPO_ANALISE")
 	private TipoAnalise tipoAnalise;
@@ -28,7 +28,6 @@ public class ItemExameUrina extends BaseEntity<Long> implements Serializable{
 	@JoinColumn(name="ID_EXAME_URINA_USUARIO")
 	private ExameUrinaUsuario exameUsuario;
 	
-	@NotNull
 	private String resultado;
 	
 	public ItemExameUrina() {
@@ -60,5 +59,42 @@ public class ItemExameUrina extends BaseEntity<Long> implements Serializable{
 	public void setExameUsuario(ExameUrinaUsuario exameUsuario) {
 		this.exameUsuario = exameUsuario;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result
+				+ ((exameUsuario == null) ? 0 : exameUsuario.hashCode());
+		result = prime * result
+				+ ((tipoAnalise == null) ? 0 : tipoAnalise.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ItemExameUrina other = (ItemExameUrina) obj;
+		if (exameUsuario == null) {
+			if (other.exameUsuario != null)
+				return false;
+		} else if (!exameUsuario.equals(other.exameUsuario))
+			return false;
+		if (tipoAnalise == null) {
+			if (other.tipoAnalise != null)
+				return false;
+		} else if (!tipoAnalise.equals(other.tipoAnalise))
+			return false;
+		 else if (!tipoAnalise.getTipo().equalsIgnoreCase((other.tipoAnalise.getTipo())))
+				return false;
+		return true;
+	}
+	
+	
 	
 }

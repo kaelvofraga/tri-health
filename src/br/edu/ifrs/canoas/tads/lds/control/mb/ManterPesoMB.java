@@ -4,18 +4,13 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import org.primefaces.event.SelectEvent;
-
-import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
-import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Peso;
 import br.edu.ifrs.canoas.tads.lds.bean.PesoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Udm;
@@ -73,10 +68,6 @@ public class ManterPesoMB implements Serializable {
 		return URL_LISTAR_PESO;
 	}
 
-	/*
-	 * Metodo que limpa MedicamentoUsuario, Medicamento, e lista de medicamentos
-	 * do autocomplete da view de manter
-	 */
 	public String initManter() {
 		udm = new Udm();
 		udmLista= this.getUdmLista();

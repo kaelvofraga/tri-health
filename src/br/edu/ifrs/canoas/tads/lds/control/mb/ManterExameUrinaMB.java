@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -16,6 +16,7 @@ import br.edu.ifrs.canoas.tads.lds.bean.ItemExameUrina;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAnalise;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterExameUrinaService;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterTipoAnaliseService;
+import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 
 @Named
 @SessionScoped
@@ -50,11 +51,12 @@ public class ManterExameUrinaMB implements Serializable{
 	
 	
 	public String initListar() {
+		exameUrina = new ExameUrinaUsuario();
 		listaExamesUsuario= new ArrayList<>();
 		return URL_LISTAR_EXAMEURINA;
 	}
 	
-	public String initManter() {
+	public String initManter(){
 		exameUrina.setItensExame(new ArrayList<ItemExameUrina>());
 		itemExameUrina.setTipoAnalise(new TipoAnalise());
 		return URL_MANTER_EXAMEURINA;
@@ -71,8 +73,13 @@ public class ManterExameUrinaMB implements Serializable{
 	}
 	
 	public void adicionarExameAnalisado(){
-		if (itemExameUrina != null && this.exameUrina.getItensExame().contains(itemExameUrina))
+		if (itemExameUrina != null && !this.exameUrina.getItensExame().contains(itemExameUrina)){
 			this.exameUrina.getItensExame().add(itemExameUrina);
+		}
+		else{
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					"manterExameUrina.insere.erro");
+		}
 		itemExameUrina= new ItemExameUrina();	
 	}
 
@@ -82,7 +89,6 @@ public class ManterExameUrinaMB implements Serializable{
 	
 	public void salvaExame(){
 		exameUrina.setUsuario(gerenciarLoginMB.getUsuario());
-
 		exameUrinaService.salvaExameUrinaUsuario(exameUrina);
 	}
 	
@@ -99,9 +105,9 @@ public class ManterExameUrinaMB implements Serializable{
 		return URL_MANTER_USO_EXAMEURINA;
 	}*/
 	
-	public void busca(){
-	//	examesLista = exameUrinaService.busca(criterioExameUrina);
-	}
+	/*public void busca(){
+	examesLista = exameUrinaService.busca(criterioExameUrina);
+	}*/
 	
 	public void clear(){
 		exameUrina = new ExameUrinaUsuario();
