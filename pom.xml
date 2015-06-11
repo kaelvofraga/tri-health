@@ -48,7 +48,7 @@
 						</includes> </resource> </webResources> -->
 				</configuration>
 			</plugin>
-			
+
 		</plugins>
 	</build>
 
@@ -151,10 +151,12 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
 		</dependency>
-<!-- 		<dependency>
-			<groupId>org.jinq</groupId>
-			<artifactId>jinq-jpa</artifactId>
-			<version>1.6.2</version>
-		</dependency> -->
+		<dependency>
+			<groupId>org.facebook4j</groupId>
+			<artifactId>facebook4j-core</artifactId>
+			<version>[2.2,)</version>
+		</dependency>
+		<!-- <dependency> <groupId>org.jinq</groupId> <artifactId>jinq-jpa</artifactId> 
+			<version>1.6.2</version> </dependency> -->
 	</dependencies>
 </project>
