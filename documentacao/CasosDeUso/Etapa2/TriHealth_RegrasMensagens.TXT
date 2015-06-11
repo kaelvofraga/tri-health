@@ -15,7 +15,7 @@ RNG 02.08 = Se um registro n�o foi exclu�do com sucesso, ent�o o sistema e
 RNG 02.09 = Se o cadastro foi salvo com sucesso, ent�o o sistema emitir� a mensagem MSG 02.09.
 RNG 02.10 = Se as modifica��es foram salvas com sucesso, ent�o o sistema emitir� a mensagem MSG 02.10.
 RNG 02.11 = Se a exclus�o de um registro foi realizada com sucesso, ent�o o sistema emitir� a mensagem MSG 02.11.RNG 04.01 = Se sistema for salvar forlumario sem preencher todos os campos mitir mensagem MSG 04.01 
-RNG 04.02 = Se sistema for salvar forlumario sem anexar arquivo mitir mensagem MSG 04.02RNG 04.03 = Se sistema for fechar forlumario e houver campos sem salvar emitir mensagem MSG 04.03
+RNG 04.02 = Se sistema for salvar forlumario sem anexar arquivo mitir mensagem MSG 04.02RNG 04.03 = Se sistema for fechar forlumario e houver campos sem salvar emitir mensagem MSG 04.03RNG 04.04 = Se sistema for salvar forlumario e extensão de arquivo não for .pdf de emitir mensagem MSG 04.04
 
 RNG 03.01 = O sistema podera apenas publicar uma postagem em nome do usuario, sem ter acesso a qualquer outra informaçao de seu perfil.
 
@@ -40,3 +40,4 @@ MSG 02.11 = Registro exclu�do com sucesso. [Notifica��o]
 MSG 04.01 = Todos os campos devem ser preenchidos! [Notificacao]
 MSG 04.02 = Necessario anexar arquivo! [Notificacao]
 MSG 04.03 = Salve ou cancele as modificacoes para prosseguir![Notificacao]
+MSG 04.04 = Arquivo deve ser de extensão .pdf! [Notificacao]
