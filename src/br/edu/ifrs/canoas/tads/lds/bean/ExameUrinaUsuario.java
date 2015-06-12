@@ -3,7 +3,6 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;

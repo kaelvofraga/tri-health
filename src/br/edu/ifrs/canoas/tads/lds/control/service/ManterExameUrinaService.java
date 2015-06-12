@@ -1,13 +1,17 @@
 package br.edu.ifrs.canoas.tads.lds.control.service;
 
+import java.util.Date;
 import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
+
 import br.edu.ifrs.canoas.tads.lds.bean.ExameUrinaUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.ItemExameUrina;
 import br.edu.ifrs.canoas.tads.lds.model.dao.ExameUrinaDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.ItemExameUrinaDAO;
+import br.edu.ifrs.canoas.tads.lds.util.DateUtil;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
 
@@ -21,7 +25,8 @@ public class ManterExameUrinaService {
 	private ItemExameUrinaDAO itemExameUrinaDAO;
 
 	public boolean salvaExameUrinaUsuario(ExameUrinaUsuario exameUrina) {
-		if (exameUrina.getItensExame() == null || exameUrina.getItensExame().isEmpty() 
+		if (exameUrina.getItensExame() == null
+				|| exameUrina.getItensExame().isEmpty()
 				|| exameUrina.getUsuario() == null) {
 			Mensagens.define(FacesMessage.SEVERITY_ERROR,
 					"manterExameUrina.cadastro.erro.nulo");
@@ -46,11 +51,17 @@ public class ManterExameUrinaService {
 		}
 	}
 
-	public List<ExameUrinaUsuario> busca(String criterioExameUrina) {
-		if (StrUtil.isNotBlank(criterioExameUrina))
-			return exameUrinaDAO.buscaPorCriterio(criterioExameUrina);
-		else
+	public List<ExameUrinaUsuario> busca(Date dataDe, Date dataAte,String criterioExameUrina) {
+		if (dataDe == null || dataAte == null || dataDe.compareTo(dataAte) > 0) {
+			dataDe = DateUtil.getDataAtual();
+			dataAte = DateUtil.getDataAtualIncrementa(1);
+		}
+		if (StrUtil.isNotBlank(criterioExameUrina) || dataDe != null && dataAte != null) {
+
+			return exameUrinaDAO.buscaPorCriterio(dataDe, dataAte,criterioExameUrina);
+		} else {
 			return exameUrinaDAO.buscaTodos();
+		}
 	}
 
 	public void alteraExameUrina(ExameUrinaUsuario exameUrina) {

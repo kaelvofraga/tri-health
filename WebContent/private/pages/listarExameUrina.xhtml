@@ -18,49 +18,57 @@
 
 					<h:panelGroup layout="block" id="exames">
 
+					<h:panelGrid columns="2" styleClass="mtable">
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel value="De" />
+							<br />
+							<p:calendar pattern="dd/MM/yyyy HH:mm" mask="true"
+							    value="#{manterExameUrinaMB.dataDe}"
+								showOn="button" placeholder="Informe a data de inicio" />
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel value="Até" />
+							<br />
+							<p:calendar pattern="dd/MM/yyyy HH:mm" mask="true"
+							    value="#{manterExameUrinaMB.dataAte}"
+								showOn="button" placeholder="Informe a data final" />
+						</h:panelGroup>
+						
 					<h:panelGroup layout="block" styleClass="form-group">
-						<p:outputLabel for="criterio_exame" value="Pesquisa" />
-						<p:inputText id="criterio_exame" styleClass="form-control"
+						<p:outputLabel for="criterio_exameUrina" value="Pesquisa" />
+						<p:inputText id="criterio_exameUrina" styleClass="form-control"
 							value="#{manterExameUrinaMB.criterioExameUrina}"
-							style="width:250px"
-							placeholder="Digite o tipo da análise para pesquisa" />
-					</h:panelGroup>
+							placeholder="Pesquise aqui por Observação" />
+					</h:panelGroup>	
+						
+					</h:panelGrid>	
 
 					<h:panelGroup layout="block" styleClass="form-group">
 						<p:commandButton value="Buscar" type="submit"
 							action="#{manterExameUrinaMB.busca}" ajax="true"
 							update="tab-exames" immediate="false" />
 						<p:commandButton value="Limpar" type="submit"
-							action="#{manterExameUrinaMB.inicializa()}" ajax="true"
-							update="tab-exames,criterio_exame" immediate="false" />
+							action="#{manterExameUrinaMB.initListar}" ajax="true"
+							update="tab-exames,criterio_exameUrina" immediate="false"/>
 					</h:panelGroup>
 
 
 					<p:dataTable var="listExameUrina" id="tab-exames" selectionMode="single" selection="#{manterExameUrinaMB.exameUrina}"
-								rowKey="#{listExameUrina.id}" value="#{manterExameUrinaMB.examesLista}" emptyMessage="Nenhum Registro Encontrado."
+								rowKey="#{listExameUrina.id}" value="#{manterExameUrinaMB.exameUrina.itensExame}" emptyMessage="Nenhum Registro Encontrado."
 								reflow="true">
-						
 						<p:ajax event="rowSelect" listener="#{manterExameUrinaMB.onRowSelect}" oncomplete="/private/pages/manterExameUrina.jsf"/>
-						
-						<p:column headerText="Data Exame">
+						<p:column headerText="Data Exame" id="colDataExame">
 							<h:outputText value="#{listExameUrina.data}" />
 						</p:column>
-						<p:column headerText="Tipo de Análise">
-							<h:outputText value="#{listExameUrina.tipoExameUrina}" />    <!-- retirei o ponto tipo -->
-						</p:column>
-						<p:column headerText="Resultado">
-							<h:outputText value="#{listExameUrina.resultado}" />
-						</p:column>
-						<p:column headerText="Observação">
+						<p:column headerText="Observação" id="colObs">
 							<h:outputText value="#{listExameUrina.observacao}" />
 						</p:column>
-
-
 					</p:dataTable>
 					<br />
-				</h:panelGroup>
+				</h:panelGroup>	
 				
-				<p:commandButton value="Cadastrar Novo Exame" action="#{manterExameUrinaMB.novoExameUrina}" icon="ui-icon-plus" ajax="true" />
 
 				
 

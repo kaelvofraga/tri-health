@@ -3,14 +3,20 @@ package br.edu.ifrs.canoas.tads.lds.control.mb;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import org.primefaces.event.SelectEvent;
+
 import br.edu.ifrs.canoas.tads.lds.bean.ExameUrinaUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.ItemExameUrina;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAnalise;
@@ -41,6 +47,13 @@ public class ManterExameUrinaMB implements Serializable{
 	
 	@EJB
 	private ManterTipoAnaliseService tipoAnaliseService;
+	
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataDe;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataAte;
 	
 	private String criterioExameUrina;
 	
@@ -105,9 +118,9 @@ public class ManterExameUrinaMB implements Serializable{
 		return URL_MANTER_USO_EXAMEURINA;
 	}*/
 	
-	/*public void busca(){
-	examesLista = exameUrinaService.busca(criterioExameUrina);
-	}*/
+	public void busca(){
+	listaExamesUsuario = exameUrinaService.busca(this.getDataDe(),this.getDataAte(),criterioExameUrina);
+	}
 	
 	public void clear(){
 		exameUrina = new ExameUrinaUsuario();
@@ -116,27 +129,18 @@ public class ManterExameUrinaMB implements Serializable{
 	}
 	
 	
-	
-	/*public List<TipoExameUrina> completeTipoExameUrina(String query){
-		if (tipos == null) 
-			tipos = exameUrinaService.buscaTiposExameUrina(query, gerenciarLoginMB.getUsuario());
-
-		List<TipoExameUrina> tiposBusca = new ArrayList<TipoExameUrina>();
-         
-        for (int i = 0; i < tipos.size(); i++) {
-            TipoExameUrina tipoExameUrina = tipos.get(i);
-            if(tipoExameUrina.getTipo().trim().toLowerCase().startsWith(query)) {
-            	tiposBusca.add(tipoExameUrina);
-            }
-        }
-        return tiposBusca;
-	}*/
-	
 	/*public String novoExameUrina(){
 //		this.emListagemAtvs = false;
 //		this.clear();
 		return URL_MANTER_NOVO_EXAMEURINA;
 	}*/
+	
+	public void exclui() {
+		if (itemExameUrina != null && this.exameUrina.getItensExame().contains(itemExameUrina))
+			this.exameUrina.getItensExame().remove(itemExameUrina);
+		itemExameUrina= new ItemExameUrina();	
+
+	}
 	
 
 	/*GETTERS & SETTERS*/
@@ -190,16 +194,21 @@ public class ManterExameUrinaMB implements Serializable{
 	public void setItemExameUrina(ItemExameUrina itemExameUrina) {
 		this.itemExameUrina = itemExameUrina;
 	}
-	
-	public void exclui() {
-		if (itemExameUrina != null && this.exameUrina.getItensExame().contains(itemExameUrina))
-			this.exameUrina.getItensExame().remove(itemExameUrina);
-		itemExameUrina= new ItemExameUrina();	
 
+	public Date getDataDe() {
+		return dataDe;
 	}
-	
+
+	public void setDataDe(Date dataDe) {
+		this.dataDe = dataDe;
+	}
+
+	public Date getDataAte() {
+		return dataAte;
+	}
+
+	public void setDataAte(Date dataAte) {
+		this.dataAte = dataAte;
+	}
+		
 }
-
-
-
-
