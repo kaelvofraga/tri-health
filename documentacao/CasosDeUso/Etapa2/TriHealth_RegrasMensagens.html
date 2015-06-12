@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Tri Health - Regras e Mensagens de Negócio</title>
+        <style>
+            h1 {
+                font-size: 20px;
+                text-transform: uppercase;
+            }
+            
+            p{
+                margin-top: 0px;
+                margin-bottom: 5px;
+                text-align: justify;
+                font-size: 14px;
+            }
+            
+            .rnghr{
+                margin-bottom: 20px;      
+            }
+            
+            
+            .rng p:before {
+                content: "RNG ";
+            }
+            
+            .msg{
+                margin-top: 20px;   
+            }
+            
+            .msg p:before {
+                content: "MSG ";
+            }
+            
+            .tmsg{
+                margin-top: 100px; 
+            }
+            
+            .obs{
+                font-size: 11px;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <h1>Regras de Negócio</h1>
+        <hr class="rnghr"/>
+        <div class="rng">
+            <p>01.01 = Se o Hospital selecionado não possuir as coordenadas geograficas (latitude e longitude) cadastradas, então o sistema emitirá uma mensagem de impossibilidade de localizar o hospital no mapa.</p>
+            <p>01.02 = Se não houver sinal de internet, então o sistema informará a impossibilidade de localização do hospital.</p>
+            
+            <br>
+            
+            <p>02.01 = Se o usuário não preencher a data, então o sistema não deverá salvar os dados e emitirá a mensagem MSG 02.01.</p>
+            <p>02.02 = Se a soma dos valores dos componentes não for 100%, então o sistema não deverá salvar os dados e emitirá a mensagem MSG 02.02.</p>
+            <p>02.03 = Se um valor ultrapassar 100%, então o sistema não deverá salvar os dados e emitirá a mensagem MSG 02.03.</p>
+            <p>02.04 = Se a consulta não retornou dados, então o sistema emitirá a mensagem MSG 02.04.</p>
+            <p>02.05 = Se o usuário desejar excluir um registro, então o sistema emitirá a mensagem MSG 02.05.</p>
+            <p>02.06 = Se o cadastro de um registro não foi salvo com sucesso, então o sistema emitirá a mensagem MSG 02.06.</p>
+            <p>02.07 = Se as modificações não foram salvas com sucesso, então o sistema emitirá a mensagem MSG 02.07.</p>
+            <p>02.08 = Se um registro não foi excluído com sucesso, então o sistema emitirá a mensagem MSG 02.08.</p>
+            <p>02.09 = Se o cadastro foi salvo com sucesso, então o sistema emitirá a mensagem MSG 02.09.</p>
+            <p>02.10 = Se as modificações foram salvas com sucesso, então o sistema emitirá a mensagem MSG 02.10.</p>
+            <p>02.11 = Se a exclusão de um registro foi realizada com sucesso, então o sistema emitirá a mensagem MSG 02.11.</p>
+            
+            <br>
+            
+            <p>03.01 = O sistema poderá apenas publicar uma postagem em nome do usuário, sem ter acesso a qualquer outra informaçao de seu perfil.</p>
+            
+            
+            <br>
+            
+            <p>04.01 = Se sistema for salvar forlumario sem preencher todos os campos mitir mensagem MSG 04.01.</p>
+            <p>04.02 = Se sistema for salvar forlumario sem anexar arquivo mitir mensagem MSG 04.02.</p>
+            <p>04.03 = Se sistema for fechar forlumario e houver campos sem salvar emitir mensagem MSG 04.03.</p>
+            <p>04.04 = Se sistema for salvar forlumario e extensão de arquivo não for .pdf de emitir mensagem MSG 04.04.</p>
+            
+            <br>
+            
+            <p>05.01 = Se houver algum campo vazio o sistema não salva e exibe mensagem MSG 05.01.</p>
+            <p>05.02 = Se salvo com sucesso, exibe mensagem MSG 05.02.</p>
+            <p>05.03 = Se a categoria está sendo utilizada, não permite a exclusão e exibe mensagem MSG 05.03.</p>
+            <p>05.04 = Se a categoria não está sendo utilizada, exibe mensagem MSG 05.04.</p>
+            <p>05.05 = Se algum campo possui menos de 3 caracteres, exibir mensagem MSG 05.05.</p>
+        </div>
+        
+        <h1 class="tmsg">Mensagens do Sistema</h1>
+        <hr/>
+        <p class="obs">-->Opções para tipo de mensagem, utilizados ao final entre colchetes [Notificação, Alerta, Erro ou Confirmação]</p>
+        <div class="msg">
+            <p>01.01 = Hospital cadastrado sem as coordenadas geográficas. Verifique com o administrador do sistema [Notificação]</p>
+            <p>01.02 = Sistema sem sinal de internet [Notificação]</p>
+            
+            <br>
+            
+            <p>02.01 = Uma data deve ser escolhida! [Erro]</p>
+            <p>02.02 = A soma de todos os valores deve ser 100%! [Erro]</p>
+            <p>02.03 = O valor máximo permitido é 100%! [Erro]</p>
+            <p>02.04 = Nenhum registro encontrado. [Alerta]</p>
+            <p>02.05 = Tem certeza que deseja apagar esse registro? [Confirmação]</p>
+            <p>02.06 = Erro ao tentar salvar o registro! [Erro]</p>
+            <p>02.07 = Erro ao tentar salvar as modificações! [Erro]</p>
+            <p>02.08 = Erro ao tentar excluir o registro! [Erro]</p>
+            <p>02.09 = Cadastro de composições corporais realizado com sucesso. [Notificação]</p>
+            <p>02.10 = Modificações salvas com sucesso. [Notificação]</p>
+            <p>02.11 = Registro excluído com sucesso. [Notificação]</p>
+            
+            <br>
+            
+            <p>04.01 = Todos os campos devem ser preenchidos! [Notificação]</p>
+            <p>04.02 = Necessário anexar arquivo! [Notificação]</p>
+            <p>04.03 = Salve ou cancele as modificacoes para prosseguir![Notificação]</p>
+            <p>04.04 = Arquivo deve ser de extensão .pdf! [Notificacao]</p>
+            
+            <br>
+            
+            <p>05.01 = Todos os campos devem ser preenchidos. [Notificação]</p>
+            <p>05.02 = Registro salvo com sucesso!. [Notificação]</p>
+            <p>05.03 = Categoria está sendo utilizada, exclusão não é permitida!. [Notificação]</p>
+            <p>05.04 = Categoria salva com sucesso. [Notificação]</p>
+            <p>05.05 = Campo deve possuír mais que 3 caracteres. [Notificação]</p>
+        </div>
+    </body>
+</html>
