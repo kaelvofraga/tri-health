@@ -71,10 +71,10 @@
             
             <br>
             
-            <p>04.01 = Se sistema for salvar forlumario sem preencher todos os campos mitir mensagem MSG 04.01.</p>
-            <p>04.02 = Se sistema for salvar forlumario sem anexar arquivo mitir mensagem MSG 04.02.</p>
-            <p>04.03 = Se sistema for fechar forlumario e houver campos sem salvar emitir mensagem MSG 04.03.</p>
-            <p>04.04 = Se sistema for salvar forlumario e extensão de arquivo não for .pdf de emitir mensagem MSG 04.04.</p>
+            <p>04.01 = Se sistema for salvar formulario sem preencher todos os campos emitir mensagem MSG 04.01.</p>
+            <p>04.02 = Se sistema for salvar formulario sem anexar arquivo emitir mensagem MSG 04.02.</p>
+            <p>04.03 = Se sistema for fechar formulario e houver campos sem salvar emitir mensagem MSG 04.03.</p>
+            <p>04.04 = Se sistema for salvar formulario e extensão de arquivo não for .pdf de emitir mensagem MSG 04.04.</p>
             
             <br>
             
@@ -83,6 +83,14 @@
             <p>05.03 = Se a categoria está sendo utilizada, não permite a exclusão e exibe mensagem MSG 05.03.</p>
             <p>05.04 = Se a categoria não está sendo utilizada, exibe mensagem MSG 05.04.</p>
             <p>05.05 = Se algum campo possui menos de 3 caracteres, exibir mensagem MSG 05.05.</p>
+			
+			<br>
+			
+			<p>06.01 = Exames: urina, sangue, cardiológico e cateterismo.
+			<p>06.02 = O usuário deverá clicar no botão Gera PDF para gerar arquivo.
+			<p>06.03 = Se não houver histórico de exame, exibe mensagem MSG 06.01 e não gera arquivo.
+			<p>06.04 = Caso o usuário não informe filtro de busca, gera pdf com todos exames cadastrados;Caso contrário, exibe histórico de acordo com filtro.
+			
         </div>
         
         <h1 class="tmsg">Mensagens do Sistema</h1>
@@ -120,6 +128,12 @@
             <p>05.03 = Categoria está sendo utilizada, exclusão não é permitida!. [Notificação]</p>
             <p>05.04 = Categoria salva com sucesso. [Notificação]</p>
             <p>05.05 = Campo deve possuír mais que 3 caracteres. [Notificação]</p>
+            
+			<br>
+			
+			<p>06.01 = Não existe histórico de exames realizados!O arquivo não será gerado. [Notificação]</p>
+			<p>06.02 = PDF gerado com sucesso! [Notificação]</p>
+			<p>06.03 = Ocorreu erro ao gerar pdf. O arquivo não será gerado. [Erro]</p>
         </div>
     </body>
 </html>
