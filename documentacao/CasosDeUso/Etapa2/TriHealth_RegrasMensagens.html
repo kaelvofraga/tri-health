@@ -47,9 +47,15 @@
         <h1>Regras de Negócio</h1>
         <hr class="rnghr"/>
         <div class="rng">
-            <p>01.01 = Se o Hospital selecionado não possuir as coordenadas geograficas (latitude e longitude) cadastradas, então o sistema emitirá uma mensagem de impossibilidade de localizar o hospital no mapa.</p>
-            <p>01.02 = Se não houver sinal de internet, então o sistema informará a impossibilidade de localização do hospital.</p>
-            
+            <p>01.01 = 	Se o sistema localizar ao menos uma informação do hospital selecionado, apresentará o nome do hospital e 
+            			a(s) informação(ões) localizadas na tela. Caso contrário, apresentará somente o nome do hospital e emitirá a MSG 01.01 e MSG 01.02.
+             			Para este caso as informações do hospital são: logradouro, número, bairro, cidade, Estado e telefone(s).</p>
+            <p>01.02 = 	O sistema verificará as coordenadas geográficas do hospital selecionado. As coordenadas geográficas são representadas 
+            			por 02 atributos (Latitude e Longitude). Se o sistema não localizar um dos atributos ou um deles não estiver no formato 
+            			estabelecido, o sistema emitirá as mensagens MSG 01.03 e MSG 01.04.
+						As coordenadas geográficas deverão ser do tipo double, com 5 casas decimais. 
+						O atributo Latitude deverá aparecer antes do atributo Longitude e deverá estar no intervalo de -90 a 90. 
+						E o atributo Longitude, de -180 a 180.</p>            
             <br>
             
             <p>02.01 = Se o usuário não preencher a data, então o sistema não deverá salvar os dados e emitirá a mensagem MSG 02.01.</p>
@@ -97,8 +103,10 @@
         <hr/>
         <p class="obs">-->Opções para tipo de mensagem, utilizados ao final entre colchetes [Notificação, Alerta, Erro ou Confirmação]</p>
         <div class="msg">
-            <p>01.01 = Hospital cadastrado sem as coordenadas geográficas. Verifique com o administrador do sistema [Notificação]</p>
-            <p>01.02 = Sistema sem sinal de internet [Notificação]</p>
+            <p>01.01 = Sr. [Usuário], o sistema não localizou endereço deste hospital. [Notificação]</p>
+            <p>01.02 = Sr. Administrador do Tri-Health, não foi possível localizar as informações de endereço do hospital [Nome do Hospital]. Em [data do acesso (dd/mm/aaaa)]. [Notificação]</p>
+            <p>01.03 = Sr. [Usuário], não foi possível localizar o hospital no mapa. [Notificação]</p>
+            <p>01.04 = Sr. Administrador do Tri-Health, não foi possível localizar as coordenadas geográficas do hospital [Nome do Hospital]. Em [data do acesso (dd/mm/aaaa)]. [Notificação]</p>
             
             <br>
             
