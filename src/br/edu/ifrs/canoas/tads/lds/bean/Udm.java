@@ -34,6 +34,13 @@ public class Udm extends BaseEntity<Long> implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
+/*@Andre -->> inseri este construtor, pois entendi que uma classe para ser uma Entity requer 
+	anotação @Entity, um ID e um construtor público sem parâmetros.
+*/
+	public Udm() {
+		super();
+	}
 	
 	
 	

@@ -100,7 +100,11 @@ insert into ItemExameUrina (id,ID_TIPO_ANALISE,ID_EXAME_URINA_USUARIO, resultado
 insert into ItemExameUrina (id,ID_TIPO_ANALISE,ID_EXAME_URINA_USUARIO, resultado) values (2002,10003,1001,'ok');
 insert into ItemExameUrina (id,ID_TIPO_ANALISE,ID_EXAME_URINA_USUARIO, resultado) values (2003,10004,1001,'ok');
 
+-- Manter Exame Sangue
 
+insert into UsuarioExame(id,ID_USUARIO,data,observacao) values (1001,1000,SYSDATE,'Teste campo OBS');
+
+insert into ItemExameSangue (id,ID_TIPO_ANALISE,ID_USUARIO_EXAME,resultado) values (3000,10001,1001,'ok');
 
 -- Manter Cateterismo
 INSERT INTO MEDICO VALUES(1001,'RS123','Dr teste 1');
