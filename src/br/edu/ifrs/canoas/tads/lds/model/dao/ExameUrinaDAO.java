@@ -17,7 +17,10 @@ public class ExameUrinaDAO extends BaseDAO<ExameUrinaUsuario, Long>{
 	public List<ExameUrinaUsuario> buscaPorCriterio(Date dataDe, Date dataAte,String criterioExameUrina) {
 		try {
 			String query="SELECT eu FROM ExameUrinaUsuario eu WHERE lower (eu.observacao) like ? OR eu.data between ? and ? ORDER BY eu.data";
-			return em.createQuery(query).setParameter(1, criterioExameUrina).setParameter(2, dataDe,TemporalType.TIMESTAMP).setParameter(3, dataAte, TemporalType.TIMESTAMP).getResultList();
+			return em.createQuery(query).setParameter(1, criterioExameUrina)
+					.setParameter(2, dataDe,TemporalType.TIMESTAMP).
+					setParameter(3, dataAte, TemporalType.TIMESTAMP)
+					.getResultList();
 		} catch (IllegalArgumentException e) {
 			return null;
 		}

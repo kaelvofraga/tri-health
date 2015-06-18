@@ -17,18 +17,25 @@
 			<p:tab title="Listar Peso">
 
 					 <h:panelGroup layout="block" id="peso">
-
-
+					 
+					 <h:panelGroup layout="block" styleClass="form-group">
+						<p:outputLabel for="criterio_peso" value="Pesquisa" />
+						<p:inputText id="criterio_peso" styleClass="form-control"
+							value="#{manterPesoMB.criterioPeso}"
+							placeholder="Pesquise aqui por Peso,Udm e Nota" />
+						</h:panelGroup>
+						
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:commandButton value="Busca" type="submit" action="#{manterPesoMB.busca}" ajax="true"
+							update="tab-peso" immediate="false" />
+						<p:commandButton value="Limpa" type="submit" action="#{manterPesoMB.initListar}" ajax="true"
+							update="tab-peso,criterio_peso" immediate="false" />
+					</h:panelGroup>	
 
 					<p:dataTable 
-						id="tab-peso" 
-						selectionMode="single"
-						emptyMessage="Nenhum Registro Encontrado." 
-						var="listPeso" 
-						selection="#{manterPesoMB.pesoUsuario}" 
-						value="#{manterPesoMB.pesoUSuarioList}"
-						rowKey="#{listPeso.id}"
-						reflow="true">
+						id="tab-peso" selectionMode="single" emptyMessage="Nenhum Registro Encontrado." 
+						var="listPeso" selection="#{manterPesoMB.pesoUsuario}" 
+						value="#{manterPesoMB.pesoUsuarioList}"	rowKey="#{listPeso.id}"	reflow="true">
 						
 						<p:ajax event="rowSelect" listener="#{manterPesoMB.onRowSelect}"
 							oncomplete="/private/pages/manterPeso.jsf" />
@@ -36,7 +43,7 @@
 							<h:outputText value="#{listPeso.data}" />
 						</p:column>
 						<p:column headerText="Valor" id="colPeso">
-							<h:outputText value="#{listPeso.valor}" />
+							<h:outputText value="#{listPeso.peso.valor}" />
 						</p:column>
 						<p:column headerText="Udm" id="colUdm">
 							<h:outputText value="#{listPeso.udm.descricao}" />
@@ -48,7 +55,7 @@
 					</p:dataTable>
 					<br/>
 				 </h:panelGroup>
-			<p:commandButton value="Novo Peso" action="#{manterPesoMB.novoPesoUsuario}" icon="ui-icon-plus" ajax="true" />
+			<p:commandButton value="Novo Peso" action="#{manterPesoMB.initManter}" icon="ui-icon-plus" ajax="true" />
 		  </p:tab>
 
 		</p:accordionPanel>

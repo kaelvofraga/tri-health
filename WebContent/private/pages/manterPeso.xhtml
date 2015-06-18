@@ -13,11 +13,7 @@
 	<ui:define name="content">
 
 		<h1 class="lead">Controle de Peso</h1>
-		
-		<p:accordionPanel multiple="true">
-		
-		<p:tab title="Cadastrar">
-		
+				
 			<h:panelGroup layout="block" styleClass="form-group" id="peso">
 				<h:panelGrid columns="2" styleClass="mtable">
 												
@@ -26,7 +22,7 @@
 							<br/>
 							<pe:inputNumber id="valor" symbolPosition="s"
 								style="width:80%"
-								decimalSeparator="," thousandSeparator="."
+								thousandSeparator="."
 								value="#{manterPesoMB.pesoUsuario.peso.valor}"
 								required="true" requiredMessage="Peso deve ser informado.">
 							</pe:inputNumber>
@@ -76,15 +72,16 @@
 						
 						
 					<h:panelGroup layout="block" styleClass="form-group" id="buttons">
-					</h:panelGroup>
-
+					
 					<h:panelGroup layout="block" styleClass="form-group pull-left">
-						
 		    			   <p:commandButton value="Salvar"
 								action="#{manterPesoMB.salvaPeso}" 
 								ajax="true" update="peso" icon="ui-icon-disk">
 						   </p:commandButton>		
 				    </h:panelGroup> 
+					</h:panelGroup>
+
+					
 						
 		</h:panelGroup>
 				<p:confirmDialog global="true" showEffect="fade"
@@ -96,8 +93,6 @@
 						styleClass="ui-confirmdialog-no" icon="ui-icon-close">
 				    </p:commandButton>		
 					</p:confirmDialog> 
-		</p:tab>
-
-		</p:accordionPanel>
+		
 	</ui:define>
 </ui:composition>

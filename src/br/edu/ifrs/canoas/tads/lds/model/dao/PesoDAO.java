@@ -18,14 +18,6 @@ public class PesoDAO extends BaseDAO<Peso, Long> implements Serializable {
 	
 	private static final long serialVersionUID = -7932771645088001580L;
 
-	@SuppressWarnings("unchecked")
-	public List<Peso> buscaPesoUsuario(Usuario usuario) {	
-		return em.createQuery("SELECT p " 
-					         + " FROM Peso p "
-					         + "WHERE p.id in "
-					         + "          (select pu.peso.id "
-					         + "             from PesoUsuario pu "
-					         + "            where au.usuario.id = :usuario) ").setParameter("usuario", usuario.getId()).getResultList();
-	}
+	
 }
 

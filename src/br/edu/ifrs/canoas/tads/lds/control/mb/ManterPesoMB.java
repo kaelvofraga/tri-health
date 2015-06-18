@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -23,12 +23,13 @@ import br.edu.ifrs.canoas.tads.lds.control.service.ManterUdmService;
  * @author Alisson Lorscheiter
  * @version 10/06/2015
  * Adição dos metodos,initManter e initListar.
- * 
+ * Criação metodo busca.
+ * Alterações metodo de salvar.
  *
  */
 
 @Named 
-@RequestScoped 
+@SessionScoped 
 public class ManterPesoMB implements Serializable {
 	
 	private static final long serialVersionUID = 8840982087710515671L;
@@ -43,31 +44,25 @@ public class ManterPesoMB implements Serializable {
 	
 	@EJB
 	private ManterUdmService manterUdmService;
+	
 	@EJB
 	private ManterPesoService pesoService;
 	
 	private List<PesoUsuario> pesoUsuarioList;
 	private List<Udm> udmLista;
 	
-	private Udm udm;	
-	private String buscaPeso;
+	private String criterioPeso;
 	
-	/*@PostConstruct
-	public void inicializa() {
-		pesoUsuario = new PesoUsuario();
-		udm = new Udm();
-		udmLista = this.getUdmLista();	
-		pesoUSuarioList = pesoService.listaPeso(); 
-		
-	}*/
+	private Udm udm;	
 	
 	public String initListar() {
 		pesoUsuario = new PesoUsuario();
-		buscaPeso = "";
-		pesoUsuarioList = new ArrayList<>();
+		criterioPeso = "";
+		pesoUsuarioList = new ArrayList<PesoUsuario>();
 		return URL_LISTAR_PESO;
 	}
 
+	
 	public String initManter() {
 		udm = new Udm();
 		udmLista= this.getUdmLista();
@@ -79,15 +74,11 @@ public class ManterPesoMB implements Serializable {
 	public void onRowSelect(SelectEvent event) throws IOException {
 		this.pesoUsuario = (PesoUsuario)event.getObject();
 		FacesContext.getCurrentInstance().getExternalContext().redirect("manterPeso.jsf");
-    }
+    }	
 	
-	public String novoPesoUsuario(){
-		//this.clear();
-		return URL_MANTER_PESO;
-	}	
-
-	public void setUdmLista(List<Udm> udmLista) {
-		this.udmLista = udmLista;
+	/* Metodo de busca da view Listar */
+	public void busca() {
+		pesoUsuarioList = pesoService.busca(criterioPeso);
 	}
 
 	public void salvaPeso(){
@@ -100,20 +91,25 @@ public class ManterPesoMB implements Serializable {
 		pesoUsuario.setUdm(udm);
 	}
 	
+	
+	//Getters e setters
+	
 	public List<Udm> getUdmLista() {
 		if(udmLista == null)
 			udmLista = manterUdmService.buscaUdm();
 		return udmLista;
 	}
 	
+	public void setUdmLista(List<Udm> udmLista) {
+		this.udmLista = udmLista;
+	}
 	
-	//Getters e setters
-	public ManterPesoService getPesoService() {
-		return pesoService;
+	public String getCriterioPeso() {
+		return criterioPeso;
 	}
 
-	public void setPesoService(ManterPesoService pesoService) {
-		this.pesoService = pesoService;
+	public void setCriterioPeso(String criterioPeso) {
+		this.criterioPeso = criterioPeso;
 	}
 	
 	public PesoUsuario getPesoUsuario() {
@@ -124,24 +120,15 @@ public class ManterPesoMB implements Serializable {
 		this.pesoUsuario = pesoUsuario;
 	}
 
-
-	public ManterUdmService getManterUdmService() {
-		return manterUdmService;
-	}
-
-	public void setManterUdmService(ManterUdmService manterUdmService) {
-		this.manterUdmService = manterUdmService;
-	}
-
-	public List<PesoUsuario> getPesoUSuarioList() {
+	public List<PesoUsuario> getPesoUsuarioList() {
 		if(pesoUsuarioList == null || pesoUsuarioList.size() == 0) {
 				 pesoUsuarioList = new ArrayList<PesoUsuario>();
 		}
 		return pesoUsuarioList;
 	}
 	
-	public void setPesoUSuarioList(List<PesoUsuario> pesoUSuarioList) {
-		this.pesoUsuarioList = pesoUSuarioList;
+	public void setPesoUsuarioList(List<PesoUsuario> pesoUsuarioList) {
+		this.pesoUsuarioList = pesoUsuarioList;
 	}
 
 	public Udm getUdm() {
@@ -150,14 +137,5 @@ public class ManterPesoMB implements Serializable {
 
 	public void setUdm(Udm udm) {
 		this.udm = udm;
-	}
-
-	public String getBuscaPeso() {
-		return buscaPeso;
-	}
-
-	public void setBuscaPeso(String buscaPeso) {
-		this.buscaPeso = buscaPeso;
-	}
-	
+	}	
 }

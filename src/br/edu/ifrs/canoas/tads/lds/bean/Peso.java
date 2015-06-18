@@ -13,14 +13,15 @@ import javax.validation.constraints.NotNull;
 public class Peso extends BaseEntity<Long> implements Serializable {
 
 	private static final long serialVersionUID = -2819412320994175355L;
+	
 	@NotNull	
-	private Double valor;
+	private double valor;
 	
 	public Peso() {
 		super();
 	}
 
-	public Double getValor() {
+	public double getValor() {
 		return valor;
 	}
 
