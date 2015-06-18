@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -129,7 +130,9 @@ public class ManterExameSangueMB implements Serializable{
 	}
 	
 //métodos
+	@PostConstruct
 	public String initManter(){
+		gerenciarLoginMB.getUsuario().getNome().toUpperCase();
 		usuarioExame.setItensExame(new ArrayList<ItemExameSangue>());
 		itemExameSangue.setTipoAnalise(new TipoAnalise());
 		return URL_MANTER_EXAMESANGUE;		
@@ -161,6 +164,7 @@ public class ManterExameSangueMB implements Serializable{
 	public void salvaExame(){
 		usuarioExame.setUsuario(gerenciarLoginMB.getUsuario());
 		exameSangueService.salvaExameSangueUsuario(usuarioExame);
+		this.clear();
 	}
 	
 	public void adicionarExameAnalisado(){
