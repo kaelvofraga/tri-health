@@ -17,12 +17,11 @@ import javax.persistence.TemporalType;
 
 import org.primefaces.event.SelectEvent;
 
-import br.edu.ifrs.canoas.tads.lds.bean.ExameUrinaUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.ItemExameSangue;
-import br.edu.ifrs.canoas.tads.lds.bean.ItemExameUrina;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAnalise;
 import br.edu.ifrs.canoas.tads.lds.bean.UsuarioExame;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterExameSangueService;
+import br.edu.ifrs.canoas.tads.lds.control.service.ManterTipoAnaliseService;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 
 @Named
@@ -39,17 +38,19 @@ public class ManterExameSangueMB implements Serializable{
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
 	
+	@SuppressWarnings("cdi-ambiguous-dependency")
 	@Inject
 	private UsuarioExame usuarioExame;
 	
+	@SuppressWarnings("cdi-ambiguous-dependency")
 	@Inject
 	private ItemExameSangue itemExameSangue;
 	
 	@EJB
 	private ManterExameSangueService exameSangueService;
 	
-	//@EJB
-	//private ManterTipoAnaliseService tipoAnaliseService;
+	@EJB
+	private ManterTipoAnaliseService tipoAnaliseService;
 	
 	private String criterioExameSangue;
 	
@@ -74,7 +75,7 @@ public class ManterExameSangueMB implements Serializable{
 	public UsuarioExame getUsuarioExame() {
 		return usuarioExame;
 	}
-	public void setUsuarioSangue(UsuarioExame usuarioExame) {
+	public void setUsuarioExame(UsuarioExame usuarioExame) {
 		this.usuarioExame = usuarioExame;
 	}
 	public ItemExameSangue getItemExameSangue() {
@@ -89,12 +90,12 @@ public class ManterExameSangueMB implements Serializable{
 	public void setExameSangueService(ManterExameSangueService exameSangueService) {
 		this.exameSangueService = exameSangueService;
 	}
-	/*public ManterTipoAnaliseService getTipoAnaliseService() {
+	public ManterTipoAnaliseService getTipoAnaliseService() {
 		return tipoAnaliseService;
 	}
 	public void setTipoAnaliseService(ManterTipoAnaliseService tipoAnaliseService) {
 		this.tipoAnaliseService = tipoAnaliseService;
-	}*/
+	}
 	public String getCriterioExameSangue() {
 		return criterioExameSangue;
 	}
@@ -126,9 +127,9 @@ public class ManterExameSangueMB implements Serializable{
 	public void setDataAte(Date dataAte) {
 		this.dataAte = dataAte;
 	}
+	
 //métodos
 	public String initManter(){
-		gerenciarLoginMB.getUsuario().getNome();
 		usuarioExame.setItensExame(new ArrayList<ItemExameSangue>());
 		itemExameSangue.setTipoAnalise(new TipoAnalise());
 		return URL_MANTER_EXAMESANGUE;		
@@ -183,9 +184,11 @@ public class ManterExameSangueMB implements Serializable{
 		
 	public void clear(){
 		usuarioExame = new UsuarioExame();
-//			exameUrina.setTipoExameUrina(new TipoExameUrina());
-//			examesLista = new ArrayList<>();
+		//usuarioExame.setItensExame(new ArrayList<ItemExameSangue>());
+		//itemExameSangue.setTipoAnalise(new TipoAnalise());
 	}
+	
+
 	
 	
 

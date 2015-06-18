@@ -18,10 +18,8 @@
 					<h:panelGrid columns="2" styleClass="mtable">
 					
 						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel for="usuario" value="Usuário"/><br/>
-							<p:inputText id="usuario" value="#{manterPerfilUsuarioMB.usuario.nome}" 
-							disable="true" readonly="true" 
-							style="width:250px"/>						
+						 	<p:outputLabel for="usuario" value="Usuário:  "/><br/>
+							<h:outputText id="usuario" value="#{manterExameSangueMB.usuarioExame.usuario.nome.toUpperCase()}" />							 					
 						</h:panelGroup>
 						
 						<h:panelGroup layout="block" styleClass="form-group">
@@ -36,18 +34,20 @@
 					
 					<h:panelGrid columns="4" styleClass="mtable" >	
 						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel for="descricao" value="Tipo de Análise"/><br/>
-							<p:selectOneMenu id="descricao" value="#{manterExameSangueMB.itemExameSangue.tipoAnalise}"
-								style="width:250px" 
-								requiredMessage="Um tipo de análise deve ser selecionado" />
-<!--  Retirei daqui um comando ajax -->							
-								<f:selectItem itemLabel="Selecione tipo do exame" itemValue=""
-									noSelectionOption="true" />
-								<f:selectItems value="#{manterExameSangueMB.tiposAnalise}"
-									var="tipoAnalise" itemLabel="#{tipoAnalise.tipo}"
-									itemValue="#{tipoAnalise}" />						
+							<p:outputLabel for="descricao" value="Tipo de Análise"/><br/>							
+								<p:selectOneMenu id="descricao"
+									value="#{manterExameSangueMB.itemExameSangue.tipoAnalise}"
+									style="width:250px"	requiredMessage="Um tipo de análise deve ser selecionado">
+									<p:ajax	listener="#{manterExameSangueMB.onSelectTipoAnalise}" />
+									<f:selectItem
+										itemLabel="Selecione tipo da análise" itemValue=""
+										noSelectionOption="true" />
+									<f:selectItems
+										value="#{manterExameSangueMB.tiposAnalise}" var="tipoAnalise"
+										itemLabel="#{tipoAnalise.tipo}" itemValue="#{tipoAnalise}" />
+								</p:selectOneMenu>
 						</h:panelGroup>
-						
+
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="resultado_exame" value="Resultado do Exame" />
 							<br />
@@ -80,10 +80,10 @@
 							<h:outputText value="#{listItensExameSangue.resultado}" />
 						</p:column>
 						<p:column headerText="Editar">
-			                <h:commandLink value="Editar">
+			                <p:commandButton value="Editar">
 			                    <f:setPropertyActionListener value="#{listItensExameSangue}" 
 			                        target="#{manterExameSangueMB.itemExameSangue}" />
-			                </h:commandLink>
+			                </p:commandButton>
 			            </p:column> 
 			            <p:column headerText="Excluir">
 			                 <p:commandButton value="Excluir" action="#{manterExameSangueMB.exclui}" 
@@ -108,7 +108,7 @@
 					<h:panelGroup layout="block" styleClass="form-group">
 						<p:commandButton value="Salvar"
 							action="#{manterExameSangueMB.salvaExame}" icon="ui-icon-check"
-							ajax="false" />
+							ajax="true" />
 					</h:panelGroup>
 
 		</h:panelGroup>
