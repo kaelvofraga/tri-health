@@ -1,8 +1,8 @@
 ﻿
 REGRAS DE NEG�CIO 
 =================
-RNG 01.01 = Se o Hospital selecionado n�o possuir as coordenadas geogr�ficas (latitude e longitude) cadastradas, ent�o o sistema emitir� uma mensagem de impossibilidade de localizar o hospital no mapa.
-RNG 01.02 = Se n�o houver sinal de internet, ent�o o sistema informar� a impossibilidade de localiza��o do hospital.
+RNG 01.01 = Ver arquivo html.
+RNG 01.02 = Ver arquivo html.
 
 RNG 02.01 = Se o usu�rio n�o preencher a data, ent�o o sistema n�o dever� salvar os dados e emitir� a mensagem MSG 02.01.
 RNG 02.02 = Se a soma dos valores dos componentes n�o for 100%, ent�o o sistema n�o dever� salvar os dados e emitir� a mensagem MSG 02.02.
