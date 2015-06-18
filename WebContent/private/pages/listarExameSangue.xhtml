@@ -11,7 +11,7 @@
 	<ui:define name="metadata" />
 	
 	<ui:define name="content">
-		<h1 class="lead">Exames Realizados - Sangue</h1>
+		<h1 class="lead">Exames de Sangue Realizados</h1>
 		
 		<h:panelGroup layout="block" id="exames">
 		
@@ -41,8 +41,8 @@
 			
 			</h:panelGrid>
 			
-			<p:dataTable var="listExameSangue" id="tab-exames" selectionMode="single" selection="#{manterExameSangueMB.exameSangue}"
-						rowKey="#{listExameSangue.id}" value="#{manterExameSangueMB.examesLista}" emptyMessage="Nenhum Registro Encontrado."
+			<p:dataTable var="listExameSangue" id="tab-exames" selectionMode="single" selection="#{manterExameSangueMB.usuarioExame}"
+						rowKey="#{listExameSangue.id}" value="#{manterExameSangueMB.listaExames}" emptyMessage="Nenhum Registro Encontrado."
 						reflow="true">
 				
 				<p:ajax event="rowSelect" listener="#{manterExameSangueMB.onRowSelect}" oncomplete="/private/pages/manterExameSangue.jsf"/>
@@ -51,7 +51,7 @@
 					<h:outputText value="#{listExameSangue.data}" />
 				</p:column>
 				<p:column headerText="Análises realizadas - lista">
-					<h:outputText value="#{listExameSangue.tipoExameSangue}" />    <!-- retirei o ponto tipo -->
+					<h:outputText value="#{listExameSangue.itensExame}" />    <!-- retirei o ponto tipo -->
 				</p:column>
 
 			</p:dataTable>

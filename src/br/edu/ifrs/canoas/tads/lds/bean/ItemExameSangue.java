@@ -21,7 +21,6 @@ public class ItemExameSangue extends BaseEntity<Long> implements Serializable{
 	@JoinColumn(name="ID_USUARIO_EXAME")
 	private UsuarioExame usuarioExame;
 	
-	@NotNull 
 	@OneToOne
     @JoinColumn(name="ID_TIPO_ANALISE")
 	private TipoAnalise tipoAnalise;
