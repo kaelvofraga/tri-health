@@ -2,12 +2,10 @@ package br.edu.ifrs.canoas.tads.lds.control.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
-
 import br.edu.ifrs.canoas.tads.lds.bean.PesoUsuario;
 import br.edu.ifrs.canoas.tads.lds.model.dao.PesoDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.PesoUsuarioDAO;
@@ -37,7 +35,6 @@ public class ManterPesoService {
 	
 
 	public Boolean salvaPesoUsuario(PesoUsuario pesoUsuario) {
-	
 		if(pesoUsuario == null || pesoUsuario.getUsuario() == null){			
 			Mensagens.define(FacesMessage.SEVERITY_ERROR, "manterPeso.cadastro.erro");
 			return false;
@@ -54,12 +51,34 @@ public class ManterPesoService {
 		}
 	}	
 	
-	public void alteraPeso(PesoUsuario pesoUsuario) {
-		pesoUsuarioDAO.atualiza(pesoUsuario);
+	public void alteraPesoUsuario(PesoUsuario pesoUsuario) {
+		try {
+			pesoDAO.atualiza(pesoUsuario.getPeso());
+			pesoUsuarioDAO.atualiza(pesoUsuario);
+			Mensagens.define(FacesMessage.SEVERITY_INFO,
+					"manterPeso.altera.sucesso");
+		} catch (IllegalArgumentException e) {
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					"manterPeso.altera.excecao.erro");
+		}
 	}
 
-	public void excluiPeso(PesoUsuario pesoUsuario) {
-		pesoUsuarioDAO.exclui(pesoUsuario.getId());
+	public boolean excluiPesoUsuario(PesoUsuario pesoUsuario) {
+		try{
+		if (pesoUsuario.getId() != null && pesoUsuario != null) {	
+				pesoUsuarioDAO.exclui(pesoUsuario.getId());
+				Mensagens.define(FacesMessage.SEVERITY_INFO,"manterPeso.exclui.sucesso");
+				return true;
+		} else {
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,"manterPeso.exclui.erro");
+			return false;
+		}
+		}
+		catch (IllegalArgumentException e) {
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					"manterPeso.exclui.excecao.erro");
+			return false;
+		}
 	}
 	
 	
@@ -77,16 +96,12 @@ public class ManterPesoService {
 			return pesoUsuarioDAO.buscaTodos();
 		}
 		catch(EJBException e){
+			Mensagens.define(FacesMessage.SEVERITY_INFO,"listarPeso.busca.excecao");
 			return null;
 		}
 		catch(NullPointerException e){
 			Mensagens.define(FacesMessage.SEVERITY_INFO,"listarPeso.busca.virgula");
 			return null;
 		}
-	}
-	
-	
-	public void buscaPeso(PesoUsuario pesoUsuario){
-		pesoUsuarioDAO.busca(pesoUsuario.getId());
 	}	
 }

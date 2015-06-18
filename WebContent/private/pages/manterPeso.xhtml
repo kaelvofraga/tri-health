@@ -77,8 +77,30 @@
 		    			   <p:commandButton value="Salvar"
 								action="#{manterPesoMB.salvaPeso}" 
 								ajax="true" update="peso" icon="ui-icon-disk">
-						   </p:commandButton>		
-				    </h:panelGroup> 
+						   </p:commandButton>	
+						   
+						   <p:commandButton value="Alterar"
+							rendered="#{manterPesoMB.atualizacao}"
+							action="#{manterPesoMB.alteraPeso}" 
+							ajax="false" icon="ui-icon-pencil">
+				     </p:commandButton>	
+				    </h:panelGroup>
+				    
+				    <h:panelGroup layout="block" styleClass="form-group pull-right">	  
+					   <p:commandButton value="Excluir"
+							rendered="#{manterPesoMB.atualizacao}"
+							action="#{manterPesoMB.excluiPeso}"
+							ajax="true" icon="ui-icon-close" update="msgs"> 
+					   <p:confirm header="Confirmação" message="Tem certeza que deseja apagar o peso?" icon="ui-icon-alert" />
+					   </p:commandButton>
+					   
+					   <p:commandButton value="Voltar"
+							rendered="#{manterPesoMB.atualizacao}"
+							action="listarPeso" ajax="false">
+					   </p:commandButton>
+					</h:panelGroup>  
+				    
+				    
 					</h:panelGroup>
 
 					

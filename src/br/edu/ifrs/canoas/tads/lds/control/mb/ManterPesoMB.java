@@ -4,13 +4,16 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+
 import org.primefaces.event.SelectEvent;
+
 import br.edu.ifrs.canoas.tads.lds.bean.Peso;
 import br.edu.ifrs.canoas.tads.lds.bean.PesoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Udm;
@@ -62,13 +65,16 @@ public class ManterPesoMB implements Serializable {
 		return URL_LISTAR_PESO;
 	}
 
-	
 	public String initManter() {
 		udm = new Udm();
 		udmLista= this.getUdmLista();
 		pesoUsuario = new PesoUsuario();
 		pesoUsuario.setPeso(new Peso());
 		return URL_MANTER_PESO;
+	}
+	
+	public boolean isAtualizacao() {
+		return pesoUsuario != null && pesoUsuario.getId() != null;
 	}
 	
 	public void onRowSelect(SelectEvent event) throws IOException {
@@ -85,6 +91,19 @@ public class ManterPesoMB implements Serializable {
 		pesoUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		pesoService.salvaPesoUsuario(pesoUsuario);
 		this.initManter();
+	}
+	
+	public String alteraPeso() {
+		pesoService.alteraPesoUsuario(pesoUsuario);
+		return URL_LISTAR_PESO;
+	}
+	
+	public String excluiPeso() {
+		if (pesoService.excluiPesoUsuario(pesoUsuario)) {
+			this.busca();
+			return URL_LISTAR_PESO;
+		}
+		return URL_MANTER_PESO;
 	}
 
 	public void onSelectUdm(){
