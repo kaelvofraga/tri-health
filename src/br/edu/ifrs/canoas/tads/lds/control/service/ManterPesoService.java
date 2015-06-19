@@ -1,11 +1,14 @@
 package br.edu.ifrs.canoas.tads.lds.control.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
+
 import br.edu.ifrs.canoas.tads.lds.bean.PesoUsuario;
 import br.edu.ifrs.canoas.tads.lds.model.dao.PesoDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.PesoUsuarioDAO;
@@ -39,6 +42,9 @@ public class ManterPesoService {
 			Mensagens.define(FacesMessage.SEVERITY_ERROR, "manterPeso.cadastro.erro");
 			return false;
 		}
+		if (validaData(pesoUsuario) == false) {
+			return false;
+		}
 		if(pesoUsuario.getUdm().getId()==3 || pesoUsuario.getUdm().getId()==4){
 		pesoDAO.insere(pesoUsuario.getPeso());
 		pesoUsuarioDAO.insere(pesoUsuario);
@@ -46,17 +52,36 @@ public class ManterPesoService {
 		return true;
 		}
 		else{
-			Mensagens.define(FacesMessage.SEVERITY_ERROR, "manterPeso.cadastro.udm.erro");
+			Mensagens.define(FacesMessage.SEVERITY_ERROR, "manterPeso.udm.erro");
 			return false;
 		}
 	}	
 	
+	public boolean validaData(PesoUsuario pesoUsuario){
+		long timeSysDate = new Date().getTime();
+		long timeData = pesoUsuario.getData().getTime();
+		if (timeData > timeSysDate) {
+			Mensagens.define(FacesMessage.SEVERITY_INFO,
+					"manterPeso.cadastro.data.erro");
+			return false;
+		}
+		
+		
+		return true;
+	}
+	
 	public void alteraPesoUsuario(PesoUsuario pesoUsuario) {
 		try {
+			if(pesoUsuario.getUdm().getId()==3 || pesoUsuario.getUdm().getId()==4){
 			pesoDAO.atualiza(pesoUsuario.getPeso());
 			pesoUsuarioDAO.atualiza(pesoUsuario);
 			Mensagens.define(FacesMessage.SEVERITY_INFO,
 					"manterPeso.altera.sucesso");
+			}
+			else{
+				Mensagens.define(FacesMessage.SEVERITY_INFO,
+						"manterPeso.udm.erro");	
+			}
 		} catch (IllegalArgumentException e) {
 			Mensagens.define(FacesMessage.SEVERITY_ERROR,
 					"manterPeso.altera.excecao.erro");

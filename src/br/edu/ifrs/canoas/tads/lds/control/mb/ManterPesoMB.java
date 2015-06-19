@@ -4,16 +4,13 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import org.primefaces.event.SelectEvent;
-
 import br.edu.ifrs.canoas.tads.lds.bean.Peso;
 import br.edu.ifrs.canoas.tads.lds.bean.PesoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Udm;
@@ -27,7 +24,8 @@ import br.edu.ifrs.canoas.tads.lds.control.service.ManterUdmService;
  * @version 10/06/2015
  * Adição dos metodos,initManter e initListar.
  * Criação metodo busca.
- * Alterações metodo de salvar.
+ * Alterações metodo de salvar,alterar e excluir.
+ * Alteração no redirect do metodo onRowSelect
  *
  */
 
@@ -78,8 +76,8 @@ public class ManterPesoMB implements Serializable {
 	}
 	
 	public void onRowSelect(SelectEvent event) throws IOException {
-		this.pesoUsuario = (PesoUsuario)event.getObject();
-		FacesContext.getCurrentInstance().getExternalContext().redirect("manterPeso.jsf");
+		this.pesoUsuario = (PesoUsuario) event.getObject();
+		FacesContext.getCurrentInstance().getExternalContext().redirect("../../private/pages/manterPeso.jsf");
     }	
 	
 	/* Metodo de busca da view Listar */

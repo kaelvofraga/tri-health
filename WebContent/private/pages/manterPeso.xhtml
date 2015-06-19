@@ -64,9 +64,9 @@
 							<p:outputLabel for="observacoes" value="Observações:" />
 							<br/>
 						     <p:inputTextarea id="observacoes" rows="5" cols="89" counter="obs" maxlength="100" 
-							 value="#{manterPesoMB.pesoUsuario.nota}"
+							 value="#{manterPesoMB.pesoUsuario.nota}" counterTemplate="{0} caracteres restantes"
 							 placeholder="Insire aqui uma observação." >
-							</p:inputTextarea>
+							</p:inputTextarea><br/>
 							<h:outputText id="obs" />
 						</h:panelGroup>
 						
