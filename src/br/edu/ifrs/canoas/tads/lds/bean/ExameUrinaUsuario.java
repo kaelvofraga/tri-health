@@ -3,7 +3,9 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -30,7 +32,7 @@ public class ExameUrinaUsuario extends BaseEntity<Long> implements Serializable{
 	private Usuario usuario;
 	
 	@NotNull
-	@OneToMany (mappedBy="exameUsuario")
+	@OneToMany (mappedBy="exameUsuario",fetch = FetchType.EAGER)
 	private Collection<ItemExameUrina> itensExame;
 		
 	@Temporal(TemporalType.TIMESTAMP)

@@ -16,6 +16,8 @@
 		<p:accordionPanel multiple="true">
 			<p:tab title="Exame de Urina">
 
+				<h:panelGroup layout="block" id="exameurina">
+
 					<h:panelGroup layout="block" styleClass="form-group">
 						<p:outputLabel for="data_exame" value="Data do Exame" />
 						<br />
@@ -38,7 +40,7 @@
 								<br />
 								<p:selectOneMenu id="tipo_exame"
 									value="#{manterExameUrinaMB.itemExameUrina.tipoAnalise}"
-									style="width:250px"> 
+									style="width:250px">
 									<p:ajax listener="#{manterExameUrinaMB.onSelectTipoAnalise}" />
 									<f:selectItem itemLabel="Selecione tipo do exame" itemValue=""
 										noSelectionOption="true" />
@@ -52,22 +54,22 @@
 								<p:outputLabel for="resultado_exame" value="Resultado do Exame" />
 								<br />
 								<p:inputText id="resultado_exame" styleClass="form-control"
-									size="25" style="width:200px" 
+									size="25" style="width:200px"
 									value="#{manterExameUrinaMB.itemExameUrina.resultado}"
 									placeholder="Informe o resultado" />
 							</h:panelGroup>
 
 						</h:panelGrid>
 					</h:panelGroup>
-					
-					<h:panelGroup layout="block" styleClass="form-group pull-left">
-							<p:commandButton value="Adicionar" ajax="true" type="submit"
-								immediate="false" update="itemexameurina,tab-itensExame"
-								action="#{manterExameUrinaMB.adicionarExameAnalisado}"
-								icon="ui-icon-disk" />
-						</h:panelGroup>
 
-					<p:dataTable var="listItensExameUrina" id="tab-itensExame" 
+					<h:panelGroup layout="block" styleClass="form-group pull-left">
+						<p:commandButton value="Adicionar" ajax="true" type="submit"
+							immediate="false" update="itemexameurina,tab-itensExame"
+							action="#{manterExameUrinaMB.adicionarExameAnalisado}"
+							icon="ui-icon-disk" />
+					</h:panelGroup>
+
+					<p:dataTable var="listItensExameUrina" id="tab-itensExame"
 						value="#{manterExameUrinaMB.exameUrina.itensExame}"
 						rowKey="#{listItensExameUrina}"
 						emptyMessage="Nenhum Registro Encontrado." reflow="true">
@@ -109,11 +111,50 @@
 						<h:outputText id="counter" />
 					</h:panelGroup>
 
-					<h:panelGroup layout="block" styleClass="form-group">
-						<p:commandButton value="Salvar"
-							action="#{manterExameUrinaMB.salvaExame}" icon="ui-icon-check"
-							ajax="false" />
+					<h:panelGroup layout="block" styleClass="form-group" id="buttons">
+
+						<h:panelGroup layout="block" styleClass="form-group pull-left">
+							<p:commandButton value="Salvar"
+								action="#{manterExameUrinaMB.salvaExame}" ajax="true"
+								update="exameurina" icon="ui-icon-disk">
+							</p:commandButton>
+
+							<p:commandButton value="Alterar"
+								rendered="#{manterExameUrinaMB.atualizacao}"
+								action="#{manterExameUrinaMB.alteraExame}" ajax="false"
+								icon="ui-icon-pencil">
+							</p:commandButton>
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group pull-right">
+							<p:commandButton value="Excluir"
+								rendered="#{manterExameUrinaMB.atualizacao}"
+								action="#{manterExameUrinaMB.excluiExame}" ajax="true"
+								icon="ui-icon-close" update="msgs">
+								<p:confirm header="Confirmação"
+									message="Tem certeza que deseja apagar ?" icon="ui-icon-alert" />
+							</p:commandButton>
+
+							<p:commandButton value="Voltar"
+								rendered="#{manterExameUrinaMB.atualizacao}" action="listarExameUrina"
+								ajax="false">
+							</p:commandButton>
+						</h:panelGroup>
+
+
 					</h:panelGroup>
+
+				</h:panelGroup>
+
+				<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
+					</p:commandButton>
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close">
+					</p:commandButton>
+				</p:confirmDialog>
 			</p:tab>
 
 		</p:accordionPanel>

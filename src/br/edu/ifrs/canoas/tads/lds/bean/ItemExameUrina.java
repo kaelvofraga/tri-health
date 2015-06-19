@@ -3,6 +3,7 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -24,7 +25,7 @@ public class ItemExameUrina extends BaseEntity<Long> implements Serializable{
     @JoinColumn(name="ID_TIPO_ANALISE")
 	private TipoAnalise tipoAnalise;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="ID_EXAME_URINA_USUARIO")
 	private ExameUrinaUsuario exameUsuario;
 	
