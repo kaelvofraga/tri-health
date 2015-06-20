@@ -24,6 +24,11 @@ public class Medico extends BaseEntity<Long> implements Serializable{
 
 	private static final long serialVersionUID = -6493053493498926375L;
 
+	public Medico(){}
+	public Medico(String nome){
+		this.nome = nome;
+	}
+	
 	@NotNull
 	private String nome;
 	

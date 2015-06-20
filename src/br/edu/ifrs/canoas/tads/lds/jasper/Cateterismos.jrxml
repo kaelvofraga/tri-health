@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Cateterismos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="14360962-d2b8-4ded-b993-21fb2635681b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="192"/>
+	<field name="alta" class="java.lang.String"/>
+	<field name="internacao" class="java.lang.String"/>
+	<field name="laudo" class="java.lang.String"/>
+	<field name="observacoes" class="java.lang.String"/>
+	<field name="responsavel" class="java.lang.String"/>
+	<field name="solicitante" class="java.lang.String"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="nascimento" class="java.lang.String"/>
+	<field name="genero" class="java.lang.String"/>
+	<field name="tiposanguineo" class="java.lang.String"/>
+	<variable name="nome_1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{nome}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="209" y="0" width="147" height="79" uuid="553849f5-76c7-4a1f-925c-a4bc3d116590"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="30"/>
+				</textElement>
+				<text><![CDATA[tri health]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="78" splitType="Stretch">
+			<staticText>
+				<reportElement x="36" y="11" width="100" height="20" uuid="3c697abf-9c4b-4161-be23-0cef149ff871"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Paciente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="42" width="100" height="20" uuid="1c41dce3-9c4f-45dc-84ca-db78b21a1bb6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Data de nascimento:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="334" y="11" width="100" height="20" uuid="97c81357-0aef-4f6e-9685-bb236e819459"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Gênero:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="334" y="42" width="100" height="20" uuid="409a756d-9d7a-42b3-a79b-127ffd93b160"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Tipo Sanguíneo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="136" y="11" width="100" height="20" uuid="55dcb238-0933-4cbf-879a-8587bb20f8e2"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="136" y="42" width="100" height="20" uuid="694752c3-c425-4f11-b165-048520f0e824"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nascimento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="434" y="11" width="100" height="20" uuid="0abd706a-497f-4bf6-938d-247f663f8222"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{genero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="434" y="42" width="100" height="20" uuid="5b2bf5dd-9965-4a82-b7a9-fdf7d47f4719"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tiposanguineo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="184" y="10" width="200" height="42" uuid="d152f583-4a71-4076-970c-e3af58505b1b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Exame de Cateterismo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="133" splitType="Stretch">
+			<staticText>
+				<reportElement x="16" y="5" width="100" height="20" uuid="d655d4a7-6245-4317-b16e-446609118187"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Data de internação:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="30" width="100" height="20" uuid="b16b10bc-ee39-452d-8365-0b541ed34507"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Data de alta:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="55" width="100" height="20" uuid="7461bc4a-2f35-4f6a-9a31-aaf271512987"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Médico solicitante:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="80" width="100" height="20" uuid="6be956e7-3c96-4f07-8a77-fc9644874e68"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Médico responsável:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="105" width="100" height="20" uuid="7ee13b80-977a-4dc3-8492-92e0d85d8492"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Laudo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="274" y="64" width="100" height="20" uuid="a1bf0c47-9454-406b-9fc5-702e77b84d0c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Observações:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="126" y="30" width="100" height="20" uuid="dc3bab8f-f0bf-45cf-a148-a91ca67df05a"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{alta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="126" y="5" width="100" height="20" uuid="05ef42b7-3889-40e7-a362-c00a00eabf26"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{internacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="116" y="105" width="100" height="20" uuid="c3d8066e-539b-46c3-9070-f7a326c797f2"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{laudo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="116" y="80" width="100" height="20" uuid="e068f3e1-0e29-410e-b007-f85d81df6aa0"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{responsavel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="116" y="55" width="100" height="20" uuid="f103e27d-bb5a-4643-afe1-5b2fd4e384f2"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{solicitante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="384" y="25" width="150" height="100" uuid="fc2a457a-966f-4917-a028-f1b4f6cbdf69"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{observacoes}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

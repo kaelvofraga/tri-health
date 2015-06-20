@@ -158,5 +158,11 @@
 		</dependency>
 		<!-- <dependency> <groupId>org.jinq</groupId> <artifactId>jinq-jpa</artifactId> 
 			<version>1.6.2</version> </dependency> -->
+			<dependency>
+				<groupId>net.sf.jasperreports</groupId>
+				<artifactId>jasperreports</artifactId>
+				<version>5.5.2</version>
+			</dependency>
+			
 	</dependencies>
 </project>

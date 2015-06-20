@@ -24,10 +24,10 @@ import org.primefaces.event.UnselectEvent;
 /**
  * @author: Rodrigo Noll
  * @author: Miromar J. Lima
- * Proposito da Classe: Classe que se relacionará com as demais classes do sistema.
+ * Proposito da Classe: Classe que se relacionarï¿½ com as demais classes do sistema.
  *         
  */
-/**Miromar contribuiu com a colocação de alguns atributos e relacionamento com a classe Endereco
+/**Miromar contribuiu com a colocaï¿½ï¿½o de alguns atributos e relacionamento com a classe Endereco
  * Entity implementation class for Entity: Usuario
  * Data: 13/05/2015
  */
@@ -69,8 +69,8 @@ public class Usuario extends BaseEntity<Long> implements Serializable {
 	private Endereco endereco = new Endereco();
 
 	/*
-	 * Código foi comentado durante teste na tentativa de buscar solução para
-	 * idioma de usuário
+	 * Cï¿½digo foi comentado durante teste na tentativa de buscar soluï¿½ï¿½o para
+	 * idioma de usuï¿½rio
 	 */
 
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -147,7 +147,7 @@ public class Usuario extends BaseEntity<Long> implements Serializable {
 	public void onUnselect(UnselectEvent event) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"Item não Selecionado", event.getObject().toString()));
+				"Item nï¿½o Selecionado", event.getObject().toString()));
 	}
 
 	public void setApelido(String apelido) {
@@ -196,5 +196,11 @@ public class Usuario extends BaseEntity<Long> implements Serializable {
 
 	public void setTipoSanguineo(String tipoSanguineo) {
 		this.tipoSanguineo = tipoSanguineo;
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.nome;
 	}
 }
