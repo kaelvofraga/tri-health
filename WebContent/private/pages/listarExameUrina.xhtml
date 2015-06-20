@@ -21,20 +21,26 @@
 					<h:panelGrid columns="2" styleClass="mtable">
 
 						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel value="De" />
-							<br />
-							<p:calendar pattern="dd/MM/yyyy HH:mm" mask="true"
-							    value="#{manterExameUrinaMB.dataDe}"
-								showOn="button" placeholder="Informe a data de inicio" />
-						</h:panelGroup>
-
-						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel value="Até" />
-							<br />
-							<p:calendar pattern="dd/MM/yyyy HH:mm" mask="true"
-							    value="#{manterExameUrinaMB.dataAte}"
-								showOn="button" placeholder="Informe a data final" />
-						</h:panelGroup>
+							<p:outputLabel for="dataDe" value="De:" />
+							<br/>
+							<p:calendar id="dataDe"
+								value="#{manterExameUrinaMB.dataDe}"
+								pattern="dd/MM/yyyy HH:mm:ss"
+								placeholder="Informe a data inicial do periodo"
+								size="20" effect="fold" icon="glyphicon-calendar" 
+							/>
+	   					</h:panelGroup>
+	   					
+	   					<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="dataAte" value="Até:" />
+							<br/>
+							<p:calendar id="dataAte"
+								value="#{manterExameUrinaMB.dataAte}"
+								pattern="dd/MM/yyyy HH:mm:ss"
+								placeholder="Informe a data final do periodo"
+								size="20" effect="fold" icon="glyphicon-calendar" 
+							/>
+	   					</h:panelGroup>
 						
 					<h:panelGroup layout="block" styleClass="form-group">
 						<p:outputLabel for="criterio_exameUrina" value="Pesquisa" />
@@ -51,12 +57,12 @@
 							update="tab-exames" immediate="false" />
 						<p:commandButton value="Limpar" type="submit"
 							action="#{manterExameUrinaMB.initListar}" ajax="true"
-							update="tab-exames,criterio_exameUrina" immediate="false"/>
+							update="tab-exames,criterio_exameUrina,dataDe,dataAte" immediate="false"/>
 					</h:panelGroup>
 
 
 					<p:dataTable var="listExameUrina" id="tab-exames" selectionMode="single" selection="#{manterExameUrinaMB.exameUrina}"
-								rowKey="#{listExameUrina.id}" value="#{manterExameUrinaMB.exameUrina.itensExame}" emptyMessage="Nenhum Registro Encontrado."
+								rowKey="#{listExameUrina.id}" value="#{manterExameUrinaMB.listaExamesUsuario}" emptyMessage="Nenhum Registro Encontrado."
 								reflow="true">
 						<p:ajax event="rowSelect" listener="#{manterExameUrinaMB.onRowSelect}" oncomplete="/private/pages/manterExameUrina.jsf"/>
 						<p:column headerText="Data Exame" id="colDataExame">

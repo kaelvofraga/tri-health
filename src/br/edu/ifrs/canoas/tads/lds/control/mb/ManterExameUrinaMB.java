@@ -66,10 +66,14 @@ public class ManterExameUrinaMB implements Serializable{
 	public String initListar() {
 		exameUrina = new ExameUrinaUsuario();
 		listaExamesUsuario= new ArrayList<>();
+		criterioExameUrina="";
+		dataDe= new Date();
+		dataAte= new Date();
 		return URL_LISTAR_EXAMEURINA;
 	}
 	
 	public String initManter(){
+		exameUrina = new ExameUrinaUsuario();
 		exameUrina.setItensExame(new ArrayList<ItemExameUrina>());
 		itemExameUrina.setTipoAnalise(new TipoAnalise());
 		return URL_MANTER_EXAMEURINA;
@@ -80,7 +84,7 @@ public class ManterExameUrinaMB implements Serializable{
 	}
 	
 	public void onRowSelect(SelectEvent event) throws IOException {
-		this.itemExameUrina = (ItemExameUrina) event.getObject();
+		this.exameUrina = (ExameUrinaUsuario) event.getObject();
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("../../private/pages/manterExameUrina.jsf");
 	}
@@ -105,29 +109,22 @@ public class ManterExameUrinaMB implements Serializable{
 		exameUrinaService.salvaExameUrinaUsuario(exameUrina);
 	}
 	
-//	public String alteraExameUrina() {
-//		exameUrinaService.alteraExameUrina(exameUrina);
-//		return URL_LISTAR_USO_TIPOSEXAMEURINA;
-//	}	
+	public String alteraExame() {
+		exameUrinaService.alteraExameUrinaUsuario(exameUrina);
+		return URL_LISTAR_EXAMEURINA;
+	}	
 	
-	/*public String excluiExameUrina(){
-		if (exameUrinaService.excluiExameUrina(exameUrina)){
+	public String excluiExame(){
+		if (exameUrinaService.excluiExameUrinaUsuario(exameUrina)){
 			this.busca();
-			return URL_LISTAR_USO_TIPOSEXAMEURINA;
+			return URL_LISTAR_EXAMEURINA;
 		}
-		return URL_MANTER_USO_EXAMEURINA;
-	}*/
+		return URL_MANTER_EXAMEURINA;
+	}
 	
 	public void busca(){
 	listaExamesUsuario = exameUrinaService.busca(this.getDataDe(),this.getDataAte(),criterioExameUrina);
 	}
-	
-	public void clear(){
-		exameUrina = new ExameUrinaUsuario();
-//		exameUrina.setTipoExameUrina(new TipoExameUrina());
-//		examesLista = new ArrayList<>();
-	}
-	
 	
 	/*public String novoExameUrina(){
 //		this.emListagemAtvs = false;
@@ -135,11 +132,15 @@ public class ManterExameUrinaMB implements Serializable{
 		return URL_MANTER_NOVO_EXAMEURINA;
 	}*/
 	
-	public void exclui() {
+	public void excluiItem() {
 		if (itemExameUrina != null && this.exameUrina.getItensExame().contains(itemExameUrina))
 			this.exameUrina.getItensExame().remove(itemExameUrina);
 		itemExameUrina= new ItemExameUrina();	
 
+	}
+	
+	public void alteraItem(){
+		
 	}
 	
 

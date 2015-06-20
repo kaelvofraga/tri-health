@@ -2,16 +2,13 @@ package br.edu.ifrs.canoas.tads.lds.control.service;
 
 import java.util.Date;
 import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
-
 import br.edu.ifrs.canoas.tads.lds.bean.ExameUrinaUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.ItemExameUrina;
 import br.edu.ifrs.canoas.tads.lds.model.dao.ExameUrinaDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.ItemExameUrinaDAO;
-import br.edu.ifrs.canoas.tads.lds.util.DateUtil;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
 
@@ -52,10 +49,6 @@ public class ManterExameUrinaService {
 	}
 
 	public List<ExameUrinaUsuario> busca(Date dataDe, Date dataAte,String criterioExameUrina) {
-		if (dataDe == null || dataAte == null || dataDe.compareTo(dataAte) > 0) {
-			dataDe = DateUtil.getDataAtual();
-			dataAte = DateUtil.getDataAtualIncrementa(1);
-		}
 		if (StrUtil.isNotBlank(criterioExameUrina) || dataDe != null && dataAte != null) {
 
 			return exameUrinaDAO.buscaPorCriterio(dataDe, dataAte,criterioExameUrina);
@@ -64,8 +57,13 @@ public class ManterExameUrinaService {
 		}
 	}
 
-	public void alteraExameUrina(ExameUrinaUsuario exameUrina) {
+	public void alteraExameUrinaUsuario(ExameUrinaUsuario exameUrina) {
 		exameUrinaDAO.atualiza(exameUrina);
+	}
+	
+	public boolean excluiExameUrinaUsuario(ExameUrinaUsuario exameUrina) {
+		//exameUrinaDAO.exclui(exameUrina);
+		return true;
 	}
 
 	/* GETTERS & SETTERS */

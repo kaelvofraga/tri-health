@@ -95,17 +95,10 @@ public class ManterUsoMedicamentoService {
 		long timeDifMinutes = 0L;
 		long timeSysDate = new Date().getTime();
 		long timeCons = medicamentoUsuario.getDataConsulta().getTime();
-		System.out.println("SYSDATE=" + timeSysDate);
-		System.out.println("TimeCons=" + timeCons);
-		long timeDataIni = medicamentoUsuario.getDataInicioTratamento()
-				.getTime();
-		System.out.println("TimeDataIni=" + timeDataIni);
+		long timeDataIni = medicamentoUsuario.getDataInicioTratamento().getTime();
 		long timeDataFim = medicamentoUsuario.getDataFimTratamento().getTime();
-		System.out.println("TimeDataFim=" + timeDataFim);
 		timeDifMilli = timeDataFim - timeDataIni;
-		System.out.println("TimeDifMilli=" + timeDifMilli);
 		timeDifMinutes = TimeUnit.MILLISECONDS.toMinutes(timeDifMilli);
-		System.out.println("TimeDifMinutes" + timeDifMinutes);
 
 		// verifica Data da consulta comparada com data atual
 		if (timeCons > timeSysDate) {

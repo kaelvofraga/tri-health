@@ -24,7 +24,8 @@ import br.edu.ifrs.canoas.tads.lds.control.service.ManterUdmService;
  * @version 10/06/2015
  * Adição dos metodos,initManter e initListar.
  * Criação metodo busca.
- * Alterações metodo de salvar.
+ * Alterações metodo de salvar,alterar e excluir.
+ * Alteração no redirect do metodo onRowSelect
  *
  */
 
@@ -62,7 +63,6 @@ public class ManterPesoMB implements Serializable {
 		return URL_LISTAR_PESO;
 	}
 
-	
 	public String initManter() {
 		udm = new Udm();
 		udmLista= this.getUdmLista();
@@ -71,9 +71,13 @@ public class ManterPesoMB implements Serializable {
 		return URL_MANTER_PESO;
 	}
 	
+	public boolean isAtualizacao() {
+		return pesoUsuario != null && pesoUsuario.getId() != null;
+	}
+	
 	public void onRowSelect(SelectEvent event) throws IOException {
-		this.pesoUsuario = (PesoUsuario)event.getObject();
-		FacesContext.getCurrentInstance().getExternalContext().redirect("manterPeso.jsf");
+		this.pesoUsuario = (PesoUsuario) event.getObject();
+		FacesContext.getCurrentInstance().getExternalContext().redirect("../../private/pages/manterPeso.jsf");
     }	
 	
 	/* Metodo de busca da view Listar */
@@ -85,6 +89,19 @@ public class ManterPesoMB implements Serializable {
 		pesoUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		pesoService.salvaPesoUsuario(pesoUsuario);
 		this.initManter();
+	}
+	
+	public String alteraPeso() {
+		pesoService.alteraPesoUsuario(pesoUsuario);
+		return URL_LISTAR_PESO;
+	}
+	
+	public String excluiPeso() {
+		if (pesoService.excluiPesoUsuario(pesoUsuario)) {
+			this.busca();
+			return URL_LISTAR_PESO;
+		}
+		return URL_MANTER_PESO;
 	}
 
 	public void onSelectUdm(){

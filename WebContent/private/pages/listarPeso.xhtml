@@ -36,7 +36,6 @@
 						id="tab-peso" selectionMode="single" emptyMessage="Nenhum Registro Encontrado." 
 						var="listPeso" selection="#{manterPesoMB.pesoUsuario}" 
 						value="#{manterPesoMB.pesoUsuarioList}"	rowKey="#{listPeso.id}"	reflow="true">
-						
 						<p:ajax event="rowSelect" listener="#{manterPesoMB.onRowSelect}"
 							oncomplete="/private/pages/manterPeso.jsf" />
 						<p:column headerText="Data" id="colData">
@@ -51,7 +50,6 @@
 						<p:column headerText="Nota" id="colNota">
 							<h:outputText value="#{listPeso.nota}" />
 						</p:column>
-
 					</p:dataTable>
 					<br/>
 				 </h:panelGroup>
