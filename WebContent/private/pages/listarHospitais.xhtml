@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+	
+	<!-- 
+		Author: Juarez Monteiro
+		Version 20/06/2015
+	 -->
+	
+	
+	<ui:define name="metadata" />
+	<ui:define name="content">
+		<h1 class="lead">Listar Hospitais</h1>
+		<p:accordionPanel multiple="true">
+			<p:tab title="Lista de Hospitais e Clínica">
+				<h:panelGroup layout="block" id="pressaoArterial">
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:outputLabel for="criterio_pressao" value="Pesquisa" />
+						<p:selectOneMenu id="tipo_medida"
+								value="#{manterDimensoesCorporaisMB.valorMedidaUsuario.tipoMedida}" 
+								style="width:90%"
+								required="true" requiredMessage="Um tipo para a medida deve ser escolhido." >
+								<p:ajax listener="#{manterDimensoesCorporaisMB.onSelectTipoMedida}" />
+								<f:selectItem itemLabel="Selecione..." itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems
+									value="#{manterDimensoesCorporaisMB.tipoMedidasLista}"
+									var="tipoMedida" itemLabel="#{tipoMedida.descricao}"
+									itemValue="#{tipoMedida}" />
+							</p:selectOneMenu>
+							<p:commandButton value="Busca" type="submit" action="#"
+							ajax="true" update="tab-pressao" immediate="false"
+							icon="ui-icon-search" />
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:commandButton value="Busca" type="submit" action="#"
+							ajax="true" update="tab-pressao" immediate="false"
+							icon="ui-icon-search" />
+						<p:commandButton value="Limpa" type="submit" action="#"
+							ajax="true" update="tab-pressao,criterio_pressao"
+							immediate="false" icon="ui-icon-refresh" />
+					</h:panelGroup>
+
+					<br />
+				</h:panelGroup>
+				<p:commandButton value="Nova" icon="ui-icon-plus" ajax="true" />
+			</p:tab>
+		</p:accordionPanel>
+	</ui:define>
+</ui:composition>

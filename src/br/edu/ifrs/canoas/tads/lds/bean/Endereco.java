@@ -11,7 +11,9 @@ import javax.persistence.OneToOne;
  * 
  * @author: Miromar J. Lima
  * Proposito da Classe: Compo o endereço do usuário 
- *         
+ *
+ * @author: Juarez Monteiro
+ * Proposito da Alteração: Ajuste do bean para se adequar ao caso de uso Listar Hospitais
  */
 
 @Entity
@@ -25,12 +27,35 @@ public class Endereco extends BaseEntity<Long> implements Serializable {
 	@OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="ID_CIDADE")
 	private Cidade cidade = new Cidade();
+	@JoinColumn(name="ID_TELEFONE", nullable = true)
+	private Telefone telefone;
 	
 	private String cep  = " ";
 	private String logradouro = " ";
 	private Integer numero = 0;
 	private String complemento = " ";
+	private String latitude = "";
+	private String longitude = "";
 	
+	
+	public Telefone getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(Telefone telefone) {
+		this.telefone = telefone;
+	}
+	public String getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+	public String getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
 	public Cidade getCidade() {
 		return cidade;
 	}
@@ -62,12 +87,22 @@ public class Endereco extends BaseEntity<Long> implements Serializable {
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
+		
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
-	 */
+	 
 	@Override
 	public String toString() {
 		return "Endereco [cep=" + cep + ", logradouro=" + logradouro
 				+ ", numero=" + numero + ", complemento=" + complemento + "]";
+	}
+	*/
+	
+	@Override
+	public String toString() {
+		return "Endereco [cidade=" + cidade + ", telefone=" + telefone
+				+ ", cep=" + cep + ", logradouro=" + logradouro + ", numero="
+				+ numero + ", complemento=" + complemento + ", latitude="
+				+ latitude + ", longitude=" + longitude + "]";
 	}
 }
