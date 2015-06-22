@@ -20,8 +20,8 @@ import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
  * @author Alisson Lorscheiter
  * @version 18/06/2015
  * Alteração no metodo salvaPesoUsuario validando data e udm e adição de mensagens.
- * Criação do método de validação de data.
- * Alteração no meodo alteraPesoUsuario para validar a udm informada.
+ * Criação do método de validaData.
+ * Alteração no metodo alteraPesoUsuario para validar a udm informada.
  */
 
 @Stateless
@@ -76,8 +76,8 @@ public class ManterPesoService {
 	}
 	
 	/** 
-	 * @brief Metodo que valida os campos e salva no banco de dados o pesoUsuario.
-	 * Retorna V ou F se conseguiu ou não salvar no banco.	 		  
+	 * @brief Metodo que valida os campos e altera no banco de dados informações do pesoUsuario.
+	 * Retorna V ou F se conseguiu ou não alterar no banco.	 		  
 	 * @param pesoUsuario(PesoUsuario)
 	 * @return boolean
 	 * Foi inserida a validação da udm informada e mensagens.

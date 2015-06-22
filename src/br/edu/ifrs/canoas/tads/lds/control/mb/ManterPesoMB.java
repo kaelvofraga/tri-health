@@ -60,7 +60,7 @@ public class ManterPesoMB implements Serializable {
 	 * @brief Metodo que inicializa as variaveis ao ser selecionada a opção de listar
 	 * os pesos do usuário.	 		  
 	 * @param void
-	 * @return void
+	 * @return String
 	 * */
 	public String initListar() {
 		pesoUsuario = new PesoUsuario();
@@ -73,7 +73,7 @@ public class ManterPesoMB implements Serializable {
 	 * @brief Metodo que inicializa as variaveis ao ser selecionada a opção de cadastrar
 	 * os pesos do usuário.	 		  
 	 * @param void
-	 * @return void
+	 * @return String
 	 * */
 	public String initManter() {
 		udm = new Udm();
@@ -129,7 +129,7 @@ public class ManterPesoMB implements Serializable {
 	/** 
 	 * @brief Metodo que faz alterações no banco de dados das informações de pesoUsuario.
 	 * @param void
-	 * @return void
+	 * @return String
 	 * */
 	public String alteraPeso() {
 		if(pesoService.alteraPesoUsuario(pesoUsuario)==true){

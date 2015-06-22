@@ -12,15 +12,15 @@
 		Author: Pablo Diehl da Silva
 		Version 06/05/2015
 	 -->
-
-
 	<ui:define name="metadata" />
 	<ui:define name="content">
 		<h1 class="lead">Pressão Arterial</h1>
 		<p:accordionPanel multiple="true">
 			<p:tab title="Novo registro de Pressão Arterial">
 				<h:panelGroup layout="block" id="pressaoArterial">
+				
 					<h:panelGrid columns="2" styleClass="mtable">
+					
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="paSistolica"
 								value="Pressão Arterial Sistólica:" style="display:block" />
@@ -30,6 +30,7 @@
 								placeholder="Exemplo: 130" required="true"
 								requiredMessage="É necessário informar o valor de Pressão Arterial Sistólica"></span:inputNumber>
 						</h:panelGroup>
+						
 						<h:panelGroup layout="block" styleClass="form-group pull-right">
 							<p:outputLabel for="paDiastolica"
 								value="Pressão Arterial Diastólica:" style="display:block" />
@@ -41,6 +42,7 @@
 						</h:panelGroup>
 					</h:panelGrid>
 					<h:panelGrid columns="3" styleClass="mtable">
+					
 						<h:panelGroup layout="block" styleClass="form-group pull-left">
 							<p:outputLabel for="pulso" value="Pulso:" style="display:block" />
 							<span:inputNumber id="pulso" var="pulso"
@@ -49,6 +51,7 @@
 								placeholder="Exemplo: 70" required="true"
 								requiredMessage="É necessário informar a pulsação"></span:inputNumber>
 						</h:panelGroup>
+						
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="batimentoIrregular"
 								value="Batimento Irregular?" />
@@ -61,6 +64,7 @@
 								<f:selectItem id="Sim" itemLabel="Sim" itemValue="S" />
 							</p:selectOneMenu>
 						</h:panelGroup>
+						
 						<h:panelGroup layout="block" styleClass="form-group pull-right">
 							<p:outputLabel for="data" value="Data:" />
 							<br />
@@ -71,6 +75,7 @@
 								value="#{manterPressaoMB.pressaoUsuario.data}" required="true"
 								requiredMessage="É necessário informar a Data" />
 						</h:panelGroup>
+						
 					</h:panelGrid>
 					<h:panelGroup layout="block" styleClass="form-group">
 						<p:outputLabel for="notas" value="Notas:" />
@@ -82,14 +87,41 @@
 							placeholder="Escreva alguma observação aqui... ;)" />
 						<h:outputText id="counter" />
 					</h:panelGroup>
-					<h:panelGroup layout="block" styleClass="form-group">
-						<p:commandButton value="Salvar"
-							rendered="#{not manterPressaoMB.atualizacao}"
-							action="#{manterPressaoMB.salvaPressao}" ajax="false" />
-						<p:commandButton value="Alterar"
+					
+					
+					<h:panelGroup layout="block" styleClass="form-group" id="buttons">
+					
+					<h:panelGroup layout="block" styleClass="form-group pull-left">
+		    			   <p:commandButton value="Salvar"
+		    			   	rendered="#{not manterPressaoMB.atualizacao}"
+							action="#{manterPressaoMB.salvaPressao}" 
+							ajax="true" update="pressaoArterial" icon="ui-icon-disk">
+						   </p:commandButton>	
+						   
+						   <p:commandButton value="Alterar"
 							rendered="#{manterPressaoMB.atualizacao}"
-							action="#{manterPressaoMB.alteraPressao}" ajax="true" />
+							action="#{manterPressaoMB.alteraPressao}" 
+							ajax="false" icon="ui-icon-pencil">
+				     		</p:commandButton>	
+				    </h:panelGroup>
+				    
+				    <h:panelGroup layout="block" styleClass="form-group pull-right">	  
+					   <p:commandButton value="Excluir"
+							rendered="#{manterPressaoMB.atualizacao}"
+							action="#{manterPressaoMB.excluiPressao}"
+							ajax="true" icon="ui-icon-close" update="msgs"> 
+					   <p:confirm header="Confirmação" message="Tem certeza que deseja apagar o peso?" icon="ui-icon-alert" />
+					   </p:commandButton>
+					   
+					   <p:commandButton value="Voltar"
+							rendered="#{manterPressaoMB.atualizacao}"
+							action="listarPressaoArterial" ajax="false">
+					   </p:commandButton>
+					</h:panelGroup>  
+				    
+				    
 					</h:panelGroup>
+
 				</h:panelGroup>
 			</p:tab>
 		</p:accordionPanel>
