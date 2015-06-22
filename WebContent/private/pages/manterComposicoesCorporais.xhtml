@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<ui:define name="content">
+
+		<h1 class="lead">Manter Composições Corporais</h1>
+
+		<p:accordionPanel multiple="true">
+
+			<p:tab title="Composições Corporais">
+
+				<h:panelGroup layout="block" styleClass="form-group" id="medidas">
+					<h:panelGrid columns="2" styleClass="mtable">
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="tipo_medida" value="Tipo:" />
+							<br />
+							<p:selectOneMenu id="tipo_medida"
+								value="#"
+								style="width:90%" required="true"
+								requiredMessage="Um tipo para a medida deve ser escolhido.">
+								<p:ajax
+									listener="#" />
+								<f:selectItem itemLabel="Selecione..." itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems
+									value="#"
+									var="tipoMedida" itemLabel="#"
+									itemValue="#" />
+							</p:selectOneMenu>
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="valorMedida" value="Valor Medida:" />
+							<br />
+							<pe:inputNumber id="valorMedida" symbolPosition="s"
+								style="width:80%;" decimalSeparator="," thousandSeparator="."
+								value="#"
+								required="true"
+								requiredMessage="Um valor para a medida deve ser informado."
+								var="medidaValor" itemLabel="#"
+								itemValue="#"
+								placeholder="Distância em metros.">
+							</pe:inputNumber>
+						</h:panelGroup>
+
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="udm" value="Unidade de Medida:" />
+							<br />
+							<p:selectOneMenu id="udm"
+								value="#"
+								style="width:90%;" required="true"
+								requiredMessage="Um tipo para a unidade de medida deve ser escolhido.">
+								<p:ajax listener="#" />
+								<f:selectItem itemLabel="Selecione..." itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems value="#"
+									var="udm" itemLabel="#" itemValue="#" />
+							</p:selectOneMenu>
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="data_medida" value="Data da Medida" />
+							<br />
+							<p:calendar id="data_medida"
+								value="#"
+								pattern="dd/MM/yyyy HH:mm:ss"
+								placeholder="Informe a data da medida" size="20" effect="fold"
+								icon="glyphicon-calendar" required="true"
+								requiredMessage="Uma data deve ser estipulada." />
+						</h:panelGroup>
+
+						<br />
+					</h:panelGrid>
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:outputLabel for="observacoes" value="Observações:" />
+						<br />
+						<p:inputTextarea id="observacoes" rows="5" cols="89" counter="obs"
+							maxlength="100"
+							value="#"
+							placeholder="Insire aqui uma observação.">
+						</p:inputTextarea>
+						<h:outputText id="obs" />
+					</h:panelGroup>
+
+
+					<h:panelGroup layout="block" styleClass="form-group" id="buttons">
+
+						<h:panelGroup layout="block" styleClass="form-group pull-left">
+
+							<p:commandButton value="Salvar"
+								rendered="#"
+								action="#"
+								ajax="true" update="medidas" icon="ui-icon-disk">
+							</p:commandButton>
+
+							<p:commandButton value="Editar"
+								rendered="#"
+								action="#" ajax="false"
+								icon="ui-icon-pencil">
+							</p:commandButton>
+
+							<h:panelGroup layout="block" styleClass="form-group pull-right">
+								<p:commandButton value="Excluir"
+									rendered="#"
+									action="#" ajax="true"
+									icon="ui-icon-close">
+									<p:confirm header="Confirmação"
+										message="Tem certeza que deseja apagar a medida?"
+										icon="ui-icon-alert" />
+								</p:commandButton>
+
+								<p:commandButton value="Voltar"
+									rendered="#"
+									action="#" ajax="false">
+								</p:commandButton>
+
+
+							</h:panelGroup>
+
+
+						</h:panelGroup>
+
+					</h:panelGroup>
+				</h:panelGroup>
+				<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
+					</p:commandButton>
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close">
+					</p:commandButton>
+				</p:confirmDialog>
+			</p:tab>
+
+		</p:accordionPanel>
+	</ui:define>
+</ui:composition>
