@@ -1,9 +1,7 @@
 package br.edu.ifrs.canoas.tads.lds.model.dao;
 
 import java.util.List;
-
 import javax.ejb.Stateless;
-
 import br.edu.ifrs.canoas.tads.lds.bean.PesoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 
@@ -51,7 +49,7 @@ public class PesoUsuarioDAO extends BaseDAO<PesoUsuario, Long> {
 	public List<PesoUsuario> buscaPorCriterio(String criterioPeso) {
 		String criterio = "";
 		
-		try { criterio = (new Double(criterioPeso) instanceof Double) ? "pu.peso.valor = " + criterioPeso : " OR ";
+		try { criterio = (new Double(criterioPeso) instanceof Double) ? "pu.valor = " + criterioPeso : " OR ";
 		}catch(Exception e) {}
 		
 		if (criterio == ""){
