@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<ui:define name="content">
+
+		<h1 class="lead">Composições Corporais</h1>
+
+		<p:accordionPanel id="panel" multiple="true">
+
+			<p:tab title="Novo registro de Composição Corporal">
+
+				<h:panelGroup layout="block" id="tipo">
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:outputLabel for="inicio" value="Data:" />
+						<br />
+						<p:calendar id="inicio"
+							value="#{manterAtividadesMB.atividadeUsuario.dataInicio}"
+							pattern="dd/MM/yyyy HH:mm:ss" var="dataInicio" itemLabel=""
+							itemValue="" placeholder="Data do registro" effect="fold"
+							icon="glyphicon-calendar" required="true"
+							requiredMessage="Uma data deve ser informada! :(">
+						</p:calendar>
+					</h:panelGroup>
+
+					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
+						<p:outputLabel for="agua" value="Água:" />
+						<p:inputText id="agua" value="33"
+							placeholder="Percentagem de água no corpo" style="width: 100%;"
+							required="true" requiredMessage="Como tu vive sem água no corpo?!?! :o"/>
+						<p:slider for="agua" step="10" />
+					</h:panelGrid>
+
+					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
+						<p:outputLabel for="gordura" value="Gordura:" />
+						<p:inputText id="gordura" value="33"
+							placeholder="Percentagem de banha no corpo" style="width: 100%;"
+							required="true" requiredMessage="Sem gordura? Está precisando se alimentar mais jovenzinho! :]"/>
+						<p:slider for="gordura" step="10" />
+					</h:panelGrid>
+
+					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
+						<p:outputLabel for="musculo" value="Músculo:" />
+						<p:inputText id="musculo" value="33"
+							placeholder="Percentagem de músculo no corpo" style="width: 100%;"
+							required="true" requiredMessage="Sem músculos? Como assim?!?!!?!" />
+						<p:slider for="musculo" step="10" />
+					</h:panelGrid>
+					<br/>
+					<p><strong>Total: 100%</strong></p>
+					<br/><br/>
+					<h:panelGroup layout="block" styleClass="form-group" id="notasArea">
+						<p:outputLabel for="notas" value="Notas:" />
+						<br />
+						<p:inputTextarea id="notas"
+							value="#{manterAtividadesMB.atividadeUsuario.notas}" rows="4"
+							cols="94"
+							placeholder="Espaço destinado para observações e comentários."
+							counter="counter" maxlength="500"
+							counterTemplate=" Restam {0} caracteres!" style="width:100%;" />
+						<h:outputText id="counter" />
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="form-group" id="buttons">
+
+						<h:panelGroup layout="block" styleClass="form-group pull-left">
+							<p:commandButton value="Salvar"
+								rendered="#{not manterAtividadesMB.atualizacao}"
+								action="#{manterAtividadesMB.salvaAtividadeUsuario}" ajax="true"
+								icon="ui-icon-disk" update="panel" />
+
+							<p:commandButton value="Salvar alterações"
+								rendered="#{manterAtividadesMB.atualizacao}"
+								action="#{manterAtividadesMB.alteraAtividadeUsuario}"
+								ajax="true" icon="ui-icon-pencil" />
+
+							<p:commandButton value="Voltar" immediate="true"
+								rendered="#{manterAtividadesMB.atualizacao}"
+								action="#{manterAtividadesMB.initListar}" ajax="true" />
+
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group pull-right">
+							<p:commandButton value="Excluir"
+								rendered="#{manterAtividadesMB.atualizacao}" immediate="true"
+								action="#{manterAtividadesMB.excluiAtividadeUsuario}"
+								ajax="true" icon="ui-icon-close" update=":mainForm:msgs">
+								<p:confirm header="Confirmação"
+									message="Tem certeza que deseja apagar a atividade?"
+									icon="ui-icon-alert" />
+							</p:commandButton>
+						</h:panelGroup>
+
+					</h:panelGroup>
+
+				</h:panelGroup>
+
+				<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
+					</p:commandButton>
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close">
+					</p:commandButton>
+				</p:confirmDialog>
+
+			</p:tab>
+
+		</p:accordionPanel>
+
+	</ui:define>
+
+</ui:composition>
