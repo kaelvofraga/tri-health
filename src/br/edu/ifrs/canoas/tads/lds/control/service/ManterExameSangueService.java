@@ -109,6 +109,11 @@ public class ManterExameSangueService {
 	public void alteraExameSangue(UsuarioExame usuarioExame) {
 		usuarioExameDAO.atualiza(usuarioExame);
 	}
+
+	public boolean excluiExameUrina(UsuarioExame usuarioExame) {
+
+		return true;
+	}
 	
 	
 
