@@ -1,55 +1,68 @@
 package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
-import br.edu.ifrs.canoas.tads.lds.bean.Composicao;
-import br.edu.ifrs.canoas.tads.lds.bean.BaseEntity;
-import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
-
-/***
+/**
  * 
  * @author Pablo Diehl
- * @version 23/06/2015
+ * @version 24/06/2015
  * 
  * @brief Classe de relacionamento entre Composicao e Usuario
- * #Atributos
- *  - Data: Representa a data do registro de Composição Corporal.
- *  - Notas: String contendo observações sobre o registro.
- *  - Valor: Representação percentual de uma determinada composição corporal.
- *	
+ *
  */
-public class ComposicaoUsuario extends BaseEntity<Long> implements Serializable {
+
+@Entity
+public class ComposicaoUsuario  extends BaseEntity<Long> implements Serializable {
 
 	private static final long serialVersionUID = -3342715828920539423L;
-	
-	@NotNull @ManyToMany
+
+	@NotNull @ManyToOne
 	@JoinColumn(name="COMPOSICAO_ID")
 	private Composicao composicao = new Composicao();
 	
-	@NotNull @ManyToMany
+	@NotNull @ManyToOne
 	@JoinColumn(name="USUARIO_ID")
-	private Usuario usuario = new Usuario();
+	private Usuario usuario;
 	
-	@NotNull
+	@NotNull @Temporal(TemporalType.TIMESTAMP)
 	private Date data;
 	
-	@NotNull
+	@Length(max=144, message="Só 144 caracteres de notas fera. =P")
 	private String notas;
 	
-	@NotNull
+	@NotNull @DecimalMax(value="100.00", message="Valor maximo de 100%. :]")
 	private double valor;
+
+	public ComposicaoUsuario() {
+		super();
+	}
+
+	public Composicao getComposicao() {
+		return composicao;
+	}
+
+	public void setComposicao(Composicao composicao) {
+		this.composicao = composicao;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 	public Date getData() {
 		return data;
@@ -74,21 +87,6 @@ public class ComposicaoUsuario extends BaseEntity<Long> implements Serializable 
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
-
-	public Composicao getComposicao() {
-		return composicao;
-	}
-
-	public void setComposicao(Composicao composicao) {
-		this.composicao = composicao;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
+	
 	
 }

@@ -9,6 +9,13 @@
 	template="/public/templates/template.xhtml">
 
 	<ui:define name="metadata" />
+	
+	<!-- 
+		@author: Pablo Diehl
+		@version: 24/06/2015
+		@brief: Página de manutenção de registros de composições corporais.
+	
+	 -->
 
 	<ui:define name="content">
 
@@ -19,45 +26,61 @@
 			<p:tab title="Novo registro de Composição Corporal">
 
 				<h:panelGroup layout="block" id="tipo">
-
-					<h:panelGroup layout="block" styleClass="form-group">
-						<p:outputLabel for="inicio" value="Data:" />
-						<br />
-						<p:calendar id="inicio"
-							value="#{manterAtividadesMB.atividadeUsuario.dataInicio}"
-							pattern="dd/MM/yyyy HH:mm:ss" var="dataInicio" itemLabel=""
-							itemValue="" placeholder="Data do registro" effect="fold"
-							icon="glyphicon-calendar" required="true"
-							requiredMessage="Uma data deve ser informada! :(">
-						</p:calendar>
-					</h:panelGroup>
-
 					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
-						<p:outputLabel for="agua" value="Água:" />
-						<p:inputText id="agua" value="33"
-							placeholder="Percentagem de água no corpo" style="width: 100%;"
-							required="true" requiredMessage="Como tu vive sem água no corpo?!?! :o"/>
-						<p:slider for="agua" step="10" />
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="data" value="Data:" />
+							<br />
+							<p:calendar id="data"
+								value="#{manterAtividadesMB.atividadeUsuario.dataInicio}"
+								pattern="dd/MM/yyyy HH:mm:ss" var="dataInicio" itemLabel=""
+								itemValue="" placeholder="Data do registro" effect="fold"
+								icon="glyphicon-calendar" required="true"
+								requiredMessage="Uma data deve ser informada! :(">
+							</p:calendar>
+						</h:panelGroup>
 					</h:panelGrid>
 
 					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
-						<p:outputLabel for="gordura" value="Gordura:" />
-						<p:inputText id="gordura" value="33"
-							placeholder="Percentagem de banha no corpo" style="width: 100%;"
-							required="true" requiredMessage="Sem gordura? Está precisando se alimentar mais jovenzinho! :]"/>
-						<p:slider for="gordura" step="10" />
+						<p:outputLabel for="adiposa" value="Massa Adiposa:" />
+						<p:inputText id="adiposa" value="25"
+							placeholder="Percentagem de massa adiposa no corpo"
+							style="width: 100%;" required="true" 
+							requiredMessage="Um valor de massa adiposa deve ser informado! :("/>
+						<p:slider for="adiposa" step="10" />
 					</h:panelGrid>
 
 					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
-						<p:outputLabel for="musculo" value="Músculo:" />
-						<p:inputText id="musculo" value="33"
-							placeholder="Percentagem de músculo no corpo" style="width: 100%;"
-							required="true" requiredMessage="Sem músculos? Como assim?!?!!?!" />
-						<p:slider for="musculo" step="10" />
+						<p:outputLabel for="residual" value="Massa Residual:" />
+						<p:inputText id="residual" value="25"
+							placeholder="Percentagem de massa residual no corpo"
+							style="width: 100%;" required="true"
+							requiredMessage="Um valor de massa residual deve ser informado! :(" />
+						<p:slider for="residual" step="10" />
 					</h:panelGrid>
-					<br/>
-					<p><strong>Total: 100%</strong></p>
-					<br/><br/>
+
+					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
+						<p:outputLabel for="muscular" value="Massa Muscular:" />
+						<p:inputText id="muscular" value="25"
+							placeholder="Percentagem de massa muscular no corpo"
+							style="width: 100%;" required="true"
+							requiredMessage="Um valor de massa muscular deve ser informado! :(" />
+						<p:slider for="muscular" step="10" />
+					</h:panelGrid>
+					
+					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
+						<p:outputLabel for="ossea" value="Massa Óssea:" />
+						<p:inputText id="ossea" value="25"
+							placeholder="Percentagem de massa ossea no corpo"
+							style="width: 100%;" required="true"
+							requiredMessage="Um valor de massa óssea deve ser informado! :(" />
+						<p:slider for="ossea" step="10" />
+					</h:panelGrid>
+					<br />
+					<p>
+						<strong>Total: 100%</strong>
+					</p>
+					<br />
+					<br />
 					<h:panelGroup layout="block" styleClass="form-group" id="notasArea">
 						<p:outputLabel for="notas" value="Notas:" />
 						<br />
