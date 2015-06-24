@@ -110,6 +110,7 @@ public class ManterExameSangueMB implements Serializable{
 		this.listaExames = listaExames;
 	}
 	public List<TipoAnalise> getTiposAnalise() {
+		tiposAnalise = tipoAnaliseService.buscaTipoAnalise();
 		return tiposAnalise;
 	}
 	public void setTiposAnalise(List<TipoAnalise> tiposAnalise) {
@@ -141,6 +142,9 @@ public class ManterExameSangueMB implements Serializable{
 	public String initListar() {
 		usuarioExame = new UsuarioExame();
 		listaExames= new ArrayList<>();
+		criterioExameSangue="";
+		dataDe = new Date();
+		dataAte = new Date();
 		return URL_LISTAR_EXAMESANGUE;
 	}
 	
@@ -149,7 +153,7 @@ public class ManterExameSangueMB implements Serializable{
 	}
 	
 	public void onRowSelect(SelectEvent event) throws IOException {
-		this.itemExameSangue = (ItemExameSangue) event.getObject();
+		this.usuarioExame = (UsuarioExame) event.getObject();
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("../../private/pages/manterExameSangue.jsf");
 	}
@@ -164,7 +168,7 @@ public class ManterExameSangueMB implements Serializable{
 	public void salvaExame(){
 		usuarioExame.setUsuario(gerenciarLoginMB.getUsuario());
 		exameSangueService.salvaExameSangueUsuario(usuarioExame);
-		this.clear();
+		//this.clear();
 	}
 	
 	public void adicionarExameAnalisado(){
@@ -186,10 +190,23 @@ public class ManterExameSangueMB implements Serializable{
 		listaExames = exameSangueService.busca(this.getDataDe(),this.getDataAte(),criterioExameSangue);
 		}
 		
-	public void clear(){
-		usuarioExame = new UsuarioExame();
+	//public void clear(){
+		//usuarioExame = new UsuarioExame();
 		//usuarioExame.setItensExame(new ArrayList<ItemExameSangue>());
 		//itemExameSangue.setTipoAnalise(new TipoAnalise());
+	//}
+	
+	public String alteraExame() {
+		exameSangueService.alteraExameSangue(usuarioExame);
+		return URL_LISTAR_EXAMESANGUE;
+	}
+	
+	public String excluiExame(){
+		if (exameSangueService.excluiExameUrina(usuarioExame)){
+			this.busca();
+			return URL_LISTAR_EXAMESANGUE;
+		}
+		return URL_MANTER_EXAMESANGUE;
 	}
 	
 
