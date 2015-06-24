@@ -31,9 +31,9 @@
 							<p:outputLabel for="data" value="Data:" />
 							<br />
 							<p:calendar id="data"
-								value="#{manterAtividadesMB.atividadeUsuario.dataInicio}"
+								value="#{manterComposicoesCorporaisMB.adiposa.data}"
 								pattern="dd/MM/yyyy HH:mm:ss" var="dataInicio" itemLabel=""
-								itemValue="" placeholder="Data do registro" effect="fold"
+								itemValue="#{manterComposicoesCorporaisMB.adiposa.data}" placeholder="Data do registro" effect="fold"
 								icon="glyphicon-calendar" required="true"
 								requiredMessage="Uma data deve ser informada! :(">
 							</p:calendar>
@@ -42,8 +42,9 @@
 
 					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
 						<p:outputLabel for="adiposa" value="Massa Adiposa:" />
-						<p:inputText id="adiposa" value="25"
+						<p:inputText id="adiposa" value="#{manterComposicoesCorporaisMB.adiposa.valor}"
 							placeholder="Percentagem de massa adiposa no corpo"
+							itemValue="#{manterComposicoesCorporaisMB.adiposa.valor}"
 							style="width: 100%;" required="true" 
 							requiredMessage="Um valor de massa adiposa deve ser informado! :("/>
 						<p:slider for="adiposa" step="10" />
@@ -51,8 +52,9 @@
 
 					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
 						<p:outputLabel for="residual" value="Massa Residual:" />
-						<p:inputText id="residual" value="25"
+						<p:inputText id="residual" value="#{manterComposicoesCorporaisMB.residual.valor}"
 							placeholder="Percentagem de massa residual no corpo"
+							itemValue="#{manterComposicoesCorporaisMB.residual.valor}"
 							style="width: 100%;" required="true"
 							requiredMessage="Um valor de massa residual deve ser informado! :(" />
 						<p:slider for="residual" step="10" />
@@ -60,8 +62,9 @@
 
 					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
 						<p:outputLabel for="muscular" value="Massa Muscular:" />
-						<p:inputText id="muscular" value="25"
+						<p:inputText id="muscular" value="#{manterComposicoesCorporaisMB.muscular.valor}"
 							placeholder="Percentagem de massa muscular no corpo"
+							itemValue="#{manterComposicoesCorporaisMB.muscular.valor}"
 							style="width: 100%;" required="true"
 							requiredMessage="Um valor de massa muscular deve ser informado! :(" />
 						<p:slider for="muscular" step="10" />
@@ -69,8 +72,9 @@
 					
 					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
 						<p:outputLabel for="ossea" value="Massa Óssea:" />
-						<p:inputText id="ossea" value="25"
+						<p:inputText id="ossea" value="#{manterComposicoesCorporaisMB.ossea.valor}"
 							placeholder="Percentagem de massa ossea no corpo"
+							itemValue="#{manterComposicoesCorporaisMB.ossea.valor}"
 							style="width: 100%;" required="true"
 							requiredMessage="Um valor de massa óssea deve ser informado! :(" />
 						<p:slider for="ossea" step="10" />
@@ -85,10 +89,10 @@
 						<p:outputLabel for="notas" value="Notas:" />
 						<br />
 						<p:inputTextarea id="notas"
-							value="#{manterAtividadesMB.atividadeUsuario.notas}" rows="4"
+							value="#{manterComposicoesCorporaisMB.adiposa.notas}" rows="4"
 							cols="94"
 							placeholder="Espaço destinado para observações e comentários."
-							counter="counter" maxlength="500"
+							counter="counter" maxlength="144"
 							counterTemplate=" Restam {0} caracteres!" style="width:100%;" />
 						<h:outputText id="counter" />
 					</h:panelGroup>
@@ -98,7 +102,7 @@
 						<h:panelGroup layout="block" styleClass="form-group pull-left">
 							<p:commandButton value="Salvar"
 								rendered="#{not manterAtividadesMB.atualizacao}"
-								action="#{manterAtividadesMB.salvaAtividadeUsuario}" ajax="true"
+								action="#{manterComposicoesCorporaisMB.salvaComposicao}" ajax="true"
 								icon="ui-icon-disk" update="panel" />
 
 							<p:commandButton value="Salvar alterações"
