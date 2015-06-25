@@ -9,7 +9,7 @@
 	template="/public/templates/template.xhtml">
 
 	<ui:define name="metadata" />
-	
+
 	<!-- 
 		@author: Pablo Diehl
 		@version: 24/06/2015
@@ -33,7 +33,8 @@
 							<p:calendar id="data"
 								value="#{manterComposicoesCorporaisMB.composicaoUsuario.data}"
 								pattern="dd/MM/yyyy HH:mm:ss" var="dataInicio" itemLabel=""
-								itemValue="#{manterComposicoesCorporaisMB.composicaoUsuario.data}" placeholder="Data do registro" effect="fold"
+								itemValue="#{manterComposicoesCorporaisMB.composicaoUsuario.data}"
+								placeholder="Data do registro" effect="fold"
 								icon="glyphicon-calendar" required="true"
 								requiredMessage="Uma data deve ser informada! :(">
 							</p:calendar>
@@ -42,17 +43,19 @@
 
 					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
 						<p:outputLabel for="adiposa" value="Massa Adiposa:" />
-						<p:inputText id="adiposa" value="#{manterComposicoesCorporaisMB.composicaoUsuario.adiposa}"
+						<p:inputText id="adiposa"
+							value="#{manterComposicoesCorporaisMB.composicaoUsuario.adiposa}"
 							placeholder="Percentagem de massa adiposa no corpo"
 							itemValue="#{manterComposicoesCorporaisMB.composicaoUsuario.adiposa}"
-							style="width: 100%;" required="true" 
-							requiredMessage="Um valor de massa adiposa deve ser informado! :("/>
+							update="total" style="width: 100%;" required="true"
+							requiredMessage="Um valor de massa adiposa deve ser informado! :(" />
 						<p:slider for="adiposa" step="1" />
 					</h:panelGrid>
 
 					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
 						<p:outputLabel for="residual" value="Massa Residual:" />
-						<p:inputText id="residual" value="#{manterComposicoesCorporaisMB.composicaoUsuario.residual}"
+						<p:inputText id="residual"
+							value="#{manterComposicoesCorporaisMB.composicaoUsuario.residual}"
 							placeholder="Percentagem de massa residual no corpo"
 							itemValue="#{manterComposicoesCorporaisMB.composicaoUsuario.residual}"
 							style="width: 100%;" required="true"
@@ -62,17 +65,19 @@
 
 					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
 						<p:outputLabel for="muscular" value="Massa Muscular:" />
-						<p:inputText id="muscular" value="#{manterComposicoesCorporaisMB.composicaoUsuario.muscular}"
+						<p:inputText id="muscular"
+							value="#{manterComposicoesCorporaisMB.composicaoUsuario.muscular}"
 							placeholder="Percentagem de massa muscular no corpo"
 							itemValue="#{manterComposicoesCorporaisMB.composicaoUsuario.muscular}"
 							style="width: 100%;" required="true"
 							requiredMessage="Um valor de massa muscular deve ser informado! :(" />
 						<p:slider for="muscular" step="1" />
 					</h:panelGrid>
-					
+
 					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
 						<p:outputLabel for="ossea" value="Massa Óssea:" />
-						<p:inputText id="ossea" value="#{manterComposicoesCorporaisMB.composicaoUsuario.ossea}"
+						<p:inputText id="ossea"
+							value="#{manterComposicoesCorporaisMB.composicaoUsuario.ossea}"
 							placeholder="Percentagem de massa ossea no corpo"
 							itemValue="#{manterComposicoesCorporaisMB.composicaoUsuario.ossea}"
 							style="width: 100%;" required="true"
@@ -80,17 +85,21 @@
 						<p:slider for="ossea" step="1" />
 					</h:panelGrid>
 					<br />
-					<p>
-						<strong>Total: 100%</strong>
-					</p>
+					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
+						<p:outputLabel for="ossea" value="Total:" />
+						<pe:inputNumber id="total" symbolPosition="s" decimalSeparator=","
+							thousandSeparator="." readonly="true"
+							value="#{manterComposicoesCorporaisMB.total}" placeholder="Total">
+						</pe:inputNumber>
+					</h:panelGrid>
 					<br />
 					<br />
 					<h:panelGroup layout="block" styleClass="form-group" id="notasArea">
 						<p:outputLabel for="notas" value="Notas:" />
 						<br />
 						<p:inputTextarea id="notas"
-							value="#{manterComposicoesCorporaisMB.composicaoUsuario.notas}" rows="4"
-							cols="94"
+							value="#{manterComposicoesCorporaisMB.composicaoUsuario.notas}"
+							rows="4" cols="94"
 							placeholder="Espaço destinado para observações e comentários."
 							counter="counter" maxlength="144"
 							counterTemplate=" Restam {0} caracteres!" style="width:100%;" />
@@ -101,8 +110,8 @@
 
 						<h:panelGroup layout="block" styleClass="form-group pull-left">
 							<p:commandButton value="Salvar"
-								action="#{manterComposicoesCorporaisMB.salvaComposicao}" ajax="true"
-								icon="ui-icon-disk" update="panel" />
+								action="#{manterComposicoesCorporaisMB.salvaComposicao}"
+								ajax="true" icon="ui-icon-disk" update="panel" />
 
 						</h:panelGroup>
 					</h:panelGroup>

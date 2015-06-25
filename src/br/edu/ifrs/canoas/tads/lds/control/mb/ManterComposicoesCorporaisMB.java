@@ -60,6 +60,14 @@ public class ManterComposicoesCorporaisMB implements Serializable {
 			this.initManter();
 		}
 	}
+	
+	public double getTotal(){
+		double total = 0.0;
+		
+		total = this.composicaoUsuario.getAdiposa() + this.composicaoUsuario.getMuscular() + this.composicaoUsuario.getOssea() + this.composicaoUsuario.getResidual();
+		
+		return total;
+	}
 
 	public GerenciarLoginMB getGerenciarLoginMB() {
 		return gerenciarLoginMB;

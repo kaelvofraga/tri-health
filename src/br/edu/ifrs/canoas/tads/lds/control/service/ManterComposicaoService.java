@@ -36,7 +36,7 @@ public class ManterComposicaoService {
 			return false;
 		}
 
-		if (composicaoUsuario.getAdiposa() + composicaoUsuario.getResidual() + composicaoUsuario.getMuscular() + composicaoUsuario.getOssea() != 100) {
+		if (composicaoUsuario.getAdiposa() + composicaoUsuario.getResidual() + composicaoUsuario.getMuscular() + composicaoUsuario.getOssea() != 100.00) {
 			Mensagens.define(FacesMessage.SEVERITY_ERROR,
 					"manterComposicao.cadastro.erro.nao");
 			return false;
