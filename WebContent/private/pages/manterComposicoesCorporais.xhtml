@@ -31,9 +31,9 @@
 							<p:outputLabel for="data" value="Data:" />
 							<br />
 							<p:calendar id="data"
-								value="#{manterComposicoesCorporaisMB.adiposa.data}"
+								value="#{manterComposicoesCorporaisMB.composicaoUsuario.data}"
 								pattern="dd/MM/yyyy HH:mm:ss" var="dataInicio" itemLabel=""
-								itemValue="#{manterComposicoesCorporaisMB.adiposa.data}" placeholder="Data do registro" effect="fold"
+								itemValue="#{manterComposicoesCorporaisMB.composicaoUsuario.data}" placeholder="Data do registro" effect="fold"
 								icon="glyphicon-calendar" required="true"
 								requiredMessage="Uma data deve ser informada! :(">
 							</p:calendar>
@@ -42,42 +42,42 @@
 
 					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
 						<p:outputLabel for="adiposa" value="Massa Adiposa:" />
-						<p:inputText id="adiposa" value="#{manterComposicoesCorporaisMB.adiposa.valor}"
+						<p:inputText id="adiposa" value="#{manterComposicoesCorporaisMB.composicaoUsuario.adiposa}"
 							placeholder="Percentagem de massa adiposa no corpo"
-							itemValue="#{manterComposicoesCorporaisMB.adiposa.valor}"
+							itemValue="#{manterComposicoesCorporaisMB.composicaoUsuario.adiposa}"
 							style="width: 100%;" required="true" 
 							requiredMessage="Um valor de massa adiposa deve ser informado! :("/>
-						<p:slider for="adiposa" step="10" />
+						<p:slider for="adiposa" step="1" />
 					</h:panelGrid>
 
 					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
 						<p:outputLabel for="residual" value="Massa Residual:" />
-						<p:inputText id="residual" value="#{manterComposicoesCorporaisMB.residual.valor}"
+						<p:inputText id="residual" value="#{manterComposicoesCorporaisMB.composicaoUsuario.residual}"
 							placeholder="Percentagem de massa residual no corpo"
-							itemValue="#{manterComposicoesCorporaisMB.residual.valor}"
+							itemValue="#{manterComposicoesCorporaisMB.composicaoUsuario.residual}"
 							style="width: 100%;" required="true"
 							requiredMessage="Um valor de massa residual deve ser informado! :(" />
-						<p:slider for="residual" step="10" />
+						<p:slider for="residual" step="1" />
 					</h:panelGrid>
 
 					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
 						<p:outputLabel for="muscular" value="Massa Muscular:" />
-						<p:inputText id="muscular" value="#{manterComposicoesCorporaisMB.muscular.valor}"
+						<p:inputText id="muscular" value="#{manterComposicoesCorporaisMB.composicaoUsuario.muscular}"
 							placeholder="Percentagem de massa muscular no corpo"
-							itemValue="#{manterComposicoesCorporaisMB.muscular.valor}"
+							itemValue="#{manterComposicoesCorporaisMB.composicaoUsuario.muscular}"
 							style="width: 100%;" required="true"
 							requiredMessage="Um valor de massa muscular deve ser informado! :(" />
-						<p:slider for="muscular" step="10" />
+						<p:slider for="muscular" step="1" />
 					</h:panelGrid>
 					
 					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
 						<p:outputLabel for="ossea" value="Massa Óssea:" />
-						<p:inputText id="ossea" value="#{manterComposicoesCorporaisMB.ossea.valor}"
+						<p:inputText id="ossea" value="#{manterComposicoesCorporaisMB.composicaoUsuario.ossea}"
 							placeholder="Percentagem de massa ossea no corpo"
-							itemValue="#{manterComposicoesCorporaisMB.ossea.valor}"
+							itemValue="#{manterComposicoesCorporaisMB.composicaoUsuario.ossea}"
 							style="width: 100%;" required="true"
 							requiredMessage="Um valor de massa óssea deve ser informado! :(" />
-						<p:slider for="ossea" step="10" />
+						<p:slider for="ossea" step="1" />
 					</h:panelGrid>
 					<br />
 					<p>
@@ -89,7 +89,7 @@
 						<p:outputLabel for="notas" value="Notas:" />
 						<br />
 						<p:inputTextarea id="notas"
-							value="#{manterComposicoesCorporaisMB.adiposa.notas}" rows="4"
+							value="#{manterComposicoesCorporaisMB.composicaoUsuario.notas}" rows="4"
 							cols="94"
 							placeholder="Espaço destinado para observações e comentários."
 							counter="counter" maxlength="144"
@@ -101,32 +101,10 @@
 
 						<h:panelGroup layout="block" styleClass="form-group pull-left">
 							<p:commandButton value="Salvar"
-								rendered="#{not manterAtividadesMB.atualizacao}"
 								action="#{manterComposicoesCorporaisMB.salvaComposicao}" ajax="true"
 								icon="ui-icon-disk" update="panel" />
 
-							<p:commandButton value="Salvar alterações"
-								rendered="#{manterAtividadesMB.atualizacao}"
-								action="#{manterAtividadesMB.alteraAtividadeUsuario}"
-								ajax="true" icon="ui-icon-pencil" />
-
-							<p:commandButton value="Voltar" immediate="true"
-								rendered="#{manterAtividadesMB.atualizacao}"
-								action="#{manterAtividadesMB.initListar}" ajax="true" />
-
 						</h:panelGroup>
-
-						<h:panelGroup layout="block" styleClass="form-group pull-right">
-							<p:commandButton value="Excluir"
-								rendered="#{manterAtividadesMB.atualizacao}" immediate="true"
-								action="#{manterAtividadesMB.excluiAtividadeUsuario}"
-								ajax="true" icon="ui-icon-close" update=":mainForm:msgs">
-								<p:confirm header="Confirmação"
-									message="Tem certeza que deseja apagar a atividade?"
-									icon="ui-icon-alert" />
-							</p:commandButton>
-						</h:panelGroup>
-
 					</h:panelGroup>
 
 				</h:panelGroup>

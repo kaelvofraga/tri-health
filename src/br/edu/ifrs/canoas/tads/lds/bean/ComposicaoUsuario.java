@@ -28,32 +28,30 @@ public class ComposicaoUsuario  extends BaseEntity<Long> implements Serializable
 	private static final long serialVersionUID = -3342715828920539423L;
 
 	@NotNull @ManyToOne
-	@JoinColumn(name="COMPOSICAO_ID")
-	private Composicao composicao = new Composicao();
-	
-	@NotNull @ManyToOne
 	@JoinColumn(name="USUARIO_ID")
 	private Usuario usuario;
+	
+	@NotNull @DecimalMax(value="100.00", message="Valor maximo de 100%. :]")
+	private double adiposa;
+	
+	@NotNull @DecimalMax(value="100.00", message="Valor maximo de 100%. :]")
+	private double residual;
+	
+	@NotNull @DecimalMax(value="100.00", message="Valor maximo de 100%. :]")
+	private double muscular;
+	
+	@NotNull @DecimalMax(value="100.00", message="Valor maximo de 100%. :]")
+	private double ossea;
+
 	
 	@NotNull @Temporal(TemporalType.TIMESTAMP)
 	private Date data;
 	
-	@Length(max=144, message="Só 144 caracteres de notas fera. =P")
+	@Length(max=144, message="Apenas 144 caracteres de notas fera. =P")
 	private String notas;
-	
-	@NotNull @DecimalMax(value="100.00", message="Valor maximo de 100%. :]")
-	private double valor;
 
 	public ComposicaoUsuario() {
 		super();
-	}
-
-	public Composicao getComposicao() {
-		return composicao;
-	}
-
-	public void setComposicao(Composicao composicao) {
-		this.composicao = composicao;
 	}
 
 	public Usuario getUsuario() {
@@ -62,6 +60,38 @@ public class ComposicaoUsuario  extends BaseEntity<Long> implements Serializable
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public double getAdiposa() {
+		return adiposa;
+	}
+
+	public void setAdiposa(double adiposa) {
+		this.adiposa = adiposa;
+	}
+
+	public double getResidual() {
+		return residual;
+	}
+
+	public void setResidual(double residual) {
+		this.residual = residual;
+	}
+
+	public double getMuscular() {
+		return muscular;
+	}
+
+	public void setMuscular(double muscular) {
+		this.muscular = muscular;
+	}
+
+	public double getOssea() {
+		return ossea;
+	}
+
+	public void setOssea(double ossea) {
+		this.ossea = ossea;
 	}
 
 	public Date getData() {
@@ -79,14 +109,4 @@ public class ComposicaoUsuario  extends BaseEntity<Long> implements Serializable
 	public void setNotas(String notas) {
 		this.notas = notas;
 	}
-
-	public double getValor() {
-		return valor;
-	}
-
-	public void setValor(double valor) {
-		this.valor = valor;
-	}
-	
-	
 }
