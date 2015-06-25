@@ -7,17 +7,17 @@ import java.util.List;
 import java.util.Map;
 
 import br.edu.ifrs.canoas.tads.lds.bean.Cateterismo;
-import br.edu.ifrs.canoas.tads.lds.bean.CateterismoReportBean;
 import br.edu.ifrs.canoas.tads.lds.bean.Medico;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 import br.edu.ifrs.canoas.tads.lds.bean.UsuarioReportBean;
+import br.edu.ifrs.canoas.tads.lds.bean.jasper.AlimentacaoBean;
   
 public class RelatorioTeste 
 {
 	public static void main(String[] args)
 	{
-		try{
-			List<CateterismoReportBean> exames = new ArrayList<CateterismoReportBean>();
+//		try{
+//			List<AlimentacaoBean> exames = new ArrayList<AlimentacaoBean>();
 //			Map<String, String> maps = new HashMap<String, String>();
 //			
 //			maps.put("nome", "Luciano");
@@ -39,36 +39,36 @@ public class RelatorioTeste
 //			usuario.setGenero("Masculino");
 //			usuario.setTiposanguineo("B+");
 //			
-			CateterismoReportBean exame1 = new CateterismoReportBean();
-			exame1.setAlta("10/10/14");
-			exame1.setInternacao("09/10/14");
-			exame1.setLaudo("CID 123321");
-			exame1.setResponsavel("Medico 1");
-			exame1.setSolicitante("Medico 2");
-			exame1.setObservacoes("Sem observacoes.");
-			exame1.setNome("Luciano");
-			exame1.setGenero("Masculino");
-			exame1.setNascimento("30/06/1994");
-			exame1.setTiposanguineo("B+");
-			
-			CateterismoReportBean exame2 = new CateterismoReportBean();
-			exame2.setAlta("10/10/14");
-			exame2.setInternacao("09/10/14");
-			exame2.setLaudo("CID 123321");
-			exame2.setResponsavel("Medico 1");
-			exame2.setSolicitante("Medico 2");
-			exame2.setObservacoes("Sem observacoes.");
-
-
-			exames.add(exame1);
-			exames.add(exame2);
-			//exames.add(usuario);
-			CateterismosREL relatorio = new CateterismosREL();
-			relatorio.imprimir(exames);
-		}
-		catch(Exception e){
-			System.out.println(e.getMessage());
-		}
+//			AlimentacaoBean exame1 = new AlimentacaoBean();
+//			exame1.setAlta("10/10/14");
+//			exame1.setInternacao("09/10/14");
+//			exame1.setLaudo("CID 123321");
+//			exame1.setResponsavel("Medico 1");
+//			exame1.setSolicitante("Medico 2");
+//			exame1.setObservacoes("Sem observacoes.");
+//			exame1.setNome("Luciano");
+//			exame1.setGenero("Masculino");
+//			exame1.setNascimento("30/06/1994");
+//			exame1.setTiposanguineo("B+");
+//			
+//			AlimentacaoBean exame2 = new AlimentacaoBean();
+//			exame2.setAlta("10/10/14");
+//			exame2.setInternacao("09/10/14");
+//			exame2.setLaudo("CID 123321");
+//			exame2.setResponsavel("Medico 1");
+//			exame2.setSolicitante("Medico 2");
+//			exame2.setObservacoes("Sem observacoes.");
+//
+//
+//			exames.add(exame1);
+//			exames.add(exame2);
+//			//exames.add(usuario);
+//			CateterismosREL relatorio = new CateterismosREL();
+//			relatorio.imprimir(exames);
+//		}
+//		catch(Exception e){
+//			System.out.println(e.getMessage());
+//		}
 		
 	}
 }

@@ -62,7 +62,7 @@ public class ManterExameUrinaService {
 	}
 	
 	public boolean excluiExameUrinaUsuario(ExameUrinaUsuario exameUrina) {
-		//exameUrinaDAO.exclui(exameUrina);
+		exameUrinaDAO.exclui(exameUrina.getId());
 		return true;
 	}
 

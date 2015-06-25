@@ -83,14 +83,16 @@
 							<h:outputText value="#{listItensExameUrina.resultado}" />
 						</p:column>
 						<p:column headerText="Editar">
-							<p:commandButton value="Editar">
+							<p:commandButton value="Editar"
+								action="#{manterExameUrinaMB.alteraItem}" ajax="false"
+								>
 								<f:setPropertyActionListener value="#{listItensExameUrina}"
 									target="#{manterExameUrinaMB.itemExameUrina}" />
 							</p:commandButton>
 						</p:column>
 						<p:column headerText="Excluir">
 							<p:commandButton value="Excluir"
-								action="#{manterExameUrinaMB.exclui}" ajax="true"
+								action="#{manterExameUrinaMB.excluiItem}" ajax="true"
 								update="tab-itensExame">
 								<f:setPropertyActionListener value="#{listItensExameUrina}"
 									target="#{manterExameUrinaMB.itemExameUrina}" />
@@ -115,6 +117,7 @@
 
 						<h:panelGroup layout="block" styleClass="form-group pull-left">
 							<p:commandButton value="Salvar"
+								rendered="#{not manterExameUrinaMB.atualizacao}"
 								action="#{manterExameUrinaMB.salvaExame}" ajax="true"
 								update="exameurina" icon="ui-icon-disk">
 							</p:commandButton>
@@ -130,7 +133,7 @@
 							<p:commandButton value="Excluir"
 								rendered="#{manterExameUrinaMB.atualizacao}"
 								action="#{manterExameUrinaMB.excluiExame}" ajax="true"
-								icon="ui-icon-close" update="msgs">
+								icon="ui-icon-close">
 								<p:confirm header="Confirmação"
 									message="Tem certeza que deseja apagar ?" icon="ui-icon-alert" />
 							</p:commandButton>

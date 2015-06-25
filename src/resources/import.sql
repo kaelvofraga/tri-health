@@ -121,8 +121,3 @@ insert into Idioma (id, nome) values (1003, 'Franc�s' );
 insert into Idioma (id, nome) values (1004, 'Alem�o' );
 insert into Idioma (id, nome) values (1005, 'Mandarin' );
 insert into Idioma (id, nome) values (1006, 'Japon�s' );
-
-insert into Composicao (id, descricao) values (1,'Massa Adiposa');
-insert into Composicao (id, descricao) values (2,'Massa Residual');
-insert into Composicao (id, descricao) values (3,'Massa Muscular');
-insert into Composicao (id, descricao) values (4,'Massa Óssea');
