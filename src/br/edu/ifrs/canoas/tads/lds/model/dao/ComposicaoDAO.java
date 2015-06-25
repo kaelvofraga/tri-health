@@ -16,6 +16,7 @@ import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
  * @brief: Classe responsável por enviar para o Banco comandos SQL relacionadas a US de Manter Composições Corporais 
  *
  */
+
 @Stateless
 public class ComposicaoDAO  extends BaseDAO<Composicao, Long> implements Serializable {
 
