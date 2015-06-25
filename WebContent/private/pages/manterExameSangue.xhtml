@@ -31,40 +31,41 @@
 								icon="glyphicon-calendar" />
 						</h:panelGroup>
 					</h:panelGrid>
-					
-					<h:panelGrid columns="4" styleClass="mtable" >	
-						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel for="descricao" value="Tipo de Análise"/><br/>							
-								<p:selectOneMenu id="descricao"
-									value="#{manterExameSangueMB.itemExameSangue.tipoAnalise}"
-									style="width:250px"	requiredMessage="Um tipo de análise deve ser selecionado">
-									<p:ajax	listener="#{manterExameSangueMB.onSelectTipoAnalise}" />
-									<f:selectItem
-										itemLabel="Selecione tipo da análise" itemValue=""
-										noSelectionOption="true" />
-									<f:selectItems
-										value="#{manterExameSangueMB.tiposAnalise}" var="tipoAnalise"
-										itemLabel="#{tipoAnalise.tipo}" itemValue="#{tipoAnalise}" />
-								</p:selectOneMenu>
-						</h:panelGroup>
-
-						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel for="resultado_exame" value="Resultado do Exame" />
-							<br />
-							<p:inputText id="resultado_exame" styleClass="form-control"
-								size="25" style="width:150px" required="true"
-								value="#{manterExameSangueMB.itemExameSangue.resultado}"
-								placeholder="Informe o resultado" />
-						</h:panelGroup>
-						
-<!-- ao criar classes, passar ajax para true -->
-						<h:panelGroup layout="block" styleClass="form-group pull-left"><br />
-							<p:commandButton value="Adicionar" ajax="true" type="submit"
-								id="btnAdicionar" immediate="false" update="tab-itensExame"
-								action="#{manterExameSangueMB.adicionarExameAnalisado}"
-								icon="ui-icon-disk" />
-						</h:panelGroup>
-					</h:panelGrid>
+					<h:panelGroup layout="block" id="itemexamesangue">
+						<h:panelGrid columns="4" styleClass="mtable" >	
+							<h:panelGroup layout="block" styleClass="form-group">
+								<p:outputLabel for="descricao" value="Tipo de Análise"/><br/>							
+									<p:selectOneMenu id="descricao"
+										value="#{manterExameSangueMB.itemExameSangue.tipoAnalise}"
+										style="width:250px"	requiredMessage="Um tipo de análise deve ser selecionado">
+										<p:ajax	listener="#{manterExameSangueMB.onSelectTipoAnalise}" />
+										<f:selectItem
+											itemLabel="Selecione tipo da análise" itemValue=""
+											noSelectionOption="true" />
+										<f:selectItems
+											value="#{manterExameSangueMB.tiposAnalise}" var="tipoAnalise"
+											itemLabel="#{tipoAnalise.tipo}" itemValue="#{tipoAnalise}" />
+									</p:selectOneMenu>
+							</h:panelGroup>
+	
+							<h:panelGroup layout="block" styleClass="form-group">
+								<p:outputLabel for="resultado_exame" value="Resultado do Exame" />
+								<br />
+								<p:inputText id="resultado_exame" styleClass="form-control"
+									size="25" style="width:150px" required="true"
+									value="#{manterExameSangueMB.itemExameSangue.resultado}"
+									placeholder="Informe o resultado" />
+							</h:panelGroup>
+							
+	<!-- ao criar classes, passar ajax para true -->
+							<h:panelGroup layout="block" styleClass="form-group pull-left"><br />
+								<p:commandButton value="Adicionar" ajax="true" type="submit"
+									id="btnAdicionar" immediate="false" update="itemexamesangue,tab-itensExame"
+									action="#{manterExameSangueMB.adicionarExameAnalisado}"
+									icon="ui-icon-disk" />
+							</h:panelGroup>
+						</h:panelGrid>
+				</h:panelGroup>
 					
 					<p:dataTable var="listItensExameSangue" id="tab-itensExame"
 						value="#{manterExameSangueMB.usuarioExame.itensExame}"							
@@ -86,8 +87,9 @@
 			                </p:commandButton>
 			            </p:column> 
 			            <p:column headerText="Excluir">
-			                 <p:commandButton value="Excluir" action="#{manterExameSangueMB.exclui}" 
-			                 ajax="true"  update="tab-itensExame" >
+			                 <p:commandButton value="Excluir" 
+			                 action="#{manterExameSangueMB.exclui}"  ajax="true"  
+			                 update="tab-itensExame" >
 			                    <f:setPropertyActionListener value="#{listItensExameSangue}"  
 			                        target="#{manterExameSangueMB.itemExameSangue}" />
 			                </p:commandButton>
@@ -105,13 +107,52 @@
 						<h:outputText id="counter" />
 					</h:panelGroup>
 
-					<h:panelGroup layout="block" styleClass="form-group">
-						<p:commandButton value="Salvar"
-							action="#{manterExameSangueMB.salvaExame}" icon="ui-icon-check"
-							ajax="true" />
+					<h:panelGroup layout="block" styleClass="form-group" id="botoes">
+						
+						
+						
+						<h:panelGroup layout="block" styleClass="form-group pull-left">
+							<p:commandButton value="Salvar"
+								action="#{manterExameSangueMB.salvaExame}" icon="ui-icon-disk"
+								ajax="true" update="exameurina">
+							</p:commandButton>
+
+							<!-- <p:commandButton value="Alterar"
+								rendered="#{manterExameSangueMB.atualizacao}"
+								action="#{manterExameSangueMB.alteraExame}" ajax="false"
+								icon="ui-icon-pencil">
+							</p:commandButton>
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group pull-right">
+							<p:commandButton value="Excluir"
+								rendered="#{manterExameSangueMB.atualizacao}"
+								action="#{manterExameSangueMB.excluiExame}" ajax="true"
+								icon="ui-icon-close" update="msgs">
+								<p:confirm header="Confirmação"
+									message="Tem certeza que deseja excluir exame ?" icon="ui-icon-alert" />
+							</p:commandButton>
+
+							<p:commandButton value="Voltar"
+								rendered="#{manterExameSangueMB.atualizacao}" action="listarExameSangue"
+								ajax="false">
+							</p:commandButton>
+						</h:panelGroup>-->
+						
 					</h:panelGroup>
 
-		</h:panelGroup>
+				</h:panelGroup>
+				
+				<!-- <p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
+					</p:commandButton>
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close">
+					</p:commandButton>
+				</p:confirmDialog>-->
+			</h:panelGroup>
 	
 	</ui:define>
 		

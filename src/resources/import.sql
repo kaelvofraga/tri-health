@@ -114,10 +114,10 @@ INSERT INTO MEDICO VALUES(1003,'RS441','Dr teste 3');
 INSERT INTO CONSULTA (id,diagnostico,sintomas,usuario_id,data,medico_id) values (1001,'Gripe','coriza',1000,sysdate,1001);
 INSERT INTO CONSULTA (id,diagnostico,sintomas,usuario_id,data,medico_id) values (1002,'Febre','dor no corpo',1000,sysdate,1002);
 
-insert into Idioma (id, nome) values (1000, 'Português' );
-insert into Idioma (id, nome) values (1001, 'Inglês' );
-insert into Idioma (id, nome) values (1002, 'Espanhôl' );
-insert into Idioma (id, nome) values (1003, 'Francês' );
-insert into Idioma (id, nome) values (1004, 'Alemão' );
+insert into Idioma (id, nome) values (1000, 'Portuguï¿½s' );
+insert into Idioma (id, nome) values (1001, 'Inglï¿½s' );
+insert into Idioma (id, nome) values (1002, 'Espanhï¿½l' );
+insert into Idioma (id, nome) values (1003, 'Francï¿½s' );
+insert into Idioma (id, nome) values (1004, 'Alemï¿½o' );
 insert into Idioma (id, nome) values (1005, 'Mandarin' );
-insert into Idioma (id, nome) values (1006, 'Japonês' );
+insert into Idioma (id, nome) values (1006, 'Japonï¿½s' );

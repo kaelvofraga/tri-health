@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+	
+	<!-- 
+		@author: Pablo Diehl
+		@version: 24/06/2015
+		@brief: Página de manutenção de registros de composições corporais.
+	
+	 -->
+
+	<ui:define name="content">
+
+		<h1 class="lead">Composições Corporais</h1>
+
+		<p:accordionPanel id="panel" multiple="true">
+
+			<p:tab title="Novo registro de Composição Corporal">
+
+				<h:panelGroup layout="block" id="tipo">
+					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="data" value="Data:" />
+							<br />
+							<p:calendar id="data"
+								value="#{manterComposicoesCorporaisMB.adiposa.data}"
+								pattern="dd/MM/yyyy HH:mm:ss" var="dataInicio" itemLabel=""
+								itemValue="#{manterComposicoesCorporaisMB.adiposa.data}" placeholder="Data do registro" effect="fold"
+								icon="glyphicon-calendar" required="true"
+								requiredMessage="Uma data deve ser informada! :(">
+							</p:calendar>
+						</h:panelGroup>
+					</h:panelGrid>
+
+					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
+						<p:outputLabel for="adiposa" value="Massa Adiposa:" />
+						<p:inputText id="adiposa" value="#{manterComposicoesCorporaisMB.adiposa.valor}"
+							placeholder="Percentagem de massa adiposa no corpo"
+							itemValue="#{manterComposicoesCorporaisMB.adiposa.valor}"
+							style="width: 100%;" required="true" 
+							requiredMessage="Um valor de massa adiposa deve ser informado! :("/>
+						<p:slider for="adiposa" step="10" />
+					</h:panelGrid>
+
+					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
+						<p:outputLabel for="residual" value="Massa Residual:" />
+						<p:inputText id="residual" value="#{manterComposicoesCorporaisMB.residual.valor}"
+							placeholder="Percentagem de massa residual no corpo"
+							itemValue="#{manterComposicoesCorporaisMB.residual.valor}"
+							style="width: 100%;" required="true"
+							requiredMessage="Um valor de massa residual deve ser informado! :(" />
+						<p:slider for="residual" step="10" />
+					</h:panelGrid>
+
+					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
+						<p:outputLabel for="muscular" value="Massa Muscular:" />
+						<p:inputText id="muscular" value="#{manterComposicoesCorporaisMB.muscular.valor}"
+							placeholder="Percentagem de massa muscular no corpo"
+							itemValue="#{manterComposicoesCorporaisMB.muscular.valor}"
+							style="width: 100%;" required="true"
+							requiredMessage="Um valor de massa muscular deve ser informado! :(" />
+						<p:slider for="muscular" step="10" />
+					</h:panelGrid>
+					
+					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
+						<p:outputLabel for="ossea" value="Massa Óssea:" />
+						<p:inputText id="ossea" value="#{manterComposicoesCorporaisMB.ossea.valor}"
+							placeholder="Percentagem de massa ossea no corpo"
+							itemValue="#{manterComposicoesCorporaisMB.ossea.valor}"
+							style="width: 100%;" required="true"
+							requiredMessage="Um valor de massa óssea deve ser informado! :(" />
+						<p:slider for="ossea" step="10" />
+					</h:panelGrid>
+					<br />
+					<p>
+						<strong>Total: 100%</strong>
+					</p>
+					<br />
+					<br />
+					<h:panelGroup layout="block" styleClass="form-group" id="notasArea">
+						<p:outputLabel for="notas" value="Notas:" />
+						<br />
+						<p:inputTextarea id="notas"
+							value="#{manterComposicoesCorporaisMB.adiposa.notas}" rows="4"
+							cols="94"
+							placeholder="Espaço destinado para observações e comentários."
+							counter="counter" maxlength="144"
+							counterTemplate=" Restam {0} caracteres!" style="width:100%;" />
+						<h:outputText id="counter" />
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="form-group" id="buttons">
+
+						<h:panelGroup layout="block" styleClass="form-group pull-left">
+							<p:commandButton value="Salvar"
+								rendered="#{not manterAtividadesMB.atualizacao}"
+								action="#{manterComposicoesCorporaisMB.salvaComposicao}" ajax="true"
+								icon="ui-icon-disk" update="panel" />
+
+							<p:commandButton value="Salvar alterações"
+								rendered="#{manterAtividadesMB.atualizacao}"
+								action="#{manterAtividadesMB.alteraAtividadeUsuario}"
+								ajax="true" icon="ui-icon-pencil" />
+
+							<p:commandButton value="Voltar" immediate="true"
+								rendered="#{manterAtividadesMB.atualizacao}"
+								action="#{manterAtividadesMB.initListar}" ajax="true" />
+
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group pull-right">
+							<p:commandButton value="Excluir"
+								rendered="#{manterAtividadesMB.atualizacao}" immediate="true"
+								action="#{manterAtividadesMB.excluiAtividadeUsuario}"
+								ajax="true" icon="ui-icon-close" update=":mainForm:msgs">
+								<p:confirm header="Confirmação"
+									message="Tem certeza que deseja apagar a atividade?"
+									icon="ui-icon-alert" />
+							</p:commandButton>
+						</h:panelGroup>
+
+					</h:panelGroup>
+
+				</h:panelGroup>
+
+				<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
+					</p:commandButton>
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close">
+					</p:commandButton>
+				</p:confirmDialog>
+
+			</p:tab>
+
+		</p:accordionPanel>
+
+	</ui:define>
+
+</ui:composition>

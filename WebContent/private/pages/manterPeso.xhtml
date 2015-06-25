@@ -23,7 +23,7 @@
 							<pe:inputNumber id="valor" symbolPosition="s"
 								style="width:80%"
 								thousandSeparator="."
-								value="#{manterPesoMB.pesoUsuario.peso.valor}"
+								value="#{manterPesoMB.pesoUsuario.valor}"
 								required="true" requiredMessage="Peso deve ser informado.">
 							</pe:inputNumber>
 	    				</h:panelGroup>
@@ -75,15 +75,16 @@
 					
 					<h:panelGroup layout="block" styleClass="form-group pull-left">
 		    			   <p:commandButton value="Salvar"
-								action="#{manterPesoMB.salvaPeso}" 
-								ajax="true" update="peso" icon="ui-icon-disk">
+		    			   	rendered="#{not manterPesoMB.atualizacao}"
+							action="#{manterPesoMB.salvaPeso}" 
+							ajax="true" update="peso" icon="ui-icon-disk">
 						   </p:commandButton>	
 						   
 						   <p:commandButton value="Alterar"
 							rendered="#{manterPesoMB.atualizacao}"
 							action="#{manterPesoMB.alteraPeso}" 
 							ajax="false" icon="ui-icon-pencil">
-				     </p:commandButton>	
+				     		</p:commandButton>	
 				    </h:panelGroup>
 				    
 				    <h:panelGroup layout="block" styleClass="form-group pull-right">	  

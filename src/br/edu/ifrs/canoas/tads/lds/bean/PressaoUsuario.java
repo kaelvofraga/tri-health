@@ -2,7 +2,6 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -10,16 +9,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-
 import org.hibernate.validator.constraints.Length;
-
 import br.edu.ifrs.canoas.tads.lds.bean.BaseEntity;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 
 /**
  * Entity implementation class for Entity: PressaoUsuario
  * 
- * Esta Ã© a classe responsÃ¡vel pelo relacionamento das classes PressaoArterial e Usuario.
+ * Esta é a classe responsável pelo relacionamento das classes PressaoArterial e Usuario.
  * 
  * @author Pablo Diehl da Silva
  * @version 06/05/2015
@@ -27,8 +24,8 @@ import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
  * Atributos:
  * - pressaoArterial (PressaoArterial): Objeto da classe PressaoArterial;
  * - usuario (Usuario): Objeto da classe Usuario;
- * - data (Date): Corresponde Ã  data de mediÃ§Ã£o da pressÃ£o arterial a ser registrada;
- * - notas (String): Atributo textual para salvar possÃ­veis observaÃ§Ãµes.
+ * - data (Date): Corresponde a data de medição da pressão arterial a ser registrada;
+ * - notas (String): Atributo textual para salvar possíveis observações.
  * 
  */
 @Entity
@@ -55,7 +52,7 @@ public class PressaoUsuario extends BaseEntity<Long> implements Serializable{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data;
 	
-	@NotNull @Length(max=144, message="As notas devem possuir no mï¿½ximo 144 caracteres!")
+	@NotNull @Length(max=144, message="As notas devem possuir no máximo 144 caracteres!")
 	private String notas;
 	
 	public PressaoUsuario(){

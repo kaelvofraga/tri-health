@@ -4,14 +4,12 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
-import br.edu.ifrs.canoas.tads.lds.bean.Peso;
 import br.edu.ifrs.canoas.tads.lds.bean.PesoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Udm;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterPesoService;
@@ -23,9 +21,10 @@ import br.edu.ifrs.canoas.tads.lds.control.service.ManterUdmService;
  * @author Alisson Lorscheiter
  * @version 10/06/2015
  * Adição dos metodos,initManter e initListar.
- * Criação metodo busca.
+ * Adição de comentários aos métodos.
+ * Criação método busca.
  * Alterações metodo de salvar,alterar e excluir.
- * Alteração no redirect do metodo onRowSelect
+ * Alteração no redirect do método onRowSelect
  *
  */
 
@@ -56,6 +55,13 @@ public class ManterPesoMB implements Serializable {
 	
 	private Udm udm;	
 	
+	
+	/** 
+	 * @brief Metodo que inicializa as variaveis ao ser selecionada a opção de listar
+	 * os pesos do usuário.	 		  
+	 * @param void
+	 * @return String
+	 * */
 	public String initListar() {
 		pesoUsuario = new PesoUsuario();
 		criterioPeso = "";
@@ -63,39 +69,83 @@ public class ManterPesoMB implements Serializable {
 		return URL_LISTAR_PESO;
 	}
 
+	/** 
+	 * @brief Metodo que inicializa as variaveis ao ser selecionada a opção de cadastrar
+	 * os pesos do usuário.	 		  
+	 * @param void
+	 * @return String
+	 * */
 	public String initManter() {
 		udm = new Udm();
 		udmLista= this.getUdmLista();
 		pesoUsuario = new PesoUsuario();
-		pesoUsuario.setPeso(new Peso());
 		return URL_MANTER_PESO;
 	}
 	
+	/** 
+	 * @brief Metodo que verifica se o pesoUsuario está sendo atualizado
+	 * ou é um novo cadastro. 		  
+	 * @param void
+	 * @return boolean
+	 * */
 	public boolean isAtualizacao() {
 		return pesoUsuario != null && pesoUsuario.getId() != null;
 	}
 	
+	/** 
+	 * @brief Metodo que realiza o evento de seleção da linha da tabela que lista
+	 *  os pesos do usuário.	 		  
+	 * @param event (SelectEvent)
+	 * @return void
+	 * @version 18/06/2015
+	 * Foi alterada a string de redirecionamento do método.
+	 * */
 	public void onRowSelect(SelectEvent event) throws IOException {
 		this.pesoUsuario = (PesoUsuario) event.getObject();
 		FacesContext.getCurrentInstance().getExternalContext().redirect("../../private/pages/manterPeso.jsf");
     }	
 	
-	/* Metodo de busca da view Listar */
+	/** 
+	 * @brief Metodo que realiza a busca da view de listagem de pesos do usuario.	 		  
+	 * @param void
+	 * @return void
+	 * */
 	public void busca() {
 		pesoUsuarioList = pesoService.busca(criterioPeso);
 	}
 
+	/** 
+	 * @brief Metodo que salva o pesoUsuario no banco de dados	 		  
+	 * @param void
+	 * @return void
+	 * */
 	public void salvaPeso(){
 		pesoUsuario.setUsuario(gerenciarLoginMB.getUsuario());
-		pesoService.salvaPesoUsuario(pesoUsuario);
+		if(pesoService.salvaPesoUsuario(pesoUsuario)==true){
 		this.initManter();
+		}
 	}
 	
+	/** 
+	 * @brief Metodo que faz alterações no banco de dados das informações de pesoUsuario.
+	 * @param void
+	 * @return String
+	 * */
 	public String alteraPeso() {
-		pesoService.alteraPesoUsuario(pesoUsuario);
+		if(pesoService.alteraPesoUsuario(pesoUsuario)==true){
 		return URL_LISTAR_PESO;
+		}
+		else{
+			return URL_MANTER_PESO;
+		}
 	}
 	
+	/** 
+	 * @brief Metodo que exclui do banco de dados o pesoUsuario, retorna a URL 
+	 * da pagina que sera redirecionado.	 		  
+	 * @param void
+	 * @return String
+	 * */
 	public String excluiPeso() {
 		if (pesoService.excluiPesoUsuario(pesoUsuario)) {
 			this.busca();
@@ -103,13 +153,18 @@ public class ManterPesoMB implements Serializable {
 		}
 		return URL_MANTER_PESO;
 	}
-
+	
+	/** 
+	 * @brief Metodo que seta a unidade de medida selecionada. 		  
+	 * @param void
+	 * @return void
+	 * */
 	public void onSelectUdm(){
 		pesoUsuario.setUdm(udm);
 	}
 	
 	
-	//Getters e setters
+	/*Getters & Setters*/
 	
 	public List<Udm> getUdmLista() {
 		if(udmLista == null)
