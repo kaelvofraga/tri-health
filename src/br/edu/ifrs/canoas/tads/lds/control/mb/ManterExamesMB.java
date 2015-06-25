@@ -27,7 +27,7 @@ public class ManterExamesMB implements Serializable {
 		
 	}
 
-	@PostConstruct
+	//@PostConstruct
 	public String initListar() {
 		return URL_LISTAR_EXAMES;
 	}
