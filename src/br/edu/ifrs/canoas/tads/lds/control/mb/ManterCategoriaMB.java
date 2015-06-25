@@ -85,6 +85,7 @@ public class ManterCategoriaMB implements Serializable {
 		return URL_MANTER_PESO;
 	}
 	*/
+	
 	public String initManter() {
 		tipoAtividade = new TipoAtividade();
 		atividade = new Atividade();

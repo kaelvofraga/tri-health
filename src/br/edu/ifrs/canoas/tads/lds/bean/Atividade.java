@@ -3,6 +3,8 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
@@ -33,6 +35,7 @@ public class Atividade extends BaseEntity<Long> implements Serializable {
 
 	@NotNull @ManyToOne
 	@JoinColumn(name="TIPOATIVIDADE_ID")
+	@GeneratedValue(strategy=GenerationType.AUTO) /** Luana Gomes - 25/06/15*/
 	private TipoAtividade tipoAtividade = new TipoAtividade();
 	
 	public Atividade() {

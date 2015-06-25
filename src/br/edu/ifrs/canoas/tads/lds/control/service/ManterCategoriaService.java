@@ -29,12 +29,6 @@ import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 
 @Stateless
 public class ManterCategoriaService {
-
-	@Inject 
-	private AlimentoDAO alimentoDAO;
-	
-	@Inject
-	private TipoAlimentoDAO tipoAlimentoDAO;
 	
 	@Inject
 	private AtividadeDAO atividadeDAO;
@@ -51,12 +45,11 @@ public class ManterCategoriaService {
 		
 			Mensagens.define(FacesMessage.SEVERITY_ERROR, "Atividade.cadastro.erro");
 			return false;					
-		}
-				
+		}				
 		tipoAtividadeDAO.insere(tipoAtividade);
 		atividade.setTipoAtividade(tipoAtividade);
 		atividadeDAO.insere(atividade);		
-		Mensagens.define(FacesMessage.SEVERITY_INFO, "Atividade.cadastro.sucesso");
+		Mensagens.define(FacesMessage.SEVERITY_WARN, "Atividade.cadastro.sucesso");
 		
 		return true;	
 	}	
