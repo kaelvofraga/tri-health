@@ -9,7 +9,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import br.edu.ifrs.canoas.tads.lds.bean.Cateterismo;
-import br.edu.ifrs.canoas.tads.lds.bean.CateterismoReportBean;
+import br.edu.ifrs.canoas.tads.lds.bean.jasper.AlimentacaoBean;
 
 public class CateterismosREL {
 
@@ -28,7 +28,7 @@ public class CateterismosREL {
 		
 		
 		//Imprime/gera uma lista de Clientes
-		public void imprimir(List<CateterismoReportBean> exames) throws Exception	
+		public void imprimir(List<AlimentacaoBean> exames) throws Exception	
 		{
 			JasperReport report = JasperCompileManager.compileReport(this.getPathToReportPackage() + "Cateterismos.jrxml");
 			
