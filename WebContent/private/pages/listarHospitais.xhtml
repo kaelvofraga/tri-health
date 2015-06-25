@@ -22,12 +22,27 @@
 		
 		<p:accordionPanel multiple="true">
 			<p:tab title="Lista de Hospitais e Clínicas">
-			
+					
+					<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="hospitais" value="Hospitais" />
+							<br/>
+							<p:selectOneMenu id="hospitais"
+								value="#{manterDimensoesCorporaisMB.valorMedidaUsuario.tipoMedida}" 
+								style="width:90%"
+								required="true" requiredMessage="Um tipo para a medida deve ser escolhido." >
+								<p:ajax listener="#{manterDimensoesCorporaisMB.onSelectTipoMedida}" />
+								<f:selectItem itemLabel="Selecione..." itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems
+									value="#{manterDimensoesCorporaisMB.tipoMedidasLista}"
+									var="tipoMedida" itemLabel="#{tipoMedida.descricao}"
+									itemValue="#{tipoMedida}" />
+							</p:selectOneMenu>
+						</h:panelGroup>
 			
 			<f:view contentType="text/html">
-        		<h2>Porto Alegre - RS</h2>
-        		<p:gmap center="-30.1088701,-51.1769046,11" zoom="10" type="MAP" style="width:100%;height:300px" />
-        		
+        		<h2 style="text-align:center;">Porto Alegre - RS</h2>
+        		<p:gmap center="-30.1088701,-51.1769046" zoom="10" type="MAP" style="width:100%;height:300px" />
     		</f:view>
 			</p:tab>  
 		</p:accordionPanel>
