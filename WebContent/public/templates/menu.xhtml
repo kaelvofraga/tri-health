@@ -19,6 +19,12 @@
 					<p:menuitem value="Cadastrar" url="/private/pages/manterPerfilEmergencia.jsf" action="#{manterPerfilEmergenciaMB.init}"  styleClass="nav nav-third-level"/>
 				</p:submenu>
 			</p:submenu> 
+			<p:separator />
+			<p:submenu label="Categorias">
+				<p:submenu label="Atividades" styleClass="nav nav-second-level">					
+					<p:menuitem value="Cadastrar"  action="#{manterCategoriaMB.initManter}"/>
+				</p:submenu>	
+			</p:submenu>
 
 			<p:separator />
 			<p:submenu label="Medidas">

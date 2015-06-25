@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<ui:define name="content">
+
+		<h1 class="lead">Categorias</h1>
+				
+		<!-- 1 --><h:panelGroup layout="block" styleClass="form-group" id="categoria">
+			<!-- 2 -->	<h:panelGrid columns="1" styleClass="mtable">
+		    				
+	    				<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="nome" value="Tipo de atividade:" />
+							<br/>
+							<p:inputText id="nome"
+								style="width:80%"
+								value="#{manterCategoriaMB.tipoAtividade.nome}"
+								required="true" requiredMessage="Tipo deve ser informado.">
+							</p:inputText>
+	    				</h:panelGroup>
+	    				
+	    				<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="descricao" value="Descrição:" />
+							<br/>
+							<p:inputText id="descricao"
+								style="width:80%"
+								value="#{manterCategoriaMB.atividade.descricao}"
+								required="true" requiredMessage="Descrição deve ser informada.">
+							</p:inputText>
+	    				</h:panelGroup>
+	    	</h:panelGrid>	<!-- 2 -->
+	    								
+			<h:panelGroup layout="block" styleClass="form-group" id="buttons">
+														
+				<h:panelGroup layout="block" styleClass="form-group pull-left">
+		    	   <p:commandButton value="Salvar"
+						action="#{manterCategoriaMB.salvaATividade}" 
+						ajax="true" icon="ui-icon-disk"
+						update="categoria">
+				   </p:commandButton>					   
+				</h:panelGroup>
+		   
+		    </h:panelGroup>		
+		    
+		        
+		    </h:panelGroup><!-- 1 -->
+		    		    
+		    <p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" >
+					</p:commandButton>	
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close">
+				    </p:commandButton>		
+			</p:confirmDialog> 
+	</ui:define>
+</ui:composition>
