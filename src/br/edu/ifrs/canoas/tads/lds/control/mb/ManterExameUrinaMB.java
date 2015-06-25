@@ -67,8 +67,8 @@ public class ManterExameUrinaMB implements Serializable{
 		exameUrina = new ExameUrinaUsuario();
 		listaExamesUsuario= new ArrayList<>();
 		criterioExameUrina="";
-		dataDe= new Date();
-		dataAte= new Date();
+		dataDe= null;
+		dataAte= null;
 		return URL_LISTAR_EXAMEURINA;
 	}
 	
@@ -145,6 +145,9 @@ public class ManterExameUrinaMB implements Serializable{
 	
 
 	/*GETTERS & SETTERS*/
+	
+	
+	
 	public ExameUrinaUsuario getExameUrina() {
 		return exameUrina;
 	}

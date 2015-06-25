@@ -2,6 +2,7 @@ package br.edu.ifrs.canoas.tads.lds.model.dao;
 
 import java.util.List;
 import javax.ejb.Stateless;
+import org.apache.commons.lang3.math.NumberUtils;
 import br.edu.ifrs.canoas.tads.lds.bean.PressaoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 
@@ -44,28 +45,30 @@ public class PressaoUsuarioDAO extends BaseDAO< PressaoUsuario, Long>{
 	 * */ 
 	@SuppressWarnings("unchecked")
 	public List<PressaoUsuario> buscaPorCriterio(String criterioPressao) {
-	/*	String criterio = "";
+		String criterio = "";
 		
-		try { 
-			criterio = (new Double(criterioPressao) instanceof Double) ? "pu.paSistolica = " + criterioPressao : " OR ";
-			criterio = (new Double(criterioPressao) instanceof Double) ? "paDiastolica = " + criterioPressao : " OR ";
-		}catch(Exception e) {}
+		criterio = (NumberUtils.isNumber(criterioPressao)) ? "pu.valor = "
+					+ new Double(criterioPressao)	: " OR ";
+		
+		if(criterio == ""){			
+		criterio = (NumberUtils.isNumber(criterioPressao)) ? "pu.valor = "
+					+ new Double(criterioPressao)	: " OR ";			
+		}	
 		
 		if (criterio == ""){
-			criterio =  " lower(pu.nota) like '%" + criterioPeso.toLowerCase() + "%' "
-				      + "OR lower(pu.udm.descricao) like '%" + criterioPeso.toLowerCase() + "%' ";
+			criterio =  " lower(pu.nota) like '%" + criterioPressao.toLowerCase() + "%' "
+				      + "OR lower(pu.udm.descricao) like '%" + criterioPressao.toLowerCase() + "%' ";
 		}
 		
 		try {
 			return em.createQuery(
-					"SELECT pu FROM PesoUsuario pu " 
+					"SELECT pu FROM PressaoUsuario pu " 
 				  + "WHERE "
 				  +  criterio 
 				  + "ORDER BY pu.data").getResultList();
 		} catch (IllegalArgumentException e) {
 			return null;
-		}*/
-		return null;
+		}
 	}
 
 	
