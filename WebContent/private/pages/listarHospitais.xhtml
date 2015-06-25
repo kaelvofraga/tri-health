@@ -5,23 +5,28 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions"
 	template="/public/templates/template.xhtml">
+	
 	
 	<!-- 
 		Author: Juarez Monteiro
 		Version 20/06/2015
 	 -->
-	
+	 
 	
 	<ui:define name="metadata" />
 	<ui:define name="content">
 		<h1 class="lead">Listar Hospitais</h1>
+		
+		
 		<p:accordionPanel multiple="true">
-			<p:tab title="Lista de Hospitais e Clínica">
-				<h:panelGroup layout="block" id="pressaoArterial">
+			<p:tab title="Lista de Hospitais e Clínicas">
+					
 					<h:panelGroup layout="block" styleClass="form-group">
-						<p:outputLabel for="criterio_pressao" value="Pesquisa" />
-						<p:selectOneMenu id="tipo_medida"
+							<p:outputLabel for="hospitais" value="Hospitais" />
+							<br/>
+							<p:selectOneMenu id="hospitais"
 								value="#{manterDimensoesCorporaisMB.valorMedidaUsuario.tipoMedida}" 
 								style="width:90%"
 								required="true" requiredMessage="Um tipo para a medida deve ser escolhido." >
@@ -33,24 +38,13 @@
 									var="tipoMedida" itemLabel="#{tipoMedida.descricao}"
 									itemValue="#{tipoMedida}" />
 							</p:selectOneMenu>
-							<p:commandButton value="Busca" type="submit" action="#"
-							ajax="true" update="tab-pressao" immediate="false"
-							icon="ui-icon-search" />
-					</h:panelGroup>
-
-					<h:panelGroup layout="block" styleClass="form-group">
-						<p:commandButton value="Busca" type="submit" action="#"
-							ajax="true" update="tab-pressao" immediate="false"
-							icon="ui-icon-search" />
-						<p:commandButton value="Limpa" type="submit" action="#"
-							ajax="true" update="tab-pressao,criterio_pressao"
-							immediate="false" icon="ui-icon-refresh" />
-					</h:panelGroup>
-
-					<br />
-				</h:panelGroup>
-				<p:commandButton value="Nova" icon="ui-icon-plus" ajax="true" />
-			</p:tab>
+						</h:panelGroup>
+			
+			<f:view contentType="text/html">
+        		<h2 style="text-align:center;">Porto Alegre - RS</h2>
+        		<p:gmap center="-30.1088701,-51.1769046" zoom="10" type="MAP" style="width:100%;height:300px" />
+    		</f:view>
+			</p:tab>  
 		</p:accordionPanel>
 	</ui:define>
 </ui:composition>

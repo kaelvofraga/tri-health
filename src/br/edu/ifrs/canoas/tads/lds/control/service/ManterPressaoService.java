@@ -7,7 +7,6 @@ import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
-import br.edu.ifrs.canoas.tads.lds.bean.PesoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.PressaoUsuario;
 import br.edu.ifrs.canoas.tads.lds.model.dao.PressaoUsuarioDAO;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;

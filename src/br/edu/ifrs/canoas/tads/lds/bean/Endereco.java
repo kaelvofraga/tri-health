@@ -25,8 +25,10 @@ public class Endereco extends BaseEntity<Long> implements Serializable {
 	 * Estabelecer relacionamento com a tabela de cidade
 	 */
 	@OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="ID_CIDADE")
+    
+	@JoinColumn(name="ID_CIDADE")
 	private Cidade cidade = new Cidade();
+	
 	@JoinColumn(name="ID_TELEFONE", nullable = true)
 	private Telefone telefone;
 	

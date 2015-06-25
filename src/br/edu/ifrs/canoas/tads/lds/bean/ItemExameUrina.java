@@ -7,7 +7,6 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotNull;
 
 /**@author: Alisson Lorscheiter
  * Proposito da Classe: Classe que representa a entidade dos items de exames que estão 

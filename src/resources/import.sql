@@ -8,6 +8,31 @@ insert into Endereco (id, cep, complemento, logradouro, numero, id_cidade) value
 insert into Endereco (id, cep, complemento, logradouro, numero, id_cidade) values (1001, '91330-000', 'AP', 'Street One', 542, 1001 );
 insert into usuario(id, email, nome, senha, sobrenome, apelido, telefone, celular , dataNasc, genero, tipoSanguineo , ID_ENDERECO) values (1000, '123@123.123', '123', 'f5bb0c8de146c67b44babbf4e6584cc0','123', '456' ,  '45645645656','0909090909', SYSDATE, 'Masculino',  'AB+',1001); 
 
+---------------------------------------------------
+-- @JuarezMonteiro
+
+-- Hospitais 
+	
+	--Cidade
+	insert into Cidade (id, nome, id_uf) values (1, 'Porto Alegre',1000);
+	
+	--Telefone
+	insert into Telefone (id, ddd, numero) values (1000, '51','3357-2000'); -- Hospital Conceição
+	insert into Telefone (id, ddd, numero) values (1001, '51','3314-5200'); -- Hospital Fêmina
+	insert into Telefone (id, ddd, numero) values (1002, '51','3357-4100'); -- Hospital Cristo Redentor
+	
+	--Endereco
+	insert into Endereco (id, cep, complemento, logradouro, numero, latitude, longitude, id_cidade, id_telefone) values (1002, '00000-000', 'x', 'Av, Francisco Trein - Bairro Cristo Redentor', 296, '-30.0195467', '-51.170071', 1, 1000); -- Hospital Conceição
+	insert into Endereco (id, cep, complemento, logradouro, numero, latitude, longitude, id_cidade, id_telefone) values (1003, '00000-000', 'x', 'Rua Mostardeiro – Bairro Moinhos de Vento', 17, '-30.02923', '-51.206877', 1, 1001);	 -- Hospital Fêmina
+	insert into Endereco (id, cep, complemento, logradouro, numero, latitude, longitude, id_cidade, id_telefone) values (1004, '00000-000', 'x', 'Rua Domingos Rubbo - Bairro Cristo Redentor', 20, '-30.0100396', '-51.1591039', 1, 1002);	 -- Hospital Cristo Redentor
+
+	--Hospitais
+	insert into Hospital (id, nome, id_endereco) values (1, 'Hospital Conceição', 2);
+	insert into Hospital (id, nome, id_endereco) values (2, 'Hospital Fêmina', 3);
+	insert into Hospital (id, nome, id_endereco) values (3, 'Hospital Cristo Redentor', 4);
+
+---------------------------------------------------	
+
 insert into medicamento (id, nome) values (1001, 'Paracetamol');
 insert into medicamento (id, nome) values (1002, 'Benegripe');
 
@@ -121,8 +146,3 @@ insert into Idioma (id, nome) values (1003, 'Francï¿½s' );
 insert into Idioma (id, nome) values (1004, 'Alemï¿½o' );
 insert into Idioma (id, nome) values (1005, 'Mandarin' );
 insert into Idioma (id, nome) values (1006, 'Japonï¿½s' );
-
-insert into Composicao (id, descricao) values (1,'Massa Adiposa');
-insert into Composicao (id, descricao) values (2,'Massa Residual');
-insert into Composicao (id, descricao) values (3,'Massa Muscular');
-insert into Composicao (id, descricao) values (4,'Massa Ã“ssea');

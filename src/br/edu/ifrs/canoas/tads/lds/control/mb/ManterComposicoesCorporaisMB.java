@@ -14,8 +14,8 @@ import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
 
+import br.edu.ifrs.canoas.tads.lds.bean.Composicao;
 import br.edu.ifrs.canoas.tads.lds.bean.ComposicaoUsuario;
-import br.edu.ifrs.canoas.tads.lds.control.service.ManterAtividadesService;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterComposicaoService;
 
 /**
@@ -32,45 +32,41 @@ public class ManterComposicoesCorporaisMB implements Serializable {
 	private static final String URL_LISTAR_COMPOSICOES_CORPORAIS = "/private/pages/listarComposicoesCorporais.jsf";
 	private static final String URL_MANTER_COMPOSICOES_CORPORAIS = "/private/pages/manterComposicoesCorporais.jsf";
 
+	
+	@EJB
+	private ManterComposicaoService composicaoService;
+	
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
 
-	@EJB
-	private ManterComposicaoService composicaoService;
-
 	@Inject
-	private ComposicaoUsuario adiposa;
-
-	@Inject
-	private ComposicaoUsuario residual;
-
-	@Inject
-	private ComposicaoUsuario muscular;
-
-	@Inject
-	private ComposicaoUsuario ossea;
+	private ComposicaoUsuario composicaoUsuario;
+	
+	private List<ComposicaoUsuario> listaComposicaoUsuario;
 
 	public String initListar() {
 		return URL_LISTAR_COMPOSICOES_CORPORAIS;
 	}
 
 	public String initManter() {
-		adiposa = new ComposicaoUsuario();
-		residual = new ComposicaoUsuario();
-		muscular = new ComposicaoUsuario();
-		ossea = new ComposicaoUsuario();
+		composicaoUsuario = new ComposicaoUsuario();
 		
 		return URL_MANTER_COMPOSICOES_CORPORAIS;
 	}
 	
 	public void salvaComposicao(){
-		adiposa.setUsuario(gerenciarLoginMB.getUsuario());
-		residual.setUsuario(gerenciarLoginMB.getUsuario());
-		muscular.setUsuario(gerenciarLoginMB.getUsuario());
-		ossea.setUsuario(gerenciarLoginMB.getUsuario());
-		if(composicaoService.salvaComposicao(adiposa, residual, muscular, ossea)){
+		composicaoUsuario.setUsuario(gerenciarLoginMB.getUsuario());
+		if(composicaoService.salvaComposicao(composicaoUsuario)){
 			this.initManter();
 		}
+	}
+	
+	public double getTotal(){
+		double total = 0.0;
+		
+		total = this.composicaoUsuario.getAdiposa() + this.composicaoUsuario.getMuscular() + this.composicaoUsuario.getOssea() + this.composicaoUsuario.getResidual();
+		
+		return total;
 	}
 
 	public GerenciarLoginMB getGerenciarLoginMB() {
@@ -89,36 +85,21 @@ public class ManterComposicoesCorporaisMB implements Serializable {
 		this.composicaoService = composicaoService;
 	}
 
-	public ComposicaoUsuario getAdiposa() {
-		return adiposa;
+	public ComposicaoUsuario getComposicaoUsuario() {
+		return composicaoUsuario;
 	}
 
-	public void setAdiposa(ComposicaoUsuario adiposa) {
-		this.adiposa = adiposa;
+	public void setComposicaoUsuario(ComposicaoUsuario composicaoUsuario) {
+		this.composicaoUsuario = composicaoUsuario;
 	}
 
-	public ComposicaoUsuario getResidual() {
-		return residual;
+	public List<ComposicaoUsuario> getListaComposicaoUsuario() {
+		return listaComposicaoUsuario;
 	}
 
-	public void setResidual(ComposicaoUsuario residual) {
-		this.residual = residual;
+	public void setListaComposicaoUsuario(
+			List<ComposicaoUsuario> listaComposicaoUsuario) {
+		this.listaComposicaoUsuario = listaComposicaoUsuario;
 	}
 
-	public ComposicaoUsuario getMuscular() {
-		return muscular;
-	}
-
-	public void setMuscular(ComposicaoUsuario muscular) {
-		this.muscular = muscular;
-	}
-
-	public ComposicaoUsuario getOssea() {
-		return ossea;
-	}
-
-	public void setOssea(ComposicaoUsuario ossea) {
-		this.ossea = ossea;
-	}
-	
 }

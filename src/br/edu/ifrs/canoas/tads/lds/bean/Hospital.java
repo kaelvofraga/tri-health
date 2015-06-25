@@ -20,6 +20,7 @@ public class Hospital extends BaseEntity<Long> implements Serializable {
     @JoinColumn(name="ID_ENDERECO")
 	private Endereco endereco = new Endereco();
 	private String nome = "";
+	
 	public Endereco getEndereco() {
 		return endereco;
 	}
