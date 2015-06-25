@@ -65,4 +65,46 @@ public class ItemExameSangue extends BaseEntity<Long> implements Serializable{
 	public void setResultado(String resultado) {
 		this.resultado = resultado;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result
+				+ ((resultado == null) ? 0 : resultado.hashCode());
+		result = prime * result
+				+ ((tipoAnalise == null) ? 0 : tipoAnalise.hashCode());
+		result = prime * result
+				+ ((usuarioExame == null) ? 0 : usuarioExame.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ItemExameSangue other = (ItemExameSangue) obj;
+		if (resultado == null) {
+			if (other.resultado != null)
+				return false;
+		} else if (!resultado.equals(other.resultado))
+			return false;
+		if (tipoAnalise == null) {
+			if (other.tipoAnalise != null)
+				return false;
+		} else if (!tipoAnalise.equals(other.tipoAnalise))
+			return false;
+		if (usuarioExame == null) {
+			if (other.usuarioExame != null)
+				return false;
+		} else if (!usuarioExame.equals(other.usuarioExame))
+			return false;
+		return true;
+	}
+	
+	
 }

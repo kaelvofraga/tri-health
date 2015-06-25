@@ -14,20 +14,19 @@
 		<h1 class="lead">Exames de Sangue Realizados</h1>
 		
 		<h:panelGroup layout="block" id="exames">
-		
-			<h:panelGrid columns="3" styleClass="mtable">
-				
+			<p:outputLabel value="Período" /><br />
+			<h:panelGrid columns="3" styleClass="mtable">				
 				<h:panelGroup layout="block" styleClass="form-group">
-					<p:outputLabel for="data_inicio" value="Data Inicial" /><br />
-					<p:calendar id="data_inicio" style="width:50px"
+					<p:outputLabel for="dataInicio" value="Data Inicial" /><br />
+					<p:calendar id="dataInicio" style="width:50px"
 						pattern="dd/MM/yyyy" required="true"
 						placeholder="Selecione a data inicial" effect="fold"
 						icon="glyphicon-calendar" />
 				</h:panelGroup>
 				
 				<h:panelGroup layout="block" styleClass="form-group">
-					<p:outputLabel for="data_final" value="Data Final" /><br />
-					<p:calendar id="data_final" style="width:50px"
+					<p:outputLabel for="dataFinal" value="Data Final" /><br />
+					<p:calendar id="dataFinal" style="width:50px"
 						pattern="dd/MM/yyyy" required="true"
 						placeholder="Selecione a data final" size="25" effect="fold"
 						icon="glyphicon-calendar" />

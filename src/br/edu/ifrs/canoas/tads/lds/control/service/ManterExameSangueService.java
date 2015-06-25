@@ -93,7 +93,22 @@ public class ManterExameSangueService {
 		}
 	}
 	
-	public List<UsuarioExame> busca(Date dataDe, Date dataAte,String criterioExameSangue) {
+	public List<UsuarioExame> busca(Date dataDe, Date dataAte) {
+		if (dataDe == null || dataAte == null || dataDe.compareTo(dataAte) > 0) {
+			dataDe = DateUtil.getDataAtual();
+			dataAte = DateUtil.getDataAtualIncrementa(1);
+		}
+		if (dataDe != null && dataAte != null) {
+
+			return usuarioExameDAO.buscaPorCriterio(dataDe,dataAte);
+		} else {
+			return usuarioExameDAO.buscaPorCriterio(dataDe,dataAte);
+			//return usuarioExameDAO.buscaTodos(); estava isso, comentei e coloquei o de cima , 
+													//por que havia erro-->>CORRIGIR
+		}
+	}
+	
+	/*public List<UsuarioExame> busca(Date dataDe, Date dataAte,String criterioExameSangue) {
 		if (dataDe == null || dataAte == null || dataDe.compareTo(dataAte) > 0) {
 			dataDe = DateUtil.getDataAtual();
 			dataAte = DateUtil.getDataAtualIncrementa(1);
@@ -104,7 +119,7 @@ public class ManterExameSangueService {
 		} else {
 			return usuarioExameDAO.buscaTodos();
 		}
-	}
+	}*/
 
 	public void alteraExameSangue(UsuarioExame usuarioExame) {
 		usuarioExameDAO.atualiza(usuarioExame);

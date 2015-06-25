@@ -17,7 +17,7 @@
 		
 					<h:panelGrid columns="2" styleClass="mtable">
 					
-						<h:panelGroup layout="block" styleClass="form-group">
+						<h:panelGroup layout="block" styleClass="form-group" >
 						 	<p:outputLabel for="usuario" value="Usuário:  "/><br/>
 							<h:outputText id="usuario" value="#{manterExameSangueMB.usuarioExame.usuario.nome.toUpperCase()}" />							 					
 						</h:panelGroup>
@@ -52,7 +52,7 @@
 								<p:outputLabel for="resultado_exame" value="Resultado do Exame" />
 								<br />
 								<p:inputText id="resultado_exame" styleClass="form-control"
-									size="25" style="width:150px" required="true"
+									size="25" style="width:150px" 
 									value="#{manterExameSangueMB.itemExameSangue.resultado}"
 									placeholder="Informe o resultado" />
 							</h:panelGroup>
@@ -107,23 +107,35 @@
 						<h:outputText id="counter" />
 					</h:panelGroup>
 
-					<h:panelGroup layout="block" styleClass="form-group" id="botoes">
+				<h:panelGroup layout="block" styleClass="form-group" id="botoes">						
 						
-						
-						
-						<h:panelGroup layout="block" styleClass="form-group pull-left">
-							<p:commandButton value="Salvar"
-								action="#{manterExameSangueMB.salvaExame}" icon="ui-icon-disk"
-								ajax="true" update="exameurina">
-							</p:commandButton>
+					<h:panelGroup layout="block" styleClass="form-group pull-left">
+						<p:commandButton value="Salvar"
+							action="#{manterExameSangueMB.salvaExame}" icon="ui-icon-disk"
+							ajax="true" update="examesangue">
+						</p:commandButton>		
+					</h:panelGroup>
 
-							<!-- <p:commandButton value="Alterar"
-								rendered="#{manterExameSangueMB.atualizacao}"
-								action="#{manterExameSangueMB.alteraExame}" ajax="false"
-								icon="ui-icon-pencil">
-							</p:commandButton>
-						</h:panelGroup>
+				</h:panelGroup>
+				
+				
+			</h:panelGroup>
+	
+	</ui:define>
+		
+	</ui:composition>
+</html>
 
+
+
+						<!--<p:commandButton value="Alterar"
+							rendered="#{manterExameSangueMB.atualizacao}"
+							action="#{manterExameSangueMB.alteraExame}"
+						 	icon="ui-icon-pencil"
+							ajax="true" update="examesangue">
+						</p:commandButton>
+							
+						
 						<h:panelGroup layout="block" styleClass="form-group pull-right">
 							<p:commandButton value="Excluir"
 								rendered="#{manterExameSangueMB.atualizacao}"
@@ -139,11 +151,7 @@
 							</p:commandButton>
 						</h:panelGroup>-->
 						
-					</h:panelGroup>
-
-				</h:panelGroup>
-				
-				<!-- <p:confirmDialog global="true" showEffect="fade"
+<!-- <p:confirmDialog global="true" showEffect="fade"
 					hideEffect="explode">
 					<p:commandButton value="Sim" type="button"
 						styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
@@ -152,9 +160,3 @@
 						styleClass="ui-confirmdialog-no" icon="ui-icon-close">
 					</p:commandButton>
 				</p:confirmDialog>-->
-			</h:panelGroup>
-	
-	</ui:define>
-		
-	</ui:composition>
-</html>
