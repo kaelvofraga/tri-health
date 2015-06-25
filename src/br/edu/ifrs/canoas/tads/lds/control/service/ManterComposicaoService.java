@@ -29,38 +29,23 @@ public class ManterComposicaoService {
 	 * @autor Pablo Diehl
 	 * @version 24/06/2015
 	 **/
-	public boolean salvaComposicao(ComposicaoUsuario adiposa,
-			ComposicaoUsuario residual, ComposicaoUsuario muscular,
-			ComposicaoUsuario ossea) {
+	public boolean salvaComposicao(ComposicaoUsuario composicaoUsuario) {
 
-		if (adiposa == null || residual == null || muscular == null
-				|| ossea == null || adiposa.getUsuario() == null
-				|| residual.getUsuario() == null
-				|| muscular.getUsuario() == null || ossea.getUsuario() == null){
-			Mensagens.define(FacesMessage.SEVERITY_ERROR, "Deu treta");
+		if (composicaoUsuario == null || composicaoUsuario.getUsuario() == null) {
+			Mensagens.define(FacesMessage.SEVERITY_ERROR, "manterComposicao.cadastro.erro");
 			return false;
 		}
-		
-		if(adiposa.getValor() + residual.getValor() + muscular.getValor() + ossea.getValor() != 100){
-			Mensagens.define(FacesMessage.SEVERITY_ERROR, "Soma das percentagens deve ser igual a 100!");
+
+		if (composicaoUsuario.getAdiposa() + composicaoUsuario.getResidual() + composicaoUsuario.getMuscular() + composicaoUsuario.getOssea() != 100) {
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					"manterComposicao.cadastro.erro.nao");
 			return false;
 		}
+
 		
-		residual.setData(adiposa.getData());
-		muscular.setData(adiposa.getData());
-		ossea.setData(adiposa.getData());
-		
-		residual.setNotas(adiposa.getNotas());
-		muscular.setNotas(adiposa.getNotas());
-		ossea.setNotas(adiposa.getNotas());
-		
-		composicaoUsuarioDAO.insere(adiposa);
-		composicaoUsuarioDAO.insere(residual);
-		composicaoUsuarioDAO.insere(muscular);
-		composicaoUsuarioDAO.insere(ossea);
-		
-		Mensagens.define(FacesMessage.SEVERITY_INFO,
-				"Entrou!");
+		composicaoUsuarioDAO.insere(composicaoUsuario);
+
+		Mensagens.define(FacesMessage.SEVERITY_INFO, "manterComposicao.cadastro.sucesso");
 
 		return true;
 	}
