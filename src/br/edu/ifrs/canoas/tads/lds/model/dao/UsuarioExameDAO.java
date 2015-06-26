@@ -19,7 +19,7 @@ public class UsuarioExameDAO extends BaseDAO<UsuarioExame, Long>{
 	@SuppressWarnings("unchecked")
 	public List<UsuarioExame> buscaPorCriterio(Date dataDe, Date dataAte) {
 		try {
-			String query="SELECT eu FROM UsuarioExame eu WHERE eu.data between ? and ? ORDER BY eu.data";
+			String query="SELECT ue FROM UsuarioExame ue WHERE ue.data between :dataDe and :dataAte ORDER BY ue.data";
 			return em.createQuery(query).setParameter(1, dataDe,TemporalType.TIMESTAMP).setParameter(2, dataAte, TemporalType.TIMESTAMP).getResultList();
 		} catch (IllegalArgumentException e) {
 			return null;

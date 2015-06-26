@@ -135,6 +135,7 @@ public class ManterExameSangueMB implements Serializable{
 	public String initManter(){
 		usuarioExame.setUsuario(gerenciarLoginMB.getUsuario());
 		usuarioExame.setData(null);
+		usuarioExame.setObservacao(null);
 		usuarioExame.setItensExame(new ArrayList<ItemExameSangue>());
 		itemExameSangue.setTipoAnalise(new TipoAnalise());
 		return URL_MANTER_EXAMESANGUE;		
@@ -165,11 +166,17 @@ public class ManterExameSangueMB implements Serializable{
 		itemExameSangue= new ItemExameSangue();
 	}
 	
+	/*public void altera() {
+		if (itemExameSangue != null && this.usuarioExame.getItensExame().contains(itemExameSangue))
+			this.usuarioExame.getData();
+			this.usuarioExame.getItensExame().remove(itemExameSangue);
+		itemExameSangue= new ItemExameSangue();
+	}*/
+	
 	public void salvaExame(){
 		usuarioExame.setUsuario(gerenciarLoginMB.getUsuario());
 		exameSangueService.salvaExameSangueUsuario(usuarioExame);
 		initManter();
-		//this.clear();
 	}
 	
 	public void adicionarExameAnalisado(){

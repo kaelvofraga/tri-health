@@ -70,7 +70,7 @@
 					<p:dataTable var="listItensExameSangue" id="tab-itensExame"
 						value="#{manterExameSangueMB.usuarioExame.itensExame}"							
 						rowKey="#{listItensExameSangue}"
-						emptyMessage="Nenhum Registro Encontrado." reflow="true">
+						emptyMessage="Nenhuma Análise Adicionada." reflow="true">
 						<p:ajax event="rowSelect"
 							listener="#{manterExameSangueMB.onRowSelect}"
 							oncomplete="/private/pages/manterExameSangue.jsf" />  
@@ -81,7 +81,9 @@
 							<h:outputText value="#{listItensExameSangue.resultado}" />
 						</p:column>
 						<p:column headerText="Editar">
-			                <p:commandButton value="Editar">
+			                <p:commandButton value="Editar"
+			                action="#{manterExameSangueMB.altera}"  ajax="true"  
+			                 update="tab-itensExame" >
 			                    <f:setPropertyActionListener value="#{listItensExameSangue}" 
 			                        target="#{manterExameSangueMB.itemExameSangue}" />
 			                </p:commandButton>
