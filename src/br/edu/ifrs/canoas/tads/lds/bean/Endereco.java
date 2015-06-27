@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -24,18 +25,20 @@ public class Endereco extends BaseEntity<Long> implements Serializable {
 	/**
 	 * Estabelecer relacionamento com a tabela de cidade
 	 */
-	@OneToOne(cascade=CascadeType.ALL)
-    
+	
+	
+	@OneToOne(cascade=CascadeType.ALL)    
 	@JoinColumn(name="ID_CIDADE")
 	private Cidade cidade = new Cidade();
 	
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="ID_TELEFONE", nullable = true)
 	private Telefone telefone;
 	
-	private String cep  = " ";
-	private String logradouro = " ";
+	private String cep  = "";
+	private String logradouro = "";
 	private Integer numero = 0;
-	private String complemento = " ";
+	private String complemento = "";
 	private String latitude = "";
 	private String longitude = "";
 	
