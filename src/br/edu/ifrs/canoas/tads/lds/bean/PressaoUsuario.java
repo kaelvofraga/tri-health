@@ -2,7 +2,6 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -114,4 +113,6 @@ public class PressaoUsuario extends BaseEntity<Long> implements Serializable{
 	public void setNotas(String notas) {
 		this.notas = notas;
 	}
+	
+	
 }

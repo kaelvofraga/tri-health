@@ -140,11 +140,8 @@ public class ManterPressaoMB implements Serializable {
 	 * */
 	public void onRowSelect(SelectEvent event) throws IOException {
 		this.pressaoUsuario = (PressaoUsuario) event.getObject();
-		FacesContext.getCurrentInstance().getExternalContext().redirect("../../private/pages/manterPressao.jsf");
+		FacesContext.getCurrentInstance().getExternalContext().redirect("../../private/pages/manterPressaoArterial.jsf");
     }
-	
-
-	
 	
 	/* Getters & Setters*/
 
@@ -179,6 +176,7 @@ public class ManterPressaoMB implements Serializable {
 	public void setCriterioPressao(String criterioPressao) {
 		this.criterioPressao = criterioPressao;
 	}
+	
 	
 	
 

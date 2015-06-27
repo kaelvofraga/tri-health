@@ -1,10 +1,14 @@
 package br.edu.ifrs.canoas.tads.lds.model.dao;
 
 import java.util.List;
+
 import javax.ejb.Stateless;
+
 import org.apache.commons.lang3.math.NumberUtils;
+
 import br.edu.ifrs.canoas.tads.lds.bean.PesoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
+import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
 
 @Stateless
 public class PesoUsuarioDAO extends BaseDAO<PesoUsuario, Long> {
@@ -53,7 +57,7 @@ public class PesoUsuarioDAO extends BaseDAO<PesoUsuario, Long> {
 		criterio = (NumberUtils.isNumber(criterioPeso)) ? "pu.valor = "
 					+ new Double(criterioPeso)	: " OR ";		
 					
-		if (criterio == ""){
+		if (!StrUtil.isNotBlank(criterio)){
 			criterio =  " lower(pu.nota) like '%" + criterioPeso.toLowerCase() + "%' "
 				      + "OR lower(pu.udm.descricao) like '%" + criterioPeso.toLowerCase() + "%' ";
 		}

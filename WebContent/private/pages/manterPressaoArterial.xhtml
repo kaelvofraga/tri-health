@@ -58,7 +58,7 @@
 							<br />
 							<p:selectOneMenu id="batimentoIrregular"
 								value="#{manterPressaoMB.pressaoUsuario.batimentoIrregular}"
-								style="width:150px" required="true"
+								style="width:100px" required="true"
 								requiredMessage="É necessário informar a situação de batimento">
 								<f:selectItem id="Nao" itemLabel="Não" itemValue="N" />
 								<f:selectItem id="Sim" itemLabel="Sim" itemValue="S" />
@@ -66,29 +66,27 @@
 						</h:panelGroup>
 						
 						<h:panelGroup layout="block" styleClass="form-group pull-right">
-							<p:outputLabel for="data" value="Data:" />
-							<br />
-							<p:calendar id="data" pattern="dd/MM/yyyy HH:mm:ss"
-								placeholder="Selecione uma Data" effect="fold"
-								icon="glyphicon-calendar" var="atividadeUsuario"
-								itemLabel="#{pressaoUsuario}"
-								value="#{manterPressaoMB.pressaoUsuario.data}" required="true"
-								requiredMessage="É necessário informar a Data" />
-						</h:panelGroup>
+							<p:outputLabel for="data" value="Data" />
+							<br/>
+							<p:calendar id="data"
+								value="#{manterPressaoMB.pressaoUsuario.data}"
+								pattern="dd/MM/yyyy HH:mm:ss"
+								placeholder="Informe a data da pressão"
+								size="20" effect="fold" icon="glyphicon-calendar" 
+								required="true" requiredMessage="Uma data deve ser estipulada."	/>
+	   					</h:panelGroup>
 						
 					</h:panelGrid>
 					<h:panelGroup layout="block" styleClass="form-group">
-						<p:outputLabel for="notas" value="Notas:" />
-						<br />
-						<p:inputTextarea id="notas" rows="6" cols="50" counter="counter"
-							maxlength="144" counterTemplate=" Restam {0} caracteres!"
-							var="pressaoUsuario" itemLabel="#{pressaoUsuario}"
-							value="#{manterPressaoMB.pressaoUsuario.notas}"
-							placeholder="Escreva alguma observação aqui... ;)" />
-						<h:outputText id="counter" />
-					</h:panelGroup>
-					
-					
+							<p:outputLabel for="notas" value="Notas:" />
+							<br/>
+						     <p:inputTextarea id="notas" rows="6" cols="88" counter="counter" maxlength="144" 
+							 value="#{manterPressaoMB.pressaoUsuario.notas}" counterTemplate=" Restam {0} caracteres!"
+							 placeholder="Insire aqui uma observação." >
+							</p:inputTextarea><br/>
+							<h:outputText id="counter" />
+						</h:panelGroup>
+										
 					<h:panelGroup layout="block" styleClass="form-group" id="buttons">
 					
 					<h:panelGroup layout="block" styleClass="form-group pull-left">
@@ -109,8 +107,8 @@
 					   <p:commandButton value="Excluir"
 							rendered="#{manterPressaoMB.atualizacao}"
 							action="#{manterPressaoMB.excluiPressao}"
-							ajax="true" icon="ui-icon-close" update="msgs"> 
-					   <p:confirm header="Confirmação" message="Tem certeza que deseja apagar o peso?" icon="ui-icon-alert" />
+							ajax="true" icon="ui-icon-close"> 
+					   <p:confirm header="Confirmação" message="Tem certeza que deseja apagar a pressao?" icon="ui-icon-alert" />
 					   </p:commandButton>
 					   
 					   <p:commandButton value="Voltar"
@@ -125,5 +123,15 @@
 				</h:panelGroup>
 			</p:tab>
 		</p:accordionPanel>
+		
+		<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" >
+					</p:commandButton>	
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close">
+				    </p:commandButton>		
+					</p:confirmDialog> 
 	</ui:define>
 </ui:composition>

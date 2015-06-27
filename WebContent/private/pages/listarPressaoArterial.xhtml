@@ -22,49 +22,53 @@
 					<h:panelGroup layout="block" styleClass="form-group">
 						<p:outputLabel for="criterio_pressao" value="Pesquisa" />
 						<p:inputText id="criterio_pressao" styleClass="form-control"
-							value="" placeholder="Entre o critério de pesquisa aqui" />
+							value="#{manterPressaoMB.criterioPressao}" placeholder="Busque por uma das Pressões ou por Nota" />
 					</h:panelGroup>
 
 					<h:panelGroup layout="block" styleClass="form-group">
-						<p:commandButton value="Busca" type="submit" action="#"
+						<p:commandButton value="Busca" type="submit" action="#{manterPressaoMB.busca}"
 							ajax="true" update="tab-pressao" immediate="false"
 							icon="ui-icon-search" />
-						<p:commandButton value="Limpa" type="submit" action="#"
+						<p:commandButton value="Limpa" type="submit" action="#{manterPressaoMB.initListar}"
 							ajax="true" update="tab-pressao,criterio_pressao"
 							immediate="false" icon="ui-icon-refresh" />
 					</h:panelGroup>
 
-					<p:dataTable var="pressao" id="tab-pressao" value="#">
+					<p:dataTable id="tab-pressao" selectionMode="single" emptyMessage="Nenhum Registro Encontrado." 
+						var="listPressao" selection="#{manterPressaoMB.pressaoUsuario}" 
+						value="#{manterPressaoMB.listaDePressao}"	rowKey="#{listPressao.id}"	reflow="true">
+						<p:ajax event="rowSelect" listener="#{manterPressaoMB.onRowSelect}"
+							oncomplete="/private/pages/manterPrerssaoArterial.jsf" />
 						<p:column headerText="Data">
-							<h:outputText value="#{pressaoUsuario.data}" />
+							<h:outputText value="#{listPressao.data}" />
 						</p:column>
 
 						<p:column headerText="Pressão Arterial Sistólica">
 							<h:outputText
-								value="#{pressaoUsuario.pressaoArterial.paSistolica}" />
+								value="#{listPressao.paSistolica}" />
 						</p:column>
 
 						<p:column headerText="Pressão Arterial Diastólica">
 							<h:outputText
-								value="#{pressaoUsuario.pressaoArterial.paDiastolica}" />
+								value="#{listPressao.paDiastolica}" />
 						</p:column>
 
 						<p:column headerText="Pulso">
-							<h:outputText value="#{pressaoUsuario.pressaoArterial.pulso}" />
+							<h:outputText value="#{listPressao.pulso}" />
 						</p:column>
 
 						<p:column headerText="Batimento Irregular?">
 							<h:outputText
-								value="#{pressaoUsuario.pressaoArterial.batimentoIrregular}" />
+								value="#{listPressao.batimentoIrregular}" />
 						</p:column>
 
 						<p:column headerText="Notas">
-							<h:outputText value="#{pressaoUsuario.notas}" />
+							<h:outputText value="#{listPressao.notas}" />
 						</p:column>
 					</p:dataTable>
 					<br />
 				</h:panelGroup>
-				<p:commandButton value="Nova" icon="ui-icon-plus" ajax="true" />
+				<p:commandButton value="Nova" action="#{manterPressaoMB.initManter}" icon="ui-icon-plus" ajax="true" />
 			</p:tab>
 		</p:accordionPanel>
 	</ui:define>

@@ -68,8 +68,6 @@ public class ManterPesoService {
 		long timeSysDate = new Date().getTime();
 		long timeData = pesoUsuario.getData().getTime();
 		if (timeData > timeSysDate) {
-			Mensagens.define(FacesMessage.SEVERITY_INFO,
-					"manterPeso.cadastro.data.erro");
 			return false;
 		}
 		return true;
@@ -140,7 +138,7 @@ public class ManterPesoService {
 	 * */
 	public List<PesoUsuario> busca(String criterioPeso) {
 		try{
-		if (StrUtil.isNotBlank(criterioPeso)&& criterioPeso != null) {
+		if (StrUtil.isNotBlank(criterioPeso)) {
 			if (!pesoUsuarioDAO.buscaPorCriterio(criterioPeso).isEmpty()) {
 				return pesoUsuarioDAO.buscaPorCriterio(criterioPeso);
 			} 

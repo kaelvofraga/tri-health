@@ -66,8 +66,6 @@ public class ManterPressaoService {
 		long timeSysDate = new Date().getTime();
 		long timeData = pressaoUsuario.getData().getTime();
 		if (timeData > timeSysDate) {
-			Mensagens.define(FacesMessage.SEVERITY_INFO,
-					"manterPressao.cadastro.data.erro");
 			return false;
 		}
 		return true;
@@ -132,7 +130,7 @@ public class ManterPressaoService {
 	 * */
 	public List<PressaoUsuario> busca(String criterioPressao) {
 		try{
-		if (StrUtil.isNotBlank(criterioPressao)&& criterioPressao != null) {
+		if (StrUtil.isNotBlank(criterioPressao)) {
 			if (!pressaoUsuarioDAO.buscaPorCriterio(criterioPressao).isEmpty()) {
 				return pressaoUsuarioDAO.buscaPorCriterio(criterioPressao);
 			} 
