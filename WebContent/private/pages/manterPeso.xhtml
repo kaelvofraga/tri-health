@@ -29,21 +29,22 @@
 	    				</h:panelGroup>
 						
 						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel for="udm" value="Unidade de Medida:" />
-							<br/>
-							<p:selectOneMenu id="udm"
-								value="#{manterPesoMB.pesoUsuario.udm}" 
-								style="width:90%;"
-								required="true" requiredMessage="Um tipo para a unidade de medida deve ser escolhido." >
-								<p:ajax listener="#{manterPesoMB.onSelectUdm}" />
-								<f:selectItem itemLabel="Selecione..." itemValue=""
-									noSelectionOption="true" />
-								<f:selectItems
-									value="#{manterPesoMB.udmLista}"
-									var="udm" itemLabel="#{udm.descricao}"
-									itemValue="#{udm}" />
-							</p:selectOneMenu>
-						</h:panelGroup>
+								<p:outputLabel for="udm" value="Unidade de Medida:" />
+								<br />
+								<p:selectOneMenu id="udm"
+									value="#{manterPesoMB.pesoUsuario.udm}"
+									style="width:90%" required="true" 
+									requiredMessage="Um tipo para a unidade de medida deve ser escolhido." >
+									<p:ajax listener="#{manterPesoMB.onSelectUdm}" />
+									<f:selectItem itemLabel="Selecione..." itemValue=""
+										noSelectionOption="true" />
+									<f:selectItems value="#{manterPesoMB.udmLista}"
+										var="udm" itemLabel="#{udm.descricao}"
+										itemValue="#{udm}" />
+								</p:selectOneMenu>
+							</h:panelGroup>
+						
+						
 						
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="data"

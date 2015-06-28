@@ -52,9 +52,7 @@ public class ManterPesoMB implements Serializable {
 	private List<Udm> udmLista;
 	
 	private String criterioPeso;
-	
-	private Udm udm;	
-	
+		
 	
 	/** 
 	 * @brief Metodo que inicializa as variaveis ao ser selecionada a opção de listar
@@ -76,9 +74,9 @@ public class ManterPesoMB implements Serializable {
 	 * @return String
 	 * */
 	public String initManter() {
-		udm = new Udm();
 		udmLista= this.getUdmLista();
 		pesoUsuario = new PesoUsuario();
+		pesoUsuario.setUdm(new Udm());
 		return URL_MANTER_PESO;
 	}
 	
@@ -160,9 +158,8 @@ public class ManterPesoMB implements Serializable {
 	 * @return void
 	 * */
 	public void onSelectUdm(){
-		pesoUsuario.setUdm(udm);
+		pesoUsuario.getUdm();
 	}
-	
 	
 	/*Getters & Setters*/
 	
@@ -201,13 +198,5 @@ public class ManterPesoMB implements Serializable {
 	
 	public void setPesoUsuarioList(List<PesoUsuario> pesoUsuarioList) {
 		this.pesoUsuarioList = pesoUsuarioList;
-	}
-
-	public Udm getUdm() {
-		return udm;
-	}
-
-	public void setUdm(Udm udm) {
-		this.udm = udm;
 	}	
 }

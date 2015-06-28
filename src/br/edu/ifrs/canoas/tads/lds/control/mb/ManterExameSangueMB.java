@@ -142,10 +142,11 @@ public class ManterExameSangueMB implements Serializable{
 	}
 	
 	public String initListar() {
-		usuarioExame = new UsuarioExame();
-		listaExames= new ArrayList<>();
-		criterioExameSangue="";
-		dataDe = new Date();
+		//usuarioExame = new UsuarioExame();
+		usuarioExame.setUsuario(gerenciarLoginMB.getUsuario());
+		listaExames = new ArrayList<>();
+		//criterioExameSangue="";
+		dataDe = null;
 		dataAte = new Date();
 		return URL_LISTAR_EXAMESANGUE;
 	}
@@ -195,6 +196,8 @@ public class ManterExameSangueMB implements Serializable{
 	}
 	
 	public void busca(){
+		usuarioExame.setUsuario(gerenciarLoginMB.getUsuario());
+		//exameSangueService.buscaExameSangueUsuario(this.getDataDe(),this.getDataAte());
 		listaExames = exameSangueService.busca(this.getDataDe(),this.getDataAte());
 	}
 	

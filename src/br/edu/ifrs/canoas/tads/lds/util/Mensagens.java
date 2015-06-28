@@ -27,11 +27,11 @@ public class Mensagens {
 						getBundleMessage(msg)));
 	}
 
-	private static String getBundleMessage(final String key, final Object... args) {
+	public static String getBundleMessage(final String key, final Object... args) {
 		return MessageFormat.format(resBundle.getString(key), args);
 	}
 	
-	private static String getBundleMessage(final String key) {
+	public static String getBundleMessage(final String key) {
 		return resBundle.getString(key);
 	}
 

@@ -176,8 +176,4 @@ public class ManterPressaoMB implements Serializable {
 	public void setCriterioPressao(String criterioPressao) {
 		this.criterioPressao = criterioPressao;
 	}
-	
-	
-	
-
 }
