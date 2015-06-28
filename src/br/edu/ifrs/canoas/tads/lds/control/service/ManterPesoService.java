@@ -62,7 +62,7 @@ public class ManterPesoService {
 	 * Retorna V ou F se validou ou não.	 		  
 	 * @param pesoUsuario(PesoUsuario)
 	 * @return boolean
-	 * Método criado para validar a Data informada e adição de mensagem.
+	 * Método criado para validar a Data informada.
 	 * */
 	public boolean validaData(PesoUsuario pesoUsuario){
 		long timeSysDate = new Date().getTime();

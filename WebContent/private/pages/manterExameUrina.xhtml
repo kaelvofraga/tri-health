@@ -28,7 +28,6 @@
 							icon="glyphicon-calendar" />
 					</h:panelGroup>
 
-
 					<h3>Exame Realizado</h3>
 
 					<h:panelGroup layout="block" id="itemexameurina">
@@ -64,6 +63,15 @@
 
 					<h:panelGroup layout="block" styleClass="form-group pull-left">
 						<p:commandButton value="Adicionar" ajax="true" type="submit"
+						    rendered="#{not manterExameUrinaMB.atualizandoItem}"
+							immediate="false" update="itemexameurina,tab-itensExame"
+							action="#{manterExameUrinaMB.adicionarExameAnalisado}"
+							icon="ui-icon-disk" />
+					</h:panelGroup>
+					
+					<h:panelGroup layout="block" styleClass="form-group pull-left">
+						<p:commandButton value="Alterar" ajax="true" type="submit"
+						    rendered="#{manterExameUrinaMB.atualizandoItem}"
 							immediate="false" update="itemexameurina,tab-itensExame"
 							action="#{manterExameUrinaMB.adicionarExameAnalisado}"
 							icon="ui-icon-disk" />
@@ -84,9 +92,8 @@
 						</p:column>
 						<p:column headerText="Editar">
 							<p:commandButton value="Editar"
-								action="#{manterExameUrinaMB.alteraItem}" ajax="false"
-								>
-								<f:setPropertyActionListener value="#{listItensExameUrina}"
+							 ajax="false" >
+							<f:setPropertyActionListener value="#{listItensExameUrina}"
 									target="#{manterExameUrinaMB.itemExameUrina}" />
 							</p:commandButton>
 						</p:column>
