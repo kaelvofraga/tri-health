@@ -32,6 +32,7 @@ public class UsuarioExame extends BaseEntity<Long> implements Serializable{
 	private Collection<ItemExameSangue> itensExame;
 		
 	@Temporal(TemporalType.TIMESTAMP)//(TemporalType.DATE)
+	//@Temporal(TemporalType.DATE)
 	private Date data;
 	
 	private String observacao;
