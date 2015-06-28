@@ -83,6 +83,9 @@
 
 				</h:panelGroup>
 
+				<p:commandButton value="Imprimir"
+					style="float:right !important; " update="panel"
+					action="#{manterAtividadesMB.gerarRelatorio}" ajax="false" />
 				<p:commandButton value="Nova" action="#{manterAtividadesMB.initManter}" icon="ui-icon-plus" ajax="true" />
 
 			</p:tab>

@@ -1,13 +1,14 @@
 package br.edu.ifrs.canoas.tads.lds.bean.jasper;
 
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
 
 public class AtividadesBean {
 	
 	private String nome;
-	
-	private String dataEmissao = new Date().toString();
-	
+		
 	private String atividade;
 	
 	private String tipo;
@@ -18,7 +19,7 @@ public class AtividadesBean {
 	
 	private String minutos;
 	
-	private String caloriasQueimadas;
+	private String calorias;
 
 	public String getNome() {
 		return nome;
@@ -68,11 +69,24 @@ public class AtividadesBean {
 		this.minutos = minutos;
 	}
 
-	public String getCaloriasQueimadas() {
-		return caloriasQueimadas;
+	public String getCalorias() {
+		return calorias;
 	}
 
-	public void setCaloriasQueimadas(String caloriasQueimadas) {
-		this.caloriasQueimadas = caloriasQueimadas;
+	public void setCalorias(String calorias) {
+		this.calorias = calorias;
+	}
+	
+	public AtividadesBean conversor(AtividadeUsuario au){
+		AtividadesBean atividade = new AtividadesBean();
+		atividade.setNome(au.getUsuario().getNome());
+		atividade.setAtividade(au.getAtividade().getDescricao());
+		atividade.setTipo(au.getAtividade().getTipoAtividade().getNome());
+		atividade.setDistancia(au.getDistancia()+"");
+		atividade.setData(au.getDataFim().toString());
+		atividade.setMinutos(au.getDuracao()+"");
+		atividade.setCalorias(au.getCalorias()+"");
+		return atividade;
+		
 	}
 }
