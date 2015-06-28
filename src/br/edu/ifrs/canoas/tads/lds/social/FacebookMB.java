@@ -25,44 +25,20 @@ public class FacebookMB implements Serializable {
 	
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
-	
-	//Beans
-	@Inject 
-	private LogFacebook logFacebook;	
-	
+		
 	public FacebookMB() {}
 	
 	@PostConstruct
 	public void initFacebook(){			
-		
-		/*TODO algoritmo de inicialização do facebook*/
-		
-	}
-	
-	/** 
-	 * @brief Autentica conta do Facebook do usuário da seção.	  	 		  
-	 * @param void
-	 * @return void
-	 * */
-	public void autenticarUsuario() {
-		facebookService.autenticarUsuario(gerenciarLoginMB.getUsuario());
+		facebookService.initFacebook();		
 	}
 	
 	/** 
 	 * @brief Publica compartilhamento no Facebook do usuário da seção.	  	 		  
-	 * @param void
+	 * @param String message: mensagem a ser publicada
 	 * @return void
 	 * */
-	public void publicarAtividade() {
-		facebookService.publicarAtividade(this.logFacebook);
-	}
-	
-	/** 
-	 * @brief Salva registro de compartilhamento no BD.	  	 		  
-	 * @param void
-	 * @return void
-	 * */
-	public void salvarLog(LogFacebook logFacebook) {
-		facebookService.salvarLog(this.logFacebook);
+	public void publicarAtividade(String message) {
+		facebookService.publicarAtividade(gerenciarLoginMB.getUsuario(), message);
 	}	
 }

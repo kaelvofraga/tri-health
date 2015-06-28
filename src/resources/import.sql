@@ -22,14 +22,14 @@ insert into usuario(id, email, nome, senha, sobrenome, apelido, telefone, celula
 	insert into Telefone (id, ddd, numero) values (1002, '51','3357-4100'); -- Hospital Cristo Redentor
 	
 	--Endereco
-	insert into Endereco (id, cep, complemento, logradouro, numero, latitude, longitude, id_cidade, id_telefone) values (1002, '00000-000', 'x', 'Av, Francisco Trein - Bairro Cristo Redentor', 296, '-30.0195467', '-51.170071', 1, 1000); -- Hospital Conceição
-	insert into Endereco (id, cep, complemento, logradouro, numero, latitude, longitude, id_cidade, id_telefone) values (1003, '00000-000', 'x', 'Rua Mostardeiro – Bairro Moinhos de Vento', 17, '-30.02923', '-51.206877', 1, 1001);	 -- Hospital Fêmina
-	insert into Endereco (id, cep, complemento, logradouro, numero, latitude, longitude, id_cidade, id_telefone) values (1004, '00000-000', 'x', 'Rua Domingos Rubbo - Bairro Cristo Redentor', 20, '-30.0100396', '-51.1591039', 1, 1002);	 -- Hospital Cristo Redentor
+	insert into Endereco (id, cep, complemento, logradouro, numero, latitude, longitude, id_cidade, id_telefone) values (1, '00000-000', 'x', 'Av, Francisco Trein - Bairro Cristo Redentor', 296, '-30.0195467', '-51.170071', 1, 1000); -- Hospital Conceição
+	insert into Endereco (id, cep, complemento, logradouro, numero, latitude, longitude, id_cidade, id_telefone) values (2, '00000-000', 'x', 'Rua Mostardeiro – Bairro Moinhos de Vento', 17, '-30.02923', '-51.206877', 1, 1001);	 -- Hospital Fêmina
+	insert into Endereco (id, cep, complemento, logradouro, numero, latitude, longitude, id_cidade, id_telefone) values (3, '00000-000', 'x', 'Rua Domingos Rubbo - Bairro Cristo Redentor', 20, '-30.0100396', '-51.1591039', 1, 1002);	 -- Hospital Cristo Redentor
 
 	--Hospitais
-	insert into Hospital (id, nome, id_endereco) values (1, 'Hospital Conceição', 2);
-	insert into Hospital (id, nome, id_endereco) values (2, 'Hospital Fêmina', 3);
-	insert into Hospital (id, nome, id_endereco) values (3, 'Hospital Cristo Redentor', 4);
+	insert into Hospital (id, nome, id_endereco) values (1, 'Hospital Conceição', 1);
+	insert into Hospital (id, nome, id_endereco) values (2, 'Hospital Fêmina', 2);
+	insert into Hospital (id, nome, id_endereco) values (3, 'Hospital Cristo Redentor', 3);
 
 ---------------------------------------------------	
 

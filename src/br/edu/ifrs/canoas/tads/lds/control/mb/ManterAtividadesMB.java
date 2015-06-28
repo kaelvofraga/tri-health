@@ -8,7 +8,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,7 +18,7 @@ import br.edu.ifrs.canoas.tads.lds.bean.Atividade;
 import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAtividade;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterAtividadesService;
-import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
+import br.edu.ifrs.canoas.tads.lds.social.FacebookMB;
 
 /** ManageBean das views de Manter e Listar Atividades Físicas
 * @author Kael Fraga
@@ -33,9 +32,14 @@ public class ManterAtividadesMB implements Serializable {
 	private static final String URL_LISTAR_ATIVIDADES = "/private/pages/listarAtividadesFisicas.jsf";
 	private static final String URL_MANTER_ATIVIDADES = "/private/pages/manterAtividadesFisicas.jsf";
 	
+	//Controlers
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
-
+	
+	@Inject
+	private FacebookMB facebookMB;
+	
+	//Services
 	@EJB
 	private ManterAtividadesService atvUsuarioService;
 	
@@ -61,6 +65,10 @@ public class ManterAtividadesMB implements Serializable {
 		
 		/** Listas **/
 		atividadeUsuarioList = new ArrayList<>();
+		this.busca();
+		
+		/** Social **/
+		facebookMB.initFacebook();
 		
 		return URL_LISTAR_ATIVIDADES;
 	}
@@ -77,6 +85,9 @@ public class ManterAtividadesMB implements Serializable {
 		
 		atividadeListFiltrada = new ArrayList<>();
 		this.filtrarAtividades();	
+		
+		/** Social **/
+		facebookMB.initFacebook();
 		
 		return URL_MANTER_ATIVIDADES;
 	}
@@ -109,12 +120,15 @@ public class ManterAtividadesMB implements Serializable {
 	/** 
 	 * @brief Vincula usuário logado à atividade e inseri a nova atividade no BD, após limpa formulário
 	 * @param void
-	 * @return void
+	 * @return String: url da listagem de atividades
 	 * **/
-	public void salvaAtividadeUsuario(){
+	public String salvaAtividadeUsuario(){
 		atividadeUsuario.setUsuario(gerenciarLoginMB.getUsuario());
-		if(atvUsuarioService.salvaAtividadeUsuario(atividadeUsuario))
+		if(atvUsuarioService.salvaAtividadeUsuario(atividadeUsuario)){			
 			this.initManter();
+			return this.initListar();
+		}
+		return URL_MANTER_ATIVIDADES;
 	}
 	
 	/** 
@@ -125,7 +139,7 @@ public class ManterAtividadesMB implements Serializable {
 	public String alteraAtividadeUsuario(){
 		atvUsuarioService.alteraAtividadeUsario(atividadeUsuario);
 		this.initManter();
-		return URL_LISTAR_ATIVIDADES;
+		return this.initListar();
 	}
 
 	/** 
@@ -140,9 +154,9 @@ public class ManterAtividadesMB implements Serializable {
 	}
 
 	/** 
-	 * @brief Verifica se a atividade atual está sendo inserida nova ou atualizada uma antiga.	  	 		  
+	 * @brief Verifica se a pergunta de compartilhamento deve ser feita.	  	 		  
 	 * @param void
-	 * @return true se está atualizando atividade ou false se não.
+	 * @return true se sim, false se não.
 	 * */
 	public boolean isAtualizacao(){
 		return atividadeUsuario != null && atividadeUsuario.getId() != null;
@@ -189,7 +203,15 @@ public class ManterAtividadesMB implements Serializable {
 		FacesContext.getCurrentInstance().getExternalContext().redirect("../.."+URL_MANTER_ATIVIDADES);
     }
 	
-	
+	/** 
+	 * @brief Publica compartilhamento no Facebook do usuário da seção.	  	 		  
+	 * @param void
+	 * @return void
+	 * */
+	public void publicarAtividade() {		
+		this.facebookMB.publicarAtividade( this.atvUsuarioService.montaFacebookMensagem(this.atividadeUsuario) );
+	}
+			
 	/*
 	 * GETTERS & SETTERS
 	 */	

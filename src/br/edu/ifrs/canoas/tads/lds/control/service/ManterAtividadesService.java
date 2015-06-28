@@ -1,5 +1,6 @@
 package br.edu.ifrs.canoas.tads.lds.control.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
@@ -36,6 +37,26 @@ public class ManterAtividadesService {
 	@Inject
 	private AtividadeDAO atividadeDAO;
 	
+	/** 
+	 * @brief Monta mensagem a ser compartilhada no Facebook.	  	 		  
+	 * @param AtividadeUsuario atividadeUsuario: atividade relacionada a um usuário
+	 * @return mensagem que será compartilhada no Facebook
+	 * */
+	public String montaFacebookMensagem(AtividadeUsuario atividadeUsuario) {
+		
+		if (atividadeUsuario == null || 
+			atividadeUsuario.getAtividade() == null || 
+			atividadeUsuario.getUsuario() == null){
+			
+			return "";
+		}
+			
+		return Mensagens.getBundleMessage("Facebook.compartilhar.notificao", 
+										  new SimpleDateFormat("dd/MM/yyyy").format(atividadeUsuario.getDataFim()),
+										  atividadeUsuario.getDuracao(),
+										  atividadeUsuario.getAtividade().getDescricao()); 
+	}
+		
 	/** 
 	 * @brief Calcula duração da prática de uma atividade através da data inicial e data final.  	 		  
 	 * @param AtividadeUsuario atividadeUsuario: atividade relacionada a um usuário

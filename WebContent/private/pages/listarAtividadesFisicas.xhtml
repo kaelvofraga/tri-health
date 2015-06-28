@@ -54,7 +54,7 @@
 
 						<p:ajax event="rowSelect" listener="#{manterAtividadesMB.onRowSelect}" oncomplete="manterAtividadesFisicas"/>
         				
-						<p:column headerText="Atividade" id="colAtividade" style="width:40%;">
+						<p:column headerText="Atividade" id="colAtividade" style="width:30%;">
 							<h:outputText
 								value="#{atividadeUsuario.atividade.descricao}" />
 						</p:column>
@@ -64,7 +64,7 @@
 								value="#{atividadeUsuario.atividade.tipoAtividade.nome}" />
 						</p:column>						
 						
-						<p:column headerText="Data" id="colData">
+						<p:column headerText="Data" id="colData" style="width:15%;">
 							<h:outputText
 								value="#{atividadeUsuario.dataInicio}" />
 						</p:column>
@@ -74,10 +74,24 @@
 								value="#{atividadeUsuario.duracao}" />
 						</p:column>
 
-						<p:column headerText="Calorias Queimadas" id="colCalorias">
+						<p:column headerText="Calorias Queimadas" id="colCalorias" style="width:15%;">
 							<h:outputText
 								value="#{atividadeUsuario.calorias}" />
 						</p:column>
+						
+						<p:column headerText="Ação" id="colAcao" style="width:20%;">
+							<p:commandButton 
+								value="Compartilhar"
+								action="#{manterAtividadesMB.publicarAtividade}"
+								type="submit"
+								ajax="true" 
+								title="Compartilhar no Facebook" >
+								<f:setPropertyActionListener 
+									value="#{atividadeUsuario}"
+									target="#{manterAtividadesMB.atividadeUsuario}" />
+							</p:commandButton>
+						</p:column>
+						
 					</p:dataTable>
 					<br />
 
