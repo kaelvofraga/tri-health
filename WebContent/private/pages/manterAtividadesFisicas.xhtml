@@ -134,8 +134,23 @@
 						<h:panelGroup layout="block" styleClass="form-group pull-left">
 							<p:commandButton value="Salvar"
 								rendered="#{not manterAtividadesMB.atualizacao}"
-								action="#{manterAtividadesMB.salvaAtividadeUsuario}" ajax="true"
-								icon="ui-icon-disk" update="panel"/>
+								action="#{manterAtividadesMB.salvaAtividadeUsuario}"
+								icon="ui-icon-disk" update="panel" ajax="true"/>
+
+							<p:confirmDialog id="shareDialog"
+								message="#{msg['Facebook.compartilhar.confirmacao']}"
+								header="Confirmação" showEffect="fade"
+								hideEffect="explode" widgetVar="shareDialog"
+								appendToBody="true">
+								<p:commandButton value="Sim" type="button"
+									styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
+									action="#{manterAtividadesMB.publicarAtividade}">
+								</p:commandButton>
+								<p:commandButton value="Não" type="button"
+									styleClass="ui-confirmdialog-no pull-right"
+									icon="ui-icon-close" onclick="shareDialog.hide()">
+								</p:commandButton>
+							</p:confirmDialog>
 
 							<p:commandButton value="Salvar alterações"
 								rendered="#{manterAtividadesMB.atualizacao}"
@@ -162,19 +177,9 @@
 					</h:panelGroup>
 
 				</h:panelGroup>
-
-				<p:confirmDialog global="true" showEffect="fade"
-					hideEffect="explode">
-					<p:commandButton value="Sim" type="button"
-						styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
-					</p:commandButton>
-					<p:commandButton value="Não" type="button"
-						styleClass="ui-confirmdialog-no" icon="ui-icon-close">
-					</p:commandButton>
-				</p:confirmDialog>
-
-			</p:tab>
 				
+			</p:tab>
+
 		</p:accordionPanel>
 
 	</ui:define>
