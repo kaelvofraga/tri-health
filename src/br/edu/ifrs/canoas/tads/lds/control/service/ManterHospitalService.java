@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import br.edu.ifrs.canoas.tads.lds.bean.Hospital;
+import br.edu.ifrs.canoas.tads.lds.bean.TipoMedida;
 import br.edu.ifrs.canoas.tads.lds.model.dao.HospitalDAO;
 import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
 
@@ -25,6 +26,10 @@ public class ManterHospitalService {
 			return hospitalDAO.buscaHospitalPorNome(nomeHospital);
 		else
 			return hospitalDAO.buscaTodos();
+	}
+	
+	public List<Hospital> buscaTodosHospitais() {
+		return  hospitalDAO.buscaTodos();
 	}
 	
 }

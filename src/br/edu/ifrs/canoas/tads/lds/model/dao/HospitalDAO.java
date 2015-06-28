@@ -25,7 +25,7 @@ public class HospitalDAO extends BaseDAO<Hospital, Long>{
 		try {
 			return em
 					.createQuery(
-							"SELECT hp.nome FROM Hospital hp "
+							"SELECT hp FROM Hospital hp "
 									+ "WHERE "
 									+ "lower(hp.nome) like '%" + nomeHospital.toLowerCase() + "%' "
 									+ "ORDER BY hp.nome")

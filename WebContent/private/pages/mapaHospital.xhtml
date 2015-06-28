@@ -25,25 +25,31 @@
 					
 					<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="hospitais" value="Hospitais" />
-							<br/>
+							<br/><br/>
 							<p:selectOneMenu id="hospitais"
-								value="#{manterDimensoesCorporaisMB.valorMedidaUsuario.tipoMedida}" 
-								style="width:90%"
-								required="true" requiredMessage="Um tipo para a medida deve ser escolhido." >
-								<p:ajax listener="#{manterDimensoesCorporaisMB.onSelectTipoMedida}" />
+								value="#{manterHospitalMB.hospital.nome}" 
+								style="width:50%"
+								required="true" requiredMessage="Um Hospital deve ser escolhido." >
+								<p:ajax listener="#{manterHospitalMB.onSelectHospital}" />
 								<f:selectItem itemLabel="Selecione..." itemValue=""
 									noSelectionOption="true" />
 								<f:selectItems
-									value="#{manterDimensoesCorporaisMB.tipoMedidasLista}"
-									var="tipoMedida" itemLabel="#{tipoMedida.descricao}"
-									itemValue="#{tipoMedida}" />
+									value="#{manterHospitalMB.listaHospital}"
+									var="hospital" itemLabel="#{hospital.nome}"
+									itemValue="#{hospital.endereco}" />
 							</p:selectOneMenu>
 						</h:panelGroup>
-			
-			<f:view contentType="text/html">
-        		<h2 style="text-align:center;">Porto Alegre - RS</h2>
-        		<p:gmap center="-30.1088701,-51.1769046" zoom="10" type="MAP" style="width:100%;height:300px" />
-    		</f:view>
+					
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:commandButton value="Buscar" type="submit" action="#{manterHospitalMB.atualizaMapa}" ajax="true"
+							immediate="false" update="mapa" icon="ui-icon-search"/>
+					</h:panelGroup>
+					
+				<f:view contentType="text/html">
+	        		<h2 style="text-align:center;">Porto Alegre - RS</h2>
+	        		<p:gmap id="mapa" center="-30.1088701,-51.1769046" zoom="11" type="MAP" model="#{manterHospitalMB.local}" style="width:95%;height:500px" />
+	    		</f:view>
+    		
 			</p:tab>  
 		</p:accordionPanel>
 	</ui:define>
