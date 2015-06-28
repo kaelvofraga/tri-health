@@ -38,7 +38,7 @@ public class ManterCategoriaMB implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	private static final String URL_MANTER_CATEGORIA = "/private/pages/manterCategoria2.jsf";
-	private static final String URL_LISTAR_PESO = "/private/pages/listarPeso.jsf";
+	private static final String URL_LISTAR_CATEGORIA = "/private/pages/listarCategoria.jsf";
 
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
@@ -51,6 +51,9 @@ public class ManterCategoriaMB implements Serializable {
 	
 	@EJB
 	private ManterCategoriaService categoriaService;
+	
+	private List<TipoAtividade> listarAtividades;
+	private List<Atividade> atividadeList;
 		
 	/*@Inject
 	private PesoUsuario pesoUsuario;
@@ -86,6 +89,11 @@ public class ManterCategoriaMB implements Serializable {
 	}
 	*/
 	
+	public String initListar() {
+		listarAtividades = new ArrayList<TipoAtividade>();
+		return URL_LISTAR_CATEGORIA;
+	}
+	
 	public String initManter() {
 		tipoAtividade = new TipoAtividade();
 		atividade = new Atividade();
@@ -93,9 +101,14 @@ public class ManterCategoriaMB implements Serializable {
 		return URL_MANTER_CATEGORIA;
 	}
 	
-	public void salvaATividade(){			
+	public void salvaATividade(){	
+		
 		if(categoriaService.salvaCategoria(atividade, tipoAtividade))
 			this.initManter();
+	}
+	
+	public void busca(){
+		atividadeList = categoriaService.buscaDescricoesAtividades();
 	}
 			
 	/*GETTERS AND SETTERS*/
@@ -130,6 +143,22 @@ public class ManterCategoriaMB implements Serializable {
 
 	public void setGerenciarLoginMB(GerenciarLoginMB gerenciarLoginMB) {
 		this.gerenciarLoginMB = gerenciarLoginMB;
+	}
+
+	public List<TipoAtividade> getListarAtividades() {
+		return listarAtividades;
+	}
+
+	public void setListarAtividades(List<TipoAtividade> listarAtividades) {
+		this.listarAtividades = listarAtividades;
+	}
+
+	public List<Atividade> getAtividadeList() {
+		return atividadeList;
+	}
+
+	public void setAtividadeList(List<Atividade> atividadeList) {		
+		this.atividadeList = atividadeList;
 	}
 
 }
