@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -27,7 +28,7 @@ public class UsuarioExame extends BaseEntity<Long> implements Serializable{
 	private Usuario usuario;
 	
 	@NotNull
-	@OneToMany (mappedBy="usuarioExame")
+	@OneToMany (mappedBy="usuarioExame",fetch = FetchType.EAGER)
 	private Collection<ItemExameSangue> itensExame;
 		
 	@Temporal(TemporalType.TIMESTAMP)//(TemporalType.DATE)
