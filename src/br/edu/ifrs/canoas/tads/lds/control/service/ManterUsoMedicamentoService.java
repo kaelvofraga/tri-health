@@ -62,9 +62,7 @@ public class ManterUsoMedicamentoService {
 	 * se o medicamento existe e depois insere na tabela medicmaentoUsuario
 	 */
 	public boolean salvaMedicamentoUsuario(MedicamentoUsuario medicamentoUsuario) {
-		if (medicamentoUsuario == null
-				|| medicamentoUsuario.getMedicamento() == null
-				|| medicamentoUsuario.getUsuario() == null) {
+		if (medicamentoUsuario == null	|| medicamentoUsuario.getMedicamento() == null|| medicamentoUsuario.getUsuario() == null) {
 			Mensagens.define(FacesMessage.SEVERITY_ERROR,
 					"manterMedicamento.cadastro.erro.nulo");
 			return false;

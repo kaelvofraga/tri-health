@@ -43,6 +43,8 @@ public class ManterPesoService {
 			return false;
 		}
 		if (validaData(pesoUsuario) == false) {
+			Mensagens.define(FacesMessage.SEVERITY_INFO,
+					"manterPeso.cadastro.data.erro");
 			return false;
 		}
 		if(pesoUsuario.getUdm().getId()==3 || pesoUsuario.getUdm().getId()==4){

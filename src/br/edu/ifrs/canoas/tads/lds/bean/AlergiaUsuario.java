@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -80,7 +81,5 @@ public class AlergiaUsuario extends BaseEntity<Long> implements Serializable {
 
 	public void setDataPrimeiraOcorrencia(Date dataPrimeiraOcorrencia) {
 		this.dataPrimeiraOcorrencia = dataPrimeiraOcorrencia;
-	}
-	
-	
+	}	
 }

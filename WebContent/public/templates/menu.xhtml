@@ -15,8 +15,8 @@
 					<p:menuitem value="Manter" action="#{manterPerfilUsuarioMB.atualizaUsuarioSecao}" styleClass="nav nav-second-level"/>
 				</p:submenu>
 				<p:submenu label="Perfil de Emerg&ecirc;ncia" styleClass="nav nav-second-level">
-					<p:menuitem value="Listar" url="/private/pages/listarPerfilEmergencia.jsf" action="#{manterPerfilEmergenciaMB.init}" styleClass="nav nav-third-level"/>
-					<p:menuitem value="Cadastrar" url="/private/pages/manterPerfilEmergencia.jsf" action="#{manterPerfilEmergenciaMB.init}"  styleClass="nav nav-third-level"/>
+					<p:menuitem value="Listar" action="#{manterPerfilEmergenciaMB.initListar}" styleClass="nav nav-third-level"/>
+					<p:menuitem value="Cadastrar" action="#{manterPerfilEmergenciaMB.initManter}"  styleClass="nav nav-third-level"/>
 				</p:submenu>
 			</p:submenu> 
 			<p:separator />

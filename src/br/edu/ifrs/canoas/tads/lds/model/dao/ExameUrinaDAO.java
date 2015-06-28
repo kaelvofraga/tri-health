@@ -34,12 +34,15 @@ public class ExameUrinaDAO extends BaseDAO<ExameUrinaUsuario, Long> {
 		String criterio = "";
 
 		if(StrUtil.isNotBlank(criterioExameUrina)){
-		criterio += " lower(eu.observacao) like '%" + criterioExameUrina.toLowerCase()
+		criterio += "lower(eu.observacao) like '%" + criterioExameUrina.toLowerCase()
 				+ "%' or ";
 		}
 
-		if (StrUtil.isNotBlank(criterio)) {
-			criterio += " eu.data between :dataDe and :dataAte ";
+		if (dataDe!=null && dataAte!=null) {
+			criterio += "eu.data between :dataDe and :dataAte ";
+			
+		/*criterio += (StrUtil.isNotBlank(criterio)) ? "or lower(eu.observacao) like '%" + criterioExameUrina.toLowerCase()+ "%' "
+				: " lower(eu.observacao) like '%" + criterioExameUrina.toLowerCase()+ "%' ";*/	
 		}
 		try {
 			return em

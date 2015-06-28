@@ -39,17 +39,16 @@ insert into medicamento (id, nome) values (1002, 'Benegripe');
 insert into tipoalergia (id, descricao) values (1, 'Alimento');
 insert into tipoalergia (id, descricao) values (2, 'Ambiental');
 insert into tipoalergia (id, descricao) values (3, 'Animal');
-insert into tipoalergia (id, descricao) values (4, 'Medicação');
+insert into tipoalergia (id, descricao) values (4, 'Medicamento');
 insert into tipoalergia (id, descricao) values (5, 'Planta');
 
 insert into MedicamentoUsuario (ID,DATACONSULTA, DATAFIMTRATAMENTO,DATAINICIOTRATAMENTO, DESCRICAO, DOSAGEM, FREQUENCIA, NOTA, SITUACAO, MEDICAMENTO_ID, USUARIO_ID) VALUES (1010,SYSDATE, SYSDATE, SYSDATE, 'DESCRICAO', 'DOSAGEM', 'FREQUENCIA', 'NOTA', 'SITUACAO', 1001, 1000);
 insert into MedicamentoUsuario (ID,DATACONSULTA, DATAFIMTRATAMENTO,DATAINICIOTRATAMENTO, DESCRICAO, DOSAGEM, FREQUENCIA, NOTA, SITUACAO, MEDICAMENTO_ID, USUARIO_ID) VALUES (1011,SYSDATE, SYSDATE, SYSDATE, 'DESCRICAO', 'DOSAGEM', 'FREQUENCIA', 'NOTA', 'SITUACAO', 1002, 1000);
 
 
-insert into AlergiaUsuario (dataPrimeiraOcorrencia, MEDICAMENTOUSUARIO_ID, reacao, tipoAlergia_id, USUARIO_ID, id) values (sysdate, 1010, 'Reacao', 1, 1000, 1000);
-
-insert into AlergiaUsuario (dataPrimeiraOcorrencia, MEDICAMENTOUSUARIO_ID, reacao, tipoAlergia_id, USUARIO_ID, id) values (sysdate, 1011, 'Reacao', 1, 1000, 1001);
-
+insert into AlergiaUsuario (dataPrimeiraOcorrencia, MEDICAMENTOUSUARIO_ID, reacao, tipoAlergia_id, USUARIO_ID, id) values (sysdate, 1010, 'Reacao', 4, 1000, 1000);
+insert into AlergiaUsuario (dataPrimeiraOcorrencia, MEDICAMENTOUSUARIO_ID, reacao, tipoAlergia_id, USUARIO_ID, id) values (sysdate, 1011, 'Reacao', 4, 1000, 1001);
+insert into AlergiaUsuario (dataPrimeiraOcorrencia, MEDICAMENTOUSUARIO_ID, reacao, tipoAlergia_id, USUARIO_ID, id) values (sysdate, 1001, 'Reacao', 4, 1000, 1002);
 insert into tipoAlimento (id,nome, descricao) values (1000, 'AVES','EXEMPLO: FRANGO GALINHA');
 insert into tipoAlimento (id,nome, descricao) values (1001, 'FRUTAS','EXEMPLO: LARANJA MA�A');
 insert into tipoAlimento (id,nome, descricao) values (1002, 'CARNES','EXEMPLO: TESTE');
@@ -60,7 +59,7 @@ insert into Alimento (id,nome, caloriasPorCemGrOuMl,TIPOALIMENTO_ID) values (100
 insert into Alimento (id,nome, caloriasPorCemGrOuMl,TIPOALIMENTO_ID) values (1003, 'BOI',200,1002);
 
 
-insert into AlergiaUsuario (dataPrimeiraOcorrencia, MEDICAMENTOUSUARIO_ID, reacao, tipoAlergia_id, USUARIO_ID, id) values (sysdate, 1001, 'Reacao', 1, 1000, 1002);
+
 
 
 --[DIMENS�ES CORPORAIS]--

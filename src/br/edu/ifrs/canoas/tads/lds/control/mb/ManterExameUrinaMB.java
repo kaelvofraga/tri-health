@@ -80,6 +80,7 @@ public class ManterExameUrinaMB implements Serializable{
 	 * */
 	public String initManter(){
 		exameUrina = new ExameUrinaUsuario();
+		exameUrina.setData(null);
 		exameUrina.setItensExame(new ArrayList<ItemExameUrina>());
 		itemExameUrina.setTipoAnalise(new TipoAnalise());
 		return URL_MANTER_EXAMEURINA;
@@ -116,8 +117,7 @@ public class ManterExameUrinaMB implements Serializable{
 			this.exameUrina.getItensExame().add(itemExameUrina);
 		}
 		else{
-			Mensagens.define(FacesMessage.SEVERITY_ERROR,
-					"manterExameUrina.insere.erro");
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,"manterExameUrina.insere.erro");
 		}
 		itemExameUrina= new ItemExameUrina();	
 	}
@@ -139,7 +139,7 @@ public class ManterExameUrinaMB implements Serializable{
 	 * @return boolean  
 	 * */
 	public boolean isAtualizandoItem(){
-		return itemExameUrina != null && exameUrina.getItensExame().contains(itemExameUrina);
+		return itemExameUrina != null && exameUrina.getItensExame().contains(itemExameUrina) && itemExameUrina.getId()!= null;
 	} 
 	
 	/** 

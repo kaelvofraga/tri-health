@@ -5,9 +5,6 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.Length;
-
 /**
  * Entity implementation class for Entity: Alergia
  *

@@ -12,8 +12,12 @@ import javax.inject.Named;
 
 import br.edu.ifrs.canoas.tads.lds.bean.AlergiaUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
+import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
+import br.edu.ifrs.canoas.tads.lds.bean.PesoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAlergia;
+import br.edu.ifrs.canoas.tads.lds.bean.Udm;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterAlergiaService;
+import br.edu.ifrs.canoas.tads.lds.control.service.ManterUsoMedicamentoService;
 
 @Named
 @SessionScoped
@@ -25,9 +29,12 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 	
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
-
+	
 	@EJB
 	private ManterAlergiaService alergiaService;
+	
+	@Inject
+	private ManterUsoMedicamentoService medicamentoService;
 	
 	private AlergiaUsuario alergiaUsuario;
 	
@@ -35,6 +42,7 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 
 	//Lista Alergia
 	private List<AlergiaUsuario> alergias;
+	private List<MedicamentoUsuario> medicamentosLista;
 	private String criterioAlergia;
 	
 	//Form Alergia
@@ -44,53 +52,85 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 	public ManterPerfilEmergenciaMB() {
 	}
 	
-	@PostConstruct
-	public void init(){
+	
+	/** 
+	 * @brief Metodo que inicializa as variaveis ao ser selecionada a opção de listar
+	 * os pesos do usuário.	 		  
+	 * @param void
+	 * @return String
+	 * */
+	public String initListar() {
 		alergiaUsuario = new AlergiaUsuario();
 		criterioAlergia = "";
-		alergias = new ArrayList<>();
+		alergias = new ArrayList<AlergiaUsuario>();
+		medicamentosLista= new ArrayList<MedicamentoUsuario>();
+		return URL_LISTAR_PERFIL_EMERGENCIA;
 	}
 
+	/** 
+	 * @brief Metodo que inicializa as variaveis ao ser selecionada a opção de cadastrar
+	 * os pesos do usuário.	 		  
+	 * @param void
+	 * @return String
+	 * */
+	public String initManter() {
+		alergiaUsuario = new AlergiaUsuario();	
+		alergiaUsuario.setMedicamentoUsuario(new MedicamentoUsuario());
+		alergiaUsuario.getMedicamentoUsuario().setMedicamento(new Medicamento());
+		alergiaUsuario.setTipoAlergia(new TipoAlergia());
+		medicamentos= new ArrayList<Medicamento>();
+		return URL_MANTER_PERFIL_EMERGENCIA;
+	}
+	
+	/** 
+	 * @brief Metodo que busca os medicamentos ja existentes no banco de dados	 		  
+	 * @param query(String) input de texto do usuario na view cadastro de alergia.
+	 * @return List<Medicamento>
+	 * */
+	public List<Medicamento> completeAlergia(String query) {
+		if (medicamentos.isEmpty())
+			medicamentos = medicamentoService.buscaMedicamentoUsuario(query,
+					gerenciarLoginMB.getUsuario());
 
+		List<Medicamento> medicamentosBusca = new ArrayList<Medicamento>();
+
+		for (int i = 0; i < medicamentos.size(); i++) {
+			Medicamento medicamento = medicamentos.get(i);
+			if (medicamento.getNome().trim().toLowerCase().startsWith(query)) {
+				medicamentosBusca.add(medicamento);
+			}
+		}
+		return medicamentosBusca;
+	}	
+	
+	/** 
+	 * @brief Metodo que seta o tipo de alergia selecionado. 		  
+	 * @param void
+	 * @return void
+	 * */
+	public void onSelectTipoAlergia(){
+		alergiaUsuario.getTipoAlergia();
+	}
+	
+	
 	public void busca(){
 		alergias = alergiaService.busca(criterioAlergia);
 	}
-	
-	public List<Medicamento> completeMedicamentoAlergia(String query){
-		if (medicamentos == null) 
-			medicamentos = alergiaService.buscaMedicamentos(query, gerenciarLoginMB.getUsuario());
-
-		List<Medicamento> medicamentosFiltrados = new ArrayList<Medicamento>();
-         
-        for (int i = 0; i < medicamentos.size(); i++) {
-            Medicamento medicamento = medicamentos.get(i);
-            if(medicamento.getNome().trim().toLowerCase().startsWith(query)) {
-            	medicamentosFiltrados.add(medicamento);
-            }
-        }
-        return medicamentosFiltrados;
-	}
-	
-	public List<TipoAlergia> completeTipoAlergia(String query){
-		if (tipoAlergias == null)
-			tipoAlergias = alergiaService.buscaDescricoesTipoAlergias();	
 		
-		return tipoAlergias;
-	}
 	
 	public void salvaAlergia(){
 		alergiaUsuario.setUsuario(gerenciarLoginMB.getUsuario());
-		alergiaService.salvaUsario(alergiaUsuario);
-		this.init();
+		alergiaService.salvaAlergiaUsuario(alergiaUsuario);
+		this.initManter();
 	}
 	
 	public String alteraAlergia(){
-		alergiaService.alteraAlergiaUsario(alergiaUsuario);
+		alergiaService.alteraAlergiaUsuario(alergiaUsuario);
 		return "listarPerfilEmergencia";
 	}
 	
 	public String excluiAlergia(){
-		alergiaService.excluiAlergia(alergiaUsuario);
+		alergiaService.excluiAlergiaUsuario(alergiaUsuario);
 		this.busca();
 		return "listarPerfilEmergencia";
 	}
@@ -114,6 +154,14 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 		return alergiaUsuario;
 	}
 
+	public List<MedicamentoUsuario> getMedicamentosLista() {
+		return medicamentosLista;
+	}
+
+	public void setMedicamentosLista(List<MedicamentoUsuario> medicamentosLista) {
+		this.medicamentosLista = medicamentosLista;
+	}
+
 	public void setAlergiaUsuario(AlergiaUsuario alergiaUsuario) {
 		this.alergiaUsuario = alergiaUsuario;
 	}
@@ -130,26 +178,23 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 		return alergias;
 	}
 
-
 	public void setAlergias(List<AlergiaUsuario> alergias) {
 		this.alergias = alergias;
 	}
-
 
 	public List<Medicamento> getMedicamentos() {
 		return medicamentos;
 	}
 
-
 	public void setMedicamentos(List<Medicamento> medicamentos) {
 		this.medicamentos = medicamentos;
 	}
 
-
 	public List<TipoAlergia> getTipoAlergias() {
+		if (tipoAlergias == null)
+			tipoAlergias = alergiaService.buscaDescricoesTipoAlergias();
 		return tipoAlergias;
 	}
-
 
 	public void setTipoAlergias(List<TipoAlergia> tipoAlergias) {
 		this.tipoAlergias = tipoAlergias;
@@ -162,8 +207,4 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 	public void setEmListagemAlergia(boolean emListagemAlergia) {
 		this.emListagemAlergia = emListagemAlergia;
 	}
-	
-	
-	
-
-}
+}	

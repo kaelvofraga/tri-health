@@ -125,8 +125,8 @@
 						<h:panelGroup layout="block" styleClass="form-group pull-left">
 							<p:commandButton value="Salvar"
 								rendered="#{not manterExameUrinaMB.atualizacao}"
-								action="#{manterExameUrinaMB.salvaExame}" ajax="true"
-								update="exameurina" icon="ui-icon-disk">
+								action="#{manterExameUrinaMB.salvaExame}" ajax="false"
+								update="exameurina,tab-itensExame,itemexameurina" icon="ui-icon-disk">
 							</p:commandButton>
 
 							<p:commandButton value="Alterar"
