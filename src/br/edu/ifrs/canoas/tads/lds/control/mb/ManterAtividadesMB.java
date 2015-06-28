@@ -12,7 +12,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 
 import br.edu.ifrs.canoas.tads.lds.bean.Atividade;
@@ -123,14 +122,13 @@ public class ManterAtividadesMB implements Serializable {
 	 * @param void
 	 * @return String: url da listagem de atividades
 	 * **/
-	public void salvaAtividadeUsuario(){
+	public String salvaAtividadeUsuario(){
 		atividadeUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		if(atvUsuarioService.salvaAtividadeUsuario(atividadeUsuario)){			
-			RequestContext.getCurrentInstance().execute("shareDialog.show()");
 			this.initManter();
-			//return this.initListar();
+			return this.initListar();
 		}
-		//return URL_MANTER_ATIVIDADES;
+		return URL_MANTER_ATIVIDADES;
 	}
 	
 	/** 
@@ -213,17 +211,7 @@ public class ManterAtividadesMB implements Serializable {
 	public void publicarAtividade() {		
 		this.facebookMB.publicarAtividade( this.atvUsuarioService.montaFacebookMensagem(this.atividadeUsuario) );
 	}
-		
-	/** 
-	 * @brief Pergunta se o usuário deseja compartilhar a atividade no Facebook.	  	 		  
-	 * @param void
-	 * @return true se sim, false se não
-	 * */
-	public boolean perguntaCompartilharNoFacebook() {	
-				
-		return false;
-	}	
-	
+			
 	/*
 	 * GETTERS & SETTERS
 	 */	
