@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<ui:define name="content">
+
+		<h1 class="lead">Categoria</h1>
+
+		<p:accordionPanel multiple="true">
+			<p:tab title="Listar categorias">
+
+				<h:panelGroup layout="block" id="atividades">
+
+					<h:panelGroup layout="block" id="tipo">
+					<h:panelGroup layout="block" styleClass="form-group">
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="tipo_atividade" value="Tipo:" />
+							<br />
+							<p:selectOneMenu id="tipo_atividade"
+								value="#{manterCategoriaMB.tipoAtividade.nome}"
+								style="width: 100%;" 
+								required="true" requiredMessage="Um tipo de atividade deve ser escolhida.">								
+								<f:selectItem itemLabel="Selecione o tipo da atividade."
+									itemValue="" noSelectionOption="true" />
+								<f:selectItems value="#{manterAtividadesMB.tipoAtividadeList}"
+									var="tipoAtividade" itemLabel="#{tipoAtividade.nome}" itemValue="#{tipoAtividade}" />
+							</p:selectOneMenu>
+						</h:panelGroup>
+					</h:panelGroup>
+					</h:panelGroup>
+					
+					
+					<h:panelGroup layout="block" styleClass="form-group">
+
+						<p:commandButton value="Busca" type="submit" action="#{manterCategoriaMB.busca}"
+							ajax="true" update="tab-categoria" immediate="false" icon="ui-icon-search" />
+						
+					</h:panelGroup>
+
+					<p:dataTable 
+						id="tab-categoria" 
+						selectionMode="single"
+						emptyMessage="Nenhum Registro Encontrado." 
+						var="categorias"
+						selection="#{manterAtividadesMB.atividadeUsuario}"
+						value="#{manterAtividadesMB.atividadeUsuarioList}" 
+						rowKey="#{atividadeUsuario.id}"
+						reflow="true" >
+
+						<p:ajax event="rowSelect" listener="#{manterAtividadesMB.onRowSelect}" oncomplete="manterAtividadesFisicas"/>
+        				
+						<p:column headerText="Descrição" id="colAtividade" style="width:40%;">
+							<h:outputText
+								value="#{categorias.atividade.descricao}" />
+						</p:column>
+						
+				
+					</p:dataTable>
+					<br />
+
+				</h:panelGroup>
+
+				<p:commandButton value="Nova" action="#{manterCategoriaMB.initManter}" icon="ui-icon-plus" ajax="true" />
+
+			</p:tab>
+
+		</p:accordionPanel>
+
+	</ui:define>
+
+</ui:composition>
+
+

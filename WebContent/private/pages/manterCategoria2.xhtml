@@ -36,6 +36,16 @@
 								required="true" requiredMessage="Descrição deve ser informada.">
 							</p:inputText>
 	    				</h:panelGroup>
+	    				
+	    				<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="met" value="MET:" />
+							<br/>
+							<p:inputText id="met"
+								style="width:80%"
+								value="#{manterCategoriaMB.atividade.MET}"
+								required="true" requiredMessage="MET deve ser informado.">
+							</p:inputText>
+	    				</h:panelGroup>
 	    	</h:panelGrid>	<!-- 2 -->
 	    								
 			<h:panelGroup layout="block" styleClass="form-group" id="buttons">

@@ -22,7 +22,8 @@
 			<p:separator />
 			<p:submenu label="Categorias">
 				<p:submenu label="Atividades" styleClass="nav nav-second-level">					
-					<p:menuitem value="Cadastrar"  action="#{manterCategoriaMB.initManter}"/>
+					<p:menuitem value="Listar" url="/private/pages/listarCategoria.jsf" action="#{manterCategoriaMB.initListar}"/>
+					<p:menuitem value="Cadastrar"  url="/private/pages/manterCategoria2.jsf" action="#{manterCategoriaMB.initManter}"/>
 				</p:submenu>	
 			</p:submenu>
 

@@ -1,21 +1,14 @@
 package br.edu.ifrs.canoas.tads.lds.control.service;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
-import br.edu.ifrs.canoas.tads.lds.bean.Alimento;
 import br.edu.ifrs.canoas.tads.lds.bean.Atividade;
-import br.edu.ifrs.canoas.tads.lds.bean.TipoAlimento;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAtividade;
-import br.edu.ifrs.canoas.tads.lds.model.dao.AlimentoDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.AtividadeDAO;
-import br.edu.ifrs.canoas.tads.lds.model.dao.TipoAlimentoDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.TipoAtividadeDAO;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 
@@ -37,7 +30,7 @@ public class ManterCategoriaService {
 	private TipoAtividadeDAO tipoAtividadeDAO;
 	
 	public Boolean salvaCategoria(Atividade atividade, TipoAtividade tipoAtividade) {
-		if(tipoAtividade == null || tipoAtividade.getNome() == null){	
+		if(tipoAtividade == null || tipoAtividade.getNome() == null ){	
 			Mensagens.define(FacesMessage.SEVERITY_ERROR, "Atividade.cadastro.erro");
 			return false;	
 		}
@@ -46,13 +39,19 @@ public class ManterCategoriaService {
 			Mensagens.define(FacesMessage.SEVERITY_ERROR, "Atividade.cadastro.erro");
 			return false;					
 		}				
-		tipoAtividadeDAO.insere(tipoAtividade);
+		if (tipoAtividadeDAO.buscaPorNome(tipoAtividade).size() == 0)
+			tipoAtividadeDAO.insere(tipoAtividade);
+	
 		atividade.setTipoAtividade(tipoAtividade);
 		atividadeDAO.insere(atividade);		
 		Mensagens.define(FacesMessage.SEVERITY_WARN, "Atividade.cadastro.sucesso");
 		
 		return true;	
 	}	
+	
+	public List<Atividade> buscaDescricoesAtividades() {
+		return atividadeDAO.buscaTodos();
+	}
 		
 	/*
 	public boolean validaData(PesoUsuario pesoUsuario){

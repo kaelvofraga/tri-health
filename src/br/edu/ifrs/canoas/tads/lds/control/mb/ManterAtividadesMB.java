@@ -17,10 +17,12 @@ import org.primefaces.event.SelectEvent;
 import br.edu.ifrs.canoas.tads.lds.bean.Atividade;
 import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAtividade;
+import br.edu.ifrs.canoas.tads.lds.bean.jasper.AtividadesBean;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterAtividadesService;
+import br.edu.ifrs.canoas.tads.lds.relatorio.AtividadeREL;
 import br.edu.ifrs.canoas.tads.lds.social.FacebookMB;
 
-/** ManageBean das views de Manter e Listar Atividades Físicas
+/** ManageBean das views de Manter e Listar Atividades Fï¿½sicas
 * @author Kael Fraga
 * @since 07/05/2015
 * */
@@ -93,7 +95,7 @@ public class ManterAtividadesMB implements Serializable {
 	}
 	
 	/** 
-	 * @brief Busca atividades relacionadas ao usuário logado de acordo com um critério de pesquisa.	  	 		  
+	 * @brief Busca atividades relacionadas ao usuï¿½rio logado de acordo com um critï¿½rio de pesquisa.	  	 		  
 	 * @param void
 	 * @return void
 	 * */
@@ -110,7 +112,7 @@ public class ManterAtividadesMB implements Serializable {
 		/** POJO **/
 		atividadeUsuario = new AtividadeUsuario();
 
-		/** Zera critério de filtro **/
+		/** Zera critï¿½rio de filtro **/
 		criterioAtividadeUsuario = "";
 
 		/** Limpa filtro na lista atividadesUsuarioList **/
@@ -118,7 +120,7 @@ public class ManterAtividadesMB implements Serializable {
 	}
 	
 	/** 
-	 * @brief Vincula usuário logado à atividade e inseri a nova atividade no BD, após limpa formulário
+	 * @brief Vincula usuï¿½rio logado ï¿½ atividade e inseri a nova atividade no BD, apï¿½s limpa formulï¿½rio
 	 * @param void
 	 * @return String: url da listagem de atividades
 	 * **/
@@ -154,9 +156,9 @@ public class ManterAtividadesMB implements Serializable {
 	}
 
 	/** 
-	 * @brief Verifica se a pergunta de compartilhamento deve ser feita.	  	 		  
+	 * @brief Verifica se a atividade atual está sendo inserida nova ou atualizada uma antiga.	  	 		  
 	 * @param void
-	 * @return true se sim, false se não.
+	 * @return true se está atualizando atividade ou false se não.
 	 * */
 	public boolean isAtualizacao(){
 		return atividadeUsuario != null && atividadeUsuario.getId() != null;
@@ -184,7 +186,7 @@ public class ManterAtividadesMB implements Serializable {
 	}
 	
 	/** 
-	 * @brief Atribui valor de calorias queimadas a atividadeUsuario que está sendo trabalhada.	  	 		  
+	 * @brief Atribui valor de calorias queimadas a atividadeUsuario que estï¿½ sendo trabalhada.	  	 		  
 	 * @param void
 	 * @return void
 	 * */
@@ -267,5 +269,20 @@ public class ManterAtividadesMB implements Serializable {
 
 	public void setAtividadeListFiltrada(List<Atividade> atividadeListFiltrada) {
 		this.atividadeListFiltrada = atividadeListFiltrada;
+	}
+	
+	public void gerarRelatorio(){
+		List<AtividadesBean> atividades = new ArrayList<AtividadesBean>();
+		AtividadeREL rel = new AtividadeREL();
+		
+		for(AtividadeUsuario au : this.atividadeUsuarioList){
+			atividades.add(new AtividadesBean().conversor(au));
+		}
+		try{
+			rel.imprimir(atividades);
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+		}
 	}
 }

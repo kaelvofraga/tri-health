@@ -12,23 +12,28 @@
 	
 	<ui:define name="content">
 		<h1 class="lead">Exames de Sangue Realizados</h1>
-		
+		<h:panelGroup layout="block" styleClass="form-group" >
+		 	<p:outputLabel for="usuario" value="Usuário:  "/>
+			<h:outputText id="usuario" value="#{manterExameSangueMB.usuarioExame.usuario.nome.toUpperCase()}" />							 					
+		</h:panelGroup>
 		<h:panelGroup layout="block" id="exames">
 			<p:outputLabel value="Período" /><br />
-			<h:panelGrid columns="3" styleClass="mtable">				
+			<h:panelGrid columns="4" styleClass="mtable">				
 				<h:panelGroup layout="block" styleClass="form-group">
-					<p:outputLabel for="dataInicio" value="Data Inicial" /><br />
-					<p:calendar id="dataInicio" style="width:50px"
+					<p:outputLabel for="dataDe" value="Data Inicial" /><br />
+					<p:calendar id="dataDe" style="width:30px"
+						value="#{manterExameSangueMB.dataDe}"
 						pattern="dd/MM/yyyy" required="true"
 						placeholder="Selecione a data inicial" effect="fold"
 						icon="glyphicon-calendar" />
 				</h:panelGroup>
 				
 				<h:panelGroup layout="block" styleClass="form-group">
-					<p:outputLabel for="dataFinal" value="Data Final" /><br />
-					<p:calendar id="dataFinal" style="width:50px"
+					<p:outputLabel for="dataAte" value="Data Final" /><br />
+					<p:calendar id="dataAte" style="width:30px"
+						value="#{manterExameSangueMB.dataAte}"
 						pattern="dd/MM/yyyy" required="true"
-						placeholder="Selecione a data final" size="25" effect="fold"
+						placeholder="Selecione a data final" effect="fold"
 						icon="glyphicon-calendar" />
 				</h:panelGroup>
 				
@@ -36,6 +41,11 @@
 					<p:commandButton value="Buscar" type="submit"
 						action="#{manterExameSangueMB.busca}" ajax="true"
 						update="tab-exames" immediate="false" />
+				</h:panelGroup>
+				<h:panelGroup layout="block" styleClass="form-group"><br />
+					<p:commandButton value="Limpar" type="submit"
+						action="#{manterExameSangueMB.initListar}" ajax="true"
+						update="tab-exames,dataDe,dataAte" immediate="false"/>
 				</h:panelGroup>			
 			
 			</h:panelGrid>
@@ -49,9 +59,9 @@
 				<p:column headerText="Data Exame" style="width:20%">
 					<h:outputText value="#{listExameSangue.data}" />
 				</p:column>
-				<p:column headerText="Análises realizadas - lista">
-					<h:outputText value="#{listExameSangue.itensExame}" />    <!-- retirei o ponto tipo -->
-				</p:column>
+				<!-- <p:column headerText="Análises realizadas - lista">
+					<h:outputText value="#{listExameSangue.itensExame}" />    
+				</p:column>-->
 
 			</p:dataTable>
 			

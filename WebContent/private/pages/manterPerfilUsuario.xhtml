@@ -248,6 +248,11 @@
 
 		
 		<h:panelGroup layout="block" styleClass="form-group">
+			
+			<p:commandButton value="Imprimir"
+				style="float:right !important; " update="panel"
+				action="#{manterPerfilUsuarioMB.gerarRelatorio}" ajax="false" />
+			
 			<p:commandButton value="#{msg['cadastrarUsuario.button.salvar']}"
 				style="float:right !important; " update="panel"
 				action="#{manterPerfilUsuarioMB.salva}" ajax="false" />

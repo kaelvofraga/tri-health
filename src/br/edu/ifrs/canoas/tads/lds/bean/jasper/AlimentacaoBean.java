@@ -8,6 +8,16 @@ public class AlimentacaoBean {
 	
 	private String dataEmissao = new Date().toString();
 	
+	private String tipoAlimento;
+	
+	private String alimento;
+	
+	private String quantidade;
+	
+	private String calorias;
+	
+	private String totalCalorias;
+
 	public String getNome() {
 		return nome;
 	}
@@ -16,135 +26,44 @@ public class AlimentacaoBean {
 		this.nome = nome;
 	}
 
-	public String getNascimento() {
-		return nascimento;
+	public String getTipoAlimento() {
+		return tipoAlimento;
 	}
 
-	public void setNascimento(String nascimento) {
-		this.nascimento = nascimento;
+	public void setTipoAlimento(String tipoAlimento) {
+		this.tipoAlimento = tipoAlimento;
 	}
 
-	public String getNacionalidade() {
-		return nacionalidade;
+	public String getAlimento() {
+		return alimento;
 	}
 
-	public void setNacionalidade(String nacionalidade) {
-		this.nacionalidade = nacionalidade;
+	public void setAlimento(String alimento) {
+		this.alimento = alimento;
 	}
 
-	public String getGenero() {
-		return genero;
+	public String getQuantidade() {
+		return quantidade;
 	}
 
-	public void setGenero(String genero) {
-		this.genero = genero;
+	public void setQuantidade(String quantidade) {
+		this.quantidade = quantidade;
 	}
 
-	public String getTipoSanguineo() {
-		return tipoSanguineo;
+	public String getCalorias() {
+		return calorias;
 	}
 
-	public void setTipoSanguineo(String tipoSanguineo) {
-		this.tipoSanguineo = tipoSanguineo;
+	public void setCalorias(String calorias) {
+		this.calorias = calorias;
 	}
 
-	public String getTelefone() {
-		return telefone;
+	public String getTotalCalorias() {
+		return totalCalorias;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setTotalCalorias(String totalCalorias) {
+		this.totalCalorias = totalCalorias;
 	}
-
-	public String getCelular() {
-		return celular;
-	}
-
-	public void setCelular(String celular) {
-		this.celular = celular;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getIdiomas() {
-		return idiomas;
-	}
-
-	public void setIdiomas(String idiomas) {
-		this.idiomas = idiomas;
-	}
-
-	public String getCep() {
-		return cep;
-	}
-
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
-
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	public String getPais() {
-		return pais;
-	}
-
-	public void setPais(String pais) {
-		this.pais = pais;
-	}
-
-	private String nascimento;
-	
-	private String nacionalidade;
-	
-	private String genero;
-	
-	private String tipoSanguineo;
-	
-	private String telefone;
-	
-	private String celular;
-	
-	private String email;
-	
-	private String idiomas;
-	
-	private String cep;
-	
-	private String endereco;
-	
-	private String cidade;
-	
-	private String estado;
-	
-	private String pais;
-	
 
 }
