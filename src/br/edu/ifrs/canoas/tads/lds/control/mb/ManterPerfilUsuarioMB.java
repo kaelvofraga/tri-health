@@ -16,18 +16,20 @@ import br.edu.ifrs.canoas.tads.lds.bean.Idioma;
 import br.edu.ifrs.canoas.tads.lds.bean.Pais;
 import br.edu.ifrs.canoas.tads.lds.bean.UnidadeFederativa;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
+import br.edu.ifrs.canoas.tads.lds.bean.jasper.PerfilUsuarioBean;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterCidadeService;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterIdiomaService;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterPaisesService;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterUfService;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterUsuarioService;
+import br.edu.ifrs.canoas.tads.lds.relatorio.PerfilUsuarioREL;
 
 
 /**
  * 
  * @author: Miromar J. Lima
- * Propósito da Classe: Receber dados da classe manterPerfilUsuário.xhtm e 
- * invocar as classes Service que por sua vez invocarão as classes Dao para 
+ * Propï¿½sito da Classe: Receber dados da classe manterPerfilUsuï¿½rio.xhtm e 
+ * invocar as classes Service que por sua vez invocarï¿½o as classes Dao para 
  * fazer busca e armazenamento no banco de dados 
  * Data: 13/05/2015         
  */
@@ -83,7 +85,7 @@ public class ManterPerfilUsuarioMB implements Serializable {
 	/**
 	 * 
 	 * @author: Miromar J. Lima
-	 * Propósito do método: capturar usuário logado e direcionar para pagina manterPerfilUsuario.jsf
+	 * Propï¿½sito do mï¿½todo: capturar usuï¿½rio logado e direcionar para pagina manterPerfilUsuario.jsf
 	 * Data: 13/05/2015         
 	 */
 
@@ -94,7 +96,7 @@ public class ManterPerfilUsuarioMB implements Serializable {
 
 	/**
 	 * @return the cidades
-	 * Verfifica se está nulo para busca as cidades filtrando pela UF
+	 * Verfifica se estï¿½ nulo para busca as cidades filtrando pela UF
 	 */
 	public List<Cidade> getCidades() {
 		if (cidades == null && this.usuario != null
@@ -124,7 +126,7 @@ public class ManterPerfilUsuarioMB implements Serializable {
 	/**
 	 * 
 	 * @author: Miromar J. Lima
-	 * Propósito do método: carregar lista de idiomas para o usuário pelo id
+	 * Propï¿½sito do mï¿½todo: carregar lista de idiomas para o usuï¿½rio pelo id
 	 * Data: 13/05/2015         
 	 */
 	public List<Long> getIdiomasSelecionado() {
@@ -178,7 +180,7 @@ public class ManterPerfilUsuarioMB implements Serializable {
 
 	/**
 	 * @return the ufs
-	 * Propósito do método: carregar lista de UFs para o usuário buscando pelo Pais
+	 * Propï¿½sito do mï¿½todo: carregar lista de UFs para o usuï¿½rio buscando pelo Pais
 	 * Data: 13/05/2015
 	 */
 	public List<UnidadeFederativa> getUfs() {
@@ -204,7 +206,7 @@ public class ManterPerfilUsuarioMB implements Serializable {
 	}
 
 	/**
-	 * Propósito do método: Salva usuário editado, assim como lista de idiomas selecionado, setando pelo ID
+	 * Propï¿½sito do mï¿½todo: Salva usuï¿½rio editado, assim como lista de idiomas selecionado, setando pelo ID
 	 * Data: 13/05/2015
 	 */
 	public void salva() {
@@ -223,7 +225,7 @@ public class ManterPerfilUsuarioMB implements Serializable {
 	}
 	
 	/**
-	 * Propósito do método: Carregar lista de paises usando evento AjaxBehaviorEvent para carregar filtrando lista de UFs e Cidades
+	 * Propï¿½sito do mï¿½todo: Carregar lista de paises usando evento AjaxBehaviorEvent para carregar filtrando lista de UFs e Cidades
 	 * Data: 13/05/2015
 	 */
 	public void paisListener(AjaxBehaviorEvent event) {
@@ -239,7 +241,7 @@ public class ManterPerfilUsuarioMB implements Serializable {
 	
 	
 	/**
-	 * Propósito do método: Carregar lista de ufs usando evento AjaxBehaviorEvent para carregar filtrando lista de Cidades
+	 * Propï¿½sito do mï¿½todo: Carregar lista de ufs usando evento AjaxBehaviorEvent para carregar filtrando lista de Cidades
 	 * Data: 13/05/2015
 	 */
 	public void estadoListener(AjaxBehaviorEvent event) {
@@ -336,4 +338,17 @@ public class ManterPerfilUsuarioMB implements Serializable {
 		this.usuarioService = usuarioService;
 	}
 
+	public void gerarRelatorio(){
+		PerfilUsuarioBean pub = new PerfilUsuarioBean().conversor(usuario);
+		List<PerfilUsuarioBean> lista = new ArrayList<PerfilUsuarioBean>();
+		lista.add(pub);
+		
+		try{
+			PerfilUsuarioREL relatorio = new PerfilUsuarioREL();
+			relatorio.imprimir(lista);
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+	}
 }
