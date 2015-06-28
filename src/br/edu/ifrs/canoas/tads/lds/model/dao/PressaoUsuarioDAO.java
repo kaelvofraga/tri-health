@@ -1,14 +1,10 @@
 package br.edu.ifrs.canoas.tads.lds.model.dao;
 
 import java.util.List;
-
 import javax.ejb.Stateless;
-
 import org.apache.commons.lang3.math.NumberUtils;
-
 import br.edu.ifrs.canoas.tads.lds.bean.PressaoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
-import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
 
 /**
  * Classe que busca dados do objeto "pressaoUsuario" no banco de dados.
@@ -53,9 +49,7 @@ public class PressaoUsuarioDAO extends BaseDAO< PressaoUsuario, Long>{
 		
 		criterio += (NumberUtils.isNumber(criterioPressao)) ? "pu.paDiastolica = "
 				+ new Double(criterioPressao) + "OR pu.paSistolica = " + new Double(criterioPressao) : " lower(pu.notas) like '%" + criterioPressao.toLowerCase() + "%' ";	
-				      
-		
-		
+				  
 		try {
 			return em.createQuery(
 					"SELECT pu FROM PressaoUsuario pu " 
@@ -66,7 +60,4 @@ public class PressaoUsuarioDAO extends BaseDAO< PressaoUsuario, Long>{
 			return null;
 		}
 	}
-
-	
-	
 }

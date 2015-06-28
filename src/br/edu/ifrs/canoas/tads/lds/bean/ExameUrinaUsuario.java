@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -15,9 +16,11 @@ import javax.validation.constraints.NotNull;
 
 
 
-/**@author: André Ficht/Alisson Lorscheiter
+/**@author: André Ficht
  * Proposito da Classe: Classe que representa a entidade do Exame de Urina referenciando ao 
  * usuario e aos tipos de exames presentes na urina.
+ * @author: Alisson Lorscheiter
+ * Criacao da Collection dos ItemsExame.
  * 
  */
 
@@ -32,7 +35,7 @@ public class ExameUrinaUsuario extends BaseEntity<Long> implements Serializable{
 	private Usuario usuario;
 	
 	@NotNull
-	@OneToMany (mappedBy="exameUsuario",fetch = FetchType.EAGER)
+	@OneToMany (mappedBy="exameUsuario",fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	private Collection<ItemExameUrina> itensExame;
 		
 	@Temporal(TemporalType.TIMESTAMP)

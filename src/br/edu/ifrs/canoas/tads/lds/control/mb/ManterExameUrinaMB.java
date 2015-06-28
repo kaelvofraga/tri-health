@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -14,9 +13,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 import org.primefaces.event.SelectEvent;
-
 import br.edu.ifrs.canoas.tads.lds.bean.ExameUrinaUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.ItemExameUrina;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAnalise;
@@ -28,7 +25,6 @@ import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 @SessionScoped
 public class ManterExameUrinaMB implements Serializable{
 
-	
 	private static final long serialVersionUID = 7113326743475818284L;
 	private static final String URL_LISTAR_EXAMEURINA = "/private/pages/listarExameUrina.jsf";
 	private static final String URL_MANTER_EXAMEURINA = "/private/pages/manterExameUrina.jsf";
@@ -48,7 +44,6 @@ public class ManterExameUrinaMB implements Serializable{
 	@EJB
 	private ManterTipoAnaliseService tipoAnaliseService;
 	
-	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataDe;
 	
@@ -57,12 +52,17 @@ public class ManterExameUrinaMB implements Serializable{
 	
 	private String criterioExameUrina;
 	
+	private List<ExameUrinaUsuario> listaExamesUsuario;
 	
-	//listas exames e tipos de exame
-	private List<ExameUrinaUsuario> listaExamesUsuario;	
 	private List<TipoAnalise> tiposAnalise;
 	
 	
+	/** 
+	 * @brief Metodo que inicializa as variaveis ao ser selecionada a opção de listar
+	 * os exames de urina do usuário.	 		  
+	 * @param void
+	 * @return String
+	 * */
 	public String initListar() {
 		exameUrina = new ExameUrinaUsuario();
 		listaExamesUsuario= new ArrayList<>();
@@ -72,6 +72,12 @@ public class ManterExameUrinaMB implements Serializable{
 		return URL_LISTAR_EXAMEURINA;
 	}
 	
+	/** 
+	 * @brief Metodo que inicializa as variaveis ao ser selecionada a opção de cadastrar
+	 * os exames de urina do usuário.	 		  
+	 * @param void
+	 * @return String
+	 * */
 	public String initManter(){
 		exameUrina = new ExameUrinaUsuario();
 		exameUrina.setItensExame(new ArrayList<ItemExameUrina>());
@@ -79,16 +85,32 @@ public class ManterExameUrinaMB implements Serializable{
 		return URL_MANTER_EXAMEURINA;
 	}
 	
+	/** 
+	 * @brief Metodo que seta o tipo de exame selecionado. 		  
+	 * @param void
+	 * @return void
+	 * */
 	public void onSelectTipoAnalise(){
 		itemExameUrina.getTipoAnalise();
 	}
 	
+	/** 
+	 * @brief Metodo que realiza o evento de seleção da linha da tabela que lista
+	 *  os exames de urina do usuário.	 		  
+	 * @param event (SelectEvent)
+	 * @return void
+	 * */
 	public void onRowSelect(SelectEvent event) throws IOException {
 		this.exameUrina = (ExameUrinaUsuario) event.getObject();
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("../../private/pages/manterExameUrina.jsf");
 	}
 	
+	/** 
+	 * @brief Metodo que adiciona a sublista do exame de urina o item selecionado. 		  
+	 * @param void
+	 * @return void
+	 * */
 	public void adicionarExameAnalisado(){
 		if (itemExameUrina != null && !this.exameUrina.getItensExame().contains(itemExameUrina)){
 			this.exameUrina.getItensExame().add(itemExameUrina);
@@ -100,20 +122,55 @@ public class ManterExameUrinaMB implements Serializable{
 		itemExameUrina= new ItemExameUrina();	
 	}
 
+	/** 
+	 * @brief Metodo que verifica se o exameUrinaUsuario está sendo atualizado
+	 * ou é um novo cadastro. 		  
+	 * @param void
+	 * @return boolean
+	 * */
 	public boolean isAtualizacao(){
 		return exameUrina != null && exameUrina.getId() != null;
 	}
 	
+	/** 
+	 * @brief Metodo que verifica se o itemExameUrina está sendo atualizado
+	 * ou é um novo cadastro. 		  
+	 * @param void
+	 * @return boolean  
+	 * */
+	public boolean isAtualizandoItem(){
+		return itemExameUrina != null && exameUrina.getItensExame().contains(itemExameUrina);
+	} 
+	
+	/** 
+	 * @brief Metodo que salva o exameUrinaUsuario no banco de dados	 		  
+	 * @param void
+	 * @return void
+	 * */
 	public void salvaExame(){
 		exameUrina.setUsuario(gerenciarLoginMB.getUsuario());
 		exameUrinaService.salvaExameUrinaUsuario(exameUrina);
 	}
 	
+	/** 
+	 * @brief Metodo que faz alterações no banco de dados das informações de exameUrinaUsuario.
+	 * @param void
+	 * @return String
+	 * */
 	public String alteraExame() {
-		exameUrinaService.alteraExameUrinaUsuario(exameUrina);
+		if(exameUrinaService.alteraExameUrinaUsuario(exameUrina)==true){
 		return URL_LISTAR_EXAMEURINA;
+		}
+		else
+			return URL_MANTER_EXAMEURINA;	
 	}	
 	
+	/** 
+	 * @brief Metodo que exclui do banco de dados o exameUrinaUsuario, retorna a URL 
+	 * da pagina que sera redirecionado.	 		  
+	 * @param void
+	 * @return String
+	 * */
 	public String excluiExame(){
 		if (exameUrinaService.excluiExameUrinaUsuario(exameUrina)){
 			this.busca();
@@ -122,31 +179,27 @@ public class ManterExameUrinaMB implements Serializable{
 		return URL_MANTER_EXAMEURINA;
 	}
 	
+	/** 
+	 * @brief Metodo que realiza a busca da view de listagem de exames de urina do usuario.	 		  
+	 * @param void
+	 * @return void
+	 * */
 	public void busca(){
 	listaExamesUsuario = exameUrinaService.busca(this.getDataDe(),this.getDataAte(),criterioExameUrina);
 	}
 	
-	/*public String novoExameUrina(){
-//		this.emListagemAtvs = false;
-//		this.clear();
-		return URL_MANTER_NOVO_EXAMEURINA;
-	}*/
-	
+	/** 
+	 * @brief Metodo que exclui da sublista de items do exame urina o item selecionado.	 		  
+	 * @param void
+	 * @return void
+	 * */
 	public void excluiItem() {
 		if (itemExameUrina != null && this.exameUrina.getItensExame().contains(itemExameUrina))
 			this.exameUrina.getItensExame().remove(itemExameUrina);
 		itemExameUrina= new ItemExameUrina();	
-
 	}
-	
-	public void alteraItem(){
-		
-	}
-	
 
 	/*GETTERS & SETTERS*/
-	
-	
 	
 	public ExameUrinaUsuario getExameUrina() {
 		return exameUrina;
@@ -189,11 +242,9 @@ public class ManterExameUrinaMB implements Serializable{
 		this.exameUrinaService = exameUrinaService;
 	}
 
-
 	public ItemExameUrina getItemExameUrina() {
 		return itemExameUrina;
 	}
-
 
 	public void setItemExameUrina(ItemExameUrina itemExameUrina) {
 		this.itemExameUrina = itemExameUrina;
@@ -213,6 +264,5 @@ public class ManterExameUrinaMB implements Serializable{
 
 	public void setDataAte(Date dataAte) {
 		this.dataAte = dataAte;
-	}
-		
+	}		
 }
