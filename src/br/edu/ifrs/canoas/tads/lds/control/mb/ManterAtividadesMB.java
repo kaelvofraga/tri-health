@@ -5,8 +5,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javassist.expr.NewArray;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -21,13 +19,8 @@ import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAtividade;
 import br.edu.ifrs.canoas.tads.lds.bean.jasper.AtividadesBean;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterAtividadesService;
-<<<<<<< HEAD
 import br.edu.ifrs.canoas.tads.lds.relatorio.AtividadeREL;
-import br.edu.ifrs.canoas.tads.lds.relatorio.PerfilUsuarioREL;
-import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
-=======
 import br.edu.ifrs.canoas.tads.lds.social.FacebookMB;
->>>>>>> 64f049c0caa8a8468a5153dd61bf56ed1595cfb7
 
 /** ManageBean das views de Manter e Listar Atividades Fï¿½sicas
 * @author Kael Fraga
@@ -163,15 +156,9 @@ public class ManterAtividadesMB implements Serializable {
 	}
 
 	/** 
-<<<<<<< HEAD
-	 * @brief Verifica se a atividade atual estï¿½ sendo inserida nova ou atualizada uma antiga.	  	 		  
+	 * @brief Verifica se a atividade atual está sendo inserida nova ou atualizada uma antiga.	  	 		  
 	 * @param void
-	 * @return true se estï¿½ atualizando atividade ou false se nï¿½o.
-=======
-	 * @brief Verifica se a pergunta de compartilhamento deve ser feita.	  	 		  
-	 * @param void
-	 * @return true se sim, false se não.
->>>>>>> 64f049c0caa8a8468a5153dd61bf56ed1595cfb7
+	 * @return true se está atualizando atividade ou false se não.
 	 * */
 	public boolean isAtualizacao(){
 		return atividadeUsuario != null && atividadeUsuario.getId() != null;
