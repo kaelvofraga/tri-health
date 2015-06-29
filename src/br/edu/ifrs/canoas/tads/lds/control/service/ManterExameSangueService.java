@@ -1,5 +1,6 @@
 package br.edu.ifrs.canoas.tads.lds.control.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -93,25 +94,25 @@ public class ManterExameSangueService {
 		}
 	}
 	
-	/*public void buscaExameSangueUsuario(Date dataDe, Date dataAte) {
+	public void buscaExameSangueUsuario(Date dataDe, Date dataAte) {
 		if (dataDe == null && dataAte == null) {
 			Mensagens.define(FacesMessage.SEVERITY_ERROR,
-					"listarExameSangue.cadastro.datasvazias");
+					"listarExameSangue.consulta.datasvazias");
 			//return false;
 		} else {
 			if (dataDe==null){
 				Mensagens.define(FacesMessage.SEVERITY_ERROR,
-						"listarExameSangue.cadastro.datadevazia");
+						"listarExameSangue.consulta.datadevazia");
 				//return false;
 			}
 			if (dataAte==null){
 				Mensagens.define(FacesMessage.SEVERITY_ERROR,
-						"listarExameSangue.cadastro.dataatevazia");
+						"listarExameSangue.consulta.dataatevazia");
 				//return false;
 			}
 		}
 		//return true;
-	}*/
+	}
 	
 	public List<UsuarioExame> busca(Date dataDe, Date dataAte) {
 		/*if (dataDe == null || dataAte == null || dataDe.compareTo(dataAte) > 0) {
@@ -123,10 +124,15 @@ public class ManterExameSangueService {
 			//dataAte = DateUtil.getDataAtualIncrementa(1);
 		}*/
 		if (dataDe != null && dataAte != null) {
-
-			return usuarioExameDAO.buscaPorCriterio(dataDe,dataAte);
-		} else 
-			return usuarioExameDAO.buscaPorCriterio(dataDe,dataAte);
+			//return usuarioExameDAO.buscaPorCriterio(dataDe,dataAte);
+			return usuarioExameDAO.buscaTodos();
+		} else{
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					"listarExameSangue.consulta.listavazia");
+			return usuarioExameDAO.buscaTodos();
+			//ArrayList<UsuarioExame>();
+		}
+			//return usuarioExameDAO.buscaPorCriterio(dataDe,dataAte);
 			//return usuarioExameDAO.buscaTodos(); estava isso, comentei e coloquei o de cima , 
 													//por que havia erro-->>CORRIGIR
 	}
@@ -144,19 +150,47 @@ public class ManterExameSangueService {
 		}
 	}*/
 
-	public void alteraExameSangue(UsuarioExame usuarioExame) {
-		usuarioExameDAO.atualiza(usuarioExame);
+	public boolean alteraExameSangue(UsuarioExame usuarioExame) {
+		try{
+			if (validaData(usuarioExame) == false){
+				Mensagens.define(FacesMessage.SEVERITY_INFO, "manterExameSangue.cadastro.data.erro");
+				return false;
+			}
+			usuarioExameDAO.atualiza(usuarioExame);
+			Mensagens.define(FacesMessage.SEVERITY_INFO, "manterExameSangue.altera.sucesso");
+			return true;
+		}catch(IllegalArgumentException e){
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,"manterExameSangue.altera.excecao.erro");
+			return false;
+		}
 	}
 
-	public boolean excluiExameUrina(UsuarioExame usuarioExame) {
-
+	public boolean excluiExameSangueUsuario(UsuarioExame usuarioExame) {
+		try {
+			if (usuarioExame.getId() != null && usuarioExame != null) {
+				usuarioExameDAO.exclui(usuarioExame.getId());
+				Mensagens.define(FacesMessage.SEVERITY_INFO,"manterExameSangue.exclui.sucesso");
+				return true;
+			} else {
+				Mensagens.define(FacesMessage.SEVERITY_INFO,"manterExameSangue.exclui.erro");
+				return false;
+			}
+		} catch (IllegalArgumentException e) {
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,"manterExameSangue.exclui.excecao.erro");
+			return false;
+		}
+	}
+	
+	public boolean validaData(UsuarioExame usuarioExame) {
+		long timeSysDate = new Date().getTime();
+		long timeData = usuarioExame.getData().getTime();
+		if (timeData > timeSysDate) {
+			return false;
+		}
 		return true;
 	}
 
-	public void buscaExameSangueUsuario(Date dataDe, Date dataAte) {
-		// TODO Auto-generated method stub
-		
-	}
+
 	
 	
 

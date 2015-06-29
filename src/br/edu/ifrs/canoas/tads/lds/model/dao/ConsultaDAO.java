@@ -2,10 +2,7 @@ package br.edu.ifrs.canoas.tads.lds.model.dao;
 
 import java.io.Serializable;
 import java.util.List;
-
 import br.edu.ifrs.canoas.tads.lds.bean.Consulta;
-import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
-import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Medico;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 
@@ -45,5 +42,27 @@ public class ConsultaDAO extends BaseDAO<Consulta, Long> implements Serializable
 		catch (IllegalArgumentException e) {
 			return null;
 		}
+	}
+	
+	/** 
+	 * @author Alisson Lorscheiter
+	 * @brief Busca consulta baseado no usuario.  	 		  
+	 * @param Usuario usuario: usuario logado.
+	 * @return List<Consulta>: lista de pesos ou null se um erro ocorrer
+	 * */
+	@SuppressWarnings("unchecked")
+	public List<Consulta> buscaConsultaPorUsuario(Usuario usuario) {
+		try {
+		return em.createQuery(
+		         "SELECT c " 
+		         + "FROM Consulta c "
+		         + "WHERE c.usuario.id = :usuario ")
+		         .setParameter("usuario", usuario.getId())
+		         .getResultList();
+		}
+		catch (IllegalArgumentException e) {
+			return null;
+		}
+		
 	}
 }

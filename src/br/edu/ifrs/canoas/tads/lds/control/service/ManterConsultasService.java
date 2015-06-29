@@ -2,15 +2,10 @@ package br.edu.ifrs.canoas.tads.lds.control.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
-
-import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Consulta;
-import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
-import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Medico;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 import br.edu.ifrs.canoas.tads.lds.model.dao.ConsultaDAO;
@@ -160,6 +155,20 @@ public class ManterConsultasService {
 		if (query != null)
 			return consultaDAO.buscaNomeMedico();
 		return new ArrayList<Medico>();
+	}
+	
+	/** 
+	 * @author Alisson Lorscheiter
+	 * @brief Metodo que realiza busca no banco de dados das consultas do usuário
+	 * Retorna lista de Consulta.	 		  
+	 * @param usuario(Usuario)
+	 * @return List<Consulta>
+	 * */
+	public List<Consulta> buscaConsultaporUsuario(Usuario usuario) {
+		if (usuario != null && usuario.getId() != null){
+			return consultaDAO.buscaConsultaPorUsuario(usuario);
+		}
+		return new ArrayList<Consulta>();
 	}
 
 }

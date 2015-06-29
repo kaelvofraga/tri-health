@@ -6,11 +6,24 @@ import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 import br.edu.ifrs.canoas.tads.lds.bean.AlergiaUsuario;
+import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAlergia;
 import br.edu.ifrs.canoas.tads.lds.model.dao.AlergiaUsuarioDAO;
+import br.edu.ifrs.canoas.tads.lds.model.dao.MedicamentoUsuarioDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.TipoAlergiaDAO;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
+
+/** 
+ * @author RodrigoNoll 		  
+ * Service Implementations por AlergiaUsuario
+ * @author Alisson Lorscheiter
+ * @version 28/06/2015
+ * Foi alterado o metodo de salvar e alterar.
+ * Foi adicionado o metodo de validação da Data.
+ * Foi alterado o metodo de busca dos tiposAlergia.
+ * Foi adicionado comentários aos metodos. * 
+ * */
 
 @Stateless
 public class ManterAlergiaService {
@@ -20,6 +33,9 @@ public class ManterAlergiaService {
 		
 	@Inject
 	private TipoAlergiaDAO tipoAlergiaDAO;
+	
+	@Inject
+	private MedicamentoUsuarioDAO medicamentoUsuarioDAO;
 	
 	@Inject
 	private ManterUsoMedicamentoService manterUsoMedicamentoService;
@@ -46,18 +62,19 @@ public class ManterAlergiaService {
 		try {
 			if(alergiaUsuario.getTipoAlergia().getId()==4){
 			alergiaUsuario.getMedicamentoUsuario().setDataConsulta(alergiaUsuario.getDataPrimeiraOcorrencia());
-			manterUsoMedicamentoService.salvaMedicamentoUsuario(alergiaUsuario.getMedicamentoUsuario());
+			alergiaUsuario.getMedicamentoUsuario().setUsuario(alergiaUsuario.getUsuario());
+			alergiaUsuario.getMedicamentoUsuario().setMedicamento(buscaOuCriaMedicamentoPorNome(alergiaUsuario.getMedicamentoUsuario().getMedicamento()));
+			medicamentoUsuarioDAO.insere(alergiaUsuario.getMedicamentoUsuario());
 			alergiaUsuarioDAO.insere(alergiaUsuario);
-			Mensagens.define(FacesMessage.SEVERITY_INFO, "manterPerfilEmergencia.cadastro.sucesso");
+			Mensagens.define(FacesMessage.SEVERITY_INFO,"manterPerfilEmergencia.cadastro.sucesso");
 			return true;
 			}
 			else{
-				Mensagens.define(FacesMessage.SEVERITY_INFO, "manterPerfilEmergencia.tpAlergia.erro");
+				Mensagens.define(FacesMessage.SEVERITY_INFO,"manterPerfilEmergencia.tpAlergia.erro");
 				return false;
 			}
 		} catch (Exception e) {
-			Mensagens.define(FacesMessage.SEVERITY_ERROR,
-					"manterPerfilEmergencia.cadastro.erro");
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,"manterPerfilEmergencia.cadastro.erro");
 			return false;
 		}	
 	}
@@ -77,6 +94,15 @@ public class ManterAlergiaService {
 			return false;
 		}
 		return true;
+	}
+	
+	/** 
+	 * @brief Metodo que busca medicamento ou cria se não existir.	 		  
+	 * @param medicamento(Medicamento)
+	 * @return Medicamento
+	 * */
+	public Medicamento buscaOuCriaMedicamentoPorNome(Medicamento medicamento){
+		return manterUsoMedicamentoService.buscaOuCriaMedicamentoPorNome(medicamento);
 	}
 	
 	/** 
@@ -138,6 +164,12 @@ public class ManterAlergiaService {
 		}
 	}
 
+	/** 
+	 * @brief Metodo que realiza a exclusao do banco de dados da alergia do usuário
+	 * Retorna V ou F se conseguiu excluir.	 		  
+	 * @param alergiaUsuario(AlergiaUsuario)
+	 * @return boolean
+	 * */
 	public boolean excluiAlergiaUsuario(AlergiaUsuario alergiaUsuario) {
 		if (alergiaUsuario.getId() != null && alergiaUsuario != null) {
 		alergiaUsuarioDAO.exclui(alergiaUsuario.getId());
