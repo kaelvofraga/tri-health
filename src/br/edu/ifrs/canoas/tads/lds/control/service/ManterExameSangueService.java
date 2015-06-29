@@ -93,25 +93,25 @@ public class ManterExameSangueService {
 		}
 	}
 	
-	/*public void buscaExameSangueUsuario(Date dataDe, Date dataAte) {
+	public void buscaExameSangueUsuario(Date dataDe, Date dataAte) {
 		if (dataDe == null && dataAte == null) {
 			Mensagens.define(FacesMessage.SEVERITY_ERROR,
-					"listarExameSangue.cadastro.datasvazias");
+					"listarExameSangue.consulta.datasvazias");
 			//return false;
 		} else {
 			if (dataDe==null){
 				Mensagens.define(FacesMessage.SEVERITY_ERROR,
-						"listarExameSangue.cadastro.datadevazia");
+						"listarExameSangue.consulta.datadevazia");
 				//return false;
 			}
 			if (dataAte==null){
 				Mensagens.define(FacesMessage.SEVERITY_ERROR,
-						"listarExameSangue.cadastro.dataatevazia");
+						"listarExameSangue.consulta.dataatevazia");
 				//return false;
 			}
 		}
 		//return true;
-	}*/
+	}
 	
 	public List<UsuarioExame> busca(Date dataDe, Date dataAte) {
 		/*if (dataDe == null || dataAte == null || dataDe.compareTo(dataAte) > 0) {
@@ -125,8 +125,11 @@ public class ManterExameSangueService {
 		if (dataDe != null && dataAte != null) {
 
 			return usuarioExameDAO.buscaPorCriterio(dataDe,dataAte);
-		} else 
-			return usuarioExameDAO.buscaPorCriterio(dataDe,dataAte);
+		} else
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					"listarExameSangue.consulta.listavazia");
+			return null;
+			//return usuarioExameDAO.buscaPorCriterio(dataDe,dataAte);
 			//return usuarioExameDAO.buscaTodos(); estava isso, comentei e coloquei o de cima , 
 													//por que havia erro-->>CORRIGIR
 	}
@@ -153,10 +156,7 @@ public class ManterExameSangueService {
 		return true;
 	}
 
-	public void buscaExameSangueUsuario(Date dataDe, Date dataAte) {
-		// TODO Auto-generated method stub
-		
-	}
+
 	
 	
 
