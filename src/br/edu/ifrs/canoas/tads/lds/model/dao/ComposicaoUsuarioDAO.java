@@ -1,6 +1,7 @@
 package br.edu.ifrs.canoas.tads.lds.model.dao;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -32,8 +33,21 @@ public class ComposicaoUsuarioDAO extends BaseDAO<ComposicaoUsuario, Long> imple
 		return em
 				.createQuery(
 						"SELECT co FROM ComposicaoUsuario co "
-								+ "WHERE co.usuario.id = :usuario ORDER BY co.data")
+								+ "WHERE co.usuario.id = :usuario ORDER BY co.data DESC")
 				.setParameter("usuario", usuario.getId()).getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<ComposicaoUsuario> buscaPorCriterio(Date criterio, Usuario usuario){
+		try {	
+			String str = "SELECT TOP 1 * FROM composicaoUsuario WHERE data BETWEEN DATE'"; 
+			str+=criterio; 
+			str+="' AND DATE'2999-10-30' AND co.usuario.id = :usuario ORDER BY co.data";
+						
+			return em.createQuery(str).setParameter("usuario", usuario.getId()).getResultList();
+			
+		} catch (IllegalArgumentException e) {
+			return null;
+		}
+	}
 }

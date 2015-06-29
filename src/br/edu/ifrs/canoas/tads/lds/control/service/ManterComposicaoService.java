@@ -1,12 +1,14 @@
 package br.edu.ifrs.canoas.tads.lds.control.service;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
 import br.edu.ifrs.canoas.tads.lds.bean.ComposicaoUsuario;
+import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 import br.edu.ifrs.canoas.tads.lds.model.dao.ComposicaoDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.ComposicaoUsuarioDAO;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
@@ -73,5 +75,24 @@ public class ManterComposicaoService {
 		}
 
 		return true;
+	}
+
+	public ComposicaoUsuario buscaGeral(long criterio, Usuario usuario) {
+		ComposicaoUsuario composicao = null;
+
+		if (criterio != 0) {
+			Date data = new Date(criterio);
+			if (composicaoUsuarioDAO.buscaPorCriterio(data, usuario).size() > 0) {
+				composicao = composicaoUsuarioDAO.buscaPorCriterio(data,
+						usuario).get(0);
+			}
+		} else {
+			if (composicaoUsuarioDAO.buscaComposicoesDoUsuario(usuario).size() > 0) {
+				composicao = composicaoUsuarioDAO.buscaComposicoesDoUsuario(
+						usuario).get(0);
+			}
+		}
+
+		return composicao;
 	}
 }
