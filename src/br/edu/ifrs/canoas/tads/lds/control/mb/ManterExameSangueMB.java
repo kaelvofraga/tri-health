@@ -142,12 +142,12 @@ public class ManterExameSangueMB implements Serializable{
 	}
 	
 	public String initListar() {
-		//usuarioExame = new UsuarioExame();
 		usuarioExame.setUsuario(gerenciarLoginMB.getUsuario());
-		usuarioExame.setItensExame(new ArrayList<ItemExameSangue>());
+		usuarioExame = new UsuarioExame();
+		listaExames = new ArrayList<>();
+		//usuarioExame.setItensExame(new ArrayList<ItemExameSangue>());
 		//usuarioExame.setItensExame(itemExameSangue.setTipoAnalise(tipoAnaliseService.buscaTipoAnalise()));
-		itemExameSangue.setTipoAnalise(new TipoAnalise());
-		//listaExames = new ArrayList<>();
+		//itemExameSangue.setTipoAnalise(new TipoAnalise());
 		//criterioExameSangue="";
 		dataDe = null;
 		dataAte = new Date();
@@ -204,28 +204,24 @@ public class ManterExameSangueMB implements Serializable{
 		listaExames = exameSangueService.busca(this.getDataDe(),this.getDataAte());
 	}
 	
-	/*public void busca(){
-		listaExames = exameSangueService.busca(this.getDataDe(),this.getDataAte(),criterioExameSangue);
-	}*/
-		
-	//public void clear(){
-		//usuarioExame = new UsuarioExame();
-		//usuarioExame.setItensExame(new ArrayList<ItemExameSangue>());
-		//itemExameSangue.setTipoAnalise(new TipoAnalise());
-	//}
-	
 	public String alteraExame() {
-		exameSangueService.alteraExameSangue(usuarioExame);
-		return URL_LISTAR_EXAMESANGUE;
+		if (exameSangueService.alteraExameSangue(usuarioExame)==true){
+			return URL_LISTAR_EXAMESANGUE;
+		}else
+			return URL_MANTER_EXAMESANGUE;
 	}
 	
 	public String excluiExame(){
-		if (exameSangueService.excluiExameUrina(usuarioExame)){
+		if (exameSangueService.excluiExameSangueUsuario(usuarioExame)){
 			this.busca();
 			return URL_LISTAR_EXAMESANGUE;
 		}
 		return URL_MANTER_EXAMESANGUE;
 	}
+	
+	public boolean isAtualizandoItem(){
+		return itemExameSangue != null && usuarioExame.getItensExame().contains(itemExameSangue) && itemExameSangue.getId()!= null;
+	} 
 	
 
 	

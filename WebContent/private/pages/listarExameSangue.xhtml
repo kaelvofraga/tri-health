@@ -23,7 +23,7 @@
 					<p:outputLabel for="dataDe" value="Data Inicial" /><br />
 					<p:calendar id="dataDe" style="width:30px"
 						value="#{manterExameSangueMB.dataDe}"
-						pattern="dd/MM/yyyy" required="true"
+						pattern="dd/MM/yyyy" required="false"
 						placeholder="Selecione a data inicial" effect="fold"
 						icon="glyphicon-calendar" />
 				</h:panelGroup>
@@ -32,7 +32,7 @@
 					<p:outputLabel for="dataAte" value="Data Final" /><br />
 					<p:calendar id="dataAte" style="width:30px"
 						value="#{manterExameSangueMB.dataAte}"
-						pattern="dd/MM/yyyy" required="true"
+						pattern="dd/MM/yyyy" required="false"
 						placeholder="Selecione a data final" effect="fold"
 						icon="glyphicon-calendar" />
 				</h:panelGroup>
@@ -56,8 +56,11 @@
 				
 				<p:ajax event="rowSelect" listener="#{manterExameSangueMB.onRowSelect}" oncomplete="/private/pages/manterExameSangue.jsf"/>
 				
-				<p:column headerText="Data Exame" style="width:20%">
+				<p:column headerText="Data Exame" id="colData">
 					<h:outputText value="#{listExameSangue.data}" />
+				</p:column>
+				<p:column headerText="Observação" id="colObservacao">
+					<h:outputText value="#{listExameSangue.observacao}" />
 				</p:column>
 				<!-- <p:column headerText="Análises realizadas - lista">
 					<h:outputText value="#{listExameSangue.itensExame}" />    

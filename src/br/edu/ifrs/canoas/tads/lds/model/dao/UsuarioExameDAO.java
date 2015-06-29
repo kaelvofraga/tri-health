@@ -19,6 +19,19 @@ public class UsuarioExameDAO extends BaseDAO<UsuarioExame, Long>{
 	@SuppressWarnings("unchecked")
 	public List<UsuarioExame> buscaPorCriterio(Date dataDe, Date dataAte) {
 		try {
+			return em.createQuery(
+					"SELECT ue FROM usuarioexame ue "
+					+ "WHERE ue.data "
+					+ "between :dataDe and :dataAte "
+					+ "ORDER BY ue.data")
+					.getResultList();
+		} catch (IllegalArgumentException e) {
+			return null;
+		}
+	}
+	
+	/*public List<UsuarioExame> buscaPorCriterio(Date dataDe, Date dataAte) {
+		try {
 			String query="SELECT ue FROM usuarioexame ue "
 					+ "WHERE ue.data "
 					+ "between :dataDe and :dataAte "
@@ -30,7 +43,7 @@ public class UsuarioExameDAO extends BaseDAO<UsuarioExame, Long>{
 		} catch (IllegalArgumentException e) {
 			return null;
 		}
-	}
+	}*/
 
 }
 
