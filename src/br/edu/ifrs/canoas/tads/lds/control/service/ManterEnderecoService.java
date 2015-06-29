@@ -21,7 +21,7 @@ import br.edu.ifrs.canoas.tads.lds.model.dao.EnderecoDAO;
 public class ManterEnderecoService {
 
 	@Inject
-	EnderecoDAO enderecoDAO;
+	private EnderecoDAO enderecoDAO;
 	
 	public List<Endereco> buscaTodosEnderecos() {
 		return enderecoDAO.buscaTodos();
