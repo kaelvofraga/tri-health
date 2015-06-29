@@ -15,6 +15,7 @@ import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
+import org.primefaces.model.UploadedFile;
 
 import br.edu.ifrs.canoas.tads.lds.bean.ExameCardiologico;
 import br.edu.ifrs.canoas.tads.lds.bean.Medico;
@@ -23,7 +24,7 @@ import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 import br.edu.ifrs.canoas.tads.lds.control.service.ExameCardidologicoService;
 
 /**
- * @author: Miromar José de Lima 
+ * @author: Miromar Josï¿½ de Lima 
  * 
  * Classe para representar a View manterExameCardiologico.jsf.
  * 
@@ -53,6 +54,8 @@ public class ManterExameCardiologicoMB implements Serializable {
 	private ExameCardiologico exameCardi;
 
 	private String criterio = "";
+	
+	private UploadedFile file;
 
 	private List<ExameCardiologico> listExameCardiologico;
 	private List<TipoExame> listTipoExame;
@@ -101,11 +104,17 @@ public class ManterExameCardiologicoMB implements Serializable {
 	}
 
 	public void salvaExame() {
+		if(file != null) {
+            FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+		
 		exameCardi.setUsuario(gerenciarLoginMB.getUsuario());
 		exameCardidologicoService.salvaExameCard(exameCardi);
-
+		initListar();
 	}
-
+	
+	
 	public boolean isEmEdicao() {
 		return exameCardi != null && exameCardi.getId() != null;
 	}
@@ -170,7 +179,13 @@ public class ManterExameCardiologicoMB implements Serializable {
 	public void setListTipoExame(List<TipoExame> listTipoExame) {
 		this.listTipoExame = listTipoExame;
 	}
-
+	public UploadedFile getFile() {
+        return file;
+    }
+ 
+    public void setFile(UploadedFile file) {
+        this.file = file;
+    }
 	
 	
 	 /* 

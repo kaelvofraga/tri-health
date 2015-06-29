@@ -81,7 +81,8 @@
 						<h:panelGroup layout="block" styleClass="form-group">
 							<p:outputLabel for="arquivoLaudo" value="Laudo (Arquivo em .pdf):" />
 							<br />
-							<p:fileUpload id="arquivoLaudo" value="#{manterExameCardiologicoMB.exame.arquivoLaudo}"></p:fileUpload>
+							
+							<p:fileUpload id = "arquivoLaudo" value="#{manterExameCardiologicoMB.file}" mode="simple" skinSimple="true"/>
 						</h:panelGroup>
 					</h:panelGrid>
 					
@@ -102,8 +103,8 @@
 						<h:panelGroup layout="block" styleClass="form-group pull-left">
 							<p:commandButton value="Salvar"
 								rendered="#{not manterExameCardiologicoMB.atualizacao}"
-								action="#{manterExameCardiologicoMB.salvaExame}" ajax="true"
-								icon="ui-icon-disk" update="panel" />
+								actionListener="#{manterExameCardiologicoMB.salvaExame}" ajax="false"
+								icon="ui-icon-disk"  />
 
 							<p:commandButton value="Salvar alterações"
 								rendered="#{manterExameCardiologicoMB.atualizacao}"
