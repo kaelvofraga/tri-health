@@ -64,8 +64,14 @@ public class ManterHospitalMB implements Serializable {
 		endereco = new Endereco();
 		hospital = new Hospital();
 		
-		centroLat = "-30.1088701";
-		centroLng = "-51.1769046";
+		/*
+		 * centroLat = "-30.1088701";
+			centroLng = "-51.1769046";
+		 *
+		 * */
+
+		centroLat = "-30.03508670894354";
+		centroLng = "-51.21894867968746";
 		
 		listaHospital = this.getListaHospital();
 		listaEndereco = this.getListaEndereco();
