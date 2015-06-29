@@ -20,10 +20,6 @@
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
-			<image>
-				<reportElement x="189" y="0" width="164" height="78" uuid="0d4fca03-0117-4d8e-8bb2-eb745748c264"/>
-				<imageExpression><![CDATA["/Users/lucianoacosta/Development/personal/tri-health/WebContent/resources/images/logo-tri-health.jpg"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<pageHeader>

@@ -36,7 +36,6 @@ public class AtividadesBean {
 	public void setAtividade(String atividade) {
 		this.atividade = atividade;
 	}
-
 	public String getTipo() {
 		return tipo;
 	}
