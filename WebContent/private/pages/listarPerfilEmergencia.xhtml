@@ -27,11 +27,11 @@
 
 					<h:panelGroup layout="block" styleClass="form-group">
 						<p:commandButton value="Busca" type="submit"
-							action="#{manterPerfilEmergenciaMB.buscaAlergias}" ajax="true"
+							action="#{manterPerfilEmergenciaMB.buscaAlergias}" ajax="false"
 							update="tab-alergias,tab-consultas,tab-medicamentos" immediate="false" />
 						<p:commandButton value="Limpa" type="submit"
 							action="#{manterPerfilEmergenciaMB.initListar}" ajax="true"
-							update="tab-alergias,criterio_alergia" immediate="false" />
+							update="tab-alergias,tab-consultas,tab-medicamentos,criterio_alergia" immediate="false" />
 					</h:panelGroup>
 
 

@@ -2,6 +2,7 @@ package br.edu.ifrs.canoas.tads.lds.control.service;
 
 import java.util.Date;
 import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
@@ -9,6 +10,7 @@ import br.edu.ifrs.canoas.tads.lds.bean.AlergiaUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAlergia;
 import br.edu.ifrs.canoas.tads.lds.model.dao.AlergiaUsuarioDAO;
+import br.edu.ifrs.canoas.tads.lds.model.dao.MedicamentoDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.MedicamentoUsuarioDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.TipoAlergiaDAO;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
@@ -36,6 +38,9 @@ public class ManterAlergiaService {
 	
 	@Inject
 	private MedicamentoUsuarioDAO medicamentoUsuarioDAO;
+	
+	@Inject
+	private MedicamentoDAO medicamentoDAO;
 	
 	@Inject
 	private ManterUsoMedicamentoService manterUsoMedicamentoService;
@@ -146,7 +151,10 @@ public class ManterAlergiaService {
 			}
 			if(alergiaUsuario.getTipoAlergia().getId()==4){
 			alergiaUsuario.getMedicamentoUsuario().setDataConsulta(alergiaUsuario.getDataPrimeiraOcorrencia());
-			manterUsoMedicamentoService.alteraMedicamentoUsario(alergiaUsuario.getMedicamentoUsuario());	
+			alergiaUsuario.getMedicamentoUsuario().setUsuario(alergiaUsuario.getUsuario());
+			alergiaUsuario.getMedicamentoUsuario().setMedicamento(buscaOuCriaMedicamentoPorNome(alergiaUsuario.getMedicamentoUsuario().getMedicamento()));
+			medicamentoDAO.atualiza(alergiaUsuario.getMedicamentoUsuario().getMedicamento());
+			medicamentoUsuarioDAO.atualiza(alergiaUsuario.getMedicamentoUsuario());	
 			alergiaUsuarioDAO.atualiza(alergiaUsuario);
 			Mensagens.define(FacesMessage.SEVERITY_INFO,
 					"manterPerfilEmergencia.altera.sucesso");
