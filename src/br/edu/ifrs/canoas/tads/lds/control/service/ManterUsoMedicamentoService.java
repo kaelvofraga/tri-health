@@ -50,11 +50,21 @@ public class ManterUsoMedicamentoService {
 	 * Busca medicamentos que estao cadastrados pro usuario, passando o usuario
 	 * e uma string para buscar
 	 */
-	public List<Medicamento> buscaMedicamentoUsuario(String query,
-			Usuario usuario) {
+	public List<Medicamento> buscaMedicamentoUsuario(String query,Usuario usuario) {
 		if (usuario != null && usuario.getId() != null)
 			return medicamentoDAO.buscaNomeMedicamentoPorUsuario(usuario);
 		return new ArrayList<Medicamento>();
+	}
+	
+	/*
+	 * Busca medicamentosUsuario que estao cadastrados pro usuario, passando o usuario
+	 * 
+	 */
+	public List<MedicamentoUsuario> buscaMedicamentoUsuarioporUsuario(Usuario usuario) {
+		if (usuario != null && usuario.getId() != null){
+			return medicamentoUsuarioDAO.buscaMedicamentoPorUsuario(usuario);
+		}
+		return new ArrayList<MedicamentoUsuario>();
 	}
 
 	/*

@@ -8,8 +8,6 @@ package br.edu.ifrs.canoas.tads.lds.model.dao;
 import java.util.List;
 
 import javax.ejb.Stateless;
-
-import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 
@@ -20,10 +18,10 @@ public class MedicamentoUsuarioDAO extends BaseDAO< MedicamentoUsuario, Long>{
 
 	/*Metodo para buscar do banco os medicamentos do MedicamentoUsuario passando como parametro o usuario */
 	@SuppressWarnings("unchecked")
-	public List<Medicamento> buscaNomeMedicamentoPorUsuario(Usuario usuario) {
+	public List<MedicamentoUsuario> buscaMedicamentoPorUsuario(Usuario usuario) {
 		try {
 		return em.createQuery(
-		         "SELECT mu.medicamento " 
+		         "SELECT mu " 
 		         + "FROM MedicamentoUsuario mu "
 		         + "WHERE mu.usuario.id = :usuario ")
 		         .setParameter("usuario", usuario.getId())

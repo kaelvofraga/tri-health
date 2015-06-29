@@ -1,23 +1,36 @@
 package br.edu.ifrs.canoas.tads.lds.control.mb;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-
+import org.primefaces.event.SelectEvent;
 import br.edu.ifrs.canoas.tads.lds.bean.AlergiaUsuario;
+import br.edu.ifrs.canoas.tads.lds.bean.Consulta;
 import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
-import br.edu.ifrs.canoas.tads.lds.bean.PesoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAlergia;
-import br.edu.ifrs.canoas.tads.lds.bean.Udm;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterAlergiaService;
+import br.edu.ifrs.canoas.tads.lds.control.service.ManterConsultasService;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterUsoMedicamentoService;
+
+/** 
+ * @author RodrigoNoll 		  
+ * ManageBean Implementations por AlergiaUsuario
+ * @author Alisson Lorscheiter
+ * @version 28/06/2015
+ * Foram criados os metodos initListar,initManter,onSelectTipoAlergia.
+ * Foi alterado o metodo de completeAlergia.
+ * Foram alterados os metodos de salvar,alterar e excluir.
+ * Foi adicionado comentarios aos metodos.
+ * Foi alterado os Gets das listas de medicamentosUsuario e Consultas. 
+ * */
 
 @Named
 @SessionScoped
@@ -36,23 +49,26 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 	@Inject
 	private ManterUsoMedicamentoService medicamentoService;
 	
+	@Inject
+	private ManterConsultasService consultasService;
+	
 	private AlergiaUsuario alergiaUsuario;
+	
+	private Consulta consultaMedica;
 	
 	private boolean emListagemAlergia;
 
 	//Lista Alergia
 	private List<AlergiaUsuario> alergias;
 	private List<MedicamentoUsuario> medicamentosLista;
+	private List<Consulta> consultasMedicas;
 	private String criterioAlergia;
 	
 	//Form Alergia
 	private List<Medicamento> medicamentos;
 	private List<TipoAlergia> tipoAlergias;
 
-	public ManterPerfilEmergenciaMB() {
-	}
-	
-	
+		
 	/** 
 	 * @brief Metodo que inicializa as variaveis ao ser selecionada a opção de listar
 	 * os pesos do usuário.	 		  
@@ -61,9 +77,11 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 	 * */
 	public String initListar() {
 		alergiaUsuario = new AlergiaUsuario();
+		alergiaUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		criterioAlergia = "";
 		alergias = new ArrayList<AlergiaUsuario>();
-		medicamentosLista= new ArrayList<MedicamentoUsuario>();
+		medicamentosLista= this.getMedicamentosLista();
+		consultasMedicas=this.getConsultasMedicas();
 		return URL_LISTAR_PERFIL_EMERGENCIA;
 	}
 
@@ -112,38 +130,75 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 		alergiaUsuario.getTipoAlergia();
 	}
 	
-	
-	public void busca(){
+	/** 
+	 * @brief Metodo que realiza a busca da view de listagem de alergias do usuario.	 		  
+	 * @param void
+	 * @return void
+	 * */
+	public void buscaAlergias(){
 		alergias = alergiaService.busca(criterioAlergia);
 	}
 		
-	
+	/** 
+	 * @brief Metodo que salva o alergiaUsuario no banco de dados	 		  
+	 * @param void
+	 * @return void
+	 * */
 	public void salvaAlergia(){
 		alergiaUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		alergiaService.salvaAlergiaUsuario(alergiaUsuario);
 		this.initManter();
 	}
 	
+	/** 
+	 * @brief Metodo que altera no banco de dados o alergiaUsuario, retorna a URL 
+	 * da pagina que sera redirecionado.	 		  
+	 * @param void
+	 * @return String
+	 * */
 	public String alteraAlergia(){
-		alergiaService.alteraAlergiaUsuario(alergiaUsuario);
-		return "listarPerfilEmergencia";
+		if(alergiaService.alteraAlergiaUsuario(alergiaUsuario)==true){
+			return URL_LISTAR_PERFIL_EMERGENCIA;
+			}
+			else{
+				return URL_MANTER_PERFIL_EMERGENCIA;
+			}
 	}
 	
+	/** 
+	 * @brief Metodo que exclui do banco de dados o alergiaUsuario, retorna a URL 
+	 * da pagina que sera redirecionado.	 		  
+	 * @param void
+	 * @return String
+	 * */
 	public String excluiAlergia(){
-		alergiaService.excluiAlergiaUsuario(alergiaUsuario);
-		this.busca();
-		return "listarPerfilEmergencia";
-	}
-	
-	public String editarAlergiaUsuario(AlergiaUsuario alergia){
-		this.alergiaUsuario = alergia;
-		this.emListagemAlergia = false;
+		if (alergiaService.excluiAlergiaUsuario(alergiaUsuario)) {
+			this.buscaAlergias();
+			return URL_LISTAR_PERFIL_EMERGENCIA;
+		}
 		return URL_MANTER_PERFIL_EMERGENCIA;
 	}
 	
+	/** 
+	 * @brief Metodo que verifica se o alergiaUsuario está sendo atualizado
+	 * ou é um novo cadastro. 		  
+	 * @param void
+	 * @return boolean
+	 * */
 	public boolean isAtualizacao(){
 		return alergiaUsuario != null && alergiaUsuario.getId() != null;
 	}
+	
+	/** 
+	 * @brief Metodo que realiza o evento de seleção da linha da tabela que lista
+	 *  as alergias do usuário.	 		  
+	 * @param event (SelectEvent)
+	 * @return void
+	 * */
+	public void onRowSelect(SelectEvent event) throws IOException {
+		this.alergiaUsuario = (AlergiaUsuario) event.getObject();
+		FacesContext.getCurrentInstance().getExternalContext().redirect("../../private/pages/manterPerfilEmergencia.jsf");
+    }
 
 	
 	/*
@@ -155,6 +210,7 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 	}
 
 	public List<MedicamentoUsuario> getMedicamentosLista() {
+		medicamentosLista= medicamentoService.buscaMedicamentoUsuarioporUsuario(alergiaUsuario.getUsuario());
 		return medicamentosLista;
 	}
 
@@ -207,4 +263,22 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 	public void setEmListagemAlergia(boolean emListagemAlergia) {
 		this.emListagemAlergia = emListagemAlergia;
 	}
+
+	public List<Consulta> getConsultasMedicas() {
+		consultasMedicas = consultasService.buscaConsultaporUsuario(alergiaUsuario.getUsuario());
+		return consultasMedicas;
+	}
+
+	public void setConsultasMedicas(List<Consulta> consultasMedicas) {
+		this.consultasMedicas = consultasMedicas;
+	}
+
+	public Consulta getConsultaMedica() {
+		return consultaMedica;
+	}
+
+	public void setConsultaMedica(Consulta consultaMedica) {
+		this.consultaMedica = consultaMedica;
+	}
+	
 }	
