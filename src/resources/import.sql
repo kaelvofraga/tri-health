@@ -145,3 +145,6 @@ insert into Idioma (id, nome) values (1003, 'Franc�s' );
 insert into Idioma (id, nome) values (1004, 'Alem�o' );
 insert into Idioma (id, nome) values (1005, 'Mandarin' );
 insert into Idioma (id, nome) values (1006, 'Japon�s' );
+
+insert into TipoExame (id, descricao, unidadeDeMedida, valorReferencia) values (1001, 'Eletrocardiograma(ECG)', 'x1', '80');
+insert into TipoExame (id, descricao, unidadeDeMedida, valorReferencia) values (1002, 'Radiografia de torax (Raio X de torax)', 'x2', '90');

@@ -1,50 +1,77 @@
 package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
-public class ExameCardiologico  extends BaseEntity<Long> implements Serializable {
-	
+@Entity
+public class ExameCardiologico extends BaseEntity<Long> implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Usuario usuario; 
-	
+	@NotNull
+	@OneToOne
+	@JoinColumn(name="USUARIO_ID")
+	private Usuario usuario;
+
+
 	@Temporal(TemporalType.TIMESTAMP)
-	
 	private Date dataExame;
-		
+
+	@Lob
 	private byte[] arquivoLaudo;
+
+	private String nota;
+
+	@OneToOne
+	@JoinColumn(name = "ID_TIPOEXAME")
+	private TipoExame tipoExame;
+
 	
-	private String nota;	
+	@NotNull
+	@OneToOne
+	@JoinColumn(name = "ID_MEDICO")
+	private Medico medico;
+
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "EXAMECARDIOLOGICO_MEDICO", joinColumns = @JoinColumn(name = "ID_EXAMECARDIOLOGICO"), inverseJoinColumns = @JoinColumn(name = "ID_MEDICO"))
-	private List<Medico> medicos = new ArrayList<>();
-		@Override
+	
+
+	public TipoExame getTipoExame() {
+		return tipoExame;
+	}
+
+	public void setTipoExame(TipoExame tipoExame) {
+		this.tipoExame = tipoExame;
+	}
+
+	public Medico getMedico() {
+		return medico;
+	}
+
+	public void setMedico(Medico medico) {
+		this.medico = medico;
+	}
+
+	@Override
 	public String toString() {
 		return "ExameCardiologico [usuario=" + usuario + ", dataExame="
 				+ dataExame + ", arquivoLaudo=" + Arrays.toString(arquivoLaudo)
-				+ ", nota=" + nota + ", medicos=" + medicos + ", tipoExames="
-				+ tipoExames + "]";
+				+ ", nota=" + nota + ", medicos=" + medico + ", tipoExames="
+				+ tipoExame + "]";
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "EXAMECARDIOLOGICO_TIPOEXAME", joinColumns = @JoinColumn(name = "ID_EXAMECARDIOLOGICO"), inverseJoinColumns = @JoinColumn(name = "ID_TIPOEXAME"))
-	private List<TipoExame> tipoExames = new ArrayList<>();
-		
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -53,7 +80,6 @@ public class ExameCardiologico  extends BaseEntity<Long> implements Serializable
 		return dataExame;
 	}
 
-	
 	public byte[] getArquivoLaudo() {
 		return arquivoLaudo;
 	}
@@ -70,8 +96,6 @@ public class ExameCardiologico  extends BaseEntity<Long> implements Serializable
 		this.dataExame = dataExame;
 	}
 
-	
-
 	public void setArquivoLaudo(byte[] arquivoLaudo) {
 		this.arquivoLaudo = arquivoLaudo;
 	}
@@ -79,24 +103,5 @@ public class ExameCardiologico  extends BaseEntity<Long> implements Serializable
 	public void setNota(String nota) {
 		this.nota = nota;
 	}
-
-
-	public List<Medico> getMedicos() {
-		return medicos;
-	}
-
-	public List<TipoExame> getTipoExames() {
-		return tipoExames;
-	}
-
-	public void setMedicos(List<Medico> medicos) {
-		this.medicos = medicos;
-	}
-
-	public void setTipoExames(List<TipoExame> tipoExames) {
-		this.tipoExames = tipoExames;
-	}
-
- 
 
 }
