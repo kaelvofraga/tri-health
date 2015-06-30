@@ -58,10 +58,9 @@
 							<h:outputText
 								value="#{composicaoUsuario.ossea}" />
 						</p:column>
-							
 					</p:dataTable>
 					<br />
-
+					<p:chart type="pie" model="#{manterComposicoesCorporaisMB.grafico}" style="width: 600px; height:500px" />
 				</h:panelGroup>
 			</p:tab>
 
