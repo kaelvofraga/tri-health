@@ -38,9 +38,9 @@ public class ComposicaoUsuarioDAO extends BaseDAO<ComposicaoUsuario, Long> imple
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<ComposicaoUsuario> buscaPorCriterio(Date criterio, Usuario usuario){
+	public List<ComposicaoUsuario> buscaPorCriterio(long criterio, Usuario usuario){
 		try {	
-			String str = "SELECT TOP 1 * FROM composicaoUsuario WHERE data BETWEEN DATE'"; 
+			String str = "SELECT co FROM ComposicaoUsuario co WHERE data BETWEEN DATE'"; 
 			str+=criterio; 
 			str+="' AND DATE'2999-10-30' AND co.usuario.id = :usuario ORDER BY co.data";
 						

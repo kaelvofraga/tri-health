@@ -52,9 +52,13 @@ public class ManterComposicoesCorporaisMB implements Serializable {
 	private long criterio;
 
 	private PieChartModel grafico;
+	
+	private Date data;
 
 	public String initListar() {
-		criterio = 0;
+		data = new Date(0);
+		
+		criterio = data.getTime();
 
 		composicaoListada = new ComposicaoUsuario();
 
@@ -78,14 +82,6 @@ public class ManterComposicoesCorporaisMB implements Serializable {
 		grafico.setShowDataLabels(true);
 		
 		return URL_LISTAR_COMPOSICOES_CORPORAIS;
-	}
-
-	public long getCriterio() {
-		return criterio;
-	}
-
-	public void setCriterio(long criterio) {
-		this.criterio = criterio;
 	}
 
 	public String initManter() {
@@ -166,4 +162,19 @@ public class ManterComposicoesCorporaisMB implements Serializable {
 		this.grafico = grafico;
 	}
 
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
+
+	public long getCriterio() {
+		return criterio;
+	}
+
+	public void setCriterio(long criterio) {
+		this.criterio = criterio;
+	}
 }

@@ -81,9 +81,9 @@ public class ManterComposicaoService {
 		ComposicaoUsuario composicao = null;
 
 		if (criterio != 0) {
-			Date data = new Date(criterio);
-			if (composicaoUsuarioDAO.buscaPorCriterio(data, usuario).size() > 0) {
-				composicao = composicaoUsuarioDAO.buscaPorCriterio(data,
+			//Date data = new Date(criterio);
+			if (composicaoUsuarioDAO.buscaPorCriterio(criterio, usuario).size() > 0) {
+				composicao = composicaoUsuarioDAO.buscaPorCriterio(criterio,
 						usuario).get(0);
 			}
 		} else {
