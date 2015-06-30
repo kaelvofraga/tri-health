@@ -7,6 +7,12 @@
 	xmlns:pe="http://primefaces.org/ui/extensions"
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="/public/templates/template.xhtml">
+	
+	<!-- 
+	  	@brief View que cadastra categoria de atividades
+ 	 	@author Luana Gomes
+  		@since 30/06/2015
+	 -->
 
 	<ui:define name="metadata" />
 
@@ -52,25 +58,38 @@
 														
 				<h:panelGroup layout="block" styleClass="form-group pull-left">
 		    	   <p:commandButton value="Salvar"
-						action="#{manterCategoriaMB.salvaATividade}" 
-						ajax="true" icon="ui-icon-disk"
-						update="categoria">
-				   </p:commandButton>					   
+		    	   		rendered="#{not manterAtividadesMB.atualizacao}"
+						action="#{manterCategoriaMB.salvaAtividade}" 						
+						icon="ui-icon-disk"	update="categoria" ajax="true"/> 	
+						
+				   <p:commandButton value="Salvar alterações"
+						rendered="#{manterCategoriaMB.atualizacao}"
+						action="#{manterCategoriaMB.alteraAtividade}"
+						ajax="false" icon="ui-icon-pencil"/>
+
+					
 				</h:panelGroup>
+
+				<h:panelGroup layout="block" styleClass="form-group pull-right">
+					<p:commandButton value="Voltar"
+						rendered="#{manterCategoriaMB.atualizacao}"
+						action="listarCategoria2" ajax="false" />
+					
+					
+					<p:commandButton value="Excluir"
+						rendered="#{mantercategoriaMB.atualizacao}" 
+						action="#{manterCategoriaMB.excluiAtividade}"
+						ajax="true" icon="ui-icon-close" update="msgs">
+						<p:confirm header="Confirmação"
+							message="Tem certeza que deseja apagar a categoria de atividade?"
+							icon="ui-icon-alert" />							 
+					</p:commandButton>
+				</h:panelGroup>		
 		   
 		    </h:panelGroup>		
 		    
 		        
 		    </h:panelGroup><!-- 1 -->
 		    		    
-		    <p:confirmDialog global="true" showEffect="fade"
-					hideEffect="explode">
-					<p:commandButton value="Sim" type="button"
-						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" >
-					</p:commandButton>	
-					<p:commandButton value="Não" type="button"
-						styleClass="ui-confirmdialog-no" icon="ui-icon-close">
-				    </p:commandButton>		
-			</p:confirmDialog> 
 	</ui:define>
 </ui:composition>

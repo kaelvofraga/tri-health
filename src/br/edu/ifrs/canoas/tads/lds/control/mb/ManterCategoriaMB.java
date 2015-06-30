@@ -26,8 +26,8 @@ import br.edu.ifrs.canoas.tads.lds.control.service.ManterCategoriaService;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterPesoService;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterUdmService;
 
-/** 
- * @author Luana
+/**MB das views de Manter e Listar Categorias
+ * @author Luana Gomes
  * @version 21/06/2015
  *
  */
@@ -54,69 +54,113 @@ public class ManterCategoriaMB implements Serializable {
 	
 	private List<TipoAtividade> listarAtividades;
 	private List<Atividade> atividadeList;
-		
-	/*@Inject
-	private PesoUsuario pesoUsuario;
-	
-	@EJB
-	private ManterUdmService manterUdmService;
-	
-	@EJB
-	private ManterPesoService pesoService;
-	
-	private List<PesoUsuario> pesoUsuarioList;
-	private List<Udm> udmLista;
-	
-	private String criterioPeso;
-	
-	private Udm udm;	*/
-	
-	
-	/*
+	private List<Atividade> descricaoPorTipoList;;
+			
 	public String initListar() {
-		pesoUsuario = new PesoUsuario();
-		criterioPeso = "";
-		pesoUsuarioList = new ArrayList<PesoUsuario>();
-		return URL_LISTAR_PESO;
-	}
-
-	public String initManter() {
-		udm = new Udm();
-		udmLista= this.getUdmLista();
-		pesoUsuario = new PesoUsuario();
-		pesoUsuario.setPeso(new Peso());
-		return URL_MANTER_PESO;
-	}
-	*/
-	
-	public String initListar() {
-		listarAtividades = new ArrayList<TipoAtividade>();
+		tipoAtividade = new TipoAtividade();
+		atividadeList = new ArrayList<>();
+		atividade = new Atividade();
 		return URL_LISTAR_CATEGORIA;
 	}
 	
+	@PostConstruct
 	public String initManter() {
 		tipoAtividade = new TipoAtividade();
 		atividade = new Atividade();
 		atividade.setTipoAtividade(tipoAtividade);
+		//tipo
+		listarAtividades = categoriaService.buscaTipoAtividades();
+		//descricao
+		atividadeList = categoriaService.buscaDescricaoAtividades();
 		return URL_MANTER_CATEGORIA;
 	}
 	
-	public void salvaATividade(){	
+	/** 
+	 * @brief Salva categoria	  	 		  
+	 * */
+	public void salvaAtividade(){	
 		
 		if(categoriaService.salvaCategoria(atividade, tipoAtividade))
 			this.initManter();
 	}
 	
+	/** 
+	 * @brief Busca atividades relacionadas tipo de atividade escolhida.
+	 * */
 	public void busca(){
-		atividadeList = categoriaService.buscaDescricoesAtividades();
+		atividadeList = categoriaService.buscaAtividades(tipoAtividade);
+	}
+	
+	/** 
+	 * @brief Evento ao selecionar uma linha da tabela de descrição 
+	 * */
+	public void onATividadeFisica(SelectEvent event) throws IOException {
+		this.clear();
+		this.setAtividade(getAtividade());
+        FacesContext.getCurrentInstance().getExternalContext().redirect("manterCategoria2.jsf");
+    }
+
+	/** 
+	 * @brief Verifica se a categoria atual está sendo inserida nova ou atualizada uma antiga.
+	 * */
+	public boolean isAtualizacao(){
+		return atividade != null && atividade.getId() != null;
+	}
+
+	/** 
+	 * @brief Atualiza dados no BD.
+	 * */
+	public String alteraAtividade(){
+		categoriaService.alteraAtividade(atividade);
+		this.initManter();
+		return this.initListar();
+	}
+	
+	/** 
+	 * @brief Exclui categoria cadastrada do BD.
+	 * */
+	public String excluiAtividade(){	
+		categoriaService.excluiAtividade(atividade);
+		this.busca();
+		return URL_LISTAR_CATEGORIA;
+	}
+	
+	/** 
+	 * @brief 
+	 * */
+	private void clear() {
+		tipoAtividade = new TipoAtividade();
+		atividade = new Atividade();
+		atividade.setTipoAtividade(tipoAtividade);
+		//tipo
+		listarAtividades = categoriaService.buscaTipoAtividades();
+		//descricao
+		atividadeList = categoriaService.buscaDescricaoAtividades();
+	}
+	
+	/** 
+	 * @brief Filtra descricao de acordo com o tipo de atividade
+	 * */
+	public void filtrarAtividades(){
+		this.descricaoPorTipoList.clear();
+		TipoAtividade ta = atividade.getTipoAtividade();
+		if ( ta != null && ta.getId() != null ){			
+			for (int i = 0; i < atividadeList.size(); i++) {
+				Atividade a = atividadeList.get(i);
+				if(a.getTipoAtividade().getId() == ta.getId()) {
+					descricaoPorTipoList.add(a);
+				}
+			}
+		}else{
+			descricaoPorTipoList = new ArrayList<>();
+		}
 	}
 			
 	/*GETTERS AND SETTERS*/
 	public GerenciarLoginMB getGerenciarLoginMB() {
 		return gerenciarLoginMB;
 	}
-
-
+	
 	public ManterCategoriaService getCategoriaService() {
 		return categoriaService;
 	}
@@ -146,6 +190,8 @@ public class ManterCategoriaMB implements Serializable {
 	}
 
 	public List<TipoAtividade> getListarAtividades() {
+		if(listarAtividades == null)
+			listarAtividades = categoriaService.buscaTipoAtividades();
 		return listarAtividades;
 	}
 
@@ -154,11 +200,22 @@ public class ManterCategoriaMB implements Serializable {
 	}
 
 	public List<Atividade> getAtividadeList() {
+		if(atividadeList == null){
+			atividadeList = categoriaService.buscaAtividades(tipoAtividade);		
+		}
 		return atividadeList;
 	}
 
 	public void setAtividadeList(List<Atividade> atividadeList) {		
 		this.atividadeList = atividadeList;
+	}
+
+	public List<Atividade> getDescricaoPorTipoList() {
+		return descricaoPorTipoList;
+	}
+
+	public void setDescricaoPorTipoList(List<Atividade> descricaoPorTipoList) {
+		this.descricaoPorTipoList = descricaoPorTipoList;
 	}
 
 }

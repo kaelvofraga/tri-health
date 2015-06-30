@@ -6,6 +6,12 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="/public/templates/template.xhtml">
+	
+	<!-- 
+	  	@brief View que lista categoria de atividades
+ 	 	@author Luana Gomes
+  		@since 30/06/2015
+	 -->
 
 	<ui:define name="metadata" />
 
@@ -19,55 +25,69 @@
 				<h:panelGroup layout="block" id="atividades">
 
 					<h:panelGroup layout="block" id="tipo">
-					<h:panelGroup layout="block" styleClass="form-group">
+					
 						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel for="tipo_atividade" value="Tipo:" />
-							<br />
-							<p:selectOneMenu id="tipo_atividade"
-								value="#{manterCategoriaMB.tipoAtividade.nome}"
-								style="width: 100%;" 
-								required="true" requiredMessage="Um tipo de atividade deve ser escolhida.">								
-								<f:selectItem itemLabel="Selecione o tipo da atividade."
-									itemValue="" noSelectionOption="true" />
-								<f:selectItems value="#{manterAtividadesMB.tipoAtividadeList}"
-									var="tipoAtividade" itemLabel="#{tipoAtividade.nome}" itemValue="#{tipoAtividade}" />
-							</p:selectOneMenu>
+								<p:outputLabel for="tipo_atividade" value="Tipo:" />
+								<br />
+								<p:selectOneMenu id="tipo_atividade"
+									value="#{manterCategoriaMB.tipoAtividade}"
+									style="width: 100%;" required="true" requiredMessage="Escolha um tipo de atividade.">
+									<p:ajax listener="#{manterCategoriaMB.filtrarAtividades}" update="tab-categoria" />								
+								
+									<f:selectItem itemLabel="Selecione o tipo da atividade."
+										itemValue="" noSelectionOption="true" />
+									<f:selectItems value="#{manterCategoriaMB.listarAtividades}"
+										var="tipoAtividade" itemLabel="#{tipoAtividade.nome}"
+										itemValue="#{tipoAtividade}" />
+								</p:selectOneMenu>
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group">
+
+							<p:commandButton value="Busca" type="submit"
+								ajax="true"
+								action="#{manterCategoriaMB.busca}" 
+								update="tab-categoria" immediate="false" icon="ui-icon-search" />
+
 						</h:panelGroup>
 					</h:panelGroup>
-					</h:panelGroup>
-					
-					
-					<h:panelGroup layout="block" styleClass="form-group">
-
-						<p:commandButton value="Busca" type="submit" action="#{manterCategoriaMB.busca}"
-							ajax="true" update="tab-categoria" immediate="false" icon="ui-icon-search" />
-						
-					</h:panelGroup>
-
-					<p:dataTable 
-						id="tab-categoria" 
+					<p:dataTable id="tab-categoria" 
 						selectionMode="single"
 						emptyMessage="Nenhum Registro Encontrado." 
 						var="categorias"
-						selection="#{manterAtividadesMB.atividadeUsuario}"
-						value="#{manterAtividadesMB.atividadeUsuarioList}" 
-						rowKey="#{atividadeUsuario.id}"
-						reflow="true" >
-
-						<p:ajax event="rowSelect" listener="#{manterAtividadesMB.onRowSelect}" oncomplete="manterAtividadesFisicas"/>
-        				
-						<p:column headerText="Descrição" id="colAtividade" style="width:40%;">
-							<h:outputText
-								value="#{categorias.atividade.descricao}" />
-						</p:column>
+						selection="#{manterCategoriaMB.atividade}"
+						value="#{manterCategoriaMB.atividadeList}"
+						rowKey="#{categorias.id}" 
+						reflow="true">
 						
-				
+						<p:ajax event="rowSelect" listener="#{manterCategoriaMB.onATividadeFisica}" oncomplete="manterCategoria2" />
+						
+						<p:column headerText="Descrição" id="colAtividade">
+							<h:outputText value="#{categorias.descricao}" />
+						</p:column>
+						<p:column headerText="MET" id="colMET" style="width:12%;">
+							<h:outputText value="#{categorias.MET}" />
+						</p:column>
+
 					</p:dataTable>
 					<br />
 
 				</h:panelGroup>
 
-				<p:commandButton value="Nova" action="#{manterCategoriaMB.initManter}" icon="ui-icon-plus" ajax="true" />
+				<p:commandButton value="Nova"
+					action="#{manterCategoriaMB.initManter}" icon="ui-icon-plus"
+					ajax="true" />
+
+				<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
+					</p:commandButton>
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close">
+					</p:commandButton>
+				</p:confirmDialog>
+
 
 			</p:tab>
 

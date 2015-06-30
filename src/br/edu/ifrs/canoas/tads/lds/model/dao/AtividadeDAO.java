@@ -1,11 +1,15 @@
 package br.edu.ifrs.canoas.tads.lds.model.dao;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
 
+import br.edu.ifrs.canoas.tads.lds.bean.Alimento;
 import br.edu.ifrs.canoas.tads.lds.bean.Atividade;
+import br.edu.ifrs.canoas.tads.lds.bean.TipoAlimento;
+import br.edu.ifrs.canoas.tads.lds.bean.TipoAtividade;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 
 /** Classe responsável pela execução de comandos DML via SQL no Banco de dados da entidade Atividade
@@ -44,6 +48,24 @@ public class AtividadeDAO extends BaseDAO<Atividade, Long> implements Serializab
 		         + "	where au.usuario.id = :usuario) ")
 		         .setParameter("usuario", usuario.getId())
 		         .getResultList();
+	}
+	
+	/** 
+	 * @brief Busca atividades de acordo com o tipo da atividade	  	 		  
+	 * @param TipoAtividade: tipo de atividade relacionado com as atividades
+	 * @return List<Atividade>: lista de atividades ou vazio se um erro ocorrer
+	 * */
+	@SuppressWarnings("unchecked")
+	public List<Atividade> buscaAtividadePorTipoAtividade(TipoAtividade tipoAtividade) {
+		
+		if(tipoAtividade == null) return new ArrayList<Atividade>();
+
+		return em.createQuery(
+		         "SELECT ati " 
+		         + "FROM Atividade as ati "
+		         + "WHERE ati.tipoAtividade.id = :tipoAtividade ")
+		         .setParameter("tipoAtividade", tipoAtividade.getId())
+		         .getResultList();		
 	}
 }	
 
