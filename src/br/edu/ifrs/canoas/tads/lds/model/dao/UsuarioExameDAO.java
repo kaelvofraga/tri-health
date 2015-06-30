@@ -44,16 +44,7 @@ public class UsuarioExameDAO extends BaseDAO<UsuarioExame, Long>{
 			return null;
 		}
 	}*/
-
+	
 }
 
-/*
-@SuppressWarnings("unchecked")
-	public List<UsuarioExame> buscaPorCriterio(Date dataDe, Date dataAte,String criterioExameSangue) {
-		try {
-			String query="SELECT eu FROM UsuarioExame eu WHERE lower (eu.observacao) like ? OR eu.data between ? and ? ORDER BY eu.data";
-			return em.createQuery(query).setParameter(1, criterioExameSangue).setParameter(2, dataDe,TemporalType.TIMESTAMP).setParameter(3, dataAte, TemporalType.TIMESTAMP).getResultList();
-		} catch (IllegalArgumentException e) {
-			return null;
-		}
-	}*/
+

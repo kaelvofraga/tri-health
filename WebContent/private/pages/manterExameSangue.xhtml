@@ -25,7 +25,7 @@
 						<p:outputLabel for="data_exame" value="Data do Exame" /><br/>
 						<p:calendar id="data_exame" style="width:80px pull-left"
 							value="#{manterExameSangueMB.usuarioExame.data}"
-							pattern="dd/MM/yyyy" required="true"
+							pattern="dd/MM/yyyy" 
 							placeholder="Selecione a data do exame" size="25" effect="fold"
 							icon="glyphicon-calendar" />
 					</h:panelGroup>
@@ -57,20 +57,13 @@
 									placeholder="Informe o resultado" />
 							</h:panelGroup>
 							
-	<!-- ao criar classes, passar ajax para true -->
 							<h:panelGroup layout="block" styleClass="form-group pull-left"><br />
 								<p:commandButton value="Adicionar" ajax="true" type="submit"
 									id="btnAdicionar" immediate="false" update="itemexamesangue,tab-itensExame"
 									action="#{manterExameSangueMB.adicionarExameAnalisado}"
 									icon="ui-icon-disk" />
-							</h:panelGroup>
+							</h:panelGroup>							
 							
-							<!-- <h:panelGroup layout="block" styleClass="form-group pull-left">
-								<p:commandButton value="Alterar" ajax="false" type="submit"
-									immediate="false" update="itemexamesangue,tab-itensExame"
-									action="#{manterExameSangueMB.adicionarExameAnalisado}"
-									icon="ui-icon-disk" />
-							</h:panelGroup>-->
 						</h:panelGrid>
 				</h:panelGroup>
 					
@@ -88,10 +81,9 @@
 							<h:outputText value="#{listItensExameSangue.resultado}" />
 						</p:column>
 						<p:column headerText="Editar">
-			                <p:commandButton value="Editar"
-			                action="#{manterExameSangueMB.altera}"  ajax="false"  
-			                 update="tab-itensExame" >
-			                    <f:setPropertyActionListener value="#{listItensExameSangue}" 
+			                <p:commandButton 	value="Editar"
+							 					ajax="true"  >
+			                	<f:setPropertyActionListener value="#{listItensExameSangue}" 
 			                        target="#{manterExameSangueMB.itemExameSangue}" />
 			                </p:commandButton>
 			            </p:column> 
@@ -135,37 +127,3 @@
 	</ui:composition>
 </html>
 
-
-
-						<!--<p:commandButton value="Alterar"
-							rendered="#{manterExameSangueMB.atualizacao}"
-							action="#{manterExameSangueMB.alteraExame}"
-						 	icon="ui-icon-pencil"
-							ajax="true" update="examesangue">
-						</p:commandButton>
-							
-						
-						<h:panelGroup layout="block" styleClass="form-group pull-right">
-							<p:commandButton value="Excluir"
-								rendered="#{manterExameSangueMB.atualizacao}"
-								action="#{manterExameSangueMB.excluiExame}" ajax="true"
-								icon="ui-icon-close" update="msgs">
-								<p:confirm header="Confirmação"
-									message="Tem certeza que deseja excluir exame ?" icon="ui-icon-alert" />
-							</p:commandButton>
-
-							<p:commandButton value="Voltar"
-								rendered="#{manterExameSangueMB.atualizacao}" action="listarExameSangue"
-								ajax="false">
-							</p:commandButton>
-						</h:panelGroup>-->
-						
-<!-- <p:confirmDialog global="true" showEffect="fade"
-					hideEffect="explode">
-					<p:commandButton value="Sim" type="button"
-						styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
-					</p:commandButton>
-					<p:commandButton value="Não" type="button"
-						styleClass="ui-confirmdialog-no" icon="ui-icon-close">
-					</p:commandButton>
-				</p:confirmDialog>-->
