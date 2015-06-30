@@ -6,23 +6,96 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="/public/templates/template.xhtml">
-	
+
 	<ui:define name="metadata" />
-	
-	<ui:define name="content">
+
+	<ui:define id="contentExames" name="content">
 
 		<h1 class="lead">Exames</h1>
 
-		<p:accordionPanel multiple="true">
-		
-			<p:tab title="Cadastro">
+		<p:accordionPanel id="panelCadastro" multiple="true">
+
+			<p:tab id="tabCadastro" title="Cadastro">
 				<h:panelGroup layout="block">
-				
+
+					<h3>Exame:</h3>
+					<hr />
+
+					<h:panelGrid styleClass="mtable">
+						<p:outputLabel for="nome_exame" value="Nome:"
+							style="display:block" />
+						<p:inputText value="#{manterExamesMB.exameEditar.nome}"
+							id="nome_exame">
+						</p:inputText>
+					</h:panelGrid>
+
+					<h:panelGrid styleClass="mtable">
+						<p:outputLabel for="descricao_exame" value="Descrição:"
+							style="display:block" />
+						<p:inputText value="#{manterExamesMB.exameEditar.descricao}"
+							id="descricao_exame">
+						</p:inputText>
+					</h:panelGrid>
+
+					<hr />
+
+					<h3>Campos do Exame:</h3>
+
+					<hr />
+
+					<h:panelGrid styleClass="mtable">
+						<p:outputLabel for="nome_exame_campo" value="Nome do Campo:" />
+						<p:inputText binding="#{nome_exame_campo}" id="nome_exame_campo">
+						</p:inputText>
+					</h:panelGrid>
+
+					<h:panelGrid styleClass="mtable">
+						<p:outputLabel for="tipo_exame_campo" value="Tipo do Campo:" />
+						<p:inputText binding="#{tipo_exame_campo}" id="tipo_exame_campo">
+						</p:inputText>
+					</h:panelGrid>
+
+					<p:commandButton icon="ui-icon-plus" title="" value="Adicionar"
+						id="btn-add-campos"
+						update=":mainForm:panelCadastro:data-exame-campos"
+						actionListener="#{manterExamesMB.adicionarExameCampos(nome_exame_campo.value,tipo_exame_campo.value)}"
+						ajax="true" />
+
+					<p:dataTable id="data-exame-campos"
+						emptyMessage="Nenhum Registro Encontrado." var="exameCampos"
+						value="#{manterExamesMB.exameCamposEditar}"
+						rowKey="#{exameCampos.id}">
+
+						<p:column headerText="Campo" id="colNomeCampo">
+							<h:outputText value="#{exameCampos.nomeCampo}" />
+						</p:column>
+
+						<p:column headerText="Tipo do Campo" id="colTipoCampo">
+							<h:outputText value="#{exameCampos.tipoCampoStr}" />
+						</p:column>
+
+						<p:column>
+							<p:commandButton icon="ui-icon-trash" title="Excluir"
+								update="data-exame-campos"
+								actionListener="#{manterExamesMB.removeExameCampos(exameCampos)}"
+								ajax="true" />
+						</p:column>
+
+					</p:dataTable>
+
+					<hr />
+
+					<p:commandButton icon="ui-icon-disk" title="" value="Salvar"
+						action="#{manterExamesMB.salvarExamesComCampos}"						
+						ajax="true" />
+					<p:commandButton icon="ui-icon-close" title="" value="Cancelar"
+						action="#{manterExamesMB.cancelarEdicao}"
+						ajax="true" />
 				</h:panelGroup>
 			</p:tab>
 
 		</p:accordionPanel>
-		
+
 	</ui:define>
 </ui:composition>
 

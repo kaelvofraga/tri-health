@@ -6,22 +6,70 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="/public/templates/template.xhtml">
-	
+
 	<ui:define name="metadata" />
-	
-	<ui:define name="content">
+
+	<ui:define id="contentExames" name="content">
 
 		<h1 class="lead">Exames</h1>
 
-		<p:accordionPanel multiple="true">
-			<p:tab title="Pesquisa">
+		<p:accordionPanel id="panelPesquisa" multiple="true">
+			<p:tab id="tabPesquisa" title="Pesquisa">
 				<h:panelGroup layout="block">
-				
+					<h3>Lista de Exames:</h3>
+					
+					<p:dataTable id="data-exames" selectionMode="single"
+						emptyMessage="Nenhum Registro Encontrado." var="exame"
+						selection="#{manterExamesMB.exame}"
+						value="#{manterExamesMB.examesLista}" rowKey="#{exame.id}">
+						<p:ajax event="rowSelect"
+							update=":mainForm:panelPesquisa:data_exames_campos" />
+						<p:column headerText="Nome" id="colExaNome">
+							<h:outputText value="#{exame.nome}" />
+						</p:column>
+
+						<p:column headerText="Descrição" id="colDesc">
+							<h:outputText value="#{exame.descricao}" />
+						</p:column>
+
+					</p:dataTable>
+					<hr />
+
+					<h3>Campos do Exame Selecionado:</h3>
+					<p:dataTable id="data_exames_campos" selectionMode="single"
+						emptyMessage="Nenhum Registro Encontrado." var="exameCampos"
+						value="#{manterExamesMB.exameCampos}" rowKey="#{exameCampos.id}">
+						<p:column headerText="Nome" id="colExaNome">
+							<h:outputText value="#{exameCampos.nomeCampo}" />
+						</p:column>
+
+						<p:column headerText="Tipo" id="colTipoCampo">
+							<h:outputText value="#{exameCampos.tipoCampoStr}" />
+						</p:column>
+
+					</p:dataTable>
+					<hr />
+					<p:commandButton value="Atualizar"
+						icon="ui-icon-refresh"
+						ajax="true" 
+						action="#{manterExamesMB.atualizarExames}"
+						update=":mainForm:panelPesquisa:data-exames :mainForm:panelPesquisa:data_exames_campos"
+						immediate="false" />
+
+					<p:commandButton value="Novo" 
+						icon="ui-icon-plus"	
+						action="#{manterExamesMB.novoExame}"/>
+					<p:commandButton value="Editar" 
+						icon="ui-icon-pencil"
+						action="#{manterExamesMB.editarExame}"/>
+					<p:commandButton value="Excluir" 
+						icon="ui-icon-close"						
+						ajax="true" />
 				</h:panelGroup>
 			</p:tab>
 
 		</p:accordionPanel>
-		
+
 	</ui:define>
 </ui:composition>
 
