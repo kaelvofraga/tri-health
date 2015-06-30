@@ -2,6 +2,7 @@ package br.edu.ifrs.canoas.tads.lds.control.mb;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,10 +43,28 @@ public class ManterComposicoesCorporaisMB implements Serializable {
 	@Inject
 	private ComposicaoUsuario composicaoUsuario;
 	
+	private ComposicaoUsuario composicaoListada;
+	
 	private List<ComposicaoUsuario> listaComposicaoUsuario;
+	
+	private long criterio;
 
 	public String initListar() {
+		criterio = 0;
+				
+		composicaoListada =  new ComposicaoUsuario();
+		
+		this.busca();
+		
 		return URL_LISTAR_COMPOSICOES_CORPORAIS;
+	}
+
+	public long getCriterio() {
+		return criterio;
+	}
+
+	public void setCriterio(long criterio) {
+		this.criterio = criterio;
 	}
 
 	public String initManter() {
@@ -59,6 +78,10 @@ public class ManterComposicoesCorporaisMB implements Serializable {
 		if(composicaoService.salvaComposicao(composicaoUsuario)){
 			this.initManter();
 		}
+	}
+	
+	public void busca(){
+		composicaoListada = composicaoService.buscaGeral(criterio, gerenciarLoginMB.getUsuario());
 	}
 	
 	public double getTotal(){
@@ -102,4 +125,11 @@ public class ManterComposicoesCorporaisMB implements Serializable {
 		this.listaComposicaoUsuario = listaComposicaoUsuario;
 	}
 
+	public ComposicaoUsuario getComposicaoListada() {
+		return composicaoListada;
+	}
+
+	public void setComposicaoListada(ComposicaoUsuario composicaoListada) {
+		this.composicaoListada = composicaoListada;
+	}
 }

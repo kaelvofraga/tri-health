@@ -12,11 +12,13 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity
-public class ExameCampos extends BaseEntity<ExameCampos> implements Serializable {
+public class ExameCampos extends BaseEntity<Long> implements Serializable {
 
 	private static final long serialVersionUID = -1867964589580907055L;
 	
+	@NotNull
 	private String nomeCampo;
+	
 	private int tipoCampo;
 	
 	@NotNull
@@ -45,6 +47,10 @@ public class ExameCampos extends BaseEntity<ExameCampos> implements Serializable
 	//0 = String 1 = numérico
 	public int getTipoCampo() {
 		return this.tipoCampo;
+	}
+	
+	public String getTipoCampoStr(){
+		return this.getTipoCampo() == 0 ? "ALFANUMÉRICO" : "NÚMERICO";
 	}
 
 	public void setTipoCampo(Integer tipoCampo) {

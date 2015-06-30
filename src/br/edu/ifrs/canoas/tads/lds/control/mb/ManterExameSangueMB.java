@@ -30,7 +30,7 @@ import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 public class ManterExameSangueMB implements Serializable{
 
 	/**
-	 * 
+	 * @author André
 	 */
 	private static final long serialVersionUID = 7429065292403103386L;
 	private static final String URL_LISTAR_EXAMESANGUE = "/private/pages/listarExameSangue.jsf";
@@ -162,26 +162,7 @@ public class ManterExameSangueMB implements Serializable{
 		this.usuarioExame = (UsuarioExame) event.getObject();
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("../../private/pages/manterExameSangue.jsf");
-	}
-	
-	public void exclui() {
-		if (itemExameSangue != null && this.usuarioExame.getItensExame().contains(itemExameSangue))
-			this.usuarioExame.getItensExame().remove(itemExameSangue);
-		itemExameSangue= new ItemExameSangue();
-	}
-	
-	/*public void altera() {
-		if (itemExameSangue != null && this.usuarioExame.getItensExame().contains(itemExameSangue))
-			this.usuarioExame.getData();
-			this.usuarioExame.getItensExame().remove(itemExameSangue);
-		itemExameSangue= new ItemExameSangue();
-	}*/
-	
-	public void salvaExame(){
-		usuarioExame.setUsuario(gerenciarLoginMB.getUsuario());
-		exameSangueService.salvaExameSangueUsuario(usuarioExame);
-		initManter();
-	}
+	}	
 	
 	public void adicionarExameAnalisado(){
 		if (itemExameSangue != null && !this.usuarioExame.getItensExame().contains(itemExameSangue)){
@@ -192,16 +173,16 @@ public class ManterExameSangueMB implements Serializable{
 					"manterExameSangue.insere.erro");
 		}
 		itemExameSangue= new ItemExameSangue();	
-	}
-	
-	public boolean isAtualizacao(){
-		return usuarioExame != null && usuarioExame.getId() != null;
-	}
+	}	
 	
 	public void busca(){
-		//usuarioExame.setUsuario(gerenciarLoginMB.getUsuario());
-		//exameSangueService.buscaExameSangueUsuario(this.getDataDe(),this.getDataAte());
 		listaExames = exameSangueService.busca(this.getDataDe(),this.getDataAte());
+	}
+	
+	public void salvaExame(){
+		usuarioExame.setUsuario(gerenciarLoginMB.getUsuario());
+		exameSangueService.salvaExameSangueUsuario(usuarioExame);
+		initManter();
 	}
 	
 	public String alteraExame() {
@@ -219,11 +200,27 @@ public class ManterExameSangueMB implements Serializable{
 		return URL_MANTER_EXAMESANGUE;
 	}
 	
+	public void exclui() {
+		if (itemExameSangue != null && this.usuarioExame.getItensExame().contains(itemExameSangue))
+			this.usuarioExame.getItensExame().remove(itemExameSangue);		
+		itemExameSangue= new ItemExameSangue();
+	}
+	
 	public boolean isAtualizandoItem(){
 		return itemExameSangue != null && usuarioExame.getItensExame().contains(itemExameSangue) && itemExameSangue.getId()!= null;
-	} 
+	}
 	
-
+	public boolean isAtualizacao(){
+		return usuarioExame != null && usuarioExame.getId() != null;
+	}
+	
+	
+	/*public void altera() {
+	if (itemExameSangue != null && this.usuarioExame.getItensExame().contains(itemExameSangue))
+		this.usuarioExame.getData();
+		this.usuarioExame.getItensExame().remove(itemExameSangue);
+	itemExameSangue= new ItemExameSangue();
+}*/
 	
 	
 

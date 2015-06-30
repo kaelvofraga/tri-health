@@ -50,6 +50,9 @@ public class ManterHospitalMB implements Serializable {
 	private Hospital hospital;
 	private Endereco endereco;
 	
+	private String centroLat;
+	private String centroLng;
+	
 	private List<Hospital> listaHospital;
 	private List<Endereco> listaEndereco;
 	
@@ -57,13 +60,12 @@ public class ManterHospitalMB implements Serializable {
 	public void init(){
 		
 		local = new DefaultMapModel();
-
-		//Testando Markers
-		//LatLng coord1 = new LatLng(-30.0195467, -51.170071);
-		//local.addOverlay(new Marker(coord1, "Hospital"));
 		
 		endereco = new Endereco();
 		hospital = new Hospital();
+
+		centroLat = "-30.03508670894354";
+		centroLng = "-51.21894867968746";
 		
 		listaHospital = this.getListaHospital();
 		listaEndereco = this.getListaEndereco();
@@ -72,6 +74,8 @@ public class ManterHospitalMB implements Serializable {
 	
 
 	public String initListar() {
+		local = new DefaultMapModel();
+		hospital = new Hospital();
 		return URL_LISTAR_HOSPITAIS;
 	}
 	
@@ -81,12 +85,11 @@ public class ManterHospitalMB implements Serializable {
 	
 
 	public void atualizaMapa(){
-		System.out.println("ID do Endereco" + endereco.getId());
-		System.out.println("ENDERECO:"+hospital.getEndereco());
-		
-		LatLng coord1 = new LatLng(Double.parseDouble(endereco.getLatitude()), Double.parseDouble(endereco.getLongitude()));
+		local = new DefaultMapModel();
+		centroLat = endereco.getLatitude();
+		centroLng = endereco.getLongitude();
+		LatLng coord1 = new LatLng(Double.parseDouble(centroLat), Double.parseDouble(centroLng));
 		local.addOverlay(new Marker(coord1, hospital.getNome()));
-		//return local;
 	}
 	
 	//Getters and Setters
@@ -130,7 +133,6 @@ public class ManterHospitalMB implements Serializable {
 	public List<Hospital> getListaHospital() {
 		if(listaHospital == null)
 			listaHospital = manterHospitalService.buscaTodosHospitais();
-			//System.out.println("TAMANHOOOOOO DA LISTAAAAAA:"+listaHospital.size());
 		return listaHospital;
 	}
 
@@ -146,6 +148,31 @@ public class ManterHospitalMB implements Serializable {
 	public void setLocal(MapModel local) {
 		this.local = local;
 	}
+
+
+
+	public String getCentroLat() {
+		return centroLat;
+	}
+
+
+
+	public void setCentroLat(String centroLat) {
+		this.centroLat = centroLat;
+	}
+
+
+
+	public String getCentroLng() {
+		return centroLng;
+	}
+
+
+
+	public void setCentroLng(String centroLng) {
+		this.centroLng = centroLng;
+	}
+	
 	
 	
 	

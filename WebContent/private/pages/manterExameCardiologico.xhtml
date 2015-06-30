@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<ui:define name="content">
+		<h1 class="lead">Exame Cardiologico</h1>
+
+		<p:accordionPanel id="panel" multiple="true">
+			<br />
+			<p:tab title="Nova Atividade">
+
+				<p:panel id="principal" header="Cadastrar Novo Exame Cardiologico">
+
+					<h:panelGrid columns="2" styleClass="mtable" id="datas">
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="nome_usuario" value="Nome" />
+							<p:inputText id="nome_usuario" styleClass="form-control"
+								size="40" style="width:300px"
+								value="#{manterExameCardiologicoMB.usuario.nome}"
+								placeholder="Informe o nome do usuário" />
+						</h:panelGroup>						
+
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="dataExame" value="Data Exame:" />
+							<br />
+							<p:calendar id="dataExame"
+								value="#{manterExameCardiologicoMB.exame.dataExame}"
+								pattern="dd/MM/yyyy" var="dataExame"
+								itemLabel="#{exame.dataExame}" itemValue="#{exame.dataExame}"
+								placeholder="Data do exame" effect="fold"
+								icon="glyphicon-calendar" required="true"
+								requiredMessage="A data do exame deve ser informada.">
+							</p:calendar>
+						</h:panelGroup>
+
+
+
+					</h:panelGrid>
+					<h:panelGrid columns="2" class="mtable">
+						<h:panelGroup layout="block" styleClass="form-group">
+
+							<p:outputLabel for="tipoExame" value="Tipo Exame:" />
+							<br />
+							<p:selectOneMenu id="tipoExame"
+								value="#{manterExameCardiologicoMB.exame.tipoExame}"
+								style="width: 40%;" required="true"
+								requiredMessage="Tpo de exame deve ser selecionado">
+								<f:selectItem itemLabel="Selecione um tipo de exame."
+									itemValue="" noSelectionOption="true" />
+								<f:selectItems
+									value="#{manterExameCardiologicoMB.listTipoExame}"
+									var="tipoExame" itemLabel="#{tipoExame.descricao}"
+									itemValue="#{tipoExame}" />
+							</p:selectOneMenu>
+						</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="form-group">
+
+							<p:outputLabel for="medico" value="Médico:" />
+							<br />
+							<p:selectOneMenu id="medico"
+								value="#{manterExameCardiologicoMB.exame.medico}"
+								style="width: 40%;" required="true"
+								requiredMessage="Médico deve ser selecionado">
+								<f:selectItem itemLabel="Selecione um médico." itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems value="#{manterExameCardiologicoMB.listMedico}"
+									var="medico" itemLabel="#{medico.nome}" itemValue="#{medico}" />
+							</p:selectOneMenu>
+						</h:panelGroup>
+						
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="arquivoLaudo" value="Laudo (Arquivo em .pdf):" />
+							<br />
+							
+							<p:fileUpload id = "arquivoLaudo" value="#{manterExameCardiologicoMB.file}" mode="simple" skinSimple="true"/>
+						</h:panelGroup>
+					</h:panelGrid>
+					
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:outputLabel for="nota" value="Nota:" />
+						<br />
+						<p:inputTextarea id="nota" rows="5" cols="30" counter="display"
+							maxlength="200" counterTemplate="{0} caracteres disponíveis."
+							autoResize="false"
+							value="#{manterExameCardiologicoMB.exame.nota}" />
+						<br />
+						<h:outputText id="display" />
+					</h:panelGroup>
+
+
+					<h:panelGroup layout="block" styleClass="form-group" id="buttons">
+
+						<h:panelGroup layout="block" styleClass="form-group pull-left">
+							<p:commandButton value="Salvar"
+								rendered="#{not manterExameCardiologicoMB.atualizacao}"
+								actionListener="#{manterExameCardiologicoMB.salvaExame}" ajax="false"
+								icon="ui-icon-disk"  />
+
+							<p:commandButton value="Salvar alterações"
+								rendered="#{manterExameCardiologicoMB.atualizacao}"
+								action="#{manterExameCardiologicoMB.alteraExame}" ajax="true"
+								icon="ui-icon-pencil" />
+
+							<p:commandButton value="Voltar" immediate="true"
+								rendered="#{manterExameCardiologicoMB.atualizacao}"
+								action="#{manterExameCardiologicoMB.voltaPraLista}" ajax="true" />
+
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group pull-right">
+							<p:commandButton value="Excluir"
+								rendered="#{manterExameCardiologicoMB.atualizacao}"
+								immediate="true"
+								action="#{manterExameCardiologicoMB.excluiExame}" ajax="true"
+								icon="ui-icon-close" />
+						</h:panelGroup>
+
+					</h:panelGroup>
+				</p:panel>
+			</p:tab>
+		</p:accordionPanel>
+	</ui:define>
+
+</ui:composition>

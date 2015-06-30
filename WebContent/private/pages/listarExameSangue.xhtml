@@ -45,7 +45,7 @@
 				<h:panelGroup layout="block" styleClass="form-group"><br />
 					<p:commandButton value="Limpar" type="submit"
 						action="#{manterExameSangueMB.initListar}" ajax="true"
-						update="tab-exames,dataDe,dataAte" immediate="false"/>
+						update="tab-exames" immediate="false"/>
 				</h:panelGroup>			
 			
 			</h:panelGrid>
@@ -62,9 +62,7 @@
 				<p:column headerText="Observação" id="colObservacao">
 					<h:outputText value="#{listExameSangue.observacao}" />
 				</p:column>
-				<!-- <p:column headerText="Análises realizadas - lista">
-					<h:outputText value="#{listExameSangue.itensExame}" />    
-				</p:column>-->
+				
 
 			</p:dataTable>
 			
@@ -73,3 +71,8 @@
 	</ui:define>
 </ui:composition>
 </html>
+
+
+<!-- <p:column headerText="Análises realizadas - lista">
+					<h:outputText value="#{listExameSangue.itensExame}" />    
+				</p:column>-->

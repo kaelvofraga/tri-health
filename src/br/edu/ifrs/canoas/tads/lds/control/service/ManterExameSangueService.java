@@ -130,25 +130,12 @@ public class ManterExameSangueService {
 			Mensagens.define(FacesMessage.SEVERITY_ERROR,
 					"listarExameSangue.consulta.listavazia");
 			return usuarioExameDAO.buscaTodos();
-			//ArrayList<UsuarioExame>();
+			//return new ArrayList<UsuarioExame>();
 		}
 			//return usuarioExameDAO.buscaPorCriterio(dataDe,dataAte);
 			//return usuarioExameDAO.buscaTodos(); estava isso, comentei e coloquei o de cima , 
 													//por que havia erro-->>CORRIGIR
 	}
-	
-	/*public List<UsuarioExame> busca(Date dataDe, Date dataAte,String criterioExameSangue) {
-		if (dataDe == null || dataAte == null || dataDe.compareTo(dataAte) > 0) {
-			dataDe = DateUtil.getDataAtual();
-			dataAte = DateUtil.getDataAtualIncrementa(1);
-		}
-		if (StrUtil.isNotBlank(criterioExameSangue) || dataDe != null && dataAte != null) {
-
-			return usuarioExameDAO.buscaPorCriterio(dataDe, dataAte,criterioExameSangue);
-		} else {
-			return usuarioExameDAO.buscaTodos();
-		}
-	}*/
 
 	public boolean alteraExameSangue(UsuarioExame usuarioExame) {
 		try{
@@ -190,8 +177,18 @@ public class ManterExameSangueService {
 		return true;
 	}
 
+	/*public List<UsuarioExame> busca(Date dataDe, Date dataAte,String criterioExameSangue) {
+		if (dataDe == null || dataAte == null || dataDe.compareTo(dataAte) > 0) {
+			dataDe = DateUtil.getDataAtual();
+			dataAte = DateUtil.getDataAtualIncrementa(1);
+		}
+		if (StrUtil.isNotBlank(criterioExameSangue) || dataDe != null && dataAte != null) {
 
-	
+			return usuarioExameDAO.buscaPorCriterio(dataDe, dataAte,criterioExameSangue);
+		} else {
+			return usuarioExameDAO.buscaTodos();
+		}
+	}*/	
 	
 
 }

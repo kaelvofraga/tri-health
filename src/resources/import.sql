@@ -145,3 +145,17 @@ insert into Idioma (id, nome) values (1003, 'Francï¿½s' );
 insert into Idioma (id, nome) values (1004, 'Alemï¿½o' );
 insert into Idioma (id, nome) values (1005, 'Mandarin' );
 insert into Idioma (id, nome) values (1006, 'Japonï¿½s' );
+
+insert into TipoExame (id, descricao, unidadeDeMedida, valorReferencia) values (1001, 'Eletrocardiograma(ECG)', 'x1', '80');
+insert into TipoExame (id, descricao, unidadeDeMedida, valorReferencia) values (1002, 'Radiografia de torax (Raio X de torax)', 'x2', '90');
+
+--Exame
+insert into Exame (id, nome, descricao) values (1001, 'HEMOGRAMA', 'EXAME HEMOGRAMA' );
+insert into Exame (id, nome, descricao) values (1002, 'COLESTEROl', 'EXAME COLESTEROL' );
+
+--Exames Campos 0 string 1 numérico
+insert into ExameCampos (id,exame_id, nomeCampo, tipoCampo) values (1001, 1001,'RESULTADO', 1);
+insert into ExameCampos (id,exame_id, nomeCampo, tipoCampo) values (1002, 1001,'OBS', 0);
+insert into ExameCampos (id,exame_id, nomeCampo, tipoCampo) values (1003, 1002,'RESULTADO', 0);
+insert into ExameCampos (id,exame_id, nomeCampo, tipoCampo) values (1004, 1002,'OBS', 0);
+
