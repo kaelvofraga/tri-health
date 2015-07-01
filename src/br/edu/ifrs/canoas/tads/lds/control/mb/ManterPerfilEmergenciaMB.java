@@ -80,8 +80,8 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 		alergiaUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		criterioAlergia = "";
 		alergias = new ArrayList<AlergiaUsuario>();
-		medicamentosLista= this.getMedicamentosLista();
-		consultasMedicas=this.getConsultasMedicas();
+		//medicamentosLista= this.getMedicamentosLista();
+		//consultasMedicas=this.getConsultasMedicas();
 		return URL_LISTAR_PERFIL_EMERGENCIA;
 	}
 
