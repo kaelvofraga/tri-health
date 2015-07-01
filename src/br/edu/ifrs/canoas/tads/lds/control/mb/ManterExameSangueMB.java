@@ -115,8 +115,7 @@ public class ManterExameSangueMB implements Serializable{
 	}
 	public void setTiposAnalise(List<TipoAnalise> tiposAnalise) {
 		this.tiposAnalise = tiposAnalise;
-	}
-	
+	}	
 	public Date getDataDe() {
 		return dataDe;
 	}
@@ -173,16 +172,8 @@ public class ManterExameSangueMB implements Serializable{
 	}	
 	
 	public void busca(){
-		if (exameSangueService.validaData(usuarioExame)==true){
-			listaExames = exameSangueService.busca(this.getDataDe(),this.getDataAte());
-		}else{
-			exameSangueService.buscaExameSangueUsuario(dataDe, dataAte);
-		}
-	}
-	
-	/*public void busca(){
 		listaExames = exameSangueService.busca(this.getDataDe(),this.getDataAte());
-	}       FUNCIONANDO    */
+	}
 	
 	public void salvaExame(){
 		usuarioExame.setUsuario(gerenciarLoginMB.getUsuario());

@@ -9,6 +9,7 @@ import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
 import br.edu.ifrs.canoas.tads.lds.bean.ItemExameSangue;
+import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 import br.edu.ifrs.canoas.tads.lds.bean.UsuarioExame;
 import br.edu.ifrs.canoas.tads.lds.model.dao.ItemExameSangueDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.TipoAnaliseDAO;
@@ -94,43 +95,45 @@ public class ManterExameSangueService {
 		}
 	}
 	
-	public void buscaExameSangueUsuario(Date dataDe, Date dataAte) {
-		if (dataDe == null && dataAte == null) {
+	public List<UsuarioExame> buscaExameSangueUsuario(Date dataDe, Date dataAte) {
+		if (dataDe == null || dataAte == null) {
 			Mensagens.define(FacesMessage.SEVERITY_ERROR,
 					"listarExameSangue.consulta.datasvazias");
-			//return false;
-		} else {
-			if (dataDe==null){
+			/*if (dataDe==null){
 				Mensagens.define(FacesMessage.SEVERITY_ERROR,
 						"listarExameSangue.consulta.datadevazia");
-				//return false;
+				return null;
 			}
 			if (dataAte==null){
 				Mensagens.define(FacesMessage.SEVERITY_ERROR,
-						"listarExameSangue.consulta.dataatevazia");
-				//return false;
-			}
+						"listarExameSangue.consulta.dataatevazia");*/
+				/*return null;
+		} else {*/
+			
+			return usuarioExameDAO.buscaTodos();
 		}
-		//return true;
+		return usuarioExameDAO.buscaTodos();
+		
 	}
 	
 	public List<UsuarioExame> busca(Date dataDe, Date dataAte) {
 		/*if (dataDe == null || dataAte == null || dataDe.compareTo(dataAte) > 0) {
 			dataDe = DateUtil.getDataAtual();
 			dataAte = DateUtil.getDataAtualIncrementa(1);
-		}*/
-		/*if (dataDe == null) {
+		}
+		if (dataDe == null) {
 			dataDe = DateUtil.getDataAtual();
 			//dataAte = DateUtil.getDataAtualIncrementa(1);
 		}*/
 		if (dataDe != null && dataAte != null) {
 			//return usuarioExameDAO.buscaPorCriterio(dataDe,dataAte);
+			//return usuarioExameDAO.buscaPorCriterio(dataDe, dataAte);
 			return usuarioExameDAO.buscaTodos();
 		} else{
-			Mensagens.define(FacesMessage.SEVERITY_ERROR,
-					"listarExameSangue.consulta.listavazia");
-			return null;
-			//return usuarioExameDAO.buscaTodos();
+			//Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					//"listarExameSangue.consulta.listavazia");
+			//return null;
+			return usuarioExameDAO.buscaTodos();
 			//return new ArrayList<UsuarioExame>();
 		}
 			//return usuarioExameDAO.buscaPorCriterio(dataDe,dataAte);
@@ -178,18 +181,18 @@ public class ManterExameSangueService {
 		return true;
 	}
 
-	/*public List<UsuarioExame> busca(Date dataDe, Date dataAte,String criterioExameSangue) {
-		if (dataDe == null || dataAte == null || dataDe.compareTo(dataAte) > 0) {
+	/*public List<UsuarioExame> busca(Date dataDe, Date dataAte) {
+		/*if (dataDe == null || dataAte == null || dataDe.compareTo(dataAte) > 0) {
 			dataDe = DateUtil.getDataAtual();
 			dataAte = DateUtil.getDataAtualIncrementa(1);
 		}
-		if (StrUtil.isNotBlank(criterioExameSangue) || dataDe != null && dataAte != null) {
+		if (dataDe != null && dataAte != null) {
 
-			return usuarioExameDAO.buscaPorCriterio(dataDe, dataAte,criterioExameSangue);
+			return usuarioExameDAO.buscaTodos();
 		} else {
 			return usuarioExameDAO.buscaTodos();
 		}
-	}*/	
+	}	*/
 	
 
 }

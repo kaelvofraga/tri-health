@@ -6,7 +6,14 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.TemporalType;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
+
+import br.edu.ifrs.canoas.tads.lds.bean.ExameUrinaUsuario;
+import br.edu.ifrs.canoas.tads.lds.bean.Refeicao;
+import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 import br.edu.ifrs.canoas.tads.lds.bean.UsuarioExame;
+import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
 
 @Stateless
 public class UsuarioExameDAO extends BaseDAO<UsuarioExame, Long>{
@@ -24,26 +31,14 @@ public class UsuarioExameDAO extends BaseDAO<UsuarioExame, Long>{
 					+ "WHERE ue.data "
 					+ "between :dataDe and :dataAte "
 					+ "ORDER BY ue.data")
-					.getResultList();
-		} catch (IllegalArgumentException e) {
-			return null;
-		}
-	}
-	
-	/*public List<UsuarioExame> buscaPorCriterio(Date dataDe, Date dataAte) {
-		try {
-			String query="SELECT ue FROM usuarioexame ue "
-					+ "WHERE ue.data "
-					+ "between :dataDe and :dataAte "
-					+ "ORDER BY ue.data";
-			return em.createQuery(query)
 					.setParameter("dataDe", dataDe,TemporalType.TIMESTAMP)
 					.setParameter("dataAte", dataAte, TemporalType.TIMESTAMP)
 					.getResultList();
 		} catch (IllegalArgumentException e) {
 			return null;
 		}
-	}*/
+	}
+	
 	
 }
 
