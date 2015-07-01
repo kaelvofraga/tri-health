@@ -55,6 +55,11 @@ public class ManterComposicoesCorporaisMB implements Serializable {
 	
 	private Date data;
 
+	/**
+	 * @brief Inicializa a exibição dos gráficos de composições corporais
+	 * @autor Pablo Diehl
+	 * @version 30/06/2015
+	 **/
 	public String initListar() {
 		data = new Date(0);
 		
@@ -84,12 +89,22 @@ public class ManterComposicoesCorporaisMB implements Serializable {
 		return URL_LISTAR_COMPOSICOES_CORPORAIS;
 	}
 
+	/**
+	 * @brief Inicializa o cadastro de composições corporais
+	 * @autor Pablo Diehl
+	 * @version 29/06/2015
+	 **/
 	public String initManter() {
 		composicaoUsuario = new ComposicaoUsuario();
 
 		return URL_MANTER_COMPOSICOES_CORPORAIS;
 	}
 
+	/**
+	 * @brief Salva registro de composições corporais no banco
+	 * @autor Pablo Diehl
+	 * @version 01/07/2015
+	 **/
 	public void salvaComposicao() {
 		composicaoUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		if (composicaoService.salvaComposicao(composicaoUsuario)) {
@@ -101,7 +116,11 @@ public class ManterComposicoesCorporaisMB implements Serializable {
 		composicaoListada = composicaoService.buscaGeral(criterio,
 				gerenciarLoginMB.getUsuario());
 	}
-
+	
+	public String exclui(){
+		composicaoService.exclui(composicaoListada);
+		return this.initManter();
+	}
 	public double getTotal() {
 		double total = 0.0;
 

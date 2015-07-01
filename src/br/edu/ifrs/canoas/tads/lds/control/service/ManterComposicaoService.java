@@ -43,6 +43,12 @@ public class ManterComposicaoService {
 					"manterComposicao.cadastro.erro.data");
 			return false;
 		}
+		
+		if((composicaoUsuario.getAdiposa() > 100) || (composicaoUsuario.getResidual() > 100) || (composicaoUsuario.getMuscular() > 100) || (composicaoUsuario.getOssea() > 100)){
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					"manterComposicao.cadastro.erro.demais");
+			return false;
+		}
 
 		if (composicaoUsuario.getAdiposa() + composicaoUsuario.getResidual()
 				+ composicaoUsuario.getMuscular()
@@ -77,6 +83,11 @@ public class ManterComposicaoService {
 		return true;
 	}
 
+	/**
+	 * @brief Busca por registros salvos.
+	 * @autor Pablo Diehl
+	 * @version 29/06/2015
+	 **/
 	public ComposicaoUsuario buscaGeral(long criterio, Usuario usuario) {
 		ComposicaoUsuario composicao = null;
 
@@ -94,5 +105,27 @@ public class ManterComposicaoService {
 		}
 
 		return composicao;
+	}
+	
+	/**
+	 * @brief Deleta registro de composição selecionado pelo usuário
+	 * @autor Pablo Diehl
+	 * @version 01/07/2015
+	 **/
+	public boolean exclui(ComposicaoUsuario excluir){
+		try{
+			if(excluir != null && excluir.getId() != null){
+				composicaoUsuarioDAO.exclui(excluir.getId());
+				Mensagens.define(FacesMessage.SEVERITY_INFO,"manterComposicao.exclui.sucesso");
+				return true;
+			}else{
+				Mensagens.define(FacesMessage.SEVERITY_INFO,"manterComposicao.exclui.erro");
+				return false;
+			}
+		}catch(IllegalArgumentException e) {
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					"manterComposicao.exclui.erro");
+			return false;
+		}
 	}
 }

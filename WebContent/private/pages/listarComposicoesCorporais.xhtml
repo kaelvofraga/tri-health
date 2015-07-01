@@ -30,14 +30,13 @@
 							value="#{manterComposicoesCorporaisMB.data}" showOn="button"
 							placeholder="Informe uma data a ser pesquisada." />
 					</h:panelGroup>
-					<p:commandButton value="Buscar" type="submit"
-							ajax="true"
-							action="#{manterComposicoesCorporaisMB.busca}"
-							update="tab-composicoes" 
-							icon="ui-icon-refresh" immediate="false" />
+					<p:commandButton value="Buscar" type="submit" ajax="true"
+						action="#{manterComposicoesCorporaisMB.busca}"
+						update="tab-composicoes" icon="ui-icon-refresh" immediate="false" />
 					<br />
 					<br />
-					<p:chart type="pie" id="cgrafico" model="#{manterComposicoesCorporaisMB.grafico}"
+					<p:chart type="pie" id="cgrafico"
+						model="#{manterComposicoesCorporaisMB.grafico}"
 						style="width: 600px; height:500px; align:center;" />
 					<br />
 					<p:dataTable id="tab-composicoes" selectionMode="single"
@@ -46,28 +45,39 @@
 						value="#{manterComposicoesCorporaisMB.composicaoListada}"
 						rowKey="#{composicaoUsuario.id}" reflow="true">
 
-						<p:column headerText="Data" id="colData" style="width:20%;">
+						<p:column headerText="Data" id="colData" style="width:15%;">
 							<h:outputText value="#{composicaoUsuario.data}" />
 						</p:column>
 
 						<p:column headerText="Massa Adiposa" id="colAdiposa"
-							style="width:20%;">
+							style="width:15%;">
 							<h:outputText value="#{composicaoUsuario.adiposa}" />
 						</p:column>
 
 						<p:column headerText="Massa Residual" id="colRedidual"
-							style="width:20%;">
+							style="width:15%;">
 							<h:outputText value="#{composicaoUsuario.residual}" />
 						</p:column>
 
 						<p:column headerText="Massa Muscular" id="colMuscular"
-							style="width:20%;">
+							style="width:15%;">
 							<h:outputText value="#{composicaoUsuario.muscular}" />
 						</p:column>
 
 						<p:column headerText="Massa Óssea" id="colOssea"
-							style="width:20%;">
+							style="width:15%;">
 							<h:outputText value="#{composicaoUsuario.ossea}" />
+						</p:column>
+
+						<p:column headerText="Exclusão" id="colExc" style="width:15%;">
+							  <p:commandButton value="Excluir"
+								immediate="true"
+								action="#{manterComposicoesCorporaisMB.exclui}"
+								ajax="true">
+								<p:confirm header="Confirmação"
+									message="Tem certeza que deseja apagar o registro?"
+									icon="ui-icon-alert" />
+							</p:commandButton>
 						</p:column>
 					</p:dataTable>
 
