@@ -8,6 +8,7 @@ import java.lang.*;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -23,6 +24,8 @@ import br.edu.ifrs.canoas.tads.lds.bean.Udm;
 import br.edu.ifrs.canoas.tads.lds.bean.ValorMedidaUsuario;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterEnderecoService;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterHospitalService;
+import br.edu.ifrs.canoas.tads.lds.model.dao.EnderecoDAO;
+import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 
 /**
  * @author Juarez Monteiro
@@ -76,6 +79,7 @@ public class ManterHospitalMB implements Serializable {
 	public String initListar() {
 		local = new DefaultMapModel();
 		hospital = new Hospital();
+		endereco = new Endereco();
 		return URL_LISTAR_HOSPITAIS;
 	}
 	
@@ -85,11 +89,17 @@ public class ManterHospitalMB implements Serializable {
 	
 
 	public void atualizaMapa(){
-		local = new DefaultMapModel();
-		centroLat = endereco.getLatitude();
-		centroLng = endereco.getLongitude();
-		LatLng coord1 = new LatLng(Double.parseDouble(centroLat), Double.parseDouble(centroLng));
-		local.addOverlay(new Marker(coord1, hospital.getNome()));
+		if(endereco.getLogradouro().isEmpty() || endereco.getNumero() == null || endereco.getTelefone().getNumero().isEmpty())
+			Mensagens.define(FacesMessage.SEVERITY_ERROR, "manterHospital.busca.vazio");
+		if(endereco.getLatitude().isEmpty() || endereco.getLongitude().isEmpty())
+			Mensagens.define(FacesMessage.SEVERITY_ERROR, "manterHospital.busca.mapa.erro");
+		else{
+			local = new DefaultMapModel();
+			centroLat = endereco.getLatitude();
+			centroLng = endereco.getLongitude();
+			LatLng coord1 = new LatLng(Double.parseDouble(centroLat), Double.parseDouble(centroLng));
+			local.addOverlay(new Marker(coord1, hospital.getNome()));
+		}
 	}
 	
 	//Getters and Setters

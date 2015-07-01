@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -31,7 +32,7 @@ public class Endereco extends BaseEntity<Long> implements Serializable {
 	@JoinColumn(name="ID_CIDADE")
 	private Cidade cidade = new Cidade();
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="ID_TELEFONE", nullable = true)
 	private Telefone telefone;
 	
