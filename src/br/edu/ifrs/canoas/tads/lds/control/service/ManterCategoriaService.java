@@ -38,20 +38,18 @@ public class ManterCategoriaService {
 	 * */
 	public Boolean salvaCategoria(Atividade atividade, TipoAtividade tipoAtividade) {
 		if(tipoAtividade == null || tipoAtividade.getNome() == null ){	
-			Mensagens.define(FacesMessage.SEVERITY_ERROR, "Atividade.cadastro.erro");
+			Mensagens.define(FacesMessage.SEVERITY_ERROR, "manterCategoria.cadastro.erro");
 			return false;	
 		}
 		if(atividade == null || atividade.getDescricao() == null){	
 		
-			Mensagens.define(FacesMessage.SEVERITY_ERROR, "Atividade.cadastro.erro");
+			Mensagens.define(FacesMessage.SEVERITY_ERROR, "manterCategoria.cadastro.erro");
 			return false;					
 		}				
-		if (tipoAtividadeDAO.buscaPorNome(tipoAtividade).size() == 0)
-			tipoAtividadeDAO.insere(tipoAtividade);
-	
+		tipoAtividadeDAO.insere(tipoAtividade);
 		atividade.setTipoAtividade(tipoAtividade);
 		atividadeDAO.insere(atividade);		
-		Mensagens.define(FacesMessage.SEVERITY_INFO, "Atividade.cadastro.sucesso");
+		Mensagens.define(FacesMessage.SEVERITY_INFO, "manterCategoria.cadastro.sucesso");
 		
 		return true;	
 	}	

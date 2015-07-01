@@ -86,20 +86,7 @@ insert into ValorMedidaUsuario(id, USUARIO_ID, UDM_ID, TIPOMEDIDA_ID, medidaValo
 insert into ValorMedidaUsuario(id, USUARIO_ID, UDM_ID, TIPOMEDIDA_ID, medidaValor, dataMedida, observacao) values (100001, 1000, 2, 3, 40.00, sysdate, 'nao possuo lesao corporal.');
 
 
---[ Manter Atividades ]--
-
-insert into TipoAtividade(id, nome) values (1, 'Corrida');
-insert into TipoAtividade(id, nome) values (2, 'Ciclismo');
-insert into TipoAtividade(id, nome) values (3, 'Dan�a');
-
-insert into Atividade(id, descricao, MET, tipoAtividade_id) values (1, 'Jogging', 7, 1);
-insert into Atividade(id, descricao, MET, tipoAtividade_id) values (2, 'Correndo em 5 mph (8 quilometros por hora)', 8, 1);
-
-insert into Atividade(id, descricao, MET, tipoAtividade_id) values (3, 'BMX ou Mountain Bike', 8.5, 2);
-insert into Atividade(id, descricao, MET, tipoAtividade_id) values (4, 'Pedalando para o trabalho ou por divers�o', 4, 2);
-
-insert into Atividade(id, descricao, MET, tipoAtividade_id) values (5, 'Dan�a aer�bica', 6.5, 3);
-insert into Atividade(id, descricao, MET, tipoAtividade_id) values (6, 'Ballet ou moderna, twist, jazz, tap, jitterbug', 4.8, 3);
+--[ Manter Atividades ]-- Removido
 
 --Manter Exame Urina
 insert into TipoAnalise (id, tipo,valorReferencia) values (10001,'Glicose','180');
@@ -158,4 +145,15 @@ insert into ExameCampos (id,exame_id, nomeCampo, tipoCampo) values (1001, 1001,'
 insert into ExameCampos (id,exame_id, nomeCampo, tipoCampo) values (1002, 1001,'OBS', 0);
 insert into ExameCampos (id,exame_id, nomeCampo, tipoCampo) values (1003, 1002,'RESULTADO', 0);
 insert into ExameCampos (id,exame_id, nomeCampo, tipoCampo) values (1004, 1002,'OBS', 0);
+
+
+insert into Resultado (id, USUARIO_ID, exame_id, resultadoData) values (1001, 1000, 1001, sysdate);
+insert into ResultadoCampos (id , resultado_id, examecampos_id, resultadoValor) values (1001, 1001, 1001, '50');
+insert into ResultadoCampos (id , resultado_id, examecampos_id, resultadoValor) values (1002, 1001, 1002, 'teste');
+
+insert into Resultado (id, USUARIO_ID, exame_id, resultadoData) values (1002, 1000, 1002, sysdate);
+insert into ResultadoCampos (id , resultado_id, examecampos_id, resultadoValor) values (1003, 1002, 1003, '100');
+insert into ResultadoCampos (id , resultado_id, examecampos_id, resultadoValor) values (1003, 1002, 1004, 'tes2te');
+
+
 

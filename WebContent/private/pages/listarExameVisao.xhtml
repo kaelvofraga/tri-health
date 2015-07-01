@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<ui:define name="content">
+		<h1 class="lead">Exames de Visão</h1>
+
+				<h:panelGroup layout="block" id="exames">
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:outputLabel for="criterio_exame" value="Pesquisa" />
+						<p:inputText id="criterio_exame" styleClass="form-control"
+							value="#{manterExameVisaoMB.criterioExameVisao}"
+							placeholder="Pesquise aqui por Medico, grau ou disfunção" />
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:commandButton value="Busca" type="submit"
+							action="#{manterExameVisaoMB.busca}" ajax="true"
+							update="tab-exames" immediate="false" />
+						<p:commandButton value="Limpa" type="submit"
+							action="#{manterConsultasMB.initListar}" ajax="true"
+							update="tab-exames,criterio_exame" immediate="false" />
+					</h:panelGroup>
+
+					<p:dataTable var="item" id="tab-exames"
+						selectionMode="single"
+						selection="#{manterExameVisaoMB.exameVisao}"
+						rowKey="#{item.id}"
+						value="#{manterExameVisaoMB.examesVisao}"
+						emptyMessage="Nenhum Registro Encontrado." reflow="true">
+						<p:ajax event="rowSelect"
+							listener="#{manterExameVisaoMB.onRowSelect}"
+							oncomplete="/private/pages/manterExameVisao.jsf" />
+						<p:column headerText="Medico">
+							<h:outputText value="#{item.medico.nome}" />
+						</p:column>
+						<p:column headerText="Data">
+							<h:outputText value="#{item.data}" />
+						</p:column>
+					</p:dataTable>
+					<br />
+				</h:panelGroup>
+				
+				<p:commandButton value="Novo Exame Visão"
+			action="#{manterExameVisaoMB.initManter}" ajax="true" />
+	</ui:define>
+</ui:composition>

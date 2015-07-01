@@ -50,6 +50,9 @@ public class ManterAtividadesMB implements Serializable {
 	@Inject 
 	private AtividadeUsuario atividadeUsuario;	
 	
+	@Inject
+	private AtividadeUsuario atividadeToFace;	
+	
 	//Lista Atividades do Usuario
 	private List<AtividadeUsuario> atividadeUsuarioList;
 	private String criterioAtividadeUsuario;
@@ -120,13 +123,18 @@ public class ManterAtividadesMB implements Serializable {
 	/** 
 	 * @brief Vincula usu�rio logado � atividade e inseri a nova atividade no BD, ap�s limpa formul�rio
 	 * @param void
-	 * @return String: url da listagem de atividades
+	 * @return void
 	 * **/
 	public void salvaAtividadeUsuario(){
 		atividadeUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		if(atvUsuarioService.salvaAtividadeUsuario(atividadeUsuario)){						
-			//RequestContext requestContext = RequestContext.getCurrentInstance();
-			//requestContext.execute("PF('shareDialog').show()");
+			RequestContext requestContext = RequestContext.getCurrentInstance();
+			requestContext.execute("PF('shareDialog').show()");
+			atividadeToFace.setAtividade(atividadeUsuario.getAtividade());
+			atividadeToFace.setUsuario(atividadeUsuario.getUsuario());
+			atividadeToFace.setDataFim(atividadeUsuario.getDataFim());
+			atividadeToFace.setDataInicio(atividadeUsuario.getDataInicio());
+			
 			this.initManter();
 		}
 	}
@@ -208,8 +216,8 @@ public class ManterAtividadesMB implements Serializable {
 	 * @param void
 	 * @return void
 	 * */
-	public void publicarAtividade() {		
-		this.facebookMB.publicarAtividade( this.atvUsuarioService.montaFacebookMensagem(this.atividadeUsuario) );
+	public void publicarAtividade() throws IOException {		
+		this.facebookMB.publicarAtividade( this.atvUsuarioService.montaFacebookMensagem(this.atividadeToFace) );
 	}
 			
 	/*

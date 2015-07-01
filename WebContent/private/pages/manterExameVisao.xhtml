@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<ui:define name="content">
+		<h1 class="lead">Cadastro de Exame de Visão</h1>
+
+		<h:panelGroup layout="block" id="exames">
+
+			<h:panelGrid columns="2" styleClass="mtable">
+
+
+				<h:panelGroup layout="block" styleClass="form-group">
+					<p:outputLabel for="medico" value="Medico" />
+					<br />
+					<p:autoComplete id="medico"
+						value="#{manterExameVisaoMB.exameVisao.medico.nome}" size="35"
+						style="width:200px"
+						completeMethod="#{manterExameVisaoMB.completeMedico}"
+						var="medico" itemLabel="#{medico}" itemValue="#{medico.nome}"
+						placeholder="Informe o nome do medico" immediate="true"
+						required="true"
+						requiredMessage="Um nome de medico deve ser informado." />
+						
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" styleClass="form-group">
+					<p:outputLabel for="data_Exame" value="Data do Exame" />
+					<br />
+					<p:calendar id="data_Exame" style="width:200px"
+						value="#{manterExameVisaoMB.exameVisao.data}"
+						pattern="dd/MM/yyyy HH:mm:ss"
+						placeholder="Informe a data do Exame" required="true"
+						requiredMessage="Uma data de Exame deve ser informada."
+						size="35" effect="fold" icon="glyphicon-calendar" />
+				</h:panelGroup>
+			</h:panelGrid>
+
+			<h:panelGroup layout="block" styleClass="form-group" id="buttons">
+
+				<h:panelGroup layout="block" styleClass="form-group pull-left">
+					<p:commandButton value="Salvar"
+						rendered="#{not manterExameVisaoMB.atualizacao}"
+						action="#{manterExameVisaoMB.salvaExameVisao}" ajax="true"
+						update="exames" icon="ui-icon-disk">
+					</p:commandButton>
+
+					<p:commandButton value="Alterar"
+						rendered="#{manterExameVisaoMB.atualizacao}"
+						action="#{manterExameVisaoMB.alteraExameVisao}" ajax="false"
+						icon="ui-icon-pencil">
+					</p:commandButton>
+
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" styleClass="form-group pull-right">
+					<p:commandButton value="Excluir"
+						rendered="#{manterExameVisaoMB.atualizacao}"
+						action="#{manterExameVisaoMB.exclui}" ajax="true"
+						icon="ui-icon-close" update="msgs">
+						<p:confirm header="Confirmação"
+							message="Tem certeza que deseja apagar o Exame?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+
+					<p:commandButton value="Voltar"
+						rendered="#{manterExameVisaoMB.atualizacao}"
+						action="#{manterExameVisaoMB.initListar}" ajax="false">
+					</p:commandButton>
+				</h:panelGroup>
+
+			</h:panelGroup>
+
+		</h:panelGroup>
+
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+			<p:commandButton value="Sim" type="button"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
+			</p:commandButton>
+			<p:commandButton value="Não" type="button"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close">
+			</p:commandButton>
+		</p:confirmDialog>
+
+
+
+
+	</ui:define>
+
+</ui:composition>

@@ -137,8 +137,11 @@
 						<h:panelGroup layout="block" styleClass="form-group pull-left">
 							<p:commandButton value="Salvar"
 								rendered="#{not manterAtividadesMB.atualizacao}"
+								icon="ui-icon-disk"
+								ajax="true"
 								action="#{manterAtividadesMB.salvaAtividadeUsuario}"
-								icon="ui-icon-disk" update="panel" ajax="true" />
+								update="panel">
+							</p:commandButton>
 
 							<p:commandButton value="Salvar alterações"
 								rendered="#{manterAtividadesMB.atualizacao}"
