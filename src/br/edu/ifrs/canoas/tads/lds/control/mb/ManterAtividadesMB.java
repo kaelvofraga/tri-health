@@ -131,7 +131,6 @@ public class ManterAtividadesMB implements Serializable {
 			RequestContext requestContext = RequestContext.getCurrentInstance();
 			requestContext.execute("PF('shareDialog').show()");
 			atividadeToFace.setAtividade(atividadeUsuario.getAtividade());
-			atividadeToFace.setDuracao(atividadeUsuario.getDuracao());
 			atividadeToFace.setUsuario(atividadeUsuario.getUsuario());
 			atividadeToFace.setDataFim(atividadeUsuario.getDataFim());
 			atividadeToFace.setDataInicio(atividadeUsuario.getDataInicio());

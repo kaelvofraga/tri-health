@@ -53,7 +53,7 @@ public class ManterAtividadesService {
 			
 		return Mensagens.getBundleMessage("Facebook.compartilhar.notificao", 
 										  new SimpleDateFormat("dd/MM/yyyy").format(atividadeUsuario.getDataFim()),
-										  atividadeUsuario.getDuracao(),
+										  this.calculaDuracao(atividadeUsuario),
 										  atividadeUsuario.getAtividade().getDescricao()); 
 	}
 		
