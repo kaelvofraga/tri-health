@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<ui:define id="contentResultados" name="content">
+
+		<h1 class="lead">Resultado</h1>
+
+		<p:accordionPanel id="panelPesquisa" multiple="true">
+			<p:outputLabel value="Exame" />
+			<br />
+
+			<p:tab id="tabPesquisa" title="Pesquisa">
+				<h:panelGroup layout="block">
+					<h3>Lista de Resultados:</h3>
+
+					<p:dataTable id="data-exames" 
+						emptyMessage="Nenhum Registro Encontrado." 
+						var="resultado"
+						selectionMode="single"
+						rowKey="#{resultado.id}"
+						selection="#{listarResultadoMB.resultado}"
+						value="#{listarResultadoMB.resultados}">
+						<p:ajax event="rowSelect"
+							update=":mainForm:panelPesquisa:data_resultado_campos" />
+							
+						<p:column headerText="Nome" id="colExaNome">
+							<h:outputText value="#{resultado.exame.nome}" />
+						</p:column>
+
+						<p:column headerText="Data" id="colData">
+							<h:outputText
+								value="#{resultado.resultadoData}" />
+						</p:column>						
+					</p:dataTable>
+					
+					<hr />
+					
+					<h3>Valores:</h3>
+					<p:dataTable id="data_resultado_campos"
+						emptyMessage="Nenhum Registro Encontrado." var="resultadoCampos"
+						value="#{listarResultadoMB.resultadoCamposList}" >
+						
+						<p:column headerText="Campo" id="colExaNome">
+							<h:outputText value="#{resultadoCampos.exameCampos.nomeCampo}" />
+						</p:column>
+
+						<p:column headerText="Valor" id="colTipoCampo">
+							<h:outputText value="#{resultadoCampos.resultadoValor}" />
+						</p:column>
+
+					</p:dataTable>
+					<hr />
+				</h:panelGroup>
+			</p:tab>
+			
+		</p:accordionPanel>
+	</ui:define>
+</ui:composition>
+
