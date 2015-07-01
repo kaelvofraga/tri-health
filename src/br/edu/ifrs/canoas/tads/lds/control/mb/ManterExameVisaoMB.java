@@ -13,10 +13,8 @@ import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
 
-import br.edu.ifrs.canoas.tads.lds.bean.Consulta;
 import br.edu.ifrs.canoas.tads.lds.bean.ExameVisao;
 import br.edu.ifrs.canoas.tads.lds.bean.Medico;
-import br.edu.ifrs.canoas.tads.lds.control.service.ManterConsultasService;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterExameVisaoService;
 
 @Named
