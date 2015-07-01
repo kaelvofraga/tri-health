@@ -17,6 +17,16 @@
 
 			<h:panelGrid columns="2" styleClass="mtable">
 
+				<h:panelGroup layout="block" styleClass="form-group">
+					<p:outputLabel for="data_Exame" value="Data do Exame" />
+					<br />
+					<p:calendar id="data_Exame" style="width:200px"
+						value="#{manterExameVisaoMB.exameVisao.data}"
+						pattern="dd/MM/yyyy HH:mm:ss"
+						placeholder="Informe a data do Exame" required="true"
+						requiredMessage="Uma data de Exame deve ser informada."
+						size="35" effect="fold" icon="glyphicon-calendar" />
+				</h:panelGroup>
 
 				<h:panelGroup layout="block" styleClass="form-group">
 					<p:outputLabel for="medico" value="Medico" />
@@ -30,17 +40,6 @@
 						required="true"
 						requiredMessage="Um nome de medico deve ser informado." />
 						
-				</h:panelGroup>
-
-				<h:panelGroup layout="block" styleClass="form-group">
-					<p:outputLabel for="data_Exame" value="Data do Exame" />
-					<br />
-					<p:calendar id="data_Exame" style="width:200px"
-						value="#{manterExameVisaoMB.exameVisao.data}"
-						pattern="dd/MM/yyyy HH:mm:ss"
-						placeholder="Informe a data do Exame" required="true"
-						requiredMessage="Uma data de Exame deve ser informada."
-						size="35" effect="fold" icon="glyphicon-calendar" />
 				</h:panelGroup>
 			</h:panelGrid>
 

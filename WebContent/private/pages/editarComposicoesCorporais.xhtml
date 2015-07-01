@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<!-- 
+		@author: Pablo Diehl
+		@version: 01/07/2015
+		@brief: Página de edição de registros de composições corporais.
+	
+	 -->
+
+	<ui:define name="content">
+
+		<h1 class="lead">Composições Corporais</h1>
+
+		<p:accordionPanel id="panel" multiple="true">
+
+			<p:tab title="Edição de registro de Composição Corporal">
+
+				<h:panelGroup layout="block" id="tipo">
+					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="data" value="Data:" />
+							<br />
+							<p:calendar id="data"
+								value="#{manterComposicoesCorporaisMB.composicaoUsuario.data}"
+								pattern="dd/MM/yyyy HH:mm:ss" var="dataInicio" itemLabel=""
+								itemValue="#{manterComposicoesCorporaisMB.composicaoUsuario.data}"
+								placeholder="Data do registro" effect="fold"
+								icon="glyphicon-calendar" required="true"
+								requiredMessage="Uma data deve ser escolhida!">
+							</p:calendar>
+						</h:panelGroup>
+					</h:panelGrid>
+
+					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
+						<p:outputLabel for="adiposa" value="Massa Adiposa:" />
+						<p:inputText id="adiposa"
+							value="#{manterComposicoesCorporaisMB.composicaoUsuario.adiposa}"
+							placeholder="Percentagem de massa adiposa no corpo"
+							itemValue="#{manterComposicoesCorporaisMB.composicaoUsuario.adiposa}"
+							update="total" style="width: 100%;" required="true"
+							requiredMessage="Um valor de massa adiposa deve ser informado!" />
+						<p:slider for="adiposa" step="1" />
+					</h:panelGrid>
+
+					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
+						<p:outputLabel for="residual" value="Massa Residual:" />
+						<p:inputText id="residual"
+							value="#{manterComposicoesCorporaisMB.composicaoUsuario.residual}"
+							placeholder="Percentagem de massa residual no corpo"
+							itemValue="#{manterComposicoesCorporaisMB.composicaoUsuario.residual}"
+							style="width: 100%;" required="true"
+							requiredMessage="Um valor de massa residual deve ser informado!" />
+						<p:slider for="residual" step="1" />
+					</h:panelGrid>
+
+					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
+						<p:outputLabel for="muscular" value="Massa Muscular:" />
+						<p:inputText id="muscular"
+							value="#{manterComposicoesCorporaisMB.composicaoUsuario.muscular}"
+							placeholder="Percentagem de massa muscular no corpo"
+							itemValue="#{manterComposicoesCorporaisMB.composicaoUsuario.muscular}"
+							style="width: 100%;" required="true"
+							requiredMessage="Um valor de massa muscular deve ser informado!" />
+						<p:slider for="muscular" step="1" />
+					</h:panelGrid>
+
+					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
+						<p:outputLabel for="ossea" value="Massa Óssea:" />
+						<p:inputText id="ossea"
+							value="#{manterComposicoesCorporaisMB.composicaoUsuario.ossea}"
+							placeholder="Percentagem de massa ossea no corpo"
+							itemValue="#{manterComposicoesCorporaisMB.composicaoUsuario.ossea}"
+							style="width: 100%;" required="true"
+							requiredMessage="Um valor de massa óssea deve ser informado!" />
+						<p:slider for="ossea" step="1" />
+					</h:panelGrid>
+					<br />
+					<h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
+						<p:outputLabel for="ossea" value="Total:" />
+						<pe:inputNumber id="total" symbolPosition="s" decimalSeparator=","
+							thousandSeparator="." readonly="true"
+							value="#{manterComposicoesCorporaisMB.total}" placeholder="Total">
+						</pe:inputNumber>
+					</h:panelGrid>
+					<br />
+					<br />
+					<h:panelGroup layout="block" styleClass="form-group" id="notasArea">
+						<p:outputLabel for="notas" value="Notas:" />
+						<br />
+						<p:inputTextarea id="notas"
+							value="#{manterComposicoesCorporaisMB.composicaoUsuario.notas}"
+							rows="4" cols="94"
+							placeholder="Espaço destinado para observações e comentários."
+							counter="counter" maxlength="144"
+							counterTemplate=" Restam {0} caracteres!" style="width:100%;" />
+						<h:outputText id="counter" />
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="form-group" id="buttons">
+
+						<h:panelGroup layout="block" styleClass="form-group pull-left">
+							<p:commandButton value="Salvar"
+								action="#{manterComposicoesCorporaisMB.editaComposicao}"
+								ajax="true" icon="ui-icon-disk" update="panel" />
+
+						</h:panelGroup>
+					</h:panelGroup>
+
+				</h:panelGroup>
+
+				<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
+					</p:commandButton>
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close">
+					</p:commandButton>
+				</p:confirmDialog>
+
+			</p:tab>
+
+		</p:accordionPanel>
+
+	</ui:define>
+
+</ui:composition>

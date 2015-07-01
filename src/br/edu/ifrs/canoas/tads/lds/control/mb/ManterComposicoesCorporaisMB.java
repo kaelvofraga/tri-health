@@ -1,24 +1,16 @@
 package br.edu.ifrs.canoas.tads.lds.control.mb;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.primefaces.event.SelectEvent;
 import org.primefaces.model.chart.PieChartModel;
 
-import br.edu.ifrs.canoas.tads.lds.bean.Composicao;
 import br.edu.ifrs.canoas.tads.lds.bean.ComposicaoUsuario;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterComposicaoService;
 
@@ -35,6 +27,7 @@ public class ManterComposicoesCorporaisMB implements Serializable {
 	private static final long serialVersionUID = 6061701751807684892L;
 	private static final String URL_LISTAR_COMPOSICOES_CORPORAIS = "/private/pages/listarComposicoesCorporais.jsf";
 	private static final String URL_MANTER_COMPOSICOES_CORPORAIS = "/private/pages/manterComposicoesCorporais.jsf";
+	private static final String URL_EDITAR_COMPOSICOES_CORPORAIS = "/private/pages/editarComposicoesCorporais.jsf";
 
 	@EJB
 	private ManterComposicaoService composicaoService;
@@ -52,12 +45,17 @@ public class ManterComposicoesCorporaisMB implements Serializable {
 	private long criterio;
 
 	private PieChartModel grafico;
-	
+
 	private Date data;
 
+	/**
+	 * @brief Inicializa a exibição dos gráficos de composições corporais
+	 * @autor Pablo Diehl
+	 * @version 30/06/2015
+	 **/
 	public String initListar() {
 		data = new Date(0);
-		
+
 		criterio = data.getTime();
 
 		composicaoListada = new ComposicaoUsuario();
@@ -70,26 +68,36 @@ public class ManterComposicoesCorporaisMB implements Serializable {
 			grafico.set("Massa Residual", composicaoListada.getResidual());
 			grafico.set("Massa Óssea", composicaoListada.getOssea());
 			grafico.set("Massa Muscular", composicaoListada.getMuscular());
-		}else{
+		} else {
 			grafico.set("Massa Adiposa", 0);
 			grafico.set("Massa Residual", 0);
 			grafico.set("Massa Óssea", 0);
 			grafico.set("Massa Muscular", 0);
 		}
-		
+
 		grafico.setTitle("Composições Corporais");
 		grafico.setLegendPosition("w");
 		grafico.setShowDataLabels(true);
-		
+
 		return URL_LISTAR_COMPOSICOES_CORPORAIS;
 	}
 
+	/**
+	 * @brief Inicializa o cadastro de composições corporais
+	 * @autor Pablo Diehl
+	 * @version 29/06/2015
+	 **/
 	public String initManter() {
 		composicaoUsuario = new ComposicaoUsuario();
 
 		return URL_MANTER_COMPOSICOES_CORPORAIS;
 	}
 
+	/**
+	 * @brief Salva registro de composições corporais no banco
+	 * @autor Pablo Diehl
+	 * @version 01/07/2015
+	 **/
 	public void salvaComposicao() {
 		composicaoUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		if (composicaoService.salvaComposicao(composicaoUsuario)) {
@@ -97,11 +105,32 @@ public class ManterComposicoesCorporaisMB implements Serializable {
 		}
 	}
 
+	/**
+	 * @brief Realiza busca por composições corporais
+	 * @autor Pablo Diehl
+	 * @version 29/06/2015
+	 **/
 	public void busca() {
 		composicaoListada = composicaoService.buscaGeral(criterio,
 				gerenciarLoginMB.getUsuario());
 	}
 
+	/**
+	 * @brief Exclui registro de composições corporais selecionado
+	 * @autor Pablo Diehl
+	 * @version 01/07/2015
+	 **/
+	public String exclui() {
+		composicaoService.exclui(composicaoListada);
+		return this.initManter();
+	}
+
+	/**
+	 * @brief Verifica se a soma dos valores de entrada de um novo registro de
+	 *        composições corporais não ultrapassa o limite de 100%
+	 * @autor Pablo Diehl
+	 * @version 29/06/2015
+	 **/
 	public double getTotal() {
 		double total = 0.0;
 
@@ -111,6 +140,29 @@ public class ManterComposicoesCorporaisMB implements Serializable {
 				+ this.composicaoUsuario.getResidual();
 
 		return total;
+	}
+
+	/**
+	 * @brief Inicializa a edição de registros de composições corporais
+	 * @autor Pablo Diehl
+	 * @version 01/07/2015
+	 **/
+	public String edita() {
+		composicaoUsuario = composicaoListada;
+
+		return URL_EDITAR_COMPOSICOES_CORPORAIS;
+	}
+
+	/**
+	 * @brief Realiza a edição de um registro de composições corporais
+	 * @autor Pablo Diehl
+	 * @version 29/06/2015
+	 **/
+	public void editaComposicao() {
+		composicaoUsuario.setUsuario(gerenciarLoginMB.getUsuario());
+		if (composicaoService.editaComposicao(composicaoUsuario)) {
+			this.initManter();
+		}
 	}
 
 	public GerenciarLoginMB getGerenciarLoginMB() {
