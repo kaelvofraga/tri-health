@@ -36,7 +36,7 @@ public class ManterAtividadesService {
 
 	@Inject
 	private AtividadeDAO atividadeDAO;
-	
+		
 	/** 
 	 * @brief Monta mensagem a ser compartilhada no Facebook.	  	 		  
 	 * @param AtividadeUsuario atividadeUsuario: atividade relacionada a um usuário

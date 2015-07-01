@@ -40,6 +40,9 @@ public class LogFacebook extends BaseEntity<Long> implements Serializable {
 	@NotNull @Temporal(TemporalType.TIMESTAMP)
 	private Date data;
 	
+	@NotNull
+	private String mensagem;
+	
 	public LogFacebook() {}
 
 	public Usuario getUsuario() {
@@ -56,5 +59,13 @@ public class LogFacebook extends BaseEntity<Long> implements Serializable {
 
 	public void setData(Date data) {
 		this.data = data;
+	}
+
+	public String getMensagem() {
+		return mensagem;
+	}
+
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
 	}
 }

@@ -51,6 +51,7 @@ public class FacebookService {
 			LogFacebook logFacebook = new LogFacebook();
 			logFacebook.setUsuario(usuario);
 			logFacebook.setData(Calendar.getInstance().getTime());
+			logFacebook.setMensagem(message);
 			
 			try {				
 				ResourceBundle resBundle = ResourceBundle.getBundle("facebook4j");

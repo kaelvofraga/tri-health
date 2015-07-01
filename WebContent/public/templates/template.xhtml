@@ -39,10 +39,11 @@
        
     </script>
     <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-
+		
 	<h:head/> 
 
 	<h:body style="margin-bottom:50px;">
+
 		<h:panelGroup layout="block" style="height:100%" id="content">
 		
 			<p:layout widgetVar="pageLayoutWV" fullPage="false" style="height:100%">
@@ -70,6 +71,22 @@
 								styleClass="ui-confirmdialog-no" icon="ui-icon-close">
 							</p:commandButton>
 						</p:confirmDialog>
+
+						<p:confirmDialog id="shareDialogID"
+							message="#{msg['facebook.compartilhar.confirmacao']}"
+							header="#{msg['facebook.compartilhar.confirmacao.header']}"
+							widgetVar="shareDialog">
+-						<p:commandButton value="Sim" type="button"
+								styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
+								oncomplete="PF('shareDialog').hide()">
+								<p:ajax event="click"
+									listener="#{manterAtividadesMB.publicarAtividade}" />
+-						</p:commandButton>
+-						<p:commandButton value="Não" type="button"
+								styleClass="ui-confirmdialog-no pull-right" icon="ui-icon-close"
+								onclick="PF('shareDialog').hide()">
+-						</p:commandButton>
+-					</p:confirmDialog>
 
 					</h:form>
 				</p:layoutUnit>

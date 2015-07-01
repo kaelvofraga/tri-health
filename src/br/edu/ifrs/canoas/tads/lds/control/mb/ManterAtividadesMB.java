@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 
 import br.edu.ifrs.canoas.tads.lds.bean.Atividade;
@@ -88,9 +89,6 @@ public class ManterAtividadesMB implements Serializable {
 		atividadeListFiltrada = new ArrayList<>();
 		this.filtrarAtividades();	
 		
-		/** Social **/
-		facebookMB.initFacebook();
-		
 		return URL_MANTER_ATIVIDADES;
 	}
 	
@@ -124,13 +122,13 @@ public class ManterAtividadesMB implements Serializable {
 	 * @param void
 	 * @return String: url da listagem de atividades
 	 * **/
-	public String salvaAtividadeUsuario(){
+	public void salvaAtividadeUsuario(){
 		atividadeUsuario.setUsuario(gerenciarLoginMB.getUsuario());
-		if(atvUsuarioService.salvaAtividadeUsuario(atividadeUsuario)){			
+		if(atvUsuarioService.salvaAtividadeUsuario(atividadeUsuario)){						
+			//RequestContext requestContext = RequestContext.getCurrentInstance();
+			//requestContext.execute("PF('shareDialog').show()");
 			this.initManter();
-			return this.initListar();
 		}
-		return URL_MANTER_ATIVIDADES;
 	}
 	
 	/** 
