@@ -18,6 +18,7 @@ public class Grau extends BaseEntity<Long> implements Serializable {
 	@JoinColumn(name="TIPOGRAU_ID")
 	private TipoGrau TipoGrau;
 	
+	
 	public Grau() {
 		super();
 	}
