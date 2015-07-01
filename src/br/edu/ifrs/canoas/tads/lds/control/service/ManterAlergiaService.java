@@ -24,7 +24,7 @@ import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
  * Foi alterado o metodo de salvar e alterar.
  * Foi adicionado o metodo de validação da Data.
  * Foi alterado o metodo de busca dos tiposAlergia.
- * Foi adicionado comentários aos metodos. * 
+ * Foi adicionado comentários aos metodos da classe. * 
  * */
 
 @Stateless
@@ -145,8 +145,7 @@ public class ManterAlergiaService {
 	public boolean alteraAlergiaUsuario(AlergiaUsuario alergiaUsuario) {
 		try {
 			if(validaData(alergiaUsuario)==false){
-				Mensagens.define(FacesMessage.SEVERITY_INFO,
-						"manterPerfilEmergencia.cadastro.data.erro");
+				Mensagens.define(FacesMessage.SEVERITY_INFO,"manterPerfilEmergencia.cadastro.data.erro");
 				return false;
 			}
 			if(alergiaUsuario.getTipoAlergia().getId()==4){
@@ -156,18 +155,15 @@ public class ManterAlergiaService {
 			medicamentoDAO.atualiza(alergiaUsuario.getMedicamentoUsuario().getMedicamento());
 			medicamentoUsuarioDAO.atualiza(alergiaUsuario.getMedicamentoUsuario());	
 			alergiaUsuarioDAO.atualiza(alergiaUsuario);
-			Mensagens.define(FacesMessage.SEVERITY_INFO,
-					"manterPerfilEmergencia.altera.sucesso");
+			Mensagens.define(FacesMessage.SEVERITY_INFO,"manterPerfilEmergencia.altera.sucesso");
 			return true;
 			}
 			else{
-				Mensagens.define(FacesMessage.SEVERITY_INFO,
-						"manterPerfilEmergencia.tpAlergia.erro");	
+				Mensagens.define(FacesMessage.SEVERITY_INFO,"manterPerfilEmergencia.tpAlergia.erro");	
 				return false;
 			}
 		} catch (IllegalArgumentException e) {
-			Mensagens.define(FacesMessage.SEVERITY_ERROR,
-					"manterPerfilEmergencia.altera.excecao.erro");
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,"manterPerfilEmergencia.altera.excecao.erro");
 			return false;
 		}
 	}
@@ -181,13 +177,11 @@ public class ManterAlergiaService {
 	public boolean excluiAlergiaUsuario(AlergiaUsuario alergiaUsuario) {
 		if (alergiaUsuario.getId() != null && alergiaUsuario != null) {
 		alergiaUsuarioDAO.exclui(alergiaUsuario.getId());
-		Mensagens.define(FacesMessage.SEVERITY_INFO,
-				"manterPerfilEmergencia.exclui.sucesso");
+		Mensagens.define(FacesMessage.SEVERITY_INFO,"manterPerfilEmergencia.exclui.sucesso");
 		return true;
 		}
 		else{
-			Mensagens.define(FacesMessage.SEVERITY_ERROR,
-					"manterPerfilEmergencia.exclui.erro");
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,"manterPerfilEmergencia.exclui.erro");
 			return false;
 		}
 	}

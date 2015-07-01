@@ -12,12 +12,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
 import br.edu.ifrs.canoas.tads.lds.bean.AlergiaUsuario;
-import br.edu.ifrs.canoas.tads.lds.bean.Consulta;
 import br.edu.ifrs.canoas.tads.lds.bean.Medicamento;
 import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAlergia;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterAlergiaService;
-import br.edu.ifrs.canoas.tads.lds.control.service.ManterConsultasService;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterUsoMedicamentoService;
 
 /** 
@@ -45,23 +43,14 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 	
 	@EJB
 	private ManterAlergiaService alergiaService;
-	
+		
 	@Inject
 	private ManterUsoMedicamentoService medicamentoService;
-	
-	@Inject
-	private ManterConsultasService consultasService;
-	
+		
 	private AlergiaUsuario alergiaUsuario;
 	
-	private Consulta consultaMedica;
-	
-	private boolean emListagemAlergia;
-
 	//Lista Alergia
 	private List<AlergiaUsuario> alergias;
-	private List<MedicamentoUsuario> medicamentosLista;
-	private List<Consulta> consultasMedicas;
 	private String criterioAlergia;
 	
 	//Form Alergia
@@ -80,8 +69,6 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 		alergiaUsuario.setUsuario(gerenciarLoginMB.getUsuario());
 		criterioAlergia = "";
 		alergias = new ArrayList<AlergiaUsuario>();
-		//medicamentosLista= this.getMedicamentosLista();
-		//consultasMedicas=this.getConsultasMedicas();
 		return URL_LISTAR_PERFIL_EMERGENCIA;
 	}
 
@@ -107,8 +94,7 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 	 * */
 	public List<Medicamento> completeAlergia(String query) {
 		if (medicamentos.isEmpty())
-			medicamentos = medicamentoService.buscaMedicamentoUsuario(query,
-					gerenciarLoginMB.getUsuario());
+			medicamentos = medicamentoService.buscaMedicamentoUsuario(query,gerenciarLoginMB.getUsuario());
 
 		List<Medicamento> medicamentosBusca = new ArrayList<Medicamento>();
 
@@ -146,8 +132,9 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 	 * */
 	public void salvaAlergia(){
 		alergiaUsuario.setUsuario(gerenciarLoginMB.getUsuario());
-		alergiaService.salvaAlergiaUsuario(alergiaUsuario);
+		if(alergiaService.salvaAlergiaUsuario(alergiaUsuario)==true){
 		this.initManter();
+		}
 	}
 	
 	/** 
@@ -209,15 +196,6 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 		return alergiaUsuario;
 	}
 
-	public List<MedicamentoUsuario> getMedicamentosLista() {
-		medicamentosLista= medicamentoService.buscaMedicamentoUsuarioporUsuario(alergiaUsuario.getUsuario());
-		return medicamentosLista;
-	}
-
-	public void setMedicamentosLista(List<MedicamentoUsuario> medicamentosLista) {
-		this.medicamentosLista = medicamentosLista;
-	}
-
 	public void setAlergiaUsuario(AlergiaUsuario alergiaUsuario) {
 		this.alergiaUsuario = alergiaUsuario;
 	}
@@ -255,30 +233,4 @@ public class ManterPerfilEmergenciaMB implements Serializable {
 	public void setTipoAlergias(List<TipoAlergia> tipoAlergias) {
 		this.tipoAlergias = tipoAlergias;
 	}
-
-	public boolean isEmListagemAlergia() {
-		return emListagemAlergia;
-	}
-
-	public void setEmListagemAlergia(boolean emListagemAlergia) {
-		this.emListagemAlergia = emListagemAlergia;
-	}
-
-	public List<Consulta> getConsultasMedicas() {
-		consultasMedicas = consultasService.buscaConsultaporUsuario(alergiaUsuario.getUsuario());
-		return consultasMedicas;
-	}
-
-	public void setConsultasMedicas(List<Consulta> consultasMedicas) {
-		this.consultasMedicas = consultasMedicas;
-	}
-
-	public Consulta getConsultaMedica() {
-		return consultaMedica;
-	}
-
-	public void setConsultaMedica(Consulta consultaMedica) {
-		this.consultaMedica = consultaMedica;
-	}
-	
 }	

@@ -128,8 +128,7 @@ public class ManterUsoMedicamentoMB implements Serializable {
 	 */
 	public List<Medicamento> completeMedicamento(String query) {
 		if (medicamentos.isEmpty())
-			medicamentos = medicamentoService.buscaMedicamentoUsuario(query,
-					gerenciarLoginMB.getUsuario());
+			medicamentos = medicamentoService.buscaMedicamentoUsuario(query,gerenciarLoginMB.getUsuario());
 
 		List<Medicamento> medicamentosBusca = new ArrayList<Medicamento>();
 
