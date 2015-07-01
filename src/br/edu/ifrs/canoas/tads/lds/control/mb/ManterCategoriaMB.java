@@ -41,9 +41,6 @@ public class ManterCategoriaMB implements Serializable {
 	private static final String URL_LISTAR_CATEGORIA = "/private/pages/listarCategoria.jsf";
 
 	@Inject
-	private GerenciarLoginMB gerenciarLoginMB;
-
-	@Inject
 	private TipoAtividade tipoAtividade;
 	
 	@Inject
@@ -55,15 +52,18 @@ public class ManterCategoriaMB implements Serializable {
 	private List<TipoAtividade> listarAtividades;
 	private List<Atividade> atividadeList;
 	private List<Atividade> descricaoPorTipoList;;
-			
+	
+	@PostConstruct
 	public String initListar() {
-		tipoAtividade = new TipoAtividade();
+		/*tipoAtividade = new TipoAtividade();
 		atividadeList = new ArrayList<>();
 		atividade = new Atividade();
+		return URL_LISTAR_CATEGORIA;*/
+		this.clear();
 		return URL_LISTAR_CATEGORIA;
 	}
 	
-	@PostConstruct
+	
 	public String initManter() {
 		tipoAtividade = new TipoAtividade();
 		atividade = new Atividade();
@@ -111,7 +111,7 @@ public class ManterCategoriaMB implements Serializable {
 	 * @brief Atualiza dados no BD.
 	 * */
 	public String alteraAtividade(){
-		categoriaService.alteraAtividade(atividade);
+		categoriaService.alteraAtividade(atividade, tipoAtividade);
 		this.initManter();
 		return this.initListar();
 	}
@@ -133,9 +133,11 @@ public class ManterCategoriaMB implements Serializable {
 		atividade = new Atividade();
 		atividade.setTipoAtividade(tipoAtividade);
 		//tipo
-		listarAtividades = categoriaService.buscaTipoAtividades();
+		if (listarAtividades == null)
+			listarAtividades = categoriaService.buscaTipoAtividades();
 		//descricao
-		atividadeList = categoriaService.buscaDescricaoAtividades();
+		if(atividadeList == null)
+			atividadeList = new ArrayList<>();		
 	}
 	
 	/** 
@@ -151,15 +153,14 @@ public class ManterCategoriaMB implements Serializable {
 					descricaoPorTipoList.add(a);
 				}
 			}
+
 		}else{
 			descricaoPorTipoList = new ArrayList<>();
 		}
 	}
 			
 	/*GETTERS AND SETTERS*/
-	public GerenciarLoginMB getGerenciarLoginMB() {
-		return gerenciarLoginMB;
-	}
+
 	
 	public ManterCategoriaService getCategoriaService() {
 		return categoriaService;
@@ -183,10 +184,6 @@ public class ManterCategoriaMB implements Serializable {
 
 	public void setAtividade(Atividade atividade) {
 		this.atividade = atividade;
-	}
-
-	public void setGerenciarLoginMB(GerenciarLoginMB gerenciarLoginMB) {
-		this.gerenciarLoginMB = gerenciarLoginMB;
 	}
 
 	public List<TipoAtividade> getListarAtividades() {

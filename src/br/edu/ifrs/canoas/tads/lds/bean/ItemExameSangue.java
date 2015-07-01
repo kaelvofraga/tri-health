@@ -3,6 +3,7 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -17,7 +18,7 @@ public class ItemExameSangue extends BaseEntity<Long> implements Serializable{
 	 */
 	private static final long serialVersionUID = 6438502909147720009L;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="ID_USUARIO_EXAME")
 	private UsuarioExame usuarioExame;
 	

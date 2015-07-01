@@ -133,6 +133,7 @@ public class ManterExameSangueMB implements Serializable{
 //métodos
 	@PostConstruct
 	public String initManter(){
+		usuarioExame=new UsuarioExame();
 		usuarioExame.setUsuario(gerenciarLoginMB.getUsuario());
 		usuarioExame.setData(null);
 		usuarioExame.setObservacao(null);
@@ -142,13 +143,9 @@ public class ManterExameSangueMB implements Serializable{
 	}
 	
 	public String initListar() {
-		usuarioExame.setUsuario(gerenciarLoginMB.getUsuario());
 		usuarioExame = new UsuarioExame();
+		usuarioExame.setUsuario(gerenciarLoginMB.getUsuario());
 		listaExames = new ArrayList<>();
-		//usuarioExame.setItensExame(new ArrayList<ItemExameSangue>());
-		//usuarioExame.setItensExame(itemExameSangue.setTipoAnalise(tipoAnaliseService.buscaTipoAnalise()));
-		//itemExameSangue.setTipoAnalise(new TipoAnalise());
-		//criterioExameSangue="";
 		dataDe = null;
 		dataAte = new Date();
 		return URL_LISTAR_EXAMESANGUE;
@@ -176,8 +173,16 @@ public class ManterExameSangueMB implements Serializable{
 	}	
 	
 	public void busca(){
-		listaExames = exameSangueService.busca(this.getDataDe(),this.getDataAte());
+		if (exameSangueService.validaData(usuarioExame)==true){
+			listaExames = exameSangueService.busca(this.getDataDe(),this.getDataAte());
+		}else{
+			exameSangueService.buscaExameSangueUsuario(dataDe, dataAte);
+		}
 	}
+	
+	/*public void busca(){
+		listaExames = exameSangueService.busca(this.getDataDe(),this.getDataAte());
+	}       FUNCIONANDO    */
 	
 	public void salvaExame(){
 		usuarioExame.setUsuario(gerenciarLoginMB.getUsuario());

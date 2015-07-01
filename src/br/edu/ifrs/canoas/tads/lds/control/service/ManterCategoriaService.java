@@ -83,9 +83,11 @@ public class ManterCategoriaService {
 	 * @brief Atualiza valores da categoria no BD.	  	 		  
 	 * @return void
 	 * */
-	public void alteraAtividade(Atividade atividade) {
+	public void alteraAtividade(Atividade atividade, TipoAtividade tipoAtividade) {
 		if (atividade != null && atividade.getId() != null) {			
 			atividadeDAO.atualiza(atividade);
+			tipoAtividadeDAO.atualiza(tipoAtividade);
+			
 			Mensagens.define(FacesMessage.SEVERITY_INFO,
 					"AtividadeUsuario.alterar.sucesso");
 		} else {
