@@ -1,12 +1,10 @@
 package br.edu.ifrs.canoas.tads.lds.model.dao;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
 
-import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.ComposicaoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 

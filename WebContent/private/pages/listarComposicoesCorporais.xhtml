@@ -68,6 +68,17 @@
 							style="width:15%;">
 							<h:outputText value="#{composicaoUsuario.ossea}" />
 						</p:column>
+						
+						<p:column headerText="Edição" id="colEdt" style="width:15%;">
+							  <p:commandButton value="Editar"
+								immediate="true"
+								action="#{manterComposicoesCorporaisMB.edita}"
+								ajax="true">
+								<p:confirm header="Confirmação"
+									message="Tem certeza que deseja editar o registro?"
+									icon="ui-icon-alert" />
+							</p:commandButton>
+						</p:column>
 
 						<p:column headerText="Exclusão" id="colExc" style="width:15%;">
 							  <p:commandButton value="Excluir"
