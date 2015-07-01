@@ -121,6 +121,8 @@ insert into ItemExameSangue (id,ID_TIPO_ANALISE,ID_USUARIO_EXAME,resultado) valu
 INSERT INTO MEDICO VALUES(1001,'RS123','Dr teste 1');
 INSERT INTO MEDICO VALUES(1002,'RS321','Dr teste 2');
 INSERT INTO MEDICO VALUES(1003,'RS441','Dr teste 3');
+INSERT INTO MEDICO VALUES(1004,'RS442','Dr teste 4');
+INSERT INTO MEDICO VALUES(1005,'RS443','Dr teste 5');
 
 INSERT INTO CONSULTA (id,diagnostico,sintomas,usuario_id,data,medico_id) values (1001,'Gripe','coriza',1000,sysdate,1001);
 INSERT INTO CONSULTA (id,diagnostico,sintomas,usuario_id,data,medico_id) values (1002,'Febre','dor no corpo',1000,sysdate,1002);
@@ -155,5 +157,8 @@ insert into Resultado (id, USUARIO_ID, exame_id, resultadoData) values (1002, 10
 insert into ResultadoCampos (id , resultado_id, examecampos_id, resultadoValor) values (1003, 1002, 1003, '100');
 insert into ResultadoCampos (id , resultado_id, examecampos_id, resultadoValor) values (1003, 1002, 1004, 'tes2te');
 
+--Exame de Visão
+INSERT INTO ExameVisao (id,data,medico_id) values (1001,sysdate,1004);
+INSERT INTO ExameVisao (id,data,medico_id) values (1002,sysdate,1005);
 
 

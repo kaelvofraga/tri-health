@@ -3,9 +3,11 @@ package br.edu.ifrs.canoas.tads.lds.bean;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+@Entity
 public class Grau extends BaseEntity<Long> implements Serializable {
 	private static final long serialVersionUID = -6833487765093285521L;
 
@@ -13,8 +15,8 @@ public class Grau extends BaseEntity<Long> implements Serializable {
 	private Integer direito;
 
 	@ManyToOne
-	@JoinColumn(name="MEDICO_ID")
-	private Medico TipoGrau;
+	@JoinColumn(name="TIPOGRAU_ID")
+	private TipoGrau TipoGrau;
 	
 	public Grau() {
 		super();
@@ -36,11 +38,11 @@ public class Grau extends BaseEntity<Long> implements Serializable {
 		this.direito = direito;
 	}
 
-	public Medico getTipoGrau() {
+	public TipoGrau getTipoGrau() {
 		return TipoGrau;
 	}
 
-	public void setTipoGrau(Medico tipoGrau) {
+	public void setTipoGrau(TipoGrau tipoGrau) {
 		TipoGrau = tipoGrau;
 	}
 }
