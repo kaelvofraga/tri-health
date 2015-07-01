@@ -129,7 +129,8 @@ public class ManterExameSangueService {
 		} else{
 			Mensagens.define(FacesMessage.SEVERITY_ERROR,
 					"listarExameSangue.consulta.listavazia");
-			return usuarioExameDAO.buscaTodos();
+			return null;
+			//return usuarioExameDAO.buscaTodos();
 			//return new ArrayList<UsuarioExame>();
 		}
 			//return usuarioExameDAO.buscaPorCriterio(dataDe,dataAte);

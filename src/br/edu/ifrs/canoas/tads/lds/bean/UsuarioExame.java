@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -28,7 +29,7 @@ public class UsuarioExame extends BaseEntity<Long> implements Serializable{
 	private Usuario usuario;
 	
 	@NotNull
-	@OneToMany (mappedBy="usuarioExame",fetch = FetchType.EAGER)
+	@OneToMany (mappedBy="usuarioExame",fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	private Collection<ItemExameSangue> itensExame;
 		
 	@Temporal(TemporalType.TIMESTAMP)//(TemporalType.DATE)
