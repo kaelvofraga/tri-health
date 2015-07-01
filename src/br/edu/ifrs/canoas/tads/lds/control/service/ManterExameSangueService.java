@@ -18,7 +18,11 @@ import br.edu.ifrs.canoas.tads.lds.model.dao.UsuarioExameDAO;
 import br.edu.ifrs.canoas.tads.lds.util.DateUtil;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
-
+/**
+ * Classe Service do Manter Exame de Sangue
+ * @author André
+ *
+ */
 @Stateless
 public class ManterExameSangueService {
 	
@@ -67,7 +71,11 @@ public class ManterExameSangueService {
 	public void setUdmDAO(UdmDAO udmDAO) {
 		this.udmDAO = udmDAO;
 	}
-
+	/**
+	 * {@code} Método para salvar o exame de sangue realizado
+	 * @param usuarioExame
+	 * @return boolean
+	 */
 	public boolean salvaExameSangueUsuario(UsuarioExame usuarioExame) {
 		if (usuarioExame.getItensExame() == null
 				|| usuarioExame.getItensExame().isEmpty()
@@ -94,53 +102,39 @@ public class ManterExameSangueService {
 			return true;
 		}
 	}
-	
+	/**
+	 * {@code} Método de busca dos exames realizados por usuário num determinado período
+	 * @param dataDe
+	 * @param dataAte
+	 * @return Lista de exames realizados
+	 */
 	public List<UsuarioExame> buscaExameSangueUsuario(Date dataDe, Date dataAte) {
 		if (dataDe == null || dataAte == null) {
 			Mensagens.define(FacesMessage.SEVERITY_ERROR,
 					"listarExameSangue.consulta.datasvazias");
-			/*if (dataDe==null){
-				Mensagens.define(FacesMessage.SEVERITY_ERROR,
-						"listarExameSangue.consulta.datadevazia");
-				return null;
-			}
-			if (dataAte==null){
-				Mensagens.define(FacesMessage.SEVERITY_ERROR,
-						"listarExameSangue.consulta.dataatevazia");*/
-				/*return null;
-		} else {*/
-			
 			return usuarioExameDAO.buscaTodos();
 		}
 		return usuarioExameDAO.buscaTodos();
 		
 	}
-	
+	/**
+	 * {@code} Método de busca dos exames realizados por usuário num determinado período
+	 * @param dataDe
+	 * @param dataAte
+	 * @return Lista de exames realizados
+	 */
 	public List<UsuarioExame> busca(Date dataDe, Date dataAte) {
-		/*if (dataDe == null || dataAte == null || dataDe.compareTo(dataAte) > 0) {
-			dataDe = DateUtil.getDataAtual();
-			dataAte = DateUtil.getDataAtualIncrementa(1);
-		}
-		if (dataDe == null) {
-			dataDe = DateUtil.getDataAtual();
-			//dataAte = DateUtil.getDataAtualIncrementa(1);
-		}*/
 		if (dataDe != null && dataAte != null) {
-			//return usuarioExameDAO.buscaPorCriterio(dataDe,dataAte);
-			//return usuarioExameDAO.buscaPorCriterio(dataDe, dataAte);
 			return usuarioExameDAO.buscaTodos();
 		} else{
-			//Mensagens.define(FacesMessage.SEVERITY_ERROR,
-					//"listarExameSangue.consulta.listavazia");
-			//return null;
 			return usuarioExameDAO.buscaTodos();
-			//return new ArrayList<UsuarioExame>();
 		}
-			//return usuarioExameDAO.buscaPorCriterio(dataDe,dataAte);
-			//return usuarioExameDAO.buscaTodos(); estava isso, comentei e coloquei o de cima , 
-													//por que havia erro-->>CORRIGIR
 	}
-
+	/**
+	 * {@code} Método para fazer alterações no exame de sangue
+	 * @param usuarioExame
+	 * @return boolean
+	 */
 	public boolean alteraExameSangue(UsuarioExame usuarioExame) {
 		try{
 			if (validaData(usuarioExame) == false){
@@ -155,7 +149,11 @@ public class ManterExameSangueService {
 			return false;
 		}
 	}
-
+	/**
+	 * {@code} Método para excluir exame de sangue
+	 * @param usuarioExame
+	 * @return boolean
+	 */
 	public boolean excluiExameSangueUsuario(UsuarioExame usuarioExame) {
 		try {
 			if (usuarioExame.getId() != null && usuarioExame != null) {
@@ -171,7 +169,11 @@ public class ManterExameSangueService {
 			return false;
 		}
 	}
-	
+	/**
+	 * {@code} Método para validar a data
+	 * @param usuarioExame
+	 * @return boolean
+	 */
 	public boolean validaData(UsuarioExame usuarioExame) {
 		long timeSysDate = new Date().getTime();
 		long timeData = usuarioExame.getData().getTime();
@@ -180,19 +182,4 @@ public class ManterExameSangueService {
 		}
 		return true;
 	}
-
-	/*public List<UsuarioExame> busca(Date dataDe, Date dataAte) {
-		/*if (dataDe == null || dataAte == null || dataDe.compareTo(dataAte) > 0) {
-			dataDe = DateUtil.getDataAtual();
-			dataAte = DateUtil.getDataAtualIncrementa(1);
-		}
-		if (dataDe != null && dataAte != null) {
-
-			return usuarioExameDAO.buscaTodos();
-		} else {
-			return usuarioExameDAO.buscaTodos();
-		}
-	}	*/
-	
-
 }

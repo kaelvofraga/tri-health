@@ -31,6 +31,7 @@ public class ManterExameSangueMB implements Serializable{
 
 	/**
 	 * @author André
+	 * 
 	 */
 	private static final long serialVersionUID = 7429065292403103386L;
 	private static final String URL_LISTAR_EXAMESANGUE = "/private/pages/listarExameSangue.jsf";
@@ -130,6 +131,10 @@ public class ManterExameSangueMB implements Serializable{
 	}
 	
 //métodos
+	/**
+	 * {@code} Método para iniciar a interface de manter exame de sangue
+	 * @return interface de manter exame de sangue
+	 */
 	@PostConstruct
 	public String initManter(){
 		usuarioExame=new UsuarioExame();
@@ -140,7 +145,10 @@ public class ManterExameSangueMB implements Serializable{
 		itemExameSangue.setTipoAnalise(new TipoAnalise());
 		return URL_MANTER_EXAMESANGUE;		
 	}
-	
+	/**
+	 * {@code} Método para iniciar a interface de listar exame de sangue
+	 * @return interface de listagem dos exames de sangue
+	 */
 	public String initListar() {
 		usuarioExame = new UsuarioExame();
 		usuarioExame.setUsuario(gerenciarLoginMB.getUsuario());
@@ -149,17 +157,28 @@ public class ManterExameSangueMB implements Serializable{
 		dataAte = new Date();
 		return URL_LISTAR_EXAMESANGUE;
 	}
-	
+	/**
+	 * {@code} Método para obter o tipo de análise
+	 * @return void
+	 */
 	public void onSelectTipoAnalise(){
 		itemExameSangue.getTipoAnalise();
 	}
-	
+	/**
+	 * {@code} Método utilizado na seleção do exame realizado quando este está na listagem de exames de sangue
+	 * @return void
+	 * @param event
+	 * @throws IOException
+	 */
 	public void onRowSelect(SelectEvent event) throws IOException {
 		this.usuarioExame = (UsuarioExame) event.getObject();
 		FacesContext.getCurrentInstance().getExternalContext()
 				.redirect("../../private/pages/manterExameSangue.jsf");
 	}	
-	
+	/**
+	 * {@code} Método para adicionar tipo de análise e seu resultado ao exame de sangue 
+	 * @return void
+	 */
 	public void adicionarExameAnalisado(){
 		if (itemExameSangue != null && !this.usuarioExame.getItensExame().contains(itemExameSangue)){
 			this.usuarioExame.getItensExame().add(itemExameSangue);
@@ -170,11 +189,17 @@ public class ManterExameSangueMB implements Serializable{
 		}
 		itemExameSangue= new ItemExameSangue();	
 	}	
-	
+	/**
+	 * {@code} Método que busca os exames realizados num intervalo de data
+	 * @return void
+	 */
 	public void busca(){
 		listaExames = exameSangueService.busca(this.getDataDe(),this.getDataAte());
 	}
-	
+	/**
+	 * {@code} Método que salva o exame de sangue com os tipos de análise realizados
+	 * @return void
+	 */
 	public void salvaExame(){
 		usuarioExame.setUsuario(gerenciarLoginMB.getUsuario());
 		exameSangueService.salvaExameSangueUsuario(usuarioExame);
@@ -195,7 +220,10 @@ public class ManterExameSangueMB implements Serializable{
 		}
 		return URL_MANTER_EXAMESANGUE;
 	}
-	
+	/**
+	 * {@code} Método que exclui o tipo de análise incluso na lista antes do exame ser salvo
+	 * @return void
+	 */
 	public void exclui() {
 		if (itemExameSangue != null && this.usuarioExame.getItensExame().contains(itemExameSangue))
 			this.usuarioExame.getItensExame().remove(itemExameSangue);		
