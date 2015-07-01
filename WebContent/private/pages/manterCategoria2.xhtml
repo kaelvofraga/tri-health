@@ -62,13 +62,10 @@
 						action="#{manterCategoriaMB.salvaAtividade}" 						
 						icon="ui-icon-disk"	update="categoria" ajax="true"/> 	
 						
-						
-						
 				   <p:commandButton value="Salvar alterações"
 						rendered="#{manterCategoriaMB.atualizacao}"
 						action="#{manterCategoriaMB.alteraAtividade}"
 						ajax="true" icon="ui-icon-pencil"/>
-
 					
 				</h:panelGroup>
 
@@ -76,18 +73,16 @@
 					<p:commandButton value="Voltar"
 						rendered="#{manterCategoriaMB.atualizacao}"
 						action="listarCategoria" ajax="true" />
-					
-					
+										
 					<p:commandButton value="Excluir"
-						rendered="#{mantercategoriaMB.atualizacao}" 
+						rendered="#{mantercategoriaMB.atualizacao}" immediate="true"
 						action="#{manterCategoriaMB.excluiAtividade}"
-						ajax="true" icon="ui-icon-close" update="msgs">
+						ajax="true" icon="ui-icon-close" update=":mainForm:msgs">
 						<p:confirm header="Confirmação"
 							message="Tem certeza que deseja apagar a categoria de atividade?"
-							icon="ui-icon-alert" />							 
+							icon="ui-icon-alert"  />							 
 					</p:commandButton>
-					
-												
+																
 				</h:panelGroup>		
 		   
 		    </h:panelGroup>		

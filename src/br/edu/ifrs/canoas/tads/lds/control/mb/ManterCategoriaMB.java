@@ -95,7 +95,7 @@ public class ManterCategoriaMB implements Serializable {
 	 * @brief Evento ao selecionar uma linha da tabela de descrição 
 	 * */
 	public void onATividadeFisica(SelectEvent event) throws IOException {
-		this.clear();
+		//this.clear();
 		this.setAtividade(getAtividade());
         FacesContext.getCurrentInstance().getExternalContext().redirect("manterCategoria2.jsf");
     }
