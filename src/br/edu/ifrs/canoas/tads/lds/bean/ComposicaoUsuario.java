@@ -31,16 +31,16 @@ public class ComposicaoUsuario  extends BaseEntity<Long> implements Serializable
 	@JoinColumn(name="USUARIO_ID")
 	private Usuario usuario;
 	
-	@NotNull @DecimalMax(value="100.00", message="Valor maximo de 100%. :]")
+	@NotNull @DecimalMax(value="100.00", message="O valor máximo permitido é 100%.")
 	private double adiposa;
 	
-	@NotNull @DecimalMax(value="100.00", message="Valor maximo de 100%. :]")
+	@NotNull @DecimalMax(value="100.00", message="O valor máximo permitido é 100%.")
 	private double residual;
 	
-	@NotNull @DecimalMax(value="100.00", message="Valor maximo de 100%. :]")
+	@NotNull @DecimalMax(value="100.00", message="O valor máximo permitido é 100%.")
 	private double muscular;
 	
-	@NotNull @DecimalMax(value="100.00", message="Valor maximo de 100%. :]")
+	@NotNull @DecimalMax(value="100.00", message="O valor máximo permitido é 100%.")
 	private double ossea;
 
 	
