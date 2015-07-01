@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+		<h1 class="lead">Uso de Medicamentos</h1>
+		
+					<h:panelGroup layout="block" id="medicamentos">
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:outputLabel for="criterio_medicamento" value="Pesquisa" />
+						<p:inputText id="criterio_medicamento" styleClass="form-control"
+							value="#{manterUsoMedicamentoMB.criterioMedicamento}"
+							placeholder="Pesquise aqui por Medicamento,Dosagem e Frequência" />
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:commandButton value="Busca" type="submit" action="#{manterUsoMedicamentoMB.busca}" ajax="true"
+							update="tab-medicamentos" immediate="false" />
+						<p:commandButton value="Limpa" type="submit" action="#{manterUsoMedicamentoMB.initListar}" ajax="true"
+							update="tab-medicamentos,criterio_medicamento" immediate="false" />
+					</h:panelGroup>
+
+
+					<p:dataTable 
+					var="listMedicamento" id="tab-medicamentos" selectionMode="single" selection="#{manterUsoMedicamentoMB.medicamentoUsuario}"
+					rowKey="#{listMedicamento.id}" value="#{manterUsoMedicamentoMB.medicamentosLista}" emptyMessage="Nenhum Registro Encontrado."
+					reflow="true">
+					<p:ajax event="rowSelect" listener="#{manterUsoMedicamentoMB.onRowSelect}" oncomplete="/private/pages/manterUsoMedicamentos.jsf"/>
+						<!-- <p:column headerText="Data Consulta" id="colDataConsulta">
+							<h:outputText value="#{listMedicamento.dataConsulta}" />
+						</p:column>-->
+						<p:column headerText="Medicamento" id="colMedicamento">
+							<h:outputText value="#{listMedicamento.medicamento.nome}" />
+						</p:column>
+						<p:column headerText="Dosagem" id="colDosagem">
+							<h:outputText value="#{listMedicamento.dosagem}" />
+						</p:column>
+						<p:column headerText="Frequencia" id="colFrequencia">
+							<h:outputText value="#{listMedicamento.frequencia}" />
+						</p:column>
+
+					</p:dataTable>
+					<br/>
+				</h:panelGroup>
+
+</html>	

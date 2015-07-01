@@ -27,11 +27,11 @@
 
 					<h:panelGroup layout="block" styleClass="form-group">
 						<p:commandButton value="Busca" type="submit"
-							action="#{manterPerfilEmergenciaMB.buscaAlergias}" ajax="false"
-							update="tab-alergias,tab-consultas,tab-medicamentos" immediate="false" />
+							action="#{manterPerfilEmergenciaMB.buscaAlergias}" ajax="true"
+							update="tab-alergias" immediate="false" />
 						<p:commandButton value="Limpa" type="submit"
 							action="#{manterPerfilEmergenciaMB.initListar}" ajax="true"
-							update="tab-alergias,tab-consultas,tab-medicamentos,criterio_alergia" immediate="false" />
+							update="tab-alergias,criterio_alergia" immediate="false" />
 					</h:panelGroup>
 
 
@@ -60,50 +60,11 @@
 			</p:tab>
 
 			<p:tab title="Situações Médicas">
-			
-			<p:dataTable var="item" id="tab-consultas" selectionMode="single" 
-			selection="#{manterConsultasMB.consultaMedica}"	rowKey="#{item.id}"
-			value="#{manterPerfilEmergenciaMB.consultasMedicas}" emptyMessage="Nenhum Registro Encontrado." reflow="true">
-				<p:ajax event="rowSelect" listener="#{manterConsultasMB.onRowSelect}"
-						oncomplete="/private/pages/manterConsulta.jsf" />
-						<p:column headerText="Medico">
-							<h:outputText value="#{item.medico.nome}" />
-						</p:column>
-						<p:column headerText="Sintomas">
-							<h:outputText value="#{item.sintomas}" />
-						</p:column>
-						<p:column headerText="Diagnóstico">
-							<h:outputText value="#{item.diagnostico}" />
-						</p:column>
-						<p:column headerText="Data">
-							<h:outputText value="#{item.data}" />
-						</p:column>
-					</p:dataTable>	
-				
+				<ui:include src="listarConsultaContent.xhtml" />	
 			</p:tab>
 
-
 			<p:tab title="Medicamentos em Uso">
-				<p:dataTable 
-					var="listMedicamento" id="tab-medicamentos" selectionMode="single" selection="#{manterUsoMedicamentoMB.medicamentoUsuario}"
-					rowKey="#{listMedicamento.id}" value="#{manterPerfilEmergenciaMB.medicamentosLista}" emptyMessage="Nenhum Registro Encontrado."
-					reflow="true">
-					<p:ajax event="rowSelect" listener="#{manterUsoMedicamentoMB.onRowSelect}" oncomplete="/private/pages/manterUsoMedicamentos.jsf"/>
-						<p:column headerText="Data Consulta" id="colDataConsulta">
-							<h:outputText value="#{listMedicamento.dataConsulta}" />
-						</p:column>
-						<p:column headerText="Medicamento" id="colMedicamento">
-							<h:outputText value="#{listMedicamento.medicamento.nome}" />
-						</p:column>
-						<p:column headerText="Dosagem" id="colDosagem">
-							<h:outputText value="#{listMedicamento.dosagem}" />
-						</p:column>
-						<p:column headerText="Frequencia" id="colFrequencia">
-							<h:outputText value="#{listMedicamento.frequencia}" />
-						</p:column>
-
-					</p:dataTable>
-					
+				<ui:include src="listarUsoMedicamentosContent.xhtml" />				
 			</p:tab>
 		</p:accordionPanel>
 
