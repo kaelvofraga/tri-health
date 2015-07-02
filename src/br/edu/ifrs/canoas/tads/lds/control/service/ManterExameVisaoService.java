@@ -1,12 +1,15 @@
 package br.edu.ifrs.canoas.tads.lds.control.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
+import net.sf.jasperreports.engine.type.CalculationEnum;
 import br.edu.ifrs.canoas.tads.lds.bean.Consulta;
 import br.edu.ifrs.canoas.tads.lds.bean.ExameVisao;
 import br.edu.ifrs.canoas.tads.lds.bean.Grau;
@@ -39,6 +42,9 @@ public class ManterExameVisaoService {
 	}
 
 	public boolean salva(ExameVisao exame) {
+		if (isExameDataFutura(exame) || isExameGrauInadequado(exame)) {
+			return false;
+		}
 		try {
 			exameVisaoDAO.atualiza(exame);
 			Mensagens.define(FacesMessage.SEVERITY_INFO,
@@ -103,7 +109,10 @@ public class ManterExameVisaoService {
 					"manterExameVisao.exclui.nulo.erro");
 			return false;
 		}
-		try {
+		if (isExameDataFutura(exame) || isExameGrauInadequado(exame)) {
+			return false;
+		}
+		try {			
 			exame.setMedico(buscaOuCriaMedicoPorNome(exame.getMedico()));
 			exameVisaoDAO.insere(exame);
 		} catch (Exception e) {
@@ -114,6 +123,41 @@ public class ManterExameVisaoService {
 		Mensagens.define(FacesMessage.SEVERITY_INFO,
 				"manterExameVisao.cadastro.sucesso");
 		return true;
+	}
+	
+	/*
+	 * valida se data do exame é futura
+	 */
+	public boolean isExameDataFutura(ExameVisao exame) {
+		if (exame == null || exame.getData() == null) {
+			return false;
+		} else {
+			Calendar param = Calendar.getInstance();
+			param.setTime(exame.getData());
+			if(param.after(new Date())){
+				Mensagens.define(FacesMessage.SEVERITY_ERROR,
+					"manterExameVisao.cadastro.erro.data");
+				return true;
+			}
+			return false;
+		}
+	}
+	/*
+	 * valida se há um grau muito grande
+	 */
+	public boolean isExameGrauInadequado(ExameVisao exame) {
+		if (exame == null || exame.getGraus() == null || exame.getGraus().isEmpty()) {
+			return false;
+		} else {
+			for (Grau grau : exame.getGraus()) {
+				if(grau.getEsquerdo() > 100.0 || grau.getDireito() > 100.0){
+					Mensagens.define(FacesMessage.SEVERITY_ERROR,
+						"manterExameVisao.cadastro.erro.grau");
+					return true;
+				}
+			}			
+			return false;
+		}
 	}
 
 	/*

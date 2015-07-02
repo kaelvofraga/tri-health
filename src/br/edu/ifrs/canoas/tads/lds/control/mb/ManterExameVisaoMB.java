@@ -120,7 +120,10 @@ public class ManterExameVisaoMB implements Serializable {
 	 * @return void
 	 */
 	public void adicionarGrau(){
-		if (exameVisao != null){
+		if (exameVisao != null && isAtualizacao()){
+			if (exameVisao.getId() != null){
+				salvaExameVisao();
+			}
 			exameVisaoService.adicionarGrau(exameVisao);
 		}
 	}
