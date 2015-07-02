@@ -40,10 +40,10 @@
 						<p:ajax event="rowSelect"
 							listener="#{manterExameVisaoMB.onRowSelect}"
 							oncomplete="/private/pages/manterExameVisao.jsf" />
-						<p:column headerText="Medico">
+						<p:column headerText="#{msg['manterExameVisao.cadastro.medico']}">
 							<h:outputText value="#{item.medico.nome}" />
 						</p:column>
-						<p:column headerText="Data">
+						<p:column headerText="#{msg['manterExameVisao.cadastro.data']}">
 							<h:outputText value="#{item.data}" />
 						</p:column>
 					</p:dataTable>

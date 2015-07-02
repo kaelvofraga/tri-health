@@ -139,8 +139,13 @@ public class ManterExameUrinaMB implements Serializable{
 	 * @return boolean  
 	 * */
 	public boolean isAtualizandoItem(){
-		return itemExameUrina != null && exameUrina.getItensExame().contains(itemExameUrina) && itemExameUrina.getId()!= null;
+		return itemExameUrina != null && itemExameUrina.getId()!= null;
 	} 
+	
+	public void alteraItemExame(){
+		exameUrinaService.alteraItemExame(itemExameUrina);
+		itemExameUrina = new ItemExameUrina();
+	}
 	
 	/** 
 	 * @brief Metodo que salva o exameUrinaUsuario no banco de dados	 		  
@@ -149,7 +154,9 @@ public class ManterExameUrinaMB implements Serializable{
 	 * */
 	public void salvaExame(){
 		exameUrina.setUsuario(gerenciarLoginMB.getUsuario());
-		exameUrinaService.salvaExameUrinaUsuario(exameUrina);
+		if(exameUrinaService.salvaExameUrinaUsuario(exameUrina)==true){
+			this.initManter();
+		}
 	}
 	
 	/** 
@@ -164,7 +171,7 @@ public class ManterExameUrinaMB implements Serializable{
 		else
 			return URL_MANTER_EXAMEURINA;	
 	}	
-	
+		
 	/** 
 	 * @brief Metodo que exclui do banco de dados o exameUrinaUsuario, retorna a URL 
 	 * da pagina que sera redirecionado.	 		  
@@ -195,6 +202,9 @@ public class ManterExameUrinaMB implements Serializable{
 	 * */
 	public void excluiItem() {
 		if (itemExameUrina != null && this.exameUrina.getItensExame().contains(itemExameUrina))
+			if(isAtualizandoItem()){
+			exameUrinaService.excluiItemExame(itemExameUrina);
+			}
 			this.exameUrina.getItensExame().remove(itemExameUrina);
 		itemExameUrina= new ItemExameUrina();	
 	}

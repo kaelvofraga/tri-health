@@ -33,9 +33,8 @@ public class ManterExameVisaoService {
 		try {
 			exameVisaoDAO.atualiza(exame);
 			Mensagens.define(FacesMessage.SEVERITY_INFO,
-					"ExameVisao salva com sucesso");
+					"manterExameVisao.cadastro.sucesso");
 		} catch (Exception e) {
-			System.out.println("Exception ao Salvar: " + e.getMessage());
 			e.printStackTrace();
 			return false;
 		}
@@ -108,9 +107,8 @@ public class ManterExameVisaoService {
 			exame.setUsuario(usuario);
 			exameVisaoDAO.atualiza(exame);
 			Mensagens.define(FacesMessage.SEVERITY_INFO,
-					"ExameVisao Inserida com sucesso");
+					"manterExameVisao.cadastro.sucesso");
 		} catch (Exception e) {
-			System.out.println("Exception ao Inserir: " + e.getMessage());
 			e.printStackTrace();
 			return false;
 		}
@@ -121,14 +119,12 @@ public class ManterExameVisaoService {
 		if (exame != null && exame.getId() != null) {
 			exameVisaoDAO.exclui(exame.getId());
 			exame = null;
-			/*
-			 * Mensagens.define(FacesMessage.SEVERITY_INFO,
-			 * "Exame visao excluido com sucesso");
-			 */
+			Mensagens.define(FacesMessage.SEVERITY_INFO,
+					"manterExameVisao.exclui.sucesso");
 			return true;
 		} else {
 			Mensagens.define(FacesMessage.SEVERITY_ERROR,
-					"Exame visao não excluido");
+					"manterExameVisao.exclui.nulo.erro");
 			return false;
 		}
 	}
@@ -144,7 +140,7 @@ public class ManterExameVisaoService {
 				return exameVisaoDAO.buscaPorCriterio(criterioExameVisao);
 			} else {
 				Mensagens.define(FacesMessage.SEVERITY_INFO,
-						"listarMedicamento.busca.vazio");
+						"manterExameVisao.busca.vazio");
 				return new ArrayList<ExameVisao>();
 			}
 		} else

@@ -18,7 +18,7 @@
 			<h:panelGrid columns="2" styleClass="mtable">
 
 				<h:panelGroup layout="block" styleClass="form-group">
-					<p:outputLabel for="data_Exame" value="Data do Exame" />
+					<p:outputLabel for="data_Exame" value="#{msg['manterExameVisao.cadastro.data']}" />
 					<br />
 					<p:calendar id="data_Exame" style="width:200px"
 						value="#{manterExameVisaoMB.exameVisao.data}"
@@ -29,7 +29,7 @@
 				</h:panelGroup>
 
 				<h:panelGroup layout="block" styleClass="form-group">
-					<p:outputLabel for="medico" value="Medico" />
+					<p:outputLabel for="medico" value="#{msg['manterExameVisao.cadastro.medico']}" />
 					<br />
 					<p:autoComplete id="medico"
 						value="#{manterExameVisaoMB.exameVisao.medico.nome}" size="35"
@@ -46,13 +46,13 @@
 			<h:panelGroup layout="block" styleClass="form-group" id="buttons">
 
 				<h:panelGroup layout="block" styleClass="form-group pull-left">
-					<p:commandButton value="Salvar"
+					<p:commandButton value="#{msg['manterExameVisao.cadastro.salvar']}"
 						rendered="#{not manterExameVisaoMB.atualizacao}"
 						action="#{manterExameVisaoMB.salvaExameVisao}" ajax="true"
 						update="exames" icon="ui-icon-disk">
 					</p:commandButton>
 
-					<p:commandButton value="Alterar"
+					<p:commandButton value="#{msg['manterExameVisao.cadastro.alterar']}"
 						rendered="#{manterExameVisaoMB.atualizacao}"
 						action="#{manterExameVisaoMB.alteraExameVisao}" ajax="false"
 						icon="ui-icon-pencil">
@@ -61,7 +61,7 @@
 				</h:panelGroup>
 
 				<h:panelGroup layout="block" styleClass="form-group pull-right">
-					<p:commandButton value="Excluir"
+					<p:commandButton value="#{msg['manterExameVisao.cadastro.excluir']}"
 						rendered="#{manterExameVisaoMB.atualizacao}"
 						action="#{manterExameVisaoMB.exclui}" ajax="true"
 						icon="ui-icon-close" update="msgs">
@@ -70,7 +70,7 @@
 							icon="ui-icon-alert" />
 					</p:commandButton>
 
-					<p:commandButton value="Voltar"
+					<p:commandButton value="#{msg['manterExameVisao.cadastro.voltar']}"
 						rendered="#{manterExameVisaoMB.atualizacao}"
 						action="#{manterExameVisaoMB.initListar}" ajax="false">
 					</p:commandButton>
@@ -88,9 +88,6 @@
 				styleClass="ui-confirmdialog-no" icon="ui-icon-close">
 			</p:commandButton>
 		</p:confirmDialog>
-
-
-
 
 	</ui:define>
 

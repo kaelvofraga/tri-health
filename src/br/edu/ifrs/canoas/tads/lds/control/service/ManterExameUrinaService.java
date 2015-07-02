@@ -58,9 +58,12 @@ public class ManterExameUrinaService {
 	 * @return List<ExameUrinaUsuario>
 	 * */
 	public List<ExameUrinaUsuario> busca(Date dataDe, Date dataAte,String criterioExameUrina) {
-			if (StrUtil.isNotBlank(criterioExameUrina) || dataDe != null && dataAte != null) {
+			if (StrUtil.isNotBlank(criterioExameUrina) || (dataDe != null && dataAte != null)) {
 				System.out.println("entrou");
+				System.out.println("datas:1: "+dataDe+"data2"+dataAte);
+				System.out.println("criterio"+criterioExameUrina);
 				if(!exameUrinaDAO.buscaPorCriterio(dataDe, dataAte,criterioExameUrina).isEmpty()){
+					System.out.println("entrou2");
 					return exameUrinaDAO.buscaPorCriterio(dataDe, dataAte,criterioExameUrina);
 				}
 				else {
@@ -101,7 +104,6 @@ public class ManterExameUrinaService {
 				Mensagens.define(FacesMessage.SEVERITY_INFO,"manterExameUrina.cadastro.data.erro");
 				return false;
 			}
-			
 			exameUrinaDAO.atualiza(exameUrina);
 			Mensagens.define(FacesMessage.SEVERITY_INFO,"manterExameUrina.altera.sucesso");
 			return true;
@@ -110,6 +112,42 @@ public class ManterExameUrinaService {
 			return false;
 		}
 	}
+	/**
+	 * @author Alisson Lorscheiter
+	 * @brief Metodo que valida os campos e altera no banco de dados informações do itemExameUrina. 
+	 * Retorna V ou F se conseguiu ou não alterar no banco.
+	 * @param itemExameUrina(ItemExameUrina)
+	 * @return boolean
+	 * */
+	public boolean alteraItemExame(ItemExameUrina itemExameUrina){
+		try{
+			itemExameUrinaDAO.atualiza(itemExameUrina);
+			Mensagens.define(FacesMessage.SEVERITY_INFO,"manterExameUrina.alteraItem.sucesso");
+			return true;
+		}catch(IllegalArgumentException e){
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,"manterExameUrina.alteraItem.excecao.erro");
+			return false;
+		}
+	}
+	/**
+	 * @author Alisson Lorscheiter
+	 * @brief Metodo que valida os campos e altera no banco de dados informações do itemExameUrina. 
+	 * Retorna V ou F se conseguiu ou não alterar no banco.
+	 * @param itemExameUrina(ItemExameUrina)
+	 * @return boolean
+	 * */
+	public boolean excluiItemExame(ItemExameUrina itemExameUrina){
+		try{
+			itemExameUrinaDAO.exclui(itemExameUrina.getId());
+			Mensagens.define(FacesMessage.SEVERITY_INFO,"manterExameUrina.excluiItem.sucesso");
+			return true;
+		}catch(IllegalArgumentException e){
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,"manterExameUrina.excluiItem.excecao.erro");
+			return false;
+		}
+	}
+	
+	
 
 	/**
 	 * @brief Metodo que exclui o exameUrinaUsuario do banco de dados. 

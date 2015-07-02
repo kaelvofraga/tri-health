@@ -1,9 +1,15 @@
 package br.edu.ifrs.canoas.tads.lds.bean.jasper;
 
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
+
+/**
+ * Classe para representar o relatório de Atividades, conténdo as informações necessarias para gerar o Report em PDF
+
+ * @author Luciano Acosta
+
+ */
 
 public class AtividadesBean {
 	
@@ -76,6 +82,11 @@ public class AtividadesBean {
 		this.calorias = calorias;
 	}
 	
+	
+	/**
+	 * Método que converte o tipo AtividadeUsuario em AtividadesBean para envio de um List<AtividadesBean>
+	 * como datasource pro jasper
+	 * */
 	public AtividadesBean conversor(AtividadeUsuario au){
 		AtividadesBean atividade = new AtividadesBean();
 		atividade.setNome(au.getUsuario().getNome());

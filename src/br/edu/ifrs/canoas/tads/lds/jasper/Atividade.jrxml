@@ -15,101 +15,119 @@
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
-			
+			<staticText>
+				<reportElement mode="Opaque" x="185" y="0" width="186" height="79" forecolor="#FFFFFF" backcolor="#CC0000" uuid="dede8d83-6e6c-48fe-9606-81f98bc09d9d"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[tri health]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch">
+		<band height="44" splitType="Stretch">
 			<textField>
-				<reportElement x="55" y="8" width="205" height="20" uuid="b5776bcc-9697-468e-9485-5d72d0bafb69"/>
+				<reportElement x="60" y="11" width="205" height="20" uuid="b5776bcc-9697-468e-9485-5d72d0bafb69"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="13" y="8" width="42" height="20" uuid="787d52f4-0a22-4e44-9644-2481ebca750d"/>
+				<reportElement x="13" y="11" width="42" height="20" uuid="787d52f4-0a22-4e44-9644-2481ebca750d"/>
 				<textElement verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nome:]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch">
+		<band height="36" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="27" width="119" height="34" backcolor="#CCCCCC" uuid="7e93d331-bdd3-4019-a3b5-8d6e3e02e3b5"/>
+				<reportElement mode="Opaque" x="0" y="0" width="119" height="34" forecolor="#FFFFFF" backcolor="#999999" uuid="7e93d331-bdd3-4019-a3b5-8d6e3e02e3b5"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font size="12" isBold="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Atividade]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="119" y="27" width="101" height="34" backcolor="#CCCCCC" uuid="3f123214-f21c-47c1-a755-bd1c79950111"/>
+				<reportElement mode="Opaque" x="119" y="0" width="101" height="34" forecolor="#FFFFFF" backcolor="#999999" uuid="3f123214-f21c-47c1-a755-bd1c79950111"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font size="12" isBold="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Tipo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="220" y="27" width="91" height="34" backcolor="#CCCCCC" uuid="90bd1bfc-4ec4-469f-8e38-d44cda3d0319"/>
+				<reportElement mode="Opaque" x="220" y="0" width="91" height="34" forecolor="#FFFFFF" backcolor="#999999" uuid="90bd1bfc-4ec4-469f-8e38-d44cda3d0319"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font size="12" isBold="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Distância]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="310" y="27" width="100" height="34" backcolor="#CCCCCC" uuid="8b5b65fd-262f-484e-baba-a19f41fe2be5"/>
+				<reportElement mode="Opaque" x="310" y="0" width="100" height="34" forecolor="#FFFFFF" backcolor="#999999" uuid="8b5b65fd-262f-484e-baba-a19f41fe2be5"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font size="12" isBold="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Data]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="410" y="27" width="68" height="34" backcolor="#CCCCCC" uuid="ef07a2c6-1b5d-4547-adff-f9ceede1319d"/>
+				<reportElement mode="Opaque" x="479" y="0" width="76" height="34" forecolor="#FFFFFF" backcolor="#999999" uuid="ab28afdb-c9ec-4b3f-bf24-4b198e1e040e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Minutos]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="479" y="27" width="76" height="34" uuid="ab28afdb-c9ec-4b3f-bf24-4b198e1e040e"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font size="12" isBold="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Calorias]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="410" y="0" width="69" height="34" forecolor="#FFFFFF" backcolor="#999999" uuid="ef07a2c6-1b5d-4547-adff-f9ceede1319d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Minutos]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="39" splitType="Stretch">
+		<band height="59" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="119" height="39" uuid="6f5a1e46-4724-4531-bdf8-99d418c1f836"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isStrikeThrough="false"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{atividade}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="119" y="0" width="101" height="39" uuid="0caaeecf-152b-4053-b807-dffbfdcbebb1"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isStrikeThrough="false"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="220" y="0" width="91" height="39" uuid="f06c050d-74e7-4cf0-addf-4dad3072de97"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isStrikeThrough="false"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{distancia}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="311" y="0" width="99" height="39" uuid="4197a869-c2f4-4205-ac3e-ea57082c10c8"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isStrikeThrough="false"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="410" y="0" width="68" height="39" uuid="a7a1006e-4845-4e18-a8af-6a3fe48afbc7"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isStrikeThrough="false"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{minutos}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="479" y="0" width="76" height="39" uuid="b953f6c2-83b5-40a2-9348-88b940e116a2"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement x="478" y="0" width="76" height="39" uuid="b953f6c2-83b5-40a2-9348-88b940e116a2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isStrikeThrough="false"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{calorias}]]></textFieldExpression>
 			</textField>
 		</band>

@@ -16,9 +16,13 @@ import javax.validation.constraints.NotNull;
 public class ExameVisao extends BaseEntity<Long> implements Serializable   {
 	private static final long serialVersionUID = -6833487765093285522L;
 
+	@NotNull 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data;
 
+	/*
+	 * Ao se adicionar NotNull às dependencias, o cadastro gera um erro.
+	*/ 
 	@ManyToOne
 	@JoinColumn(name="USUARIO_ID")
 	private Usuario usuario;
