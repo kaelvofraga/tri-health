@@ -56,9 +56,10 @@ public class ManterExameVisaoMB implements Serializable {
 	public ManterExameVisaoMB() {
 	}
 	
-	/*
+	/* @author Delmar,  {@code}
 	 * Metodo que limpa ExameVisao,criterio de busca, lista de
 	 * ExameVisao ao entrar na view de Listar
+	 * @return link do listar
 	 */
 	public String initListar() {
 		criterioExameVisao = "";
@@ -120,10 +121,7 @@ public class ManterExameVisaoMB implements Serializable {
 	 * @return void
 	 */
 	public void adicionarGrau(){
-		if (exameVisao != null && isAtualizacao()){
-			if (exameVisao.getId() != null){
-				salvaExameVisao();
-			}
+		if (exameVisao != null){
 			exameVisaoService.adicionarGrau(exameVisao);
 		}
 	}
