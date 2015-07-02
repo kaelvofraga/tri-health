@@ -31,7 +31,7 @@
 								<br />
 								<p:selectOneMenu id="tipo_atividade"
 									value="#{manterCategoriaMB.tipoAtividade}"
-									style="width: 100%;" required="true" requiredMessage="Escolha um tipo de atividade.">
+									style="width: 100%;">
 									<p:ajax listener="#{manterCategoriaMB.filtrarAtividades}" update="tab-categoria" />								
 								
 									<f:selectItem itemLabel="Selecione o tipo da atividade."
@@ -57,7 +57,6 @@
 						var="categorias"
 						selection="#{manterCategoriaMB.atividade}"
 						value="#{manterCategoriaMB.atividadeList}"
-						update="#{manterCategoriaMB.atividadeList.clear}"
 						rowKey="#{categorias.id}" 
 						reflow="true">
 						
@@ -78,17 +77,7 @@
 				<p:commandButton value="Nova"
 					action="#{manterCategoriaMB.initManter}" icon="ui-icon-plus"
 					ajax="true" />
-
-				<p:confirmDialog global="true" showEffect="fade"
-					hideEffect="explode">
-					<p:commandButton value="Sim" type="button"
-						styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
-					</p:commandButton>
-					<p:commandButton value="Não" type="button"
-						styleClass="ui-confirmdialog-no" icon="ui-icon-close">
-					</p:commandButton>
-				</p:confirmDialog>
-
+	
 
 			</p:tab>
 

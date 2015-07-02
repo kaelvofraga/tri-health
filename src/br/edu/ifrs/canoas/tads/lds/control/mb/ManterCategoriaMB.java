@@ -14,17 +14,9 @@ import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
 
-import br.edu.ifrs.canoas.tads.lds.bean.Alimento;
 import br.edu.ifrs.canoas.tads.lds.bean.Atividade;
-import br.edu.ifrs.canoas.tads.lds.bean.PesoUsuario;
-import br.edu.ifrs.canoas.tads.lds.bean.Refeicao;
-import br.edu.ifrs.canoas.tads.lds.bean.RefeicaoAlimento;
-import br.edu.ifrs.canoas.tads.lds.bean.TipoAlimento;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAtividade;
-import br.edu.ifrs.canoas.tads.lds.bean.Udm;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterCategoriaService;
-import br.edu.ifrs.canoas.tads.lds.control.service.ManterPesoService;
-import br.edu.ifrs.canoas.tads.lds.control.service.ManterUdmService;
 
 /**MB das views de Manter e Listar Categorias
  * @author Luana Gomes
@@ -121,7 +113,7 @@ public class ManterCategoriaMB implements Serializable {
 	 * */
 	public String excluiAtividade(){	
 		categoriaService.excluiAtividade(atividade);
-		this.busca();
+		//this.busca();
 		return URL_LISTAR_CATEGORIA;
 	}
 	

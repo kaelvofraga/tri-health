@@ -152,7 +152,8 @@ insert into ResultadoCampos (id , resultado_id, examecampos_id, resultadoValor) 
 insert into ResultadoCampos (id , resultado_id, examecampos_id, resultadoValor) values (1003, 1002, 1004, 'tes2te');
 
 /*Atividades Físicas: Para testar compartilhamento no Facebook*/
-insert into TipoAtividade(id, nome) values (1000, 'Teste Facebook');
-insert into Atividade(id, descricao, MET, tipoAtividade_id) values (1000, 'Compartilhar no Facebook', 2, 1);
+/*comentada para cadastro de categoria*/
+/*insert into TipoAtividade(id, nome) values (1000, 'Teste Facebook');
+insert into Atividade(id, descricao, MET, tipoAtividade_id) values (1000, 'Compartilhar no Facebook', 2.0, 1);*/
 
 

@@ -6,10 +6,7 @@ import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
-import br.edu.ifrs.canoas.tads.lds.bean.Alimento;
 import br.edu.ifrs.canoas.tads.lds.bean.Atividade;
-import br.edu.ifrs.canoas.tads.lds.bean.AtividadeUsuario;
-import br.edu.ifrs.canoas.tads.lds.bean.TipoAlimento;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoAtividade;
 import br.edu.ifrs.canoas.tads.lds.model.dao.AtividadeDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.TipoAtividadeDAO;
@@ -45,7 +42,12 @@ public class ManterCategoriaService {
 		
 			Mensagens.define(FacesMessage.SEVERITY_ERROR, "manterCategoria.cadastro.erro");
 			return false;					
-		}				
+		}	
+		if(atividade.getDescricao().length() < 4 || tipoAtividade.getNome().length() < 4){
+			Mensagens.define(FacesMessage.SEVERITY_ERROR, "manterCategoria.campo.erro");
+			return false;
+		}
+			
 		tipoAtividadeDAO.insere(tipoAtividade);
 		atividade.setTipoAtividade(tipoAtividade);
 		atividadeDAO.insere(atividade);		

@@ -28,7 +28,7 @@
 							<br/>
 							<p:inputText id="nome"
 								style="width:80%"
-								value="#{manterCategoriaMB.tipoAtividade.nome}"
+								value="#{manterCategoriaMB.atividade.tipoAtividade.nome}"
 								required="true" requiredMessage="Tipo deve ser informado.">
 							</p:inputText>
 	    				</h:panelGroup>
@@ -69,20 +69,22 @@
 					
 				</h:panelGroup>
 
-				<h:panelGroup layout="block" styleClass="form-group pull-right">
+			
+				
+					<h:panelGroup layout="block" styleClass="form-group">
 					<p:commandButton value="Voltar"
 						rendered="#{manterCategoriaMB.atualizacao}"
 						action="listarCategoria" ajax="true" />
 										
-					<p:commandButton value="Excluir" rendered="#{mantercategoriaMB.atualizacao}" immediate="true"
+					<p:commandButton value="Excluir" rendered="#{manterCategoriaMB.atualizacao}" immediate="true"
 						action="#{manterCategoriaMB.excluiAtividade}"
-						ajax="true" icon="ui-icon-close" update=":mainForm:msgs">
+						ajax="true" icon="ui-icon-close" update=":mainForm:msgs" styleClass="pull-right">
 						<p:confirm header="Confirmação"
 							message="Tem certeza que deseja apagar a categoria de atividade?"
 							icon="ui-icon-alert"  />							 
 					</p:commandButton>
 																
-				</h:panelGroup>		
+				</h:panelGroup>	
 		   
 		    </h:panelGroup>		
 		    
