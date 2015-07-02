@@ -19,19 +19,22 @@
 
 				<p:panel id="principal" header="Cadastrar Novo Exame Cardiologico">
 
-					<h:panelGrid columns="2" styleClass="mtable" id="datas">
-
-						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel for="nome_usuario" value="Nome" />
+					<h:panelGrid columns="2" styleClass="mtable" id="dataExameCardi">
+					
+						<h:panelGroup layout="block" styleClass="form-group">						
+							<p:outputLabel for="nome_usuario" value="Nome do usuário" />
 							<p:inputText id="nome_usuario" styleClass="form-control"
 								size="40" style="width:300px"
 								value="#{manterExameCardiologicoMB.usuario.nome}"
-								placeholder="Informe o nome do usuário" />
-						</h:panelGroup>						
+								readonly="true"
+								placeholder="" />						
+						</h:panelGroup>		
+
+										
 
 
 						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel for="dataExame" value="Data Exame:" />
+							<p:outputLabel for="dataExame" value="Data Exame" />
 							<br />
 							<p:calendar id="dataExame"
 								value="#{manterExameCardiologicoMB.exame.dataExame}"
@@ -42,18 +45,16 @@
 								requiredMessage="A data do exame deve ser informada.">
 							</p:calendar>
 						</h:panelGroup>
-
-
-
 					</h:panelGrid>
+					
 					<h:panelGrid columns="2" class="mtable">
 						<h:panelGroup layout="block" styleClass="form-group">
 
-							<p:outputLabel for="tipoExame" value="Tipo Exame:" />
+							<p:outputLabel for="tipoExame" value="Tipo Exame" />
 							<br />
 							<p:selectOneMenu id="tipoExame"
 								value="#{manterExameCardiologicoMB.exame.tipoExame}"
-								style="width: 40%;" required="true"
+								size="40" style="width:300px" required="true"
 								requiredMessage="Tpo de exame deve ser selecionado">
 								<f:selectItem itemLabel="Selecione um tipo de exame."
 									itemValue="" noSelectionOption="true" />
@@ -65,11 +66,12 @@
 						</h:panelGroup>
 						<h:panelGroup layout="block" styleClass="form-group">
 
-							<p:outputLabel for="medico" value="Médico:" />
+							<p:outputLabel for="medico" value="Médico" />
 							<br />
 							<p:selectOneMenu id="medico"
 								value="#{manterExameCardiologicoMB.exame.medico}"
-								style="width: 40%;" required="true"
+								required="true"
+								size="40" style="width:210px"
 								requiredMessage="Médico deve ser selecionado">
 								<f:selectItem itemLabel="Selecione um médico." itemValue=""
 									noSelectionOption="true" />
@@ -78,12 +80,7 @@
 							</p:selectOneMenu>
 						</h:panelGroup>
 						
-						<h:panelGroup layout="block" styleClass="form-group">
-							<p:outputLabel for="arquivoLaudo" value="Laudo (Arquivo em .pdf):" />
-							<br />
-							
-							<p:fileUpload id = "arquivoLaudo" value="#{manterExameCardiologicoMB.file}" mode="simple" skinSimple="true"/>
-						</h:panelGroup>
+						
 					</h:panelGrid>
 					
 					<h:panelGroup layout="block" styleClass="form-group">
@@ -103,8 +100,8 @@
 						<h:panelGroup layout="block" styleClass="form-group pull-left">
 							<p:commandButton value="Salvar"
 								rendered="#{not manterExameCardiologicoMB.atualizacao}"
-								actionListener="#{manterExameCardiologicoMB.salvaExame}" ajax="false"
-								icon="ui-icon-disk"  />
+								action="#{manterExameCardiologicoMB.salvaExame}" ajax="true"
+								icon="ui-icon-disk" update="panel" />
 
 							<p:commandButton value="Salvar alterações"
 								rendered="#{manterExameCardiologicoMB.atualizacao}"
@@ -119,14 +116,15 @@
 
 						<h:panelGroup layout="block" styleClass="form-group pull-right">
 							<p:commandButton value="Excluir"
-								rendered="#{manterExameCardiologicoMB.atualizacao}"
-								immediate="true"
+								rendered="#{manterExameCardiologicoMB.atualizacao}" immediate="true"
 								action="#{manterExameCardiologicoMB.excluiExame}" ajax="true"
 								icon="ui-icon-close" />
 						</h:panelGroup>
-
+						
 					</h:panelGroup>
 				</p:panel>
+				
+					
 			</p:tab>
 		</p:accordionPanel>
 	</ui:define>

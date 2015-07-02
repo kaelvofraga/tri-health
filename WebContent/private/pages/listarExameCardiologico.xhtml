@@ -12,57 +12,101 @@
 	<ui:define name="content">
 
 		<h1 class="lead">Listar Exame Cardiologico</h1>
-		<h:panelGroup layout="block" styleClass="form-group" id="Medidas">
-			<h:panelGroup layout="block" styleClass="form-group">
-						<p:outputLabel for="criterio_exame" value="Pesquisa" />
-						<p:inputText id="criterio_exame" styleClass="form-control"
-							value="#{manterCateterismoMB.criterio}" 
-							placeholder="Pesquise aqui" />
-					</h:panelGroup>
-
+		<h:panelGroup layout="block" styleClass="form-group" id="listarExamesCard">
+					<h:panelGrid columns="2" styleClass="mtable">
+					
 					<h:panelGroup layout="block" styleClass="form-group">
+		
+					
+							<p:outputLabel for="dataDe" value="Data Inical" />
+							<br/>
+							<p:calendar id="dataDe"
+								value="#{manterExameCardiologicoMB.dataDe}"
+								pattern="dd/MM/yyyy"
+								placeholder="Informe a data inicial do periodo"
+								size="20" effect="fold" icon="glyphicon-calendar" 
+							/>
+	   					</h:panelGroup>
+	   					
+	   					<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="dataAte" value="Data Final" />
+							<br/>
+							<p:calendar id="dataAte"
+								value="#{manterExameCardiologicoMB.dataAte}"
+								pattern="dd/MM/yyyy"
+								placeholder="Informe a data final do periodo"
+								size="20" effect="fold" icon="glyphicon-calendar" 
+							/>
+	   					</h:panelGroup>
 
-						<p:commandButton value="Busca" type="submit" action="#{manterExameCardiologicoMB.busca}"
-							ajax="true" update="tableExameCardiologico" immediate="false" icon="ui-icon-search" />
-
-						<p:commandButton value="Limpar filtro" type="submit" action="#{manterExameCardiologicoMB.clearTable}"
-							ajax="true" update="tableExameCardiologico,criterio_exame"
-							immediate="false" icon="ui-icon-refresh" />
-
-					</h:panelGroup>
-			
-		<p:dataTable id="tableExameCardiologico" 
-						selectionMode="single"
-						emptyMessage="Nenhum Registro Encontrado." 
-						var="exame"
-						selection="#{manterExameCardiologicoMB.exame}"
-						value="#{manterExameCardiologicoMB.listExameCardiologico}" 
-						rowKey="#{exame.id}"
-						reflow="true"
-						 >
-			<p:ajax event="rowSelect"  listener="#{manterExameCardiologicoMB.onRowSelect}" oncomplete="manterExameCardiologico"/>
-
-		    <p:column headerText="Data Exame">
-		        <h:outputText value="#{exame.dataExame}" />
-		    </p:column>
-		 
-		    <p:column headerText="Médico">
-		        <h:outputText value="#{exame.medico.nome}" />
-		    </p:column>
-		 
+				<h:panelGroup layout="block" styleClass="form-group">
+						<p:commandButton value="Buscar Por Período" type="submit"
+							action="#{manterExameCardiologicoMB.busca}" ajax="true"
+							update="tableExameCardiologico" immediate="false" icon="ui-icon-search" />
+						<p:commandButton value="Limpar filtro" type="submit"
+							action="#{manterExameCardiologicoMB.initListar}" ajax="true"
+							update="tableExameCardiologico,dataDe,dataAte" immediate="false" icon="ui-icon-refresh" />
+				</h:panelGroup>
+						
+				</h:panelGrid>	
+						
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:outputLabel for="criterio_exame" value="Pesquisa por Nota" />
+						<p:inputText id="criterio_exame" styleClass="form-control"
+							value="#{manterExameCardiologicoMB.busca()}"
+							placeholder="Pesquise aqui por Nota" />
+					</h:panelGroup>		
+		
+						
+				
+				<h:panelGroup layout="block" styleClass="form-group">
+	 				<p:commandButton value="Busca Por Nota" type="submit" action="#{manterExameCardiologicoMB.busca}"
+						ajax="true" update="tableExameCardiologico" immediate="false" icon="ui-icon-search" />
+					<p:commandButton value="Limpar filtro" type="submit" action="#{manterExameCardiologicoMB.clearTable}"
+						ajax="true" update="tableExameCardiologico,criterio_exame"
+						immediate="false" icon="ui-icon-refresh" />
+				</h:panelGroup>
+				
+				
+		
+						
+							
+					<p:dataTable  id="tableExameCardiologico" 
+								selectionMode="single"							 
+								emptyMessage="Nenhum Registro Encontrado."
+								var="exame"
+								selection="#{manterExameCardiologicoMB.exame}"
+								value="#{manterExameCardiologicoMB.listExameCardiologico}"
+								rowKey="#{exame.id}" 								
+								reflow="true">
+						<p:ajax event="rowSelect" listener="#{manterExameCardiologicoMB.onRowSelect}" oncomplete="manterExameCardiologico"/>
+						
+												
+						<p:column headerText="Tipo Exame" id="tipoExame">
+							<h:outputText value="#{exame.tipoExame.descricao}" />
+						</p:column>
+						
+						<p:column headerText="Data Exame" id="colDataExame">
+							<h:outputText value="#{exame.dataExame}" />
+						</p:column>
+														 
+		    			<p:column headerText="Médico">
+		        			<h:outputText value="#{exame.medico.nome}" />
+		    			</p:column>
 		    
-		    <p:column headerText="Laudo (arquivo)">
-		        <h:outputText value="#{exame.arquivoLaudo}" />
-		    </p:column>
-		    <p:column headerText="Nota">
-		        <h:outputText value="#{exame.nota}" />
-		    </p:column>
+					    <p:column headerText="Laudo (arquivo)">
+		     				<h:outputText value="#{exame.arquivoLaudo}" />
+		    			</p:column>	
+		    		    
+		    		    <p:column headerText="Nota">
+		        			<h:outputText value="#{exame.nota}" />
+		    			</p:column>
 		   
 		</p:dataTable>
 		
-		</h:panelGroup>		
+		</h:panelGroup>				
 		<br/>
-		<p:commandButton value="Novo Exame" action="#{manterExameCardiologicoMB.novo}" icon="ui-icon-plus" ajax="true" />
+		
 		
 	</ui:define>
 </ui:composition>

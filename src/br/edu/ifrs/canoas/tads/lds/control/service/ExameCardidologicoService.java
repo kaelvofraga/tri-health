@@ -1,8 +1,8 @@
 package br.edu.ifrs.canoas.tads.lds.control.service;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.Date;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -27,7 +27,7 @@ import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 @Stateless
 public class ExameCardidologicoService {
 	
-	Date dataAtual = new Date(System.currentTimeMillis());
+	private Date dataAtual = new Date(System.currentTimeMillis());
 	
 	@Inject
 	private ExameCardiologicoDAO exameCardiologicoDao;
@@ -43,7 +43,7 @@ public class ExameCardidologicoService {
 		
 		if (this.validaExame(exameCardiologico)) { 			
 			if(exameCardiologico.getDataExame().after(dataAtual)){
-				Mensagens.define(FacesMessage.SEVERITY_ERROR, "Cateterismo.cadastro.data.erro");
+				Mensagens.define(FacesMessage.SEVERITY_ERROR, "manterPeso.cadastro.data.erro");
 				return false;
 			}
 			
@@ -70,14 +70,37 @@ public class ExameCardidologicoService {
 		return true;
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<ExameCardiologico> busca(String criterio) {
-		if(criterio != null && criterio != ""){
-			return exameCardiologicoDao.buscaPorCriterio(criterio);
-		}else{
-			return exameCardiologicoDao.buscaTodos();
-		}
+
+		
+		/**
+		 * @brief Metodo que realiza busca no banco de dados os exames cardiologicos  
+		 * de critério informado. Retorna lista de Exame Cardiologicos.
+		 * @param criterioExameCardiologico(String),dataDe(Date),dataAte(Date)
+		 * @return List<ExameCardiologico>
+		 * 
+	
+		public List<ExameCardiologico> buscaExameCardiCriterio(Date dataDe, Date dataAte, String criterioExameCardiologico) {
+				if (StrUtil.isNotBlank(criterioExameCardiologico) || dataDe != null && dataAte != null) {
+					if(!exameCardiologicoDao.buscaPorCriterio(dataDe, dataAte,criterioExameCardiologico).isEmpty()){
+						return exameCardiologicoDao.buscaPorCriterio(dataDe, dataAte,criterioExameCardiologico);
+					}
+					else {
+						Mensagens.define(FacesMessage.SEVERITY_INFO,"listarExameUrina.busca.vazio");
+						return new ArrayList<ExameCardiologico>();
+					}
+				}else{
+				return exameCardiologicoDao.buscaTodos();
+				}
 	}
+		* */
+		@SuppressWarnings("unchecked")
+		public List<ExameCardiologico> busca(String criterio) {
+			if(criterio != null && criterio != ""){
+				return exameCardiologicoDao.buscaPorCriterio(criterio);
+			}else{
+				return exameCardiologicoDao.buscaTodos();
+			}
+		}
 	
 	@SuppressWarnings("unchecked")
 	public List<Medico> buscaMedicos(String criterio) {
@@ -103,5 +126,25 @@ public class ExameCardidologicoService {
 		exameCardiologicoDao.atualiza(exame);
 		Mensagens.define(FacesMessage.SEVERITY_INFO, "Cateterismo.cadastro.sucesso");
 	}
+
+	public FileInputStream abreArquivo(ExameCardiologico exame)   {
+	  	FileInputStream fileInputStream=null;	
+		File file = new File(exame.getArquivoLaudo().toString());	    
+        byte[] bFile = new byte[(int) file.length()];
+        try {
+	            //convert file into array of bytes
+		    fileInputStream = new FileInputStream(file);
+		    fileInputStream.read(bFile);
+		    fileInputStream.close();
+	 
+	    return fileInputStream; 
+	    
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+		return null;
+    }
+
+ 
 
 }

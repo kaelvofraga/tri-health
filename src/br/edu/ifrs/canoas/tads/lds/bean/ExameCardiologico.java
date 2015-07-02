@@ -64,14 +64,6 @@ public class ExameCardiologico extends BaseEntity<Long> implements Serializable 
 		this.medico = medico;
 	}
 
-	@Override
-	public String toString() {
-		return "ExameCardiologico [usuario=" + usuario + ", dataExame="
-				+ dataExame + ", arquivoLaudo=" + Arrays.toString(arquivoLaudo)
-				+ ", nota=" + nota + ", medicos=" + medico + ", tipoExames="
-				+ tipoExame + "]";
-	}
-
 	public Usuario getUsuario() {
 		return usuario;
 	}
