@@ -21,33 +21,30 @@
 				<h:panelGroup layout="block">
 					<h3>Lista de Resultados:</h3>
 
-					<p:dataTable id="data-exames" 
-						emptyMessage="Nenhum Registro Encontrado." 
-						var="resultado"
-						selectionMode="single"
-						rowKey="#{resultado.id}"
+					<p:dataTable id="data-resultados"
+						emptyMessage="Nenhum Registro Encontrado." var="resultado"
+						selectionMode="single" rowKey="#{resultado.id}"
 						selection="#{listarResultadoMB.resultado}"
 						value="#{listarResultadoMB.resultados}">
 						<p:ajax event="rowSelect"
 							update=":mainForm:panelPesquisa:data_resultado_campos" />
-							
+
 						<p:column headerText="Nome" id="colExaNome">
 							<h:outputText value="#{resultado.exame.nome}" />
 						</p:column>
 
 						<p:column headerText="Data" id="colData">
-							<h:outputText
-								value="#{resultado.resultadoData}" />
-						</p:column>						
+							<h:outputText value="#{resultado.resultadoData}" />
+						</p:column>
 					</p:dataTable>
-					
+
 					<hr />
-					
+
 					<h3>Valores:</h3>
 					<p:dataTable id="data_resultado_campos"
 						emptyMessage="Nenhum Registro Encontrado." var="resultadoCampos"
-						value="#{listarResultadoMB.resultadoCamposList}" >
-						
+						value="#{listarResultadoMB.resultadoCamposList}">
+
 						<p:column headerText="Campo" id="colExaNome">
 							<h:outputText value="#{resultadoCampos.exameCampos.nomeCampo}" />
 						</p:column>
@@ -57,10 +54,41 @@
 						</p:column>
 
 					</p:dataTable>
+
 					<hr />
+					<p:commandButton value="Atualizar" icon="ui-icon-refresh"
+						ajax="true" action="#{listarResultadoMB.atualizarResultados}"
+						update=":mainForm:panelPesquisa:data-resultados :mainForm:panelPesquisa:data_resultado_campos"
+						immediate="false" />
+
+					<p:commandButton value="Novo" update=":mainform:panelPesquisa" 
+						icon="ui-icon-plus" type="button"
+						onclick="PF('dialogEscolherExame').show();" />
+					<p:commandButton value="Editar Selecionado" icon="ui-icon-pencil"
+						action="#{listarResultadoMB.editarResultado}" />
+					<p:commandButton value="Excluir Selecionado" icon="ui-icon-close"
+						ajax="true" 
+						update=":mainForm:panelPesquisa:data-resultados :mainForm:panelPesquisa:data_resultado_campos"
+						action="#{listarResultadoMB.excluirResultado}"/>
+						
+					<p:dialog width="500" header="Inserir Novo Resultado" widgetVar="dialogEscolherExame">
+						<p:outputLabel value="Exame:" for="selecionarExame" />
+						<hr />
+						<p:selectOneMenu style="width:300px;" id="selecionarExame"
+							value="#{listarResultadoMB.exameParaNovoRes}">
+							<f:selectItem
+								itemLabel="Selecione um exame."
+								itemValue="" noSelectionOption="true" />
+							<f:selectItems value="#{listarResultadoMB.examesLista}"
+								var="exame" itemLabel="#{exame.nome}" itemValue="#{exame}" />
+						</p:selectOneMenu>
+						<hr />
+						<p:commandButton action="#{listarResultadoMB.novoResultado}"
+							value="OK" icon="ui-icon-plus" ajax="true" />
+					</p:dialog>
+					
 				</h:panelGroup>
 			</p:tab>
-			
 		</p:accordionPanel>
 	</ui:define>
 </ui:composition>

@@ -137,10 +137,10 @@ insert into Exame (id, nome, descricao) values (1001, 'HEMOGRAMA', 'EXAME HEMOGR
 insert into Exame (id, nome, descricao) values (1002, 'COLESTEROl', 'EXAME COLESTEROL' );
 
 --Exames Campos 0 string 1 numérico
-insert into ExameCampos (id,exame_id, nomeCampo, tipoCampo) values (1001, 1001,'RESULTADO', 1);
-insert into ExameCampos (id,exame_id, nomeCampo, tipoCampo) values (1002, 1001,'OBS', 0);
-insert into ExameCampos (id,exame_id, nomeCampo, tipoCampo) values (1003, 1002,'RESULTADO', 0);
-insert into ExameCampos (id,exame_id, nomeCampo, tipoCampo) values (1004, 1002,'OBS', 0);
+insert into ExameCampos (id,exame_id, nomeCampo) values (1001, 1001,'RESULTADO');
+insert into ExameCampos (id,exame_id, nomeCampo) values (1002, 1001,'OBS');
+insert into ExameCampos (id,exame_id, nomeCampo) values (1003, 1002,'RESULTADO');
+insert into ExameCampos (id,exame_id, nomeCampo) values (1004, 1002,'OBS');
 
 
 insert into Resultado (id, USUARIO_ID, exame_id, resultadoData) values (1001, 1000, 1001, sysdate);
@@ -149,7 +149,7 @@ insert into ResultadoCampos (id , resultado_id, examecampos_id, resultadoValor) 
 
 insert into Resultado (id, USUARIO_ID, exame_id, resultadoData) values (1002, 1000, 1002, sysdate);
 insert into ResultadoCampos (id , resultado_id, examecampos_id, resultadoValor) values (1003, 1002, 1003, '100');
-insert into ResultadoCampos (id , resultado_id, examecampos_id, resultadoValor) values (1003, 1002, 1004, 'tes2te');
+insert into ResultadoCampos (id , resultado_id, examecampos_id, resultadoValor) values (1004, 1002, 1004, 'tes2te');
 
 /*Atividades Físicas: Para testar compartilhamento no Facebook*/
 /*comentada para cadastro de categoria*/

@@ -80,6 +80,11 @@ public class ManterExamesMB implements Serializable {
 			return this.beginEditExame(this.getExame());
 		}
 
+		FacesContext.getCurrentInstance().addMessage(
+				null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO,
+						"Selecione um exame para edição.",
+						"Selecione um exame para edição."));
 		return "";
 	}
 
@@ -100,7 +105,6 @@ public class ManterExamesMB implements Serializable {
 
 			ExameCampos novoCampo = new ExameCampos();
 			novoCampo.setNomeCampo(nomeCampo);
-			novoCampo.setTipoCampo(0);
 			novoCampo.setExame(this.getExameEditar());
 			
 

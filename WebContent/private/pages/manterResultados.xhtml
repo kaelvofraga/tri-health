@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<ui:define id="contentExames" name="content">
+
+		<h1 class="lead">Exames</h1>
+
+		<p:accordionPanel id="panelCadastro" multiple="true">
+
+			<p:tab id="tabCadastro" title="Cadastro">
+				<h:panelGroup layout="block">
+					<p:outputLabel for="dataResultado" value="Data do Resultado:" />
+					<p:calendar pattern="dd/MM/yyyy HH:mm" mask="true"
+						value="#{listarResultadoMB.resultadoEditar.resultadoData}"
+						id="dataResultado" showOn="button"
+						placeholder="Informe a data do Resultado" />
+					<hr />
+
+					<h3>Exame:</h3>
+					<hr />
+
+					<h:panelGrid styleClass="mtable">
+						<p:outputLabel
+							value="#{listarResultadoMB.resultadoEditar.exame.nome}"
+							style="display:block" />
+					</h:panelGrid>
+
+					<hr />
+
+					<h3>Campos do Exame:</h3>
+
+					<table>
+						<ui:repeat value="#{listarResultadoMB.resultadoCamposListEditar}"
+							var="item">
+							<tr>
+								<td><p:outputLabel value="#{item.exameCampos.nomeCampo}" />
+								</td>
+								<td><p:inputText value="#{item.resultadoValor}" /></td>
+							</tr>
+						</ui:repeat>
+					</table>
+
+					<hr />
+
+					<p:commandButton icon="ui-icon-disk" title="" value="Salvar"
+						action="#{listarResultadoMB.salvarResultadoComCampos}" ajax="true" />
+					<p:commandButton icon="ui-icon-close" title="" value="Cancelar"
+						action="#{listarResultadoMB.cancelarEdicao}" ajax="true" />
+				</h:panelGroup>
+			</p:tab>
+
+		</p:accordionPanel>
+
+	</ui:define>
+</ui:composition>
+
