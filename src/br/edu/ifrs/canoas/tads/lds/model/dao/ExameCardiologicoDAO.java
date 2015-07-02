@@ -1,9 +1,11 @@
 package br.edu.ifrs.canoas.tads.lds.model.dao;
 
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.persistence.TemporalType;
 
 import br.edu.ifrs.canoas.tads.lds.bean.ExameCardiologico;
 import br.edu.ifrs.canoas.tads.lds.bean.UnidadeFederativa;
@@ -21,26 +23,18 @@ public class ExameCardiologicoDAO extends BaseDAO<ExameCardiologico, Long>{
 	 * 
 	 */
 	private static final long serialVersionUID = 3949439339667200160L;
-	@SuppressWarnings("unchecked")
-	public List<ExameCardiologico> buscaPorCriterio(String criterio){
-		return em.createQuery(
-		         "SELECT e "
-		         + "FROM ExameCardiologico e "
-		         + "WHERE lower(e.nota) LIKE like '%" +criterio.trim().toLowerCase()+"%")
-		         .getResultList();
-	} 
 
-	/*
 	@SuppressWarnings("unchecked")
 	public List<ExameCardiologico> buscaPorCriterio(Date dataDe, Date dataAte,
 			String criterioExameCardiologico) {
 		String criterio = "";
-		if (criterioExameCardiologico!=null) {
-			return em.createQuery(
-		         "SELECT c "
-		         + "FROM ExameCardiologico c "
-		         + "WHERE lower(c.nota) LIKE :nota ")
-		         .setParameter("nota", "%"+criterio.trim().toLowerCase()+"%")
+		
+		if (criterioExameCardiologico != null ) {		
+			return  em	
+					.createQuery("SELECT e "
+		         + "FROM ExameCardiologico e "
+		         + "WHERE lower(e.nota) LIKE like '%" +criterio.trim().toLowerCase()+"%'"
+		         + "ORDER BY au.UnidadeFederativa.nome", ExameCardiologico.class)
 		         .getResultList();
 	}		
 		
@@ -64,5 +58,5 @@ public class ExameCardiologicoDAO extends BaseDAO<ExameCardiologico, Long>{
 		return null;
 		
 	}
-	*/
+	
 }	

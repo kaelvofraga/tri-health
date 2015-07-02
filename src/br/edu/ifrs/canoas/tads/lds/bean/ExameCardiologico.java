@@ -12,7 +12,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-
+/**
+ * @author: Miromar Jose de Lima 
+ * 
+ * Classe que contem os atributos e metodos de ExameCardiologico.
+ * 
+ *          Data:01/07/2015
+ */
 @Entity
 public class ExameCardiologico extends BaseEntity<Long> implements Serializable {
 

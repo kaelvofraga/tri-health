@@ -3,6 +3,7 @@ package br.edu.ifrs.canoas.tads.lds.control.service;
 import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -16,16 +17,18 @@ import br.edu.ifrs.canoas.tads.lds.model.dao.ExameCardiologicoDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.MedicoDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.TipoExameDAO;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
+import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
 
 /**
  * @author: Miromar J. Lima
- * Classe para controle e validaca de dados, 
+ * Classe para controle e validacao de dados, 
  * e comunicao com a classe responsavel por persistir dados ao banco.
+ * Data: 01/07/15
  * 
  */
 
 @Stateless
-public class ExameCardidologicoService {
+public class ExameCardiologicoService {
 	
 	private Date dataAtual = new Date(System.currentTimeMillis());
 	
@@ -78,8 +81,8 @@ public class ExameCardidologicoService {
 		 * @param criterioExameCardiologico(String),dataDe(Date),dataAte(Date)
 		 * @return List<ExameCardiologico>
 		 * 
-	
-		public List<ExameCardiologico> buscaExameCardiCriterio(Date dataDe, Date dataAte, String criterioExameCardiologico) {
+		 **/
+		public List<ExameCardiologico> buscaExameCardiCriterio(java.util.Date dataDe, java.util.Date dataAte, String criterioExameCardiologico) {
 				if (StrUtil.isNotBlank(criterioExameCardiologico) || dataDe != null && dataAte != null) {
 					if(!exameCardiologicoDao.buscaPorCriterio(dataDe, dataAte,criterioExameCardiologico).isEmpty()){
 						return exameCardiologicoDao.buscaPorCriterio(dataDe, dataAte,criterioExameCardiologico);
@@ -92,7 +95,7 @@ public class ExameCardidologicoService {
 				return exameCardiologicoDao.buscaTodos();
 				}
 	}
-		* */
+		/*
 		@SuppressWarnings("unchecked")
 		public List<ExameCardiologico> busca(String criterio) {
 			if(criterio != null && criterio != ""){
@@ -101,6 +104,7 @@ public class ExameCardidologicoService {
 				return exameCardiologicoDao.buscaTodos();
 			}
 		}
+		*/
 	
 	@SuppressWarnings("unchecked")
 	public List<Medico> buscaMedicos(String criterio) {

@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 /**
  * @author: Miromar J. Lima
  * Proposito da Classe: Classe que representa a entidade dos tipos de exames presentes nos exames cardiológicos. 
- *          
+ * @date: 01/07/15         
  */
 public class TipoExame extends BaseEntity<Long> implements Serializable {
 	private static final long serialVersionUID = 97366118737547620L;
@@ -44,10 +44,5 @@ public class TipoExame extends BaseEntity<Long> implements Serializable {
 		this.valorReferencia = valorReferencia;
 	}
 
-	@Override
-	public String toString() {
-		return "TipoExame [descricao=" + descricao + ", unidadeDeMedida="
-				+ unidadeDeMedida + ", valorReferencia=" + valorReferencia
-				+ "]";
-	}
+	
 }

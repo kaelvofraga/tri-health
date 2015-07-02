@@ -6,6 +6,12 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="/public/templates/template.xhtml">
+	
+		<!-- 
+	  	@brief Listar Exame Cardiologico
+ 	 	@author Miromar J. Lima
+  		@since 25/06/2015
+	 -->
 
 	<ui:define name="metadata" />
 
@@ -41,7 +47,7 @@
 
 				<h:panelGroup layout="block" styleClass="form-group">
 						<p:commandButton value="Buscar Por Período" type="submit"
-							action="#{manterExameCardiologicoMB.busca}" ajax="true"
+							action="#{manterExameCardiologicoMB.buscaExameCardiologico}" ajax="true"
 							update="tableExameCardiologico" immediate="false" icon="ui-icon-search" />
 						<p:commandButton value="Limpar filtro" type="submit"
 							action="#{manterExameCardiologicoMB.initListar}" ajax="true"
@@ -53,14 +59,14 @@
 					<h:panelGroup layout="block" styleClass="form-group">
 						<p:outputLabel for="criterio_exame" value="Pesquisa por Nota" />
 						<p:inputText id="criterio_exame" styleClass="form-control"
-							value="#{manterExameCardiologicoMB.busca()}"
+							value="#{manterExameCardiologicoMB.buscaExameCardiologico()}"
 							placeholder="Pesquise aqui por Nota" />
 					</h:panelGroup>		
 		
 						
 				
 				<h:panelGroup layout="block" styleClass="form-group">
-	 				<p:commandButton value="Busca Por Nota" type="submit" action="#{manterExameCardiologicoMB.busca}"
+	 				<p:commandButton value="Busca Por Nota" type="submit" action="#{manterExameCardiologicoMB.buscaExameCardiologico}"
 						ajax="true" update="tableExameCardiologico" immediate="false" icon="ui-icon-search" />
 					<p:commandButton value="Limpar filtro" type="submit" action="#{manterExameCardiologicoMB.clearTable}"
 						ajax="true" update="tableExameCardiologico,criterio_exame"

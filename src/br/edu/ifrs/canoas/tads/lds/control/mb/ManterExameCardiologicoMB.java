@@ -26,10 +26,10 @@ import br.edu.ifrs.canoas.tads.lds.bean.ExameUrinaUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.Medico;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoExame;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
-import br.edu.ifrs.canoas.tads.lds.control.service.ExameCardidologicoService;
+import br.edu.ifrs.canoas.tads.lds.control.service.ExameCardiologicoService;
 
 /**
- * @author: Miromar Jos� de Lima 
+ * @author: Miromar J. Lima 
  * 
  * Classe para representar a View manterExameCardiologico.jsf.
  * 
@@ -51,7 +51,7 @@ public class ManterExameCardiologicoMB implements Serializable {
 	private GerenciarLoginMB gerenciarLoginMB;
 		
 	@EJB
-	private ExameCardidologicoService exameCardidologicoService;
+	private ExameCardiologicoService exameCardidologicoService;
 
 	@Inject
 	private ExameCardiologico exameCardi;
@@ -83,34 +83,34 @@ public class ManterExameCardiologicoMB implements Serializable {
 		listExameCardiologico = new ArrayList<ExameCardiologico>();
 		listTipoExame = new ArrayList<TipoExame>();
 		listMedico = new ArrayList<Medico>();
-		//criterioExameCardiologico = "";
-		//dataDe = null;
-		//dataAte = null;
+		criterioExameCardiologico = "";
+		dataDe = null;
+		dataAte = null;
 		return URL_LISTAR_EXAMES;
 	}
 
 	public String initManter() {
 		exameCardi = new ExameCardiologico();
-		//exameCardi.setDataExame(null);
+		exameCardi.setDataExame(null);
 		return URL_MANTER_EXAMES;
 	}
 
-	/*
+	
 	public void buscaExameCardiologico() {		
 		listExameCardiologico  = exameCardidologicoService.buscaExameCardiCriterio(this.getDataDe(),this.getDataAte(), criterioExameCardiologico);
 		
 	}
-*/
-	
+
+	/*
 	public void busca() {
 		listExameCardiologico  = exameCardidologicoService.busca(this.criterio);
 	}
-	
+*/	
 	public void clearTable() {
 		exameCardi = new ExameCardiologico();
 		this.criterio = "";
-		//this.buscaExameCardiologico();
-		this.busca();
+		this.buscaExameCardiologico();
+		//this.busca();
 	}
 
 	public String novo() {
@@ -149,8 +149,8 @@ public class ManterExameCardiologicoMB implements Serializable {
 	}
 
 	public List<ExameCardiologico> getListExameCardiologico() {
-		//this.buscaExameCardiologico();
-		this.busca();
+		this.buscaExameCardiologico();
+		//this.busca();
 		return listExameCardiologico;
 	}
 
@@ -265,12 +265,12 @@ public class ManterExameCardiologicoMB implements Serializable {
 		this.gerenciarLoginMB = gerenciarLoginMB;
 	}
 
-	public ExameCardidologicoService getExameCardidologicoService() {
+	public ExameCardiologicoService getExameCardidologicoService() {
 		return exameCardidologicoService;
 	}
 
 	public void setExameCardidologicoService(
-			ExameCardidologicoService exameCardidologicoService) {
+			ExameCardiologicoService exameCardidologicoService) {
 		this.exameCardidologicoService = exameCardidologicoService;
 	}
 
