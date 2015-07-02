@@ -6,12 +6,15 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Grau extends BaseEntity<Long> implements Serializable {
 	private static final long serialVersionUID = -6833487765093285521L;
 
+	@NotNull 
 	private Integer esquerdo;
+	@NotNull 
 	private Integer direito;
 
 	@ManyToOne
