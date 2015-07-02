@@ -16,8 +16,9 @@ private static final long serialVersionUID = -7233487765093285536L;
 	 */
 	@SuppressWarnings("unchecked")
 	public List<ExameVisao> buscaPorGrau(String grau) {
-		//TODO: fazer busca por INNER JOIN Grau
-		return em.createQuery("SELECT e FROM ExameVisao e WHERE ???????? like '%"
+		return em.createQuery("SELECT e FROM ExameVisao e WHERE e.graus.tipoGrau.descricao like '%"
+				+ grau.toUpperCase() + "%' " + "OR e.graus.esquerdo like '%"
+				+ grau.toUpperCase() + "%' " + "OR e.graus.direito like '%"
 				+ grau.toUpperCase() + "%'").getResultList();
 	}
 	

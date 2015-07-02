@@ -19,7 +19,7 @@ public class Grau extends BaseEntity<Long> implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name="TIPOGRAU_ID")
-	private TipoGrau TipoGrau;
+	private TipoGrau tipoGrau;
 	
 	
 	public Grau() {
@@ -43,10 +43,10 @@ public class Grau extends BaseEntity<Long> implements Serializable {
 	}
 
 	public TipoGrau getTipoGrau() {
-		return TipoGrau;
+		return tipoGrau;
 	}
 
 	public void setTipoGrau(TipoGrau tipoGrau) {
-		TipoGrau = tipoGrau;
+		this.tipoGrau = tipoGrau;
 	}
 }
