@@ -5,12 +5,18 @@ import java.util.Date;
 import br.edu.ifrs.canoas.tads.lds.bean.Idioma;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 
+/**
+ * Classe para representar o perfil do usuário, conténdo as informações necessarias para gerar o Report em PDF
+
+ * @author Luciano Acosta
+
+ */
+
+
 public class PerfilUsuarioBean {
 
 	private String nome;
 	
-	private String dataEmissao = new Date().toString();
-
 	private String nascimento;
 	
 	private String nacionalidade;
@@ -139,6 +145,10 @@ public class PerfilUsuarioBean {
 		this.pais = pais;
 	}
 	
+	/**
+	 * Método que converte o tipo Usuário em PerfilUsuarioBean para envio pro jasper
+	 * gerando assim o PDF.
+	 * */
 	public PerfilUsuarioBean conversor(Usuario usuario){
 		
 		PerfilUsuarioBean pub = new PerfilUsuarioBean();

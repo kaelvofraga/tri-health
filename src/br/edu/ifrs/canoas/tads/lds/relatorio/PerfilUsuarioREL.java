@@ -24,6 +24,12 @@ import net.sf.jasperreports.engine.export.JRPdfExporter;
 import br.edu.ifrs.canoas.tads.lds.bean.Cateterismo;
 import br.edu.ifrs.canoas.tads.lds.bean.jasper.PerfilUsuarioBean;
 
+/**
+ * Classe responsável por gerar, exportar e apresentar o Relatório do Perfil do Usuário de maneira 
+ * que o usuário possa salvar ou imprimir o PDF.
+ * 
+ * @author Luciano Acosta
+ * */
 public class PerfilUsuarioREL {
 
 	//caminho base
@@ -32,8 +38,11 @@ public class PerfilUsuarioREL {
 	//Caminho para o package onde estão armazenados os relatórios Jasper
 	private String pathToReportPackage;
 	
+	//Constante com nome da pasta
 	private static final String WEB_INF_DIR_NAME="WEB-INF";
     private static String web_inf_path;
+    
+    //Captura o caminho do web-inf
     public static String getWebInfPath() throws UnsupportedEncodingException {
         if (web_inf_path == null) {
             web_inf_path = URLDecoder.decode(Init.class.getProtectionDomain().getCodeSource().getLocation().getPath(), "UTF8");
@@ -49,7 +58,7 @@ public class PerfilUsuarioREL {
 		}
 		
 		
-		//Imprime/gera uma lista de Clientes
+		//Imprime/gera o PDF com dados do perfil do usuario
 		public void imprimir(List<PerfilUsuarioBean> exames) throws Exception	
 		{
 		
@@ -57,10 +66,13 @@ public class PerfilUsuarioREL {
 
 			facesContext.responseComplete();
 
-			//ServletContext scontext = (ServletContext) facesContext.getExternalContext().getContext();
-			
+			//Gera um arquivo em memória
 			InputStream in = this.getClass().getClassLoader().getResourceAsStream("br/edu/ifrs/canoas/tads/lds/jasper/PerfilUsuario.jrxml");
+			
+			//Compila o arquivo jrxml em jasper
 			JasperReport report = JasperCompileManager.compileReport(in);
+			
+			//Preenche o arquivo com as informações do list<>
 			JasperPrint print = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(exames));
 			
 			//JasperExportManager.exportReportToPdf(print);
@@ -79,12 +91,16 @@ public class PerfilUsuarioREL {
 
 			if (bytes != null && bytes.length > 0) {
 
+			//Busca contexto atual do servlet
 			HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
 
+			//Seta conteudo do arquivo a ser gerado
 			response.setContentType("application/pdf");
 
+			//Seta nome do arquivo a ser gerado
 			response.setHeader("Content-disposition", "inline; filename=\"RelatorioPerfildoUsuario.pdf\"");
 
+			//Length total do arquivo
 			response.setContentLength(bytes.length);
 
 			ServletOutputStream outputStream = response.getOutputStream();
