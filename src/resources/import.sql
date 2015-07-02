@@ -151,5 +151,8 @@ insert into Resultado (id, USUARIO_ID, exame_id, resultadoData) values (1002, 10
 insert into ResultadoCampos (id , resultado_id, examecampos_id, resultadoValor) values (1003, 1002, 1003, '100');
 insert into ResultadoCampos (id , resultado_id, examecampos_id, resultadoValor) values (1003, 1002, 1004, 'tes2te');
 
+/*Atividades Físicas: Para testar compartilhamento no Facebook*/
+insert into TipoAtividade(id, nome) values (1000, 'Teste Facebook');
+insert into Atividade(id, descricao, MET, tipoAtividade_id) values (1000, 'Compartilhar no Facebook', 2, 1);
 
 

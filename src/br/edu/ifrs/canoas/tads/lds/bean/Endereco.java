@@ -16,17 +16,14 @@ import javax.persistence.OneToOne;
  *
  * @author: Juarez Monteiro
  * Proposito da Alteração: Ajuste do bean para se adequar ao caso de uso Listar Hospitais
+ * * Atributos novos:
+ * - latitude (String): latitude da posição geográfica referente ao dado endereco (utilizada para localização de hospitais).
+ * - longitude (String): longitude da posição geográfica referente ao dado endereco (utilizada para localização de hospitais).
  */
 
 @Entity
 public class Endereco extends BaseEntity<Long> implements Serializable {
-	
-	
 	private static final long serialVersionUID = 1445737913096083057L;
-	/**
-	 * Estabelecer relacionamento com a tabela de cidade
-	 */
-	
 	
 	@OneToOne(cascade=CascadeType.ALL)    
 	@JoinColumn(name="ID_CIDADE")
@@ -93,16 +90,6 @@ public class Endereco extends BaseEntity<Long> implements Serializable {
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
-		
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 
-	@Override
-	public String toString() {
-		return "Endereco [cep=" + cep + ", logradouro=" + logradouro
-				+ ", numero=" + numero + ", complemento=" + complemento + "]";
-	}
-	*/
 	
 	@Override
 	public String toString() {

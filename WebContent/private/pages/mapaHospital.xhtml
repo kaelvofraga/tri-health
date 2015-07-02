@@ -1,68 +1,74 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition 
-   xmlns="http://www.w3.org/1999/xhtml"
-   xmlns:ui="http://java.sun.com/jsf/facelets"
-   xmlns:h="http://java.sun.com/jsf/html"
-   xmlns:p="http://primefaces.org/ui"
-   xmlns:f="http://java.sun.com/jsf/core"
-   xmlns:pe="http://primefaces.org/ui/extensions"
-   template="/public/templates/template.xhtml">
-   <!-- 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	template="/public/templates/template.xhtml">
+	<!-- 
       Author: Juarez Monteiro
       Version 20/06/2015
     -->
-   <ui:define name="metadata" />
-   <ui:define name="content">
-      <h1 class="lead">Localizar Hospitais</h1>
-      <p:tab title="Lista de Hospitais">
-         <h:panelGroup layout="block" styleClass="form-group">
-            <h:panelGrid columns="2" styleClass="mtable">
-               <h:panelGroup layout="block" styleClass="form-group">
-                  <p:outputLabel for="hospitais" value="Hospital/Clínica" />
-                  <br/>
-                  <p:selectOneMenu id="hospitais"
-                     value="#{manterHospitalMB.hospital}" 
-                     style="width:50%"
-                     required="true" requiredMessage="Um Hospital deve ser escolhido." >
-                     <p:ajax listener="#{manterHospitalMB.onSelectHospital}" />
-                     <f:selectItem itemLabel="Selecione..." itemValue=""
-                        noSelectionOption="true" />
-                     <f:selectItems
-                        value="#{manterHospitalMB.listaHospital}"
-                        var="hospital" itemLabel="#{hospital.nome}"
-                        itemValue="#{hospital}" />
-                  </p:selectOneMenu>
-                  <br/>
-                  <br/>
-                  <p:commandButton value="Localizar" type="submit" action="#{manterHospitalMB.atualizaMapa}" ajax="true"
-                     immediate="false" update="mapa,nome,telefone,endereco" icon="ui-icon-search" style="float:left;"/>
-               </h:panelGroup>
-            </h:panelGrid>
-            <p:separator />
-            <h:panelGroup layout="block" styleClass="form-group">
-               <f:view contentType="text/html">
-                  <p:gmap id="mapa" center="#{manterHospitalMB.centroLat},#{manterHospitalMB.centroLng}" zoom="13" type="MAP" model="#{manterHospitalMB.local}" style="width:100%;height:200px" />
-               </f:view>
-            </h:panelGroup>
-            <h:panelGroup layout="block" styleClass="form-group">
-               <h:panelGrid columns="2" styleClass="mtable">
-                  <h:panelGroup layout="block" styleClass="form-group">
-                     <h3 class="lead">Nome</h3>
-                     <p:outputLabel id="nome" value="#{manterHospitalMB.hospital.nome}" style="float:left"/>
-                  </h:panelGroup>
-                  <h:panelGroup layout="block" styleClass="form-group">
-                     <h3 class="lead">Telefone</h3>
-                     <p:outputLabel id="telefone" value="(#{manterHospitalMB.hospital.endereco.telefone.ddd})#{manterHospitalMB.hospital.endereco.telefone.numero}" style="float:left"/>
-                  </h:panelGroup>
-                  <h:panelGroup layout="block" styleClass="form-group">
-                     <h3 class="lead">Endereço</h3>
-                     <p:outputLabel id="endereco" value="#{manterHospitalMB.hospital.endereco.logradouro}, nº#{manterHospitalMB.hospital.endereco.numero}." style="float:left"/>
-                  </h:panelGroup>
-               </h:panelGrid>
-            </h:panelGroup>
-            <p:separator />
-         </h:panelGroup>
-      </p:tab>
-   </ui:define>
+	<ui:define name="metadata" />
+	<ui:define name="content">
+		<h1 class="lead">Localizar Hospitais</h1>
+		<p:tab title="Lista de Hospitais">
+			<h:panelGroup layout="block" styleClass="form-group">
+				<h:panelGrid columns="2" styleClass="mtable">
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:outputLabel for="hospitais" value="Hospital/Clínica" />
+						<br />
+						<p:selectOneMenu id="hospitais"
+							value="#{manterHospitalMB.hospital}" style="width:50%"
+							required="true" requiredMessage="Um Hospital deve ser escolhido.">
+							<f:selectItem itemLabel="Selecione..." itemValue=""
+								noSelectionOption="true" />
+							<f:selectItems value="#{manterHospitalMB.listaHospital}"
+								var="hospital" itemLabel="#{hospital.nome}"
+								itemValue="#{hospital}" />
+						</p:selectOneMenu>
+						<br />
+						<br />
+						<p:commandButton value="Localizar" type="submit"
+							action="#{manterHospitalMB.atualizaMapa}" ajax="true"
+							immediate="false" update="mapa,nome,telefone,endereco"
+							icon="ui-icon-search" style="float:left;" />
+					</h:panelGroup>
+				</h:panelGrid>
+				<p:separator />
+				<h:panelGroup layout="block" styleClass="form-group">
+					<f:view contentType="text/html">
+						<p:gmap id="mapa"
+							center="#{manterHospitalMB.centroLat},#{manterHospitalMB.centroLng}"
+							zoom="13" type="MAP" model="#{manterHospitalMB.local}"
+							style="width:100%;height:200px" />
+					</f:view>
+				</h:panelGroup>
+				<h:panelGroup layout="block" styleClass="form-group">
+					<h:panelGrid columns="2" styleClass="mtable">
+						<h:panelGroup layout="block" styleClass="form-group">
+							<h3 class="lead">Nome</h3>
+							<p:outputLabel id="nome"
+								value="#{manterHospitalMB.hospital.nome}" style="float:left" />
+						</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="form-group">
+							<h3 class="lead">Telefone</h3>
+							<p:outputLabel id="telefone"
+								value="(#{manterHospitalMB.hospital.endereco.telefone.ddd})#{manterHospitalMB.hospital.endereco.telefone.numero}"
+								style="float:left" />
+						</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="form-group">
+							<h3 class="lead">Endereço</h3>
+							<p:outputLabel id="endereco"
+								value="#{manterHospitalMB.hospital.endereco.logradouro}, nº#{manterHospitalMB.hospital.endereco.numero}."
+								style="float:left" />
+						</h:panelGroup>
+					</h:panelGrid>
+				</h:panelGroup>
+				<p:separator />
+			</h:panelGroup>
+		</p:tab>
+	</ui:define>
 </ui:composition>

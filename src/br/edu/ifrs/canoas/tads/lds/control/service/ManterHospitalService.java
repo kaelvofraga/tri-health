@@ -1,14 +1,16 @@
 package br.edu.ifrs.canoas.tads.lds.control.service;
 
 import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-
 import br.edu.ifrs.canoas.tads.lds.bean.Hospital;
-import br.edu.ifrs.canoas.tads.lds.bean.TipoMedida;
 import br.edu.ifrs.canoas.tads.lds.model.dao.HospitalDAO;
 import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
+
+/** 
+* Service Relacionado a US localizar hospital em mapa
+* @author Juarez Monteiro
+* */
 
 @Stateless
 public class ManterHospitalService {
@@ -17,10 +19,10 @@ public class ManterHospitalService {
 	HospitalDAO hospitalDAO;
 	
 	/**
-	 * @param criterioMedida Se refere a um critério de busca (Unidade de Medida ou Tipo da Medida) do tipo String;
-	 * @return retorna todos os objetos os quais possuem (Aproximado ou igual) em seus atributos o criterioMedida;
+	 * @param nomeHospital Se refere a um critério de busca (nome do hospital) do tipo String;
+	 * @return retorna todos os objetos os quais possuem o nome em critério ou caso não seja informado esse critério
+	 *  irá retornar todos todos os hospitais.
 	 */
-	@SuppressWarnings("unchecked")
 	public List<Hospital> busca(String nomeHospital) {
 		if (StrUtil.isNotBlank(nomeHospital))
 			return hospitalDAO.buscaHospitalPorNome(nomeHospital);

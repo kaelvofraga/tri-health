@@ -101,9 +101,10 @@
 			<p>06.04 = Caso o usuário não informe filtro de busca, gera pdf com todos exames cadastrados;Caso contrário, exibe histórico de acordo com filtro.
 			<br><br>
 			
-			<p>07.01 = Se o campo de data estiver vazio, exibe a mensagem MSG 07.01.
-			<p>07.02 = Se o campo médico estiver vazio,  exibe a mensagem MSG 07.02.
-			
+			<p>07.01 = Se sistema for salvar formulario sem preencher todos os campos, emitir mensagem MSG 07.01.</p>
+            <p>07.02 = Se sistema for salvar formulario com data futura, emitir mensagem MSG 07.02.</p>
+            <p>07.03 = Se sistema for fechar formulario e o grau for maior que 100, emitir mensagem MSG 07.03.</p>
+            <p>07.04 = Se o usuário desejar excluir um registro, então o sistema emitirá a mensagem MSG 07.06.</p>
         </div>
         
         <h1 class="tmsg">Mensagens do Sistema</h1>
@@ -153,8 +154,13 @@
 			<p>06.03 = Ocorreu erro ao gerar pdf. O arquivo não será gerado. [Erro]</p>
 			
 			<br>
-            <p>07.01 = Preencha o campo data! [Notificação]</p>
-            <p>07.01 = Preencha o campo Médico. [Notificação]</p>
+            <p>07.01 = Preencha todos os campos! [Notificação]</p>
+            <p>07.02 = A data não pode ser futura. [Notificação]</p>
+            <p>07.03 = O grau não poderá ser maior que 100. [Notificação]</p>
+            <p>07.04 = Erro ao gravar Exame visao! [Notificação]</p>
+            <p>07.05 = Sucesso ao gravar Exame visao! [Notificação]</p>
+            <p>07.06 = Tem certeza que deseja apagar esse registro? [Confirmação]</p>
+            <p>07.07 = Registro excluído com sucesso. [Notificação]</p>
             
         </div>
     </body>

@@ -1,7 +1,18 @@
 package br.edu.ifrs.canoas.tads.lds.bean;
 import java.io.Serializable;
-
 import javax.persistence.Entity;
+
+/**
+ * Entity implementation class for Entity: Atividade
+ * 
+ * @brief Classe que representa um telefone.
+ * @author Juarez Monteiro
+ * 
+ * Atributos:
+ * - ddd (String): ddd (código de área) do telefone.
+ * - numero (String): número do telefone.
+ * 
+ * **/
 
 @Entity
 public class Telefone extends BaseEntity<Long> implements Serializable {
