@@ -1,10 +1,14 @@
 package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -31,10 +35,10 @@ public class ExameVisao extends BaseEntity<Long> implements Serializable   {
 	@JoinColumn(name="MEDICO_ID")
 	private Medico medico;
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn
-	private List<Grau> graus;
-    	
+	private List<Grau> graus = new ArrayList<>();
+		
 	public ExameVisao() {
 		super();
 	}

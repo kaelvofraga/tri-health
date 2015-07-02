@@ -45,64 +45,65 @@
 				</h:panelGroup>
 			</h:panelGrid>
 
-			<h:panelGroup layout="block" styleClass="form-group pull-left">
+			<h:panelGroup layout="block" styleClass="form-group">
 				<br />
 				<p:commandButton
 					value="#{msg['manterExameVisao.cadastro.adicionarDisfuncao']}"
-					type="submit"
-					id="btnAdicionarGrau"
-					action="#{manterExameVisaoMB.salvaExameVisao}" ajax="true"
+					type="submit" id="btnAdicionarGrau"
+					action="#{manterExameVisaoMB.adicionarGrau}" ajax="true"
 					immediate="false" update="tabela-disfuncao" icon="ui-icon-disk">
 				</p:commandButton>
 			</h:panelGroup>
 
-			<p:dataTable id="tabela-disfuncao" var="item"
-				value="#{manterExameVisaoMB.exameVisao.graus}" editable="true"
-				editMode="cell" widgetVar="cellCars" rows="15">
-				<f:facet name="header">
+			<h:panelGroup layout="block" styleClass="form-group">
+				<p:dataTable id="tabela-disfuncao" var="item"
+					value="#{manterExameVisaoMB.exameVisao.graus}" editable="true"
+					editMode="cell" widgetVar="cellCars" rows="5">
+					<f:facet name="header">
            #{msg['manterExameVisao.cadastro.disfuncoes']}
        </f:facet>
-				<p:column headerText="#{msg['manterExameVisao.cadastro.disfuncao']}">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{item.tipoGrau.descricao}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{item.tipoGrau.descricao}" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="#{msg['manterExameVisao.cadastro.esquerdo']}">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{item.esquerdo}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{item.esquerdo}" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="#{msg['manterExameVisao.cadastro.direito']}">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{item.direito}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{item.direito}" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="#{msg['manterExameVisao.cadastro.excluir']}">
-					<p:commandButton
-						value="#{msg['manterExameVisao.cadastro.excluir']}"
-						action="#{manterExameVisaoMB.excluiGrau}" ajax="true"
-						update="tabela-disfuncao">
-						<f:setPropertyActionListener value="#{item}"
-							target="#{manterExameVisaoMB.grau}" />
-					</p:commandButton>
-				</p:column>
-			</p:dataTable>
-
+					<p:column
+						headerText="#{msg['manterExameVisao.cadastro.disfuncao']}">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{item.tipoGrau.descricao}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{item.tipoGrau.descricao}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['manterExameVisao.cadastro.esquerdo']}">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{item.esquerdo}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{item.esquerdo}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['manterExameVisao.cadastro.direito']}">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{item.direito}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{item.direito}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['manterExameVisao.cadastro.excluir']}">
+						<p:commandButton
+							value="#{msg['manterExameVisao.cadastro.excluir']}"
+							action="#{manterExameVisaoMB.excluiGrau}" ajax="true"
+							update="tabela-disfuncao">
+							<f:setPropertyActionListener value="#{item}"
+								target="#{manterExameVisaoMB.grau}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</h:panelGroup>
 
 			<h:panelGroup layout="block" styleClass="form-group" id="buttons">
 

@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -18,7 +19,9 @@ import br.edu.ifrs.canoas.tads.lds.bean.ExameVisao;
 import br.edu.ifrs.canoas.tads.lds.bean.Grau;
 import br.edu.ifrs.canoas.tads.lds.bean.ItemExameSangue;
 import br.edu.ifrs.canoas.tads.lds.bean.Medico;
+import br.edu.ifrs.canoas.tads.lds.bean.TipoAnalise;
 import br.edu.ifrs.canoas.tads.lds.bean.TipoGrau;
+import br.edu.ifrs.canoas.tads.lds.bean.UsuarioExame;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterExameVisaoService;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 
@@ -76,6 +79,9 @@ public class ManterExameVisaoMB implements Serializable {
 	private void clear() {
 		exameVisao = new ExameVisao();
 		exameVisao.setMedico(new Medico());
+		if(exameVisao.getGraus() == null || exameVisao.getGraus().isEmpty()){
+			exameVisao.setGraus(new ArrayList<Grau>());
+		}
 		examesVisao = new ArrayList<>();
 	}
 	
@@ -130,6 +136,9 @@ public class ManterExameVisaoMB implements Serializable {
 	 */
 	public void onRowSelect(SelectEvent event) throws IOException {
 		this.exameVisao = (ExameVisao) event.getObject();
+		if(this.exameVisao.getGraus() == null || this.exameVisao.getGraus().isEmpty()){
+			this.exameVisao.setGraus(new ArrayList<Grau>());
+		}
         FacesContext.getCurrentInstance().getExternalContext().redirect("../../private/pages/manterExameVisao.jsf");
     }
 
