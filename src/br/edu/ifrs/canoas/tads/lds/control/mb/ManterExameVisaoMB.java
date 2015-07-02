@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,8 +15,12 @@ import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
 
 import br.edu.ifrs.canoas.tads.lds.bean.ExameVisao;
+import br.edu.ifrs.canoas.tads.lds.bean.Grau;
+import br.edu.ifrs.canoas.tads.lds.bean.ItemExameSangue;
 import br.edu.ifrs.canoas.tads.lds.bean.Medico;
+import br.edu.ifrs.canoas.tads.lds.bean.TipoGrau;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterExameVisaoService;
+import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 
 @Named
 @SessionScoped
@@ -41,6 +46,9 @@ public class ManterExameVisaoMB implements Serializable {
 		
 	//string de busca
 	private String criterioExameVisao;
+	
+	/*Objeto usado para exclusão de Grau*/
+	private Grau grau;
 	
 	public ManterExameVisaoMB() {
 	}
@@ -100,6 +108,21 @@ public class ManterExameVisaoMB implements Serializable {
 		}
 		return URL_MANTER;
 	}
+	
+	/**
+	 * {@code} Método para adicionar Grau ao exame de visão
+	 * @return void
+	 */
+	public void adicionarGrau(){
+		if (exameVisao != null){
+			exameVisaoService.adicionarGrau(exameVisao);
+		}
+	}
+		
+	public void excluiGrau() {
+		exameVisaoService.excluirGrau(exameVisao, grau);
+	}
+
 	
 	/*
 	 * Metodo que pega o evento de selecão da linha da tabela por parametro e
@@ -182,5 +205,13 @@ public class ManterExameVisaoMB implements Serializable {
 
 	public void setCriterioExameVisao(String criterioExameVisao) {
 		this.criterioExameVisao = criterioExameVisao;
+	}
+	
+	public Grau getGrau() {
+		return grau;
+	}
+
+	public void setGrau(Grau grau) {
+		this.grau = grau;
 	}
 }

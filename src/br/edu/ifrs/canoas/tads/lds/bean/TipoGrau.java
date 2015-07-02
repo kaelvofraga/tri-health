@@ -16,6 +16,11 @@ public class TipoGrau extends BaseEntity<Long> implements Serializable  {
 		super();
 	}
 
+	public TipoGrau(String descricao) {
+		super();
+		this.descricao = descricao;
+	}
+
 	public String getDescricao() {
 		return descricao;
 	}

@@ -13,9 +13,9 @@ public class Grau extends BaseEntity<Long> implements Serializable {
 	private static final long serialVersionUID = -6833487765093285521L;
 
 	@NotNull 
-	private Integer esquerdo;
+	private Double esquerdo;
 	@NotNull 
-	private Integer direito;
+	private Double direito;
 
 	@ManyToOne
 	@JoinColumn(name="TIPOGRAU_ID")
@@ -26,19 +26,26 @@ public class Grau extends BaseEntity<Long> implements Serializable {
 		super();
 	}
 
-	public Integer getEsquerdo() {
+	public Grau(Double esquerdo, Double direito, TipoGrau tipoGrau) {
+		super();
+		this.esquerdo = esquerdo;
+		this.direito = direito;
+		this.tipoGrau = tipoGrau;
+	}
+
+	public Double getEsquerdo() {
 		return esquerdo;
 	}
 
-	public void setEsquerdo(Integer esquerdo) {
+	public void setEsquerdo(Double esquerdo) {
 		this.esquerdo = esquerdo;
 	}
 
-	public Integer getDireito() {
+	public Double getDireito() {
 		return direito;
 	}
 
-	public void setDireito(Integer direito) {
+	public void setDireito(Double direito) {
 		this.direito = direito;
 	}
 

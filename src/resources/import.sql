@@ -156,4 +156,7 @@ insert into ResultadoCampos (id , resultado_id, examecampos_id, resultadoValor) 
 /*insert into TipoAtividade(id, nome) values (1000, 'Teste Facebook');
 insert into Atividade(id, descricao, MET, tipoAtividade_id) values (1000, 'Compartilhar no Facebook', 2.0, 1);*/
 
+/*Exame visao*/
 
+INSERT INTO EXAMEVISAO (id,usuario_id,data,medico_id) values (1001,1000,sysdate,1001);
+INSERT INTO EXAMEVISAO (id,usuario_id,data,medico_id) values (1002,1000,sysdate,1002);

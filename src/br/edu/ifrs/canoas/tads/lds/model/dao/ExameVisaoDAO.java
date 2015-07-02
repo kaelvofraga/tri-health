@@ -67,7 +67,6 @@ private static final long serialVersionUID = -7233487765093285536L;
 		}
 		catch (IllegalArgumentException e) {
 			return null;
-		}
-		
+		}		
 	}
 }

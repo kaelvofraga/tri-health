@@ -9,11 +9,16 @@ import javax.inject.Inject;
 
 import br.edu.ifrs.canoas.tads.lds.bean.Consulta;
 import br.edu.ifrs.canoas.tads.lds.bean.ExameVisao;
+import br.edu.ifrs.canoas.tads.lds.bean.Grau;
+import br.edu.ifrs.canoas.tads.lds.bean.ItemExameSangue;
 import br.edu.ifrs.canoas.tads.lds.bean.Medico;
+import br.edu.ifrs.canoas.tads.lds.bean.TipoGrau;
 import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 import br.edu.ifrs.canoas.tads.lds.model.dao.ConsultaDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.ExameVisaoDAO;
+import br.edu.ifrs.canoas.tads.lds.model.dao.GrauDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.MedicoDAO;
+import br.edu.ifrs.canoas.tads.lds.model.dao.TipoGrauDAO;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
 import br.edu.ifrs.canoas.tads.lds.util.StrUtil;
 
@@ -23,7 +28,11 @@ public class ManterExameVisaoService {
 	private ExameVisaoDAO exameVisaoDAO;
 	@Inject
 	private MedicoDAO medicoDAO;
-
+	@Inject
+	private GrauDAO grauDAO;
+	@Inject
+	private TipoGrauDAO tipoGrauDAO;
+	
 	@SuppressWarnings("unchecked")
 	public List<ExameVisao> buscaTodos() {
 		return exameVisaoDAO.buscaTodos();
@@ -58,6 +67,29 @@ public class ManterExameVisaoService {
 			Mensagens.define(FacesMessage.SEVERITY_ERROR,
 					"manterExameVisao.altera.excecao.erro");
 		}
+	}
+	
+	/*
+	 * Metodo para inserir novo Grau ao exame de visao
+	 */
+	public void adicionarGrau(ExameVisao exame) {
+		TipoGrau tipo = new TipoGrau(" ");
+		tipoGrauDAO.insere(tipo);
+		Grau grau = new Grau(0.0, 0.0, tipo);
+		grauDAO.insere(grau);
+		
+		exame.getGraus().add(grau);
+		exameVisaoDAO.atualiza(exame);
+	}
+
+	/*
+	 * Metodo para excluir Grau
+	 */
+	public void excluirGrau(ExameVisao exame, Grau grau) {
+		exame.getGraus().remove(grau);
+		exameVisaoDAO.atualiza(exame);
+		
+		grauDAO.exclui(grau.getId());
 	}
 
 	/*
@@ -128,7 +160,7 @@ public class ManterExameVisaoService {
 			return false;
 		}
 	}
-
+	
 	/*
 	 * Metodo busca do Listar que realiza busca por criterio informado ou
 	 * retorna todos elementos cadastrados.
@@ -169,4 +201,5 @@ public class ManterExameVisaoService {
 		}
 		return new ArrayList<ExameVisao>();
 	}
+	
 }
