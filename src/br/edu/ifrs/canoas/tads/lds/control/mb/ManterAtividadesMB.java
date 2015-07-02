@@ -92,6 +92,9 @@ public class ManterAtividadesMB implements Serializable {
 		atividadeListFiltrada = new ArrayList<>();
 		this.filtrarAtividades();	
 		
+		/** Social **/
+		facebookMB.initFacebook();
+		
 		return URL_MANTER_ATIVIDADES;
 	}
 	
@@ -290,5 +293,13 @@ public class ManterAtividadesMB implements Serializable {
 		catch(Exception e){
 			System.out.println(e.getMessage());
 		}
+	}
+
+	public AtividadeUsuario getAtividadeToFace() {
+		return atividadeToFace;
+	}
+
+	public void setAtividadeToFace(AtividadeUsuario atividadeToFace) {
+		this.atividadeToFace = atividadeToFace;
 	}
 }

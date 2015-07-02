@@ -71,24 +71,7 @@
 								styleClass="ui-confirmdialog-no" icon="ui-icon-close">
 							</p:commandButton>
 						</p:confirmDialog>
-
-						<p:confirmDialog global="true" id="shareDialogID"
-							message="#{msg['facebook.compartilhar.confirmacao']}"
-							header="#{msg['facebook.compartilhar.confirmacao.header']}"
-							showEffect="fade"
-							hideEffect="explode"
-							widgetVar="shareDialog" >
--							<p:commandButton value="Sim" type="button"
-								styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
-								onclick="PF('shareDialog').hide()">
-								<p:ajax event="click" update="shareDialogID" listener="#{manterAtividadesMB.publicarAtividade}" />
--							</p:commandButton>
--							<p:commandButton value="Não" type="button"
-								styleClass="ui-confirmdialog-no pull-right" icon="ui-icon-close"
-								onclick="PF('shareDialog').hide()">
--							</p:commandButton>
--						</p:confirmDialog>
-
+						
 					</h:form>
 				</p:layoutUnit>
 <!-- 
