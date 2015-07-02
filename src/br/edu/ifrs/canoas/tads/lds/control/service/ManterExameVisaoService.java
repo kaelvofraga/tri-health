@@ -168,8 +168,9 @@ public class ManterExameVisaoService {
 	@SuppressWarnings("unchecked")
 	public List<ExameVisao> busca(String criterioExameVisao) {
 		if (StrUtil.isNotBlank(criterioExameVisao) && criterioExameVisao != null) {
-			if (!exameVisaoDAO.buscaPorCriterio(criterioExameVisao).isEmpty()) {
-				return exameVisaoDAO.buscaPorCriterio(criterioExameVisao);
+			List<ExameVisao> exames = exameVisaoDAO.buscaPorCriterio(criterioExameVisao); 
+			if (exames != null && !exames.isEmpty()) {
+				return exames;
 			} else {
 				Mensagens.define(FacesMessage.SEVERITY_INFO,
 						"manterExameVisao.busca.vazio");

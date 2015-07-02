@@ -40,6 +40,10 @@ private static final long serialVersionUID = -7233487765093285536L;
 					.createQuery(
 							"SELECT e FROM ExameVisao e "
 									+ "WHERE "
+									/*+ "e.graus.tipoGrau.descricao like '%"
+									+ criterioExame.toUpperCase() + "%' " + "OR e.graus.esquerdo like '%"
+									+ criterioExame.toUpperCase() + "%' " + "OR e.graus.direito like '%"
+									+ criterioExame.toUpperCase() + "%' OR "*/
 									+ "lower(e.medico.nome) like '%" + criterioExame.toLowerCase() + "%' "
 									+ "ORDER BY e.data DESC")
 					.getResultList();

@@ -160,3 +160,9 @@ insert into Atividade(id, descricao, MET, tipoAtividade_id) values (1000, 'Compa
 
 INSERT INTO EXAMEVISAO (id,usuario_id,data,medico_id) values (1001,1000,sysdate,1001);
 INSERT INTO EXAMEVISAO (id,usuario_id,data,medico_id) values (1002,1000,sysdate,1002);
+
+insert into tipograu(id, descricao) values (1001,'Miopia');
+insert into tipograu(id, descricao) values (1002,'Astigmatismo');
+
+insert into grau(id, direito, esquerdo, TIPOGRAU_ID,GRAUS_ID) values (1001,0.25, 1.5, 1001, 1001);
+insert into grau(id, direito, esquerdo, TIPOGRAU_ID,GRAUS_ID) values (1002,2.50, 1.0, 1002, 1002);

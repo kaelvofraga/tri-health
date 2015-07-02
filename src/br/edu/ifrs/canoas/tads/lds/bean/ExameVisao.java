@@ -36,7 +36,7 @@ public class ExameVisao extends BaseEntity<Long> implements Serializable   {
 	private Medico medico;
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn
+	@JoinColumn(name="GRAUS_ID")
 	private List<Grau> graus = new ArrayList<>();
 		
 	public ExameVisao() {
@@ -69,6 +69,45 @@ public class ExameVisao extends BaseEntity<Long> implements Serializable   {
 
 	public List<Grau> getGraus() {
 		return graus;
+	}
+
+	/*
+	 * info usada na listagem de Exame Visao
+	 */
+	public String getDisfuncaoString() {
+		String out = "";
+		if(graus != null && !graus.isEmpty()){
+			for (Grau grau : graus) {
+				out += grau.getTipoGrau().getDescricao() + "... ";
+			}			
+		}
+		return out;
+	}
+	
+	/*
+	 * Grau Esquerdo usada na listagem de Exame Visao
+	 */
+	public String getEsquerdoString() {
+		String out = "";
+		if(graus != null && !graus.isEmpty()){
+			for (Grau grau : graus) {
+				out += grau.getEsquerdo() + "... ";
+			}			
+		}
+		return out;
+	}
+	
+	/*
+	 * Grau direito usada na listagem de Exame Visao
+	 */
+	public String getDireitoString() {
+		String out = "";
+		if(graus != null && !graus.isEmpty()){
+			for (Grau grau : graus) {
+				out += grau.getDireito() + "... ";
+			}			
+		}
+		return out;
 	}
 
 	public void setGraus(List<Grau> graus) {

@@ -44,7 +44,16 @@
 							<h:outputText value="#{item.medico.nome}" />
 						</p:column>
 						<p:column headerText="#{msg['manterExameVisao.cadastro.data']}">
-							<h:outputText value="#{item.data}" />
+							<h:outputText value="#{item.data}"/>
+						</p:column>
+						<p:column headerText="#{msg['manterExameVisao.cadastro.disfuncoes']}">
+							<h:outputText value="#{item.disfuncaoString}" />
+						</p:column>
+						<p:column headerText="#{msg['manterExameVisao.cadastro.esquerdo']}">
+							<h:outputText value="#{item.esquerdoString}" />
+						</p:column>
+						<p:column headerText="#{msg['manterExameVisao.cadastro.direito']}">
+							<h:outputText value="#{item.direitoString}" />
 						</p:column>
 					</p:dataTable>
 					<br />
