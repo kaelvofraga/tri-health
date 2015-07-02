@@ -1,16 +1,23 @@
 package br.edu.ifrs.canoas.tads.lds.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-/** 
- *
- * @author: Juarez Monteiro
- */
+/**
+ * Entity implementation class for Entity: Atividade
+ * 
+ * @brief Classe que representa um hospital.
+ * @author Juarez Monteiro
+ * 
+ * Atributos:
+ * - endereco (Endereco): atributo que contem todos os dados relacionados ao endereco do hospital.
+ * - nome (String): nome do hospital.
+ * 
+ * **/
+
 @Entity
 public class Hospital extends BaseEntity<Long> implements Serializable {
 
