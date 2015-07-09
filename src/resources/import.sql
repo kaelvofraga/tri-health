@@ -166,3 +166,9 @@ insert into tipograu(id, descricao) values (1002,'Astigmatismo');
 
 insert into grau(id, direito, esquerdo, TIPOGRAU_ID,GRAUS_ID) values (1001,0.25, 1.5, 1001, 1001);
 insert into grau(id, direito, esquerdo, TIPOGRAU_ID,GRAUS_ID) values (1002,2.50, 1.0, 1002, 1002);
+
+/*Condição de saúde - Luana*/
+INSERT INTO STATUSSAUDE (id, nome) values (1, 'Atual');
+INSERT INTO STATUSSAUDE (id, nome) values (2, 'Intermitente');
+INSERT INTO STATUSSAUDE (id, nome) values (3, 'Passado');
+

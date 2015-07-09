@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+	
+	<!-- 
+	  	@brief View de listagem registros de condição de saúde de um usuário
+ 	 	@author Luana Gomes
+  		@since 06/07/2015
+	 -->
+	
+	<ui:define name="metadata" />
+
+	<ui:define name="content">
+
+		<h1 class="lead">Condições de Saúde</h1>
+
+		<p:accordionPanel multiple="true">
+			<p:tab title="Lista de Condição de Saúde">
+
+				<h:panelGroup layout="block" id="condicao">
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:outputLabel for="criterio_descricao" value="Pesquisa" />
+						<p:inputText id="criterio_descricao" styleClass="form-control"
+							placeholder="Entre o critério de pesquisa aqui" />
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="form-group">
+
+						<p:commandButton value="Busca" type="submit" action="#"
+							ajax="true" update="tab-condicoes" immediate="false" icon="ui-icon-search" />
+
+					</h:panelGroup>
+
+					<p:dataTable 
+						id="tab-condicoes" 
+						selectionMode="single"
+						emptyMessage="Nenhum Registro Encontrado." 
+						var="condicaoSaudeUsuario"
+						reflow="true" >
+
+						<p:ajax event="rowSelect" oncomplete="manterCondicaoSaude"/>
+        				
+						<p:column headerText="Descrição" id="colDescricao" style="width:30%;">
+							<h:outputText
+								value="#" />
+						</p:column>
+						
+						<p:column headerText="Status" id="colStatus">
+							<h:outputText
+								value="#" />
+						</p:column>						
+						
+						<p:column headerText="Data Inicial" id="colDataIni" style="width:15%;">
+							<h:outputText
+								value="#" />
+						</p:column>
+
+						<p:column headerText="Data Final" id="colDataFin" style="width:15%;">
+							<h:outputText
+								value="#" />
+						</p:column>
+						
+						<p:column headerText="Solução" id="colSolucao" style="width:15%;">
+							<h:outputText
+								value="#" />
+						</p:column>
+												
+					</p:dataTable>
+					<br />
+
+				</h:panelGroup>
+				
+			</p:tab>
+
+		</p:accordionPanel>
+
+	</ui:define>
+
+</ui:composition>
+
+

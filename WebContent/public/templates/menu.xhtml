@@ -56,6 +56,10 @@
 			</p:submenu>
 			<p:separator />
 			<p:submenu label="Hist&oacute;rico de Sa&uacute;de">
+				<p:submenu label="Condição de saúde">
+						<p:menuitem value="Listar" action="#{manterCondicaoSaudeMB.initListar}"/>
+						<p:menuitem value="Cadastrar" action="#{manterCondicaoSaudeMB.initManter}"/>
+				</p:submenu>
 				<p:submenu label="Uso de Medicamentos">
 						<p:menuitem value="Listar" action="#{manterUsoMedicamentoMB.initListar}"/>
 						<p:menuitem value="Cadastrar" action="#{manterUsoMedicamentoMB.initManter}"/>
