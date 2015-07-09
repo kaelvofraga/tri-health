@@ -31,7 +31,7 @@ import org.hibernate.validator.constraints.Length;
 
 @Entity
 public class CondicaoSaudeUsuario extends BaseEntity<Long> implements Serializable {
-	
+		
 	private static final long serialVersionUID = 113670808978537917L;
 	
 	@NotNull @ManyToOne
