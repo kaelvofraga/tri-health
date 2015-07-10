@@ -33,9 +33,9 @@
    				</h:panelGroup>
 						
 				<h:panelGroup layout="block" styleClass="form-group">
-					<p:outputLabel for="status" value="Status:" />
+					<p:outputLabel for="statusSaude" value="Status:" />
 					<br />
-					<p:selectOneMenu id="status"
+					<p:selectOneMenu id="statusSaude"
 						value="#{manterCondicaoSaudeMB.condicaoSaude.status}"
 						style="width:80%" required="true" >									
 						<f:selectItem itemLabel="Selecione..." itemValue=""
@@ -77,14 +77,14 @@
 				</h:panelGrid>
 
    				<h:panelGroup layout="block" styleClass="form-group">
-					<p:outputLabel for="solucao" value="Observações:" />
+					<p:outputLabel for="solucao" value="Solução:" />
 					<br/>
 				     <p:inputTextarea id="solucao" 
 				     	value ="#{manterCondicaoSaudeMB.condicaoSaude.descricao}"
-				      	rows="2" cols="86" counter="obs" maxlength="100" 
+				      	rows="2" cols="86" counter="obs" maxlength="100" required="true"
 					 	counterTemplate="{0} caracteres restantes" >
 					</p:inputTextarea><br/>
-					<h:outputText id="solucao" />
+					<h:outputText id="obs" />
 				</h:panelGroup>
 												
 				<h:panelGroup layout="block" styleClass="form-group" id="buttons">

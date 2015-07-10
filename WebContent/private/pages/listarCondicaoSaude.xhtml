@@ -27,12 +27,13 @@
 					<h:panelGroup layout="block" styleClass="form-group">
 						<p:outputLabel for="criterio_descricao" value="Pesquisa" />
 						<p:inputText id="criterio_descricao" styleClass="form-control"
-							placeholder="Entre o critério de pesquisa aqui" />
+							value="#{manterCondicaoSaudeMB.criterioDescricao}"
+							placeholder="Pesquise por descrição ou status" />
 					</h:panelGroup>
 
 					<h:panelGroup layout="block" styleClass="form-group">
 
-						<p:commandButton value="Busca" type="submit" action="#"
+						<p:commandButton value="Busca" type="submit" action="#{manterCondicaoSaudeMB.busca}"
 							ajax="true" update="tab-condicoes" immediate="false" icon="ui-icon-search" />
 
 					</h:panelGroup>
@@ -41,41 +42,45 @@
 						id="tab-condicoes" 
 						selectionMode="single"
 						emptyMessage="Nenhum Registro Encontrado." 
-						var="condicaoSaudeUsuario"
+						var="listCondicao"
+						value="#{manterCondicaoSaudeMB.condicaoSaudeList}"
+						rowKey="listCondicao.id"
 						reflow="true" >
 
-						<p:ajax event="rowSelect" oncomplete="manterCondicaoSaude"/>
+						<p:ajax event="rowSelect" listener="#{manterCondicaoSaudeMB.onRowSelect}"
+						oncomplete="manterCondicaoSaude"/>
         				
 						<p:column headerText="Descrição" id="colDescricao" style="width:30%;">
 							<h:outputText
-								value="#" />
+								value="#{listCondicao.descricao}" />
 						</p:column>
 						
 						<p:column headerText="Status" id="colStatus">
 							<h:outputText
-								value="#" />
+								value="#{listCondicao.status.nome}" />
 						</p:column>						
 						
 						<p:column headerText="Data Inicial" id="colDataIni" style="width:15%;">
 							<h:outputText
-								value="#" />
+								value="#{listCondicao.dataInicio}" />
 						</p:column>
 
 						<p:column headerText="Data Final" id="colDataFin" style="width:15%;">
 							<h:outputText
-								value="#" />
+								value="#{listCondicao.dataFim}" />
 						</p:column>
 						
 						<p:column headerText="Solução" id="colSolucao" style="width:15%;">
 							<h:outputText
-								value="#" />
+								value="#{listCondicao.solucao}" />
 						</p:column>
 												
 					</p:dataTable>
 					<br />
 
 				</h:panelGroup>
-				
+				<p:commandButton value="Nova" action="#{manterCondicaoSaudeMB.initManter}" icon="ui-icon-plus" ajax="true" />
+		 
 			</p:tab>
 
 		</p:accordionPanel>

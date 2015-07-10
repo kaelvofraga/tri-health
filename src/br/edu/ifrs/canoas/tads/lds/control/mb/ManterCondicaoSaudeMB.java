@@ -2,17 +2,22 @@
 
 package br.edu.ifrs.canoas.tads.lds.control.mb;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.context.RequestContext;
+import org.primefaces.event.SelectEvent;
 
 import br.edu.ifrs.canoas.tads.lds.bean.CondicaoSaudeUsuario;
+import br.edu.ifrs.canoas.tads.lds.bean.PesoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.StatusSaude;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterCondicaoSaudeService;
 
@@ -46,11 +51,19 @@ public class ManterCondicaoSaudeMB implements Serializable{
 	private List<CondicaoSaudeUsuario> condicaoSaudeList;
 	private List<StatusSaude> statusSaudeList;
 	
+	private String criterioDescricao;
+		
 	public String initListar(){
+		condicaoSaude = new CondicaoSaudeUsuario();
+		criterioDescricao = "";
+		condicaoSaudeList = new ArrayList<CondicaoSaudeUsuario>();
 		return URL_LISTAR_CONDICAO_SAUDE;
 	}
 	
 	public String initManter(){
+		condicaoSaude = new CondicaoSaudeUsuario();
+		statusSaudeList = this.getStatusSaudeList();
+		condicaoSaude.setStatus(new StatusSaude());
 		return URL_MANTER_CONDICAO_SAUDE;
 	}
 
@@ -66,6 +79,15 @@ public class ManterCondicaoSaudeMB implements Serializable{
 		}
 	}
 	
+	/**
+	 * @brief Metodo que busca condições de saúde do usuário
+	 * @param void
+	 * @return void
+	 * */
+	public void busca(){
+		condicaoSaudeList = condSaudeService.busca(criterioDescricao, gerenciarLoginMB.getUsuario());
+	}
+	
 	/** 
 	 * @brief Verifica se a registro atual está sendo inserida nova ou atualizada uma antiga.	  	 		  
 	 * @param void
@@ -74,6 +96,17 @@ public class ManterCondicaoSaudeMB implements Serializable{
 	public boolean isAtualizacao(){
 		return condicaoSaude != null && condicaoSaude.getId() != null;
 	}
+	
+	/** 
+	 * @brief Metodo que realiza o evento de seleção da linha da tabela que lista
+	 *  as condicoes de saude do usuário.	 		  
+	 * @param event (SelectEvent)
+	 * @return void
+	 * */
+	public void onRowSelect(SelectEvent event) throws IOException {
+		this.condicaoSaude = (CondicaoSaudeUsuario) event.getObject();
+		FacesContext.getCurrentInstance().getExternalContext().redirect("../../private/pages/manterCondicaoSaude.jsf");
+    }	
 	
 	/*GETTERS E SETTERS*/
 	
@@ -117,6 +150,14 @@ public class ManterCondicaoSaudeMB implements Serializable{
 
 	public void setStatusSaudeList(List<StatusSaude> statusSaudeList) {
 		this.statusSaudeList = statusSaudeList;
+	}
+
+	public String getCriterioDescricao() {
+		return criterioDescricao;
+	}
+
+	public void setCriterioDescricao(String criterioDescricao) {
+		this.criterioDescricao = criterioDescricao;
 	}
 
 }
