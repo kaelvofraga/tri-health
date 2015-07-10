@@ -172,3 +172,7 @@ INSERT INTO STATUSSAUDE (id, nome) values (1, 'Atual');
 INSERT INTO STATUSSAUDE (id, nome) values (2, 'Intermitente');
 INSERT INTO STATUSSAUDE (id, nome) values (3, 'Passado');
 
+
+INSERT INTO VACINACAO (id, descricao, datavacinacao, efeitocolateral, USUARIO_ID, doseVacinacao) values (1001, 'HEPATITE B', SYSDATE, 'FEBRE 1', 1000, 50);
+INSERT INTO VACINACAO (id, descricao, datavacinacao, efeitocolateral, USUARIO_ID, doseVacinacao) values (1002, 'HEPATITE C', SYSDATE, 'FEBRE 2', 1000, 30);
+INSERT INTO VACINACAO (id, descricao, datavacinacao, efeitocolateral, USUARIO_ID, doseVacinacao) values (1003, 'HEPATITE A', SYSDATE, 'FEBRE 3', 1000, 40);

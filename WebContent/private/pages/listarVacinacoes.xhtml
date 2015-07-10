@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+	
+	<ui:define name="metadata" />
+
+	<ui:define name="content">
+
+		<h1 class="lead">Vacinações</h1>
+
+		<p:accordionPanel multiple="true">
+			<p:tab title="Lista de Vacinações">
+
+				<h:panelGroup layout="block" id="vacinacoes">
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<p:outputLabel for="criterio_vacinacoes" value="Pesquisa" />
+						<p:inputText id="criterio_vacinacoes" styleClass="form-control"
+							value="#{manterVacinacaoMB.criterioVacinacao}" 
+							placeholder="Entre o critério de pesquisa aqui, será pesquisado por nome ou efeito colateral." />
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="form-group">
+
+						<p:commandButton value="Busca" type="submit" action="#{manterVacinacaoMB.busca}"
+							ajax="true" update="tab-vacinacoes" immediate="false" icon="ui-icon-search" />
+
+						<p:commandButton value="Limpar filtro" type="submit" action="#{manterVacinacaoMB.clearTable}"
+							ajax="true" update="tab-vacinacoes,criterio_vacinacoes"
+							immediate="false" icon="ui-icon-refresh" />
+
+					</h:panelGroup>
+
+					<p:dataTable 
+						id="tab-vacinacoes" 
+						selectionMode="single"
+						emptyMessage="Nenhum Registro Encontrado." 
+						var="vacinacao"
+						selection="#{manterVacinacaoMB.vacinacao}"
+						value="#{manterVacinacaoMB.vacinacaoList}" 
+						rowKey="#{vacinacao.id}"
+						reflow="true" >
+
+						<p:ajax event="rowSelect" listener="#{manterVacinacaoMB.onRowSelect}" oncomplete="manterVacinacao"/>
+        				
+						<p:column headerText="Descrição" id="colDesc" style="width:30%;">
+							<h:outputText
+								value="#{vacinacao.descricao}" />
+						</p:column>
+						
+						<p:column headerText="Dosagem (ml)" id="colDose">
+							<h:outputText
+								value="#{vacinacao.doseVacinacao}" />
+						</p:column>						
+						
+						<p:column headerText="Data" id="colData" style="width:15%;">
+							<h:outputText
+								value="#{vacinacao.dataVacinacaoStr}" />
+						</p:column>
+
+						<p:column headerText="Efeitos Colaterais" id="colColateral">
+							<h:outputText
+								value="#{vacinacao.efeitoColateral}" />
+						</p:column>
+						
+					</p:dataTable>
+					<br />
+
+				</h:panelGroup>
+				
+				<p:commandButton value="Nova" action="#{manterVacinacaoMB.initManter}" icon="ui-icon-plus" ajax="true" />
+
+			</p:tab>
+
+		</p:accordionPanel>
+
+	</ui:define>
+
+</ui:composition>
+
+

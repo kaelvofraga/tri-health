@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
@@ -30,13 +31,21 @@ public class Vacinacao extends BaseEntity<Long> implements Serializable {
 	
 	@Length(min = 0, message = "Campo Obrigatório.")
 	private String efeitoColateral;
+	
 	@Length(min = 0, message = "Campo Obrigatório.")
 	private String descricao;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataVacinacao;
+	
 	@Range(min = 0)
 	private Double doseVacinacao;
 
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "USUARIO_ID")
+	private Usuario usuario;
+	
 	public Vacinacao() {
 		super();
 	}   
@@ -74,6 +83,12 @@ public class Vacinacao extends BaseEntity<Long> implements Serializable {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		String dataFormatada = formatter.format(this.getDataVacinacao());
 		return dataFormatada;
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
    
 }

@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/public/templates/template.xhtml">
+
+	<ui:define name="metadata" />
+
+	<ui:define name="content">
+
+		<h1 class="lead">Vacinações</h1>
+				
+			<h:panelGroup layout="block" styleClass="form-group" id="vacinacao">
+				<h:panelGrid columns="2" styleClass="mtable">
+												
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="descricaoVacina" value="Descrição:" />
+							<br/>
+							<p:inputText
+								id="descricaoVacina"
+								style="width:80%"
+								value="#{manterVacinacaoMB.vacinacao.descricao}"
+								required="true"
+								requiredMessage="A descrição da vacina deve ser informada.">							
+							</p:inputText>
+	    				</h:panelGroup>
+						
+												
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="data"
+								value="Data" />
+							<br/>
+							<p:calendar id="data"
+								value="#{manterVacinacaoMB.vacinacao.dataVacinacao}"
+								pattern="dd/MM/yyyy HH:mm:ss"
+								placeholder="Informe a data da vacinação"
+								size="20" effect="fold" icon="glyphicon-calendar" 
+								required="true" requiredMessage="Uma data deve ser estipulada."
+							/>
+	   					</h:panelGroup>
+						
+						<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="valorDosagem" value="Dosagem (ml):" />
+							<br/>
+							<pe:inputNumber id="valorDosagem" symbolPosition="s"
+								thousandSeparator="."
+								value="#{manterVacinacaoMB.vacinacao.doseVacinacao}"
+								required="true" requiredMessage="A dose da vacinação deve ser informada.">
+							</pe:inputNumber>
+	    				</h:panelGroup>
+							
+	   					<br/>		
+	    	</h:panelGrid>
+	    	
+	    				<h:panelGroup layout="block" styleClass="form-group">
+							<p:outputLabel for="efeitoColateral" value="Efeitos colaterais:" />
+							<br/>
+						     <p:inputTextarea id="efeitoColateral" rows="5" cols="89" counter="obs" maxlength="100" 
+							 value="#{manterVacinacaoMB.vacinacao.efeitoColateral}" 
+								 counterTemplate="{0} caracteres restantes"
+								 placeholder="Insire aqui os efeitos colaterais da vacina." >
+							</p:inputTextarea>
+							<br/>
+							<h:outputText id="obs" />
+						</h:panelGroup>
+						
+						
+					<h:panelGroup layout="block" styleClass="form-group" id="buttons">
+					
+					<h:panelGroup layout="block" styleClass="form-group pull-left">
+		    			   <p:commandButton value="Salvar"
+		    			   	rendered="#{not manterVacinacaoMB.atualizacao}"
+							action="#{manterVacinacaoMB.salvaVacinacao}" 
+							ajax="true" update="vacinacao" icon="ui-icon-disk">
+						   </p:commandButton>	
+						   
+						   <p:commandButton value="Alterar"
+								rendered="#{manterVacinacaoMB.atualizacao}"
+								action="#{manterVacinacaoMB.alteraVacinacao}" 
+								ajax="false" icon="ui-icon-pencil">
+				     		</p:commandButton>	
+				    </h:panelGroup>
+				    
+				    <h:panelGroup layout="block" styleClass="form-group pull-right">	  
+					   <p:commandButton value="Excluir"
+							rendered="#{manterVacinacaoMB.atualizacao}"
+							action="#{manterVacinacaoMB.excluiVacinacao}"
+							ajax="true" icon="ui-icon-close" update="msgs"> 
+					   <p:confirm header="Confirmação" message="Tem certeza que deseja apagar a vacinação?" icon="ui-icon-alert" />
+					   </p:commandButton>
+					   
+					   <p:commandButton value="Voltar"
+					   		action="#{manterVacinacaoMB.initListar}" ajax="true" 
+							rendered="#{manterVacinacaoMB.atualizacao}">
+					   </p:commandButton>
+					</h:panelGroup>  
+				    
+				    
+					</h:panelGroup>
+
+					
+						
+		</h:panelGroup>
+				<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" >
+					</p:commandButton>	
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close">
+				    </p:commandButton>		
+					</p:confirmDialog> 
+		
+	</ui:define>
+</ui:composition>
