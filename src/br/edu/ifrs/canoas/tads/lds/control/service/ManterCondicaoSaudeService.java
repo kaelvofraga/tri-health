@@ -33,11 +33,18 @@ public class ManterCondicaoSaudeService {
 	@Inject
 	private CondicaoSaudeUsuarioDAO condicaoSaudeUsuarioDAO;
 	
+	/**
+	 * @brief busca todos os status pré cadastrados no banco
+	 * @return List<StatusSaude>
+	 * */
 	public List<StatusSaude> buscaStatus() {
-
 		return statusDAO.buscaTodos();
 	}
 
+	/**
+	 * @brief salvar uma condição de saude do usuario em um determinado periodo
+	 * @return TRUE caso condicao do usuario for salva, FALSE se não conseguiu salvar
+	 * */
 	public boolean salvaCondicaoUsuario(CondicaoSaudeUsuario condicaoSaude) {
 		if(condicaoSaude == null  || condicaoSaude.getUsuario() == null){
 			return false;
@@ -51,8 +58,7 @@ public class ManterCondicaoSaudeService {
 		return true;
 	}
 	/**
-	 * @return false se ocorrer erro na validação de data, ou TRUE caso data válida*/
-	/* Metodo para validar as datas da view manterUsoMedicamentos */
+	 * @return false se ocorrer erro na validação de data, ou TRUE caso data válida*/	
 	private boolean validaDatas(CondicaoSaudeUsuario condicaoSaudeUsuario) {
 		long timeDifMilli = 0L;
 		long timeDifMinutes = 0L;
@@ -84,19 +90,14 @@ public class ManterCondicaoSaudeService {
 	 * @param criterioDescricao(String)
 	 * @return List<CondicaoSaudeUsuario>
 	 * */
-	public List<CondicaoSaudeUsuario> busca(String criterioDescricao, Usuario usuario) {
+	public List<CondicaoSaudeUsuario> busca(String criterioDescricao) {
 		
-		List<CondicaoSaudeUsuario> condicaoList = null;
-		
-		if(usuario == null)
-			return null;					
-		
-			if (StrUtil.isNotBlank(criterioDescricao) && criterioDescricao != null) {
-				condicaoList = condicaoSaudeUsuarioDAO.buscaPorCriterio(criterioDescricao, usuario);
-			}else {
-				condicaoList = condicaoSaudeUsuarioDAO.buscaTodos();
+		if (StrUtil.isNotBlank(criterioDescricao) && criterioDescricao != null) {
+			if(!condicaoSaudeUsuarioDAO.buscaPorCriterio(criterioDescricao).isEmpty()){
+				return condicaoSaudeUsuarioDAO.buscaPorCriterio(criterioDescricao);			
 			}
-			return condicaoList;			
-	}
-
+		}
+		return condicaoSaudeUsuarioDAO.buscaTodos();
+	}		
 }
+

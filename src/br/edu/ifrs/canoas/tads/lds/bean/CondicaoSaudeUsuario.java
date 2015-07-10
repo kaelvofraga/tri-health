@@ -47,7 +47,7 @@ public class CondicaoSaudeUsuario extends BaseEntity<Long> implements Serializab
 		
 	@NotNull @Temporal(TemporalType.TIMESTAMP)
 	private Date dataFim;
-	 
+	
 	private String descricao;
 	 
 	private String solucao;
