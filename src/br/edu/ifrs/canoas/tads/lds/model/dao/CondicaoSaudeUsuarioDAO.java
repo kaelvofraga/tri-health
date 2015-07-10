@@ -21,24 +21,19 @@ public class CondicaoSaudeUsuarioDAO extends BaseDAO<CondicaoSaudeUsuario, Long>
 	private static final long serialVersionUID = 3538887461219854472L;
 
 	/** 
-	 * @brief Busca peso baseado no criterio informado.  	 		  
+	 * @brief Busca condicao de saude baseado no criterio informado, podendo ser descricao ou status.  	 		  
 	 * @param String criterioPeso: criterio informado.
-	 * @return List<PesoUsuario>: lista de pesos ou null se um erro ocorrer
+	 * @return List<PesoUsuario>: lista de condições de saude
 	 * */ 
 	@SuppressWarnings("unchecked")
-	public List<CondicaoSaudeUsuario> buscaPorCriterio(String criterioDescricao, Usuario usuario) {
-		try {	
-			String str = "SELECT au FROM CondicaoSaudeUsuario cs WHERE lower(cs.descricao) like '%"; 
-			str+= criterioDescricao.trim().toLowerCase(); 
-			str+="%' OR lower(cs.statussaude.status) like '%"; 
-			str+=criterioDescricao.trim().toLowerCase();
-			str+="%' AND cs.usuario.id = :usuario ORDER BY au.dataInicio";
-						
-			return em.createQuery(str).setParameter("usuario", usuario.getId()).getResultList();
-			
-		} catch (IllegalArgumentException e) {
-			return null;
-		}
+	public List<CondicaoSaudeUsuario> buscaPorCriterio(String criterioDescricao) {		
+			return em
+					.createQuery(
+							"SELECT cs FROM CondicaoSaudeUsuario cs "
+							+ "WHERE "
+							+ "lower(cs.descricao) like '%" + criterioDescricao.trim().toLowerCase() + "%' "
+							).getResultList();
+		
 	}
 
 }

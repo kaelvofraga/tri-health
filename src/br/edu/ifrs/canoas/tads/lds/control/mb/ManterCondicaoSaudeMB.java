@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -68,7 +69,7 @@ public class ManterCondicaoSaudeMB implements Serializable{
 	}
 
 	/** 
-	 * @brief Vincula usuï¿½rio logado ï¿½ atividade e inseri a nova atividade no BD, apï¿½s limpa formulï¿½rio
+	 * @brief Insere uma nova condição de saude do usuario logado
 	 * @param void
 	 * @return void
 	 * **/
@@ -85,7 +86,7 @@ public class ManterCondicaoSaudeMB implements Serializable{
 	 * @return void
 	 * */
 	public void busca(){
-		condicaoSaudeList = condSaudeService.busca(criterioDescricao, gerenciarLoginMB.getUsuario());
+		condicaoSaudeList = condSaudeService.busca(criterioDescricao);
 	}
 	
 	/** 
