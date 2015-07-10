@@ -38,7 +38,7 @@ public class CondicaoSaudeUsuario extends BaseEntity<Long> implements Serializab
 	@JoinColumn(name="USUARIO_ID")
 	private Usuario usuario;
 	
-	@NotNull @OneToOne
+	@OneToOne
 	@JoinColumn(name="STATUS_ID")
 	private StatusSaude status;
 	

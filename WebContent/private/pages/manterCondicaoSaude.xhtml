@@ -9,7 +9,7 @@
                 xmlns:pe="http://primefaces.org/ui/extensions">
 	
 	<!-- 
-	  	@brief View de listagem de condição de saúde de um usuário
+	  	@brief View de cadastro de condição de saúde de um usuário
  	 	@author Luana Gomes
   		@since 06/07/2015
 	 -->
@@ -27,7 +27,7 @@
 					<br/>
 					<p:inputText id="descricao"
 						style="width:80%"
-						value=""
+						value="#{manterCondicaoSaudeMB.condicaoSaude.descricao}"
 						required="true">
 					</p:inputText>
    				</h:panelGroup>
@@ -36,13 +36,13 @@
 					<p:outputLabel for="status" value="Status:" />
 					<br />
 					<p:selectOneMenu id="status"
-						value="#"
+						value="#{manterCondicaoSaudeMB.condicaoSaude.status}"
 						style="width:80%" required="true" >									
 						<f:selectItem itemLabel="Selecione..." itemValue=""
 							noSelectionOption="true" />
-						<f:selectItems value=""
-							var="status" itemLabel="#{status.nome}"
-							itemValue="#{status}" />
+						<f:selectItems value="#{manterCondicaoSaudeMB.statusSaudeList}"
+							var="statusSaude" itemLabel="#{statusSaude.nome}"
+							itemValue="#{statusSaude}" />
 					</p:selectOneMenu>
 				</h:panelGroup>
 												
@@ -52,7 +52,7 @@
 						<p:outputLabel for="inicio" value="Início:" />
 						<br />
 						<p:calendar id="inicio"
-							value="#{manterAtividadesMB.atividadeUsuario.dataInicio}"
+							value="#{manterCondicaoSaudeMB.condicaoSaude.dataInicio}"
 							pattern="dd/MM/yyyy HH:mm:ss" var="dataInicio"
 							itemLabel="#{condicaoSaudeUsuario.dataInicio}"
 							itemValue="#{condicaoSaudeUsuario.dataInicio}"
@@ -65,29 +65,33 @@
 						<p:outputLabel for="fim" value="Fim:" />
 						<br />
 						<p:calendar id="fim"
+							value="#{manterCondicaoSaudeMB.condicaoSaude.dataFim}"
 							pattern="dd/MM/yyyy HH:mm:ss" var="dataFim"
 							itemLabel="#{condicaoSaudeUsuario.dataFim}"
 							itemValue="#{condicaoSaudeUsuario.dataFim}"
 							placeholder="Hora de finalização." effect="fold"
 							icon="glyphicon-calendar" required="true">
 						</p:calendar>
+												
 					</h:panelGroup>
 				</h:panelGrid>
 
    				<h:panelGroup layout="block" styleClass="form-group">
 					<p:outputLabel for="solucao" value="Observações:" />
 					<br/>
-				     <p:inputTextarea id="solucao" rows="3" cols="86" counter="obs" maxlength="100" 
-					  counterTemplate="{0} caracteres restantes" >
+				     <p:inputTextarea id="solucao" 
+				     	value ="#{manterCondicaoSaudeMB.condicaoSaude.descricao}"
+				      	rows="2" cols="86" counter="obs" maxlength="100" 
+					 	counterTemplate="{0} caracteres restantes" >
 					</p:inputTextarea><br/>
-					<h:outputText id="obs" />
+					<h:outputText id="solucao" />
 				</h:panelGroup>
 												
 				<h:panelGroup layout="block" styleClass="form-group" id="buttons">
 				
 					<h:panelGroup layout="block" styleClass="form-group pull-left">
 		    			   <p:commandButton value="Salvar"
-							action="#" 
+							action="#{manterCondicaoSaudeMB.salvaCondicaoUsuario}" 
 							ajax="true" update="condicao" icon="ui-icon-disk">
 						   </p:commandButton>	
 						  

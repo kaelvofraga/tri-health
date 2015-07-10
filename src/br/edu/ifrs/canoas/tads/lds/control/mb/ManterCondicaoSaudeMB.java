@@ -3,17 +3,17 @@
 package br.edu.ifrs.canoas.tads.lds.control.mb;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.edu.ifrs.canoas.tads.lds.bean.Atividade;
+import org.primefaces.context.RequestContext;
+
 import br.edu.ifrs.canoas.tads.lds.bean.CondicaoSaudeUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.StatusSaude;
-import br.edu.ifrs.canoas.tads.lds.bean.TipoAtividade;
-import br.edu.ifrs.canoas.tads.lds.control.service.ManterAtividadesService;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterCondicaoSaudeService;
 
 /**
@@ -33,17 +33,18 @@ public class ManterCondicaoSaudeMB implements Serializable{
 	//service
 	@EJB
 	private ManterCondicaoSaudeService condSaudeService;
-	
+		
 	//Control
 	@Inject
 	private GerenciarLoginMB gerenciarLoginMB;
 	
 	//Beans
 	@Inject
-	private StatusSaude status;
-	
-	@Inject
 	private CondicaoSaudeUsuario condicaoSaude;
+	
+	//listas
+	private List<CondicaoSaudeUsuario> condicaoSaudeList;
+	private List<StatusSaude> statusSaudeList;
 	
 	public String initListar(){
 		return URL_LISTAR_CONDICAO_SAUDE;
@@ -53,6 +54,27 @@ public class ManterCondicaoSaudeMB implements Serializable{
 		return URL_MANTER_CONDICAO_SAUDE;
 	}
 
+	/** 
+	 * @brief Vincula usuï¿½rio logado ï¿½ atividade e inseri a nova atividade no BD, apï¿½s limpa formulï¿½rio
+	 * @param void
+	 * @return void
+	 * **/
+	public void salvaCondicaoUsuario(){
+		condicaoSaude.setUsuario(gerenciarLoginMB.getUsuario());
+		if(condSaudeService.salvaCondicaoUsuario(condicaoSaude)){		
+			this.initManter();
+		}
+	}
+	
+	/** 
+	 * @brief Verifica se a registro atual está sendo inserida nova ou atualizada uma antiga.	  	 		  
+	 * @param void
+	 * @return true se está atualizando registro ou false se não.
+	 * */
+	public boolean isAtualizacao(){
+		return condicaoSaude != null && condicaoSaude.getId() != null;
+	}
+	
 	/*GETTERS E SETTERS*/
 	
 	public ManterCondicaoSaudeService getCondSaudeService() {
@@ -61,14 +83,6 @@ public class ManterCondicaoSaudeMB implements Serializable{
 
 	public void setCondSaudeService(ManterCondicaoSaudeService condSaudeService) {
 		this.condSaudeService = condSaudeService;
-	}
-
-	public StatusSaude getStatus() {
-		return status;
-	}
-
-	public void setStatus(StatusSaude status) {
-		this.status = status;
 	}
 
 	public CondicaoSaudeUsuario getCondicaoSaude() {
@@ -85,6 +99,24 @@ public class ManterCondicaoSaudeMB implements Serializable{
 
 	public void setGerenciarLoginMB(GerenciarLoginMB gerenciarLoginMB) {
 		this.gerenciarLoginMB = gerenciarLoginMB;
+	}
+
+	public List<CondicaoSaudeUsuario> getCondicaoSaudeList() {
+		return condicaoSaudeList;
+	}
+
+	public void setCondicaoSaudeList(List<CondicaoSaudeUsuario> condicaoSaudeList) {
+		this.condicaoSaudeList = condicaoSaudeList;
+	}
+
+	public List<StatusSaude> getStatusSaudeList() {
+		if(statusSaudeList == null)
+			statusSaudeList = condSaudeService.buscaStatus();
+		return statusSaudeList;
+	}
+
+	public void setStatusSaudeList(List<StatusSaude> statusSaudeList) {
+		this.statusSaudeList = statusSaudeList;
 	}
 
 }
