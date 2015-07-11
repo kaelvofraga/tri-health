@@ -32,6 +32,7 @@ public class CondicaoSaudeUsuarioDAO extends BaseDAO<CondicaoSaudeUsuario, Long>
 							"SELECT cs FROM CondicaoSaudeUsuario cs "
 							+ "WHERE "
 							+ "lower(cs.descricao) like '%" + criterioDescricao.trim().toLowerCase() + "%' "
+							+ "OR lower(cs.status.nome) like '%" + criterioDescricao.trim().toLowerCase() + "%' "
 							).getResultList();
 		
 	}
