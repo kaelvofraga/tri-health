@@ -5,11 +5,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
-import org.apache.commons.lang3.math.NumberUtils;
-
 import br.edu.ifrs.canoas.tads.lds.bean.CondicaoSaudeUsuario;
-import br.edu.ifrs.canoas.tads.lds.bean.StatusSaude;
-import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 
 /**
  * @author Luana

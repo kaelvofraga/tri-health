@@ -91,15 +91,44 @@
 				
 					<h:panelGroup layout="block" styleClass="form-group pull-left">
 		    			   <p:commandButton value="Salvar"
-							action="#{manterCondicaoSaudeMB.salvaCondicaoUsuario}" 
-							ajax="true" update="condicao" icon="ui-icon-disk">
+		    			   		rendered="#{not manterCondicaoSaudeMB.atualizacao}"
+								action="#{manterCondicaoSaudeMB.salvaCondicaoUsuario}" 
+								ajax="true" update="condicao" icon="ui-icon-disk">
 						   </p:commandButton>	
 						  
-				    </h:panelGroup>
+						   <p:commandButton value="Salvar Alterações"
+								rendered="#{manterCondicaoSaudeMB.atualizacao}"
+								action="#{manterCondicaoSaudeMB.alteraCondicao}" 
+								ajax="false" icon="ui-icon-pencil">
+				     	   </p:commandButton>	
+				   </h:panelGroup>
+		     	   <h:panelGroup layout="block" styleClass="form-group pull-right">	  
+					   <p:commandButton value="Excluir"
+							rendered="#{manterCondicaoSaudeMB.atualizacao}"
+							action="#{manterCondicaoSaudeMB.excluiCondicao}"
+							ajax="true" icon="ui-icon-close" update="msgs"> 
+					   <p:confirm header="Confirmação" message="Tem certeza que deseja apagar a condição de saúde?" icon="ui-icon-alert" />
+					   </p:commandButton>
+			   
+					   <p:commandButton value="Voltar"
+							rendered="#{manterCondicaoSaudeMB.atualizacao}"
+							action="listarCondicaoSaude" ajax="false">
+					   </p:commandButton>
+				</h:panelGroup>  
+				    
 				    
 				</h:panelGroup>
 						
 		</h:panelGroup>
+		
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+			<p:commandButton value="Sim" type="button"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" >
+			</p:commandButton>	
+			<p:commandButton value="Não" type="button"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close">
+		    </p:commandButton>		
+		</p:confirmDialog> 
 		
 	</ui:define>
 </ui:composition>

@@ -1,20 +1,15 @@
 package br.edu.ifrs.canoas.tads.lds.control.service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
 import br.edu.ifrs.canoas.tads.lds.bean.CondicaoSaudeUsuario;
-import br.edu.ifrs.canoas.tads.lds.bean.MedicamentoUsuario;
-import br.edu.ifrs.canoas.tads.lds.bean.PesoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.StatusSaude;
-import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 import br.edu.ifrs.canoas.tads.lds.model.dao.CondicaoSaudeUsuarioDAO;
 import br.edu.ifrs.canoas.tads.lds.model.dao.StatusSaudeDAO;
 import br.edu.ifrs.canoas.tads.lds.util.Mensagens;
@@ -98,6 +93,31 @@ public class ManterCondicaoSaudeService {
 			}
 		}
 		return condicaoSaudeUsuarioDAO.buscaTodos();
+	}
+
+	public boolean alteraCondicaoUsuario(CondicaoSaudeUsuario condicaoSaude) {
+		if(condicaoSaude == null  || condicaoSaude.getUsuario() == null){
+			return false;
+		}	
+		if (validaDatas(condicaoSaude) == false) {
+			return false;
+		}
+		condicaoSaudeUsuarioDAO.atualiza(condicaoSaude);
+		Mensagens.define(FacesMessage.SEVERITY_INFO,
+				"manterCondicaoSaude.salvar.sucesso");
+		return true;
+	}
+
+	public boolean excluiCondicaoUsuario(CondicaoSaudeUsuario condicaoSaude) {
+		if (condicaoSaude.getId() != null && condicaoSaude != null) {	
+			condicaoSaudeUsuarioDAO.exclui(condicaoSaude.getId());
+			Mensagens.define(FacesMessage.SEVERITY_INFO,"manterPeso.exclui.sucesso");
+			return true;
+		} else {
+			Mensagens.define(FacesMessage.SEVERITY_INFO,"manterPeso.exclui.erro");
+			return false;
+		}
+		
 	}		
 }
 
