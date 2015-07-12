@@ -108,13 +108,11 @@
 			
 			<br>
 			
-			<p>08.01 = Se houver algum campo vazio ao salvar, emitir mensagem MSG 08.01.</p>
-            <p>08.02 = Se data final for menor que data inicial, emitir mensagem MSG 08.02 </p>
-			<p>08.03 = Se o sistema salvar o registro, emitir mensagem MSG 08.03 </p>
-			<p>08.04 = Caso não haja registro, emitir mensagem MSG 08.04 </p>
-			<p>08.05 = Caso não seja encontrado registro pelo critério informado, emitir mensagem MSG 08.04 </p>
-			<p>08.06 = Se usuário solicitar exclusão de registro, emitir mensagem MSG 08.05 </p>
-			<p>08.07 = Se usuário confirmar a exclusão do registro, emitir mensagem MSG 08.06 </p>
+            <p>08.01 = Se data final for menor que data inicial, emitir mensagem MSG 08.01 </p>
+			<p>08.02 = Os critérios de pesquisa são: status e descrição.</p>
+			<p>08.03 = Se registro alterado com sucesso, emitir mensagem MSG 05.02 </p>
+			<p>08.04 = Caso ocorra erro na exclusão de registro, emitir mensagem MSG 08.02</p>
+			<p>08.05 = Se data inicial for uma data futura, emitir mensagem MSG 08.03</p>
         </div>
         
         <h1 class="tmsg">Mensagens do Sistema</h1>
@@ -134,7 +132,7 @@
             <p>02.04 = Nenhum registro encontrado. [Alerta]</p>
             <p>02.05 = Tem certeza que deseja apagar esse registro? [Confirmação]</p>
             <p>02.06 = Composições corporais salvas com sucesso. [Notificação]</p>
-            <p>02.07 = Registro excluído com sucesso. [Notificação]</p>
+            <p>02.07 = Registro excluído com sucesso! [Notificação]</p>
 			<p>02.08 = A data não deve ser uma data futura. [Erro]</p>
             
             <br>
@@ -173,12 +171,9 @@
             <p>07.07 = Registro excluído com sucesso. [Notificação]</p>
 			
 			<br>
-            <p>08.01 = Campos devem ser preenchidos! [Notificação]</p>
-			<p>08.02 = Data final menor que data inicial. Verifique![Notificação]</p>
-			<p>08.03 = Registro salvo com sucesso! [Notificação]</p>
-			<p>08.04 = Nenhum registro encontrado. [Notificacao]</p>			
-            <p>08.05 = Tem certeza que deseja apagar esse registro? [Confirmação]</p>
-			<p>08.06 = Registro excluído com sucesso! [Notificação]</p>
+			<p>08.01 = Data final não pode ser menor ou igual a data inicial. Verifique![Notificação]</p>
+			<p>08.02 = Ocorreu algum erro.Registro não excluido![ERRO]</p>
+			<p>08.03 = A data inicial não pode ser futura.[Notificação]</p>
             
         </div>
     </body>

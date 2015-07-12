@@ -42,6 +42,8 @@ public class ManterCondicaoSaudeService {
 	 * */
 	public boolean salvaCondicaoUsuario(CondicaoSaudeUsuario condicaoSaude) {
 		if(condicaoSaude == null  || condicaoSaude.getUsuario() == null){
+			Mensagens.define(FacesMessage.SEVERITY_INFO,
+					"manterCondicao.campos.preenchidos");
 			return false;
 		}	
 		if (validaDatas(condicaoSaude) == false) {
@@ -69,8 +71,7 @@ public class ManterCondicaoSaudeService {
 					"manterCondicaoSaude.data.erro");
 			return false;
 		}		
-		// verifica diferença entre as datas de inicio e termino do tratamento
-		if (timeDifMinutes < 0L || timeDataFim == timeDataIni) {
+		if (timeDifMinutes < 0L || timeDataFim <= timeDataIni) {
 			Mensagens.define(FacesMessage.SEVERITY_ERROR,
 					"manterCondicaoSaude.data.invalida");
 			return false;
@@ -111,10 +112,10 @@ public class ManterCondicaoSaudeService {
 	public boolean excluiCondicaoUsuario(CondicaoSaudeUsuario condicaoSaude) {
 		if (condicaoSaude.getId() != null && condicaoSaude != null) {	
 			condicaoSaudeUsuarioDAO.exclui(condicaoSaude.getId());
-			Mensagens.define(FacesMessage.SEVERITY_INFO,"manterPeso.exclui.sucesso");
+			Mensagens.define(FacesMessage.SEVERITY_INFO,"manterCondicao.exclui.sucesso");
 			return true;
 		} else {
-			Mensagens.define(FacesMessage.SEVERITY_INFO,"manterPeso.exclui.erro");
+			Mensagens.define(FacesMessage.SEVERITY_ERROR,"manterCondicao.exclui.erro");
 			return false;
 		}
 		
