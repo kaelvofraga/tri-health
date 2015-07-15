@@ -7,18 +7,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 
 import br.edu.ifrs.canoas.tads.lds.bean.CondicaoSaudeUsuario;
-import br.edu.ifrs.canoas.tads.lds.bean.PesoUsuario;
 import br.edu.ifrs.canoas.tads.lds.bean.StatusSaude;
 import br.edu.ifrs.canoas.tads.lds.control.service.ManterCondicaoSaudeService;
 
@@ -108,6 +105,33 @@ public class ManterCondicaoSaudeMB implements Serializable{
 		this.condicaoSaude = (CondicaoSaudeUsuario) event.getObject();
 		FacesContext.getCurrentInstance().getExternalContext().redirect("../../private/pages/manterCondicaoSaude.jsf");
     }	
+	
+	/** 
+	 * @brief Altera informações de condicao de saude do usuario cadastrada no banco.
+	 * @param void
+	 * @return String
+	 * */
+	public String alteraCondicao() {
+		if(condSaudeService.alteraCondicaoUsuario(condicaoSaude) == true){
+			return URL_LISTAR_CONDICAO_SAUDE;
+		}else{
+			return URL_MANTER_CONDICAO_SAUDE;
+		}
+	}
+
+	/** 
+	 * @brief Metodo que exclui do banco de dados o pesoUsuario, retorna a URL 
+	 * da pagina que sera redirecionado.	 		  
+	 * @param void
+	 * @return String
+	 * */
+	public String excluiCondicao() {
+		if (condSaudeService.excluiCondicaoUsuario(condicaoSaude)) {
+			this.busca();
+			return URL_LISTAR_CONDICAO_SAUDE;
+		}
+		return URL_MANTER_CONDICAO_SAUDE;
+	}
 	
 	/*GETTERS E SETTERS*/
 	

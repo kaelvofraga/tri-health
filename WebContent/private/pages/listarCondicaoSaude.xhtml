@@ -35,7 +35,9 @@
 
 						<p:commandButton value="Busca" type="submit" action="#{manterCondicaoSaudeMB.busca}"
 							ajax="true" update="tab-condicoes" immediate="false" icon="ui-icon-search" />
-
+						
+						<p:commandButton value="Limpar busca" type="submit" action="#{manterCondicaoSaudeMB.initListar}"
+							ajax="true" update="tab-condicoes,criterio_descricao" immediate="false" icon="ui-icon-refresh" />
 					</h:panelGroup>
 
 					<p:dataTable 
@@ -44,11 +46,11 @@
 						emptyMessage="Nenhum Registro Encontrado." 
 						var="listCondicao"
 						value="#{manterCondicaoSaudeMB.condicaoSaudeList}"
-						rowKey="listCondicao.id"
+						rowKey="#{listCondicao.id}"
 						reflow="true" >
 
 						<p:ajax event="rowSelect" listener="#{manterCondicaoSaudeMB.onRowSelect}"
-						oncomplete="manterCondicaoSaude"/>
+						oncomplete="/private/pages/manterCondicaoSaude.jsf"/>
         				
 						<p:column headerText="Descrição" id="colDescricao" style="width:30%;">
 							<h:outputText

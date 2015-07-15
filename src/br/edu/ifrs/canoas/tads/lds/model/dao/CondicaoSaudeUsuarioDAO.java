@@ -5,11 +5,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
-import org.apache.commons.lang3.math.NumberUtils;
-
 import br.edu.ifrs.canoas.tads.lds.bean.CondicaoSaudeUsuario;
-import br.edu.ifrs.canoas.tads.lds.bean.StatusSaude;
-import br.edu.ifrs.canoas.tads.lds.bean.Usuario;
 
 /**
  * @author Luana
@@ -32,6 +28,7 @@ public class CondicaoSaudeUsuarioDAO extends BaseDAO<CondicaoSaudeUsuario, Long>
 							"SELECT cs FROM CondicaoSaudeUsuario cs "
 							+ "WHERE "
 							+ "lower(cs.descricao) like '%" + criterioDescricao.trim().toLowerCase() + "%' "
+							+ "OR lower(cs.status.nome) like '%" + criterioDescricao.trim().toLowerCase() + "%' "
 							).getResultList();
 		
 	}
