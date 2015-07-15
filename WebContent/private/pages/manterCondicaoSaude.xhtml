@@ -23,7 +23,7 @@
 			<h:panelGroup layout="block" styleClass="form-group" id="condicao">
 												
 				<h:panelGroup layout="block" styleClass="form-group">
-					<p:outputLabel for="descricao" value="Descrição:" />
+					<p:outputLabel for="descricao" value="#{msg['manterCondicao.cadastro.descricao']}" />
 					<br/>
 					<p:inputText id="descricao"
 						style="width:80%"
@@ -33,7 +33,7 @@
    				</h:panelGroup>
 						
 				<h:panelGroup layout="block" styleClass="form-group">
-					<p:outputLabel for="statusSaude" value="Status:" />
+					<p:outputLabel for="statusSaude" value="#{msg['manterCondicao.cadastro.status']}" />
 					<br />
 					<p:selectOneMenu id="statusSaude"
 						value="#{manterCondicaoSaudeMB.condicaoSaude.status}"
@@ -49,7 +49,7 @@
 				<h:panelGrid columns="2" styleClass="mtable" id="datas">
 
 					<h:panelGroup layout="block" styleClass="form-group">
-						<p:outputLabel for="inicio" value="Início:" />
+						<p:outputLabel for="inicio" value="#{msg['manterCondicao.cadastro.inicio']}" />
 						<br />
 						<p:calendar id="inicio"
 							value="#{manterCondicaoSaudeMB.condicaoSaude.dataInicio}"
@@ -62,7 +62,7 @@
 					</h:panelGroup>
 	
 					<h:panelGroup layout="block" styleClass="form-group">
-						<p:outputLabel for="fim" value="Fim:" />
+						<p:outputLabel for="fim" value="#{msg['manterCondicao.cadastro.fim']}" />
 						<br />
 						<p:calendar id="fim"
 							value="#{manterCondicaoSaudeMB.condicaoSaude.dataFim}"
@@ -77,7 +77,7 @@
 				</h:panelGrid>
 
    				<h:panelGroup layout="block" styleClass="form-group">
-					<p:outputLabel for="solucao" value="Solução:" />
+					<p:outputLabel for="solucao" value="#{msg['manterCondicao.cadastro.solucao']}" />
 					<br/>
 				     <p:inputTextarea id="solucao" 
 				     	value ="#{manterCondicaoSaudeMB.condicaoSaude.solucao}"
@@ -90,27 +90,27 @@
 				<h:panelGroup layout="block" styleClass="form-group" id="buttons">
 				
 					<h:panelGroup layout="block" styleClass="form-group pull-left">
-		    			   <p:commandButton value="Salvar"
+		    			   <p:commandButton value="#{msg['manterExameVisao.cadastro.salvar']}"
 		    			   		rendered="#{not manterCondicaoSaudeMB.atualizacao}"
 								action="#{manterCondicaoSaudeMB.salvaCondicaoUsuario}" 
 								ajax="true" update="condicao" icon="ui-icon-disk">
 						   </p:commandButton>	
-						  
-						   <p:commandButton value="Salvar Alterações"
+						   
+						   <p:commandButton value="#{msg['manterCondicao.cadastro.altera']}"
 								rendered="#{manterCondicaoSaudeMB.atualizacao}"
 								action="#{manterCondicaoSaudeMB.alteraCondicao}" 
 								ajax="false" icon="ui-icon-pencil">
 				     	   </p:commandButton>	
 				   </h:panelGroup>
 		     	   <h:panelGroup layout="block" styleClass="form-group pull-right">	  
-					   <p:commandButton value="Excluir"
+					   <p:commandButton value="#{msg['manterExameVisao.cadastro.excluir']}"
 							rendered="#{manterCondicaoSaudeMB.atualizacao}"
 							action="#{manterCondicaoSaudeMB.excluiCondicao}"
 							ajax="true" icon="ui-icon-close" update="msgs"> 
 					   <p:confirm header="Confirmação" message="Tem certeza que deseja apagar a condição de saúde?" icon="ui-icon-alert" />
 					   </p:commandButton>
 			   
-					   <p:commandButton value="Voltar"
+					   <p:commandButton value="#{msg['manterExameVisao.cadastro.voltar']}"
 							rendered="#{manterCondicaoSaudeMB.atualizacao}"
 							action="listarCondicaoSaude" ajax="false">
 					   </p:commandButton>
