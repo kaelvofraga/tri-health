@@ -107,7 +107,7 @@
 							rendered="#{manterCondicaoSaudeMB.atualizacao}"
 							action="#{manterCondicaoSaudeMB.excluiCondicao}"
 							ajax="true" icon="ui-icon-close" update="msgs"> 
-					   <p:confirm header="Confirmação" message="Tem certeza que deseja apagar a condição de saúde?" icon="ui-icon-alert" />
+					   <p:confirm header="Confirmação" message="#{msg['manterCadastro.excluir.certeza']}" icon="ui-icon-alert" />
 					   </p:commandButton>
 			   
 					   <p:commandButton value="#{msg['manterExameVisao.cadastro.voltar']}"

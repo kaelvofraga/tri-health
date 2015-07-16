@@ -43,7 +43,7 @@
 					<p:dataTable 
 						id="tab-condicoes" 
 						selectionMode="single"
-						emptyMessage="Nenhum Registro Encontrado." 
+						emptyMessage="#{msg['manterCadastro.lista.vazia']}" 
 						var="listCondicao"
 						value="#{manterCondicaoSaudeMB.condicaoSaudeList}"
 						rowKey="#{listCondicao.id}"
